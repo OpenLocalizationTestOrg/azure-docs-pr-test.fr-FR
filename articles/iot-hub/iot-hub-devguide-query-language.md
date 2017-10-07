@@ -1,6 +1,6 @@
 ---
-title: "Comprendre le langage de requête d’Azure IoT Hub | Microsoft Docs"
-description: "Guide du développeur - Description du langage de requête IoT Hub de type SQL utilisé pour récupérer des informations sur les jumeaux d’appareil et les travaux à partir de votre hub IoT."
+title: "aaaUnderstand hello langage de requête Azure IoT Hub | Documents Microsoft"
+description: "Guide du développeur - description du langage de requête de type SQL IoT Hub hello utilisée tooretrieve informations jumeaux de périphérique et les travaux à partir de votre hub IoT."
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/17
 ms.author: elioda
-ms.openlocfilehash: a7650104eda58923558892f6f0f6666d16dbce28
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 01a7c8ffdf44c6c27b834739d02c8fef1dd3d3fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reference---iot-hub-query-language-for-device-twins-jobs-and-message-routing"></a>Référence - Langage de requête IoT Hub pour les jumeaux d’appareil, les travaux et le routage des messages
 
-IoT Hub fournit un puissant langage de type SQL pour récupérer des informations concernant les [jumeaux d’appareil][lnk-twins], les [travaux][lnk-jobs] et le [routage des messages][lnk-devguide-messaging-routes]. Cet article présente les éléments suivants :
+IoT Hub fournit un puissant langage de type SQL des informations de tooretrieve concernant [jumeaux de périphérique] [ lnk-twins] et [travaux][lnk-jobs]et [routage des messages][lnk-devguide-messaging-routes]. Cet article présente les éléments suivants :
 
-* Une introduction aux principales fonctionnalités du langage de requête d’IoT Hub
-* Une description détaillée du langage
+* Une introduction toohello principales fonctionnalités de langage de requête IoT Hub, de hello et
+* Hello description détaillée du langage de hello.
 
 ## <a name="get-started-with-device-twin-queries"></a>Bien démarrer avec les requêtes de jumeau d’appareil
-Des [jumeaux d’appareil][lnk-twins] peuvent contenir des objets JSON arbitraires tels que des balises (tags) et des propriétés. IoT Hub vous permet d’interroger des jumeaux d’appareil sous la forme d’un seul document JSON contenant toutes les informations sur les jumeaux d’appareil.
-Par exemple, supposons que vos jumeaux d’appareil IoT Hub présentent la structure suivante :
+Des [jumeaux d’appareil][lnk-twins] peuvent contenir des objets JSON arbitraires tels que des balises (tags) et des propriétés. IoT Hub vous permet de jumeaux de périphérique tooquery en tant qu’un seul document JSON contenant toutes les informations de périphérique double.
+Supposons, par exemple, que vos jumeaux de périphérique de hub IoT ont hello suivant la structure :
 
 ```json
 {
@@ -70,8 +70,8 @@ Par exemple, supposons que vos jumeaux d’appareil IoT Hub présentent la struc
 }
 ```
 
-IoT Hub expose les jumeaux d’appareil en tant que collection de documents appelée **appareils**.
-Par conséquent, la requête suivante récupère l’ensemble des jumeaux d’appareil :
+IoT Hub expose jumeaux de périphérique hello en tant que document collection appelée **périphériques**.
+Par conséquent, hello suivant la requête récupère définition hello de jumeaux du périphérique :
 
 ```sql
 SELECT * FROM devices
@@ -80,14 +80,14 @@ SELECT * FROM devices
 > [!NOTE]
 > Les kits [Azure IoT SDK][lnk-hub-sdks] prennent en charge la pagination des résultats volumineux.
 
-IoT Hub vous permet de récupérer les jumeaux d’appareil en les filtrant avec des conditions arbitraires. Par exemple,
+IoT Hub permet jumeaux de périphérique tooretrieve filtrage avec des conditions arbitraires. Par exemple,
 
 ```sql
 SELECT * FROM devices
 WHERE tags.location.region = 'US'
 ```
 
-récupère les jumeaux d’appareil dont la balise **location.region** est définie sur **US**.
+Récupère hello jumeaux de périphérique avec hello **location.region** ensemble trop de balises**US**.
 Les opérateurs booléens et les comparaisons arithmétiques sont également pris en charge, par exemple,
 
 ```sql
@@ -96,21 +96,21 @@ WHERE tags.location.region = 'US'
     AND properties.reported.telemetryConfig.sendFrequencyInSecs >= 60
 ```
 
-récupère tous les jumeaux d’appareil situés aux États-Unis qui sont configurés pour envoyer des données de télémétrie moins souvent qu’une fois par minute. Pour des raisons pratiques, il est également possible d’utiliser des constantes de matrice avec les opérateurs **IN** (dans) et **NIN** (pas dans). Par exemple,
+Récupère tous les jumeaux périphérique situé dans hello nous configuré toosend télémétrie moins souvent que toutes les minutes. Pour des raisons pratiques, il est également possible toouse les constantes de matrice avec hello **IN** et **NDANS** (pas dans) les opérateurs. Par exemple,
 
 ```sql
 SELECT * FROM devices
 WHERE properties.reported.connectivity IN ['wired', 'wifi']
 ```
 
-récupère tous les jumeaux d’appareil ayant signalé une connectivité Wi-Fi ou câblée. Il est souvent nécessaire d’identifier tous les jumeaux d’appareil qui contiennent une propriété spécifique. IoT Hub prend en charge la fonction `is_defined()` à cette fin. Par exemple,
+récupère tous les jumeaux d’appareil ayant signalé une connectivité Wi-Fi ou câblée. Il est souvent nécessaire tooidentify tous les jumeaux de périphérique qui contiennent une propriété spécifique. IoT Hub prend en charge la fonction hello `is_defined()` à cet effet. Par exemple,
 
 ```SQL
 SELECT * FROM devices
 WHERE is_defined(properties.reported.connectivity)
 ```
 
-a récupéré tous les jumeaux d’appareil qui définissent la propriété signalée `connectivity`. Pour une référence complète sur les fonctionnalités de filtrage, consultez la section [clause WHERE][lnk-query-where].
+récupérer tous les jumeaux de périphérique qui définissent hello `connectivity` a signalé de propriété. Consultez toohello [clause WHERE] [ lnk-query-where] section de référence complète de hello Hello des fonctionnalités de filtre.
 
 Le regroupement et les agrégations sont également pris en charge. Par exemple,
 
@@ -121,7 +121,7 @@ FROM devices
 GROUP BY properties.reported.telemetryConfig.status
 ```
 
-retourne le nombre d’appareils dans chaque état de configuration de télémétrie.
+Retourne le nombre hello de périphériques de hello dans chaque état de configuration de télémétrie.
 
 ```json
 [
@@ -140,10 +140,10 @@ retourne le nombre d’appareils dans chaque état de configuration de télémé
 ]
 ```
 
-L’exemple précédent illustre une situation où trois appareils ont signalé une configuration réussie, deux d’entre eux appliquant toujours la configuration et le troisième ayant signalé une erreur.
+Hello exemple précédent illustre une situation où trois unités signalé configuration réussie, deux sont toujours l’application configuration de hello, et un a signalé une erreur.
 
 ### <a name="c-example"></a>Exemple en code C#
-La fonctionnalité de requête est exposée par [Service SDK C#][lnk-hub-sdks] dans la classe **RegistryManager**.
+fonctionnalités de requête Hello sont exposée par hello [SDK du service C#] [ lnk-hub-sdks] Bonjour **RegistryManager** classe.
 Voici un exemple de requête simple :
 
 ```csharp
@@ -158,20 +158,20 @@ while (query.HasMoreResults)
 }
 ```
 
-Notez comment l’objet **query** est instancié avec une taille de page (jusqu’à 1 000), puis comment plusieurs pages peuvent être récupérées en appelant la méthode **GetNextAsTwinAsync** plusieurs fois.
-Notez que l’objet query expose plusieurs **Next\***, selon l’option de désérialisation requise par la requête, par exemple des objets jumeau d’appareil ou travail, ou un JSON simple à utiliser en cas d’utilisation de projections.
+Notez comment hello **requête** objet est instancié avec une taille de page (haut too1000), et puis plusieurs pages peuvent être récupérés en appelant hello **GetNextAsTwinAsync** méthodes plusieurs fois.
+Notez que cet objet de requête hello expose plusieurs **suivant\***, selon l’option de la désérialisation de hello requis par la requête hello, tels que les objets périphériques double ou de travail, ou brut JSON toobe utilisé lors de l’utilisation de projections.
 
 ### <a name="nodejs-example"></a>Exemple de Node.js
-La fonctionnalité de requête est exposée par le [Kit de développement logiciel (SDK) de service Azure IoT pour Node.js][lnk-hub-sdks] dans l’objet **Registry**.
+fonctionnalités de requête Hello sont exposée par hello [Azure IoT service SDK pour Node.js] [ lnk-hub-sdks] Bonjour **Registre** objet.
 Voici un exemple de requête simple :
 
 ```nodejs
 var query = registry.createQuery('SELECT * FROM devices', 100);
 var onResults = function(err, results) {
     if (err) {
-        console.error('Failed to fetch the results: ' + err.message);
+        console.error('Failed toofetch hello results: ' + err.message);
     } else {
-        // Do something with the results
+        // Do something with hello results
         results.forEach(function(twin) {
             console.log(twin.deviceId);
         });
@@ -184,17 +184,17 @@ var onResults = function(err, results) {
 query.nextAsTwin(onResults);
 ```
 
-Notez comment l’objet **query** est instancié avec une taille de page (jusqu’à 1000), puis comment plusieurs pages peuvent être récupérées en appelant la méthode **nextAsTwin** plusieurs fois.
-Notez que l’objet query expose plusieurs **next\***, selon l’option de désérialisation requise par la requête, par exemple des objets jumeau d’appareil ou travail, ou un JSON simple à utiliser en cas d’utilisation de projections.
+Notez comment hello **requête** objet est instancié avec une taille de page (haut too1000), et puis plusieurs pages peuvent être récupérés en appelant hello **nextAsTwin** méthodes plusieurs fois.
+Notez que cet objet de requête hello expose plusieurs **suivant\***, selon l’option de la désérialisation de hello requis par la requête hello, tels que les objets périphériques double ou de travail, ou brut JSON toobe utilisé lors de l’utilisation de projections.
 
-### <a name="limitations"></a>Limitations
+### <a name="limitations"></a>Limites
 > [!IMPORTANT]
-> Les résultats de la requête peuvent être produits avec quelques minutes de retard par rapport aux dernières valeurs dans les jumeaux d’appareil. Lors d’une recherche de jumeaux d’appareil par ID, il est toujours préférable d’utiliser l’API de récupération des jumeaux d’appareil, qui contient toujours les valeurs les plus récentes et qui a un seuil de limitation plus élevé.
+> Résultats de la requête peuvent contenir quelques minutes de retard avec les valeurs les plus récentes en ce qui concerne toohello jumeaux de périphérique. Si vous interrogez jumeaux de périphérique par id, il est toujours préférable toouse hello récupérer les API de double de l’appareil, qui contient les valeurs les plus récentes hello et a plus la limitation limites toujours.
 
 Actuellement, les comparaisons ne sont prises en charge qu’entre types primitifs (aucun objet), par exemple `... WHERE properties.desired.config = properties.reported.config` est pris en charge uniquement si ces propriétés ont des valeurs primitives.
 
 ## <a name="get-started-with-jobs-queries"></a>Bien démarrer avec les requêtes de travaux
-Les [travaux][lnk-jobs] constituent un moyen d’exécuter des opérations sur des ensembles d’appareils. Chaque jumeau d’appareil contient les informations des travaux auxquels il participe dans un regroupement nommé **travaux**.
+[Travaux] [ lnk-jobs] fournissent un moyen tooexecute des opérations sur des ensembles de périphériques. Chaque double périphérique contient des informations de hello de travaux hello dont il fait partie d’une collection appelée **travaux**.
 Sous forme logique,
 
 ```json
@@ -226,23 +226,23 @@ Sous forme logique,
 }
 ```
 
-Actuellement, ce regroupement peut être interrogé en tant que **devices.jobs** dans le langage de requête d’IoT Hub.
+Actuellement, cette collection ne peut être interrogée comme **devices.jobs** Bonjour langage de requête IoT Hub.
 
 > [!IMPORTANT]
-> Actuellement, la propriété de travaux n’est jamais retournée lorsque des jumeaux d’appareil sont interrogés (c’est-à-dire pour les requêtes qui contiennent « FROM appareils »). Elle est uniquement accessible directement avec des requêtes utilisant `FROM devices.jobs`.
+> Actuellement, propriété des travaux hello n’est jamais retournée lors de l’interrogation jumeaux d’appareil (autrement dit, les requêtes qui contient « à partir d’appareils »). Elle est uniquement accessible directement avec des requêtes utilisant `FROM devices.jobs`.
 >
 >
 
-Par exemple, pour obtenir tous les travaux (passés et planifiés) qui affectent un appareil donné, vous pouvez utiliser la requête suivante :
+Par exemple, tooget tous les travaux (passées et planifiées) qui affectent un seul appareil, vous pouvez utiliser hello suivant la requête :
 
 ```sql
 SELECT * FROM devices.jobs
 WHERE devices.jobs.deviceId = 'myDeviceId'
 ```
 
-Notez comment cette requête fournit l’état spécifique de l’appareil (et éventuellement la réponse de méthode directe) pour chaque travail retourné.
-Il est également possible de filtrer avec des conditions booléennes arbitraires sur toutes les propriétés d’objet du regroupement **devices.jobs**.
-Par exemple, la requête suivante :
+Notez comment cette requête fournit l’état de spécifique au périphérique hello (et éventuellement réponse de la méthode directe hello) de chaque tâche retournée.
+Il est également possible de toofilter avec des conditions booléennes arbitraires sur toutes les propriétés de l’objet Bonjour **devices.jobs** collection.
+Par exemple, hello requête suivante :
 
 ```sql
 SELECT * FROM devices.jobs
@@ -254,29 +254,29 @@ WHERE devices.jobs.deviceId = 'myDeviceId'
 
 récupère tous les travaux de mise à jour du jumeau de l’appareil **myDeviceId**, qui ont été créés après le mois de septembre 2016.
 
-Il est également possible de récupérer les résultats d’un travail unique par appareil.
+Il est également des résultats de chaque appareil hello tooretrieve possibles d’une tâche unique.
 
 ```sql
 SELECT * FROM devices.jobs
 WHERE devices.jobs.jobId = 'myJobId'
 ```
 
-### <a name="limitations"></a>Limitations
+### <a name="limitations"></a>Limites
 Actuellement, les requêtes sur **devices.jobs** ne prennent pas en charge :
 
 * Les projections, par conséquent seul `SELECT *` est possible.
-* Les conditions faisant référence au jumeau d’appareil en plus des propriétés du travail (voir section précédente).
+* Conditions qui font référence à double d’appareil toohello dans les propriétés de toojob d’addition (voir hello précédant la section).
 * L’exécution d’agrégations, par exemple, count, avg, group by.
 
 ## <a name="get-started-with-device-to-cloud-message-routes-query-expressions"></a>Bien démarrer avec les expressions de requête d’itinéraires de messages appareil-à-cloud
 
-À l’aide des [itinéraires appareil-à-cloud][lnk-devguide-messaging-routes], vous pouvez configurer IoT Hub pour distribuer les messages appareil-à-cloud sur différents points de terminaison sur la base d’expressions évaluées par rapport à des messages individuels.
+À l’aide de [appareil-à-cloud itinéraires][lnk-devguide-messaging-routes], vous pouvez configurer IoT Hub toodispatch appareil-à-cloud messages toodifferent de points de terminaison basé sur des expressions évaluées par rapport à des messages individuels.
 
-La [condition][lnk-query-expressions] d’itinéraire utilise le même langage de requête IoT Hub que les conditions des requêtes de jumeau et de travail. Les conditions de routage sont évaluées sur les en-têtes et le corps des messages. Votre expression de requête de routage peut impliquer uniquement des en-têtes de message, uniquement le corps du message ou à la fois des en-têtes de message et le corps du message. IoT Hub suppose un schéma spécifique pour les en-têtes et le corps du message afin d’acheminer les messages. Les sections suivantes décrivent ce dont a besoin IoT Hub pour effectuer le routage correctement :
+itinéraire de Hello [condition] [ lnk-query-expressions] utilise hello même langage de requête IoT Hub en tant que les conditions dans les requêtes double et de travail. Conditions de routage sont évaluées sur le corps et en-têtes de message hello. Votre expression de requête de routage peut impliquer seulement des en-têtes de message, uniquement hello corps du message, ou les deux en-têtes de message et le corps du message. IoT Hub suppose un schéma spécifique pour les en-têtes de hello et de corps du message dans les messages d’ordre tooroute et hello les sections suivantes décrire ce qui est obligatoire pour l’itinéraire de tooproperly IoT Hub :
 
 ### <a name="routing-on-message-headers"></a>Routage sur les en-têtes de message
 
-IoT Hub suppose la représentation JSON suivante d’en-têtes de message pour le routage des messages :
+IoT Hub suppose hello suivant la représentation JSON d’en-têtes de message pour le routage des messages :
 
 ```json
 {
@@ -298,41 +298,41 @@ IoT Hub suppose la représentation JSON suivante d’en-têtes de message pour l
 }
 ```
 
-Les propriétés système du message ont pour préfixe le symbole `'$'`.
-Les propriétés de l’utilisateur sont toujours accessibles par leur nom. Si un nom de propriété d’utilisateur coïncide avec une propriété système (telle que `$to`), la propriété de l’utilisateur est récupérée avec l’expression `$to`.
-Vous pouvez toujours accéder à la propriété système à l’aide de crochets `{}` : par exemple, vous pouvez utiliser l’expression `{$to}` pour accéder à la propriété système `to`. Les noms de propriétés entre crochets récupèrent toujours la propriété système correspondante.
+Propriétés des messages système sont précédées de hello `'$'` symbole.
+Les propriétés de l’utilisateur sont toujours accessibles par leur nom. Si un nom de propriété utilisateur produit toocoincide avec une propriété système (tel que `$to`), propriété hello de l’utilisateur est récupérée avec hello `$to` expression.
+Vous pouvez toujours accéder à l’aide de crochets de la propriété du système hello `{}`: par exemple, vous pouvez utiliser l’expression de hello `{$to}` tooaccess hello propriété système `to`. Noms de propriété entre crochets récupèrent toujours le propriété système correspondante de hello.
 
 N’oubliez pas que les noms de propriété respectent la casse.
 
 > [!NOTE]
-> Toutes les propriétés de message sont des chaînes. Les propriétés système, comme décrit dans le [guide du développeur][lnk-devguide-messaging-format], ne sont actuellement pas disponibles pour utilisation dans les requêtes.
+> Toutes les propriétés de message sont des chaînes. Propriétés du système, comme décrit dans hello [guide du développeur][lnk-devguide-messaging-format], ne sont pas actuellement disponible toouse dans les requêtes.
 >
 
-Par exemple, si vous utilisez une propriété `messageType`, vous souhaiterez peut-être acheminer toutes les données de télémétrie vers un point de terminaison et toutes les alertes vers un autre point de terminaison. Vous pouvez écrire l’expression suivante pour acheminer les données de télémétrie :
+Par exemple, si vous utilisez un `messageType` propriété, vous pourriez tooroute le point de terminaison de tooone toutes les données de télémétrie et le point de terminaison de tooanother toutes les alertes. Vous pouvez écrire hello suivant de télémétrie de hello tooroute expression :
 
 ```sql
 messageType = 'telemetry'
 ```
 
-Et l’expression suivante pour acheminer les messages d’alerte :
+Et hello suivant des messages d’alerte hello tooroute expression :
 
 ```sql
 messageType = 'alert'
 ```
 
-Les fonctions et expressions booléennes sont également prises en charge. Cette fonctionnalité vous permet de faire la distinction entre les niveaux de gravité, par exemple :
+Les fonctions et expressions booléennes sont également prises en charge. Cette fonctionnalité permet de vous toodistinguish entre le niveau de gravité, par exemple :
 
 ```sql
 messageType = 'alerts' AND as_number(severity) <= 2
 ```
 
-Reportez-vous à la section [Expression et conditions][lnk-query-expressions] pour obtenir la liste complète des fonctions et opérateurs pris en charge.
+Consultez toohello [Expression et conditions] [ lnk-query-expressions] section pour la liste complète hello des fonctions et opérateurs pris en charge.
 
 ### <a name="routing-on-message-bodies"></a>Routage sur les corps de message
 
-IoT Hub peut effectuer le routage en fonction du contenu du corps du message seulement si le corps du message se présente sous un format JSON adéquat encodé en UTF-8, UTF-16 ou UTF-32. Pour qu’IoT Hub puisse acheminer le message en fonction du contenu du corps, vous devez définir le type de contenu du message sur `application/json` et l’encodage du contenu sur l’un des encodages UTF pris en charge dans les en-têtes de message. Si un des en-têtes n’est pas spécifié, IoT Hub n’évalue aucune expression de requête impliquant le corps de message. Si votre message n’est pas un message JSON ou que le message ne spécifie pas le type de contenu et l’encodage du contenu, vous pouvez toujours utiliser le routage des messages pour acheminer le message en fonction des en-têtes de message.
+IoT Hub peut uniquement acheminer basé sur le corps du message contenu si le corps du message hello est correctement formé JSON encodé en UTF-8, UTF-16 ou UTF-32. Vous devez définir les type de contenu hello de message de type hello trop`application/json` et tooone de codage contenu hello Hello pris en charge les encodages UTF dans tooallow d’en-têtes de message hello message de type hello IoT Hub tooroute basé sur le contenu du corps de hello. Si un des en-têtes de hello n’est pas spécifié, IoT Hub tentera pas tooevaluate toute expression de requête impliquant des corps hello contre le message de type hello. Si votre message n’est pas un message JSON, ou si le message de type hello ne spécifie pas de type de contenu hello et l’encodage du contenu, vous pouvez toujours utiliser le message de type hello tooroute basée sur les en-têtes de message hello de routage des messages.
 
-Vous pouvez utiliser `$body` dans l’expression de requête pour acheminer le message. Vous pouvez utiliser une référence de corps simple, une référence de tableau de corps ou plusieurs références de corps dans l’expression de requête. Votre expression de requête peut également combiner une référence de corps avec une référence d’en-tête de message. Par exemple, toutes les expressions de requête suivantes sont valides :
+Vous pouvez utiliser `$body` dans le message de type hello tooroute expression requête hello. Vous pouvez utiliser une référence simple corps, référence de tableau de corps ou plusieurs références de corps dans l’expression de requête hello. Votre expression de requête peut également combiner une référence de corps avec une référence d’en-tête de message. Par exemple, hello Voici toutes les expressions de requête valide :
 
 ```sql
 $body.message.Weather.Location.State = 'WA'
@@ -343,7 +343,7 @@ $body.Weather.Temperature = 50 AND Status = 'Active'
 ```
 
 ## <a name="basics-of-an-iot-hub-query"></a>Principes de base d’une requête IoT Hub
-Chaque requête IoT Hub se compose de clauses SELECT et FROM et, en option, de clauses WHERE et GROUP BY. Chaque requête est exécutée sur un regroupement de documents JSON, par exemple des jumeaux d’appareil. La clause FROM indique le regroupement de documents sur lequel elle doit être itérée (**devices** ou **devices.jobs**). Ensuite, le filtre dans la clause WHERE est appliqué. Avec les agrégations, les résultats de cette étape sont regroupés comme spécifié dans la clause GROUP BY, puis, pour chaque groupe, une ligne est générée comme spécifié dans la clause SELECT.
+Chaque requête IoT Hub se compose de clauses SELECT et FROM et, en option, de clauses WHERE et GROUP BY. Chaque requête est exécutée sur un regroupement de documents JSON, par exemple des jumeaux d’appareil. clause FROM de Hello indique hello document collection toobe itéré sur (**périphériques** ou **devices.jobs**). Ensuite, hello filtre Bonjour où clause est appliquée. Avec des agrégations, les résultats de hello de cette étape sont regroupés comme spécifié dans hello clause GROUP BY et, pour chaque groupe, une ligne est générée comme spécifié dans la clause SELECT de hello.
 
 ```sql
 SELECT <select_list>
@@ -353,18 +353,18 @@ FROM <from_specification>
 ```
 
 ## <a name="from-clause"></a>Clause FROM
-La clause **FROM <from_specification>** ne peut supposer que deux valeurs : **FROM devices** pour interroger les jumeaux d’appareil ou **FROM devices.jobs** pour interroger les détails de travaux par appareil.
+Hello **à partir de < from_specification >** clause peut supposer que deux valeurs : **à partir d’appareils**, tooquery jumeaux de périphérique, ou **de devices.jobs**, par périphérique du travail tooquery Détails.
 
 ## <a name="where-clause"></a>Clause WHERE
-La clause **WHERE <filter_condition>** est facultative. Elle indique une ou plusieurs conditions que les documents JSON du regroupement FROM doivent remplir pour être inclus dans le résultat. Pour être inclus dans le résultat, chaque document JSON doit évaluer les conditions spécifiées comme « true ».
+Hello **où < filter_condition >** clause est facultative. Elle spécifie une ou plusieurs des conditions que les documents JSON hello dans la collection de FROM hello doivent satisfaire toobe inclus en tant que partie du résultat de hello. N’importe quel document JSON doit évaluer hello spécifié conditions trop « true » toobe inclus dans le résultat de hello.
 
-Les conditions autorisées sont décrites dans la section [Expressions et conditions][lnk-query-expressions].
+Hello autorisés sont décrites dans la section [Expressions et les conditions][lnk-query-expressions].
 
 ## <a name="select-clause"></a>Clause SELECT
-La clause SELECT (**SELECT <select_list>**) est obligatoire. Elle spécifie les valeurs qui sont récupérées de la requête. Elle spécifie les valeurs JSON à utiliser pour générer de nouveaux objets JSON.
-Pour chaque élément du sous-ensemble filtré (et éventuellement groupé) du regroupement FROM, la phase de projection génère un nouvel objet JSON, construit avec les valeurs spécifiées dans la clause SELECT.
+clause SELECT de Hello (**sélectionnez < select_list >**) est obligatoire et spécifie que les valeurs sont récupérées à partir de la requête de hello. Il spécifie toobe de valeurs JSON hello utilisé toogenerate de nouveaux objets JSON.
+Pour chaque élément de hello sous-ensemble filtré (et éventuellement groupée) de collection de FROM hello, la phase de projection hello génère un nouvel objet JSON, construit avec les valeurs hello spécifiés dans la clause SELECT de hello.
 
-La grammaire de la clause SELECT est la suivante :
+Voici la grammaire hello de la clause SELECT de hello :
 
 ```
 SELECT [TOP <max number>] <projection list>
@@ -386,12 +386,12 @@ SELECT [TOP <max number>] <projection list>
     | max(<projection_element>)
 ```
 
-où **attribute_name** fait référence à n’importe quelle propriété du document JSON dans le regroupement FROM. Vous trouverez des exemples de clauses SELECT dans la section [Bien démarrer avec les requêtes de jumeau d’appareil][lnk-query-getstarted].
+où **attribute_name** fait référence de propriété tooany document JSON de hello dans la collection de FROM hello. Vous trouverez des exemples de clauses SELECT Bonjour [mise en route avec les requêtes de double périphérique] [ lnk-query-getstarted] section.
 
 Actuellement, les clauses de sélection autres que **SELECT\*** sont prises en charge uniquement dans les requêtes d’agrégation sur des jumeaux d’appareil.
 
 ## <a name="group-by-clause"></a>Clause GROUP BY
-La clause **GROUP BY <group_specification>** est une étape facultative qui peut être exécutée après le filtre spécifié dans la clause WHERE, et avant la projection spécifiée dans la clause SELECT. Elle groupe des documents en fonction de la valeur d’un attribut. Ces groupes sont utilisés pour générer des valeurs agrégées comme spécifié dans la clause SELECT.
+Hello **GROUP BY < group_specification >** clause est une étape facultative qui peut être exécutée une fois que le filtre de hello spécifié Bonjour clause WHERE et avant de projection hello spécifiée dans hello sélectionner. Il regroupe des documents en fonction de la valeur hello d’un attribut. Ces groupes sont utilisés toogenerate agrégée des valeurs comme spécifié dans la clause SELECT de hello.
 
 Voici un exemple de requête utilisant la clause GROUP BY :
 
@@ -402,7 +402,7 @@ FROM devices
 GROUP BY properties.reported.telemetryConfig.status
 ```
 
-La syntaxe formelle de la clause GROUP BY est la suivante :
+une syntaxe de Hello pour GROUP BY est la suivante :
 
 ```
 GROUP BY <group_by_element>
@@ -411,19 +411,19 @@ GROUP BY <group_by_element>
     | < group_by_element > '.' attribute_name
 ```
 
-où **attribute_name** fait référence à n’importe quelle propriété du document JSON dans le regroupement FROM.
+où **attribute_name** fait référence de propriété tooany document JSON de hello dans la collection de FROM hello.
 
-Actuellement, la clause GROUP BY est prise en charge uniquement lors de l’interrogation de jumeaux d’appareil.
+Actuellement, clause GROUP BY hello est uniquement pris en charge lors de l’interrogation jumeaux de périphérique.
 
 ## <a name="expressions-and-conditions"></a>Expressions et conditions
 À un niveau élevé, une *expression* :
 
-* prend la valeur d’une instance d’un type JSON (par exemple, Boolean, number, string, array ou object) ;
-* est définie en manipulant des données provenant du document JSON de l’appareil et des constantes à l’aide de fonctions et d’opérateurs intégrés.
+* Évalue l’instance tooan d’un type JSON (par exemple, les booléen, nombre, chaîne, tableau ou objet), et
+* Est défini par la manipulation de données provenant d’un document JSON de périphérique hello et constantes à l’aide des fonctions et opérateurs intégrés.
 
-Les *Conditions* sont des expressions qui correspondent à une valeur booléenne. Toute constante autre que le booléen **true** est considérée comme ayant la valeur **false** (y compris **null**, **undefined**, toute instance d’objet ou de tableau, toute chaîne et clairement le booléen **false**).
+*Conditions* sont des expressions qui évaluent tooa booléen. N’importe quelle autre qu’une valeur booléenne de constante **true** est considéré comme **false** (y compris **null**, **non défini**, n’importe quelle instance d’objet ou un tableau, toute chaîne et clairement hello booléen **false**).
 
-La syntaxe des expressions est la suivante :
+syntaxe des expressions de Hello est la suivante :
 
 ```
 <expression> ::=
@@ -455,15 +455,15 @@ où :
 
 | Symbole | Définition |
 | --- | --- |
-| attribute_name | Toute propriété du document JSON dans le regroupement **FROM**. |
-| binary_operator | Tout opérateur binaire répertorié dans la section [Operators](#operators). |
-| function_name| Toutes les fonctions répertoriées dans la section [Fonctions](#functions). |
+| attribute_name | N’importe quelle propriété de document JSON de hello Bonjour **FROM** collection. |
+| binary_operator | Tout opérateur binaire répertoriés dans hello [opérateurs](#operators) section. |
+| function_name| Toutes les fonctions répertoriées dans hello [fonctions](#functions) section. |
 | decimal_literal |Variable exprimée en notation décimale. |
-| hexadecimal_literal |Nombre exprimé par la chaîne « 0x » suivi d’une chaîne de chiffres hexadécimaux. |
+| hexadecimal_literal |Un nombre exprimé par la chaîne de hello '0 x' suivi d’une chaîne de chiffres hexadécimaux. |
 | string_literal |Les littéraux de chaîne sont des chaînes Unicode représentées par une séquence de zéro ou plusieurs caractères Unicode ou séquences d’échappement. Les littéraux de chaîne sont placés entre guillemets simples (apostrophes, ’) ou guillemets doubles ("). Échappements autorisés : `\'`, `\"`, `\\`, `\uXXXX` pour les caractères Unicode définis par 4 chiffres hexadécimaux. |
 
-### <a name="operators"></a>Opérateurs
-Les opérateurs suivants sont pris en charge :
+### <a name="operators"></a>Operators
+Hello après les opérateurs est pris en charge :
 
 | Famille | Opérateurs |
 | --- | --- |
@@ -472,55 +472,55 @@ Les opérateurs suivants sont pris en charge :
 | Opérateurs de comparaison |=, !=, <, >, <=, >=, <> |
 
 ### <a name="functions"></a>Fonctions
-Lors des requêtes de jumeaux ou de travaux, la seule fonction prise en charge est :
+Lors de l’interrogation hello jumeaux et tâches de prise en charge uniquement la fonction est :
 
 | Fonction | Description |
 | -------- | ----------- |
-| IS_DEFINED(property) | Retourne une valeur booléenne indiquant si une valeur a été attribuée à la propriété (dont `null`). |
+| IS_DEFINED(property) | Retourne une valeur booléenne indiquant si une valeur a été assignée à la propriété de hello (y compris `null`). |
 
-Dans les conditions d’itinéraire, les fonctions mathématiques suivantes sont prises en charge :
-
-| Fonction | Description |
-| -------- | ----------- |
-| ABS(x) | Retourne la valeur (positive) absolue de l'expression numérique spécifiée. |
-| EXP(x) | Retourne la valeur exponentielle de l'expression numérique spécifiée (e^x). |
-| POWER(x,y) | Retourne la valeur de l’expression spécifiée élevée à la puissance spécifiée (x^y).|
-| SQUARE(x) | Retourne le carré de la valeur numérique spécifiée. |
-| CEILING(x) | Retourne le plus petit nombre entier qui est supérieur ou égal à l'expression numérique spécifiée. |
-| FLOOR(x) | Retourne le plus grand nombre entier qui est inférieur ou égal à l'expression numérique spécifiée. |
-| SIGN(x) | Retourne le signe positif (+1), nul (0) ou négatif (-1) de l'expression numérique spécifiée.|
-| SQRT(x) | Retourne le carré de la valeur numérique spécifiée. |
-
-Dans les conditions d’itinéraire, les fonctions de vérification et de conversion de type suivantes sont prises en charge :
+Dans les conditions d’itinéraires, hello suivant des fonctions mathématiques est prises en charge :
 
 | Fonction | Description |
 | -------- | ----------- |
-| AS_NUMBER | Convertit la chaîne d’entrée en nombre. `noop` si l’entrée est un nombre ; `Undefined` si la chaîne ne représente pas un nombre.|
-| IS_ARRAY | Retourne une valeur booléenne indiquant si l’expression spécifiée est du type tableau. |
-| IS_BOOL | Retourne une valeur booléenne indiquant si l’expression spécifiée est du type booléen. |
-| IS_DEFINED | Retourne une valeur booléenne indiquant si une valeur a été attribuée à la propriété. |
-| IS_NULL | Retourne une valeur booléenne indiquant si l’expression spécifiée est de type null. |
-| IS_NUMBER | Retourne une valeur booléenne indiquant si l’expression spécifiée est du type nombre. |
-| IS_OBJECT | Retourne une valeur booléenne indiquant si l’expression spécifiée est du type objet JSON. |
-| IS_PRIMITIVE | Retourne une valeur booléenne indiquant si l’expression spécifiée est de type primitif (chaîne, booléen, numérique ou `null`). |
-| IS_STRING | Retourne une valeur booléenne indiquant si l’expression spécifiée est du type chaîne. |
+| ABS(x) | Retourne hello valeur absolue (positive) de hello de l’expression numérique spécifiée. |
+| EXP(x) | Retourne la valeur exponentielle hello Hello de l’expression numérique spécifiée (e ^ x). |
+| POWER(x,y) | Retourne hello valeur Hello spécifié toohello de l’expression spécifiée d’alimentation (x ^ y).|
+| SQUARE(x) | Hello retourne carrée hello la valeur numérique spécifiée. |
+| CEILING(x) | Retourne hello plus petit entier supérieur à, ou être égal, hello expression numérique spécifiée. |
+| FLOOR(x) | Retourne des hello plus grand entier inférieur ou égal toohello l’expression numérique spécifiée. |
+| SIGN(x) | Retourne hello positif (+ 1), zéro (0), ou un signe négatif (-1) de hello de l’expression numérique spécifiée.|
+| SQRT(x) | Hello retourne carrée hello la valeur numérique spécifiée. |
 
-Dans les conditions d’itinéraire, les fonctions de chaîne suivantes sont prises en charge :
+Dans les conditions d’itinéraires, hello suivant le type de vérification et de la conversion des fonctions est prises en charge :
 
 | Fonction | Description |
 | -------- | ----------- |
-| CONCAT(x, …) | Retourne une chaîne qui est le résultat de la concaténation d’au moins deux valeurs de chaîne. |
-| LENGTH(x) | Retourne le nombre de caractères de l’expression de chaîne spécifiée.|
-| LOWER(x) | Retourne une expression de chaîne après la conversion des caractères majuscules en caractères minuscules. |
-| UPPER(x) | Retourne une expression de chaîne après la conversion des caractères minuscules en caractères majuscules. |
-| SUBSTRING(string, start [, length]) | Renvoie une partie d’une expression de chaîne commençant à la position de caractère spécifiée (avec base zéro) et se poursuit jusqu'à la longueur spécifiée ou à la fin de la chaîne. |
-| INDEX_OF(string, fragment) | Retourne la position de départ de la première occurrence de la seconde expression de chaîne dans la première expression de chaîne spécifiée, ou -1 si la chaîne est introuvable.|
-| STARTS_WITH(x, y) | Retourne une valeur booléenne indiquant si la première expression de chaîne commence par la seconde. |
-| ENDS_WITH(x, y) | Retourne une valeur booléenne indiquant si la première expression de chaîne se termine par la seconde. |
-| CONTAINS(x,y) | Retourne une valeur booléenne indiquant si la première expression de chaîne contient la seconde. |
+| AS_NUMBER | Convertit le nombre de tooa hello chaîne d’entrée. `noop` si l’entrée est un nombre ; `Undefined` si la chaîne ne représente pas un nombre.|
+| IS_ARRAY | Retourne une valeur booléenne indiquant si type hello Hello l’expression spécifiée est un tableau. |
+| IS_BOOL | Retourne une valeur booléenne indiquant si type hello Hello l’expression spécifiée est une valeur booléenne. |
+| IS_DEFINED | Retourne une valeur booléenne indiquant si une valeur a été assignée à la propriété de hello. |
+| IS_NULL | Retourne une valeur booléenne indiquant si le type hello Hello spécifié expression est null. |
+| IS_NUMBER | Retourne une valeur booléenne indiquant si type hello Hello l’expression spécifiée est un nombre. |
+| IS_OBJECT | Retourne une valeur booléenne indiquant si type hello Hello l’expression spécifiée est un objet JSON. |
+| IS_PRIMITIVE | Retourne une valeur booléenne indiquant si le type hello Hello spécifié expression est un type primitif (chaîne, booléen, numérique ou `null`). |
+| IS_STRING | Retourne une valeur booléenne indiquant si type hello Hello l’expression spécifiée est une chaîne. |
+
+Dans les conditions d’itinéraires, hello suivant des fonctions de chaîne est pris en charge :
+
+| Fonction | Description |
+| -------- | ----------- |
+| CONCAT(x, …) | Retourne une chaîne qui est le résultat de hello de la concaténation de deux ou plusieurs valeurs de chaîne. |
+| LENGTH(x) | Retourne hello nombre de caractères de hello spécifié l’expression de chaîne.|
+| LOWER(x) | Retourne une expression de chaîne après la conversion de toolowercase de données de caractères majuscules en caractères. |
+| UPPER(x) | Retourne une expression de chaîne après la conversion de toouppercase de données de caractères en minuscules. |
+| SUBSTRING(string, start [, length]) | Retourne dans une expression de chaîne commençant à hello spécifié le caractère de base zéro et continue toohello spécifié longueur, ou à la fin de toohello de chaîne de hello. |
+| INDEX_OF(string, fragment) | Retourne hello position de départ des hello première occurrence de hello deuxième expression de chaîne hello première expression de chaîne spécifiée, ou -1 si la chaîne de hello est introuvable.|
+| STARTS_WITH(x, y) | Retourne une valeur booléenne indiquant si les première expression de chaîne hello commence par hello ensuite. |
+| ENDS_WITH(x, y) | Retourne une valeur booléenne indiquant si les première expression de chaîne hello se termine ensuite par hello. |
+| CONTAINS(x,y) | Retourne une valeur booléenne qui indique si le première expression de chaîne hello contient hello ensuite. |
 
 ## <a name="next-steps"></a>Étapes suivantes
-Découvrez comment exécuter des requêtes dans vos applications à l’aide des [Kits de développement logiciel (SDK) Azure IoT][lnk-hub-sdks].
+Découvrez comment tooexecute les requêtes dans vos applications à l’aide de [kits de développement logiciel Azure IoT][lnk-hub-sdks].
 
 [lnk-query-where]: iot-hub-devguide-query-language.md#where-clause
 [lnk-query-expressions]: iot-hub-devguide-query-language.md#expressions-and-conditions

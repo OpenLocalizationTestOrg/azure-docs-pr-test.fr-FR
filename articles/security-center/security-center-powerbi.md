@@ -1,6 +1,6 @@
 ---
-title: "Obtenir des informations à partir de données Azure Security Center avec Power BI| Microsoft Docs"
-description: "Le pack de contenu Power BI Azure Security Center vous permet de rechercher plus facilement les alertes de sécurité, les recommandations, les ressources ciblées par des attaques et les tendances à partir d’un jeu de données spécialement créé pour vos rapports."
+title: "aaaGet vos données de centre de sécurité Azure avec Power BI | Documents Microsoft"
+description: "Hello pack de contenu Azure Security Center Power BI rend les alertes de sécurité toofind facile, recommandations, effectuées sur des ressources et des tendances, basé sur un jeu de données qui a été créé pour vos rapports."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/09/2017
 ms.author: yurid
-ms.openlocfilehash: 10f7b8f20cc41a5ebb1b1376e2bf17be02600ae4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: af68aef626034fe03d793c36b515a3f26619e5f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-insights-from-azure-security-center-data-with-power-bi"></a>Obtenir des informations à partir des données du Centre de sécurité Azure à l’aide de Power BI
-Le [tableau de bord Power BI](http://aka.ms/azure-security-center-power-bi) du Centre de sécurité Azure vous permet de visualiser, analyser et filtrer des recommandations ainsi que des alertes de sécurité depuis n’importe quelle plate-forme, y compris un appareil mobile. Vous pouvez utiliser cet outil pour identifier les tendances et schémas d’attaque, avec la possibilité d’afficher des alertes de sécurité par ressource ou par adresse IP source, mais également visualiser par ressource ou par âge les risques de sécurité qui n’ont pas fait l’objet d’un correctif.
+Hello [le tableau de bord Power BI](http://aka.ms/azure-security-center-power-bi) d’Azure Security Center vous permet de toovisualize, analyser et filtrer les recommandations et les alertes de sécurité à partir de n’importe où, y compris de votre appareil mobile. Utilisez les tendances tooreveal du tableau de bord de Power BI hello et modèles - afficher les alertes de sécurité par la ressource ou l’adresse IP source et les risques de sécurité unaddressed par âge ou la ressource d’attaque.
 
-Vous pouvez par ailleurs combiner de diverses manières les recommandations et alertes de sécurité d’Azure Security Center avec d’autres données, en utilisant , par exemple, les données des [journaux d’audit Azure](https://powerbi.microsoft.com/blog/monitor-azure-audit-logs-with-power-bi/) et [d’audit Azure SQL Database](https://powerbi.microsoft.com/blog/monitor-your-azure-sql-database-auditing-activity-with-power-bi/). Ils intègrent tous les deux des tableaux de bord Power BI et vous avez également la possibilité d’exporter ces données vers Excel afin de générer facilement des rapports sur l’état de sécurité de vos ressources cloud.
+Vous pouvez par ailleurs combiner de diverses manières les recommandations et alertes de sécurité d’Azure Security Center avec d’autres données, en utilisant , par exemple, les données des [journaux d’audit Azure](https://powerbi.microsoft.com/blog/monitor-azure-audit-logs-with-power-bi/) et [d’audit Azure SQL Database](https://powerbi.microsoft.com/blog/monitor-your-azure-sql-database-auditing-activity-with-power-bi/). Les deux offrent des tableaux de bord Power BI, et vous pouvez également exporter cette tooExcel de données de création de rapports facile sur l’état de la sécurité de vos ressources de cloud hello.
 
-## <a name="using-azure-security-center-dashboard-to-access-power-bi"></a>Accéder à Power BI à l’aide du tableau de bord du Centre de sécurité Azure
-Vous pouvez également utiliser le tableau de bord du Centre de sécurité Azure pour accéder aux rapports Power BI. Pour ce faire, procédez comme suit :
+## <a name="using-azure-security-center-dashboard-tooaccess-power-bi"></a>À l’aide du tableau de bord de centre de sécurité Azure tooaccess Power BI
+Vous pouvez également utiliser les rapports Power BI tooaccess hello Azure Security Center du tableau de bord. Suivez hello étapes tooperform cette tâche :
 
-1. Dans le tableau de bord d’**Azure Security Center**, cliquez sur le bouton **Power BI**.
+1. Bonjour **Azure Security Center** tableau de bord, cliquez sur **Power BI** bouton.
 
-    ![Se connecter au Centre de sécurité Azure à l’aide de Power BI](./media/security-center-powerbi/security-center-powerbi-fig1-1-newUI-2017.png)
-2. Le panneau **Power BI** s’ouvre sur la droite, comme illustré dans l’écran suivant :
+    ![Se connecter tooAzure centre de sécurité à l’aide de Power BI](./media/security-center-powerbi/security-center-powerbi-fig1-1-newUI-2017.png)
+2. Hello **Power BI** panneau s’ouvre sur le côté droit de hello, comme indiqué dans hello suivant l’écran :
 
-    ![Se connecter au Centre de sécurité Azure à l’aide de Power BI](./media/security-center-powerbi/security-center-powerbi-fig1-new11-2017.png)
-3. Si vous créez le tableau de bord Power BI pour la première fois, vous pouvez choisir l’une des options ci-après dans le panneau dans le panneau **Explore dans Power BI** :
+    ![Se connecter tooAzure centre de sécurité à l’aide de Power BI](./media/security-center-powerbi/security-center-powerbi-fig1-new11-2017.png)
+3. Si vous créez du tableau de bord Power BI hello pour hello première fois, vous pouvez choisir une des suivantes de hello options Bonjour **Explorer dans Power BI** panneau :
 
-   * **Tableau de bord des informations de sécurité**: choisissez cette option si vous voulez créer un tableau de bord qui inclut l’état de la sécurité, les threads et les détections. Il s’agit d’une option plus courante pour le rôle DevOps responsable de l’analyse de l’état de protection et de la détection des alertes sur les différents abonnements.
-   * **Tableau de bord de gestion des stratégies**: choisissez cette option si vous voulez explorer les stratégies de gestion et d’application.  Il s’agit d’une option plus courante pour l’équipe informatique centrale qui est davantage axée sur la gouvernance. L’équipe peut utiliser ce tableau de bord pour améliorer la visibilité et obtenir des informations sur l’adhésion aux stratégies de sécurité au sein de leur organisation.
-   * Si vous disposez déjà d’un tableau de bord Power BI, cliquez sur **Go to your current Power BI dashboard**(Accéder au tableau de bord Power BI en cours).
-4. Pour les besoins de cet exemple, cliquez sur l’option **Tableau de bord des informations de sécurité** . Si c’est la première fois que vous créez un tableau de bord Power BI pour Azure Security Center, vous êtes invité à installer le pack de contenu. Cliquez sur le bouton **Obtenir** situé dans la fenêtre **Packs de contenu pour Power BI** comme illustré dans l’écran suivant :
+   * **Tableau de bord de sécurité insights**: choisissez cette option si vous voulez toocreate un tableau de bord qui inclut l’état de la sécurité, les threads et les détections. Il s’agit d’une option plus courante pour le rôle DevOps responsable de l’analyse de l’état de protection et de la détection des alertes sur les différents abonnements.
+   * **Tableau de bord de gestion des stratégie**: choisissez cette option si vous souhaitez que la stratégie de gestion et l’application tooexplore.  Il s’agit d’une option plus courante pour l’équipe informatique centrale qui est davantage axée sur la gouvernance. Ils peuvent utiliser cette visibilité toogain de tableau de bord et les analyses de conformité de stratégie de sécurité de leur organisation.
+   * Si vous disposez déjà d’un tableau de bord Power BI, cliquez sur **Go tooyour Power BI tableau de bord actuel**.
+4. Pour les besoins de cet exemple, cliquez sur l’option **Tableau de bord des informations de sécurité** . S’il s’agit hello première fois, vous créez un tableau de bord Power BI pour le centre de sécurité que vous êtes invité à entrer le pack de contenu tooinstall hello. Cliquez sur **obtenir** bouton Bonjour **packs de contenu pour Power BI** fenêtre, comme indiqué dans hello suivant d’écran :
 
     ![Tableau de bord des informations de sécurité du centre de sécurité Azure](./media/security-center-powerbi/security-center-powerbi-fig1-new3.png)
-5. La fenêtre **Se connecter aux informations de sécurité Azure Security Center** s’affiche. Vérifiez que la méthode **d’authentification** est **oAuth2** comme indiqué ci-dessous et cliquez sur le bouton **Se connecter**.
+5. Hello **connecter tooAzure sécurité Centre de sécurité Insights** fenêtre s’affiche. Vérifiez que hello **authentification** méthode est **oAuth2** comme indiqué ci-dessous et cliquez sur **connectez-vous** bouton.
 
     ![Authentification](./media/security-center-powerbi/security-center-powerbi-fig1-new4.png)
-6. Vous pouvez être invité à vous authentifier de nouveau à l’aide de vos informations d’identification Azure. Une fois l’authentification effectuée, votre tableau de bord est créé. Une fois le tableau de bord créé, un rapport ayant une structure similaire à celle illustrée dans l’écran ci-après s’affiche :
+6. Vous pouvez être invité tooauthenticate à nouveau vos informations d’identification Azure. Une fois l’authentification effectuée, votre tableau de bord est créé. Après la création d’un tableau de bord hello vous consultez un rapport ayant une structure similaire hello comme indiqué dans hello suivant d’écran :
 
     ![tableau de bord Power BI](./media/security-center-powerbi/security-center-powerbi-fig1-new5.png)
 
 > [!NOTE]
-> Une actualisation quotidienne du rapport est planifiée. Si vous rencontrez des problèmes liés à cette actualisation, lisez l’article [Problèmes potentiels d’actualisation avec Azure Security Center Power BI](https://blogs.msdn.microsoft.com/azuresecurity/2016/04/07/azure-security-center-power-bi-refresh-fails/)pour plus d’informations sur la manière de les résoudre.
+> Une actualisation du rapport de hello se place tootake planifiée quotidiennement. En cas de panne sur cette actualisation, lire [actualiser les problèmes potentiels hello Azure Security Center Power BI](https://blogs.msdn.microsoft.com/azuresecurity/2016/04/07/azure-security-center-power-bi-refresh-fails/), pour plus d’informations sur la façon de tootroubleshoot.
 >
 >
 
-Vous pouvez voir ici le nombre d’alertes et de recommandations de sécurité, ainsi que le nombre de machines virtuelles, de bases de données Azure SQL Database et de ressources réseau surveillées par le Centre de sécurité Azure.
+Vous trouverez ici nombre hello des alertes de sécurité et des recommandations, ainsi que hello nombre de machines virtuelles, bases de données SQL Azure et les ressources réseau en cours d’analyse par le centre de sécurité Azure.
 
-Un lien vers le Centre de sécurité Azure vous redirige vers le portail Azure. Les graphiques vous permettent de visualiser facilement les informations relatives aux recommandations et alertes de sécurité, notamment :
+Un centre de sécurité de tooAzure lien redirige toohello portail Azure. graphiques de Hello rendent toovisualize facile d’informations sur les recommandations de sécurité et d’alertes, y compris :
 
 * État de sécurité des ressources
 * Recommandations en attente
@@ -65,57 +65,57 @@ Un lien vers le Centre de sécurité Azure vous redirige vers le portail Azure. 
 * Ressources ciblées par des attaques
 * Adresses IP ciblées par des attaques
 
-Chaque graphique recèle des informations supplémentaires. Sélectionnez une mosaïque pour afficher d’autres informations. Par exemple, la mosaïque **État de sécurité des ressources** affiche des détails supplémentaires sur les recommandations en attente selon les ressources, comme illustré dans l’écran suivant :
+Chaque graphique recèle des informations supplémentaires. Sélectionnez une vignette toosee plus d’informations. Par exemple, hello **état de sécurité de ressource** vignette affiche vous des détails supplémentaires sur en attente de recommandations par les ressources comme indiqué dans hello suivant l’écran :
 
 ![Recommandations](./media/security-center-powerbi/security-center-powerbi-fig1-new6.png)
 
-Si vous cliquez sur une ligne de ce graphique, les autres lignes apparaissent en grisé afin que vous puissiez vous concentrer uniquement sur celle que vous avez sélectionnée. Pour revenir au tableau de bord, cliquez sur **Azure Security Center** sous l’option **Tableaux de bord** dans le volet gauche de cette page.
+Si vous cliquez sur n’importe quelle ligne de ce graphique, hello autres utilisateurs doivent toogray out et vous concentrer uniquement sur hello que celle que vous avez sélectionné. tableau de bord toohello tooreturn, cliquez sur **Azure Security Center** sous hello **tableaux de bord** option dans le volet gauche de hello de cette page.
 
 > [!NOTE]
-> Si vous souhaitez personnaliser vos rapports, vous avez la possibilité de les modifier en y ajoutant des champs supplémentaires ou en adaptant les éléments visuels existants. Pour plus d’informations, consultez la page [Interagir avec un rapport en mode Édition dans Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-interact-with-a-report-in-editing-view/) .
+> Si vous souhaitez que toocustomize vos rapports en ajoutant des champs supplémentaires ou en modifiant des éléments visuels existants, vous pouvez le modifier hello. Pour plus d’informations, consultez la page [Interagir avec un rapport en mode Édition dans Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-interact-with-a-report-in-editing-view/) .
 >
 >
 
-Les mosaïques **Nombre d’alertes dans le temps, Ressources ciblées par des attaques** et **Adresses IP ciblées par des attaques** affichent des informations similaires quand vous les sélectionnez. Le rapport regroupe en effet toutes les informations relatives à ces trois variables sur une même page intitulée **Ressources visées** comme illustré dans l’écran suivant :
+Hello **alertes au fil du temps, une attaque de ressources** et **attaquant IPs** vignettes ont une sortie similaire hello lorsque vous cliquez sur chacune d’elle. Cela se produit car les rapports hello réunit des informations concernant ces trois variables et appelle **ressources attaque** comme indiqué dans hello suivant d’écran :
 
 ![Ressources visées](./media/security-center-powerbi/security-center-powerbi-fig1-new7.png)
 
-À ce stade, vous pouvez également enregistrer une copie de ce rapport, l’imprimer ou encore le publier sur le web à l’aide des options disponibles dans le menu **Fichier** .
+À ce stade vous pouvez également enregistrer une copie de ce rapport, imprimer ou publier sur hello web à l’aide des options de hello disponibles dans hello **fichier** menu.
 
 ![Menu Fichier](./media/security-center-powerbi/security-center-powerbi-fig8.png)
 
 ## <a name="exploring-your-azure-security-center-data-with-power-bi-services"></a>Explorer les données du Centre de sécurité Azure à l’aide des services Power BI
-Dans Power BI, connectez-vous au [Power BI Content Pack Services](https://msit.powerbi.com/groups/me/getdata/services) (Services du pack de contenu Power BI) et exécutez les étapes suivantes :
+Se connecter toohello [Pack de contenu Power BI Services](https://msit.powerbi.com/groups/me/getdata/services) dans Power BI et exécutez hello comme suit :
 
-1. Dans la fenêtre **Pack de contenu pour Power BI** , les deux options illustrées ci-dessous s’affichent.
+1. Bonjour **Pack de contenu pour Power BI** fenêtre, vous verrez deux options, comme illustré ci-dessous.
 
     ![Pack de contenu pour Power BI](./media/security-center-powerbi/security-center-powerbi-fig1-new.png)
 
    > [!NOTE]
-   > Si vous avez déjà exécuté la première partie de cet article, vous ne verrez qu’une seule option, à savoir la gestion des stratégies Azure Security Center.
+   > Si déjà exécutée hello première partie de cet article, vous verrez qu’une seule option, qui est la gestion des stratégies de centre de sécurité Azure.
    >
    >
-2. Pour les besoins de cet exemple, cliquez sur **Get** (Obtenir) dans la mosaïque **Azure Security Center Policy Management** (Gestion des stratégies Azure Security Center).
-3. Dans la fenêtre **Connect to Azure Security Center Policy Management** (Se connecter à la gestion des stratégies Azure Security Center), vérifiez que vous sélectionner **oAuth2** dans la liste déroulante **Authentication Method** (Méthode d’authentification) comme illustré ci-dessous et cliquez sur le bouton **Sign in** (Se connecter).
+2. Pour les besoins de hello de cet exemple, cliquez sur **obtenir** Bonjour **gestion des stratégies de centre de sécurité Azure** vignette.
+3. Bonjour **tooAzure gestion des stratégies de centre de sécurité de connexion** (fenêtre), vérifiez les tooselect que **oAuth2** sous **méthode d’authentification** déplacer vers le bas comme indiqué ci-dessous et cliquez sur **Connectez-vous** bouton.
 
     ![Fenêtre Gestion des stratégies](./media/security-center-powerbi/security-center-powerbi-fig1-new8.png)
-4. Vous êtes redirigé vers une page d’authentification dans laquelle vous devez saisir les informations d’identification que vous utilisez pour vous connecter au Centre de sécurité Azure. Une fois le processus d’authentification terminé, Power BI commence à importer les données qui serviront de base à la génération de vos rapports. Il est possible que le message suivant s’affiche entre-temps à droite de votre navigateur :
+4. Vous serez redirigé tooan page d’authentification où, vous devez taper les informations d’identification de hello que vous utilisez le centre de sécurité tooconnect tooAzure. Après authentification hello est terminé, Power BI pour commencer l’importation des données toobuild vos rapports. Pendant ce temps, vous pouvez voir hello suivant un message sur le coin droit de hello de votre navigateur :
 
-    ![Se connecter au Centre de sécurité Azure à l’aide de Power BI](./media/security-center-powerbi/security-center-powerbi-fig4.png)
+    ![Se connecter tooAzure centre de sécurité à l’aide de Power BI](./media/security-center-powerbi/security-center-powerbi-fig4.png)
 
    > [!NOTE]
-   > Lorsque le tableau de bord est créé pour la première fois, cela peut prendre plus de temps, surtout dans les scénarios à abonnements multiples.
+   > Lorsque le tableau de bord hello est en cours de création pour hello première peut prendre plu de temps, surtout pour les scénarios où vous avez plusieurs abonnements.
    >
    >
-5. Une fois le processus terminé, le tableau de bord Power BI d’Azure Security Center est chargé avec un rapport **Gestion des stratégies** ressemblant à celui illustré ci-dessous :
+5. Une fois que hello est terminée, votre tableau de bord Azure Security Center Power BI sera chargé avec hello **gestion des stratégies de** rapports toohello comme illustré ci-dessous :
 
     ![Tableau de bord de gestion des stratégies](./media/security-center-powerbi/security-center-powerbi-fig1-new9.png)
 
 ## <a name="see-also"></a>Voir aussi
-Dans ce document, vous avez vu comment utiliser le service Power BI depuis le Centre de sécurité Azure. Pour plus d’informations sur le Centre de sécurité Azure, consultez les rubriques suivantes :
+Dans ce document, vous avez appris comment toouse Power BI dans Azure Security Center. toolearn en savoir plus sur Azure Security Center, voir hello :
 
-* [Guide des opérations et de planification d’Azure Security Center](security-center-planning-and-operations-guide.md) : découvrez comment planifier l’adoption d’Azure Security Center.
-* [Définition des stratégies de sécurité dans Azure Security Center](security-center-policies.md) : découvrez comment configurer des paramètres de sécurité dans Azure Security Center
-* [Gestion et résolution des alertes de sécurité dans Azure Security Center](security-center-managing-and-responding-alerts.md) : découvrez comment gérer et résoudre les alertes de sécurité
-* [FAQ d’Azure Security Center](security-center-faq.md) : découvrez les réponses aux questions les plus souvent posées à propos de l’utilisation de ce service
+* [Azure Security Center Guide de planification et opérations](security-center-planning-and-operations-guide.md) — Découvrez comment tooplan adoption du centre de sécurité Azure.
+* [Définition des stratégies de sécurité dans le centre de sécurité Azure](security-center-policies.md) : en savoir comment tooconfigure les paramètres de sécurité dans le centre de sécurité Azure
+* [Toosecurity répond et de la gestion des alertes dans le centre de sécurité Azure](security-center-managing-and-responding-alerts.md) : en savoir comment les alertes toosecurity toomanage et y répondre
+* [Forum aux questions sur Azure Security Center](security-center-faq.md) : Forum aux questions sur l’utilisation hello service de recherche
 * [Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : accédez à des billets de blog sur la sécurité et la conformité Azure.

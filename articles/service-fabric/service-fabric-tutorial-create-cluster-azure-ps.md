@@ -1,6 +1,6 @@
 ---
-title: "Créer un cluster Service Fabric dans Azure | Microsoft Docs"
-description: "Découvrez comment créer un cluster Service Fabric Windows ou Linux dans Azure à l’aide de PowerShell."
+title: aaaCreate une infrastructure de Service de cluster dans Azure | Documents Microsoft
+description: "Découvrez comment toocreate un Service Fabric de Linux ou Windows cluster dans Azure à l’aide de PowerShell."
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,60 +14,60 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/13/2017
 ms.author: ryanwi
-ms.openlocfilehash: f62249417552b9cf840bfac3b94c27f63bd7064e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e697e2a2e99f67cb02422efdb368c664c9fd5a97
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-secure-cluster-on-azure-using-powershell"></a>Créer un cluster sécurisé sur Azure à l’aide de PowerShell
-Ce didacticiel vous montre comment créer un cluster Service Fabric (Windows ou Linux) s’exécutant dans Azure. Lorsque vous avez terminé, vous disposez d’un cluster en cours d’exécution dans le cloud sur lequel vous pouvez déployer des applications.
+Ce didacticiel vous montre comment toocreate une infrastructure de Service de cluster (Windows ou Linux) en cours d’exécution dans Azure. Lorsque vous avez terminé, vous disposez d’un cluster en cours d’exécution dans le cloud hello que vous pouvez déployer des applications.
 
 Ce didacticiel vous montre comment effectuer les opérations suivantes :
 
 > [!div class="checklist"]
 > * Création d’un cluster Service Fabric sécurisé dans Azure à l’aide de PowerShell
-> * Sécuriser le cluster avec un certificat X.509
-> * Se connecter à un cluster à l’aide de PowerShell
+> * Cluster hello sécurisé avec un certificat X.509
+> * Connecter le cluster toohello à l’aide de PowerShell
 > * Supprimer un cluster
 
 ## <a name="prerequisites"></a>Composants requis
 Avant de commencer ce didacticiel :
 - Si vous n’avez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- Installez le [Kit de développement logiciel (SDK) Service Fabric et le module PowerShell](service-fabric-get-started.md).
-- Installez le [module Azure PowerShell, version 4.1 ou ultérieure](https://docs.microsoft.com/powershell/azure/install-azurerm-ps).
+- Installer hello [module Service Fabric SDK et PowerShell](service-fabric-get-started.md)
+- Installer hello [Azure Powershell version 4.1 ou version ultérieure du module](https://docs.microsoft.com/powershell/azure/install-azurerm-ps)
 
-La procédure suivante crée un cluster Service Fabric en préversion à nœud unique (machine virtuelle unique). Le cluster est sécurisé par un certificat auto-signé, créé en même temps que le cluster et placé dans un coffre de clés. Les clusters à nœud unique ne peuvent pas être mis à l’échelle au-delà d’une machine virtuelle, et les clusters en préversion ne peuvent pas être mis à niveau vers une version plus récente.
+Hello procédure crée une version d’évaluation (seul ordinateur virtuel) à nœud unique cluster Service Fabric. cluster de Hello est sécurisé par un certificat auto-signé qui obtient créé en même temps que le cluster de hello et placé dans un coffre de clés. Les clusters à nœud unique ne peut pas être mis à l’échelle au-delà d’un ordinateur virtuel et les clusters d’aperçu ne peut pas être mis à niveau toonewer versions.
 
-Pour calculer le coût lié à l’exécution d’un cluster Service Fabric dans Azure, utilisez la [calculatrice de prix Azure](https://azure.microsoft.com/pricing/calculator/).
+coût toocalculate par l’exécution d’un cluster Service Fabric dans Azure utilisation hello [calculatrice de tarification Azure](https://azure.microsoft.com/pricing/calculator/).
 Pour plus d’informations sur la création de clusters Service Fabric, consultez l’article [Créer un cluster Service Fabric à l’aide d’Azure Resource Manager](service-fabric-cluster-creation-via-arm.md).
 
-## <a name="create-the-cluster-using-azure-powershell"></a>Créer le cluster à l’aide d’Azure PowerShell
-1. Téléchargez une copie locale du modèle Azure Resource Manager et le fichier de paramètres du [modèle Azure Resource Manager pour le référentiel GitHub de Service Fabric](https://aka.ms/securepreviewonelineclustertemplate).  *azuredeploy.json* est le modèle Azure Resource Manager qui définit un cluster Service Fabric. *azuredeploy.parameters.json* est le fichier de paramètres permettant de personnaliser le déploiement du cluster.
+## <a name="create-hello-cluster-using-azure-powershell"></a>Créer le cluster hello à l’aide d’Azure PowerShell
+1. Télécharger une copie locale du modèle de gestionnaire de ressources Azure hello et fichier de paramètres hello de hello [modèle Azure Resource Manager pour le Service Fabric](https://aka.ms/securepreviewonelineclustertemplate) référentiel GitHub.  *azuredeploy.JSON* est le modèle Azure Resource Manager hello qui définit un cluster Service Fabric. *azuredeploy.Parameters.JSON* est un fichier de paramètres pour vous de déploiement de cluster toocustomize hello.
 
-2. Personnalisez les paramètres suivants dans le fichier de paramètres *azuredeploy.parameters.json* :
+2. Personnaliser les paramètres Bonjour suivants de hello *azuredeploy.parameters.json* fichier de paramètres :
 
    | Paramètre       | Description | Valeur suggérée |
    | --------------- | ----------- | --------------- |
-   | clusterLocation | Région Azure dans laquelle déployer le cluster. | *par exemple, westeurope, eastasia, eastus* |
-   | clusterName     | Nom du cluster que vous souhaitez créer. | *par exemple, bobs-sfpreviewcluster* |
-   | adminUsername   | Compte d’administrateur local sur les machines virtuelles du cluster. | *N’importe quel nom d’utilisateur Windows Server valide* |
-   | adminPassword   | Mot de passe du compte d’administrateur local sur les machines virtuelles du cluster. | *N’importe quel mot de passe Windows Server valide* |
-   | clusterCodeVersion | Version de Service Fabric à exécuter. (255.255.X.255 sont des préversions). | **255.255.5718.255** |
-   | vmInstanceCount | Nombre de machines virtuelles dans votre cluster (1 ou de 3 à 99). | **1** | *Pour un cluster de la version d’évaluation, spécifiez uniquement un ordinateur virtuel* |
+   | clusterLocation | cluster de hello Hello région Azure toowhich toodeploy. | *par exemple, westeurope, eastasia, eastus* |
+   | clusterName     | Nom du cluster de hello souhaité toocreate. | *par exemple, bobs-sfpreviewcluster* |
+   | adminUsername   | compte d’administrateur local Hello sur les ordinateurs virtuels du cluster hello. | *N’importe quel nom d’utilisateur Windows Server valide* |
+   | adminPassword   | Mot de passe du compte d’administrateur local de hello sur les ordinateurs virtuels du cluster hello. | *N’importe quel mot de passe Windows Server valide* |
+   | clusterCodeVersion | toorun de version du Service Fabric Hello. (255.255.X.255 sont des préversions). | **255.255.5718.255** |
+   | vmInstanceCount | nombre de Hello de machines virtuelles dans votre cluster (il peut être 1 ou 3-99). | **1** | *Pour un cluster de la version d’évaluation, spécifiez uniquement un ordinateur virtuel* |
 
-3. Ouvrez une console PowerShell, connectez-vous à Azure et sélectionnez l’abonnement dans lequel vous souhaitez déployer le cluster :
+3. Ouvrez une console PowerShell, la connexion tooAzure et sélectionnez hello abonnement cluster de hello toodeploy dans :
 
    ```powershell
    Login-AzureRmAccount
    Select-AzureRmSubscription -SubscriptionId <subscription-id>
    ```
-4. Créez et chiffrez un mot de passe pour le certificat utilisé par Service Fabric.
+4. Créez et chiffrer un mot de passe pour hello toobe de certificat utilisé par l’infrastructure de Service.
 
    ```powershell
    $pwd = "<your password>" | ConvertTo-SecureString -AsPlainText -Force
    ```
-5. Créez le cluster et son certificat en exécutant la commande suivante :
+5. Créer des clusters de hello et son certificat en exécutant hello de commande suivante :
 
    ```powershell
       New-AzureRmServiceFabricCluster
@@ -80,28 +80,28 @@ Pour plus d’informations sur la création de clusters Service Fabric, consulte
    ```
 
    >[!NOTE]
-   >Le paramètre `-CertificateSubjectName` doit s’aligner sur le paramètre clusterName spécifié dans le fichier de paramètres, ainsi que sur le domaine lié à la région Azure que vous avez sélectionnée, par exemple : `clustername.eastus.cloudapp.azure.com`.
+   >Hello `-CertificateSubjectName` paramètre doit s’aligner avec le paramètre clusterName hello spécifié dans le fichier de paramètres hello, ainsi que hello domaine lié toohello région Azure vous avez choisi, telles que : `clustername.eastus.cloudapp.azure.com`.
 
-Une fois la configuration terminée, il génère des informations sur le cluster créé dans Azure. Il copie également le certificat de cluster dans le répertoire CertificateOutputFolder sur le chemin d’accès que vous avez spécifié pour ce paramètre. Vous avez besoin de ce certificat pour accéder au Service Fabric Explorer et afficher l’intégrité de votre cluster.
+Une fois la configuration de hello se termine, il génère des informations sur le cluster hello créé dans Azure. Il copie également le répertoire hello cluster certificat toohello - CertificateOutputFolder sur le chemin d’accès hello spécifié pour ce paramètre. Vous avez besoin de ce certificat de tooaccess Service Fabric Explorer et la vue de contrôle d’intégrité hello de votre cluster.
 
-Prenez note de l’URL de votre cluster. Elle peut être semblable à l’URL suivante : *https://mycluster.westeurope.cloudapp.azure.com:19080*
+Prenez note de l’URL de hello pour votre cluster, ce qui peut être toohello similaire suivant URL : *https://mycluster.westeurope.cloudapp.azure.com:19080*
 
-## <a name="modify-the-certificate--access-service-fabric-explorer"></a>Modifier le certificat et accéder à Service Fabric Explorer ##
+## <a name="modify-hello-certificate--access-service-fabric-explorer"></a>Modifier le certificat de hello et accéder au Service Fabric Explorer ##
 
-1. Double-cliquez sur le certificat pour ouvrir l’Assistant Importation de certificat.
+1. Double-cliquez sur hello tooopen de certificat hello Assistant Importation de certificat.
 
-2. Utilisez les paramètres par défaut, mais veillez à cocher la case **Marquer cette clé comme exportable** à l’étape **Protection de clé privée**. Visual Studio doit exporter le certificat pendant la configuration d’Azure Container Registry pour l’authentification de cluster Service Fabric plus loin dans ce didacticiel.
+2. Utiliser les paramètres par défaut, mais que toocheck hello **marquer cette clé comme exportable.** case à cocher, Bonjour **protection par clé privée** étape. Visual Studio a besoin de certificat de hello tooexport lors de la configuration de l’authentification de Registre de conteneur Azure tooService Cluster Fabric plus loin dans ce didacticiel.
 
-3. Vous pouvez maintenant ouvrir Service Fabric Explorer dans un navigateur. Pour ce faire, accédez à l’URL de **ManagementEndpoint** pour votre cluster à l’aide d’un navigateur web et sélectionnez le certificat qui a été enregistré sur votre ordinateur.
-
->[!NOTE]
->Quand vous ouvrez Service Fabric Explorer, vous voyez une erreur de certificat, car vous utilisez un certificat auto-signé. Dans Edge, vous devez cliquer sur *Détails*, puis sur le lien *Atteindre la page web*. Dans Chrome, vous devez cliquer sur *Avancé*, puis sur le lien *proceed* (Continuer).
+3. Vous pouvez maintenant ouvrir Service Fabric Explorer dans un navigateur. toodo accédez donc toohello **ManagementEndpoint** URL pour votre cluster à l’aide d’un navigateur web et un certificat de hello select qui a été enregistré sur votre ordinateur.
 
 >[!NOTE]
->Si la création du cluster échoue, vous pouvez toujours réexécuter la commande et mettre ainsi à jour les ressources déjà déployées. Si un certificat a été créé dans le cadre du déploiement ayant échoué, un nouveau est généré. Pour résoudre les problèmes liés à la création du cluster, consultez l’article [Créer un cluster Service Fabric à l’aide d’Azure Resource Manager](service-fabric-cluster-creation-via-arm.md).
+>Quand vous ouvrez Service Fabric Explorer, vous voyez une erreur de certificat, car vous utilisez un certificat auto-signé. Dans Microsoft Edge, vous avez tooclick *détails* et puis hello *aller sur la page Web de toohello* lien. Dans Chrome, vous avez tooclick *avancé* et puis hello *continuer* lien.
 
-## <a name="connect-to-the-secure-cluster"></a>Se connecter à un cluster sécurisé
-Connectez-vous au cluster à l’aide du module Service Fabric PowerShell installé avec le Kit de développement logiciel (SDK) Service Fabric.  Tout d’abord, installez le certificat dans le magasin personnel de l’utilisateur actuel sur votre ordinateur.  Exécutez la commande PowerShell suivante :
+>[!NOTE]
+>Si la création du cluster hello échoue, vous pouvez toujours exécuter à nouveau commande hello, qui met à jour des ressources hello déjà déployés. Si un certificat a été créé dans le cadre du déploiement de hello a échoué, une est générée. la création du cluster tootroubleshoot, consultez [créer un cluster Service Fabric à l’aide du Gestionnaire de ressources Azure](service-fabric-cluster-creation-via-arm.md).
+
+## <a name="connect-toohello-secure-cluster"></a>Connecter le cluster sécurisée de toohello
+Se connecter à l’aide du module PowerShell de l’infrastructure de Service de hello installé avec hello SDK de l’infrastructure de Service de cluster de toohello.  Tout d’abord, installez hello certificat dans hello personnel (My) magasin de l’utilisateur actuel de hello sur votre ordinateur.  Exécutez hello suivant de commande PowerShell :
 
 ```powershell
 $certpwd="Password#1234" | ConvertTo-SecureString -AsPlainText -Force
@@ -110,9 +110,9 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
         -Password $certpwd
 ```
 
-Vous êtes maintenant prêt à vous connecter à votre cluster sécurisé.
+Vous êtes maintenant cluster sécurisée de tooyour tooconnect prêt.
 
-Le module **Service Fabric** PowerShell fournit de nombreuses cmdlets pour la gestion des services, applications et clusters Service Fabric.  Pour vous connecter au cluster sécurisé, utilisez la cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster). Les détails du point de terminaison de connexion et de l’empreinte de certificat se trouvent dans la sortie d’une étape précédente.
+Hello **Service Fabric** module PowerShell fournit de nombreuses applets de commande pour la gestion des clusters Service Fabric, les applications et services.  Hello d’utilisation [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster) applet de commande tooconnect toohello sécurisée cluster. Hello empreinte numérique du certificat et les détails de connexion au point de terminaison sont trouvent dans la sortie de hello à partir d’une étape précédente.
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint mysfcluster.southcentralus.cloudapp.azure.com:19000 `
@@ -122,7 +122,7 @@ Connect-ServiceFabricCluster -ConnectionEndpoint mysfcluster.southcentralus.clou
           -StoreLocation CurrentUser -StoreName My
 ```
 
-Vérifiez que vous êtes connecté et que le cluster est sain à l’aide de la cmdlet [Get-ServiceFabricClusterHealth](/powershell/module/servicefabric/get-servicefabricclusterhealth).
+Vérifiez que vous êtes connecté et le cluster de hello est sain à l’aide de hello [Get-ServiceFabricClusterHealth](/powershell/module/servicefabric/get-servicefabricclusterhealth) applet de commande.
 
 ```powershell
 Get-ServiceFabricClusterHealth
@@ -130,9 +130,9 @@ Get-ServiceFabricClusterHealth
 
 ## <a name="clean-up-resources"></a>Supprimer des ressources
 
-Un cluster est composé d’autres ressources Azure en plus de la ressource de cluster elle-même. Le plus simple pour supprimer le cluster et toutes les ressources qu’il consomme consiste à supprimer le groupe de ressources.
+Un cluster est composé d’autres ressources Windows Azure en outre toohello du cluster lui-même. cluster de Hello la plus simple façon toodelete hello et toutes les ressources hello qu’elle consomme est le groupe de ressources toodelete hello.
 
-Connectez-vous à Azure et sélectionnez l’ID d’abonnement pour lequel vous souhaitez supprimer le cluster.  Vous pouvez trouver votre ID d’abonnement en vous connectant au [portail Azure](http://portal.azure.com). Pour supprimer un groupe de ressources et toutes les ressources de cluster, utilisez la cmdlet [Remove-AzureRMResourceGroup](/en-us/powershell/module/azurerm.resources/remove-azurermresourcegroup).
+Connectez-vous à tooAzure et sélectionnez l’ID d’abonnement hello avec laquelle vous souhaitez le cluster de hello tooremove.  Vous pouvez trouver votre ID d’abonnement en vous connectant à toohello [portail Azure](http://portal.azure.com). Supprimer le groupe de ressources hello et toutes les ressources de cluster hello à l’aide de hello [applet de commande Remove-AzureRMResourceGroup](/en-us/powershell/module/azurerm.resources/remove-azurermresourcegroup).
 
 ```powershell
 Login-AzureRmAccount
@@ -147,10 +147,10 @@ Dans ce didacticiel, vous avez appris à :
 
 > [!div class="checklist"]
 > * Créer un cluster Service Fabric dans Azure
-> * Sécuriser le cluster avec un certificat X.509
-> * Se connecter à un cluster à l’aide de PowerShell
+> * Cluster hello sécurisé avec un certificat X.509
+> * Connecter le cluster toohello à l’aide de PowerShell
 > * Supprimer un cluster
 
-Ensuite, passez au didacticiel suivant pour apprendre à déployer une application existante.
+Ensuite, avancer toohello suivant toolearn didacticiel comment toodeploy une application existante.
 > [!div class="nextstepaction"]
 > [Déployer une application .NET existante avec Docker Compose](service-fabric-host-app-in-a-container.md)

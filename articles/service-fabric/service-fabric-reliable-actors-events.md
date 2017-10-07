@@ -1,6 +1,6 @@
 ---
-title: "Événements dans les microservices Azure basés sur acteur | Microsoft Docs"
-description: "Présentation des événements pour Reliable Actors Service Fabric"
+title: "aaaEvents dans microservices de Azure basé sur acteur | Documents Microsoft"
+description: "Tooevents d’introduction pour Service Fabric Reliable Actors."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/13/2017
 ms.author: amanbha
-ms.openlocfilehash: d936670c548ff709fc2e935d3f28d94e4bde8a04
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a51e41c35441a5fea508138968b36a35f0ba6699
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="actor-events"></a>Événements d’acteurs
-Les événements d’acteur sont un moyen d’envoyer des notifications Meilleur effort de l’acteur aux clients. Les événements d’acteur sont conçus pour la communication acteur-client et ne doivent pas être utilisés pour la communication acteur-acteur.
+Événements d’acteur notifier un moyen toosend meilleur effort à partir de clients de toohello hello acteur. Les événements d’acteur sont conçus pour la communication acteur-client et ne doivent pas être utilisés pour la communication acteur-acteur.
 
-L’extrait de code suivant montre comment utiliser les événements d’acteur dans votre application.
+afficher des extraits de code de la code Hello suivant comment toouse les événements intervenant dans votre application.
 
-Définissez une interface qui décrit les événements publiés par l'acteur. Cette interface doit être dérivée de l'interface `IActorEvents` . Les arguments des méthodes doivent être [sérialisables en contrat de données](service-fabric-reliable-actors-notes-on-actor-type-serialization.md). Les méthodes doivent retourner une valeur nulle, car les notifications d’événement sont unidirectionnelles et Meilleur effort.
+Définissez une interface qui décrit les événements hello publiés par acteur de hello. Cette interface doit être dérivée de hello `IActorEvents` interface. les arguments des méthodes de hello Hello doivent être [de contrat de données sérialisable](service-fabric-reliable-actors-notes-on-actor-type-serialization.md). les méthodes de Hello doivent retourner void, en tant qu’événement notifications sont une façon et meilleur effort.
 
 ```csharp
 public interface IGameEvents : IActorEvents
@@ -39,7 +39,7 @@ public interface GameEvents implements ActorEvents
     void gameScoreUpdated(UUID gameId, String currentScore);
 }
 ```
-Déclarez les événements publiés par l'acteur dans l'interface d'acteur.
+Déclarer des événements hello publiés par acteur hello dans l’interface d’acteur hello.
 
 ```csharp
 public interface IGameActor : IActor, IActorEventPublisher<IGameEvents>
@@ -57,7 +57,7 @@ public interface GameActor extends Actor, ActorEventPublisherE<GameEvents>
     CompletableFuture<String> getGameScore();
 }
 ```
-Côté client, implémentez le gestionnaire d'événements.
+Côté client de hello, implémentez le Gestionnaire d’événements hello.
 
 ```csharp
 class GameEventsHandler : IGameEvents
@@ -78,7 +78,7 @@ class GameEventsHandler implements GameEvents {
 }
 ```
 
-Sur le client, créez un proxy pour l'acteur qui publie l'événement et s'abonne à ses événements.
+Sur le client de hello, créez un acteur toohello proxy qui publie les événements hello et abonner les événements de tooits.
 
 ```csharp
 var proxy = ActorProxy.Create<IGameActor>(
@@ -93,9 +93,9 @@ GameActor actorProxy = ActorProxyBase.create<GameActor>(GameActor.class, new Act
 return ActorProxyEventUtility.subscribeAsync(actorProxy, new GameEventsHandler());
 ```
 
-En cas de basculement, l’acteur peut basculer sur un nœud ou processus différent. Le proxy de l’acteur gère les abonnements actifs et s’y réabonne automatiquement. Vous pouvez contrôler l’intervalle de réabonnement via l’API `ActorProxyEventExtensions.SubscribeAsync<TEvent>` . Pour vous désabonner, utilisez l’API `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` .
+En cas de hello de basculements, acteur de hello peut basculer tooa autre processus ou de nœud. proxy d’acteur Hello gère les abonnements actifs hello et automatiquement nouveau s’abonne les. Vous pouvez contrôler l’intervalle de RE-abonnement hello via hello `ActorProxyEventExtensions.SubscribeAsync<TEvent>` API. toounsubscribe, utilisez hello `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` API.
 
-Sur l'acteur, publiez simplement les événements à mesure qu'ils se produisent. Le runtime Actors envoie la notification aux abonnés à l’événement, le cas échéant.
+Sur l’acteur de hello, simplement publier des événements de hello comme ils se produisent. S’il existe des événements de toohello abonnés, hello acteurs runtime envoie les hello notification.
 
 ```csharp
 var ev = GetEvent<IGameEvents>();

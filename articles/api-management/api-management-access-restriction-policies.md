@@ -1,6 +1,6 @@
 ---
-title: "Stratégies de restriction des accès de la Gestion des API Azure | Microsoft Docs"
-description: "Découvrez les stratégies de restriction des accès disponibles dans la Gestion des API Azure."
+title: "stratégies de restriction de l’accès de gestion des API aaaAzure | Documents Microsoft"
+description: "En savoir plus sur les stratégies de restriction hello accès disponibles pour une utilisation dans la gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 4c9991baf3fbcf3b8ea01f8dd573e2336db88b68
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0ef368c2781d9a5cf9eaaa41a47489c904ed3198
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-access-restriction-policies"></a>Stratégies de restriction des accès de la Gestion des API
-Cette rubrique est une ressource de référence au sujet des stratégies Gestion des API suivantes. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
+Cette rubrique fournit une référence pour hello suivant des stratégies de gestion des API. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="AccessRestrictionPolicies"></a> Stratégies de restriction des accès  
   
@@ -33,14 +33,14 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 -   [Restrict caller IPs](api-management-access-restriction-policies.md#RestrictCallerIPs) : filtre (autorise/rejette) les appels de certaines adresses IP spécifiques et/ou de certaines plages d’adresses.  
   
--   [Set usage quota by subscription](api-management-access-restriction-policies.md#SetUsageQuota) : vous permet d’appliquer un volume d’appel et/ou un quota de bande passante renouvelable ou illimité par abonnement.  
+-   [Définir le quota d’utilisation par abonnement](api-management-access-restriction-policies.md#SetUsageQuota) -vous permet de tooenforce un quota renouvelable ou à durée de vie appel volume et/ou de la bande passante, sur une base par abonnement.  
   
--   [Set usage quota by key](#SetUsageQuotaByKey) : vous permet d’appliquer un volume d’appel et/ou un quota de bande passante renouvelable ou illimité par clé.  
+-   [Définir le quota d’utilisation par clé](#SetUsageQuotaByKey) -vous permet de tooenforce un quota renouvelable ou à durée de vie appel volume et/ou de la bande passante, sur une base par clé.  
   
 -   [Validate JWT](api-management-access-restriction-policies.md#ValidateJWT) : applique l’existence et la validité d’un JWT extrait d’un en-tête HTTP ou d’un paramètre de requête spécifié.  
   
 ##  <a name="CheckHTTPHeader"></a> Check HTTP header  
- Utilisez la stratégie `check-header` pour imposer un en-tête HTTP donné à une demande. Vous pouvez éventuellement vérifier si l’en-tête a une certaine valeur ou une valeur comprise dans une plage de valeurs autorisées. Si la vérification échoue, la stratégie met fin au traitement de la demande et renvoie le message d’erreur et le code d’état HTTP spécifiés par la stratégie.  
+ Hello d’utilisation `check-header` tooenforce stratégie qu’une demande ait un en-tête HTTP. Vous pouvez éventuellement vérifier toosee si l’en-tête hello a une valeur spécifique ou une vérification pour une plage de valeurs autorisées. Si hello vérification échoue, stratégie de hello termine le traitement de la demande et renvoie hello erreur et le code message d’état HTTP spécifié par la stratégie de hello.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -64,31 +64,31 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 |Nom|Description|Requis|  
 |----------|-----------------|--------------|  
 |check-header|Élément racine.|Oui|  
-|value|Valeur autorisée de l’en-tête HTTP. Lorsque plusieurs éléments de valeurs sont spécifiés, la vérification est considérée comme réussie si l’une des valeurs correspond.|Non|  
+|value|Valeur autorisée de l’en-tête HTTP. Lorsque plusieurs éléments de valeur sont spécifiées, la vérification de hello est considérée comme un succès si l’une des valeurs de hello est une correspondance.|Non|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|failed-check-error-message|Message d’erreur à renvoyer dans le corps de la réponse HTTP si l’en-tête n’existe pas ou a une valeur non valide. Les éventuels caractères spéciaux de ce message doivent être correctement placés dans une séquence d’échappement.|Oui|N/A|  
-|failed-check-httpcode|Code d’état HTTP à renvoyer si l’en-tête n’existe pas ou a une valeur non valide.|Oui|N/A|  
-|header-name|Nom de l’en-tête HTTP à vérifier.|Oui|N/A|  
-|ignore-case|Peut avoir la valeur True ou False. S’il a la valeur True, la casse est ignorée lors de la comparaison de la valeur de l’en-tête à l’ensemble des valeurs acceptables.|Oui|N/A|  
+|failed-check-error-message|Erreur tooreturn de message dans le corps de la réponse hello HTTP si l’en-tête de hello n’existe pas ou a une valeur non valide. Les éventuels caractères spéciaux de ce message doivent être correctement placés dans une séquence d’échappement.|Oui|N/A|  
+|failed-check-httpcode|État HTTP code tooreturn si l’en-tête de hello n’existe pas ou a une valeur non valide.|Oui|N/A|  
+|header-name|nom Hello Hello toocheck d’en-tête HTTP.|Oui|N/A|  
+|ignore-case|Peut être défini tooTrue ou False. Si le cas de tooTrue set est ignoré lorsque la valeur d’en-tête hello est comparée à ensemble hello des valeurs acceptables.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="LimitCallRate"></a> Limit call rate by subscription  
- La stratégie `rate-limit` évite les pics d’utilisation des API par abonnement en limitant le débit d’appels à un nombre spécifié pour une période donnée. Lorsque cette stratégie est déclenchée, l’appelant reçoit le code d’état de réponse `429 Too Many Requests`.  
+ Hello `rate-limit` stratégie empêche l’utilisation de l’API pics sur une base par abonnement en limitant hello numéro d’appel de tooa taux spécifié par une période de temps. Lorsque cette stratégie est déclenchée appelant de hello reçoit un `429 Too Many Requests` code d’état de réponse.  
   
 > [!IMPORTANT]
 >  Cette stratégie ne peut être utilisée qu’une seule fois par document de stratégie.  
 >   
->  Les [expressions de stratégie](api-management-policy-expressions.md) ne peuvent être utilisées dans aucun attribut de cette stratégie.  
+>  [Expressions de stratégie](api-management-policy-expressions.md) ne peut pas être utilisé dans un des attributs de stratégie hello pour cette stratégie.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -119,26 +119,26 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 |Nom|Description|Requis|  
 |----------|-----------------|--------------|  
 |set-limit|Élément racine.|Oui|  
-|api|Ajoutez un ou plusieurs éléments de ce type pour imposer une limite de débit d’appels aux API au sein du produit. Les limites de débit d’appels au niveau du produit et de l’API s’appliquent indépendamment les unes des autres.|Non|  
-|operation|Ajoutez un ou plusieurs éléments de ce type pour imposer une limite de débit d’appels aux opérations au sein d’une API. Les limites de débit d’appels au niveau du produit, de l’API et de l’opération s’appliquent indépendamment les unes des autres.|Non|  
+|api|Ajoutez un ou plusieurs de ces éléments de tooimpose une limite de taux d’appels sur les API au sein du produit de hello. Les limites de débit d’appels au niveau du produit et de l’API s’appliquent indépendamment les unes des autres.|Non|  
+|operation|Ajouter un ou plusieurs de ces éléments de tooimpose une limite de taux d’appels sur les opérations à l’intérieur d’une API. Les limites de débit d’appels au niveau du produit, de l’API et de l’opération s’appliquent indépendamment les unes des autres.|Non|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|name|Nom de l’API à laquelle la limite de débit s’applique.|Oui|N/A|  
-|calls|Nombre maximal d’appels autorisés au cours de l’intervalle de temps spécifié dans le paramètre `renewal-period`.|Oui|N/A|  
-|renewal-period|Période en secondes après laquelle le quota se réinitialise.|Oui|N/A|  
+|name|nom de Hello Hello API pour lesquelles limite de taux tooapply hello.|Oui|N/A|  
+|calls|Hello nombre maximal d’appels autorisés au cours de l’intervalle de temps hello spécifié dans hello `renewal-period`.|Oui|N/A|  
+|renewal-period|Hello laps de temps en secondes après lequel hello quota est réinitialisé.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound  
   
 -   **Étendues de la stratégie :** product  
   
 ##  <a name="LimitCallRateByKey"></a> Limite de débit d’appels par clé  
- La stratégie `rate-limit-by-key` évite les pics d’utilisation des API par clé en limitant le débit d’appels à un nombre spécifié pour une période donnée. La clé peut avoir une valeur de chaîne arbitraire ; elle est généralement fournie par le biais d’une expression de stratégie. Une condition d’incrément facultative peut être ajoutée pour spécifier quelles demandes doivent être comptées dans la limite. Lorsque cette stratégie est déclenchée, l’appelant reçoit le code d’état de réponse `429 Too Many Requests`.  
+ Hello `rate-limit-by-key` stratégie empêche l’utilisation de l’API pics sur une base par clé en limitant hello numéro d’appel de tooa taux spécifié par une période de temps. clé de Hello peut avoir une valeur de chaîne arbitraire et est généralement fourni à l’aide d’une expression de stratégie. Condition d’incrément facultatif peut être ajoutée toospecify les requêtes qui doivent être comptés dans nombre maximal de hello. Lorsque cette stratégie est déclenchée appelant de hello reçoit un `429 Too Many Requests` code d’état de réponse.  
   
  Pour plus d’informations et d’exemples sur cette stratégie, consultez la page [Limitation avancée des demandes dans la Gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-flexible-throttling/).  
   
@@ -156,7 +156,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 ```  
   
 ### <a name="example"></a>Exemple  
- Dans l’exemple suivant, la limite de débit est indexée par l’adresse IP de l’appelant.  
+ Dans l’exemple suivant de hello, limite de taux hello est indexé par adresse IP de l’appelant hello.  
   
 ```xml  
 <policies>  
@@ -183,20 +183,20 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|calls|Nombre maximal d’appels autorisés au cours de l’intervalle de temps spécifié dans le paramètre `renewal-period`.|Oui|N/A|  
-|counter-key|Clé à utiliser pour la stratégie de limite de débit.|Oui|N/A|  
-|increment-condition|Expression booléenne spécifiant si la demande doit être comptée dans le quota (`true`).|Non|N/A|  
-|renewal-period|Période en secondes après laquelle le quota se réinitialise.|Oui|N/A|  
+|calls|Hello nombre maximal d’appels autorisés au cours de l’intervalle de temps hello spécifié dans hello `renewal-period`.|Oui|N/A|  
+|counter-key|Hello toouse clé pour la stratégie de limite de taux de hello.|Oui|N/A|  
+|increment-condition|expression booléenne de Hello spécifiant si la demande de hello doit être comptée vers le quota de hello (`true`).|Non|N/A|  
+|renewal-period|Hello laps de temps en secondes après lequel hello quota est réinitialisé.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="RestrictCallerIPs"></a> Restrict caller IPs  
- La stratégie `ip-filter` filtre (autorise/rejette) les appels de certaines adresses IP et/ou de certaines plages d’adresses.  
+ Hello `ip-filter` stratégie filtre (autorise/refuse) des appels à partir de plages d’adresses et/ou des adresses IP spécifiques.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -221,30 +221,30 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 |Nom|Description|Requis|  
 |----------|-----------------|--------------|  
 |ip-filter|Élément racine.|Oui|  
-|address|Spécifie une adresse IP unique à filtrer.|Au moins un élément `address` ou `address-range` est requis.|  
-|address-range from="address" to="address"|Spécifie une plage d’adresses IP à filtrer.|Au moins un élément `address` ou `address-range` est requis.|  
+|address|Spécifie une adresse IP unique sur le toofilter.|Au moins un élément `address` ou `address-range` est requis.|  
+|address-range from="address" to="address"|Spécifie une plage d’adresses IP sur quel toofilter.|Au moins un élément `address` ou `address-range` est requis.|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|address-range from="address" to="address"|Plage d'adresses IP pour lesquelles autoriser ou refuser l'accès.|Obligatoire lorsque l’élément `address-range` est utilisé.|N/A|  
-|ip-filter action="allow &#124; forbid"|Spécifie si les appels doivent être autorisés ou non pour les adresses IP et plages spécifiées.|Oui|N/A|  
+|address-range from="address" to="address"|Une plage d’adresse IP, adresses tooallow ou refuser l’accès.|Obligatoire lorsque hello `address-range` élément est utilisé.|N/A|  
+|ip-filter action="allow &#124; forbid"|Spécifie si les appels doivent être autorisés ou non pour hello spécifié adresses IP et plages.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="SetUsageQuota"></a> Set usage quota by subscription  
- La stratégie `quota` applique un volume d’appels et/ou un quota de bande passante renouvelable ou illimité par abonnement.  
+ Hello `quota` stratégie applique un quota renouvelable ou durée de vie appel volume et/ou de la bande passante, sur une base par abonnement.  
   
 > [!IMPORTANT]
 >  Cette stratégie ne peut être utilisée qu’une seule fois par document de stratégie.  
 >   
->  Les [expressions de stratégie](api-management-policy-expressions.md) ne peuvent être utilisées dans aucun attribut de cette stratégie.  
+>  [Expressions de stratégie](api-management-policy-expressions.md) ne peut pas être utilisé dans un des attributs de stratégie hello pour cette stratégie.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -275,34 +275,34 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 |Nom|Description|Requis|  
 |----------|-----------------|--------------|  
 |quota|Élément racine.|Oui|  
-|api|Ajoutez un ou plusieurs éléments de ce type pour imposer un quota aux API au sein du produit. Les quotas au niveau du produit et de l’API s’appliquent indépendamment les uns des autres.|Non|  
-|operation|Ajoutez un ou plusieurs éléments de ce type pour imposer un quota aux opérations au sein d’une API. Les quotas au niveau du produit, de l’API et de l’opération s’appliquent indépendamment les uns des autres.|Non|  
+|api|Ajoutez un ou plusieurs de ces éléments de tooimpose un quota sur les API au sein du produit de hello. Les quotas au niveau du produit et de l’API s’appliquent indépendamment les uns des autres.|Non|  
+|operation|Ajouter un ou plusieurs de ces éléments de tooimpose un quota sur les opérations à l’intérieur d’une API. Les quotas au niveau du produit, de l’API et de l’opération s’appliquent indépendamment les uns des autres.|Non|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|name|Nom de l’API ou de l’opération à laquelle s’applique le quota.|Oui|N/A|  
-|bandwidth|Nombre maximal de kilo-octets autorisés au cours de l’intervalle de temps spécifié dans le paramètre `renewal-period`.|Il est obligatoire de spécifier `calls`, `bandwidth` ou les deux.|N/A|  
-|calls|Nombre maximal d’appels autorisés au cours de l’intervalle de temps spécifié dans le paramètre `renewal-period`.|Il est obligatoire de spécifier `calls`, `bandwidth` ou les deux.|N/A|  
-|renewal-period|Période en secondes après laquelle le quota se réinitialise.|Oui|N/A|  
+|name|nom de Hello de hello API ou l’opération pour le hello quota s’applique.|Oui|N/A|  
+|bandwidth|Hello nombre total maximal de kilo-octets autorisé durant la période hello spécifié dans hello `renewal-period`.|Il est obligatoire de spécifier `calls`, `bandwidth` ou les deux.|N/A|  
+|calls|Hello nombre maximal d’appels autorisés au cours de l’intervalle de temps hello spécifié dans hello `renewal-period`.|Il est obligatoire de spécifier `calls`, `bandwidth` ou les deux.|N/A|  
+|renewal-period|Hello laps de temps en secondes après lequel hello quota est réinitialisé.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound  
   
 -   **Étendues de la stratégie :** product  
   
 ##  <a name="SetUsageQuotaByKey"></a> Set usage quota by key  
- La stratégie `quota-by-key` applique un volume d’appels et/ou un quota de bande passante renouvelable ou illimité par clé. La clé peut avoir une valeur de chaîne arbitraire ; elle est généralement fournie par le biais d’une expression de stratégie. Une condition d’incrément facultative peut être ajoutée pour spécifier quelles demandes doivent être comptées dans le quota.  
+ Hello `quota-by-key` stratégie applique un quota renouvelable ou durée de vie appel volume et/ou de la bande passante, sur une base par clé. clé de Hello peut avoir une valeur de chaîne arbitraire et est généralement fourni à l’aide d’une expression de stratégie. Condition d’incrément facultatif peut être ajoutée toospecify quelles demandes doivent être comptabilisées dans le quota de hello.  
   
  Pour plus d’informations et d’exemples sur cette stratégie, consultez la page [Limitation avancée des demandes dans la Gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-flexible-throttling/).  
   
 > [!IMPORTANT]
 >  Cette stratégie ne peut être utilisée qu’une seule fois par document de stratégie.  
 >   
->  Les [expressions de stratégie](api-management-policy-expressions.md) ne peuvent être utilisées dans aucun attribut de cette stratégie.  
+>  [Expressions de stratégie](api-management-policy-expressions.md) ne peut pas être utilisé dans un des attributs de stratégie hello pour cette stratégie.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -316,7 +316,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 ```  
   
 ### <a name="example"></a>Exemple  
- Dans l’exemple suivant, le quota est indexé par l’adresse IP de l’appelant.  
+ Dans l’exemple suivant de hello, quota de hello est indexé par adresse IP de l’appelant hello.  
   
 ```xml  
 <policies>  
@@ -342,33 +342,33 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|bandwidth|Nombre maximal de kilo-octets autorisés au cours de l’intervalle de temps spécifié dans le paramètre `renewal-period`.|Il est obligatoire de spécifier `calls`, `bandwidth` ou les deux.|N/A|  
-|calls|Nombre maximal d’appels autorisés au cours de l’intervalle de temps spécifié dans le paramètre `renewal-period`.|Il est obligatoire de spécifier `calls`, `bandwidth` ou les deux.|N/A|  
-|counter-key|Clé à utiliser pour la stratégie de quota.|Oui|N/A|  
-|increment-condition|Expression booléenne spécifiant si la demande doit être comptée dans le quota (`true`).|Non|N/A|  
-|renewal-period|Période en secondes après laquelle le quota se réinitialise.|Oui|N/A|  
+|bandwidth|Hello nombre total maximal de kilo-octets autorisé durant la période hello spécifié dans hello `renewal-period`.|Il est obligatoire de spécifier `calls`, `bandwidth` ou les deux.|N/A|  
+|calls|Hello nombre maximal d’appels autorisés au cours de l’intervalle de temps hello spécifié dans hello `renewal-period`.|Il est obligatoire de spécifier `calls`, `bandwidth` ou les deux.|N/A|  
+|counter-key|Hello toouse clé pour la stratégie de quota hello.|Oui|N/A|  
+|increment-condition|expression booléenne de Hello spécifiant si la demande de hello doit être comptée vers le quota de hello (`true`)|Non|N/A|  
+|renewal-period|Hello laps de temps en secondes après lequel hello quota est réinitialisé.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="ValidateJWT"></a> Validate JWT  
- La stratégie `validate-jwt` applique l’existence et la validité d’un JWT extrait d’un en-tête HTTP ou d’un paramètre de requête spécifié.  
+ Hello `validate-jwt` stratégie applique l’existence et la validité d’un jeton JWT extrait de soit un en-tête HTTP ou un paramètre de requête spécifié.  
   
 > [!IMPORTANT]
->  La stratégie `validate-jwt` exige que la revendication inscrite `exp` soit incluse dans le jeton JWT, sauf si l’attribut `require-expiration-time` est spécifié et a la valeur `false`.  
-> La stratégie `validate-jwt` prend en charge les algorithmes de signature HS256 et RS256. Pour HS256, la clé doit être fournie en ligne au sein de la stratégie au format encodé en base 64. Pour RS256, la clé doit être fournie par le biais d’un point de terminaison de configuration Open ID.  
+>  Hello `validate-jwt` stratégie nécessite que hello `exp` revendication inscrite est inclus dans le jeton JWT de hello, sauf si `require-expiration-time` attribut est spécifié et possède trop`false`.  
+> Hello `validate-jwt` stratégie prend en charge les algorithmes de signature HS256 et RS256. Pour HS256 clé de hello doit être fourni inline dans la stratégie hello sous forme de codé en base64 hello. Pour RS256 hello fait clé toobe fournir via un point de terminaison de configuration Open ID.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
 ```xml  
 <validate-jwt   
-    header-name="name of http header containing the token (use query-parameter-name attribute if the token is passed in the URL)"   
-    failed-validation-httpcode="http status code to return on failure"   
-    failed-validation-error-message="error message to return on failure"   
+    header-name="name of http header containing hello token (use query-parameter-name attribute if hello token is passed in hello URL)"   
+    failed-validation-httpcode="http status code tooreturn on failure"   
+    failed-validation-error-message="error message tooreturn on failure"   
     require-expiration-time="true|false"
     require-scheme="scheme"
     require-signed-tokens="true|false"   
@@ -386,13 +386,13 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
     <!-- if there are multiple possible issuers, then add additional issuer elements -->  
   </issuers>  
   <required-claims>  
-    <claim name="name of the claim as it appears in the token" match="all|any">  
-      <value>claim value as it is expected to appear in the token</value>  
+    <claim name="name of hello claim as it appears in hello token" match="all|any">  
+      <value>claim value as it is expected tooappear in hello token</value>  
       <!-- if there is more than one allowed values, then add additional value elements -->  
     </claim>  
     <!-- if there are multiple possible allowed values, then add additional value elements -->  
   </required-claims>  
-  <openid-config url="full URL of the configuration endpoint, e.g. https://login.constoso.com/openid-configuration" />  
+  <openid-config url="full URL of hello configuration endpoint, e.g. https://login.constoso.com/openid-configuration" />  
   <zumo-master-key id="key identifier">key value</zumo-master-key>  
 </validate-jwt>  
   
@@ -449,11 +449,11 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 </validate-jwt>  
 ```  
   
-#### <a name="authorize-access-to-operations-based-on-token-claims"></a>Autoriser l’accès aux opérations à partir de revendications de jetons  
- Cet exemple montre comment utiliser la stratégie [Validate JWT](api-management-access-restriction-policies.md#ValidateJWT) pour préautoriser l’accès aux opérations à partir de revendications de jetons. Pour une démonstration de la configuration et de l’utilisation de cette stratégie, consultez la page [Cloud Cover Episode 177: More API Management Features with Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) (Cloud Cover, épisode 177 : Plus de fonctionnalités de la Gestion des API avec Vlad Vinogradsky) et rendez-vous directement à 13 min 50 s. Rendez-vous directement à 15’00’’ pour afficher les stratégies configurées dans l’éditeur de stratégies, puis à 18’50’’ pour une démonstration de l’appel d’une opération à partir du portail des développeurs avec et sans le jeton d’autorisation requis.  
+#### <a name="authorize-access-toooperations-based-on-token-claims"></a>Autoriser les toooperations d’accès basées sur les revendications de jeton  
+ Cet exemple montre comment toouse hello [valider les jetons Web JSON](api-management-access-restriction-policies.md#ValidateJWT) stratégie toopre-autoriser toooperations d’accès basées sur les revendications de jeton. Pour une démonstration de la configuration et l’utilisation de cette stratégie, consultez [Cloud couvrent épisode 177 : plus les fonctionnalités de gestion des API avec Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) et avançons too13:50. Avance rapide too15:00 les stratégies de hello toosee configurées dans l’éditeur de stratégie hello et puis too18:50 pour une démonstration de l’appel d’une opération à partir du portail des développeurs hello avec et sans hello requis jeton d’autorisation.  
   
 ```xml  
-<!-- Copy the following snippet into the inbound section at the api (or higher) level to pre-authorize access to operations based on token claims -->  
+<!-- Copy hello following snippet into hello inbound section at hello api (or higher) level toopre-authorize access toooperations based on token claims -->  
 <set-variable name="signingKey" value="insert signing key here" />  
 <choose>  
   <when condition="@(context.Request.Method.Equals("patch",StringComparison.OrdinalIgnoreCase))">  
@@ -495,31 +495,31 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 |Élément|Description|Requis|  
 |-------------|-----------------|--------------|  
 |validate-jwt|Élément racine.|Oui|  
-|audiences|Contient la liste des revendications d’audience acceptables qui peuvent être présentes sur le jeton. Si plusieurs valeurs d’audience sont présentes, chacune est tentée jusqu’à ce que toutes soient épuisées (auquel cas la validation échoue) ou que l’une d’elles réussisse. Au moins une audience doit être spécifiée.|Non|  
-|issuer-signing-keys|Liste de clés de sécurité encodées en base 64 utilisé pour valider les jetons signés. Si plusieurs clés de sécurité sont présentes, chacune est tentée jusqu’à ce que toutes soient épuisées (auquel cas la validation échoue) ou que l’une d’elles réussisse (utile pour la substitution de jeton). Les éléments clés ont un attribut `id` facultatif utilisé pour comparer à la revendication `kid`.|Non|  
-|issuers|Liste des services principaux acceptables qui ont émis le jeton. Si plusieurs valeurs d’émetteur sont présentes, chacune est tentée jusqu’à ce que toutes soient épuisées (auquel cas la validation échoue) ou que l’une d’elles réussisse.|Non|  
-|openid-config|Élément utilisé pour spécifier un point de terminaison de configuration Open ID conforme à partir duquel l’émetteur et les clés de signature peuvent être obtenus.|Non|  
-|required-claims|Contient une liste de revendications censées être présentes sur le jeton pour qu’il soit considéré comme valide. Si l’attribut `match` a la valeur `all`, toutes les valeurs de revendication de la stratégie doivent être présentes dans le jeton pour que la validation réussisse. Si l’attribut `match` a la valeur `any`, au moins une revendication doit être présente dans le jeton pour que la validation réussisse.|Non|  
+|audiences|Contient une liste de revendications d’audience acceptables qui peuvent être présents sur le jeton de hello. Si plusieurs valeurs d’audience sont présentes, chacune est tentée jusqu’à ce que toutes soient épuisées (auquel cas la validation échoue) ou que l’une d’elles réussisse. Au moins une audience doit être spécifiée.|Non|  
+|issuer-signing-keys|Une liste de codée en Base64 de sécurité clés utilisées toovalidate signé des jetons. Si plusieurs clés de sécurité sont présentes, chacune est tentée jusqu’à ce que toutes soient épuisées (auquel cas la validation échoue) ou que l’une d’elles réussisse (utile pour la substitution de jeton). Éléments clés ont une option `id` toomatch attribut utilisé par rapport à `kid` de revendication.|Non|  
+|issuers|Une liste des principaux acceptables qui a émis le jeton de hello. Si plusieurs valeurs d’émetteur sont présentes, chacune est tentée jusqu’à ce que toutes soient épuisées (auquel cas la validation échoue) ou que l’une d’elles réussisse.|Non|  
+|openid-config|élément Hello utilisée pour spécifier une extrémité de configuration Open ID conformes à partir de laquelle des clés et l’émetteur de signature peut être obtenue.|Non|  
+|required-claims|Contient une liste de toobe attendues des revendications présente sur le jeton de hello pour qu’il toobe considéré comme valide. Hello lorsque `match` attribut est défini trop`all` chaque valeur de revendication dans la stratégie de hello doit être présent dans le jeton de hello pour toosucceed de validation. Hello lorsque `match` attribut est défini trop`any` au moins une revendication doit être présente dans le jeton de hello pour toosucceed de validation.|Non|  
 |zumo-master-key|Clé principale pour les jetons émis par Azure Mobile Services.|Non|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|clock-skew|Intervalle de temps. Permet une petite marge de manœuvre au cas où la revendication d’expiration du jeton serait présente dans le jeton et serait postérieure à la date / heure actuelle.|Non|0 seconde|  
-|failed-validation-error-message|Message d’erreur à renvoyer dans le corps de la réponse HTTP si le JWT n’est pas validé. Les éventuels caractères spéciaux de ce message doivent être correctement placés dans une séquence d’échappement.|Non|Le message d’erreur par défaut dépend du problème de validation, par exemple « JWT absent ».|  
-|failed-validation-httpcode|Code d’état HTTP à renvoyer si le JWT n’est pas validé.|Non|401|  
-|header-name|Nom de l’en-tête HTTP contenant le jeton.|Soit `header-name`, soit `query-paremeter-name` doit être spécifié, mais pas les deux.|N/A|  
-|id|L’attribut `id` sur l’élément `key` vous permet de spécifier la chaîne qui sera comparée à la revendication `kid` dans le jeton (le cas échéant) pour déterminer la clé appropriée à utiliser pour la validation de la signature.|Non|N/A|  
-|match|L’attribut `match` sur l’élément `claim` spécifie si toutes les valeurs de revendication de la stratégie doivent être présentes dans le jeton pour que la validation réussisse. Les valeurs possibles sont les suivantes :<br /><br /> -                          `all` : toutes les valeurs de revendication de la stratégie doivent être présentes dans le jeton pour que la validation réussisse.<br /><br /> -                          `any` : au moins une valeur de revendication doit être présente dans le jeton pour que la validation réussisse.|Non|tout|  
-|query-paremeter-name|Nom du paramètre de la requête contenant le jeton.|Soit `header-name`, soit `query-paremeter-name` doit être spécifié, mais pas les deux.|N/A|  
-|require-expiration-time|Booléen. Spécifie si une revendication d’expiration est requise dans le jeton.|Non|true|
-|require-scheme|Le nom du schéma de jeton, par ex. « Support ». Lorsque cet attribut est défini, la stratégie garantit que le schéma spécifié est présent dans la valeur d’en-tête d’autorisation.|Non|N/A|
-|require-signed-tokens|Booléen. Spécifie si un jeton doit être signé.|Non|true|  
-|url|URL du point de terminaison de configuration Open ID à partir de laquelle les métadonnées de configuration Open ID peuvent être récupérées. Pour Azure Active Directory, utilisez l’URL suivante : `https://login.microsoftonline.com/{tenant-name}/.well-known/openid-configuration`, en remplaçant par le nom de votre client d’annuaire, par exemple, `contoso.onmicrosoft.com`.|Oui|N/A|  
+|clock-skew|Intervalle de temps. Fournit certains manœuvre petite en cas de revendication d’expiration du jeton hello est présente dans le jeton de hello et est en cours de hello au-delà de date / heure.|Non|0 seconde|  
+|failed-validation-error-message|Erreur tooreturn de message dans les corps de réponse HTTP de hello si hello JSON n’est pas validé. Les éventuels caractères spéciaux de ce message doivent être correctement placés dans une séquence d’échappement.|Non|Le message d’erreur par défaut dépend du problème de validation, par exemple « JWT absent ».|  
+|failed-validation-httpcode|État HTTP code tooreturn si hello JSON ne sont pas validées.|Non|401|  
+|header-name|nom Hello d’en-tête hello HTTP contenant hello jeton.|Soit `header-name`, soit `query-paremeter-name` doit être spécifié, mais pas les deux.|N/A|  
+|id|Hello `id` attribut sur hello `key` élément vous permet de chaîne hello toospecify qui sera comparée à `kid` toofind de jeton (le cas échéant) hello out hello approprié toouse clés pour la validation des signatures de revendication.|Non|N/A|  
+|match|Hello `match` attribut sur hello `claim` élément indique si chaque valeur de revendication dans la stratégie de hello doit être présent dans le jeton de hello pour toosucceed de validation. Les valeurs possibles sont les suivantes :<br /><br /> -                          `all`-chaque valeur de revendication dans la stratégie de hello doit être présent dans le jeton de hello pour toosucceed de validation.<br /><br /> -                          `any`-valeur d’au moins une revendication doit être présent dans le jeton de hello pour toosucceed de validation.|Non|tout|  
+|query-paremeter-name|nom Hello hello hello du paramètre de requête contenant le jeton de hello.|Soit `header-name`, soit `query-paremeter-name` doit être spécifié, mais pas les deux.|N/A|  
+|require-expiration-time|Booléen. Spécifie si une revendication d’expiration est requise dans le jeton de hello.|Non|true|
+|require-scheme|Hello nom du schéma de jeton hello, par exemple « Support ». Lorsque cet attribut est défini, stratégie de hello garantit que spécifié de schéma est présent dans la valeur de l’en-tête d’autorisation de hello.|Non|N/A|
+|require-signed-tokens|Booléen. Spécifie si un jeton est requis toobe signé.|Non|true|  
+|url|URL du point de terminaison de configuration Open ID à partir de laquelle les métadonnées de configuration Open ID peuvent être récupérées. Pour Azure Active Directory, utilisez hello suivant URL : `https://login.microsoftonline.com/{tenant-name}/.well-known/openid-configuration` en remplaçant votre nom de client de répertoire, par exemple, `contoso.onmicrosoft.com`.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound  
   

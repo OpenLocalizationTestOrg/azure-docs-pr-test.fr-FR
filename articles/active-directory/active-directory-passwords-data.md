@@ -1,6 +1,6 @@
 ---
 title: "Exigences en matière de données Azure AD SSPR | Microsoft Docs"
-description: "Exigences en matière de données pour la réinitialisation du mot de passe en libre-service Azure AD et comment les satisfaire"
+description: "Réinitialiser des spécifications de données pour le mot de passe libre-service Azure AD et comment toosatisfy les"
 services: active-directory
 keywords: 
 documentationcenter: 
@@ -16,24 +16,24 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: 2d1afd2d1265b371e0d311ed70fffbc55874b0a7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b68a1d7914dcd0bb4509d0e94914dc4309f4463a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-password-reset-without-requiring-end-user-registration"></a>Déployer la réinitialisation du mot de passe sans demander l’inscription de l’utilisateur final
 
-Le déploiement de la réinitialisation de mot du passe en libre-service (SSPR) exige que les données d’authentification soient présentes. Certaines organisations demandent à leurs utilisateurs d’entrer leurs données d’authentification eux-mêmes, mais de nombreuses organisations préfèrent se synchroniser avec les données existantes dans Active Directory. Si vous avez correctement mis en forme les données dans votre répertoire local et configurez [Azure AD Connect à l’aide des paramètres express](./connect/active-directory-aadconnect-get-started-express.md), ces données sont rendues disponibles pour Azure AD et SSPR sans aucune interaction utilisateur requise.
+Déploiement de réinitialisation de mot de passe libre-service (SSPR) requiert l’authentification toobe de données présente. Certaines organisations ont leurs utilisateurs d’entrer leurs données d’authentification eux-mêmes, mais de nombreuses organisations préfèrent toosynchronize avec des données existantes dans Active Directory. Si vous avez correctement renseigné des données dans votre annuaire local et configurez [Azure AD Connect à l’aide de la configuration rapide](./connect/active-directory-aadconnect-get-started-express.md), que les données sont rendues disponible tooAzure AD et SSPR sans aucune interaction utilisateur requis.
 
-Les numéros de téléphone doivent être au format +CodePays NuméroTéléphone (exemple : +1 4255551234) pour fonctionner correctement.
+Les numéros de téléphone doivent être dans un format de hello + CountryCode PhoneNumber exemple : + 1 4255551234 toowork correctement.
 
 > [!NOTE]
-> La réinitialisation du mot de passe ne prend pas en charge les extensions de téléphone. Même au format +1 4255551234X12345, les extensions sont supprimées avant l’appel.
+> La réinitialisation du mot de passe ne prend pas en charge les extensions de téléphone. Même au format 12345 de + 1 4255551234 X hello, les extensions sont supprimées avant hello.
 
 ## <a name="fields-populated"></a>Champs renseignés
 
-Si vous utilisez les paramètres par défaut dans Azure AD Connect, les mappages suivants sont effectués.
+Si vous utilisez des paramètres par défaut de hello Bonjour Azure AD Connect suivant les mappages sont effectuées.
 
 | AD local | Azure AD | Informations de contact de l’authentification AD Azure |
 | --- | --- | --- |
@@ -43,21 +43,21 @@ Si vous utilisez les paramètres par défaut dans Azure AD Connect, les mappage
 
 ## <a name="security-questions-and-answers"></a>Questions et réponses de sécurité
 
-Les questions et les réponses de sécurité sont stockées de manière sécurisée sur votre locataire Azure AD et sont uniquement accessibles aux utilisateurs par le biais du [portail d’inscription SSPR](https://aka.ms/ssprsetup). Les administrateurs ne peuvent pas voir ou modifier le contenu des questions et des réponses des autres utilisateurs.
+Les questions de sécurité et les réponses sont stockées de manière sécurisée dans votre locataire Azure AD et sont uniquement accessibles toousers via hello [portail d’inscription SSPR](https://aka.ms/ssprsetup). Les administrateurs ne peut pas voir ou modifier du contenu hello des questions des utilisateurs et des réponses un autre.
 
 ### <a name="what-happens-when-a-user-registers"></a>Ce qu’il se passe lorsqu'un utilisateur s'inscrit
 
-Lorsqu’un utilisateur s'inscrit, la page d’inscription définit les champs suivants :
+Lorsqu’un utilisateur s’inscrit, page d’inscription de hello définit hello champs qui suivent :
 
 * Téléphone d’authentification
 * E-mail d’authentification
 * Questions et réponses de sécurité
 
-Si vous avez fourni une valeur pour **Téléphone mobile** ou **Autre adresse de messagerie**, les utilisateurs peuvent immédiatement l’utiliser pour réinitialiser leur mot de passe, même s’ils ne se sont pas inscrits au service. Les utilisateurs voient ces valeurs lorsqu’ils s’inscrivent pour la première fois et ils ont la possibilité de les modifier. Une fois les utilisateurs inscrits, ces valeurs sont conservées respectivement dans les champs **Téléphone d’authentification** et **E-mail d’authentification**.
+Si vous avez fourni une valeur pour **téléphone Mobile** ou **autre adresse de messagerie**, les utilisateurs peuvent immédiatement utiliser ces valeurs tooreset leurs mots de passe, même si elles n’ont pas enregistré pour le service de hello. En outre, les utilisateurs voient les ces valeurs lors de l’inscription pour hello première fois et les modifier s’ils le souhaitent. Après leur inscrivent, ces valeurs sont rendues persistantes dans hello **téléphone d’authentification** et **E-mail d’authentification** champs, respectivement.
 
 ## <a name="set-and-read-authentication-data-using-powershell"></a>Définir et lire les données d’authentification à l’aide de PowerShell
 
-Les champs suivants peuvent être définis à l’aide de PowerShell
+Hello suivant les champs peut être définie à l’aide de PowerShell
 
 * Autre adresse de messagerie
 * Téléphone mobile
@@ -65,7 +65,7 @@ Les champs suivants peuvent être définis à l’aide de PowerShell
 
 ### <a name="using-powershell-v1"></a>Utiliser PowerShell V1
 
-Pour commencer, vous devez [télécharger et installer le module Azure AD PowerShell](https://msdn.microsoft.com/library/azure/jj151815.aspx#bkmk_installmodule). Une fois le module installé, vous pouvez suivre les étapes suivantes pour configurer chaque champ.
+tooget démarré, vous devez trop[télécharger et installer le module PowerShell Azure AD de hello](https://msdn.microsoft.com/library/azure/jj151815.aspx#bkmk_installmodule). Une fois que vous avez déjà installé, vous pouvez suivre les étapes de hello qui suivent tooconfigure chaque champ.
 
 #### <a name="set-authentication-data-with-powershell-v1"></a>Définir les données d’authentification avec PowerShell V1
 
@@ -91,7 +91,7 @@ Get-MsolUser -UserPrincipalName user@domain.com | select PhoneNumber
 Get-MsolUser | select DisplayName,UserPrincipalName,AlternateEmailAddresses,MobilePhone,PhoneNumber | Format-Table
 ```
 
-#### <a name="authentication-phone-and-authentication-email-can-only-be-read-using-powershell-v1-using-the-commands-that-follow"></a>Téléphone d’authentification et E-mail d’authentification ne peuvent être lus qu’à l’aide de Powershell V1 en utilisant les commandes qui suivent
+#### <a name="authentication-phone-and-authentication-email-can-only-be-read-using-powershell-v1-using-hello-commands-that-follow"></a>Téléphone d’authentification et E-mail d’authentification peuvent uniquement être lus à l’aide de Powershell V1 hello d’à l’aide des commandes qui suivent
 
 ```
 Connect-MsolService
@@ -101,9 +101,9 @@ Get-MsolUser -UserPrincipalName user@domain.com | select -Expand StrongAuthentic
 
 ### <a name="using-powershell-v2"></a>Utiliser PowerShell V2
 
-Pour commencer, vous devez [télécharger et installer le module Azure AD PowerShell V2](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure%20AD%20Cmdlets/AzureAD/index.md). Une fois le module installé, vous pouvez suivre les étapes suivantes pour configurer chaque champ.
+tooget démarré, vous devez trop[télécharger et installer le module PowerShell de hello Azure AD V2](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure%20AD%20Cmdlets/AzureAD/index.md). Une fois que vous avez déjà installé, vous pouvez suivre les étapes de hello qui suivent tooconfigure chaque champ.
 
-Pour installer rapidement des versions récentes de PowerShell compatibles avec Install-Module, exécutez ces commandes (la première ligne vérifie simplement si le produit est déjà installé) :
+tooinstall rapidement à partir de versions récentes de PowerShell qui prennent en charge d’Install-Module, exécutez ces commandes (première ligne de hello simplement des contrôles toosee s’il est déjà installé) :
 
 ```
 Get-Module AzureADPreview
@@ -137,14 +137,14 @@ Get-AzureADUser | select DisplayName,UserPrincipalName,otherMails,Mobile,Telepho
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Les liens suivants fournissent des informations supplémentaires sur la réinitialisation de mot de passe à l’aide d’Azure AD.
+Hello suivant liens fournit des informations supplémentaires concernant le mot de passe réinitialisé à l’aide d’Azure AD
 
-* [**Démarrage rapide**](active-directory-passwords-getting-started.md) : soyez rapidement opérationnel avec la gestion des mots de passe en libre-service Azure AD. 
+* [**Démarrage rapide**](active-directory-passwords-getting-started.md) : soyez rapidement opérationnel avec la gestion des mots de passe en libre-service d’Azure AD. 
 * [**Licences**](active-directory-passwords-licensing.md) : configurez vos licences Azure AD.
-* [**Déploiement**](active-directory-passwords-best-practices.md) : planifiez et déployez la réinitialisation de mot de passe en libre-service pour vos utilisateurs grâce aux conseils figurant ici.
-* [**Personnalisation**](active-directory-passwords-customize.md) : personnalisez l’apparence de l’interface de réinitialisation de mot de passe en libre-service de votre société.
-* [**Stratégie**](active-directory-passwords-policy.md) : comprenez mieux et définissez les stratégies de mot de passe d’Azure AD.
-* [**Rapports**](active-directory-passwords-reporting.md) : découvrez si, quand et où vos utilisateurs accèdent aux fonctionnalités de réinitialisation de mot de passe en libre-service.
-* [**Présentation technique approfondie**](active-directory-passwords-how-it-works.md) : découvrez ce qui se passe sous le capot pour mieux comprendre le fonctionnement.
-* [**Forum Aux Questions (FAQ)**](active-directory-passwords-faq.md) : Comment ? Pourquoi ? Quoi ? Où ? Qui ? Quand ? - Les réponses aux questions que vous vouliez poser depuis toujours.
-* [**Résolution des problèmes**](active-directory-passwords-troubleshoot.md) : découvrez comment résoudre les problèmes courants susceptibles de survenir avec la réinitialisation de mot de passe en libre-service.
+* [**Déploiement** ](active-directory-passwords-best-practices.md) -planifier et déployer des utilisateurs de tooyour SSPR hello d’aide est disponible ici
+* [**Personnaliser** ](active-directory-passwords-customize.md) -personnaliser hello apparence Hello SSPR expérience pour votre entreprise.
+* [**Stratégie**](active-directory-passwords-policy.md) : comprenez et définissez les stratégies de mot de passe d’Azure AD
+* [**Rapports**](active-directory-passwords-reporting.md) : découvrez si, quand et où vos utilisateurs accèdent aux fonctionnalités de réinitialisation de mot de passe en libre-service
+* [**Présentation approfondie technique** ](active-directory-passwords-how-it-works.md) -accédez derrière hello RIDEAU toounderstand son fonctionnement
+* [**Forum Aux Questions (FAQ)**](active-directory-passwords-faq.md) : Comment ? Pourquoi ? Quoi ? Où ? Qui ? Quand ? -Réponses tooquestions vous souhaitiez toujours tooask
+* [**Résoudre les problèmes** ](active-directory-passwords-troubleshoot.md) -en savoir comment tooresolve commun problèmes que nous pouvons voir avec SSPR

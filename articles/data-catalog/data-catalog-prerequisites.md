@@ -1,6 +1,6 @@
 ---
-title: "Conditions préalables à l’utilisation d’Azure Data Catalog | Microsoft Docs"
-description: "Découvrez les prérequis dont vous avez besoin pour bien démarrer avec Azure Data Catalog."
+title: "conditions préalables du catalogue de données aaaAzure | Documents Microsoft"
+description: "En savoir plus sur la configuration requise de hello que vous devez tooget main d’Azure Data Catalog."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,37 +15,37 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 3fdef7bb58a5cd5dfbe4d37d9baf9c8e392ebe42
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0c8e768e5846c61b542b746d7ad80121725a9ec7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-catalog-prerequisites"></a>Configuration requise pour Azure Data Catalog
 
-Vous devez vous occuper de certaines choses avant de configurer Azure Data Catalog. Ce processus ne sera pas long.
+Vous devez tootake administration quelques éléments avant que vous pouvez configurer Azure Data Catalog. Ce processus ne sera pas long.
 
 ## <a name="azure-subscription"></a>Abonnement Azure
-Pour configurer Data Catalog, vous devez être le propriétaire ou le copropriétaire d’un abonnement Azure.
+tooset catalogue de données, vous devez être propriétaire de hello ou copropriétaire d’un abonnement Azure.
 
-Les abonnements Azure vous permettent d’organiser l’accès aux ressources du service cloud telles que Data Catalog. Ils vous permettent également de contrôler le signalement, la facturation et le paiement des ressources utilisées. Chaque abonnement peut disposer d’une configuration de facturation et de paiement différente. Vous pouvez donc avoir différents abonnements et différents plans par département, projet, bureau régional, etc. Chaque service cloud appartient à un abonnement. Vous devez donc avoir un abonnement avant de configurer Data Catalog. Pour plus d’informations, consultez [Manage Accounts, Subscriptions, and Administrative Roles](../active-directory/active-directory-assign-admin-roles.md) (Gérer les comptes, les abonnements et les rôles d’administrateur).
+Abonnements Azure permettent d’organiser d’accéder aux ressources de service toocloud tels que des données de catalogue. Ils vous permettent également de contrôler le signalement, la facturation et le paiement des ressources utilisées. Chaque abonnement peut disposer d’une configuration de facturation et de paiement différente. Vous pouvez donc avoir différents abonnements et différents plans par département, projet, bureau régional, etc. Chaque service cloud appartient tooa abonnement, et vous devez toohave un abonnement avant de configurer le catalogue de données. toolearn, voir [gérer les comptes, les abonnements et les rôles d’administrateur](../active-directory/active-directory-assign-admin-roles.md).
 
 ## <a name="azure-active-directory"></a>Azure Active Directory
-Pour configurer Data Catalog, vous devez être connecté avec un compte d’utilisateur Azure Active Directory (Azure AD).
+tooset catalogue de données, vous devez être connecté avec un compte d’utilisateur Azure Active Directory (Azure AD).
 
-Azure AD permet à votre entreprise de gérer facilement les identités et les accès, à la fois dans le cloud et en local. Les utilisateurs peuvent se servir du même compte professionnel ou scolaire pour utiliser l’authentification unique sur n’importe quelle application web locale ou cloud. Data Catalog utilise Azure AD pour authentifier la connexion. Pour plus d’informations, consultez l’article [Qu’est-ce qu’Azure Active Directory ?](../active-directory/active-directory-whatis.md).
+Azure AD fournit un moyen simple pour votre entreprise toomanage identités et des accès, à la fois dans le cloud de hello et sur site. Les utilisateurs peuvent utiliser un seul compte professionnel ou scolaire pour le cloud de tooany de connexion unique et une application de web local. Catalogue de données utilise l’authentification dans Azure AD tooauthenticate. toolearn, voir [quoi consiste Azure Active Directory ?](../active-directory/active-directory-whatis.md).
 
 > [!NOTE]
-> Le [portail Azure](http://portal.azure.com/) permet de se connecter à l’aide d’un compte Microsoft personnel ou d’un compte professionnel ou scolaire Azure Active Directory. Pour configurer Data Catalog à l’aide du portail Azure ou du [portail Data Catalog](http://www.azuredatacatalog.com), vous devez vous connecter avec un compte Azure Active Directory, et non avec un compte personnel.
+> À l’aide de hello [portail Azure](http://portal.azure.com/), vous pouvez vous connecter avec un compte Microsoft personnel ou d’Azure Active Directory ou l’école de compte. tooset catalogue de données à l’aide de hello soit portail Azure ou hello [portail Data Catalog](http://www.azuredatacatalog.com), vous devez vous connecter avec un compte Azure Active Directory, pas un compte personnel.
 >
 >
 
 ## <a name="active-directory-policy-configuration"></a>Configuration de la stratégie Active Directory
-Il est possible que vous puissiez vous connecter au portail Data Catalog, mais que lorsque vous tentez de vous connecter à l’outil d’inscription de source de données, un message d’erreur s’affiche et vous empêche de vous connecter. Ce problème peut aussi se produire quand l’utilisateur se trouve sur le réseau d’entreprise ou quand il se connecte en dehors du réseau d’entreprise.
+Vous pouvez rencontrer une situation où vous pouvez vous connecter dans le portail de toohello Data Catalog, mais lorsque vous essayez de toosign dans l’outil de l’enregistrement de source de données toohello, un message d’erreur qui vous empêche de se connecter. Ce problème peut se produire uniquement lorsque vous êtes sur le réseau d’entreprise hello, ou elle peut se produire uniquement lorsque vous vous connectez à partir du réseau d’entreprise en dehors de hello.
 
-L’outil d’inscription de source de données utilise l’authentification par formulaire pour valider les informations d’identification par rapport à Active Directory. Pour que vous puissiez vous connecter, un administrateur Active Directory doit activer l’authentification par formulaire dans la stratégie d’authentification globale.
+outil de l’enregistrement de source de données Hello utilise l’authentification par formulaire toovalidate vos informations d’identification de l’utilisateur dans Active Directory. toohelp que vous vous connectez avec succès, un administrateur Active Directory doit activer l’authentification par formulaire Bonjour stratégie d’authentification globale.
 
-La stratégie d’authentification globale vous permet d’activer séparément des méthodes d’authentification pour les connexions intranet et extranet, comme le montre la capture d’écran suivante. Des erreurs de connexion peuvent survenir si l’authentification par formulaire n’est pas activée pour le réseau à partir duquel vous vous connectez.
+Bonjour stratégie d’authentification globale, méthodes d’authentification peuvent être activées séparément pour l’intranet et extranet des connexions, comme indiqué dans hello suivant capture d’écran de. Erreurs de connexion peuvent se produire si l’authentification par formulaire n’est pas activée pour le réseau hello à partir de laquelle vous vous connectez.
 
  ![Stratégie d’authentification globale d’Active Directory](./media/data-catalog-prerequisites/global-auth-policy.png)
 

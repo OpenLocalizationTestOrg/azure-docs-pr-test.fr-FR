@@ -1,6 +1,6 @@
 ---
-title: "Activation de l’authentification unique entre applications sur iOS à l’aide de la bibliothèque ADAL | Microsoft Docs"
-description: "En savoir plus sur l’utilisation des fonctionnalités de votre Kit de développement logiciel (SDK) ADAL pour activer l’authentification unique sur l’ensemble de vos applications. "
+title: "aaaHow tooenable SSO inter-applications sur iOS à l’aide de la bibliothèque ADAL | Documents Microsoft"
+description: "Comment toouse les fonctionnalités de hello de hello tooenable SDK ADAL Single Sign On dans vos applications. "
 services: active-directory
 documentationcenter: 
 author: brandwe
@@ -15,20 +15,20 @@ ms.topic: article
 ms.date: 04/07/2017
 ms.author: brandwe
 ms.custom: aaddev
-ms.openlocfilehash: 73b8ed7e6a153a0790f7eae9bd51bb2e554ae72e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b7b4389a8dcd956211ffa1aaa431aaf21ded8961
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-enable-cross-app-sso-on-ios-using-adal"></a>Activation d’une authentification unique entre applications sur iOS à l’aide de la bibliothèque ADAL
-Les clients s’attendent désormais à profiter d’une authentification unique, nécessitant des utilisateurs une seule et unique saisie des informations d’identification, qui restent automatiquement actives sur l’ensemble des applications. La difficulté à saisir le nom d’utilisateur et le mot de passe sur des petits formats d’écrans, à laquelle s’ajoute souvent un facteur supplémentaire (2FA) tel qu’un appel ou un code par SMS, mécontente rapidement les utilisateurs contraints d’effectuer plusieurs fois l’opération pour votre produit.
+# <a name="how-tooenable-cross-app-sso-on-ios-using-adal"></a>Comment tooenable l’authentification unique entre l’application sur iOS à l’aide de la bibliothèque ADAL
+Fournissant Single Sign-On (SSO) afin que les utilisateurs uniquement besoin de tooenter leurs informations d’identification qu’une seule fois ont ces informations d’identification du travail automatiquement entre les applications est désormais attendu par les clients. difficulté Hello en entrant leur nom d’utilisateur et un mot de passe sur un petit écran, souvent fois combinés avec un facteur supplémentaire (2FA) comme un appel téléphonique ou un code envoyé par SMS, entraîne le mécontentement rapide si un utilisateur a toodo cela plusieurs fois pour votre produit.
 
-En outre, si vous mettez en œuvre une plateforme d’identité que d’autres applications peuvent utiliser, telle que les comptes Microsoft ou un compte professionnel d’Office365, les clients s’attendent à ce que ces informations d’identification soient disponibles sur l’ensemble de leurs applications, quel que soit le fournisseur.
+En outre, si vous appliquez une plateforme d’identité qui peuvent utiliser des autres applications telles que Microsoft Accounts ou un compte professionnel à partir d’Office 365, les clients attendent que ces toouse disponible de toobe informations d’identification pour toutes les applications de leurs quel que soit le fournisseur de hello.
 
-La plateforme Microsoft Identity, combinée à nos Kits de développement logiciel (SDK) Microsoft Identity, vous soulage de ces tâches complexes et vous permet d’offrir à vos utilisateurs l’authentification unique au sein de votre propre suite d’applications, ou, comme avec nos applications de répartiteur et Authenticator, sur l’intégralité de l’appareil.
+Hello plateforme Microsoft Identity, ainsi que nos kits de développement Microsoft Identity, fait tout ce travail pour vous et donne vous hello toodelight de capacité de vos clients avec l’authentification unique au sein de votre propre suite d’applications ou, en tant que notre service broker et un authentificateur applications, sur l’ensemble de l’unité hello.
 
-Cette procédure pas à pas vous décrit la configuration de notre Kit de développement logiciel (SDK) au sein de votre application afin d’offrir cet avantage à vos clients.
+Cette procédure pas à pas explique comment tooconfigure notre kit de développement logiciel au sein de votre application de tooprovide cet avantage tooyour les clients.
 
 Cette procédure pas à pas s’applique aux éléments suivants :
 
@@ -37,36 +37,36 @@ Cette procédure pas à pas s’applique aux éléments suivants :
 * Azure Active Directory B2B
 * Accès conditionnel Azure Active Directory
 
-Le document ci-dessus prend pour acquis que vous savez comment [mettre en service des applications dans le portail hérité dédié Azure Active Directory](active-directory-how-to-integrate.md) et que vous avez intégré votre application avec le [Kit de développement logiciel (SDK) Microsoft Identity iOS](https://github.com/AzureAD/azure-activedirectory-library-for-objc).
+document Hello précédent suppose que vous savez comment trop[la configuration des applications dans le portail hérité de hello pour Azure Active Directory](active-directory-how-to-integrate.md) et d’intégrer votre application hello [Microsoft Identity iOS SDK](https://github.com/AzureAD/azure-activedirectory-library-for-objc).
 
-## <a name="sso-concepts-in-the-microsoft-identity-platform"></a>Concepts de l’authentification unique dans la plateforme Microsoft Identity
+## <a name="sso-concepts-in-hello-microsoft-identity-platform"></a>Concepts de l’authentification unique Bonjour plateforme d’identité Microsoft
 ### <a name="microsoft-identity-brokers"></a>Répartiteurs Microsoft Identity
-Sur l’ensemble des plateformes mobiles, Microsoft fournit des applications qui prennent en charge le portage des informations d’identification entre les applications de différents fournisseurs, ainsi que des fonctionnalités spéciales avancées nécessitant un emplacement unique sécurisé de validation des informations d’identification. Nous appelons ces applications **répartiteurs**. Sur iOS et Android, ces répartiteurs sont offerts via des applications téléchargeables que les clients installent indépendamment ou sont transmis sur l’appareil par une entreprise qui gère certains ou la totalité des appareils des employés. Ces répartiteurs gèrent la sécurité d’une partie des applications ou de l’intégralité de l’appareil, en fonction des besoins des administrateurs informatiques. Dans Windows, cette fonctionnalité est fournie par un sélecteur de compte intégré au système d’exploitation, désigné techniquement sous l’appellation « Répartiteur d’authentification web ».
+Microsoft fournit des applications pour toutes les plateformes mobiles acceptant pour le pontage hello d’informations d’identification entre les applications provenant de différents fournisseurs et permet à des fonctionnalités améliorées spéciales qui requièrent un seul emplacement sécurisé à partir de laquelle les informations d’identification de toovalidate. Nous appelons ces applications **répartiteurs**. Sur iOS et Android ces courtiers sont fournies via des applications téléchargeables que clients installer indépendamment ou pouvant être envoyées toohello appareil par une société qui gère tout ou partie des périphériques de hello pour leurs employés. Ces services Broker prend en charge la gestion de la sécurité pour certaines applications ou certains hello ensemble de l’unité selon ce que les administrateurs informatiques souhaitent. Dans Windows, cette fonctionnalité est fournie par un sélecteur de compte de système d’exploitation de toohello, appelé techniquement hello Service Broker d’authentification Web intégré.
 
-Pour plus d’informations sur l’utilisation de ces répartiteurs et sur la manière dont vos utilisateurs peuvent les afficher dans leurs flux de connexion associés à la plateforme Microsoft Identity, consultez les références suivantes.
+Pour plus d’informations sur la façon de nous utilisons ces courtiers et comment vos clients peuvent voir les leur flux de connexion pour la plateforme de Microsoft Identity hello lire sur.
 
 ### <a name="patterns-for-logging-in-on-mobile-devices"></a>Modèles de connexion sur les appareils mobiles
-L’accès aux informations d’identification sur les appareils respecte deux modèles de base pour la plateforme Microsoft Identity :
+Deux modèles de base pour la plateforme de Microsoft Identity hello, procédez toocredentials d’accès sur les appareils :
 
 * Connexions assistées sans répartiteur
 * Connexions assistées avec répartiteur
 
 #### <a name="non-broker-assisted-logins"></a>Connexions assistées sans répartiteur
-Les connexions assistées sans répartiteur correspondent à des expériences de connexion intervenant en ligne avec l’application et utilisant le stockage local sur l’appareil pour cette application. Ce stockage peut être partagé entre les applications, mais les informations d’identification sont étroitement liées à l’application ou à la suite d’applications qui les utilisent. Vous avez probablement eu cette expérience sur de nombreuses applications mobiles, lorsque vous devez saisir un nom d’utilisateur et un mot de passe.
+Non-Service Broker pour les connexions assistées sont les expériences de connexion qui se produisent en ligne avec l’application hello et utilisent le stockage local de hello sur l’appareil hello pour cette application. Ce stockage peut être partagé entre les applications, mais les informations d’identification de hello sont étroitement liés toohello application ou la suite d’applications à l’aide de ces informations d’identification. Vous avez probablement rencontré cela dans de nombreuses applications mobiles lorsque vous entrez un nom d’utilisateur et un mot de passe au sein de l’application hello lui-même.
 
-Ces connexions présentent les avantages suivants :
+Ces connexions ont hello avantages suivants :
 
-* L’expérience utilisateur existe intégralement au sein de l’application.
-* Les informations d’identification peuvent être partagées entre les applications qui sont signées par le même certificat, ce qui constitue une expérience de connexion unique à votre suite d’applications.
-* Le contrôle de connexion est fourni à l’application avant et après la connexion.
+* Expérience utilisateur existe entièrement dans l’application hello.
+* Informations d’identification peuvent être partagées entre les applications qui sont signées par hello même certificat, en fournissant une suite de tooyour une expérience d’authentification unique d’applications.
+* Contrôle autour d’expérience hello de connexion est fourni toohello application avant et après la connexion.
 
-Ces connexions présentent les inconvénients suivants :
+Ces connexions ont hello suivant des inconvénients :
 
 * L’utilisateur ne peut pas profiter de l’authentification unique sur l’ensemble des applications utilisant Microsoft Identity, uniquement sur celles que votre application a configuré.
-* Votre application ne peut pas être utilisée avec des fonctionnalités commerciales plus avancées, comme l’accès conditionnel ; elle ne peut pas non plus utiliser la suite de produits Intune.
+* Votre application ne peut pas être utilisée avec des fonctionnalités d’entreprise plus avancées telles que l’accès conditionnel ou utilisez hello InTune suite de produits.
 * Votre application ne peut pas prendre en charge l’authentification par certificat des utilisateurs professionnels.
 
-Voici une représentation de la manière dont les Kits de développement logiciel (SDK) Microsoft Identity fonctionnent avec le stockage partagé de vos applications, pour l’activation de l’authentification unique :
+Voici une représentation du fonctionnement des kits de développement logiciel hello Microsoft identité avec le stockage de vos tooenable applications SSO hello partagé :
 
 ```
 +------------+ +------------+  +-------------+
@@ -83,35 +83,35 @@ Voici une représentation de la manière dont les Kits de développement logicie
 ```
 
 #### <a name="broker-assisted-logins"></a>Connexions assistées avec répartiteur
-Les connexions assistées avec répartiteur sont des expériences de connexion se produisant au sein de l’application de répartiteur, qui utilisent le stockage et la sécurité de ce composant pour partager l’ensemble des applications sur l’appareil qui applique la plateforme Microsoft Identity. Vos applications s’appuient sur le répartiteur pour connecter les utilisateurs. Sur iOS et Android, ces répartiteurs sont fournis via des applications téléchargeables que les clients installent indépendamment ou sont transmis sur l’appareil par une entreprise qui gère les appareils des utilisateurs. Comme exemple de ce type d’application, citons Microsoft Authenticator sur iOS. Dans Windows, cette fonctionnalité est fournie par un sélecteur de compte intégré au système d’exploitation, désigné techniquement sous l’appellation « Répartiteur d’authentification web ».
-L’expérience, qui varie en fonction des plateformes, peut parfois perturber les utilisateurs en cas de gestion inappropriée. Vous connaissez probablement davantage ce modèle si vous avez installé l’application Facebook et que vous utilisez Facebook Connect depuis une autre application. La plateforme Microsoft Identity utilise le même modèle.
+Assisté par service Broker pour les connexions sont des expériences de connexion qui se produisent dans l’application de service broker hello et d’utilisent le stockage de hello et la sécurité des informations d’identification de hello broker tooshare sur toutes les applications sur l’appareil de hello qui s’appliquent de plateforme de Microsoft Identity hello. Cela signifie que vos applications hello broker toosign utilisateurs. Sur iOS et Android ces courtiers sont fournies via des applications téléchargeables que clients installer indépendamment ou pouvant être envoyées toohello appareil par une société qui gère le périphérique hello pour leurs utilisateurs. Un exemple de ce type d’application est l’application de Microsoft Authenticator hello sur iOS. Dans Windows, cette fonctionnalité est fournie par un sélecteur de compte de système d’exploitation de toohello, appelé techniquement hello Service Broker d’authentification Web intégré.
+expérience de Hello varie selon la plate-forme et peut parfois être perturbateur toousers si elle n’est pas géré correctement. Vous connaissez probablement plus ce modèle si vous disposez d’application Facebook hello et utilisez la connexion à Facebook à partir d’une autre application. Hello utilise de plateforme d’identité Microsoft hello même modèle.
 
-Sur iOS, une animation de transition s’affiche. Votre application est transmise à l’arrière-plan, tandis que les applications Microsoft Authenticator sont mises en avant-plan, ce qui permet à l’utilisateur de choisir son compte de connexion.  
+Pour iOS cela entraîne l’animation tooa « transition » où votre application est envoyée arrière-plan toohello lors des applications de Microsoft Authenticator hello est fourni au premier plan toohello pour hello utilisateur tooselect quel compte il veut toosign avec.  
 
-Sur Android et Windows, le sélecteur de compte s’affiche dans la partie supérieure de votre application ; l’utilisateur est ainsi moins perturbé.
+Pour le compte de hello Android et Windows sélecteur s’affiche au-dessus de votre application qui est moins toohello utilisateur.
 
-#### <a name="how-the-broker-gets-invoked"></a>Appel du répartiteur
-Si un répartiteur compatible, tel que l’application Microsoft Authenticator, est installé sur l’appareil, les Kits de développement logiciel (SDK) Microsoft Identity effectuent automatiquement pour vous l’opération d’appel du répartiteur lorsqu’un utilisateur souhaite se connecter à l’aide d’un compte de la plateforme Microsoft Identity. Il peut s’agir d’un compte personnel Microsoft, d’un compte professionnel ou scolaire, ou d’un compte que vous fournissez et hébergez dans Microsoft Azure à l’aide de nos produits B2C et B2B. 
+#### <a name="how-hello-broker-gets-invoked"></a>Comment le service broker de hello appelée
+Si un service broker compatible est installé sur le périphérique hello, comme hello application Microsoft Authenticator, hello kits de développement logiciel de Microsoft Identity sera automatiquement hello travail d’un appel de broker hello pour vous quand un utilisateur indique qu’ils souhaitent toolog à l’aide de n’importe quel compte de plateforme de Microsoft Identity Hello. Il peut s’agir d’un compte personnel Microsoft, d’un compte professionnel ou scolaire, ou d’un compte que vous fournissez et hébergez dans Microsoft Azure à l’aide de nos produits B2C et B2B. 
 
- #### <a name="how-we-ensure-the-application-is-valid"></a>Comment s’assurer que l’application est valide
+ #### <a name="how-we-ensure-hello-application-is-valid"></a>Comment nous assurer l’application hello est valide
  
- Pour sécuriser les connexions assistées avec répartiteur, il est essentiel de s’assurer de l’identité de l’application appelant le répartiteur. iOS et Android ne fournissent pas d’identificateurs uniques valides uniquement pour une application donnée. Ainsi, des applications malveillantes peuvent « usurper » l’identité d’une application légitime en utilisant son identificateur et recevoir les jetons destinés à l’application légitime. Pour être sûrs de toujours communiquer avec la bonne application au moment de l’exécution, nous demandons aux développeurs de fournir un URI de redirection (redirectURI) personnalisé lorsqu’ils inscrivent leur application auprès de Microsoft. **Nous expliquons ci-dessous comment les développeurs doivent créer cet URI de redirection.** Cet URI de redirection personnalisé contient l’ID d’offre groupée de l’application et est garanti comme étant propre à l’application par l’App Store. Lorsqu’une application appelle le répartiteur, celui-ci demande au système d’exploitation iOS de lui fournir l’ID d’offre groupée qui a appelé le répartiteur. Le répartiteur fournit cet l’ID d’offre groupée à Microsoft dans le cadre de l’appel à notre système d’identité. Si l’ID d’offre groupée de l’application ne correspond pas à l’ID d’offre groupée fourni par le développeur au moment de l’inscription, nous refusons l’accès aux jetons de la ressource dont l’application a fait la demande. Cette vérification permet de s’assurer que seule l’application inscrite par le développeur reçoit les jetons.
+ identité de hello tooensure Hello besoin d’un service Broker pour les applications appel hello est sécurité essentielle toohello que nous fournir dans les connexions de broker assistée. IOS, ni Android applique des identificateurs uniques qui sont valides uniquement pour une application donnée, afin que des applications malveillantes peuvent « usurper l’identité « identificateur d’une application légitime et recevoir des jetons hello destinées à être application légitime hello. tooensure que nous communiquons toujours avec application droite hello lors de l’exécution, nous vous demandons hello développeur tooprovide un redirectURI personnalisé lors de l’inscription de leur application auprès de Microsoft. **Nous expliquons ci-dessous comment les développeurs doivent créer cet URI de redirection.** Cette redirectURI personnalisé contient hello ID d’offre groupée de l’application hello et assurer toobe toohello unique application hello Apple App Store. Lorsqu’un broker hello appels d’application, service broker de hello pose hello iOS tooprovide de système de fonctionnement avec hello ID d’offre groupée qui a appelé le service broker de hello. service broker de Hello fournit cette tooMicrosoft ID d’offre groupée dans le système d’identité tooour hello appel. Si hello ID d’offre groupée de l’application hello ne correspond pas hello QU'ID d’offre groupée fourni toous par le développeur de hello lors de l’inscription, nous refuse l’accès toohello jetons pour l’application hello ressource hello demande. Cette vérification ne garantit que les application hello enregistrées par le développeur de hello reçoit les jetons.
 
-**Le développeur détermine si le kit de développement logiciel (SDK) appelle le répartiteur ou utilise un flux assisté sans répartiteur.** Toutefois, si le développeur choisit de ne pas avoir recours au flux assisté avec répartiteur, il ne peut pas utiliser les informations d’identification d’authentification unique déjà saisies par l’utilisateur sur l’appareil et il empêche toute utilisation de l’application avec des fonctions commerciales fournies par Microsoft à ses clients, comme l’accès conditionnel, les fonctionnalités de gestion Intune et l’authentification par certificat.
+**développeur de Hello a choix entre hello si hello Kit de développement logiciel de Microsoft Identity appelle le service broker de hello ou agira hello non broker assistée.** Toutefois si le développeur de hello ne choisit pas de flux d’assisté par service broker de hello toouse ils plus hello à l’aide des informations d’identification de l’authentification unique que l’utilisateur hello a peut-être déjà ajouté sur le périphérique de hello et empêche leur application d’être utilisés avec les fonctionnalités d’entreprise Microsoft fournit à ses clients, tels que l’accès conditionnel, les fonctionnalités de gestion Intune et l’authentification par certificat.
 
-Ces connexions présentent les avantages suivants :
+Ces connexions ont hello avantages suivants :
 
-* L’utilisateur profite de l’authentification unique sur l’ensemble de ses applications, quel que soit le fournisseur.
-* Votre application peut utiliser des fonctionnalités commerciales plus avancées, comme l’accès conditionnel, ou la suite de produits Intune.
+* Utilisateur rencontre l’authentification unique sur toutes leurs applications, quel que soit le fournisseur de hello.
+* Votre application peut utiliser les fonctionnalités d’entreprise plus avancées telles que l’accès conditionnel ou utiliser suite, InTune hello de produits.
 * Votre application peut prendre en charge l’authentification par certificat des utilisateurs professionnels.
-* L’expérience de connexion est bien plus sécurisée, dans la mesure où les identités de l’application et de l’utilisateur sont vérifiées par l’application du répartiteur à l’aide d’algorithmes de sécurité et d’un chiffrement supplémentaires.
+* Connectez-vous beaucoup plus sûre expérience comme identité hello de l’application hello et l’utilisateur de hello sont vérifiées par application de service broker hello avec chiffrement et les algorithmes de sécurité supplémentaires.
 
-Ces connexions présentent les inconvénients suivants :
+Ces connexions ont hello suivant des inconvénients :
 
-* Dans iOS, l’utilisateur est déplacé à l’extérieur de l’expérience applicative pendant la sélection des informations d’identification.
-* Perte de la capacité de gérer l’expérience de connexion des clients au sein de l’application.
+* Dans iOS utilisateur de hello est passée en dehors de l’expérience de votre application pendant que les informations d’identification sont choisies.
+* Perte de connexion de hello hello capacité toomanage expérience pour vos clients dans votre application.
 
-Voici une représentation de la manière dont les Kits de développement logiciel (SDK) Microsoft Identity fonctionnent avec les applications de répartiteur pour prendre en charge l’authentification unique :
+Voici une représentation sous forme de comment utiliser kits de développement logiciel de Microsoft Identity hello hello broker applications tooenable l’authentification unique :
 
 ```
 +------------+ +------------+   +-------------+
@@ -137,28 +137,28 @@ Voici une représentation de la manière dont les Kits de développement logicie
               +-------------+
 ```
 
-En vous appuyant sur ces informations de base, vous devriez être en mesure de mieux comprendre et d’implémenter l’authentification unique au sein de votre application à l’aide de la plateforme et des Kits de développement logiciel (SDK) Microsoft Identity.
+Grâce à ces informations en arrière-plan, vous devez être en mesure de toobetter comprendre et à implémenter l’authentification unique au sein de votre application à l’aide de la plateforme de Microsoft Identity hello et kits de développement logiciel.
 
 ## <a name="enabling-cross-app-sso-using-adal"></a>Activation de l’authentification unique entre applications à l’aide de la bibliothèque ADAL
-Ici, nous utilisons le Kit de développement logiciel ADAL iOS pour effectuer les opérations suivantes :
+Nous utilisons ici hello, iOS ADAL Kit de développement logiciel pour :
 
 * Activer l’authentification unique assistée sans répartiteur pour votre suite d’applications
 * Activer la prise en charge de l’authentification unique assistée avec répartiteur
 
 ### <a name="turning-on-sso-for-non-broker-assisted-sso"></a>Activation de l’authentification unique assistée sans répartiteur
-Les Kits de développement logiciel (SDK) Microsoft Identity prennent en charge une grande partie de la complexité de l’authentification unique assistée sans répartiteur entre les applications. Cela inclut l’identification de l’utilisateur approprié dans le cache et la gestion d’une liste d’utilisateurs connectés dans laquelle effectuer votre recherche.
+Pour l’authentification unique assistée de non broker entre les applications hello kits de développement logiciel de Microsoft Identity gèrent une grande partie de la complexité de hello de l’authentification unique pour vous. Cela inclut la recherche d’utilisateur hello dans le cache de hello et en conservant une liste des utilisateurs connectés pour vous tooquery.
 
-Pour activer l’authentification unique sur l’ensemble des applications que vous possédez, vous devez effectuer les opérations suivantes :
+tooenable l’authentification unique entre les applications que vous possédez que vous devez hello toodo suivant :
 
-1. Vérifiez que l’ensemble de vos applications utilisent le même ID client ou ID d’application.
-2. Vérifiez que l’ensemble de vos applications partagent le même certificat de signature fourni par Apple, de manière à ce que vous puissiez partager les trousseaux.
-3. Demandez la même éligibilité de trousseau pour l’ensemble de vos applications.
-4. Indiquez aux Kits de développement logiciel Microsoft Identity le trousseau partagé que vous souhaitez utiliser.
+1. Vérifiez tous les votre hello d’utilisateur d’applications même ID de Client ou l’ID d’Application.
+2. Vérifiez que tous vos hello de partage applications certificat de signature du même auprès d’Apple afin que vous pouvez partager de trousseau
+3. Demande hello même droit trousseau pour chacun de vos applications.
+4. Précisez kits de développement logiciel hello Microsoft Identity sur hello partagé trousseau nous toouse.
 
-#### <a name="using-the-same-client-id--application-id-for-all-the-applications-in-your-suite-of-apps"></a>Utilisation du même ID client/ID d’application pour l’ensemble des applications de votre suite d’applications
-Pour que votre plateforme Microsoft Identity puisse savoir que le partage des jetons est autorisé entre vos applications, elles doivent toutes partager le même ID client ou d’application. Il s’agit de l’identificateur unique qui vous a été fourni lorsque vous avez inscrit votre première application dans le portail.
+#### <a name="using-hello-same-client-id--application-id-for-all-hello-applications-in-your-suite-of-apps"></a>À l’aide de hello le même ID de Client / ID de l’Application pour tous les hello dans votre ensemble d’applications
+Par ordre de hello Microsoft Identity plateforme tooknow qu’il est autorisé tooshare jetons dans vos applications, chacune de vos applications devez hello tooshare même ID de Client ou l’ID d’Application. Il s’agit d’identificateur hello qui a été fourni tooyou lorsque vous avez inscrit votre première application dans le portail de hello.
 
-Vous vous demandez peut-être comment identifier différentes applications utilisant le même ID d’application sur un service Microsoft Identity. La réponse est à chercher du côté des **URI de redirection**. Chaque application peut posséder plusieurs URI de redirection inscrits sur le portail d’intégration. Chacune des applications de votre suite présente un URI de redirection propre. Voici une représentation possible :
+Vous vous demandez peut-être comment vous allez identifier les différentes applications toohello service Microsoft Identity s’il utilise hello même ID d’Application. les réponses Hello sont avec hello **URI de redirection**. Chaque application peut avoir plusieurs URI de redirection inscrit dans le portail de l’intégration de hello. Chacune des applications de votre suite présente un URI de redirection propre. Voici une représentation possible :
 
 URI de redirection App1 : `x-msauth-mytestiosapp://com.myapp.mytestapp`
 
@@ -168,7 +168,7 @@ URI de redirection App3 : `x-msauth-mytestiosapp://com.myapp.mytestapp3`
 
 ....
 
-Ces éléments sont imbriqués sous le même ID client/ID d’application et recherchés en fonction de l’URI de redirection que vous nous transmettez dans votre configuration du Kit de développement logiciel (SDK).
+Elles sont imbriquées sous hello même ID de client / ID d’application et recherchée hello en fonction de redirection URI vous renvoyer toous dans votre configuration du Kit de développement logiciel.
 
 ```
 +-------------------+
@@ -194,12 +194,12 @@ Ces éléments sont imbriqués sous le même ID client/ID d’application et rec
 ```
 
 
-*Le format de ces URI de redirection est expliqué plus bas. Vous pouvez utiliser l’URI de redirection de votre choix, sauf si vous souhaitez prendre en charge le répartiteur. Le cas échéant, la configuration est similaire à ce qui précède*
+*Notez que le format de ces URI de redirection de hello sont expliquées ci-dessous. Vous pouvez utiliser n’importe quel URI de redirection, sauf si vous le souhaitez broker de hello toosupport, auquel cas ils doivent ressembler à hello ci-dessus*
 
 #### <a name="create-keychain-sharing-between-applications"></a>Créer le partage de trousseau entre les applications
-L’activation du partage de trousseau n’entre pas dans le périmètre de ce document. Le sujet est abordé par Apple, dans le document [Adding Capabilities](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html) (Ajout de fonctionnalités). L’essentiel est que vous déterminiez le nom que vous souhaitez attribuer à votre trousseau et que vous ajoutiez cette fonctionnalité dans l’ensemble de vos applications.
+Activation du partage de trousseau est abordée dans ce document hello et traitées par Apple dans leur document [Adding Capabilities](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html). L’essentiel est que vous décidez que votre toobe trousseau appelée et ajoutez cette fonctionnalité dans toutes vos applications.
 
-Une fois que vous disposez des droits appropriés, un fichier nommé `entitlements.plist` doit s’afficher dans votre répertoire de projet. Le cas échéant, il présente un contenu de ce type :
+Lorsque vous avez droits configurés correctement, vous devraient voir un fichier dans votre répertoire de projet intitulée `entitlements.plist` contenant quelque chose ressemblant à hello suivantes :
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -215,43 +215,43 @@ Une fois que vous disposez des droits appropriés, un fichier nommé `entitlemen
 </plist>
 ```
 
-Une fois que l’éligibilité au trousseau a été activée dans chacune de vos applications et que vous êtes prêt à utiliser l’authentification unique, communiquez votre trousseau au Kit de développement logiciel Microsoft Identity en utilisant le paramètre suivant dans votre `ADAuthenticationSettings`, à l’aide du paramètre ci-dessous :
+Une fois que vous avez les droits de trousseau hello activée dans chacune de vos applications, et vous êtes prêt toouse SSO, informer hello Kit de développement logiciel de Microsoft Identity votre trousseau à l’aide de hello suivant paramètre dans votre `ADAuthenticationSettings` avec hello suivant paramètre :
 
 ```
 defaultKeychainSharingGroup=@"com.myapp.mycache";
 ```
 
 > [!WARNING]
-> Lorsque vous partagez un trousseau entre vos applications, chaque application peut supprimer les utilisateurs, ou au pire l’ensemble des jetons de votre application. Cela aura un impact particulièrement désastreux si vous possédez des applications qui s’appuient sur les jetons pour exécuter les tâches d’arrière-plan. Le partage du trousseau nécessite de votre part une précaution infinie avec l’ensemble des opérations de suppression effectuées dans les kits de développement logiciel Microsoft Identity.
+> Lorsque vous partagez un trousseau dans vos applications n’importe quelle application peut supprimer des utilisateurs ou pire supprimer tous les jetons hello dans votre application. Cela est particulièrement désastreux si vous avez des applications qui reposent sur le travail d’arrière-plan toodo hello jetons. Partage un trousseau signifie que vous devez être très prudent dans toutes les supprime les opérations via le SDK d’identité Microsoft hello.
 > 
 > 
 
-Et voilà ! Le Kit de développement logiciel (SDK) partage désormais les informations d’identification dans l’ensemble de vos applications. La liste des utilisateurs sera également partagée entre toutes les instances d’application.
+Et voilà ! Hello Kit de développement logiciel de Microsoft Identity partagent maintenant informations d’identification dans toutes vos applications. liste des utilisateurs Hello est également partagé entre les instances de l’application.
 
 ### <a name="turning-on-sso-for-broker-assisted-sso"></a>Activation de l’authentification unique assistée avec répartiteur
-La capacité d’une application à utiliser un répartiteur installé sur l’appareil est **désactivée par défaut**. Pour utiliser votre application avec le répartiteur, vous devez effectuer une configuration supplémentaire et ajouter du code à votre application.
+Hello possibilité pour un toouse de l’application est de n’importe quel service broker qui est installé sur l’appareil de hello **désactivée par défaut**. Dans commande toouse votre application avec le service broker de hello, vous devez effectuer une configuration supplémentaire et ajouter une application tooyour de code.
 
-Voici la procédure à suivre :
+Hello étapes toofollow sont les suivantes :
 
-1. Activez le mode répartiteur dans votre appel du code d’application vers le Kit de développement logiciel MS.
-2. Établissez un nouvel URI de redirection à fournir à l’application et à votre inscription d’application.
+1. Activer le mode de service broker dans toohello d’appel de code de votre application MS SDK.
+2. Établir un nouveau URI de redirection et fournir cette application de hello tooboth et inscription de votre application.
 3. Enregistrez un nouveau schéma d’URL.
-4. Prise en charge iOS9 : Ajoutez une autorisation à votre fichier info.plist.
+4. prise en charge iOS9 : ajouter un fichier info.plist de tooyour autorisation.
 
 #### <a name="step-1-enable-broker-mode-in-your-application"></a>Étape 1 : Activer le mode répartiteur dans votre application
-La capacité de votre application à utiliser le répartiteur est activée lorsque vous créez le contexte, ou la configuration initiale, de votre objet d’authentification. Pour ce faire, définissez votre type d’informations d’identification dans votre code :
+possibilité de Hello pour votre courtier de hello toouse application est activée lorsque vous créez le « contexte de hello » ou la configuration initiale de votre objet d’authentification. Pour ce faire, définissez votre type d’informations d’identification dans votre code :
 
 ```
-/*! See the ADCredentialsType enumeration definition for details */
+/*! See hello ADCredentialsType enumeration definition for details */
 @propertyADCredentialsType credentialsType;
 ```
-Le paramètre `AD_CREDENTIALS_AUTO` autorise le Kit de développement logiciel Microsoft Identity à essayer d’appeler le répartiteur, tandis que `AD_CREDENTIALS_EMBEDDED` l’empêche de le faire.
+Hello `AD_CREDENTIALS_AUTO` permettra de hello Kit de développement logiciel de Microsoft Identity tootry toocall hors toohello broker, `AD_CREDENTIALS_EMBEDDED` empêchera hello Kit de développement logiciel de Microsoft Identity appelant toohello broker.
 
 #### <a name="step-2-registering-a-url-scheme"></a>Étape 2 : Enregistrer un nouveau schéma d’URL.
-La plateforme Microsoft Identity utilise des URL pour appeler le répartiteur, avant de rendre le contrôle à votre application. Pour terminer cet aller-retour, vous devez disposer d’un schéma d’URL inscrit pour votre application et dont la plateforme Microsoft Identity a connaissance. Il peut s’agir d’un ajout à un autre schéma d’application précédemment inscrit avec votre application.
+plateforme de Microsoft Identity Hello utilise Service Broker pour les URL tooinvoke hello et contrôle puis retour arrière tooyour application. toofinish que vous avez besoin d’un modèle d’URL complet inscrit pour votre application que Microsoft Identity connaître plateforme hello. Cela peut être également tooany autres schémas d’application vous pouvez avoir précédemment inscrits avec votre application.
 
 > [!WARNING]
-> Nous vous recommandons de personnaliser au maximum le schéma d’URL, ceci pour réduire la probabilité qu’une autre application utilise le même schéma d’URL. Apple n’applique pas l’unicité des schémas d’URL inscrits dans le magasin d’applications.
+> Nous vous recommandons de donner hello URL schéma unique toominimize hello risques qu’une autre application à l’aide de hello même schéma d’URL. Apple n’assure pas l’unicité de hello de schémas d’URL qui sont inscrits dans le magasin d’applications hello.
 > 
 > 
 
@@ -274,25 +274,25 @@ Voici un exemple de l’affichage dans votre configuration de projet. Vous pouve
 ```
 
 #### <a name="step-3-establish-a-new-redirect-uri-with-your-url-scheme"></a>Étape 3 : Établissez un nouvel URI de redirection avec votre schéma d’URL
-Pour garantir que nous renvoyons toujours les jetons d’identification à l’application appropriée, nous devons nous assurer de respecter une procédure de rappel de votre application pouvant être vérifiée par votre système d’exploitation iOS. Le système d’exploitation iOS signale aux applications de répartiteur Microsoft l’ID d’offre de l’application appelante. Il ne peut pas être falsifié par une application non fiable. Par conséquent, nous tirons parti de cette donnée et de l’URI de notre application de répartiteur pour vérifier que les jetons sont renvoyés à l’application appropriée. Nous vous demandons d’établir cet URI de redirection unique dans votre application et de le définir en tant qu’URI de redirection dans notre portail des développeurs.
+Tooensure de commande que nous retournent toujours les informations d’identification de hello jetons toohello une bonne application, nous devons toomake que nous rappeler tooyour l’application d’une manière qui hello du système d’exploitation iOS peut vérifier. système d’exploitation Hello iOS rapports toohello des applications Microsoft broker hello ID d’offre groupée d’application hello appeler. Il ne peut pas être falsifié par une application non fiable. Par conséquent, nous offrent cette possibilité avec hello URI de notre tooensure d’application de service broker que les jetons de hello sont retournés toohello une bonne application. Nous avons besoin de vous tooestablish cette redirection unique URI à la fois dans votre application et la définir en tant qu’URI de redirection dans notre portail des développeurs.
 
-Votre URI de redirection doit présenter la forme appropriée suivante :
+Votre URI de redirection doit être de forme correcte hello :
 
 `<app-scheme>://<your.bundle.id>`
 
 ex : *x-msauth-mytestiosapp://com.myapp.mytestapp*
 
-Cet URI de direction doit être spécifié dans l’inscription de votre application avec le [portail Azure](https://portal.azure.com/). Pour plus d’informations sur l’inscription d’applications Azure AD, consultez [Intégration avec Azure Active Directory](active-directory-how-to-integrate.md).
+Cet URI de redirection doit toobe spécifié dans votre inscription d’une application à l’aide de hello [portail Azure](https://portal.azure.com/). Pour plus d’informations sur l’inscription d’applications Azure AD, consultez [Intégration avec Azure Active Directory](active-directory-how-to-integrate.md).
 
-##### <a name="step-3a-add-a-redirect-uri-in-your-app-and-dev-portal-to-support-certificate-based-authentication"></a>Étape 3a : Ajouter un URI de redirection dans votre application et le portail de développement afin de prendre en charge l’authentification par certificat
-Pour assurer la prise en charge de l’authentification par certificat, vous devez inscrire un second msauth dans votre application et le [portail Azure](https://portal.azure.com/) afin de prendre en charge l’authentification par certificat, si vous souhaitez ajouter cette prise en charge dans votre application.
+##### <a name="step-3a-add-a-redirect-uri-in-your-app-and-dev-portal-toosupport-certificate-based-authentication"></a>Étape 3 a : ajouter un URI de redirection dans votre application et développement toosupport portail basée sur certificat l’authentification
+authentification de certificat en fonction de toosupport une deuxième « msauth » doit toobe inscrit dans votre application et de hello [portail Azure](https://portal.azure.com/) toohandle l’authentification du certificat si vous le souhaitez tooadd prenant en charge dans votre application.
 
 `msauth://code/<broker-redirect-uri-in-url-encoded-form>`
 
 exemple : *msauth://code/x-msauth-mytestiosapp%3A%2F%2Fcom.myapp.mytestapp*
 
-#### <a name="step-4-ios9-add-a-configuration-parameter-to-your-app"></a>Étape 4 : iOS9 : Ajouter un paramètre de configuration à votre application
-La bibliothèque ADAL utilise –canOpenURL: pour vérifier si le répartiteur est installé sur l’appareil. Dans iOS 9, Apple a verrouillé la liste des schémas dans lesquels une application peut lancer une requête. Il vous faudra ajouter msauth à la section LSApplicationQueriesSchemes de votre `info.plist file`.
+#### <a name="step-4-ios9-add-a-configuration-parameter-tooyour-app"></a>Étape 4 : iOS9 : ajout d’une application de tooyour de paramètre de configuration
+La bibliothèque ADAL utilise – canOpenURL : toocheck si service broker de hello est installé sur l’appareil de hello. Dans iOS 9, Apple a verrouillé la liste des schémas dans lesquels une application peut lancer une requête. Vous devez tooadd « msauth » toohello LSApplicationQueriesSchemes section de votre `info.plist file`.
 
 <key>LSApplicationQueriesSchemes</key>
 
@@ -300,5 +300,5 @@ La bibliothèque ADAL utilise –canOpenURL: pour vérifier si le répartiteur e
 </array>
 
 ### <a name="youve-configured-sso"></a>Vous avez configuré l’authentification unique !
-Désormais, le Kit de développement logiciel (SDK) Microsoft Identity partage automatiquement les informations d’identification entre vos applications et appelle l’éventuel répartiteur existant sur l’appareil.
+Maintenant hello Kit de développement logiciel de Microsoft Identity automatiquement à la fois partager des informations d’identification entre vos applications et appeler le service broker de hello si elle est présente sur leur appareil.
 

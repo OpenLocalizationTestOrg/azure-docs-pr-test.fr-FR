@@ -1,6 +1,6 @@
 ---
-title: "Stratégies dans Gestion des API Azure | Microsoft Docs"
-description: "Découvrez les stratégies disponibles dans Gestion des API Azure."
+title: "stratégies de gestion des API aaaAzure | Documents Microsoft"
+description: "En savoir plus sur les stratégies de hello disponibles pour une utilisation dans la gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 485dc3a87a81dc67f5144596a30d498293d6b76a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1c468ff37d73359f1dd694b91e20c2ca04f8934e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-policies"></a>Stratégies API Management
-Cette section est une ressource de référence au sujet des stratégies Gestion des API suivantes. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](api-management-howto-policies.md).  
+Cette section fournit une référence pour hello suivant des stratégies de gestion des API. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](api-management-howto-policies.md).  
   
- Les stratégies sont une fonctionnalité puissante du système qui permet à l’éditeur de modifier le comportement de l’API grâce à la configuration. Les stratégies sont un ensemble d'instructions qui sont exécutées dans l'ordre sur demande ou sur réponse d'une API. Les instructions les plus utilisées comprennent la conversion du format XML au format JSON et la limitation du débit d'appels pour restreindre la quantité d'appels entrants d'un développeur. De nombreuses autres stratégies sont disponibles.  
+ Les stratégies sont une fonctionnalité puissante du système hello autoriser la publication de hello toochange hello du comportement de hello API via la configuration. Les stratégies sont une collection d’instructions qui sont exécutées séquentiellement sur la demande de hello ou de réponse d’une API. Les instructions populaires incluent une conversion de format à partir de XML tooJSON et limiter ainsi toorestrict hello d’appels entrants à partir d’un développeur de taux d’appels. De nombreuses stratégies supplémentaires sont disponibles en dehors de la zone de hello.  
   
- Les expressions de stratégie peuvent être utilisées comme valeurs d’attribut ou valeurs de texte dans l’une des stratégies de Gestion des API, sauf si la stratégie le spécifie autrement. Certaines stratégies, telles que les stratégies [Control flow](api-management-advanced-policies.md#choose) et [Set variable](api-management-advanced-policies.md#set-variable), sont basées sur des expressions de stratégie. Pour plus d’informations, consultez les rubriques [Stratégies avancées](api-management-advanced-policies.md#AdvancedPolicies) et [Expressions de stratégie](api-management-policy-expressions.md).  
+ Expressions de stratégie peuvent être utilisées en tant que valeurs d’attribut ou valeurs de texte dans une des stratégies de gestion des API hello, sauf indication contraire de la stratégie de hello. Certaines stratégies telles que hello [flux de contrôle](api-management-advanced-policies.md#choose) et [Set variable](api-management-advanced-policies.md#set-variable) stratégies basées sur des expressions de stratégie. Pour plus d’informations, consultez les rubriques [Stratégies avancées](api-management-advanced-policies.md#AdvancedPolicies) et [Expressions de stratégie](api-management-policy-expressions.md).  
   
 ##  <a name="ProxyPolicies"></a> Stratégies  
   
@@ -39,37 +39,37 @@ Cette section est une ressource de référence au sujet des stratégies Gestion 
   
     -   [Restrict caller IPs](api-management-access-restriction-policies.md#RestrictCallerIPs) : filtre (autorise/rejette) les appels de certaines adresses IP spécifiques et/ou de certaines plages d’adresses.  
   
-    -   [Set usage quota by subscription](api-management-access-restriction-policies.md#SetUsageQuota) : vous permet d’appliquer un volume d’appel et/ou un quota de bande passante renouvelable ou illimité par abonnement.  
+    -   [Définir le quota d’utilisation par abonnement](api-management-access-restriction-policies.md#SetUsageQuota) -vous permet de tooenforce un quota renouvelable ou à durée de vie appel volume et/ou de la bande passante, sur une base par abonnement.  
   
-    -   [Set usage quota by key](api-management-access-restriction-policies.md#SetUsageQuotaByKey) : vous permet d’appliquer un volume d’appel et/ou un quota de bande passante renouvelable ou illimité par clé.  
+    -   [Définir le quota d’utilisation par clé](api-management-access-restriction-policies.md#SetUsageQuotaByKey) -vous permet de tooenforce un quota renouvelable ou à durée de vie appel volume et/ou de la bande passante, sur une base par clé.  
   
     -   [Validate JWT](api-management-access-restriction-policies.md#ValidateJWT) : applique l’existence et la validité d’un JWT extrait d’un en-tête HTTP ou d’un paramètre de requête spécifié.  
   
 -   [Stratégies avancées](api-management-advanced-policies.md#AdvancedPolicies)  
   
-    -   [Control flow](api-management-advanced-policies.md#choose) : applique de manière conditionnelle les instructions des stratégies en fonction de l’évaluation des expressions booléennes.  
+    -   [Flux de contrôle](api-management-advanced-policies.md#choose) - conditionnellement applique les instructions de stratégie basées sur l’évaluation d’expressions booléennes hello.  
   
-    -   [Forward request](api-management-advanced-policies.md#ForwardRequest) : transfère la demande vers le service principal.  
+    -   [Transférer la demande](api-management-advanced-policies.md#ForwardRequest) -transfère le service principal de hello demande toohello.  
   
-    -   [Log to Event Hub](api-management-advanced-policies.md#log-to-eventhub) : envoie des messages au format spécifié à une cible de message définie par une entité Enregistreur.  
+    -   [Journal tooEvent Hub](api-management-advanced-policies.md#log-to-eventhub) -envoie des messages hello format spécifié tooa cible de message défini par une entité de l’enregistreur d’événements.  
   
-    -   [Retry](api-management-advanced-policies.md#Retry) : effectue une nouvelle tentative d’exécution des instructions de stratégie incluses, si la condition est remplie et jusqu’à ce qu’elle le soit. L’exécution se répète à intervalles réguliers et ce jusqu’au nombre de tentatives défini.  
+    -   [Recommencez](api-management-advanced-policies.md#Retry) -l’exécution de nouvelles tentatives de hello placé entre les instructions de stratégie, si et jusqu'à ce que hello condition est remplie. L’exécution est répété à hello des intervalles de temps spécifié de toohello spécifié le nombre de tentatives.  
   
-    -   [Return response](api-management-advanced-policies.md#ReturnResponse) : abandonne l’exécution du pipeline et renvoie la réponse indiquée directement à l’appelant.  
+    -   [Retourner une réponse](api-management-advanced-policies.md#ReturnResponse) -hello retourne et de l’exécution du pipeline abandons spécifié réponse directement toohello appelant.  
   
-    -   [Send one way request](api-management-advanced-policies.md#SendOneWayRequest) : envoie une demande à l’URL indiquée sans attendre de réponse.  
+    -   [Envoyer une demande unidirectionnelle](api-management-advanced-policies.md#SendOneWayRequest) -envoie une demande toohello spécifié des URL sans attendre une réponse.  
   
-    -   [Send request](api-management-advanced-policies.md#SendRequest) : envoie une demande à l’URL indiquée.  
+    -   [Envoyer la demande](api-management-advanced-policies.md#SendRequest) -envoie une demande toohello spécifié l’URL.  
   
     -   [Set variable](api-management-advanced-policies.md#set-variable) : conserve une valeur dans une variable de contexte nommée pour permettre d’y accéder ultérieurement.  
   
-    -   [Set request method](api-management-advanced-policies.md#SetRequestMethod) : permet de modifier la méthode HTTP d’une demande.  
+    -   [Définir la méthode de demande](api-management-advanced-policies.md#SetRequestMethod) -vous permet de méthode de hello HTTP toochange pour une demande.  
   
-    -   [Set status code](api-management-advanced-policies.md#SetStatus) : permet de donner la valeur spécifiée au code d’état HTTP.  
+    -   [Définir le code d’état](api-management-advanced-policies.md#SetStatus) -modifications hello HTTP état code toohello de valeur spécifiée.  
   
-    -   [Trace](api-management-advanced-policies.md#Trace) : ajoute une chaîne à la sortie de l’[inspecteur d’API](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/).  
+    -   [Trace](api-management-advanced-policies.md#Trace) -ajoute une chaîne en hello [API inspecteur](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/) sortie.  
   
-    -   [Wait](api-management-advanced-policies.md#Wait) : attend l’exécution des stratégies [Send request](api-management-advanced-policies.md#SendRequest), [Get value from cache](api-management-caching-policies.md#GetFromCacheByKey) ou [Control flow](api-management-advanced-policies.md#choose) pour continuer.  
+    -   [Attente](api-management-advanced-policies.md#Wait) -attend placée entre [demande d’envoi](api-management-advanced-policies.md#SendRequest), [obtenir la valeur à partir du cache](api-management-caching-policies.md#GetFromCacheByKey), ou [flux de contrôle](api-management-advanced-policies.md#choose) toocomplete stratégies avant de continuer.  
   
 -   [Stratégies d’authentification](api-management-authentication-policies.md#AuthenticationPolicies)  
   
@@ -81,43 +81,43 @@ Cette section est une ressource de référence au sujet des stratégies Gestion 
   
     -   [Get from cache](api-management-caching-policies.md#GetFromCache) : effectue une recherche dans le cache et renvoie une réponse mise en cache valide si elle est disponible.  
   
-    -   [Store to cache](api-management-caching-policies.md#StoreToCache) : met en cache la réponse en fonction de la configuration de contrôle de cache spécifiée.  
+    -   [Stocker toocache](api-management-caching-policies.md#StoreToCache) -réponse Caches selon toohello spécifié de configuration de contrôle du cache.  
   
     -   [Get value from cache](api-management-caching-policies.md#GetFromCacheByKey) : récupère un élément mis en cache par clé.  
   
-    -   [Store value in cache](api-management-caching-policies.md#StoreToCacheByKey) : stocke un élément mis en cache par clé.  
+    -   [Stockez la valeur dans le cache](api-management-caching-policies.md#StoreToCacheByKey) -stocker un élément dans le cache de hello par clé.  
   
-    -   [Remove value from cache](api-management-caching-policies.md#RemoveCacheByKey) : supprime un élément du cache par clé.  
+    -   [Supprimez la valeur à partir du cache](api-management-caching-policies.md#RemoveCacheByKey) -supprimer un élément dans le cache de hello par clé.  
   
 -   [Stratégies interdomaines](api-management-cross-domain-policies.md#CrossDomainPolicies)  
   
-    -   [Allow cross-domain calls](api-management-cross-domain-policies.md#AllowCrossDomainCalls) : rend l'API accessible depuis les navigateurs clients utilisant Adobe Flash et Microsoft Silverlight.  
+    -   [Autoriser les appels inter-domaines](api-management-cross-domain-policies.md#AllowCrossDomainCalls) -rend hello API accessible à partir de clients basés sur navigateur Adobe Flash et Microsoft Silverlight.  
   
-    -   [CORS](api-management-cross-domain-policies.md#CORS) : ajoute une prise en charge partage des ressources cross-origin (CORS) à une opération ou une API afin de permettre les appels interdomaines depuis les navigateurs clients.  
+    -   [CORS](api-management-cross-domain-policies.md#CORS) -ajoute le partage de ressources cross-origin (CORS) prend en charge les tooan opération ou une API tooallow entre domaines appelle à partir de clients de navigateur.  
   
-    -   [JSONP](api-management-cross-domain-policies.md#JSONP) : ajoute une prise en charge de JSON avec remplissage (JSONP) à une opération ou une API afin de permettre les appels interdomaines depuis les navigateurs clients utilisant JavaScript.  
+    -   [JSONP](api-management-cross-domain-policies.md#JSONP) - ajoute JSON padding (JSONP) de prise en charge tooan opération ou une API tooallow entre domaines appelle à partir de clients basés sur navigateur JavaScript.  
   
 -   [Stratégies de transformation](api-management-transformation-policies.md#TransformationPolicies)  
   
-    -   [Convert JSON to XML](api-management-transformation-policies.md#ConvertJSONtoXML) : convertit le corps de la demande ou de la réponse de JSON en XML.  
+    -   [Convertir en JSON tooXML](api-management-transformation-policies.md#ConvertJSONtoXML) - convertit demande ou le corps de la réponse de JSON tooXML.  
   
-    -   [Convert XML to JSON](api-management-transformation-policies.md#ConvertXMLtoJSON) :convertit le corps de la demande ou de la réponse de XML en JSON.  
+    -   [Convertir XML tooJSON](api-management-transformation-policies.md#ConvertXMLtoJSON) - convertit demande ou le corps de la réponse à partir de XML tooJSON.  
   
     -   [Find and replace string in body](api-management-transformation-policies.md#Findandreplacestringinbody) : recherche une sous-chaîne de demande ou de réponse et la remplace par une autre sous-chaîne.  
   
-    -   [Mask URLs in content](api-management-transformation-policies.md#MaskURLSContent) : réécrit (masque) les liens dans le corps de la réponse afin qu’ils pointent vers un lien équivalent via la passerelle.  
+    -   [Masquer des URL dans le contenu](api-management-transformation-policies.md#MaskURLSContent) -réécrit (masque) des liens dans la réponse de hello corps afin qu’ils pointent toohello le lien équivalent via une passerelle de hello.  
   
-    -   [Set backend service](api-management-transformation-policies.md#SetBackendService) : modifie le service principal pour une demande entrante.  
+    -   [Définir le service principal](api-management-transformation-policies.md#SetBackendService) -modifie le service principal de hello pour une demande entrante.  
   
-    -   [Set body](api-management-transformation-policies.md#SetBody) : définit le corps du message pour les demandes entrantes et sortantes.  
+    -   [Définir le corps](api-management-transformation-policies.md#SetBody) -définit le corps du message hello pour les demandes entrantes et sortantes.  
   
-    -   [Set HTTP header](api-management-transformation-policies.md#SetHTTPheader) : affecte une valeur à un en-tête de réponse et/ou de demande existant ou bien ajoute un nouvel en-tête de réponse et/ou de demande.  
+    -   [En-tête HTTP](api-management-transformation-policies.md#SetHTTPheader) - assigne une réponse existante de valeur tooan et/ou d’un en-tête de demande ou ajoute un nouvel en-tête de réponse et/ou de demande.  
   
     -   [Set query string parameter](api-management-transformation-policies.md#SetQueryStringParameter) : ajoute, supprime un paramètre de chaîne de requête de la demande ou le remplace par une autre valeur.  
   
-    -   [URL de réécriture](api-management-transformation-policies.md#RewriteURL) : convertit une URL de demande de sa forme publique en une forme attendue par le service web.  
+    -   [Réécriture d’URL](api-management-transformation-policies.md#RewriteURL) -convertit une URL de demande à partir de sa forme toohello de formulaire public attendu par le service web hello.  
   
-    -   [Transformer du code XML à l’aide d’une transformation XSLT](api-management-transformation-policies.md#XSLTransform) : applique une transformation de XSL en XML dans le corps de la réponse ou de la demande.  
+    -   [Transformer du code XML à l’aide d’une transformation XSLT](api-management-transformation-policies.md#XSLTransform) -applique un tooXML de la transformation XSL dans le corps de demande ou réponse hello.  
   
 ## <a name="next-steps"></a>Étapes suivantes
 Pour plus d’informations sur l’utilisation des stratégies, consultez la page [Stratégies dans la Gestion des API](api-management-howto-policies.md).  

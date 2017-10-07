@@ -1,6 +1,6 @@
 ---
-title: "Procédures pas à pas sur la science des données SQL Data Warehouse à l’aide de T-SQL et de Python sur Azure | Microsoft Docs"
-description: "Exemples qui montrent comment utiliser SQL Data Warehouse pour effectuer une analyse prédictive."
+title: "procédures pas à pas pour la science des aaaSQL Data Warehouse données à l’aide de T-SQL et Python dans Azure | Documents Microsoft"
+description: "Les exemples qui vous guident tout hello l’utilisation de l’analytique prédictive de SQL Data Warehouse toodo."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: bradsev
-ms.openlocfilehash: 66eccbc038c704ba046ce1d24659dff067008102
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ca9e8db0b68459236e2859935b8240c671418e08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse-data-science-walkthroughs-using-t-sql-and-python-on-azure"></a>Procédures pas à pas sur la science des données SQL Data Warehouse à l’aide de T-SQL et de Python sur Azure
 
-Ces procédures pas à pas utilisent SQL Data Warehouse pour effectuer une analyse prédictive. Elles suivent les étapes décrites dans le processus TDSP (Team Data Science Process). Pour une vue d’ensemble du processus TDSP, consultez [Processus de science des données](data-science-process-overview.md). Pour une présentation de SQL Data Warehouse, consultez [En quoi consiste Azure SQL Data Warehouse ?](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)
+Ces procédures pas à pas l’utilisation d’analytique prédictive de SQL Data Warehouse toodo. Elles suivent les étapes hello hello processus de science des données équipe. Pour une vue d’ensemble de hello processus de science des données équipe, consultez [processus de science des données](data-science-process-overview.md). Pour une introduction tooSQL l’entrepôt de données, consultez [Nouveautés d’entrepôt de données SQL Azure ?](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)
 
-Des procédures pas à pas de science des données supplémentaires qui exécutent le processus TDSP sont regroupées en fonction de la **plateforme** qu’elles utilisent : 
+Données supplémentaires pour la science des procédures pas à pas qui s’exécutent hello équipe données science des processus sont regroupés par hello **plateforme** qu’ils utilisent : 
 
 [!INCLUDE [tdsp-walkthroughs-by-platform](../../includes/tdsp-walkthroughs-by-platform.md)]
 
 
 ## <a name="predict-taxi-tips-using-t-sql-and-ipython-notebooks-with-sql-data-warehouse"></a>Prédire les pourboires de taxi à l’aide de Notebooks T-SQL et IPython avec SQL Data Warehouse
 
-La procédure pas à pas [Utiliser SQL Data Warehouse](machine-learning-data-science-process-sqldw-walkthrough.md) explique comment générer et déployer des modèles de régression et de classification machine learning à l’aide de SQL Data Warehouse (SQL DW) pour un jeu de données des courses et tarifs de taxi à New York disponible publiquement.
+Hello [procédure pas à pas utiliser SQL Data Warehouse](machine-learning-data-science-process-sqldw-walkthrough.md) vous montre comment toobuild et déployer la classification machine learning et modèles de régression à l’aide de l’entrepôt de données SQL (SQL DW) pour un NYC disponible publiquement taxi voyage et tarif de jeu de données.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur les composants clés qui constituent le processus TDSP (Team Data Science Process), consultez la page [Vue d’ensemble du processus TDSP (Team Data Science Process)](data-science-process-overview.md).
+Pour en savoir plus sur les composants clés hello qui composent hello processus de science des données de Team, consultez [vue d’ensemble du processus de science des données équipe](data-science-process-overview.md).
 
-Pour en savoir plus sur le cycle de vie du processus TDSP (Team Data Science Process), qui permet de structurer les projets de science des données, consultez la page [Cycle de vie du processus TDSP (Team Data Science Process)](data-science-process-lifecycle.md). Le cycle de vie présente les étapes, du début à la fin, que les projets suivent généralement quand ils sont exécutés. 
+Pour une présentation du cycle de vie de processus de science des données équipe hello que vous pouvez utiliser toostructure vos projets de science des données, consultez [cycle de vie des processus de science des données équipe](data-science-process-lifecycle.md). cycle de vie Hello décrit les étapes de hello, à partir du début toofinish, que les projets suivent généralement lorsqu’elles sont exécutées. 

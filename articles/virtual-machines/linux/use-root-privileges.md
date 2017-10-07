@@ -1,6 +1,6 @@
 ---
-title: "Utilisation des privilèges racines sur les machines virtuelles Linux | Microsoft Docs"
-description: "Apprenez à utiliser les privilèges root sur une machine virtuelle Linux dans Azure."
+title: "aaaUse des privilèges de racine sur les ordinateurs virtuels Linux | Documents Microsoft"
+description: "Découvrez comment toouse racine des privilèges sur un ordinateur virtuel de Linux dans Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,39 +15,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: dc39db1f5fecffb60499a5420bfe72850e2fffd9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9411588c5fd0c86c4c73b3e44fbb56ab150013d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-root-privileges-on-linux-virtual-machines-in-azure"></a>Utilisation des privilèges root sur les machines virtuelles Linux dans Azure
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Par défaut, l’utilisateur `root` est désactivé sur les machines virtuelles Linux dans Microsoft Azure. Les utilisateurs peuvent exécuter des commandes avec des privilèges élevés à l’aide de la commande `sudo` . Toutefois, l'expérience peut varier en fonction du mode de déploiement du système.
+Par défaut, hello `root` utilisateur est désactivé sur les ordinateurs virtuels Linux dans Azure. Les utilisateurs peuvent exécuter des commandes avec des privilèges élevés à l’aide de hello `sudo` commande. Toutefois, l’expérience de hello peut-être varier en fonction du mode de configuration de système de hello.
 
-1. **Clé SSH et mot de passe OU mot de passe uniquement :** la machine virtuelle a été déployée soit avec un certificat (fichier `.CER`) ou une clé SSH et un mot de passe, soit avec seulement un nom d’utilisateur et un mot de passe. Dans ce cas, `sudo` demande le mot de passe de l’utilisateur avant d’exécuter la commande.
-2. **Clé SSH uniquement :** la machine virtuelle a été configurée avec un certificat (fichier `.cer`, `.pem` ou `.pub`) ou une clé SSH, mais sans mot de passe.  Dans ce cas, `sudo` **ne demande pas** le mot de passe de l’utilisateur avant d’exécuter la commande.
+1. **Clé SSH et le mot de passe ou uniquement** -hello virtual machine a été configurée avec un certificat de soit (`.CER` fichier) ou clé SSH ainsi un mot de passe, ou simplement un nom d’utilisateur et mot de passe. Dans ce cas `sudo` demandera hello mot de passe utilisateur avant d’exécuter la commande hello.
+2. **Uniquement la clé SSH** -hello virtual machine a été configurée avec un certificat (`.cer`, `.pem`, ou `.pub` fichier) ou la clé SSH, mais aucun mot de passe.  Dans ce cas `sudo` **ne seront pas** demander hello mot de passe utilisateur avant d’exécuter la commande hello.
 
 ## <a name="ssh-key-and-password-or-password-only"></a>Clé SSH et mot de passe ou mot de passe uniquement
-Connectez-vous à la machine virtuelle Linux à l’aide de l’authentification par clé SSH ou par mot de passe, puis exécutez les commandes à l’aide de `sudo`, par exemple :
+Se connecter à la machine virtuelle de hello Linux à l’aide de l’authentification par mot de passe ou clé SSH, puis exécuter des commandes à l’aide de `sudo`, par exemple :
 
     # sudo <command>
     [sudo] password for azureuser:
 
-Dans ce cas, l'utilisateur est invité à fournir un mot de passe. Une fois le mot de passe entré, `sudo` exécute la commande avec les privilèges `root`.
+Dans ce cas les utilisateur hello demandera un mot de passe. Après avoir entré un mot de passe hello `sudo` exécutera commande hello avec `root` des privilèges.
 
-Vous pouvez également activer la méthode sudo sans mot de passe en modifiant le fichier `/etc/sudoers.d/waagent` , par exemple :
+Vous pouvez également activer sudo passwordless en modifiant hello `/etc/sudoers.d/waagent` de fichiers, par exemple :
 
     #/etc/sudoers.d/waagent
     azureuser ALL = (ALL) NOPASSWD: ALL
 
-Cette modification permet à l’utilisateur « azureuser » de poursuivre sans entrer de mot de passe.
+Cette modification permettra sudo passwordless par l’utilisateur hello « azureuser ».
 
 ## <a name="ssh-key-only"></a>Clé SSH uniquement
-Connectez-vous à la machine virtuelle Linux à l’aide de l’authentification par clé SSH, puis exécutez les commandes à l’aide de `sudo`, par exemple :
+Se connecter à la machine virtuelle de hello Linux à l’aide de l’authentification par clé SSH, puis exécuter des commandes à l’aide de `sudo`, par exemple :
 
     # sudo <command>
 
-Dans ce cas, l'utilisateur **n'est pas** invité à fournir un mot de passe. Une fois la touche `<enter>` activée, `sudo` exécute la commande avec les privilèges `root`.
+Dans ce cas les utilisateur hello seront **pas** être invité à entrer un mot de passe. Après avoir appuyé sur `<enter>`, `sudo` exécutera commande hello avec `root` des privilèges.
 

@@ -1,5 +1,5 @@
 ---
-title: "Résoudre les problèmes liés au stockage Azure File dans Windows | Microsoft Docs"
+title: "problèmes de stockage de fichier Azure aaaTroubleshoot dans Windows | Documents Microsoft"
 description: "Résolution des problèmes liés au stockage Azure File dans Windows"
 services: storage
 documentationcenter: 
@@ -14,104 +14,104 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: genli
-ms.openlocfilehash: daaf7d0589f5e2d82b43dad879bffd23370a2c81
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 19529d8af5d98790e2e381cd21ad4d0284acb124
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-azure-file-storage-problems-in-windows"></a>Résoudre les problèmes liés au stockage Azure File dans Windows
 
-Cet article répertorie les problèmes courants liés au stockage Microsoft Azure File lorsque vous vous connectez à partir des clients Windows et Linux. Il fournit également les causes possibles et les solutions de ces problèmes. En plus des étapes de résolutions présentées dans cet article, vous pouvez aussi utiliser [AzFileDiagnostics](https://gallery.technet.microsoft.com/Troubleshooting-tool-for-a9fa1fe5) pour être sûr que l’environnement du client Windows est configuré correctement. AzFileDiagnostics détecte automatiquement la plupart des problèmes mentionnés dans cet article et vous aide à configurer votre environnement pour que les performances soient optimales. Vous pouvez également trouver ces informations dans [l’utilitaire de résolution des problèmes de partages Azure Files](https://support.microsoft.com/help/4022301/troubleshooter-for-azure-files-shares), qui indique la procédure à suivre pour vous aider en cas de problèmes de connexion/mappage/montage de partages Azure Files.
+Cet article répertorie les problèmes courants qui sont associé tooMicrosoft de stockage de fichier Azure lorsque vous vous connectez à partir de clients Windows. Il fournit également les causes possibles et les solutions de ces problèmes. En outre des étapes de résolution des problèmes de toohello dans cet article, vous pouvez également utiliser [AzFileDiagnostics](https://gallery.technet.microsoft.com/Troubleshooting-tool-for-a9fa1fe5) pour vous assurer que Windows hello environnement client a des éléments de configuration. AzFileDiagnostics automatise la détection de la plupart des symptômes hello citées dans cet article et permet d’ajouter des performances optimales de tooget votre environnement. Vous pouvez également trouver ces informations dans hello [de résolution des problèmes de partages de fichiers de Azure](https://support.microsoft.com/help/4022301/troubleshooter-for-azure-files-shares) qui fournit les étapes tooassist des problèmes de partages de fichiers Azure de connexion de mappage/montage.
 
 
 <a id="error53-67-87"></a>
 ## <a name="error-53-error-67-or-error-87-when-you-mount-or-unmount-an-azure-file-share"></a>Les messages « Erreur 53 », « Erreur 67 » ou « Erreur 87 » s’affichent lorsque vous montez ou démontez un partage de fichiers Azure
 
-Lorsque vous essayez de monter un partage de fichiers depuis un centre de données local ou un centre de données différent, les erreurs suivantes pourraient survenir :
+Lorsque vous essayez de toomount un partage de fichiers en local ou à partir d’un autre centre de données, vous pouvez recevoir hello les erreurs suivantes :
 
-- Erreur système 53. Le chemin d’accès réseau est introuvable.
-- Erreur système 67. Le nom du réseau est introuvable.
-- Erreur système 87. Le paramètre est incorrect.
+- Erreur système 53. chemin d’accès réseau de Hello est introuvable.
+- Erreur système 67. Impossible de trouver le nom de réseau Hello.
+- Erreur système 87. le paramètre Hello est incorrect.
 
 ### <a name="cause-1-unencrypted-communication-channel"></a>Cause 1 : Canal de communication non chiffrée
 
-Pour des raisons de sécurité, les connexions aux partages de fichiers Azure sont bloquées si le canal de communication n’est pas chiffré et si la tentative de connexion n’est pas effectuée depuis le centre de données sur lequel résident les partages de fichiers Azure. Le chiffrement du canal de communication n’est fourni que si le système d’exploitation client de l’utilisateur prend en charge le chiffrement SMB.
+Pour des raisons de sécurité, les partages de fichiers tooAzure sont bloquées si le canal de communication hello n’est pas chiffré, et si la tentative de connexion de hello n’est pas effectuée à partir de connexions hello même centre de données où résident les partages de fichiers Azure hello. Chiffrement de canal de communication est fourni uniquement si hello client de l’utilisateur du système d’exploitation prend en charge le chiffrement SMB.
 
 Windows 8, Windows Server 2012 et les versions ultérieures de chaque demande de négociation système incluant SMB 3.0, prenant en charge le chiffrement.
 
 ### <a name="solution-for-cause-1"></a>Solution pour la cause 1
 
-Connectez-vous depuis un client qui :
+Se connecter à partir d’un client qui effectue hello suivantes :
 
-- Dispose de la configuration requise de Windows 8 et Windows Server 2012 ou versions ultérieures
-- Se connecte depuis une machine virtuelle située dans le même centre de données que le compte de stockage Azure utilisé pour le partage de fichiers Azure
+- Répond aux exigences de hello de Windows 8 et Windows Server 2012 ou versions ultérieures
+- Se connecte à partir d’une machine virtuelle dans hello même centre de données comme compte de stockage Azure qui est utilisé pour le partage de fichiers Azure hello de hello
 
 ### <a name="cause-2-port-445-is-blocked"></a>Cause 2 : Le Port 445 est bloqué
 
-Les messages Erreur système 53 ou Erreur système 67 peuvent s’afficher si la communication sortante du port 445 vers le centre de données du stockage Azure File est bloquée. Pour afficher le récapitulatif des FAI qui autorisent ou interdisent l’accès depuis le port 445, consultez [TechNet](http://social.technet.microsoft.com/wiki/contents/articles/32346.azure-summary-of-isps-that-allow-disallow-access-from-port-445.aspx).
+Erreur système 53 ou l’erreur système 67 peut se produire si le port 445 les communications sortantes tooan fichier Azure stockage centre de données est bloquée. Résumé de hello toosee de fournisseurs de services Internet autoriser ou interdire l’accès à partir du port 445, accédez trop[TechNet](http://social.technet.microsoft.com/wiki/contents/articles/32346.azure-summary-of-isps-that-allow-disallow-access-from-port-445.aspx).
 
-Pour comprendre s’il s’agit de la raison pour laquelle le message « Erreur système 53 » s’affiche, vous pouvez utiliser Portqry pour interroger le point de terminaison TCP:445. Si le point de terminaison TCP:445 est affiché comme filtré, le port TCP est bloqué. Voici un exemple de requête :
+toounderstand s’il s’agit du message « Erreur système 53 » hello raison hello, vous pouvez utiliser le point de terminaison TCP:445 Portqry tooquery hello. Si le point de terminaison TCP:445 hello est affiché comme filtrés, hello le port TCP est bloqué. Voici un exemple de requête :
 
   `g:\DataDump\Tools\Portqry>PortQry.exe -n [storage account name].file.core.windows.net -p TCP -e 445`
 
-Si le port TCP 445 est bloqué par une règle sur le chemin d’accès réseau, vous verrez la sortie suivante :
+Si le port TCP 445 est bloqué par une règle de chemin d’accès réseau de hello, vous verrez hello suivant de sortie :
 
   `TCP port 445 (microsoft-ds service): FILTERED`
 
-Pour plus d’informations sur l’utilisation de Portqry, consultez [Description de l’utilitaire de ligne de commande Portqry.exe](https://support.microsoft.com/help/310099).
+Pour plus d’informations sur la façon toouse Portqry, consultez [Description de l’utilitaire de ligne de commande Portqry.exe hello](https://support.microsoft.com/help/310099).
 
 ### <a name="solution-for-cause-2"></a>Solution pour la cause 2
 
-Contactez votre service informatique pour ouvrir le port 445 sortant aux [plages IP Azure](https://www.microsoft.com/download/details.aspx?id=41653).
+Fonctionne avec votre service informatique service tooopen le port 445 sortant trop[plages d’adresses IP de Azure](https://www.microsoft.com/download/details.aspx?id=41653).
 
 ### <a name="cause-3-ntlmv1-is-enabled"></a>Cause 3 : NTLMv1 est activé
 
-Les messages Erreur système 53 ou Erreur système 87 peuvent également s’afficher si la communication NTLMv1 est activée sur le client. Le stockage Azure File prend uniquement en charge l’authentification NTLMv2. Le fait d’activer NTLMv1 crée un client moins sécurisé. Par conséquent, les communications sont bloquées pour le stockage Azure File. 
+Erreur système 53 ou erreur 87 du système peut se produire si la communication NTLMv1 est activée sur le client de hello. Le stockage Azure File prend uniquement en charge l’authentification NTLMv2. Le fait d’activer NTLMv1 crée un client moins sécurisé. Par conséquent, les communications sont bloquées pour le stockage Azure File. 
 
-Pour déterminer s’il s’agit de la cause de l’erreur, vérifiez que la sous-clé de Registre suivante est définie sur une valeur de 3 :
+toodetermine s’il s’agit de cause hello d’erreur de hello, vérifiez que hello suivant la sous-clé de Registre est définie la valeur tooa 3 :
 
-**HKLM\SYSTEM\CurrentControlSet\Control\Lsa > LmCompatibilityLevel**
+**HKLM\SYSTEM\CurrentControlSet\Control\Lsa &gt; LmCompatibilityLevel**
 
-Pour plus d’informations, consultez la rubrique [LmCompatibilityLevel](https://technet.microsoft.com/library/cc960646.aspx) sur TechNet.
+Pour plus d’informations, consultez hello [LmCompatibilityLevel](https://technet.microsoft.com/library/cc960646.aspx) rubrique sur TechNet.
 
 ### <a name="solution-for-cause-3"></a>Solution pour la cause 3
 
-Rétablissez la valeur **LmCompatibilityLevel** à la valeur par défaut 3 dans la sous-clé de Registre suivante :
+Rétablir hello **LmCompatibilityLevel** valeur par défaut toohello 3 Bonjour suivant la sous-clé de Registre :
 
   **HKLM\SYSTEM\CurrentControlSet\Control\Lsa**
 
 <a id="error1816"></a>
-## <a name="error-1816-not-enough-quota-is-available-to-process-this-command-when-you-copy-to-an-azure-file-share"></a>Le message Erreur 1816 « Quota disponible insuffisant pour effectuer cette commande » s’affiche lorsque vous copiez vers un partage de fichiers Azure
+## <a name="error-1816-not-enough-quota-is-available-tooprocess-this-command-when-you-copy-tooan-azure-file-share"></a>Erreur 1816 « pas de suffisamment de quota est disponible tooprocess cette commande » lorsque vous copiez le partage de fichiers Azure tooan
 
 ### <a name="cause"></a>Cause :
 
-L’erreur 1816 se produit lorsque vous atteignez la limite autorisée de descripteurs ouverts simultanément pour un fichier sur l’ordinateur où le partage de fichiers est monté.
+Erreur 1816 se produit lorsque vous atteignez la limite supérieure de hello de handles ouverts simultanées autorisées pour un fichier sur l’ordinateur de hello où le partage de fichiers hello est en cours monté.
 
 ### <a name="solution"></a>Solution
 
-Réduisez le nombre de handles ouverts simultanément en fermant certains d’entre eux, puis réessayez. Pour plus d’informations, consultez [Liste de contrôle des performances et de l’extensibilité de Microsoft Azure Storage](../common/storage-performance-checklist.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json).
+Réduire le nombre hello de handles ouverts simultanées en fermant certaines poignées, puis recommencez. Pour plus d’informations, consultez [Liste de contrôle des performances et de l’extensibilité de Microsoft Azure Storage](../common/storage-performance-checklist.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json).
 
 <a id="slowfilecopying"></a>
-## <a name="slow-file-copying-to-and-from-azure-file-storage-in-windows"></a>Ralentissement des copies de fichiers vers et depuis le stockage Azure File dans Windows
+## <a name="slow-file-copying-tooand-from-azure-file-storage-in-windows"></a>Fichier lente copie tooand à partir du stockage Windows Azure File
 
-Les performances peuvent être ralenties lorsque vous essayez de transférer des fichiers vers le service Azure File.
+Vous pouvez voir le ralentissement des performances lorsque vous essayez de tootransfer toohello de fichiers Azure File service.
 
-- Si vous n’avez pas d’exigence de taille d’E/S minimum spécifique, nous vous recommandons d’utiliser une taille d’E/S de 1 Mo pour des performances optimales.
--   Si vous connaissez la taille finale d’un fichier que vous étendez avec des écritures, et si votre logiciel ne présente aucun problème de compatibilité lorsque la fin non écrite du fichier contient des zéros, définissez la taille du fichier à l’avance au lieu que chaque écriture soit une écriture d’extension.
--   Utilisez la méthode de copie appropriée :
+- Si vous n’avez pas une exigence de taille d’e/s minimale spécifique, nous recommandons d’utiliser 1 Mo comme hello taille d’e/s pour des performances optimales.
+-   Si vous connaissez taille finale de hello d’un fichier que vous étendez avec écrit et votre logiciel n’a pas des problèmes de compatibilité lorsque hello non écrit la fin du fichier de hello contient des zéros non significatifs, puis ensemble hello taille de fichier à l’avance, au lieu d’effectuer chaque écriture une écriture d’extension.
+-   Utilisez hello droite copy (méthode) :
     -   Utilisez [AZCopy](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#file-copy) pour les transferts entre deux partages de fichiers.
     -   Utilisez [Robocopy](https://blogs.msdn.microsoft.com/granth/2009/12/07/multi-threaded-robocopy-for-faster-copies/) entre des partages de fichiers sur un ordinateur local.
 
 ### <a name="considerations-for-windows-81-or-windows-server-2012-r2"></a>Informations pour Windows 8.1 ou Windows Server 2012 R2
 
-Pour les clients qui exécutent Windows 8.1 ou Windows Server 2012 R2, assurez-vous que le correctif logiciel [KB3114025](https://support.microsoft.com/help/3114025) est installé. Ce correctif logiciel améliore les performances de création et d’ouverture des handles.
+Pour les clients qui exécutent Windows 8.1 ou Windows Server 2012 R2, assurez-vous que ce hello [KB3114025](https://support.microsoft.com/help/3114025) correctif logiciel est installé. Ce correctif logiciel améliore les performances de hello de créer et fermer des descripteurs.
 
-Vous pouvez exécuter le script suivant pour vérifier si le correctif logiciel a été installé :
+Vous pouvez exécuter hello suivant toocheck de script si hello correctif a été installé :
 
 `reg query HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\Policies`
 
-Si le correctif logiciel est installé, la sortie suivante s’affiche :
+Si le correctif est installé, hello sortie suivante s’affiche :
 
 `HKEY_Local_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\Policies {96c345ef-3cac-477b-8fcd-bea1a564241c} REG_DWORD 0x1`
 
@@ -121,71 +121,71 @@ Si le correctif logiciel est installé, la sortie suivante s’affiche :
 <a id="shareismissing"></a>
 ## <a name="no-folder-with-a-drive-letter-in-my-computer"></a>Aucun dossier avec une lettre de lecteur dans **Poste de travail**
 
-Si vous mappez un partage de fichiers Azure en tant qu’administrateur via Net use, le partage n’apparaît pas.
+Si vous mappez un partage de fichiers Azure en tant qu’administrateur à l’aide de nette utilisation, le partage de hello apparaît toobe manquant.
 
 ### <a name="cause"></a>Cause :
 
-Par défaut, l’Explorateur Windows ne s’exécute pas en tant qu’administrateur. Si vous exécutez Net use depuis une invite de commandes administrateur, vous mappez le lecteur réseau en tant qu’administrateur. Étant donné que les lecteurs mappés sont centrés sur l’utilisateur, le compte d’utilisateur qui est connecté n’affiche pas les lecteurs s’ils sont montés sous un compte d’utilisateur différent.
+Par défaut, l’Explorateur Windows ne s’exécute pas en tant qu’administrateur. Si vous exécutez l’utilisation de nette à partir d’une invite de commandes d’administration, vous mappez un lecteur réseau hello en tant qu’administrateur. Étant donné que les lecteurs mappés sont centrées sur l’utilisateur, compte d’utilisateur hello est enregistré dans n’affiche pas hello lecteurs s’ils sont montés sous un compte d’utilisateur différent.
 
 ### <a name="solution"></a>Solution
-Montez le partage à partir d’une ligne de commande non administrateur. Vous pouvez également suivre [cette rubrique TechNet](https://technet.microsoft.com/library/ee844140.aspx) pour configurer la valeur de Registre **EnableLinkedConnections**.
+Montez hello partage à partir d’une ligne de commande non administrateur. Vous pouvez également suivre [cette rubrique TechNet](https://technet.microsoft.com/library/ee844140.aspx) tooconfigure hello **EnableLinkedConnections** valeur de Registre.
 
 <a id="netuse"></a>
-## <a name="net-use-command-fails-if-the-storage-account-contains-a-forward-slash"></a>La commande Net use échoue si le compte de stockage contient une barre oblique
+## <a name="net-use-command-fails-if-hello-storage-account-contains-a-forward-slash"></a>Commande net use échoue si le compte de stockage hello contient une barre oblique
 
 ### <a name="cause"></a>Cause :
 
-La commande Net use interprète une barre oblique (/) comme une option de ligne de commande. Si le nom de votre compte utilisateur commence par une barre oblique, le mappage du lecteur échoue.
+commande net use de Hello interprète une barre oblique (/) comme option de ligne de commande. Si le nom de votre compte d’utilisateur commence par une barre oblique, mappage de lecteur hello échoue.
 
 ### <a name="solution"></a>Solution
 
-Vous pouvez utiliser l’une des étapes suivantes pour contourner le problème :
+Vous pouvez utiliser une des hello suivant toowork étapes contourner problème de hello :
 
-- Exécutez la commande PowerShell suivante :
+- Exécutez hello suivant de commande PowerShell :
 
   `New-SmbMapping -LocalPath y: -RemotePath \\server\share -UserName accountName -Password "password can contain / and \ etc" `
 
-  Depuis un fichier de commandes, vous pouvez exécuter la commande de cette façon :
+  À partir d’un fichier de commandes, vous pouvez exécuter commande hello de cette façon :
 
   `Echo new-smbMapping ... | powershell -command –`
 
-- Placez des guillemets doubles autour de la clé pour résoudre ce problème, sauf si la barre oblique est le premier caractère. Si c’est le cas, utilisez le mode interactif et entrez votre mot de passe séparément, ou régénérez vos clés pour obtenir une clé qui ne commence pas par une barre oblique.
+- Placez entre guillemets doubles hello de clé toowork résoudre ce problème, à moins que la barre oblique hello est le premier caractère de hello. S’il s’agit, utilisez le mode interactif hello et entrez votre mot de passe séparément ou régénérer vos clés de tooget une clé qui ne commence pas par une barre oblique.
 
 <a id="cannotaccess"></a>
 ## <a name="application-or-service-cannot-access-a-mounted-azure-file-storage-drive"></a>L’application ou service ne peut pas accéder à un lecteur monté de stockage Azure File
 
 ### <a name="cause"></a>Cause :
 
-Les lecteurs sont montés par l’utilisateur. Si vous n’exécutez pas l’application ou service depuis le compte utilisateur ayant monté le lecteur, l’application ou service ne verra pas le lecteur.
+Les lecteurs sont montés par l’utilisateur. Si votre application ou service s’exécute sous un compte d’utilisateur différent hello qui hello lecteur monté, application hello ne verrez pas le lecteur de hello.
 
 ### <a name="solution"></a>Solution
 
-Utilisez l'une des solutions suivantes :
+Utilisez une des hello suivant solutions :
 
--   Montez le lecteur depuis le compte utilisateur qui dispose de l’application. Vous pouvez utiliser un outil tel que PsExec.
-- Transmettez le nom et la clé du compte de stockage dans les paramètres de nom d’utilisateur et de mot de passe de la commande Net use.
+-   Monter le lecteur de hello de hello même compte d’utilisateur qui contient l’application hello. Vous pouvez utiliser un outil tel que PsExec.
+- Passer le nom de compte de stockage hello et la clé des paramètres de nom et mot de passe d’utilisateur de la commande net use de hello hello.
 
-Après avoir suivi ces instructions, vous pourriez recevoir le message d’erreur suivant en exécutant Net use sur le compte de service réseau ou système : « Erreur système 1312. Une session ouverte spécifiée n’existe pas. Il se peut qu’elle ait été déjà fermée. » Si cela se produit, vérifiez que le nom d’utilisateur transmis à Net use inclut des informations de domaine (par exemple : « [nom du compte de stockage].file.core.windows.net »).
+Après avoir suivi ces instructions, vous pouvez recevoir hello message d’erreur suivant lorsque vous exécutez nette utilisation pour le compte de service réseau ou de systèmes hello : « erreur du système 1312 s’est produite. Une session ouverte spécifiée n’existe pas. Il se peut qu’elle ait été déjà fermée. » Si cela se produit, assurez-vous que ce nom d’utilisateur de hello est passé toonet utilisation inclut des informations de domaine (par exemple : « [nom du compte de stockage]. file.core.windows .net »).
 
 <a id="doesnotsupportencryption"></a>
-## <a name="error-you-are-copying-a-file-to-a-destination-that-does-not-support-encryption"></a>Erreur « Vous copiez un fichier vers une destination qui ne prend pas en charge le chiffrement »
+## <a name="error-you-are-copying-a-file-tooa-destination-that-does-not-support-encryption"></a>Erreur « Vous copiez une destination de tooa de fichier qui ne prend pas en charge le chiffrement »
 
-Lorsqu’un fichier est copié sur le réseau, le fichier est déchiffré sur l’ordinateur source, transmis en clair, puis de nouveau chiffré une fois à destination. Toutefois, vous pourriez rencontrer l’erreur suivante en essayant de copier un fichier chiffré : « Vous copiez le fichier vers une destination qui ne prend pas en charge le chiffrement. »
+Lorsqu’un fichier est copié sur le réseau de hello, hello est déchiffrée sur ordinateur source de hello, transmis en texte brut, puis de nouveau chiffrée à la destination de hello. Toutefois, vous pouvez voir l’erreur suivante lorsque vous essayez de toocopy un fichier chiffré de hello : «, vous copiez hello fichier tooa destination qui ne prend pas en charge le chiffrement. »
 
 ### <a name="cause"></a>Cause :
-Ce problème peut se survenir si vous utilisez le système de fichiers EFS (Encrypting File System). Les fichiers chiffrés par BitLocker peuvent être copiés vers le stockage Azure Files. Toutefois, le stockage Azure File ne prend pas en charge le système de fichiers EFS NTFS.
+Ce problème peut se survenir si vous utilisez le système de fichiers EFS (Encrypting File System). Les fichiers chiffrés par BitLocker peuvent être copié tooAzure le stockage de fichiers. Toutefois, le stockage Azure File ne prend pas en charge le système de fichiers EFS NTFS.
 
 ### <a name="workaround"></a>Solution de contournement
-Pour copier un fichier sur le réseau, vous devez d’abord le déchiffrer. Utilisez l’une des méthodes suivantes :
+toocopy un fichier réseau hello, vous devez tout d’abord le déchiffrer. Utilisez une des méthodes suivantes de hello :
 
-- Utilisez la commande **copy /d**. Les fichiers chiffrés peuvent ainsi être enregistrés comme fichiers déchiffrés une fois à destination.
-- Définissez la clé de Registre suivante :
+- Hello d’utilisation **copier /d** commande. Il permet de hello chiffré fichiers toobe enregistré en tant que fichiers déchiffrés à la destination de hello.
+- Hello du jeu de clé de Registre suivante :
   - Chemin d’accès = HKLM\Software\Policies\Microsoft\Windows\System
   - Type de valeur = DWORD
   - Nom = CopyFileAllowDecryptedRemoteDestination
   - Valeur = 1
 
-Notez bien que la définition de la clé de Registre affecte toutes les opérations de copie sur les partages réseau.
+N’oubliez pas de que clé de Registre paramètre hello affecte toutes les opérations de copie sont effectuées toonetwork partages.
 
 ## <a name="need-help-contact-support"></a>Vous avez besoin d’aide ? Contactez le support technique.
-Si vous avez encore besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) pour résoudre rapidement votre problème.
+Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget votre problème résolu rapidement.

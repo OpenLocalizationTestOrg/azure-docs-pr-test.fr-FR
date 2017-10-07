@@ -1,5 +1,5 @@
 ---
-title: Exemples PowerShell pour les machines virtuelles Azure | Microsoft Docs
+title: aaaAzure exemples PowerShell de Machine virtuelle | Documents Microsoft
 description: Exemples PowerShell pour les machines virtuelles Azure
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,23 +15,23 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 03/01/2017
 ms.author: nepeters
-ms.openlocfilehash: 799a017a241ed3d37bb95344de7d50e1be7d559c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 089d85dfb1ac0995bcb45ac9e927db727b5ed09d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-virtual-machine-powershell-samples"></a>Exemples PowerShell pour les machines virtuelles Azure
 
-Le tableau suivant contient des liens vers des exemples de scripts PowerShell qui créent et gèrent des machines virtuelles Linux.
+Hello tableau suivant inclut des liens les exemples de scripts tooPowerShell que créer et gérer des ordinateurs virtuels Linux.
 
 | | |
 |---|---|
 |**Créer des machines virtuelles**||
 | [Créer une machine virtuelle entièrement configurée](./../scripts/virtual-machines-linux-powershell-sample-create-vm.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée un groupe de ressources, une machine virtuelle et toutes les ressources associées.|
 | [Créer une machine virtuelle prenant en charge Docker](./../scripts/virtual-machines-linux-powershell-sample-create-docker-host.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une machine virtuelle, configure cette machine virtuelle en tant qu’hôte Docker et exécute un conteneur NGINX. |
-| [Créer une machine virtuelle et exécuter le script de configuration](./../scripts/virtual-machines-linux-powershell-sample-create-vm-nginx.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une machine virtuelle et utilise l’extension de script personnalisé Azure pour installer NGINX. |
-| [Créer une machine virtuelle avec WordPress](./../scripts/virtual-machines-linux-powershell-sample-create-vm-wordpress.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une machine virtuelle et utilise l’extension de script personnalisé Azure pour installer WordPress. |
+| [Créer une machine virtuelle et exécuter le script de configuration](./../scripts/virtual-machines-linux-powershell-sample-create-vm-nginx.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une machine virtuelle et utilise l’extension tooinstall NGINX de hello Azure un Script personnalisé. |
+| [Créer une machine virtuelle avec WordPress](./../scripts/virtual-machines-linux-powershell-sample-create-vm-wordpress.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une machine virtuelle et utilise l’extension tooinstall WordPress de hello Azure un Script personnalisé. |
 |**Surveiller les machines virtuelles**||
-| [Surveiller une machine virtuelle avec Operations Management Suite](./../scripts/virtual-machines-linux-powershell-sample-create-vm-oms.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une machine virtuelle, installe l’agent Operations Management Suite et inscrit la machine virtuelle dans un espace de travail OMS.  |
+| [Surveiller une machine virtuelle avec Operations Management Suite](./../scripts/virtual-machines-linux-powershell-sample-create-vm-oms.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée un ordinateur virtuel, installe l’agent de Operations Management Suite hello et inscrit hello machine virtuelle dans un espace de travail OMS.  |
 | | |

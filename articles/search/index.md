@@ -1,6 +1,6 @@
 ---
-title: "Documentation Recherche Azure - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment ajouter des fonctionnalités de recherche robustes, notamment l’analyse des activités, à vos applications mobiles ou web personnalisées. Références d’API et autres documents."
+title: "aaaAzure recherche Documentation - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment tooadd robuste recherche les fonctions, y compris l’analyse des activités, toocustom web ou des applications mobiles. Références d’API et autres documents."
 services: search
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 7fffe78bebd6799cad544c12c20eb1926975a68f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2ef61d7bf68e94c4429ba1b13709ee9b31093b71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-search-documentation"></a>Documentation Recherche Azure
 
-Découvrez comment ajouter des fonctionnalités de recherche à vos applications web ou mobiles personnalisées à l’aide de Recherche Azure, un service de recherche dans le cloud géré. Des didacticiels, des références d’API et d’autres documents vous montrent comment ajouter la recherche en texte intégral évolutive en plusieurs langues, la recherche géospatiale, le filtrage et la navigation à facettes, les requêtes prédictives, la mise en surbrillance des correspondances et les analyseurs personnalisés.
+Découvrez comment tooadd recherche web personnalisée tooyour de fonctionnalités ou des applications mobiles à l’aide d’Azure Search, un service de recherche de cloud géré. Didacticiels, des références de l’API et toute autre documentation vous indiquent comment tooadd la recherche en texte intégral évolutives sur plusieurs langues, à savoir géospatiales recherche, filtrage et à facettes la navigation, requêtes prédictives, d’accès à la mise en surbrillance et analyseurs personnalisés.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Découvrez comment ajouter des fonctionnalités de recherche à vos applications
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main de Recherche Azure dans le portail Azure</h3>
+                        <h3>Prise en main Azure Search à l’aide de hello portail Azure</h3>
                     </div>
                 </div>
             </div>

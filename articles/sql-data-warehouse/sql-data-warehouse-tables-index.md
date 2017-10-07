@@ -1,5 +1,5 @@
 ---
-title: Indexation de tables dans SQL Data Warehouse | Microsoft Azure
+title: tables aaaIndexing SQL Data Warehouse | Microsoft Azure
 description: "Prise en main de l’indexation de tables dans Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 07/12/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: b205ed47833f675286539705e2754d2ea3821b8e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e614d63c8fb871f2ba388f14576cf9f282d4b818
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="indexing-tables-in-sql-data-warehouse"></a>Indexation de tables dans SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -33,12 +33,12 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-SQL Data Warehouse propose plusieurs options d’indexation, notamment [les index columnstore en cluster][clustered columnstore indexes], [les index en cluster et les index non cluster][clustered indexes and nonclustered indexes].  En outre, il propose aussi une option sans index, également appelée [segment de mémoire][heap].  Cet article présente les avantages de chaque type d’index, ainsi que des conseils pour tirer les meilleures performances de vos index. Consultez la page [Syntaxe de création d’une table][create table syntax] pour plus d’informations sur la création d’une table dans SQL Data Warehouse.
+SQL Data Warehouse propose plusieurs options d’indexation, notamment [les index columnstore en cluster][clustered columnstore indexes], [les index en cluster et les index non cluster][clustered indexes and nonclustered indexes].  En outre, il propose aussi une option sans index, également appelée [segment de mémoire][heap].  Cet article traite des avantages de hello de chaque type d’index ainsi que les conseils toogetting hello la plupart des performances de vos index. Consultez [créer une syntaxe de table] [ create table syntax] pour plus d’informations sur la façon de toocreate une table dans l’entrepôt de données SQL.
 
 ## <a name="clustered-columnstore-indexes"></a>Index columnstore en cluster
-Par défaut, SQL Data Warehouse crée un index columnstore en cluster lorsqu’aucune option d’index n’est spécifiée sur une table. Les tables columnstore en cluster offrent le plus haut niveau de compression de données ainsi que les meilleures performances de requête globales.  Les tables columnstore en cluster sont généralement plus performantes que les index en cluster ou les tables de segments de mémoire, et constituent généralement le meilleur choix pour les grandes tables.  Pour ces raisons, les index columnstore en cluster sont le meilleur endroit pour démarrer lorsque vous ne savez pas comment indexer votre table.  
+Par défaut, SQL Data Warehouse crée un index columnstore en cluster lorsqu’aucune option d’index n’est spécifiée sur une table. Les tables columnstore en cluster offrent deux hello plus haut niveau de compression de données, ainsi que hello meilleures performances globales des requêtes.  Les tables en cluster seront généralement surpassent les tables cluster d’index ou segment de mémoire et sont généralement hello meilleur choix pour les tables volumineuses.  Pour ces raisons, columnstore en cluster est hello meilleures place toostart lorsque vous n’êtes pas sûr de la façon tooindex votre table.  
 
-Pour créer une table columnstore en cluster, spécifiez simplement CLUSTERED COLUMNSTORE INDEX dans la clause WITH, ou omettez la clause WITH :
+toocreate une table columnstore en cluster, spécifiez un INDEX cluster COLUMNSTORE dans la clause WITH de hello simplement ou omettre la clause WITH de hello :
 
 ```SQL
 CREATE TABLE myTable   
@@ -57,11 +57,11 @@ Il existe quelques scénarios où un columnstore en cluster peut ne pas être pa
 * Petites tables avec moins de 100 millions de lignes.  Envisagez les tables de segments de mémoire.
 
 ## <a name="heap-tables"></a>Tables de segments de mémoire
-Lorsque vous envoyez des données dans SQL Data Warehouse, vous trouverez peut-être que l’utilisation d’une table de segments de mémoire accélère le processus global.  En effet, les charges sur les segments de mémoire sont plus rapides que sur les tables d’index et, dans certains cas, la lecture ultérieure peut être effectuée depuis le cache.  Si vous chargez des données uniquement pour les organiser avant d’exécuter d’autres transformations, le chargement de la table dans la table de segments de mémoire sera beaucoup plus rapide que le chargement de données dans une table columnstore en cluster. En outre, le chargement des données dans une [table temporaire][Temporary] sera également beaucoup plus rapide que le chargement d’une table dans un stockage permanent.  
+Lorsque vous sont temporairement lancement des données sur SQL Data Warehouse, vous découvrirez peut-être qu’à l’aide d’une table de segment de mémoire effectue hello processus global plus rapidement.  Il s’agit, car les charges tooheaps sont plus rapides que les tables tooindex et dans certains hello cas lecture suivante peut être effectué à partir du cache.  Si vous chargez toostage uniquement de données il avant d’exécuter d’autres transformations, le chargement hello table tooheap de la table sera beaucoup plus rapide que le chargement de hello données tooa en cluster de table columnstore. En outre, le chargement données tooa [table temporaire] [ Temporary] charge beaucoup plus rapidement que le chargement d’un stockage de toopermanent table également.  
 
-Pour les petites tables de choix de moins de 100 millions de lignes, souvent, l’utilisation de tables de segments de mémoire est judicieuse.  Les tables columnstore en cluster commencent à atteindre une compression optimale une fois qu’elles comptent plus de 100 millions de lignes.
+Pour les petites tables de choix de moins de 100 millions de lignes, souvent, l’utilisation de tables de segments de mémoire est judicieuse.  Les tables columnstore cluster commencent compression optimal de tooachieve une fois qu’il existe plus de 100 millions de lignes.
 
-Pour créer une table de segments de mémoire, spécifiez simplement HEAP dans la clause WITH :
+toocreate une table de segment de mémoire, spécifiez simplement le segment de mémoire dans la clause WITH de hello :
 
 ```SQL
 CREATE TABLE myTable   
@@ -74,9 +74,9 @@ WITH ( HEAP );
 ```
 
 ## <a name="clustered-and-nonclustered-indexes"></a>Index en cluster et non cluster
-Les index en cluster peuvent être plus performants que les tables columnstore en cluster lorsqu’une seule ligne doit être récupérée rapidement.  Pour les requêtes où une seule ligne ou très peu de choix de lignes est requis pour des performances très rapides, envisagez un index de cluster ou un index secondaire non cluster.  L’inconvénient d’utiliser un index en cluster est que seules les requêtes qui utilisent un filtre hautement sélectif sur la colonne d’index en cluster en bénéficient.  Pour améliorer le filtre sur les autres colonnes, un index non cluster peut être ajouté aux autres colonnes.  Toutefois, chaque index qui est ajouté à une table ajoutera l’espace et le temps de traitement sur les charges.
+Index ordonnés en clusters peuvent surpassent les tables columnstore en cluster lorsqu’une seule ligne doit toobe récupéré rapidement.  Pour les requêtes où une seule ou très peu recherche ligne est tooperformance requis avec une fréquence extrêmes, prenons un index de cluster ou d’un index secondaire non ordonnés en clusters.  Hello inconvénient toousing un index cluster est que seules les requêtes qui utilisent un filtre hautement sélectif sur la colonne d’index cluster hello bénéficient.  filtre de tooimprove sur d’autres colonnes de qu'un index non cluster peut être ajouté tooother colonnes.  Toutefois, chaque index qui est ajouté à la table de tooa ajoutera espace et tooloads de temps de traitement.
 
-Pour créer une table d’index en cluster, spécifiez simplement CLUSTERED INDEX dans la clause WITH :
+toocreate une table d’index cluster, spécifiez simplement l’INDEX cluster dans la clause WITH de hello :
 
 ```SQL
 CREATE TABLE myTable   
@@ -88,16 +88,16 @@ CREATE TABLE myTable
 WITH ( CLUSTERED INDEX (id) );
 ```
 
-Pour ajouter un index non-cluster sur une table, utilisez simplement la syntaxe suivante :
+tooadd un index non cluster sur une table, utilisez simplement hello selon la syntaxe :
 
 ```SQL
 CREATE INDEX zipCodeIndex ON t1 (zipCode);
 ```
 
 ## <a name="optimizing-clustered-columnstore-indexes"></a>Optimisation des index columnstore en cluster
-Les tables columnstore en cluster sont organisées en données dans les segments.  Une qualité de segment élevée est essentielle pour atteindre des performances des requêtes optimales sur une table columnstore.  La qualité du segment peut être mesurée par le nombre de lignes dans un groupe de lignes compressé.  La qualité de segment est optimale lorsqu’il existe au moins 100 000 lignes par groupe de lignes compressé, et ses performances vont croissant, car le nombre de lignes par groupe est proche de 1 048 576 lignes, soit le nombre maximum de lignes qu’un groupe de lignes peut contenir.
+Les tables columnstore en cluster sont organisées en données dans les segments.  La qualité élevée de segment est critique tooachieving performances optimales des requêtes sur une table columnstore.  Qualité de segment peut être mesurée par un nombre de lignes dans un groupe de lignes compressés hello.  Qualité de segment est optimale lorsqu’il y a au moins 100 Ko lignes par ligne compressée de groupe et de gagner en performances comme hello nombre de lignes par ligne groupe approche 1 048 576 lignes, hello un groupe de lignes peut contenir la plupart des lignes.
 
-La vue ci-dessous peut être créée et utilisée sur votre système afin de calculer les lignes moyennes par groupe de lignes et d’identifier tous les index columnstore en cluster non optimaux.  La dernière colonne sur cette vue se génère en tant qu’instruction SQL qui peut être utilisée pour reconstruire vos index.
+Hello sous vue peut être créé et utilisé sur votre hello de toocompute système lignes moyenne par ligne de groupe et identifier tous les index columnstore cluster optimales.  Hello dernière colonne à cette vue génère en tant qu’instruction SQL qui peut être utilisé toorebuild votre index.
 
 ```sql
 CREATE VIEW dbo.vColumnstoreDensity
@@ -146,7 +146,7 @@ GROUP BY
 ;
 ```
 
-Maintenant que vous avez créé la vue, exécutez cette requête pour identifier les tables avec des groupes de lignes comportant moins de 100 000 lignes.  Bien sûr, vous souhaiterez peut-être augmenter le seuil de 100 000 si vous recherchez une qualité de segment supérieure. 
+Maintenant que vous avez créé la vue de hello, exécutez cette requête tooidentify avec des groupes de lignes comportant moins de lignes de 100 Ko.  Bien sûr, vous voudrez seuil de hello tooincrease de 100 Ko si vous cherchez plus la qualité optimale de segment. 
 
 ```sql
 SELECT    *
@@ -155,80 +155,80 @@ WHERE    COMPRESSED_rowgroup_rows_AVG < 100000
         OR INVISIBLE_rowgroup_rows_AVG < 100000
 ```
 
-Une fois que vous avez exécuté la requête, vous pouvez commencer à examiner les données et analyser vos résultats. Cette table explique ce que vous devez rechercher dans votre analyse de groupe de lignes.
+Une fois que vous avez exécuté la requête de hello, vous pouvez commencer toolook les données hello et analyser vos résultats. Ce tableau explique quelles toolook pour dans votre analyse de groupe de lignes.
 
-| Colonne | Utilisation de ces données |
+| Colonne | Comment toouse ces données |
 | --- | --- |
-| [table_partition_count] |Si la table est partitionnée, vous pouvez vous attendre à un nombre plus élevé de groupes de lignes ouverts. Chaque partition de la distribution peut, en théorie, avoir un groupe de lignes ouvert associé. Tenez-en compte dans votre analyse. Une petite table qui a été partitionnée peut être optimisée en supprimant complètement le partitionnement pour améliorer la compression. |
-| [row_count_total] |Nombre total de lignes de la table. Par exemple, vous pouvez utiliser cette valeur pour calculer le pourcentage de lignes à l’état compressé. |
-| [row_count_per_distribution_MAX] |Si toutes les lignes sont réparties uniformément, cette valeur est le nombre cible de lignes par distribution. Comparez cette valeur avec compressed_rowgroup_count. |
-| [COMPRESSED_rowgroup_rows] |Nombre total de lignes au format columnstore pour la table |
-| [COMPRESSED_rowgroup_rows_AVG] |Si le nombre moyen de lignes est considérablement inférieur au nombre maximal de lignes pour un groupe de lignes, utilisez CTAS ou ALTER INDEX REBUILD pour recompresser les données |
-| [COMPRESSED_rowgroup_count] |Nombre de groupes de lignes au format columnstore. Si ce nombre est très élevé par rapport à la table, il indique que la densité de columnstore est faible. |
-| [COMPRESSED_rowgroup_rows_DELETED] |Les lignes sont logiquement supprimées au format columnstore. Si le nombre est élevé par rapport à la taille de la table, recréez la partition ou reconstruisez l’index, car cette opération les supprime physiquement. |
-| [COMPRESSED_rowgroup_rows_MIN] |Utilisez cette valeur avec les colonnes AVG et MAX pour comprendre la plage de valeurs des groupes de lignes dans votre columnstore. Un nombre bas au-dessus du seuil de chargement (102 400 par distribution alignée sur la partition) suggère que des optimisations sont disponibles dans le chargement des données |
+| [table_partition_count] |Si la table de hello est partitionnée, vous pouvez attendre toosee nombre du groupe lignes ouvrir plus élevé. Chaque partition de la distribution de hello peut-être, en théorie, un groupe de lignes ouvert associé. Tenez-en compte dans votre analyse. Une petite table a été partitionnée peut être optimisée en supprimant hello partitionnement totalement car cela améliore la compression. |
+| [row_count_total] |Nombre total de lignes pour la table de hello. Par exemple, vous pouvez utiliser ce pourcentage de toocalculate valeur de lignes en état de hello compressé. |
+| [row_count_per_distribution_MAX] |Si toutes les lignes sont réparties de cette valeur doit être le nombre de cible de hello de lignes par la distribution. Comparez cette valeur avec hello compressed_rowgroup_count. |
+| [COMPRESSED_rowgroup_rows] |Nombre total de lignes dans le format de columnstore pour la table de hello. |
+| [COMPRESSED_rowgroup_rows_AVG] |Si hello nombre moyen de lignes est considérablement inférieur à hello maximale # de lignes pour un groupe de lignes, envisagez d’utiliser SACT ou toorecompress de ALTER INDEX REBUILD hello des données |
+| [COMPRESSED_rowgroup_count] |Nombre de groupes de lignes au format columnstore. Si ce nombre est très élevé dans la table des relations de toohello, il est un indicateur que la densité de columnstore hello est faible. |
+| [COMPRESSED_rowgroup_rows_DELETED] |Les lignes sont logiquement supprimées au format columnstore. Si nombre de hello est grande taille de tootable relative, envisagez recréer la partition de hello ou la reconstruction des index de hello comme cela les supprime physiquement. |
+| [COMPRESSED_rowgroup_rows_MIN] |Utilisez-le conjointement avec hello AVG et MAX colonnes toounderstand hello plage de valeurs pour les groupes de lignes hello dans le columnstore. Un nombre faible au-dessus du seuil de chargement hello (102 400 par distribution de la partition alignée) suggère que les optimisations sont disponibles dans le chargement des données hello |
 | [COMPRESSED_rowgroup_rows_MAX] |Identique à ce qui précède |
-| [OPEN_rowgroup_count] |Les groupes de lignes ouverts sont normaux. On peut raisonnablement s’attendre à un groupe de lignes ouvert par distribution de tables (60). Les nombres excessifs suggèrent un chargement des données sur plusieurs partitions de données. Vérifiez la stratégie de partitionnement pour vous assurer qu’elle est saine |
-| [OPEN_rowgroup_rows] |Chaque groupe de lignes peut contenir 1 048 576 lignes maximum. Utilisez cette valeur pour connaître l’état de remplissage actuel des groupes de lignes ouverts |
-| [OPEN_rowgroup_rows_MIN] |Les groupes ouverts indiquent que les données sont chargées de manière progressive dans la table ou que la charge précédente a débordé sur les lignes restantes de ce groupe de lignes. Utilisez les colonnes MIN, MAX et AVG pour afficher la quantité de données stockées dans les groupes de ligne ouverts. Pour les petites tables, il peut s’agir de 100 % des données. Dans ce cas, l’instruction ALTER INDEX REBUILD force les données dans le columnstore. |
+| [OPEN_rowgroup_count] |Les groupes de lignes ouverts sont normaux. On peut raisonnablement s’attendre à un groupe de lignes ouvert par distribution de tables (60). Les nombres excessifs suggèrent un chargement des données sur plusieurs partitions de données. Vérifiez les hello partitionnement toomake stratégie qu’il s’agit de son |
+| [OPEN_rowgroup_rows] |Chaque groupe de lignes peut contenir 1 048 576 lignes maximum. Utilisez cette valeur toosee remplissage groupes de lignes ouvert hello sont actuellement |
+| [OPEN_rowgroup_rows_MIN] |Ouvrez groupes indiquent que les données sont progressif chargées dans la table de hello ou qui hello répandu sur les lignes restantes dans ce groupe de lignes de chargement précédent. Hello utilisez MIN, MAX, AVG toosee de colonnes est sat la quantité de données dans des groupes de lignes ouvert. Pour les tables de petite taille, il peut être 100 % de toutes les données hello ! Dans ce cas tooforce de ALTER INDEX REBUILD hello toocolumnstore de données. |
 | [OPEN_rowgroup_rows_MAX] |Identique à ce qui précède |
 | [OPEN_rowgroup_rows_AVG] |Identique à ce qui précède |
-| [CLOSED_rowgroup_rows] |Examinez les lignes des groupes de lignes fermés pour effectuer un contrôle de validité. |
-| [CLOSED_rowgroup_count] |S’il existe des groupes de lignes fermés, ils doivent être en petit nombre. Les groupes de lignes fermés peuvent être convertis en groupes de lignes compressés à l’aide de la commande ALTER INDEX... REORGANISE. Toutefois, cela n’est généralement pas nécessaire. Les groupes fermés sont automatiquement convertis en groupes de lignes du columnstore par le processus « moteur de tuple » en arrière-plan. |
-| [CLOSED_rowgroup_rows_MIN] |Les groupes de lignes fermés doivent avoir un taux de remplissage très élevé. Si le taux de remplissage d’un groupe de lignes fermé est faible, une analyse plus approfondie du columnstore est nécessaire. |
+| [CLOSED_rowgroup_rows] |Examinez les lignes de groupe de ligne hello fermé comme un contrôle de validité. |
+| [CLOSED_rowgroup_count] |nombre de Hello de groupes de lignes fermés doit être faible si les sont visibles à tout. Les groupes de lignes fermés peuvent être roups de rowg toocompressed converti à l’aide de hello ALTER INDEX... REORGANISE. Toutefois, cela n’est généralement pas nécessaire. Groupes fermés sont automatiquement convertis toocolumnstore des groupes de lignes par processus de « moteur de tuple » hello en arrière-plan. |
+| [CLOSED_rowgroup_rows_MIN] |Les groupes de lignes fermés doivent avoir un taux de remplissage très élevé. Si le taux de remplissage hello pour un groupe de lignes fermés est faible, une analyse plus approfondie de hello columnstore est requise. |
 | [CLOSED_rowgroup_rows_MAX] |Identique à ce qui précède |
 | [CLOSED_rowgroup_rows_AVG] |Identique à ce qui précède |
-| [Rebuild_Index_SQL] |Reconstruction d’un index columnstore pour une table par SQL |
+| [Rebuild_Index_SQL] |Index de columnstore toorebuild SQL pour une table |
 
 ## <a name="causes-of-poor-columnstore-index-quality"></a>Causes de la qualité médiocre des index columnstore
-Si vous avez identifié des tables avec une qualité médiocre de segments, vous devez en déterminer la cause racine.  Voici quelques causes courantes d’une qualité médiocre des segments :
+Si vous avez identifié les tables avec une qualité médiocre de segment, vous devez la cause première tooidentify hello.  Voici quelques causes courantes d’une qualité médiocre des segments :
 
 1. Saturation de la mémoire lors de la construction de l’index
 2. Volume élevé d’opérations DML
 3. Opérations de chargement progressives ou légères
 4. Nombre trop important de partitions
 
-En raison de ces facteurs, le nombre de lignes par groupe de lignes de l’index columnstore peut être très inférieur à 1 million (chiffre optimal).  Ces facteurs peuvent également entraîner le transfert des lignes vers un groupe de lignes delta au lieu d’un groupe de lignes compressé. 
+Ces facteurs peuvent provoquer un toohave d’index columnstore considérablement inférieur au hello optimale 1 million de lignes par groupe de lignes.  Ils peuvent également entraîner le groupe de lignes delta lignes toogo toohello au lieu d’un groupe de lignes compressé. 
 
 ### <a name="memory-pressure-when-index-was-built"></a>Saturation de la mémoire lors de la construction de l’index
-Le nombre de lignes par groupe de lignes compressé est directement lié à la largeur de la ligne et à la quantité de mémoire disponible pour traiter le groupe de lignes.  Lorsque les lignes sont écrites dans les tables columnstore avec une mémoire insuffisante, la qualité du segment columnstore peut être affectée.  Par conséquent, la meilleure pratique consiste à accorder à la session qui écrit sur vos tables d’index columnstore l’accès à autant de mémoire que possible.  Dans la mesure où il existe un compromis entre la mémoire et l’accès concurrentiel, les conseils sur l’allocation de la mémoire appropriée dépendent des données dans chaque ligne de votre table, de la quantité de DWU que vous avez affectée à votre système et de la quantité d’emplacements de concurrence que vous pouvez donner à la session qui écrit les données sur votre table.  Nous vous recommandons la bonne pratique suivante : commencez avec xlargerc si vous utilisez DW300 ou une base de données inférieure, largerc si vous utilisez des bases de données DW400 à DW600, et mediumrc si vous utilisez DW1000 et des bases de données supérieures.
+nombre de Hello de lignes par groupe de lignes compressés ont une largeur de ligne de hello toohello directement liées et hello la quantité de mémoire disponibles tooprocess hello groupe de lignes.  Lors de l’écriture des lignes dans les tables toocolumnstore sollicitation de la mémoire, qualité de segment columnstore risquent d’en pâtir.  Par conséquent, hello meilleure pratique consiste aux session hello toogive qui écrit des tables d’index columnstore tooyour accéder tooas quantité de mémoire que possible.  Dans la mesure où il existe un compromis entre la mémoire et d’accès concurrentiel, conseils hello sur hello droite mémoire allocation dépend des données hello dans chaque ligne de votre table, la quantité de hello de DWU vous avez alloué tooyour système et d’emplacements de quantité hello d’accès concurrentiel vous permettent de toohello session qui est l’écriture de table de données tooyour.  Comme meilleure pratique, nous vous recommandons de commencer les avec xlargerc si vous utilisez DW300 ou moins, largerc si vous utilisez DW400 tooDW600 et mediumrc si vous utilisez DW1000 et versions ultérieures.
 
 ### <a name="high-volume-of-dml-operations"></a>Volume élevé d’opérations DML
-Un volume élevé d’opérations DML qui mettent à jour et suppriment des lignes peut provoquer l’inefficacité du columnstore. Cela est particulièrement vrai lorsque la majorité des lignes dans un groupe de lignes est modifiée.
+Un volume élevé d’opérations DML mettre à jour et supprimer des lignes peut introduire des complications dans hello columnstore. Cela est particulièrement vrai lorsque la majorité de hello de lignes hello dans un groupe de lignes sont modifiées.
 
-* La suppression d’une ligne dans un groupe de lignes compressé ne fait que marquer logiquement la ligne comme étant supprimée. La ligne reste dans le groupe de lignes compressé jusqu’à ce que la partition ou la table soit reconstruite.
-* L’insertion d’une ligne ajoute cette dernière à une table de groupe de lignes interne appelée groupe de lignes delta. La ligne insérée n’est pas convertie en columnstore jusqu’à ce que le groupe de lignes delta soit rempli et marqué comme étant fermé. Les groupes de lignes sont fermés lorsqu’ils atteignent leur capacité maximale de 1 048 576 lignes. 
-* La mise à jour d’une ligne au format columnstore est traitée en tant que suppression logique, puis en tant qu’insertion. La ligne insérée peut être stockée dans le deltastore.
+* Suppression d’une ligne à partir d’un groupe de lignes compressés uniquement logiquement de marque la ligne de hello comme étant supprimé. ligne de Hello reste dans le groupe de lignes compressé de hello jusqu'à la régénération de partition de hello ou une table.
+* Insertion d’une ligne ajoute appelée un groupe de lignes delta pour la table hello ligne tootooan rowstore interne. ligne de Hello inséré n’est pas converti toocolumnstore jusqu'à ce que le groupe de lignes delta hello est plein et qu’il est marqué comme étant fermé. Groupes de lignes sont fermés une fois qu’ils atteignent la capacité maximale de hello de 1 048 576 lignes. 
+* La mise à jour d’une ligne au format columnstore est traitée en tant que suppression logique, puis en tant qu’insertion. ligne de Hello insérée peut-être être stockée dans le magasin de delta hello.
 
-Les opérations de mise à jour par lot et d’insertion qui dépassent le seuil de 102 400 lignes par distribution alignée sur la partition seront écrites directement au format columnstore. Toutefois, pour que cela se produise et en supposant que la répartition soit uniforme, vous devriez modifier plus de 6,144 millions de lignes en une seule opération. Si le nombre de lignes d’une distribution alignée sur la partition donnée est inférieur à 102 400, les lignes seront transférées au deltastore et y resteront jusqu’à ce que l’une des trois conditions suivantes ait été remplie : un nombre suffisant de lignes a été inséré ; un nombre suffisant de lignes a été modifié pour pouvoir fermer le groupe de lignes ; l’index a été reconstruit.
+Mise à jour groupée et insérer les opérations qui dépassent le seuil de bloc hello de 102 400 lignes par partition alignée distribution est écrits directement toohello columnstore mettre en forme. Toutefois, en supposant une distribution uniforme, vous devez modifier plusieurs 6.144 millions de lignes en une seule opération pour cette toooccur de toobe. Si hello nombre de lignes pour une partition donnée aligné de distribution est inférieur à 102 400 lignes de hello sortent banque delta de toohello et sont reste jusqu'à ce que suffisamment de lignes ont été insérées ou modifiées tooclose hello ligne hello ou groupe d’index a été reconstruit.
 
 ### <a name="small-or-trickle-load-operations"></a>Opérations de chargement progressives ou légères
-Les charges légères entrant dans SQL Data Warehouse sont parfois appelées charges progressives. Elles représentent généralement un flux presque constant de données que le système reçoit. Toutefois, comme ce flux est presque continu, le volume des lignes n’est pas forcément important. La plupart du temps, les données sont bien inférieures au seuil requis pour une charge directe au format columnstore.
+Les charges légères entrant dans SQL Data Warehouse sont parfois appelées charges progressives. En général, ils représentent un flux constant proche des données en cours ingérés par le système de hello. Toutefois, comme ce flux est proche de volume hello continue de lignes n’est pas particulièrement volumineux. Plus souvent les données hello sont considérablement inférieure au seuil hello requis pour un format de toocolumnstore charge directe.
 
-Dans ces situations, il est souvent préférable d’envoyer les données dans Azure Blob Storage et de les laisser s’accumuler avant le chargement. Cette technique est souvent appelée *micro-batching*ou micro-traitement par lots.
+Dans ces situations, il est souvent des données de salutation tooland mieux tout d’abord dans le stockage blob Azure et laissez-le s’accumulent tooloading préalable. Cette technique est souvent appelée *micro-batching*ou micro-traitement par lots.
 
 ### <a name="too-many-partitions"></a>Nombre trop important de partitions
-Autre élément à prendre en compte : l’impact du partitionnement sur vos tables columnstore en cluster.  Avant de partitionner, SQL Data Warehouse divise déjà vos données en 60 bases de données.  Un partitionnement plus approfondi divise vos données.  Si vous partitionnez vos données, vous souhaiterez peut-être estimer que **chaque** partition nécessitera au moins 1 million de lignes pour bénéficier d’un index columnstore en cluster.  Si vous partitionnez votre table en 100 partitions, celle-ci devra compter au moins 6 milliards de lignes pour bénéficier d’un index columnstore en cluster (60 distributions * 100 partitions * 1 million de lignes). Si votre table de 100 partitions ne possède pas 6 milliards de lignes, réduisez le nombre de partitions ou envisagez plutôt d’utiliser une table de segments de mémoire.
+Une autre chose que tooconsider est impact hello de partitionnement sur les tables columnstore en cluster.  Avant de partitionner, SQL Data Warehouse divise déjà vos données en 60 bases de données.  Un partitionnement plus approfondi divise vos données.  Si vous partitionnez vos données, vous pouvez tooconsider qui **chaque** partition aura besoin toobenefit de lignes toohave au moins 1 million d’un index cluster columnstore.  Si vous partitionnez votre table en 100 partitions, alors que votre table doit toobenefit de lignes toohave au moins 6 milliards d’un index cluster columnstore (60 distributions * 100 partitions * 1 million de lignes). Si votre table de 100 partition n’a pas de 6 milliards de lignes, réduisez le nombre hello de partitions ou envisagez d’utiliser une table de segment de mémoire à la place.
 
-Une fois que les tables ont été chargées avec des données, suivez les étapes ci-dessous pour identifier et reconstruire des tables avec des index columnstore en cluster non optimaux.
+Une fois vos tables ont été chargés avec des données, suivez hello ci-dessous les étapes tooidentify et recréez les tables avec des index columnstore cluster optimales.
 
-## <a name="rebuilding-indexes-to-improve-segment-quality"></a>Reconstruire des index pour améliorer la qualité de segment
-### <a name="step-1-identify-or-create-user-which-uses-the-right-resource-class"></a>Étape 1 : Identifier ou créer un utilisateur qui utilise la classe de ressources appropriée
-Un moyen rapide d’améliorer immédiatement la qualité de segment consiste à reconstruire l’index.  La requête SQL renvoyée par la vue ci-dessus renvoie une instruction ALTER INDEX REBUILD, qui peut être utilisée pour reconstruire vos index.  Lors de la reconstruction de vos index, veillez à allouer suffisamment de mémoire à la session qui va reconstruire votre index.  Pour ce faire, augmentez la classe de ressources d’un utilisateur qui dispose des autorisations pour reconstruire l’index sur cette table conformément aux valeurs minimum recommandées.  La classe de ressources de l’utilisateur propriétaire de la base de données ne peut pas être modifiée, donc si vous n’avez pas créé d’utilisateur sur le système, vous devrez le faire en premier.  Le minimum recommandé est xlargerc si vous utilisez DW300 ou une base de données inférieure, largerc si vous utilisez des bases de données DW400 à DW600, et mediumrc si vous utilisez DW1000 et des bases de données supérieures.
+## <a name="rebuilding-indexes-tooimprove-segment-quality"></a>La reconstruction de qualité de segment tooimprove index
+### <a name="step-1-identify-or-create-user-which-uses-hello-right-resource-class"></a>Étape 1 : Identifier ou créer un utilisateur qui utilise la classe de ressource droite hello
+Un moyen rapide tooimmediately améliorer la qualité du segment est un index de hello toorebuild.  Hello SQL retourné par hello au-dessus de vue retourne une instruction ALTER INDEX REBUILD, qui peut être utilisé toorebuild votre index.  Lors de la reconstruction de votre index, assurez-vous d’allouer suffisamment de mémoire toohello session votre index est reconstruit.  toodo, classe de ressource hello augmentation d’un utilisateur qui a un index de hello toorebuild autorisations sur cette valeur minimale recommandée de toohello de table.  classe de ressource Hello de l’utilisateur propriétaire de la base de données hello ne peut pas être modifié, si vous n’avez pas créé un utilisateur sur le système de hello, vous devez tout d’abord toodo.  minimum Hello recommandé est xlargerc si vous utilisez DW300 ou moins, largerc si vous utilisez DW400 tooDW600 et mediumrc si vous utilisez DW1000 et versions ultérieures.
 
-Voici un exemple montrant comment allouer davantage de mémoire à un utilisateur en augmentant sa classe de ressources.  Des informations sur les classes de ressources et sur la création d’un utilisateur sont disponibles dans l’article [Gestion de la concurrence et des charges de travail][Concurrency].
+Voici un exemple de procédure tooallocate plus utilisateur tooa de mémoire en augmentant leur classe de ressource.  Pour plus d’informations sur les classes de ressources et comment toocreate un nouvel utilisateur se trouve dans hello [gestion d’accès concurrentiel et la charge de travail] [ Concurrency] l’article.
 
 ```sql
 EXEC sp_addrolemember 'xlargerc', 'LoadUser'
 ```
 
 ### <a name="step-2-rebuild-clustered-columnstore-indexes-with-higher-resource-class-user"></a>Étape 2 : Reconstruire les index columnstore en cluster avec un utilisateur de la classe de ressources la plus élevée
-Connectez-vous en tant qu’utilisateur à l’étape 1 (p. ex., LoadUser), qui utilise maintenant une classe de ressources supérieure, puis exécutez les instructions ALTER INDEX.  N’oubliez pas que cet utilisateur possède l’autorisation ALTER sur les tables où l’index est reconstruit.  Ces exemples illustrent comment reconstruire l’index columnstore entier ou comment reconstruire une partition unique. Sur des tables volumineuses, il est plus pratique de reconstruire les index une seule partition à la fois.
+Ouvrez une session en tant qu’hello utilisateur à l’étape 1 (par exemple, LoadUser), qui est maintenant à l’aide d’une classe de ressource plus élevée et exécutez les instructions ALTER INDEX hello.  Assurez-vous que cet utilisateur possède des tables de toohello d’autorisation ALTER où hello index est reconstruit.  Ces exemples montrent comment toorebuild hello index columnstore entier, ou comment toorebuild une seule partition. Sur des tables volumineuses, il est plus pratiques index toorebuild une seule partition à la fois.
 
-Au lieu de reconstruire l’index, vous pouvez également copier la table dans une nouvelle table à l’aide de [CTAS][CTAS].  Quelle méthode est la meilleure ? Pour les gros volumes de données, [CTAS][CTAS] est généralement plus rapide que [ALTER INDEX][ALTER INDEX]. Pour les volumes de données plus restreints, [ALTER INDEX][ALTER INDEX] est plus facile à utiliser et ne vous oblige pas à permuter la table.  Consultez **Reconstruire des index avec CTAS et le basculement de partitions** ci-dessous pour plus d’informations sur la façon de reconstruire les index avec CTAS.
+Vous pouvez également, au lieu de reconstruire les index hello, vous pouvez copier hello table tooa nouvelle table à l’aide de [SACT][CTAS].  Quelle méthode est la meilleure ? Pour les gros volumes de données, [CTAS][CTAS] est généralement plus rapide que [ALTER INDEX][ALTER INDEX]. Pour les petits volumes de données, [ALTER INDEX] [ ALTER INDEX] est toouse plus facile et aurez pas besoin de tooswap table de hello.  Consultez **la reconstruction des index avec SACT et le basculement de partition** ci-dessous pour plus d’informations sur la façon dont toorebuild indexe avec SACT.
 
 ```sql
--- Rebuild the entire clustered index
+-- Rebuild hello entire clustered index
 ALTER INDEX ALL ON [dbo].[DimProduct] REBUILD
 ```
 
@@ -247,16 +247,16 @@ ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_CO
 ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_COMPRESSION = COLUMNSTORE)
 ```
 
-La reconstruction d’un index dans SQL Data Warehouse est une opération hors connexion.  Pour plus d’informations sur la reconstruction d’index, consultez la section ALTER INDEX REBUILD dans [Columnstore Indexes Defragmentation][Columnstore Indexes Defragmentation] (Défragmentation d’index columnstore) et la rubrique sur la syntaxe [ALTER INDEX][ALTER INDEX].
+La reconstruction d’un index dans SQL Data Warehouse est une opération hors connexion.  Pour plus d’informations sur la reconstruction d’index, consultez hello ALTER INDEX REBUILD section [défragmentation des index Columnstore] [ Columnstore Indexes Defragmentation] et la rubrique syntaxe hello [ALTER INDEX] [ALTER INDEX].
 
 ### <a name="step-3-verify-clustered-columnstore-segment-quality-has-improved"></a>Étape 3 : Vérifier que la qualité de segment columnstore en cluster a été améliorée
-Réexécutez la requête qui a identifié la table présentant une qualité de segment médiocre, et vérifiez que la qualité de segment a été améliorée.  Si la qualité de segment n’a pas été améliorée, cela peut signifier que les lignes de votre table sont très larges.  Utilisez une classe de ressources supérieure ou une base de données DWU lors de la reconstruction de vos index.
+Relancer la requête hello identifiée de table avec une médiocre qualité de segment et vérifier la qualité de segment a été amélioré.  Si la qualité de segment n’a pas été améliorer, il peut être que des lignes de hello dans votre table soient très larges.  Utilisez une classe de ressources supérieure ou une base de données DWU lors de la reconstruction de vos index.
 
 ## <a name="rebuilding-indexes-with-ctas-and-partition-switching"></a>Reconstruire des index avec CTAS et le basculement de partitions
-Cet exemple utilise [CTAS][CTAS] et le basculement de partitions pour reconstruire une partition de table. 
+Cet exemple utilise [SACT] [ CTAS] et basculement toorebuild une partition de table de partition. 
 
 ```sql
--- Step 1: Select the partition of data and write it out to a new table using CTAS
+-- Step 1: Select hello partition of data and write it out tooa new table using CTAS
 CREATE TABLE [dbo].[FactInternetSales_20000101_20010101]
     WITH    (   DISTRIBUTION = HASH([ProductKey])
             ,   CLUSTERED COLUMNSTORE INDEX
@@ -286,17 +286,17 @@ SELECT *
 FROM    [dbo].[FactInternetSales]
 WHERE   1=2 -- Note this table will be empty
 
--- Step 3: Switch OUT the data 
-ALTER TABLE [dbo].[FactInternetSales] SWITCH PARTITION 2 TO  [dbo].[FactInternetSales_20000101] PARTITION 2;
+-- Step 3: Switch OUT hello data 
+ALTER TABLE [dbo].[FactInternetSales] SWITCH PARTITION 2 too [dbo].[FactInternetSales_20000101] PARTITION 2;
 
--- Step 4: Switch IN the rebuilt data
-ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [dbo].[FactInternetSales] PARTITION 2;
+-- Step 4: Switch IN hello rebuilt data
+ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 too [dbo].[FactInternetSales] PARTITION 2;
 ```
 
-Pour plus d’informations sur la recréation de partitions à l’aide de `CTAS`, consultez l’article [Partition][Partition].
+Pour plus d’informations sur la recréation des partitions à l’aide de `CTAS`, consultez hello [Partition] [ Partition] l’article.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations, consultez les articles [Vue d’ensemble des tables][Overview], [Types de données de table][Data Types], [Distribution d’une table][Distribute], [Partitionnement d’une table][Partition], [Maintenance des statistiques de table][Statistics] et [Tables temporaires][Temporary].  Pour en savoir plus sur les bonnes pratiques, consultez la page [Meilleures pratiques relatives à SQL Data Warehouse][SQL Data Warehouse Best Practices].
+toolearn, voir les articles hello sur [vue d’ensemble de la Table][Overview], [les Types de données de Table][Data Types], [distribution d’une Table] [ Distribute], [Partitionnement d’une Table][Partition], [gestion de statistiques de Table] [ Statistics] et [ Tables temporaires][Temporary].  toolearn en savoir plus sur les meilleures pratiques, consultez [meilleures pratiques de l’entrepôt de données SQL][SQL Data Warehouse Best Practices].
 
 <!--Image references-->
 

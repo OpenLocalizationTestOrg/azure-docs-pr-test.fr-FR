@@ -1,7 +1,7 @@
 ---
-title: "Écrire des requêtes dans Stream Analytics | Microsoft Docs"
+title: "requêtes de toowrite aaaHow dans le flux de données Analytique | Documents Microsoft"
 description: "Écrire des requêtes dans Stream Analytics et interroger des données | segment du parcours d’apprentissage."
-keywords: "comment écrire des requêtes, données de requête, écrire une requête, écriture de requêtes"
+keywords: "la façon dont les requêtes toowrite, interroger des données, écrivez une requête, l’écriture de requêtes"
 documentationcenter: 
 services: stream-analytics
 author: jeffstokes72
@@ -15,48 +15,48 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: b44b0658a06761a805708e7fdeba9e3b2cf9d3ab
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b943c34f10afd2b21789afbd341c471a5f168729
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-write-queries-in-stream-analytics"></a>Écriture de requêtes dans Stream Analytics
-Une requête de logique de traitement de flux écrite dans Azure Stream Analytics est implémentée en tant que « requête active ». Celle-ci est définie avant que la tâche ne démarre et exécutée sur les données au moment où celles-ci atteignent la tâche. La transformation des données est exprimée dans un langage de requête semblable à SQL, qui est principalement un sous-ensemble de T-SQL avec certaines extensions de langage ajoutées, comme [Windowing](https://msdn.microsoft.com/library/azure/dn835019.aspx) qui est utilisé pour exprimer la sémantique temporelle.
+# <a name="how-toowrite-queries-in-stream-analytics"></a>Fonctionnement des requêtes dans le flux de données Analytique toowrite
+L’écriture de requêtes pour le flux logique dans Azure flux Analytique de traitement est implémenté comme une « requête permanent » qui est définie avant un travail démarre et exécutés sur des données qu’il atteint le travail de hello. transformation des données Hello est exprimée dans un langage de requête de type SQL, qui est principalement un sous-ensemble T-SQL avec certaines ajouté comme des extensions de langage [fenêtrage](https://msdn.microsoft.com/library/azure/dn835019.aspx) utilisé tooexpress la sémantique temporel.
 
 ## <a name="writing-queries"></a>Écriture de requêtes :
-1. Dans votre tâche Stream Analytics dans le portail de gestion Azure, cliquez sur **Requête**.
+1. Dans votre tâche Analytique de flux de données dans le portail de gestion Azure hello, cliquez sur **requête**.
    
     ![Sélection d'une requête](./media/stream-analytics-write-queries/1-stream-analytics-write-queries.png)  
    
-    Dans le portail Azure, cliquez sur **Requête**.
+    Bonjour portail Azure, cliquez sur **requête**.
    
     ![Sélection d’un aperçu de requête](./media/stream-analytics-write-queries/query-preview-portal.png)  
-2. Les nouvelles tâches disposent d'un modèle de requête pour vous aider à commencer. Le modèle de requête effectue une requête « pass-through » qui transfère tous les champs provenant d'événements d'entrée vers la sortie.  
+2. Nouvelles tâches ont une toohelp de modèle de requête vous aideront à démarrer. requête Hello modèle effectue un « pass-through » de requête qui projette tous les champs à partir des événements d’entrée dans la sortie de hello.  
    
-   * Si vous avez défini au moins une entrée et une sortie pour votre tâche, vous pouvez remplacer les champs « [YourOutputAlias] » et « [YourInputAlias] » d'espace réservé par les alias de l'entrée et de la sortie que vous souhaitez utiliser en premier. En outre, vous pouvez toujours créer et tester votre requête dans le portail Azure Classic sans définir d'entrées et de sorties pour la tâche.
-   * Si vous souhaitez effectuer un traitement supérieur à une simple opération « pass-through », vous pouvez modifier la définition de la requête. Pour vous familiariser avec la création de requêtes, examinez les modèles de requête courants illustrés [ici](stream-analytics-stream-analytics-query-patterns.md).  
+   * Si vous avez défini au moins une entrée et sortie pour votre travail, vous pouvez remplacer hello espace réservé « [YourOutputAlias] » et « [YourInputAlias] » champs avec des alias hello Hello d’entrée et sortie que vous souhaitez utiliser tout d’abord. En outre, vous pouvez toujours créer et tester votre requête Bonjour portail classique Azure sans définir des entrées et sorties sur le travail de hello.
+   * Si vous le souhaitez tooperform davantage de traitement que direct simple, vous pouvez modifier la définition de la requête hello. tooget création de la requête, examinons certains des requêtes courantes de modèles sont capturés [ici](stream-analytics-stream-analytics-query-patterns.md).  
    
    ![Fenêtre Données de requête](./media/stream-analytics-write-queries/2-stream-analytics-write-queries.png)  
 
-## <a name="to-validate-query-data-is-working"></a>Pour vérifier le bon fonctionnement des données de requête :
-Vous pouvez vérifier que votre requête se comporte comme prévu en l'exécutant dans le navigateur sur un ou plusieurs fichiers JSON locaux contenant des données de test. Ceci ne démarre pas la tâche et n'a aucune incidence sur la facturation.
+## <a name="toovalidate-query-data-is-working"></a>données de requête toovalidate fonctionne :
+Vous pouvez vérifier que votre requête se comporte comme prévu en l’exécutant dans le navigateur de hello sur un ou plusieurs fichiers JSON locales contenant des données de test. Il ne sera pas démarrer le travail de hello ou avoir des conséquences de facturation.
 
 > [!NOTE]
-> Actuellement, le portail Azure ne prend pas en charge le test d’une requête dans le navigateur.  
+> Actuellement le test de la requête de dans le navigateur n’est pas pris en charge dans hello portail Azure.  
 > 
 > 
 
-1. Assurez-vous que la requête ne contient pas d'erreur (sinon, le bouton Test sera désactivé), puis cliquez sur le bouton Test.  
+1. Assurez-vous qu’il n’y a aucune erreur de requête hello (sinon hello Test bouton est désactivé) puis cliquez sur le bouton de Test hello.  
    
    ![Test des données de requête](./media/stream-analytics-write-queries/3-stream-analytics-write-queries.png)  
-2. Vous devrez spécifier des fichiers pour chacune des entrées référencées dans la requête. Dans cet exemple, le modèle de requête est laissé tel quel, donc la boîte de dialogue demande une entrée nommée « yourinputalias ».  
+2. Vous serez fichiers toospecify demandées pour chacune des entrées hello référencées dans la requête de hello. Dans cet exemple, la requête de modèle hello est considérée comme-étant, boîte de dialogue hello demande pour une entrée nommée « yourinputalias ».  
    
    ![Tester les données de requête](./media/stream-analytics-write-queries/4-stream-analytics-write-queries.png)  
-3. Accédez à un fichier de test. Plusieurs exemples de fichiers sont disponibles sur [github](https://github.com/Azure/azure-stream-analytics/tree/master/Sample Data) et vous pouvez également récupérer des données d’exemple à partir de vos propres entrées de flux de données avec la fonction Exemples de données de l’onglet des entrées.  
+3. Rechercher le fichier de test tooa. Plusieurs exemples de fichiers sont disponibles sur [github](https://github.com/Azure/azure-stream-analytics/tree/master/Sample Data) et vous pouvez également récupérer des exemples de données à partir de vos propres entrées de flux de données via hello fonction d’exemples de données sur l’onglet d’entrées hello.  
    
    ![Entrée de requête](./media/stream-analytics-write-queries/5-stream-analytics-write-queries.png)  
-4. Après avoir fermé la boîte de dialogue, votre requête sera exécutée sur les données de test et les résultats s'afficheront au bas de la page de requête.  
+4. Après avoir fermé la boîte de dialogue hello, votre requête sera exécutée sur les données de test hello et vous verrez des résultats hello bas hello de page de la requête hello.  
    
    ![Résumé de la requête](./media/stream-analytics-write-queries/6-stream-analytics-write-queries.png)  
 
@@ -64,7 +64,7 @@ Vous pouvez vérifier que votre requête se comporte comme prévu en l'exécutan
 Pour obtenir une assistance, essayez notre [forum Azure Stream Analytics](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Présentation d’Azure Stream Analytics](stream-analytics-introduction.md)
+* [Introduction tooAzure Analytique de flux de données](stream-analytics-introduction.md)
 * [Prise en main d’Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [Mise à l'échelle des travaux Azure Stream Analytics](stream-analytics-scale-jobs.md)
 * [Références sur le langage des requêtes d'Azure Stream Analytics](https://msdn.microsoft.com/library/azure/dn834998.aspx)

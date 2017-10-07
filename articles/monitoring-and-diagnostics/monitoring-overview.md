@@ -1,6 +1,6 @@
 ---
-title: Surveillance dans Microsoft Azure | Microsoft Docs
-description: Les choix lorsque vous souhaitez analyser quelque chose dans Microsoft Azure. Azure Monitor, Application Insights Log Analytics
+title: aaaMonitoring dans Microsoft Azure | Documents Microsoft
+description: "Choix lorsque vous souhaitez toomonitor n’est pas défini dans Microsoft Azure. Azure Monitor, Application Insights Log Analytics"
 author: rboucher
 manager: carmonm
 editor: 
@@ -14,63 +14,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/12/2017
 ms.author: robb
-ms.openlocfilehash: d4a94a92585420cf92018084437422fd0c66fa2d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f5a4f32525c52613f01a913e09a9fe3fbcbaeb21
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-monitoring-in-microsoft-azure"></a>Vue d’ensemble de l’analyse dans Microsoft Azure
-Cet article fournit une vue d’ensemble des outils disponibles pour la surveillance de Microsoft Azure. S’applique à 
+Cet article fournit une vue d’ensemble des outils disponibles pour la surveillance de Microsoft Azure. Il s’applique également
 - surveillance des applications en cours d’exécution dans Microsoft Azure 
 - outils/services s’exécutant en dehors d’Azure pouvant surveiller des objets dans Azure. 
 
-Aborde les différents produits et services disponibles et leur fonctionnement ensemble. Il peut vous aider à déterminer les outils les plus appropriés pour vous dans différents cas.  
+Elle explique hello divers produits et services disponibles et comment ils fonctionnent ensemble. Il peut vous aider toodetermine les outils les plus appropriées pour vous dans les cas.  
 
 ## <a name="why-use-monitoring-and-diagnostics"></a>Pourquoi utiliser la surveillance et les diagnostics ?
 
-Les problèmes de performances dans votre application cloud peuvent affecter votre entreprise. Avec plusieurs composants interconnectés et de nouvelles versions fréquentes, des dégradations peuvent se produire à tout moment. Et si vous développez une application, vos utilisateurs découvrent généralement des problèmes que vous n’avez pas trouvés dans le test. Vous devez prendre connaissance de ces problèmes immédiatement et disposer d’outils pour diagnostiquer et résoudre les problèmes. Microsoft Azure a une gamme d’outils permettant d’identifier ces problèmes.
+Les problèmes de performances dans votre application cloud peuvent affecter votre entreprise. Avec plusieurs composants interconnectés et de nouvelles versions fréquentes, des dégradations peuvent se produire à tout moment. Et si vous développez une application, vos utilisateurs découvrent généralement des problèmes que vous n’avez pas trouvés dans le test. Vous devez savoir immédiatement sur ces problèmes et disposer des outils de diagnostic et résolution des problèmes de hello. Microsoft Azure a une gamme d’outils permettant d’identifier ces problèmes.
 
 ## <a name="how-do-i-monitor-my-azure-cloud-apps"></a>Comment surveiller mes applications cloud Azure ?
 
-Il existe une gamme d’outils pour la surveillance des services et applications Azure. Certaines de leurs fonctionnalités se chevauchent. C’est en partie pour des raisons historiques et en partie en raison du flou entre le développement et le fonctionnement d’une application. 
+Il existe une gamme d’outils pour la surveillance des services et applications Azure. Certaines de leurs fonctionnalités se chevauchent. C’est en partie pour des raisons historiques et en partie en raison de toohello flou entre le développement et le fonctionnement d’une application. 
 
-Voici les outils principaux :
+Voici les outils principaux hello :
 
--   **Azure Monitor** est l’outil de base pour la surveillance des services s’exécutant sur Azure. Il vous fournit des données au niveau de l’infrastructure sur le débit d’un service et l’environnement. Si vous gérez toutes vos applications dans Azure et décidez d’augmenter ou de diminuer les ressources, Azure Monitor vous donne le nécessaire pour démarrer.
+-   **Azure Monitor** est l’outil de base pour la surveillance des services s’exécutant sur Azure. Il vous fournit des données de niveau de l’infrastructure sur débit hello d’un service et un hello entourant l’environnement. Si vous gérez vos applications dans Azure, vous décidez si tooscale vers le haut ou vers le bas des ressources, analyse d’Azure vous donne ensuite ce que vous utilisez toostart.
 
--   **Application Insights** peut être utilisé pour le développement et comme solution de surveillance de la production. Il fonctionne en installant un package dans votre application et vous donne donc une vue plus interne de ce qui se passe. Ses données comprennent les temps de réponse des dépendances, les traces des exceptions, le débogage des captures instantanées et les profils d’exécution. Il offre de puissants outils intelligents pour analyser toutes ces données de télémétrie afin de vous aider à déboguer une application et vous aider à comprendre ce que les utilisateurs font avec. Vous pouvez savoir si un pic dans les temps de réponse est causé par un élément dans une application, ou un problème de ressource externe. Si vous utilisez Visual Studio et que l’application est en cause, vous pouvez accéder directement aux lignes de code problématiques pour les corriger.  
+-   **Application Insights** peut être utilisé pour le développement et comme solution de surveillance de la production. Il fonctionne en installant un package dans votre application et vous donne donc une vue plus interne de ce qui se passe. Ses données comprennent les temps de réponse des dépendances, les traces des exceptions, le débogage des captures instantanées et les profils d’exécution. Il fournit des outils de smart puissants pour l’analyse de ces données de télémétrie deux toohelp vous déboguez une application et les toohelp vous comprenez ce que font les utilisateurs avec lui. Vous pouvez savoir si un pic dans le temps de réponse échéance toosomething dans une application ou un problème passait externe. Si vous utilisez Visual Studio et l’application hello est en cause, vous pouvez dirigé toohello droite problème ou les lignes de code pour vous pouvez de le résoudre.  
 
--   **Log Analytics** est destiné à ceux qui souhaitent optimiser les performances et planifier la maintenance des applications exécutées en production. Il est basé dans Azure. Il collecte et agrège les données provenant de nombreuses sources, mais avec un délai de 10 à 15 minutes. Il fournit une solution de gestion informatique globale holistique pour Azure, en local et dans les infrastructures cloud tierces (par exemple, Amazon Web Services). Il fournit des outils plus riches pour analyser les données de plusieurs sources, en acceptant des requêtes complexes sur tous les journaux et en pouvant générer des alertes de façon proactive pour des conditions spécifiées.  Vous pouvez même collecter des données personnalisées dans son référentiel central pour les interroger et visualiser. 
+-   **Ouvrez une session Analytique** est destiné à ceux qui ont besoin de maintenance de plan et de performances tootune sur les applications qui s’exécutent en production. Il est basé dans Azure. Il collecte et agrège les données de nombreuses sources, mais avec un délai de 10 minutes too15. Il fournit une solution de gestion informatique globale holistique pour Azure, en local et dans les infrastructures cloud tierces (par exemple, Amazon Web Services). Fournit des outils plus riches tooanalyze données sur d’autres sources, permet des requêtes complexes sur tous les journaux et pouvez alertes sur les conditions spécifiées.  Vous pouvez même collecter des données personnalisées dans son référentiel central pour les interroger et visualiser. 
 
 -   **System Center Operations Manager (SCOM)** pour gérer et surveiller les installations cloud à grande échelle. Vous le connaissez peut-être déjà comme outil de gestion local pour Windows Server en local et les solutions cloud basées sur Hyper-V, mais il peut également s’intégrer à et gérer des applications Azure. Entre autres choses, il peut installer Application Insights sur des applications en direct existantes.  Si une application est en panne, vous en êtes informé sous quelques secondes. Notez que Log Analytics ne remplace pas SCOM. Les deux fonctionnent bien ensemble.  
 
 
-## <a name="accessing-monitoring-in-the-azure-portal"></a>Accès à la surveillance dans le portail Azure
-Tous les services de surveillance Azure sont maintenant disponibles dans un seul volet de l’interface utilisateur. Pour en savoir plus sur l’accès à cette zone, consultez [Prise en main d’Azure Monitor](monitoring-get-started.md). 
+## <a name="accessing-monitoring-in-hello-azure-portal"></a>L’accès à la surveillance dans hello portail Azure
+Tous les services de surveillance Azure sont maintenant disponibles dans un seul volet de l’interface utilisateur. Pour plus d’informations sur la façon de tooaccess cette zone, consultez [prise en main Azure analyse](monitoring-get-started.md). 
 
 Vous pouvez également accéder à des fonctions de surveillance pour des ressources spécifiques en mettant en surbrillance ces ressources et en explorant leurs options de surveillance. 
 
-## <a name="examples-of-when-to-use-which-tool"></a>Exemples d’utilisation de l’outil 
+## <a name="examples-of-when-toouse-which-tool"></a>Exemples de situations dans lesquelles toouse qui outil 
 
-Les sections suivantes montrent quelques scénarios de base et outils devant être utilisés ensemble. 
+Hello les sections suivantes montrent quelques scénarios de base et les outils qui doivent être utilisés ensemble. 
 
 ### <a name="scenario-1--fix-errors-in-an-azure-application-under-development"></a>Scénario 1 : correction des erreurs dans une application Azure en développement   
 
-**La meilleure option consiste à utiliser conjointement Application Insights, Azure Monitor et Visual Studio**
+**est préférable de Hello toouse Application Insights, analyse d’Azure et Visual Studio d’ensemble**
 
-Azure offre désormais toute la puissance du débogueur Visual Studio dans le cloud. Configurez Azure Monitor pour envoyer la télémétrie à Application Insights. Permettez à Visual Studio d’inclure le kit de développement logiciel Application Insights dans votre application. Une fois dans Application Insights, vous pouvez utiliser la mise en correspondance d’applications pour découvrir visuellement les parties de votre application en cours d’exécution qui sont intègres et celles qui ne le sont pas. Corrigez les parties qui ne sont pas intègres, les erreurs et les exceptions déjà disponibles pour exploration. Vous pouvez utiliser les diverses analyses dans Application Insights pour approfondir la question. Si vous n’êtes pas sûr de l’erreur, vous pouvez utiliser le débogueur de Visual Studio pour effectuer le suivi dans le code et identifier plus précisément un problème. 
+Azure fournit désormais la puissance du débogueur de Visual Studio hello dans le cloud de hello hello. Configurer tooApplication de télémétrie toosend moniteur Azure Insights. Activer hello de tooinclude Visual Studio Application Insights SDK dans votre application. Une fois dans Application Insights, vous pouvez utiliser toodiscover de mappage de l’Application hello visuellement les parties de votre application en cours d’exécution sont défectueuses ou non. Corrigez les parties qui ne sont pas intègres, les erreurs et les exceptions déjà disponibles pour exploration. Vous pouvez utiliser hello analytique différents dans toogo Application Insights plus approfondis. Si vous n’êtes pas certain de l’erreur de hello, vous pouvez utiliser tootrace de débogueur Visual Studio hello en point de code et code confidentiel plus précisément un problème. 
 
-Pour plus d’informations, consultez [Surveillance d’applications web](../application-insights/app-insights-azure-web-apps.md) et reportez-vous à la table des matières sur la gauche pour obtenir des instructions sur les différents types d’applications et de langages.  
+Pour plus d’informations, consultez [d’analyse des applications Web](../application-insights/app-insights-azure-web-apps.md) et faire référence de table toohello de sommaire à gauche de hello pour obtenir des instructions sur les différents types d’applications et les langues.  
 
 ### <a name="scenario-2--debug-an-azure-net-web-application-for-errors-that-only-show-in-production"></a>Scénario 2 : déboguer une application web Azure .NET pour les erreurs qui apparaissent uniquement en production 
 
 > [!NOTE]
 > Ces fonctionnalités sont en version préliminaire. 
 
-**La meilleure option consiste à utiliser Application Insights et si possible de Visual Studio pour une expérience de débogage complète.**
+**Hello meilleure option est toouse Application Insights et si possible Visual Studio pour hello complète expérience de débogage.**
 
-Utilisez le débogueur d’instantanés d’Application Insights pour déboguer votre application. Lorsqu’un certain seuil d’erreur se produit avec des composants de production, le système capture automatiquement les données de télémétrie de Windows dans des « instantanés ». La quantité capturée est sûre pour une solution cloud de production, car elle est suffisamment petite pour ne pas affecter les performances, mais suffisamment significative pour permettre le traçage.  Le système peut capturer plusieurs instantanés. Vous pouvez examiner un moment donné dans le portail Azure ou utiliser Visual Studio pour l’expérience complète. Avec Visual Studio, les développeurs peuvent parcourir cet instantané comme s’ils effectuaient le débogage en temps réel. Les paramètres, la mémoire, les variables locales et les trames sont tous disponibles. Les développeurs doivent avoir accès à ces données de production via un rôle RBAC.  
+Utilisez hello Application Insights instantané débogueur toodebug votre application. Lorsqu’un certain seuil d’erreur se produit avec les composants de production, système de hello capture automatiquement les données de télémétrie de windows appelée « instantanés ». Hello quantité capturée est sécurisée pour un cloud de production, car elle est petite suffisamment pas tooaffect performances, mais le suivi de tooallow assez important.  système de Hello peut capturer plusieurs instantanés. Vous pouvez examiner un point dans le temps dans hello portail Azure ou utiliser Visual Studio pour une expérience complète hello. Avec Visual Studio, les développeurs peuvent parcourir cet instantané comme s’ils effectuaient le débogage en temps réel. Les paramètres, la mémoire, les variables locales et les trames sont tous disponibles. Les développeurs doivent pouvoir accéder aux données de production toothis via un rôle RBAC.  
 
 Pour plus d’informations, consultez [Débogage d’instantané](../application-insights/app-insights-snapshot-debugger.md). 
 
@@ -81,12 +81,12 @@ Pour plus d’informations, consultez [Débogage d’instantané](../application
 
 ### <a name="scenario-4--fix-performance-issues-in-your-azure-application"></a>Scénario 4 : corriger les problèmes de performances dans votre application Azure
 
-Le [profileur d’Application Insights](../application-insights/app-insights-profiler.md) est conçu pour vous aider à résoudre ces types de problèmes. Vous pouvez identifier et résoudre les problèmes de performances pour les applications qui s’exécutent dans App Service (applications web, applications logiques, applications mobiles, applications d’API) et d’autres ressources de calcul comme les machines virtuelles, les jeux de mise à l’échelle de machines virtuelles, les services de cloud computing et Service Fabric. 
+Hello [profileur d’Application Insights](../application-insights/app-insights-profiler.md) est conçue toohelp résoudre ces types de problèmes. Vous pouvez identifier et résoudre les problèmes de performances pour les applications qui s’exécutent dans App Service (applications web, applications logiques, applications mobiles, applications d’API) et d’autres ressources de calcul comme les machines virtuelles, les jeux de mise à l’échelle de machines virtuelles, les services de cloud computing et Service Fabric. 
 
 > [!NOTE]
-> La fonctionnalité de profilage de machines virtuelles, de jeux de mise à l’échelle de machines virtuelles, de services cloud et de Service Fabric est en version préliminaire.   
+> Capacité tooprofile ordinateurs virtuels, machines virtuelles identiques (mise), Services de cloud computing et les Services de Fabric est en version préliminaire.   
 
-De plus, vous êtes proactivement informé par courrier électronique de certains types d’erreurs, comme les temps de chargement de page lents, par l’outil de détection intelligente.  Vous n’avez pas besoin d’effectuer de configuration pour cet outil. Pour plus d’informations, consultez [Détection intelligente - anomalies de performances](../application-insights/app-insights-proactive-performance-diagnostics.md) et [Détection intelligente - anomalies de performances](https://azure.microsoft.com/blog/Enhancments-ApplicationInsights-SmartDetection/preview).
+En outre, vous sont proactive informé par courrier électronique sur certains types d’erreurs, telles que des délais de chargement lent des pages, par un outil de détection actives hello.  Vous n’avez pas besoin toodo toute configuration de cet outil. Pour plus d’informations, consultez [Détection intelligente - anomalies de performances](../application-insights/app-insights-proactive-performance-diagnostics.md) et [Détection intelligente - anomalies de performances](https://azure.microsoft.com/blog/Enhancments-ApplicationInsights-SmartDetection/preview).
 
 
 
@@ -95,6 +95,6 @@ En savoir plus sur
 
 * [Azure Monitor dans une vidéo de l’Ignite 2016](https://myignite.microsoft.com/videos/4977)
 * [Prise en main d’Azure Monitor](monitoring-get-started.md)
-* [Azure Diagnostic](../azure-diagnostics.md) si vous tentez de diagnostiquer des problèmes dans votre service cloud, machine virtuelle, jeux de mise à l’échelle de machine virtuelle ou application Service Fabric.
-* [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) si vous essayez de diagnostiquer des problèmes dans votre application web App Service.
-* [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) et la solution de surveillance de production [Operations Management Suite](https://www.microsoft.com/oms/)
+* [Diagnostics Azure](../azure-diagnostics.md) si vous essayez de toodiagnose des problèmes dans votre Service Cloud, l’ordinateur virtuel, machine virtuelle à l’échelle définie ou le Service application de l’ensemble fibre optique.
+* [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) si vous essayez de toodiagnostic des problèmes dans votre application de Service Web de l’application.
+* [Ouvrez une session Analytique](https://azure.microsoft.com/documentation/services/log-analytics/) et hello [Operations Management Suite](https://www.microsoft.com/oms/) solution de surveillance de la production

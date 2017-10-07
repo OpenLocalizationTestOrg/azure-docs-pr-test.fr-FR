@@ -1,6 +1,6 @@
 ---
-title: "Chiffrer votre contenu avec le chiffrement de stockage à l'aide de l'API REST AMS"
-description: "Découvrez comment chiffrer votre contenu avec le chiffrement de stockage à l'aide des API REST AMS."
+title: "aaaEncrypting votre contenu avec chiffrement de stockage à l’aide des API REST de AMS"
+description: "Découvrez comment tooencrypt votre contenu avec chiffrement de stockage à l’aide des API REST de AMS."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: 1979f5bf5e8cab88dab5fba49018afacf24504b3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d5f8cb8dd1dcded76c9fededccc772d8102ccbad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="encrypting-your-content-with-storage-encryption"></a>Chiffrer votre contenu avec le chiffrement de stockage
 
-Il est fortement recommandé de chiffrer votre contenu localement à l’aide du chiffrement AES 256 bits, puis de le charger vers Azure Storage où il sera stocké au repos sous forme chiffrée.
+Il est vivement recommandé tooencrypt votre contenu localement avec AES-256 bits de chiffrement, puis le télécharger tooAzure Storage où il sera stocké et chiffré au repos.
 
-Cet article donne une vue d'ensemble du chiffrement de stockage AMS et vous montre comment télécharger le contenu chiffré du stockage :
+Cet article donne une vue d’ensemble du chiffrement de stockage AMS et vous montre comment tooupload hello stockage chiffré dans le contenu :
 
 * Créez une clé de contenu.
-* Créez une ressource. Définissez AssetCreationOption sur StorageEncryption lors de la création de la ressource.
+* Créez une ressource. Définissez hello AssetCreationOption tooStorageEncryption lors de la création de hello actif.
   
-     Les ressources chiffrées doivent être associées à des clés de contenu.
-* Liez la clé de contenu à la ressource.  
-* Définissez les paramètres liés au chiffrement sur les entités AssetFile.
+     Les éléments multimédias chiffrés ont toobe associé aux clés de contenu.
+* Ressource de contenu toohello clé lien hello.  
+* Définir le chiffrement hello les paramètres sur les entités AssetFile hello.
 
 ## <a name="considerations"></a>Considérations 
 
-Si vous souhaitez remettre une ressource à chiffrement de stockage, vous devez configurer la stratégie de remise de la ressource. Avant de pouvoir diffuser votre ressource en continu, le serveur de diffusion supprime le chiffrement de stockage et transmet en continu votre contenu à l’aide de la stratégie de remise spécifiée. Pour plus d'informations, consultez [Configuration des stratégies de distribution de ressources](media-services-rest-configure-asset-delivery-policy.md).
+Si vous voulez toodeliver un élément multimédia chiffré de stockage, vous devez configurer la stratégie de remise de l’élément multimédia hello. Avant que votre élément multimédia peut être transmis en continu, hello de diffusion en continu flux et chiffrement de stockage de serveur supprime hello votre contenu à l’aide de hello spécifié de stratégie de remise. Pour plus d'informations, consultez [Configuration des stratégies de distribution de ressources](media-services-rest-configure-asset-delivery-policy.md).
 
 Lors de l’accès aux entités dans Media Services, vous devez définir les valeurs et les champs d’en-tête spécifiques dans vos requêtes HTTP. Pour plus d'informations, consultez [Installation pour le développement REST API de Media Services](media-services-rest-how-to-use.md). 
 
-## <a name="connect-to-media-services"></a>Connexion à Media Services
+## <a name="connect-toomedia-services"></a>Connecter les Services de tooMedia
 
-Pour savoir comment vous connecter à l’API AMS, consultez [Accéder à l’API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Pour plus d’informations sur la façon dont tooconnect toohello AMS API, consultez [hello accès API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Après vous être connecté à https://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI Media Services. Vous devez faire d’autres appels au nouvel URI.
+>Après vous être connecté toohttps://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI de Media Services. Vous devez effectuer les appels suivants toohello nouvel URI.
 
 ## <a name="storage-encryption-overview"></a>Vue d’ensemble du chiffrement du stockage
-Le chiffrement de stockage AMS applique le mode de chiffrement **AES-CTR** à la totalité du fichier.  Le mode AES-CTR est un chiffrement par blocs qui permet de chiffrer des données de longueur arbitraire sans avoir besoin de remplissage. Il fonctionne en chiffrant un bloc de compteur avec l'algorithme AES, puis en appliquant l’opération XOR à la sortie d’AES avec les données à chiffrer ou déchiffrer.  Le bloc de compteur utilisé est construit en copiant la valeur InitializationVector sur les octets 0 à 7 de la valeur du compteur et les octets 8 à 15 de la valeur du compteur ont la valeur zéro. Dans le bloc de compteur de 16 octets, les octets 8 à 15 (c'est-à-dire les octets les moins significatifs) sont utilisés comme simple entier non signé de 64 bits, incrémenté de un pour chacun des blocs suivants de données traitées et conservé dans l'ordre des octets du réseau. Notez que, si cet entier atteint la valeur maximale (0xFFFFFFFFFFFFFFFF), son incrémentation réinitialise le compteur de blocs à zéro (octets 8 à 15) sans affecter les autres 64 bits du compteur (c'est-à-dire les octets 0 à 7).   Pour maintenir la sécurité du mode de chiffrement AES-CTR, la valeur InitializationVector pour un identificateur de clé donné pour chaque clé de contenu doit être unique pour chaque fichier et les fichiers doivent avoir une longueur inférieure à 2^64 blocs.  Cela permet de faire en sorte qu'aucune valeur de compteur ne soit jamais réutilisée avec une clé donnée. Pour plus d'informations sur le mode CTR, consultez [cette page wiki](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#CTR) (l'article wiki utilise le terme « Nonce » au lieu de « InitializationVector »).
+s’applique le chiffrement de stockage Hello AMS **AES-CTR** mode chiffrement toohello intégralité du fichier.  Le mode AES-CTR est un chiffrement par blocs qui permet de chiffrer des données de longueur arbitraire sans avoir besoin de remplissage. Il s’exécute par chiffrement un bloc de compteur avec l’algorithme AES de hello et ensuite la sortie de hello XOR-effectue une opération d’AES avec hello données tooencrypt ou de déchiffrer.  bloc de compteur Hello utilisé est construit en copiant la valeur hello hello InitializationVector toobytes 0 too7 de la valeur du compteur hello et too15 octets 8 de la valeur du compteur hello sont définies toozero. Du bloc de compteur de 16 octets hello, octets 8 too15 (c'est-à-dire hello octets les moins significatifs) sont utilisés comme un entier non signé simple 64 bits qui est incrémenté d’un pour chaque bloc de données traitées et est conservé dans l’ordre d’octet du réseau. Notez que si cet entier atteint la valeur maximale hello (0xFFFFFFFFFFFFFFFF) puis incrémenter réinitialise hello bloc compteur toozero (too15 octets 8) sans affecter hello autres 64 bits du compteur de hello (autrement dit, les too7 octets 0).   Dans l’ordre toomaintain hello la sécurité de chiffrement de mode hello AES-CTR, hello InitializationVector valeur pour un identificateur de clé donnée pour chaque clé de contenu doit être unique pour chaque fichier et de fichiers doivent être inférieure à 2 ^ 64 blocs de longueur.  Il s’agit de tooensure une valeur de compteur n’est jamais réutilisé avec une clé donnée. Pour plus d’informations sur le mode CTR hello, consultez [cette page wiki](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#CTR) (article wiki de hello utilise le terme hello « Nonce » au lieu de « InitializationVector »).
 
-Utilisez le **chiffrement du stockage** pour chiffrer votre contenu localement à l’aide du chiffrement AES 256 bits, puis chargez-le vers Azure Storage où il est stocké au repos sous forme chiffrée. Les éléments multimédias protégés par le chiffrement de stockage sont automatiquement déchiffrés et placés dans un système de fichiers chiffré avant d’être encodés, puis éventuellement rechiffrés avant d’être rechargés sous la forme d’un nouvel élément multimédia de sortie. Le principal cas d’utilisation du chiffrement de stockage concerne la sécurisation des fichiers multimédias d’entrée de haute qualité avec un chiffrement renforcé au repos sur le disque.
+Utilisez **le chiffrement de stockage** tooencrypt votre contenu en clair localement avec AES-256 bits de chiffrement, puis le télécharger tooAzure Storage où il est stocké et chiffré au repos. Les éléments multimédias protégés par chiffrement de stockage sont automatiquement déchiffrés et placés dans un tooencoding préalable de système de fichiers chiffrés et éventuellement RE-chiffrée toouploading préalable comme un nouvel élément multimédia de sortie. Hello est principalement utilisé pour le chiffrement de stockage lorsque vous souhaitez toosecure vos fichiers multimédias d’entrée de haute qualité avec un chiffrement renforcé au reste sur le disque.
 
-Pour fournir un élément multimédia avec chiffrement de stockage, vous devez configurer la stratégie de remise de l'élément multimédia afin que Media Services sache comment vous souhaitez remettre votre contenu. Pour que votre élément multimédia puisse être diffusé en continu, le serveur de diffusion supprime le chiffrement de stockage et diffuse votre contenu à l'aide de la stratégie de remise spécifiée (par exemple AES, chiffrement commun ou aucun chiffrement).
+Dans l’ordre toodeliver un élément multimédia chiffré de stockage, vous devez configurer la stratégie de remise de hello actif afin que Media Services sache comment vous souhaitez que toodeliver votre contenu. Avant que votre élément multimédia peut être transmis en continu, hello de diffusion en continu flux et chiffrement de stockage de serveur supprime hello votre contenu à l’aide de hello spécifié de stratégie de remise (par exemple, AES, chiffrement commun ou aucun chiffrement).
 
 ## <a name="create-contentkeys-used-for-encryption"></a>Créer des ContentKeys utilisées pour le chiffrement
-Les ressources chiffrées doivent être associées à une clé de chiffrement du stockage. Vous devez créer la clé de contenu à utiliser pour le chiffrement avant de créer les fichiers de ressources. Cet article décrit la création d’une clé de contenu.
+Les éléments multimédias chiffrés ont toobe associé à la clé de chiffrement de stockage. Vous devez créer hello contenu toobe clé utilisé pour le chiffrement avant de créer des fichiers d’éléments multimédias hello. Cette section décrit comment toocreate une clé de contenu.
 
-Voici les étapes générales pour la génération de clés de contenu que vous allez associer à des ressources devant être chiffrées. 
+Hello Voici les étapes générales pour la génération de clés de contenu que vous associerez avec les composants qui vous voulez toobe chiffré. 
 
 1. Pour le chiffrement du stockage, générez de façon aléatoire une clé AES de 32 octets. 
    
-    Il s’agit de la clé de contenu de votre ressource, ce qui signifie que tous les fichiers associés à cette ressource doivent utiliser la même clé de contenu lors du déchiffrement. 
-2. Appelez les méthodes [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) et [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) pour obtenir le certificat X.509 approprié qui doit être utilisé pour chiffrer votre clé de contenu.
-3. Chiffrez votre clé de contenu avec la clé publique du certificat X.509. 
+    Ce sera la clé de contenu hello pour votre élément multimédia, ce qui signifie que tous les fichiers associés à cet élément multimédia sera peut-être toouse hello même clé de contenu pendant le déchiffrement. 
+2. Appelez hello [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) et [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) tooget de méthodes hello certificat X.509 correct doit être utilisé tooencrypt votre clé de contenu.
+3. Chiffrer votre clé de contenu avec une clé publique du certificat X.509 de hello hello. 
    
-   Le Kit de développement logiciel (SDK) Media Services pour .NET utilise RSA avec OAEP lorsque vous effectuez le chiffrement.  Vous trouverez un exemple .NET dans la [fonction EncryptSymmetricKeyData](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
-4. Créez une valeur de somme de contrôle calculée à l'aide de l'identificateur de clé et de la clé de contenu. L’exemple .NET suivant calcule la somme de contrôle à l’aide de la partie GUID de l’identificateur de clé et de la clé de contenu en clair.
+   Media Services .NET SDK utilise RSA avec OAEP lorsque vous effectuez un chiffrement de hello.  Vous pouvez voir un exemple .NET Bonjour [EncryptSymmetricKeyData fonction](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
+4. Créez une valeur de somme de contrôle calculée à l’aide d’identificateur de clé hello et clé de contenu. Hello .NET l’exemple suivant calcule la somme de contrôle hello à l’aide de la partie GUID de hello d’identificateur de clé hello et hello effacer la clé de contenu.
 
         public static string CalculateChecksum(byte[] contentKey, Guid keyId)
         {
@@ -74,8 +74,8 @@ Voici les étapes générales pour la génération de clés de contenu que vous 
 
             byte[] encryptedKeyId = null;
 
-            // Checksum is computed by AES-ECB encrypting the KID
-            // with the content key.
+            // Checksum is computed by AES-ECB encrypting hello KID
+            // with hello content key.
             using (AesCryptoServiceProvider rijndael = new AesCryptoServiceProvider())
             {
                 rijndael.Mode = CipherMode.ECB;
@@ -93,22 +93,22 @@ Voici les étapes générales pour la génération de clés de contenu que vous 
             return Convert.ToBase64String(retVal);
         }
 
-1. Créez la clé de contenu avec les valeurs **EncryptedContentKey** (convertie en chaîne codée en Base64), **ProtectionKeyId**, **ProtectionKeyType**, **ContentKeyType** et **Checksum** que vous avez obtenues lors des étapes précédentes.
+1. Créer la clé de contenu hello avec hello **EncryptedContentKey** (converties en chaîne encodée toobase64), **ProtectionKeyId**, **ProtectionKeyType**,  **ContentKeyType**, et **Checksum** valeurs que vous avez reçu dans les étapes précédentes.
 
-    Pour le chiffrement du stockage, les propriétés suivantes doivent être incluses dans le corps de la demande.
+    Pour le chiffrement de stockage, hello propriétés suivantes doivent être incluses dans le corps de la demande hello.
 
     Propriété du corps de la demande    | Description
     ---|---
-    Id | ID de ContentKey que nous générons nous-mêmes en utilisant le format suivant : « nb:kid:UUID:<NEW GUID> ».
-    ContentKeyType | Il s’agit du type de clé de contenu en tant qu’entier pour cette clé de contenu. Nous transmettons la valeur 1 pour le chiffrement du stockage.
-    EncryptedContentKey | Nous créons une valeur de clé de contenu qui est une valeur de 256 bits (32 octets). La clé est chiffrée à l’aide du certificat X.509 de chiffrement du stockage que nous récupérons à partir de Microsoft Azure Media Services en exécutant une demande HTTP GET pour les méthodes GetProtectionKeyId et GetProtectionKey. À titre d’exemple, consultez le code .NET suivant : la méthode **EncryptSymmetricKeyData** définie [ici](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
-    ProtectionKeyId | Il s’agit de l’ID de clé de protection pour le certificat X.509 de chiffrement de stockage qui a été utilisé pour chiffrer notre clé de contenu.
-    ProtectionKeyType | Il s’agit du type de chiffrement de la clé de protection qui a été utilisé pour chiffrer la clé de contenu. Cette valeur est StorageEncryption(1) dans notre exemple.
-    Somme de contrôle |La somme de contrôle calculée MD5 pour la clé de contenu. Elle est calculée en chiffrant l’ID de contenu avec la clé de contenu. L’exemple de code montre comment calculer la somme de contrôle.
+    Id | Hello Id de ContentKey que nous générons nous-mêmes hello suivant à l’aide de mettre en forme, « Kid :<NEW GUID>».
+    ContentKeyType | Type de clé de contenu hello il s’agit en tant qu’entier pour cette clé de contenu. Nous transmettons la valeur hello 1 pour le chiffrement de stockage.
+    EncryptedContentKey | Nous créons une valeur de clé de contenu qui est une valeur de 256 bits (32 octets). clé de Hello est chiffré à l’aide de hello stockage certificat X.509 de chiffrement que nous récupérons à partir de Microsoft Azure Media Services en exécutant une demande HTTP GET hello GetProtectionKeyId et GetProtectionKey méthodes. Par exemple, consultez hello suivant le code .NET : hello **EncryptSymmetricKeyData** méthode définie [ici](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
+    ProtectionKeyId | Cela est hello id de clé de protection pour le certificat X.509 de chiffrement de stockage de hello a été utilisé tooencrypt notre clé de contenu.
+    ProtectionKeyType | Il s’agit de type de chiffrement de hello pour la clé de protection hello clé de contenu utilisés tooencrypt hello. Cette valeur est StorageEncryption(1) dans notre exemple.
+    Somme de contrôle |somme de contrôle calculée Hello MD5 pour la clé de contenu hello. Elle est calculée en chiffrant l’Id de contenu hello avec la clé de contenu hello. Hello exemple de code montre comment toocalculate hello somme de contrôle.
 
 
-### <a name="retrieve-the-protectionkeyid"></a>Récupération de ProtectionKeyId
-L’exemple suivant montre comment récupérer ProtectionKeyId, une empreinte de certificat, pour le certificat que vous devez utiliser pour chiffrer votre clé de contenu. Effectuez cette étape pour vous assurer que vous possédez déjà le certificat approprié sur votre ordinateur.
+### <a name="retrieve-hello-protectionkeyid"></a>Récupérer hello ProtectionKeyId
+Bonjour à l’exemple suivant montre comment tooretrieve hello ProtectionKeyId, une empreinte de certificat pour le certificat hello vous devez utiliser lors du chiffrement de votre clé de contenu. Effectuez cette étape toomake que vous avez déjà les certificats appropriés hello sur votre ordinateur.
 
 Demande :
 
@@ -138,8 +138,8 @@ Réponse :
 
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String","value":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C"}
 
-### <a name="retrieve-the-protectionkey-for-the-protectionkeyid"></a>Récupération de ProtectionKey pour ProtectionKeyId
-L’exemple suivant montre comment récupérer le certificat X.509 à l’aide de ProtectionKeyId, que vous avez reçue lors de l’étape précédente.
+### <a name="retrieve-hello-protectionkey-for-hello-protectionkeyid"></a>Récupérer ProtectionKey de hello pour hello ProtectionKeyId
+Hello suivant montre comment le certificat X.509 de tooretrieve hello à l’aide de hello ProtectionKeyId vous avez reçu dans l’étape précédente de hello.
 
 Demande :
 
@@ -172,12 +172,12 @@ Réponse :
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String",
     "value":"MIIDSTCCAjGgAwIBAgIQqf92wku/HLJGCbMAU8GEnDANBgkqhkiG9w0BAQQFADAuMSwwKgYDVQQDEyN3YW1zYmx1cmVnMDAxZW5jcnlwdGFsbHNlY3JldHMtY2VydDAeFw0xMjA1MjkwNzAwMDBaFw0zMjA1MjkwNzAwMDBaMC4xLDAqBgNVBAMTI3dhbXNibHVyZWcwMDFlbmNyeXB0YWxsc2VjcmV0cy1jZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzR0SEbXefvUjb9wCUfkEiKtGQ5Gc328qFPrhMjSo+YHe0AVviZ9YaxPPb0m1AaaRV4dqWpST2+JtDhLOmGpWmmA60tbATJDdmRzKi2eYAyhhE76MgJgL3myCQLP42jDusWXWSMabui3/tMDQs+zfi1sJ4Ch/lm5EvksYsu6o8sCv29VRwxfDLJPBy2NlbV4GbWz5Qxp2tAmHoROnfaRhwp6WIbquk69tEtu2U50CpPN2goLAqx2PpXAqA+prxCZYGTHqfmFJEKtZHhizVBTFPGS3ncfnQC9QIEwFbPw6E5PO5yNaB68radWsp5uvDg33G1i8IT39GstMW6zaaG7cNQIDAQABo2MwYTBfBgNVHQEEWDBWgBCOGT2hPhsvQioZimw8M+jOoTAwLjEsMCoGA1UEAxMjd2Ftc2JsdXJlZzAwMWVuY3J5cHRhbGxzZWNyZXRzLWNlcnSCEKn/dsJLvxyyRgmzAFPBhJwwDQYJKoZIhvcNAQEEBQADggEBABcrQPma2ekNS3Wc5wGXL/aHyQaQRwFGymnUJ+VR8jVUZaC/U/f6lR98eTlwycjVwRL7D15BfClGEHw66QdHejaViJCjbEIJJ3p2c9fzBKhjLhzB3VVNiLIaH6RSI1bMPd2eddSCqhDIn3VBN605GcYXMzhYp+YA6g9+YMNeS1b+LxX3fqixMQIxSHOLFZ1G/H2xfNawv0VikH3djNui3EKT1w/8aRkUv/AAV0b3rYkP/jA1I0CPn0XFk7STYoiJ3gJoKq9EMXhit+Iwfz0sMkfhWG12/XO+TAWqsK1ZxEjuC9OzrY7pFnNxs4Mu4S8iinehduSpY+9mDd3dHynNwT4="}
 
-### <a name="create-the-content-key"></a>Créez la clé de contenu
-Après avoir récupéré le certificat X.509 et utilisé sa clé publique pour chiffrer votre clé de contenu, créez une entité **ContentKey** et définissez ses valeurs de propriété en conséquence.
+### <a name="create-hello-content-key"></a>Créer la clé de contenu hello
+Après avoir récupéré le certificat X.509 de hello et utilisé son tooencrypt de clé publique de votre clé de contenu, créez un **ContentKey** entité et définissez sa propriété de valeurs en conséquence.
 
-Une des valeurs que vous devez définir lors de la création d’une clé de contenu est son type. Dans le cas du chiffrement de stockage, la valeur est « 1 ». 
+Une des valeurs hello que vous devez définir quand créer hello contenu clé est de type de hello. En cas de chiffrement de stockage hello, valeur de hello est « 1 ». 
 
-L’exemple suivant montre comment créer une **ContentKey** avec un **ContentKeyType** défini pour le chiffrement du stockage (« 1 ») et le **ProtectionKeyType** défini sur « 0 » pour indiquer que l’ID de la clé de protection est l’empreinte numérique du certificat X.509.  
+Hello suivant montre l’exemple de comment toocreate un **ContentKey** avec un **ContentKeyType** définie pour le chiffrement de stockage (« 1 ») et hello **ProtectionKeyType** défini trop « 0 » tooindicate qui hello Id de clé de protection est l’empreinte de certificat X.509 hello.  
 
 Demande
 
@@ -226,8 +226,8 @@ Réponse :
     "ProtectionKeyType":0,
     "Checksum":"calculated checksum"}
 
-## <a name="create-an-asset"></a>Création d’une ressource
-L’exemple suivant montre comment créer une ressource.
+## <a name="create-an-asset"></a>Créer une ressource
+Hello suivant montre l’exemple de comment toocreate un élément multimédia.
 
 **Demande HTTP**
 
@@ -245,7 +245,7 @@ L’exemple suivant montre comment créer une ressource.
 
 **Réponse HTTP**
 
-Si l’opération réussit, l’élément suivant est retourné :
+En cas de réussite, suivant de hello est retournée :
 
     HTP/1.1 201 Created
     Cache-Control: no-cache
@@ -273,8 +273,8 @@ Si l’opération réussit, l’élément suivant est retourné :
        "StorageAccountName":"storagetestaccount001"
     }
 
-## <a name="associate-the-contentkey-with-an-asset"></a>Association de la ContentKey avec une ressource
-Après avoir créé la ContentKey, associez-la à votre ressource à l’aide de l’opération $links, comme illustré dans l’exemple suivant :
+## <a name="associate-hello-contentkey-with-an-asset"></a>Associer des hello ContentKey à un élément multimédia
+Après avoir créé le hello ContentKey, associez-le à votre élément multimédia à l’aide de l’opération de hello $links, comme indiqué dans hello l’exemple suivant :
 
 Demande :
 
@@ -295,11 +295,11 @@ Réponse :
     HTTP/1.1 204 No Content 
 
 ## <a name="create-an-assetfile"></a>Création d’un AssetFile
-L’entité [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) représente un fichier audio ou vidéo stocké dans un conteneur d’objets blob. Un fichier de ressources est toujours associé à une ressource et une ressource peut contenir un ou plusieurs fichiers de ressources. La tâche de Media Services Encoder échoue si un objet de fichier de ressources n’est pas associé à un fichier numérique dans un conteneur d’objets blob.
+Hello [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) entité représente un fichier vidéo ou audio qui est stocké dans un conteneur d’objets blob. Un fichier de ressources est toujours associé à une ressource et une ressource peut contenir un ou plusieurs fichiers de ressources. tâche d’encodeur Media Services Hello échoue si un objet de fichier actif n’est pas associé à un fichier numérique dans un conteneur d’objets blob.
 
-Notez que l’instance **AssetFile** et le fichier multimédia réel sont deux objets distincts. L’instance AssetFile contient des métadonnées concernant le fichier multimédia, tandis que le fichier multimédia contient le contenu multimédia réel.
+Notez que hello **AssetFile** instance et le fichier multimédia lui-même de hello sont deux objets distincts. instance AssetFile de Hello contient des métadonnées sur le fichier du média hello, tandis que le fichier du média hello contient le contenu du média réel hello.
 
-Après avoir téléchargé le fichier multimédia numérique dans un conteneur d’objets blob, vous utiliserez la demande HTTP **MERGE** pour mettre à jour AssetFile avec des informations sur votre fichier multimédia (non indiqué dans cette rubrique). 
+Après avoir téléchargé votre fichier multimédia numérique sur un conteneur d’objets blob, vous allez utiliser hello **fusion** tooupdate hello AssetFile HTTP demande des informations sur votre fichier de support (non illustré dans cette rubrique). 
 
 **Demande HTTP**
 

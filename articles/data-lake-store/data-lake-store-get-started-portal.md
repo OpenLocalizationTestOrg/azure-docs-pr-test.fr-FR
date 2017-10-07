@@ -1,6 +1,6 @@
 ---
-title: "Prise en main de Data Lake Store à l’aide du Portail Azure | Microsoft Docs"
-description: "Utiliser le Portail Azure pour créer un compte Data Lake Store et effectuer des opérations de base dans Data Lake Store"
+title: aaaUse tooget portail Azure en main Data Lake Store | Documents Microsoft
+description: "Utilisez hello toocreate portail Azure un compte Data Lake Store et effectuer des opérations de base Bonjour Data Lake Store"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/06/2017
 ms.author: nitinme
-ms.openlocfilehash: fa13266993017374ba49709f8e22fbe6b03a28c7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6bb3413f00bfa4393f08aed18bc1d5f8a2f28fc5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-data-lake-store-using-the-azure-portal"></a>Prise en main d’Azure Data Lake Store à l’aide du portail Azure
+# <a name="get-started-with-azure-data-lake-store-using-hello-azure-portal"></a>Prise en main Azure Data Lake Store à l’aide de hello portail Azure
 > [!div class="op_single_selector"]
 > * [Portail](data-lake-store-get-started-portal.md)
 > * [PowerShell](data-lake-store-get-started-powershell.md)
@@ -33,43 +33,43 @@ ms.lasthandoff: 08/18/2017
 >
 > 
 
-Apprenez à utiliser le portail Azure pour créer un compte Azure Data Lake Store et effectuer des opérations de base telles que la création de dossiers, le chargement et le téléchargement de fichiers de données, la suppression de votre compte, etc. Pour plus d’informations, consultez l’article [Présentation d’Azure Data Lake Store](data-lake-store-overview.md).
+Découvrez comment toouse hello toocreate portail Azure un compte Azure Data Lake Store et effectuer des opérations de base telles que créer des dossiers, téléchargent et téléchargement des fichiers de données, supprimez votre compte, un etc.. Pour plus d’informations, consultez l’article [Présentation d’Azure Data Lake Store](data-lake-store-overview.md).
 
-Les deux vidéos ci-après contiennent les mêmes informations que celles décrites dans cet article :
+Hello suivant deux vidéos contiennent hello les mêmes informations comme décrit dans cet article :
 
 * [Créer un compte Data Lake Store](https://mix.office.com/watch/1k1cycy4l4gen)
-* [Manage data in Data Lake Store using the Data Explorer (Gérer les données dans Data Lake Store à l’aide de l’Explorateur de données)](https://mix.office.com/watch/icletrxrh6pc)
+* [Gérer les données dans Data Lake Store à l’aide de hello Explorateur de données](https://mix.office.com/watch/icletrxrh6pc)
 
 ## <a name="prerequisites"></a>Composants requis
-Avant de commencer ce didacticiel, vous devez disposer des éléments suivants :
+Avant de commencer ce didacticiel, vous devez disposer des éléments suivants de hello :
 
 * **Un abonnement Azure**. Consultez la page [Obtention d’un essai gratuit d’Azure](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="create-an-azure-data-lake-store-account"></a>Créer un compte Azure Data Lake Store
 
-1. Inscrivez-vous au nouveau [portail Azure](https://portal.azure.com).
-2. Cliquez sur **NOUVEAU**, puis sur **Données + Stockage** et enfin sur **Azure Data Lake Store**. Lisez les informations contenues dans le panneau **Azure Data Lake Store**, puis cliquez sur **Créer** dans le coin inférieur gauche du panneau.
-3. Dans le panneau **Nouveau magasin Data Lake Store**, fournissez les valeurs indiquées dans la capture d’écran suivante :
+1. Ouverture de session toohello nouvelle [portail Azure](https://portal.azure.com).
+2. Cliquez sur **NOUVEAU**, puis sur **Données + Stockage** et enfin sur **Azure Data Lake Store**. Lire les informations de hello Bonjour **Azure Data Lake Store** panneau, puis cliquez sur **créer** dans hello coin inférieur gauche du Panneau de hello.
+3. Bonjour **nouveau Data Lake Store** panneau, indiquez les valeurs de hello comme illustré dans hello suivant capture d’écran :
    
     ![Créer un compte Azure Data Lake Store](./media/data-lake-store-get-started-portal/ADL.Create.New.Account.png "Créer un compte Azure Data Lake")
    
-   * **Nom**. Entrez un nom unique pour le compte Data Lake Store.
-   * **Abonnement**. Sélectionnez l’abonnement sous lequel vous souhaitez créer un nouveau compte Data Lake Store.
-   * **Groupe de ressources**. Sélectionnez un groupe de ressources existant ou sélectionnez l’option **Créer** pour en créer un. Un groupe de ressources est un conteneur réunissant les ressources associées d’une application. Pour plus d’informations, consultez [Groupes de ressources dans Azure](../azure-resource-manager/resource-group-overview.md#resource-groups).
-   * **Emplacement**: sélectionnez l'emplacement où vous souhaitez créer le compte Data Lake Store.
+   * **Nom**. Entrez un nom unique pour hello compte Data Lake Store.
+   * **Abonnement**. Sélectionnez l’abonnement hello sous lequel vous voulez toocreate un nouveau compte Data Lake Store.
+   * **Groupe de ressources**. Sélectionnez un groupe de ressources existant ou hello **nouvel** toocreate option une. Un groupe de ressources est un conteneur réunissant les ressources associées d’une application. Pour plus d’informations, consultez [Groupes de ressources dans Azure](../azure-resource-manager/resource-group-overview.md#resource-groups).
+   * **Emplacement**: sélectionnez un emplacement où vous souhaitez compte Data Lake Store de hello toocreate.
    * **Paramètres de chiffrement**. Vous disposez de trois options :
      
      * **Ne pas activer le chiffrement**.
-     * **Utiliser les clés gérées par Data Lake Store**.  Sélectionnez cette option si vous voulez qu’Azure Data Lake Store gère vos clés de chiffrement.
-     * **Choisir des clés dans Azure Key Vault**. Vous pouvez sélectionner un coffre Azure Key Vault existant ou en créer un. Pour utiliser les clés d’un coffre Key Vault, vous devez attribuer des autorisations permettant au compte Azure Data Lake Store d’accéder à Azure Key Vault. Pour obtenir les instructions correspondantes, reportez-vous à la section [Attribuer des autorisations à Azure Key Vault](#assign-permissions-to-azure-key-vault).
+     * **Utiliser les clés gérées par Data Lake Store**.  Si vous souhaitez que Azure Data Lake Store toomanage vos clés de chiffrement.
+     * **Choisir des clés dans Azure Key Vault**. Vous pouvez sélectionner un coffre Azure Key Vault existant ou en créer un. clés de hello toouse à partir d’un coffre de clés, vous devez attribuer des autorisations pour hello compte Azure Data Lake Store tooaccess hello Azure Key Vault. Pour obtenir des instructions de hello, consultez [affecter des autorisations tooAzure le coffre de clés](#assign-permissions-to-azure-key-vault).
        
         ![Chiffrement Data Lake Store](./media/data-lake-store-get-started-portal/adls-encryption-2.png "Chiffrement Data Lake Store")
        
-        Cliquez sur **OK** dans le panneau **Paramètres de chiffrement**.
+        Cliquez sur **OK** Bonjour **paramètres de chiffrement** panneau.
 
         Pour plus d’informations, consultez l’article [Chiffrement des données dans Azure Data Lake Store](./data-lake-store-encryption.md).
 
-4. Cliquez sur **Create**. Si vous choisissez d’épingler le compte au tableau de bord, vous serez renvoyé au tableau de bord et vous pourrez voir la progression de l’approvisionnement de votre compte Data Lake Store. Une fois le compte Data Lake Store approvisionné, le panneau du compte s'affiche.
+4. Cliquez sur **Créer**. Si vous avez choisi de tableau de bord toohello toopin hello compte, vous revenez toohello le tableau de bord et vous pouvez voir la progression hello de votre configuration du compte Data Lake Store. Une fois hello compte Data Lake Store est configurée, panneau de compte hello s’affiche.
 
 Vous pouvez également créer un compte Data Lake Store à l’aide de modèles Azure Resource Manager. Ces modèles sont accessibles à partir de la page [Modèles de démarrage rapide Azure](https://azure.microsoft.com/resources/templates/?term=data+lake+store) :
 
@@ -77,56 +77,56 @@ Vous pouvez également créer un compte Data Lake Store à l’aide de modèles 
 - Avec chiffrement des données à l’aide de Data Lake Store : [Deploy Data Lake Store account with encryption(Data Lake)](https://azure.microsoft.com/resources/templates/101-data-lake-store-encryption-adls/) (Déployer un compte Data Lake Store avec chiffrement (Data Lake)).
 - Avec chiffrement des données à l’aide d’Azure Key Vault : [Deploy Data Lake Store account with encryption(Key Vault)](https://azure.microsoft.com/resources/templates/101-data-lake-store-encryption-key-vault/) (Déployer un compte Data Lake Store avec chiffrement (Key Vault)).
 
-### <a name="assign-permissions-to-azure-key-vault"></a>Attribuer des autorisations à Azure Key Vault
-Si vous avez utilisé des clés d’un coffre Azure Key Vault pour configurer le chiffrement sur le compte Data Lake Store, vous devez configurer l’accès entre le compte Data Lake Store et le compte Azure Key Vault. Pour ce faire, procédez comme suit.
+### <a name="assign-permissions-to-azure-key-vault"></a>Affecter des autorisations tooAzure le coffre de clés
+Si vous avez utilisé des clés de chiffrement tooconfigure Azure Key Vault sur hello compte Data Lake Store, vous devez configurer l’accès entre le compte Data Lake Store de hello et compte de coffre de clés Azure hello. Hello suivant les étapes toodo donc d’effectuer.
 
-1. Si vous avez utilisé des clés du coffre Azure Key Vault, un avertissement s’affiche en haut du panneau du compte Data Lake Store. Cliquez dessus pour ouvrir le panneau **Configurer les autorisations de Key Vault**.
+1. Si vous avez utilisé des clés à partir de hello Azure Key Vault, panneau hello pour hello compte Data Lake Store affiche un avertissement en haut de hello. Cliquez sur hello de hello avertissement tooopen **configurer des autorisations de coffre de clé** panneau.
    
     ![Chiffrement Data Lake Store](./media/data-lake-store-get-started-portal/adls-encryption-3.png "Chiffrement Data Lake Store")
-2. Le panneau affiche deux options possibles pour configurer l’accès.
+2. Panneau de Hello présente deux options tooconfigure accès.
    
-   * Dans la première option, cliquez sur **Accorder l’autorisation** pour configurer l’accès. La première option est activée uniquement lorsque l’utilisateur qui a créé le compte Data Lake Store est également administrateur du coffre Azure Key Vault.
-   * L’autre option consiste à exécuter l’applet de commande PowerShell qui s’affiche dans le panneau. Vous devez être propriétaire de coffre Azure Key Vault ou avoir le droit d’accorder des autorisations sur le coffre Azure Key Vault. Après avoir exécuté l’applet de commande, revenez au panneau et cliquez sur **Activer** pour configurer l’accès.
+   * Dans la première option de hello, cliquez sur **accorder l’autorisation** tooconfigure accès. Hello première option est activée uniquement lorsque hello utilisateur qui a créé le compte Data Lake Store de hello est également un administrateur pour hello Azure Key Vault.
+   * Bonjour autre option est applet de commande PowerShell de hello toorun affiché sur le panneau de hello. Vous devez propriétaire hello toobe hello Azure Key Vault ou que vous disposez des autorisations de toogrant de capacité hello sur hello Azure Key Vault. Une fois que vous avez exécuté l’applet de commande hello, revenez toohello panneau, cliquez sur **activer** tooconfigure accès.
 
 ## <a name="createfolder"></a>Créer des dossiers dans un compte Azure Data Lake Store
-Vous pouvez créer des dossiers sous votre compte Data Lake Store pour gérer et stocker des données.
+Vous pouvez créer des dossiers sous votre toomanage de compte Data Lake Store et stocker des données.
 
-1. Ouvrez le compte Data Lake Store que vous avez créé. Dans le volet gauche, cliquez sur **Parcourir**, puis sur **Data Lake Store**. Ensuite, dans le panneau Data Lake Store, cliquez sur le nom du compte sous lequel vous souhaitez créer des dossiers. Si vous avez épinglé le compte au tableau d'accueil, cliquez sur la vignette de ce compte.
+1. Ouvrez le compte Data Lake Store hello que vous avez créé. Dans le volet gauche de hello, cliquez sur **Parcourir**, cliquez sur **Data Lake Store**, puis à partir du Panneau de Data Lake Store hello, nom du compte sous lequel vous souhaitez que les dossiers de toocreate hello. Si vous avez épinglé hello compte toohello tableau d’accueil, cliquez sur cette vignette de compte.
 2. Dans le panneau de votre compte Data Lake Store, cliquez sur **Explorateur de données**.
    
     ![Créer des dossiers dans un compte Data Lake Store](./media/data-lake-store-get-started-portal/ADL.Create.Folder.png "Créer des dossiers dans un compte Data Lake Store")
-3. Dans le panneau de votre compte Data Lake Store, cliquez sur **Nouveau dossier**, entrez un nom pour le nouveau dossier, puis cliquez sur **OK**.
+3. Dans le panneau de compte Data Lake Store, cliquez sur **nouveau dossier**, entrez un nom pour le nouveau dossier de hello, puis cliquez sur **OK**.
    
     ![Créer des dossiers dans un compte Data Lake Store](./media/data-lake-store-get-started-portal/ADL.Folder.Name.png "Créer des dossiers dans un compte Data Lake Store")
    
-    Le dossier que vous venez de créer apparaît dans le panneau **Explorateur de données**. Vous pouvez créer des dossiers imbriqués jusqu'au niveau que vous souhaitez.
+    dossier de Hello nouvellement créé est répertorié dans hello **Explorateur de données** panneau. Vous pouvez créer des dossiers imbriqués jusqu'au niveau que vous souhaitez.
    
     ![Créer des dossiers dans un compte Data Lake](./media/data-lake-store-get-started-portal/ADL.New.Directory.png "Créer des dossiers dans un compte Data Lake")
 
-## <a name="uploaddata"></a>Télécharger des données sur un compte Azure Data Lake Store
-Vous pouvez télécharger vos données sur un compte Azure Data Lake Store directement à la racine ou dans un dossier que vous avez créé dans le compte. Suivez les étapes de la capture d’écran ci-après pour charger un fichier vers un sous-dossier du panneau **Explorateur de données**. Dans cette capture d’écran, le fichier est chargé vers un sous-dossier visible dans l’arborescence de navigation (encadré en rouge).
+## <a name="uploaddata"></a>Télécharger le compte de données tooAzure Data Lake Store
+Vous pouvez télécharger votre tooan données compte Azure Data Lake Store directement dans le dossier de niveau ou tooa de racine hello que vous avez créé dans le compte de hello. Bonjour suivant capture d’écran, procédez comme tooupload d’étapes hello un sous-dossier tooa de fichier à partir de hello **Explorateur de données** panneau. Dans cette capture d’écran, les fichiers hello sont sous-dossier tooa téléchargé indiqué dans les vues miniatures de hello (marquées en rouge).
 
-Si vous recherchez des exemples de données à charger, vous pouvez récupérer le dossier **Données Ambulance** dans le [Référentiel Git Azure Data Lake](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData).
+Si vous recherchez des tooupload de données d’exemple, vous pouvez obtenir hello **Ambulance données** dossier hello [référentiel Git de LAC de données Azure](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData).
 
 ![Charger des données](./media/data-lake-store-get-started-portal/ADL.New.Upload.File.png "Charger des données")
 
-## <a name="properties"></a>Propriétés et actions disponibles sur les données stockées
-Cliquez sur le fichier nouvellement ajouté pour ouvrir le panneau **Propriétés** . Les propriétés associées au fichier et les actions que vous pouvez effectuer sur le fichier sont disponibles dans ce panneau. Vous pouvez également copier la totalité du chemin d’accès au fichier dans votre compte Azure Data Lake Store, encadré en rouge dans la capture d’écran suivante :
+## <a name="properties"></a>Propriétés et actions disponibles sur hello les données stockées
+Cliquez sur hello de hello fichier nouvellement ajoutée tooopen **propriétés** panneau. propriétés Hello associées au fichier de hello et les actions de hello que vous pouvez effectuer sur le fichier de hello sont disponibles dans ce panneau. Vous pouvez également copier toofile de chemin d’accès complet hello dans votre compte Azure Data Lake Store, mis en surbrillance dans la zone hello rouge Bonjour suivant capture d’écran :
 
-![Propriétés sur les données](./media/data-lake-store-get-started-portal/ADL.File.Properties.png "Propriétés sur les données")
+![Propriétés sur les données de salutation](./media/data-lake-store-get-started-portal/ADL.File.Properties.png "propriétés sur les données de salutation")
 
-* Cliquez sur **Aperçu** pour afficher un aperçu du fichier, directement à partir du navigateur. Vous pouvez également spécifier le format de l'aperçu. Cliquez sur **Aperçu**, puis sur **Format** dans le panneau **Aperçu du fichier**. Ensuite, dans le panneau **Format de l’aperçu du fichier**, spécifiez les options comme le nombre de lignes à afficher, l’encodage à utiliser, le séparateur à utiliser, etc.
+* Cliquez sur **aperçu** toosee un aperçu du fichier hello, directement à partir de l’Explorateur de hello. Vous pouvez spécifier le format hello Preview hello également. Cliquez sur **aperçu**, cliquez sur **Format** Bonjour **l’aperçu du fichier** panneau, hello et **Format de fichier aperçu** panneau spécifier hello options telles en tant que nombre de lignes toodisplay, toouse, toouse de délimiteur, etc. de codage.
   
   ![Format de l’aperçu du fichier](./media/data-lake-store-get-started-portal/ADL.File.Preview.png "Format de l’aperçu du fichier")
-* Cliquez sur **Télécharger** pour télécharger le fichier sur votre ordinateur.
-* Cliquez sur **Renommer le fichier** pour renommer le fichier.
-* Cliquez sur **Supprimer le fichier** pour supprimer le fichier.
+* Cliquez sur **télécharger** ordinateur de tooyour fichier toodownload hello.
+* Cliquez sur **Renommer fichier** fichier hello de toorename.
+* Cliquez sur **supprimer le fichier** fichier hello de toodelete.
 
 ## <a name="secure-your-data"></a>Sécurisez vos données
-Vous pouvez sécuriser les données stockées dans votre compte Azure Data Lake Store à l'aide d'Azure Active Directory et Access Control (ACL). Pour savoir comment procéder, consultez [Sécurisation des données dans Azure Data Lake Store](data-lake-store-secure-data.md).
+Vous pouvez sécuriser les données de salutation stockées dans votre compte Azure Data Lake Store à l’aide d’Azure Active Directory et le contrôle d’accès (ACL). Pour obtenir des instructions sur la façon de toodo qui, consultez [sécurisation des données dans Azure Data Lake Store](data-lake-store-secure-data.md).
 
 ## <a name="delete-azure-data-lake-store-account"></a>Supprimer un compte Azure Data Lake Store
-Pour supprimer un compte Azure Data Lake Store, cliquez sur **Supprimer**dans le panneau de votre Data Lake Store. Pour confirmer l'action, vous devrez entrer le nom du compte que vous souhaitez supprimer. Entrez le nom du compte, puis cliquez sur **Supprimer**.
+Cliquez sur un compte Azure Data Lake Store à partir de votre panneau Data Lake Store, de toodelete **supprimer**. action de hello tooconfirm, vous serez nom de hello tooenter demandées du compte hello que toodelete vous le souhaitez. Entrez le nom hello du compte de hello, puis cliquez sur **supprimer**.
 
 ![Supprimer un compte Data Lake](./media/data-lake-store-get-started-portal/ADL.Delete.Account.png "Supprimer un compte Data Lake")
 

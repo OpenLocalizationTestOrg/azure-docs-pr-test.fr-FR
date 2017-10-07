@@ -1,6 +1,6 @@
 ---
-title: "Présentation du Stockage Fichier Azure | Microsoft Docs"
-description: "Présentation du Stockage Fichier Azure, qui permet le partage de fichiers réseau dans Microsoft Cloud"
+title: aaaIntroduction tooAzure stockage de fichiers | Documents Microsoft
+description: "Introduction tooAzure stockage de fichiers, qui fournit le fichier réseau partage Bonjour Microsoft Cloud"
 services: storage
 documentationcenter: 
 author: RenaShahMSFT
@@ -14,74 +14,74 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/27/2017
 ms.author: renash
-ms.openlocfilehash: 498af5cffb76e026c9a87127cab238f0f23b668a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fe6826e79c364a6956831d2e273c4342a5fd47f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-azure-file-storage"></a>Présentation du Stockage Fichier Azure
+# <a name="introduction-tooazure-file-storage"></a>Introduction tooAzure stockage de fichiers
 
-Le stockage de fichiers Azure propose le partage de fichiers réseau sur cloud grâce au [protocole Server Message Block (SMB)](https://msdn.microsoft.com/library/windows/desktop/aa365233.aspx), et au protocole [Common Internet File System (CIFS)](https://technet.microsoft.com/library/cc939973.aspx). Les partages de fichiers Azure peuvent être montés simultanément par les machines virtuelles Azure et les déploiements locaux sous Windows, macOS ou Linux. Un compte de stockage à usage général vous donne accès au Stockage Fichier Azure, au Stockage Blob Azure et au Stockage de files d’attente Azure.
+Stockage de fichiers Azure offre les partages de fichiers du réseau dans le cloud hello à l’aide de la norme industrielle de hello [les protocole Server Message Block (SMB)](https://msdn.microsoft.com/library/windows/desktop/aa365233.aspx) et [commune CIFS Internet File System ()](https://technet.microsoft.com/library/cc939973.aspx). Les partages de fichiers Azure peuvent être montés simultanément par les machines virtuelles Azure et les déploiements locaux sous Windows, macOS ou Linux. Un stockage à usage général compte vous donne accès tooAzure le stockage de fichiers, le stockage Blob Azure et de stockage de la file d’attente Azure.
 
 ## <a name="videos"></a>Vidéos
 | Présentation du Stockage Fichier Azure (27 min) | Didacticiel sur le Stockage Fichier Azure (5 minutes)  |
 |-|-|
-| [![Capture vidéo de la Présentation du Stockage Fichier Azure – Cliquez pour lancer la vidéo !](./media/storage-files-introduction/azure-files-introduction-video-snapshot1.png)](https://www.youtube.com/watch?v=zlrpomv5RLs) | [![Capture vidéo du didacticiel Stockage Fichier Azure – Cliquez pour lancer la vidéo !](./media/storage-files-introduction/azure-files-introduction-video-snapshot2.png)](https://channel9.msdn.com/Blogs/Azure/Azure-File-storage-with-Windows/) |
+| [![Capture de la vidéo de stockage de présentation des fichiers Azure hello - cliquez sur tooplay !](./media/storage-files-introduction/azure-files-introduction-video-snapshot1.png)](https://www.youtube.com/watch?v=zlrpomv5RLs) | [![Capture de stockage de fichier Azure hello didacticiel - cliquez sur tooplay !](./media/storage-files-introduction/azure-files-introduction-video-snapshot2.png)](https://channel9.msdn.com/Blogs/Azure/Azure-File-storage-with-Windows/) |
 
 ## <a name="why-azure-file-storage-is-useful"></a>Avantages du Stockage Fichier Azure
 
-Le Stockage Fichier Azure vous permet de remplacer les serveurs de fichiers Windows Server, Linux ou NAS hébergés localement ou sur le cloud grâce à un partage de fichiers sur cloud sans système d’exploitation. Le Stockage Fichier Azure possède les avantages suivants :
+Stockage de fichier Azure vous permet de tooreplace Windows Server, Linux, ou les serveurs de fichiers NAS hébergé localement ou dans le cloud de hello avec un fichier de cloud du système d’exploitation sans partagent. Stockage de fichier Azure a hello avantages suivants :
 
-* **Un accès partagé** : les partages de fichiers Azure prennent en charge les protocoles standards SMB. Cela signifie que vous pouvez facilement remplacer vos partages de fichiers locaux par des partages de fichiers Azure, sans vous soucier de la compatibilité des applications. Être en mesure d’accéder à un partage de fichier sur plusieurs machines et applications / instances peut s’avérer très avantageux avec le Stockage Fichier Azure.
+* **Accès partagé** industrie hello de prise en charge de protocole SMB standard, ce qui signifie que vous pouvez remplacer en toute transparence vos partages de fichiers locaux avec les partages de fichiers Azure sans se préoccuper de la compatibilité des applications de partages de fichiers de Azure. En mesure de tooaccess un partage de fichiers à partir de plusieurs ordinateurs et applications/instances est un avantage significatif avec le stockage de fichiers Azure.
 
-* **Entièrement gérés** : les partages de fichiers Azure peuvent être créés sans avoir à gérer le matériel ou un système d’exploitation. Vous n’êtes donc pas obligé d’appliquer au serveur du système d’exploitation des mises à jour de sécurité critiques, ni de remplacer les disques durs défaillants.
+* **Entièrement gérés** partages de fichiers Azure peuvent être créés sans matériel de toomanage besoin hello ou un système d’exploitation, ce qui signifie que vous n’avez pas toodeal avec la mise à jour corrective de système d’exploitation de serveur hello avec les mises à jour de sécurité critiques ou de remplacer les disques durs défectueux.
 
-* **Scripts et outils** : les cmdlets PowerShell et Azure CLI peuvent créer, monter et gérer les partages de fichier Azure dans le cadre de l’administration des applications Azure. Vous pouvez créer et gérer les partages de fichiers Azure à l’aide du [portail Azure](https://portal.azure.com) et de l’[Explorateur de stockage Azure](https://storageexplorer.com). 
+* **Écriture de scripts et les outils** CLI d’Azure et les applets de commande PowerShell peuvent être utilisé toocreate, montez et gérer des partages de fichiers Azure dans le cadre de l’administration hello des applications Azure. Vous pouvez créer et gérer les partages de fichiers Azure à l’aide de hello [portail Azure](https://portal.azure.com) et hello [Azure Storage Explorer](https://storageexplorer.com). 
 
-* **Résilience** : le Stockage Fichier Azure a été entièrement conçu de manière à être toujours disponible. L’utilisation du Stockage Fichier Azure au lieu des partages de fichiers locaux signifie que vous n’avez plus à vous soucier des pannes de courant ou des problèmes de réseau. 
+* **Résilience** stockage Azure files a été généré à partir de hello toobe toujours disponible d’arrière-plan. En remplaçant les partages de fichiers locaux avec Azure fichier stockage signifie que vous n’avez plus toowake des toodeal avec les coupures de courant locales ou des problèmes réseau. 
 
-* **Programmabilité familière** : les applications exécutées dans Azure peuvent accéder aux données dans le partage via les [API d’E/S du système de fichier](https://msdn.microsoft.com/library/system.io.file.aspx). Les développeurs peuvent ainsi tirer profit de leur code et compétences actuels pour migrer les applications existantes. En plus des API d’E/S du système, vous pouvez utiliser n’importe quelle bibliothèque de client du stockage Azure, comme c’est le cas pour [.NET](/dotnet/api/overview/azure/storage?view=azure-dotnet) ou l’[API REST du stockage Azure](/rest/api/storageservices/file-service-rest-api).
+* **Programmabilité familier** Applications s’exécutant dans Azure peuvent accéder aux données partage hello via [I/O APIs du système de fichiers](https://msdn.microsoft.com/library/system.io.file.aspx). Les développeurs peuvent ainsi exploiter leur code existant et les applications existantes de compétences toomigrate. En outre tooSystem API d’e/s, vous pouvez utiliser une des client de stockage Azure hello bibliothèques, telles que hello une pour [.NET](/dotnet/api/overview/azure/storage?view=azure-dotnet), ou hello [API REST de stockage Azure](/rest/api/storageservices/file-service-rest-api).
 
 Les partages de fichiers Azure peuvent être utilisés pour :
 
-* **Remplacer des serveurs de fichiers locaux** : le Stockage Fichier Azure peut être utilisé pour remplacer complètement les partages de fichiers sur les serveurs de fichiers locaux traditionnels ou les périphériques NAS. Les systèmes d’exploitation courants tels que Windows, Mac OS et Linux facilement peuvent facilement un partage de fichiers Azure, n’importe où dans le monde.
+* **Remplacer local serveurs de fichiers** stockage Azure peut être toocompletely utilisé remplacer les partages de fichiers sur les serveurs de fichiers traditionnel sur site ou les périphériques NAS. Les systèmes d’exploitation courants tels que Windows, Mac OS et Linux peuvent monter facilement un partage de fichiers Azure où qu’ils soient dans Bonjour.
 
 * **Migration « lift-and-shift » des applications**
 
-    Le Stockage Fichier Azure permet d’effectuer facilement la migration « lift-and-shift » vers le cloud des applications qui utilisent des partages de fichiers locaux pour partager des données entre plusieurs parties d’une application. Pour implémenter cela, chaque machine virtuelle se connecte au partage de fichiers, après quoi elle peut lire et écrire dans les fichiers comme sur un partage de fichiers local.
+    Stockage de fichier Azure permet de facilement trop « de courbes d’élévation et MAJ » cloud toohello applications qui utilisent le fichier local partage tooshare des données entre les parties de l’application hello. tooimplement, chaque machine virtuelle connecte partage de fichiers toohello et puis peut lire et écrire des fichiers exactement comme elle serait par rapport à un fichier local partager.
 
 * **Simplifier le développement cloud**
     
-    Le Stockage Fichier Azure peut être utilisé de plusieurs manières pour simplifier les nouveaux projets de développement cloud.
+    Azure stockage de fichier peut être utilisé dans un nombre de différentes façons toosimplify nouveaux cloud projets de développement.
     
     * **Paramètres d’application partagés**
     
-        Pour les applications distribuées, les fichiers de configuration sont souvent centralisés à un emplacement accessible par différentes machines virtuelles. Ces fichiers de configuration peuvent désormais être stockés dans un partage de fichiers Azure, puis lus par toutes les instances de l’application. Ces paramètres peuvent également être gérés via l’interface REST, ce qui offre un accès mondial aux fichiers de configuration.
+        Un modèle commun pour les applications distribuées est toohave les fichiers de configuration dans un emplacement centralisé où ils sont accessibles à partir de nombreux ordinateurs virtuels différents. Ces fichiers de configuration peuvent désormais être stockés dans un partage de fichiers Azure, puis lus par toutes les instances de l’application. Ces paramètres peuvent également être gérés via l’interface REST hello, qui autorise l’accès dans le monde toohello les fichiers de configuration.
 
     * **Partage de diagnostic**
     
-        Un partage de fichiers Azure peut également servir à enregistrer les fichiers de diagnostic tels que les journaux, les indicateurs de performance et les vidages sur incident. Le fait que des fichiers de partage soient à la fois disponibles via SMB et l’interface REST permet aux applications de créer ou d’utiliser différents outils d’analyse pour traiter et analyser les données de diagnostic.
+        Un partage de fichiers Azure peut également être toosave utilisé diagnostic les fichiers journaux, les mesures et les vidages sur incident. Partages de fichiers disponibles à travers l’interface REST et hello SMB autorise les applications toobuild ou tirer parti de divers outils d’analyse pour traiter et analyser des données de diagnostic hello.
 
     * **Développement / test / débogage**
 
-        Lorsque les développeurs ou les administrateurs travaillent sur des machines virtuelles situées dans le cloud, ils ont souvent besoin de différents outils ou utilitaires. Les procédures d’installation et de distribution de ces utilitaires sur chaque machine virtuelle, à l’endroit requis, peuvent prendre du temps. Avec le Stockage Fichier Azure, le développeur ou l’administrateur peut stocker ses outils préférés sur un partage de fichiers et les relier facilement à n’importe quelle machine virtuelle.
+        Lorsque vous travaillez sur des machines virtuelles dans le cloud de hello développeurs ou administrateurs, ils doivent souvent un ensemble d’outils ou utilitaires. Les procédures d’installation et de distribution de ces utilitaires sur chaque machine virtuelle, à l’endroit requis, peuvent prendre du temps. Avec le stockage de fichiers Azure, un développeur ou un administrateur peut stocker leurs outils favoris sur un partage de fichiers, ce qui peut être facilement connecté toofrom n’importe quel ordinateur virtuel.
         
 ## <a name="how-does-it-work"></a>Comment cela fonctionne-t-il ?
 
-La gestion des partages de fichiers Azure est beaucoup plus simple que la gestion des partages de fichiers locaux. Le diagramme ci-après illustre la structure de gestion du Stockage Fichier Azure :
+La gestion des partages de fichiers Azure est beaucoup plus simple que la gestion des partages de fichiers locaux. Hello suivant schéma illustre les constructions de gestion hello fichier Azure storage :
 
 ![Structure de fichiers](./media/storage-files-introduction/files-concepts.png)
 
-* **Compte de stockage** : tout accès au stockage Azure s’effectue via un compte de stockage. Pour plus d’informations sur la capacité du compte de stockage, consultez la page [Objectifs de performance et évolutivité](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json).
+* **Compte de stockage** tous accéder tooAzure stockage s’effectue via un compte de stockage. Pour plus d’informations sur la capacité du compte de stockage, consultez la page [Objectifs de performance et évolutivité](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json).
 
-* **Partage** : un partage de stockage de fichiers est un partage de fichiers SMB dans Azure. Tous les répertoires et fichiers doivent être créés dans un partage parent. Un compte peut contenir un nombre illimité de partages, et un partage peut stocker un nombre illimité de fichiers, dans la limite de la capacité totale de 5 To du partage de fichiers.
+* **Partage** : un partage de stockage de fichiers est un partage de fichiers SMB dans Azure. Tous les répertoires et fichiers doivent être créés dans un partage parent. Un compte peut contenir un nombre illimité de partages, et un partage peut stocker un nombre illimité de fichiers, la capacité totale de 5 to toohello hello du partage de fichiers.
 
 * **Répertoire** : hiérarchie facultative de répertoires.
 
-* **Fichier** : fichier du partage. Un fichier peut avoir une taille de 1 To maximum.
+* **Fichier** un fichier dans le partage de hello. Un fichier peut être jusqu'à to too1 taille.
 
-* **Format d’URL** : les fichiers sont adressables à l’aide du format d’URL suivant :  
+* **Format d’URL** fichiers sont adressables hello suivant le format d’URL :  
 
     ```
     https://<storage account>.file.core.windows.net/<share>/<directory/directories>/<file>
@@ -102,14 +102,14 @@ La gestion des partages de fichiers Azure est beaucoup plus simple que la gestio
 * [Stockage Fichier Azure : un système de fichiers SMB dans le cloud sans friction pour Windows et Linux](https://azure.microsoft.com/documentation/videos/azurecon-2015-azure-files-storage-a-frictionless-cloud-smb-file-system-for-windows-and-linux/)
 
 ### <a name="tooling-support-for-azure-file-storage"></a>Outils pour le Stockage Fichier Azure
-* [Utilisation de AzCopy avec Microsoft Azure Storage](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)
-* [Utilisation de la CLI Microsoft Azure avec Microsoft Azure Storage](../common/storage-azure-cli.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#create-and-manage-file-shares)
+* [Comment toouse AzCopy avec Microsoft Azure Storage](../common/storage-use-azcopy.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json)
+* [À l’aide de hello CLI d’Azure avec le stockage Azure](../common/storage-azure-cli.md?toc=%2fazure%2fstorage%2ffiles%2ftoc.json#create-and-manage-file-shares)
 
 ### <a name="blog-posts"></a>Billets de blog :
 * [Le stockage de fichiers Azure est désormais mis à la disposition générale](https://azure.microsoft.com/blog/azure-file-storage-now-generally-available/)
 * [Dans le Stockage Fichier Azure](https://azure.microsoft.com/blog/inside-azure-file-storage/)
 * [Présentation de Microsoft Azure File Service](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
-* [Migration de données vers le fichier Azure](https://azure.microsoft.com/blog/migrating-data-to-microsoft-azure-files/)
+* [Migration tooAzure de données fichier](https://azure.microsoft.com/blog/migrating-data-to-microsoft-azure-files/)
 
 ### <a name="reference"></a>Référence
 * [Référence de la bibliothèque cliente de stockage pour .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)

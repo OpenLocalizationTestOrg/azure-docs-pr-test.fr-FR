@@ -1,6 +1,6 @@
 ---
-title: "Charger des fichiers dans un compte Media Services à l’aide de REST | Microsoft Docs"
-description: "Apprenez à obtenir du contenu multimédia dans Media Services en créant et en chargeant des ressources."
+title: "fichiers aaaUpload dans un compte Media Services à l’aide de REST | Documents Microsoft"
+description: "Découvrez comment tooget média du contenu dans Media Services création et téléchargement d’éléments multimédias."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: 955356ffe6fc524c1528364add7e2c2a336137b7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2a92cecdc32d747d7a478946f069c15931eb32b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upload-files-into-a-media-services-account-using-rest"></a>Charger des fichiers dans un compte Media Services à l’aide de REST
 > [!div class="op_single_selector"]
@@ -28,57 +28,57 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Dans Media Services, vous téléchargez vos fichiers numériques dans une ressource. L’entité [Asset](https://docs.microsoft.com/rest/api/media/operations/asset) peut contenir des fichiers vidéo et audio, des images, des collections de miniatures, des pistes textuelles et des légendes (et les métadonnées concernant ces fichiers).  Une fois les fichiers téléchargés dans la ressource, votre contenu est stocké en toute sécurité dans le cloud et peut faire l’objet d’un traitement et d’une diffusion en continu. 
+Dans Media Services, vous téléchargez vos fichiers numériques dans une ressource. Hello [Asset](https://docs.microsoft.com/rest/api/media/operations/asset) entité peut contenir vidéo, audio, images, collections de miniatures, texte assure le suivi et sous-titres fichiers (et les métadonnées hello sur ces fichiers.)  Une fois que les fichiers de hello sont téléchargés en ressource de hello, votre contenu est stocké en toute sécurité dans le cloud hello pour le traitement et la diffusion en continu. 
 
 > [!NOTE]
-> Les considérations suivantes s'appliquent :
+> Hello suivant considérations s’appliquent :
 > 
-> * Media Services utilise la valeur de la propriété IAssetFile.Name lors de la génération d’URL pour le contenu de streaming (par exemple, http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters). Pour cette raison, l’encodage par pourcentage n’est pas autorisé. La valeur de la propriété **Name** ne peut pas comporter les [caractères réservés à l’encodage en pourcentage suivants](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) : !*'();:@&=+$,/?%#[]". En outre, il ne peut exister qu’un ’.’ pour l’extension de nom de fichier.
-> * La longueur du nom ne doit pas dépasser 260 caractères.
-> * Une limite est appliquée à la taille maximale de fichier prise en charge pour le traitement dans Media Services. Consultez [cette rubrique](media-services-quotas-and-limitations.md) pour en savoir plus sur les limites de taille des fichiers.
+> * Media Services utilise la valeur hello hello IAssetFile.Name propriété lors de la génération d’URL pour hello de diffusion en continu de contenu (par exemple, http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters.) Pour cette raison, l’encodage par pourcentage n’est pas autorisé. Hello valeur Hello **nom** propriété ne peut pas avoir un des éléments suivants de hello [% réservés d’encodage de caractères](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters): ! *' () ; : @& = + $, / ? % # [] ». En outre, il ne peut exister un '.' pour l’extension de nom de fichier hello.
+> * la longueur du nom de hello Hello ne doit pas dépasser 260 caractères.
+> * Il existe une taille de fichier maximale toohello limite pris en charge pour le traitement dans Media Services. Consultez [cela](media-services-quotas-and-limitations.md) pour plus d’informations sur la limite de taille de fichier hello.
 > 
 
-Le flux de travail classique de téléchargement de ressources se divise en différentes parties, à savoir :
+flux de travail Hello pour le téléchargement des éléments multimédias est divisé en hello les sections suivantes :
 
 * Créer une ressource
 * Chiffrer une ressource (facultatif)
-* Télécharger un fichier vers le stockage d'objets blob
+* Télécharger un stockage tooblob de fichier
 
-AMS vous permet également de télécharger des ressources en bloc. Pour plus d’informations, consultez [cette](media-services-rest-upload-files.md#upload_in_bulk) section.
+AMS vous permet également de ressources tooupload en bloc. Pour plus d’informations, consultez [cette](media-services-rest-upload-files.md#upload_in_bulk) section.
 
 > [!NOTE]
 > Lors de l’accès aux entités dans Media Services, vous devez définir les valeurs et les champs d’en-tête spécifiques dans vos requêtes HTTP. Pour plus d'informations, consultez [Installation pour le développement REST API de Media Services](media-services-rest-how-to-use.md).
 > 
 
-## <a name="connect-to-media-services"></a>Connexion à Media Services
+## <a name="connect-toomedia-services"></a>Connecter les Services de tooMedia
 
-Pour savoir comment vous connecter à l’API AMS, consultez [Accéder à l’API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Pour plus d’informations sur la façon dont tooconnect toohello AMS API, consultez [hello accès API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Après vous être connecté à https://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI Media Services. Vous devez faire d’autres appels au nouvel URI.
+>Après vous être connecté toohttps://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI de Media Services. Vous devez effectuer les appels suivants toohello nouvel URI.
 
 ## <a name="upload-assets"></a>Téléchargement de ressources
 
 ### <a name="create-an-asset"></a>Créer une ressource
 
-Une ressource est un conteneur pour plusieurs types ou ensembles d’objets dans Media Services, y compris des fichiers vidéo, audio, des images, des collections de miniatures, des pistes textuelles et des légendes. Dans l’API REST, la création d’une ressource nécessite d’envoyer une demande POST vers Media Services et de placer les informations de propriété concernant votre ressource dans le corps de la demande.
+Une ressource est un conteneur pour plusieurs types ou ensembles d’objets dans Media Services, y compris des fichiers vidéo, audio, des images, des collections de miniatures, des pistes textuelles et des légendes. Bonjour API REST, création d’un élément multimédia requiert l’envoi de POST solliciter des Services de tooMedia et placer toutes les informations de propriété concernant votre élément multimédia dans le corps de la demande hello.
 
-L’une des propriétés que vous pouvez spécifier lors de la création d’un élément multimédia est **Options**. **Options** est une valeur d’énumération qui décrit les options de chiffrement permettant de créer un élément multimédia. Une valeur valide est une des valeurs de la liste ci-dessous, et non une combinaison de valeurs. 
+Une des propriétés hello que vous pouvez spécifier lorsque la création d’un élément multimédia est **Options**. **Options** est une valeur d’énumération qui décrit les options de chiffrement hello un élément multimédia peut être créé avec. Une valeur valide est une des valeurs hello dans liste hello ci-dessous, pas une combinaison de valeurs. 
 
-* **None** = **0** : Aucun chiffrement ne sera utilisé. Il s’agit de la valeur par défaut. À noter que quand vous utilisez cette option, votre contenu n’est pas protégé pendant le transit ou le repos dans le stockage.
-    Si vous prévoyez de fournir un MP4 sous forme de téléchargement progressif, utilisez cette option. 
-* **StorageEncrypted** = **1** : spécifie si vous souhaitez que vos fichiers soient chiffrés avec le chiffrement AES-256 bits pour le chargement et le stockage.
+* **None** = **0** : Aucun chiffrement ne sera utilisé. Il s’agit de valeur par défaut de hello. À noter que quand vous utilisez cette option, votre contenu n’est pas protégé pendant le transit ou le repos dans le stockage.
+    Si vous envisagez de toodeliver un fichier MP4 à l’aide d’un téléchargement progressif, utilisez cette option. 
+* **StorageEncrypted** = **1**: spécifiez si vous souhaitez pour votre toobe de fichiers chiffré avec chiffrement AES-256 bits pour le téléchargement et de stockage.
   
     Si votre ressource est stockée sous forme chiffrée, vous devez configurer une stratégie de remise de ressources. Pour plus d'informations, consultez [Configuration de la stratégie de remise de ressources](media-services-rest-configure-asset-delivery-policy.md).
 * **CommonEncryptionProtected** = **2** : spécifie si vous téléchargez des fichiers protégés par une méthode de chiffrement commune (comme PlayReady). 
-* **EnvelopeEncryptionProtected** = **4** : indique si vous téléchargez un contenu au format HLS chiffré avec des fichiers AES. Notez que les fichiers doivent avoir été encodés et chiffrés par le gestionnaire de transformation Transform Manager.
+* **EnvelopeEncryptionProtected** = **4** : indique si vous téléchargez un contenu au format HLS chiffré avec des fichiers AES. Notez que les fichiers hello doivent avoir été codés et chiffrés par Transform Manager.
 
 > [!NOTE]
-> Si votre élément multimédia utilise le chiffrement, vous devez créer une **ContentKey** et la lier à votre élément multimédia, comme le décrit la rubrique suivante :[Création d’une ContentKey](media-services-rest-create-contentkey.md). Notez qu’après avoir téléchargé les fichiers dans l’élément multimédia, vous devez mettre à jour les propriétés de chiffrement sur l’entité **AssetFile** avec les valeurs obtenues pendant le chiffrement **Asset**. Pour ce faire, utilisez la demande HTTP **MERGE** . 
+> Si votre élément multimédia utilise le chiffrement, vous devez créer un **ContentKey** et liez-la tooyour actifs comme décrit dans la rubrique suivante de hello :[comment toocreate une ContentKey](media-services-rest-create-contentkey.md). Notez que, après avoir téléchargé les fichiers hello en ressource de hello, vous devez tooupdate propriétés de chiffrement hello sur hello **AssetFile** entité avec les valeurs hello que vous avez obtenus lors de hello **Asset** chiffrement. Cela à l’aide de hello **fusion** requête HTTP. 
 > 
 > 
 
-L’exemple suivant montre comment créer une ressource.
+Hello suivant montre l’exemple de comment toocreate un élément multimédia.
 
 **Demande HTTP**
 
@@ -96,7 +96,7 @@ L’exemple suivant montre comment créer une ressource.
 
 **Réponse HTTP**
 
-Si l’opération réussit, l’élément suivant est retourné :
+En cas de réussite, suivant de hello est retournée :
 
     HTP/1.1 201 Created
     Cache-Control: no-cache
@@ -125,11 +125,11 @@ Si l’opération réussit, l’élément suivant est retourné :
     }
 
 ### <a name="create-an-assetfile"></a>Création d’un AssetFile
-L’entité [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) représente un fichier audio ou vidéo stocké dans un conteneur d’objets blob. Un fichier de ressources est toujours associé à une ressource et une ressource peut contenir un ou plusieurs fichiers de ressources. La tâche de Media Services Encoder échoue si un objet de fichier de ressources n’est pas associé à un fichier numérique dans un conteneur d’objets blob.
+Hello [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) entité représente un fichier vidéo ou audio qui est stocké dans un conteneur d’objets blob. Un fichier de ressources est toujours associé à une ressource et une ressource peut contenir un ou plusieurs fichiers de ressources. tâche d’encodeur Media Services Hello échoue si un objet de fichier actif n’est pas associé à un fichier numérique dans un conteneur d’objets blob.
 
-Notez que l’instance **AssetFile** et le fichier multimédia réel sont deux objets distincts. L’instance AssetFile contient des métadonnées concernant le fichier multimédia, tandis que le fichier multimédia contient le contenu multimédia réel.
+Notez que hello **AssetFile** instance et le fichier multimédia lui-même de hello sont deux objets distincts. instance AssetFile de Hello contient des métadonnées sur le fichier du média hello, tandis que le fichier du média hello contient le contenu du média réel hello.
 
-Après avoir chargé votre fichier multimédia numérique dans un conteneur d’objets blob, vous utiliserez la demande HTTP **MERGE** pour mettre à jour AssetFile avec des informations sur votre fichier multimédia (comme l’indique plus loin cette rubrique). 
+Après avoir téléchargé votre fichier multimédia numérique sur un conteneur d’objets blob, vous allez utiliser hello **fusion** tooupdate hello AssetFile HTTP demande des informations sur votre fichier multimédia (comme indiqué plus loin dans la rubrique de hello). 
 
 **Demande HTTP**
 
@@ -186,14 +186,14 @@ Après avoir chargé votre fichier multimédia numérique dans un conteneur d’
        "ContentChecksum":null
     }
 
-### <a name="creating-the-accesspolicy-with-write-permission"></a>Création d’AccessPolicy avec autorisation d’écriture.
+### <a name="creating-hello-accesspolicy-with-write-permission"></a>Création de hello AccessPolicy avec autorisation d’écriture.
 
 >[!NOTE]
->Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser le même ID de stratégie si vous utilisez toujours les mêmes jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs destinées à demeurer en place pendant une longue période (stratégies sans chargement). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
+>Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser hello ID de stratégie même si vous utilisez toujours hello même jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs sont tooremain prévue en place pendant une longue période (non-téléchargement stratégies). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
 
-Avant de télécharger des fichiers dans le stockage blob, définissez les droits de la stratégie d’accès pour l’écriture sur une ressource. Pour ce faire, utilisez POST avec une demande HTTP sur le jeu d’entités AccessPolicies. N’oubliez pas de définir une valeur DurationInMinutes après la création ou vous recevrez en réponse un message d’erreur interne de serveur 500. Pour plus d’informations sur AccessPolicies, consultez [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy).
+Avant de télécharger des fichiers dans le stockage d’objets blob, définissez l’accès de hello droits de stratégie pour l’écriture de tooan actif. toodo que, VALIDEZ un toohello de demande HTTP entité de stratégies d’accès défini. N’oubliez pas de définir une valeur DurationInMinutes après la création ou vous recevrez en réponse un message d’erreur interne de serveur 500. Pour plus d’informations sur AccessPolicies, consultez [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy).
 
-L’exemple suivant montre comment créer une stratégie AccessPolicy :
+Hello suivant montre l’exemple de comment toocreate une stratégie d’accès :
 
 **Demande HTTP**
 
@@ -211,7 +211,7 @@ L’exemple suivant montre comment créer une stratégie AccessPolicy :
 
 **Demande HTTP**
 
-    If successful, the following response is returned:
+    If successful, hello following response is returned:
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -236,20 +236,20 @@ L’exemple suivant montre comment créer une stratégie AccessPolicy :
        "Permissions":2
     }
 
-### <a name="get-the-upload-url"></a>Obtention de l’URL de téléchargement
-Pour recevoir l’URL de téléchargement réelle, créez un localisateur SAS. Les localisateurs définissent l’heure de début et le type de point de terminaison de connexion pour les clients qui souhaitent accéder aux fichiers d’une ressource. Vous pouvez créer plusieurs entités de localisateurs pour une paire AccessPolicy et Asset donnée, afin de gérer les différentes demandes et besoins des clients. Chacun de ces localisateurs utilise la valeur StartTime et la valeur DurationInMinutes d’AccessPolicy pour déterminer la durée pendant laquelle une URL peut être utilisée. Pour plus d’informations, consultez la rubrique [Localisateur](https://docs.microsoft.com/rest/api/media/operations/locator).
+### <a name="get-hello-upload-url"></a>Obtenir hello télécharger l’URL
+tooreceive hello URL de téléchargement réelle, créer un localisateur SAS. Les localisateurs définissent l’heure de début de hello et le type du point de terminaison de connexion pour les clients qui tooaccess des fichiers dans un élément multimédia. Vous pouvez créer plusieurs entités Locator pour une donnée AccessPolicy et Asset paire toohandle client différents besoins et demandes. Chacun de ces localisateurs utilisent la valeur de StartTime hello plus la valeur DurationInMinutes hello hello AccessPolicy toodetermine hello durée une URL peut être utilisée. Pour plus d’informations, consultez la rubrique [Localisateur](https://docs.microsoft.com/rest/api/media/operations/locator).
 
-Une URL SAS a le format suivant :
+Une URL SAS a hello suivant le format :
 
     {https://myaccount.blob.core.windows.net}/{asset name}/{video file name}?{SAS signature}
 
 Certaines considérations s’appliquent :
 
 * Vous ne pouvez avoir plus de cinq localisateurs uniques associés à une ressource donnée. Pour plus d’informations, consultez la rubrique Localisateur.
-* Si vous avez besoin de télécharger vos fichiers immédiatement, vous devez définir la valeur StartTime sur cinq minutes avant l’heure actuelle. Cela vient du fait qu’il peut exister un décalage horaire entre votre ordinateur client et Media Services. De même, la valeur de StartTime doit être au format DateTime suivant : AAAA-MM-JJTHH:mm:ssZ (par exemple, « 2014-05-23T17:53:50Z »).    
-* Il peut y avoir un délai de 30 à 40 secondes après la création d’un localisateur avant qu’il soit disponible. Ce problème s’applique aux localisateurs d’URL SAS et d’origine.
+* Si vous avez besoin de tooupload vos fichiers immédiatement, vous devez définir les minutes de toofive valeur StartTime avant hello heure actuelle. Cela vient du fait qu’il peut exister un décalage horaire entre votre ordinateur client et Media Services. En outre, votre valeur StartTime doit être hello respectant le format de date/heure : AAAA-MM-JJThh (par exemple, « 2014-05-23T17:53:50Z »).    
+* Il peut y avoir un 30 à 40 secondes après la création d’un localisateur toowhen, il est disponible pour une utilisation de retarder. Ce problème s’applique tooboth URL SAS et les localisateurs d’origine.
 
-L’exemple suivant montre comment créer un localisateur d’URL SAS, tel que défini par la propriété Type dans le corps de la demande (« 1 » pour un localisateur SAS et « 2 » pour un localisateur d’origine à la demande). La propriété **Path** retournée contient l’URL que vous devez utiliser pour télécharger votre fichier.
+Bonjour à l’exemple suivant montre comment toocreate un localisateur d’URL SAS, tel que défini par hello la propriété de Type dans le corps de la demande hello (« 1 » pour un localisateur SAS) et « 2 » pour un localisateur d’origine à la demande. Hello **chemin d’accès** propriété retournée contient les URL de hello que vous devez utiliser tooupload votre fichier.
 
 **Demande HTTP**
 
@@ -271,7 +271,7 @@ L’exemple suivant montre comment créer un localisateur d’URL SAS, tel que d
 
 **Réponse HTTP**
 
-Si l’opération réussit, la réponse suivante est retournée :
+En cas de réussite, hello suivant la réponse est retournée :
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -302,17 +302,17 @@ Si l’opération réussit, la réponse suivante est retournée :
     }
 
 ### <a name="upload-a-file-into-a-blob-storage-container"></a>Téléchargement d’un fichier dans un conteneur de stockage d’objets blob
-Après avoir défini AccessPolicy et Locator, le fichier réel est téléchargé vers un conteneur de stockage d’objets blob Microsoft Azure à l’aide des API REST Azure Storage. Vous devez télécharger les fichiers en tant qu’objets blob de blocs. Les objets blob de pages ne sont pas pris en charge par Azure Media Services.  
+Une fois que vous avez hello AccessPolicy et l’ensemble de la recherche, le fichier hello est tooan téléchargé conteneur de stockage d’objets Blob Azure à l’aide de hello API REST de stockage Azure. Vous devez télécharger les fichiers hello en tant qu’objets BLOB de blocs. Les objets blob de pages ne sont pas pris en charge par Azure Media Services.  
 
 > [!NOTE]
-> Vous devez ajouter le nom du fichier à télécharger dans la valeur **Path** du localisateur reçue dans la section précédente. Par exemple, https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? . . . 
+> Vous devez ajouter le nom de fichier hello pour le fichier de hello souhaité tooupload toohello recherche **chemin d’accès** valeur reçue dans la section précédente de hello. Par exemple, https://storagetestaccount001.blob.core.windows.net/asset-e7b02da4-5a69-40e7-a8db-e8f4f697aac0/BigBuckBunny.mp4? . . . 
 > 
 > 
 
 Pour plus d’informations sur l’utilisation d’objets blob de stockage Microsoft Azure, consultez [API REST du service BLOB](https://docs.microsoft.com/rest/api/storageservices/Blob-Service-REST-API).
 
-### <a name="update-the-assetfile"></a>Mise à jour d’AssetFile
-Maintenant que vous avez téléchargé votre fichier, mettez à jour les informations de taille FileAsset (et autres). Par exemple :
+### <a name="update-hello-assetfile"></a>Mettre à jour hello AssetFile
+Maintenant que vous avez téléchargé votre fichier, mettre à jour des informations hello FileAsset taille (et autres). Par exemple :
 
     MERGE https://media.windows.net/api/Files('nb%3Acid%3AUUID%3Af13a0137-0a62-9d4c-b3b9-ca944b5142c5') HTTP/1.1
     Content-Type: application/json
@@ -335,9 +335,9 @@ Maintenant que vous avez téléchargé votre fichier, mettez à jour les informa
 
 **Réponse HTTP**
 
-Si l’opération réussit, l’élément suivant est retourné : HTTP/1.1 204 No Content
+Si la réussite, suivant de hello est retournée : HTTP/1.1 204 No Content
 
-### <a name="delete-the-locator-and-accesspolicy"></a>Suppression du localisateur et d’AcessPolicy
+### <a name="delete-hello-locator-and-accesspolicy"></a>Supprimer hello recherche et la stratégie d’accès
 **Demande HTTP**
 
     DELETE https://media.windows.net/api/Locators('nb%3Alid%3AUUID%3Aaf57bdd8-6751-4e84-b403-f3c140444b54') HTTP/1.1
@@ -351,7 +351,7 @@ Si l’opération réussit, l’élément suivant est retourné : HTTP/1.1 204 
 
 **Réponse HTTP**
 
-Si l’opération réussit, l’élément suivant est retourné :
+En cas de réussite, suivant de hello est retournée :
 
     HTTP/1.1 204 No Content 
     ...
@@ -369,14 +369,14 @@ Si l’opération réussit, l’élément suivant est retourné :
 
 **Réponse HTTP**
 
-Si l’opération réussit, l’élément suivant est retourné :
+En cas de réussite, suivant de hello est retournée :
 
     HTTP/1.1 204 No Content 
     ...
 
 ## <a id="upload_in_bulk"></a>Téléchargement de ressources en bloc
-### <a name="create-the-ingestmanifest"></a>Création d’IngestManifest
-IngestManifest est un conteneur pour un ensemble de ressources, de fichiers de ressources et d’informations statistiques qui peuvent être utilisées pour déterminer la progression de la réception en bloc pour l’ensemble.
+### <a name="create-hello-ingestmanifest"></a>Créer hello IngestManifest
+Hello IngestManifest est un conteneur pour un ensemble de ressources, des fichiers et des informations statistiques qui peuvent être utilisés progression de hello toodetermine de réception en bloc pour hello ensemble.
 
 **Demande HTTP**
 
@@ -394,7 +394,7 @@ IngestManifest est un conteneur pour un ensemble de ressources, de fichiers de r
     { "Name" : "ExampleManifestREST" }
 
 ### <a name="create-assets"></a>Création de ressources
-Avant de créer IngestManifestAsset, vous devez créer la ressource qui sera finalisée avec la réception en bloc. Une ressource est un conteneur pour plusieurs types ou ensembles d’objets dans Media Services, y compris des fichiers vidéo, audio, des images, des collections de miniatures, des pistes textuelles et des légendes. Dans l’API REST, la création d’une ressource nécessite d’envoyer une demande HTTP POST vers Microsoft Azure Media Services et de placer les informations de propriété concernant votre ressource dans le corps de la demande. Dans cet exemple, la ressource est créée à l’aide de l’option StorageEncryption(1) incluse dans le corps de la demande.
+Avant de créer hello IngestManifestAsset, vous devez toocreate hello actif qui sera achevé à l’aide de la réception en bloc. Une ressource est un conteneur pour plusieurs types ou ensembles d’objets dans Media Services, y compris des fichiers vidéo, audio, des images, des collections de miniatures, des pistes textuelles et des légendes. Bonjour API REST, création d’un élément multimédia requiert envoyant un tooMicrosoft de demande HTTP POST Azure Media Services et en plaçant toutes les informations de propriété concernant votre élément multimédia dans le corps de la demande hello. Dans cet exemple, hello actif est créé à l’aide de l’option storageencrption (1) hello incluse avec le corps de la demande hello.
 
 **Réponse HTTP**
 
@@ -411,8 +411,8 @@ Avant de créer IngestManifestAsset, vous devez créer la ressource qui sera fin
 
     { "Name" : "ExampleManifestREST_Asset", "Options" : 1 }
 
-### <a name="create-the-ingestmanifestassets"></a>Création d’IngestManifestAssets
-IngestManifestAssets représente les ressources dans un IngestManifest qui sont utilisées avec la réception en bloc. Elles permettent essentiellement de lier la ressource au manifeste. Azure Media Services surveille en interne le téléchargement du fichier en fonction de la collection IngestManifestFiles associée à IngestManifestAsset. Une fois que ces fichiers sont chargés, la ressource est finalisée. Vous pouvez créer un IngestManifestAsset avec une demande HTTP POST. Dans le corps de la demande, indiquez l’ID d’IngestManifest et l’ID de la ressource qu’IngestManifestAsset doit lier ensemble pour la réception en bloc.
+### <a name="create-hello-ingestmanifestassets"></a>Créer hello IngestManifestAssets
+IngestManifestAssets représente les ressources dans un IngestManifest qui sont utilisées avec la réception en bloc. manifeste de hello asset toohello Hello essentiellement de lier. Azure Media Services surveille en interne pour le téléchargement du fichier hello selon les IngestManifestFiles collection associée toohello IngestManifestAsset. Une fois ces fichiers sont téléchargés, asset de hello est terminée. Vous pouvez créer un IngestManifestAsset avec une demande HTTP POST. Dans le corps de la demande hello, inclure hello Id d’IngestManifest et hello Id d’élément multimédia que hello IngestManifestAsset doit lier pour la réception en bloc.
 
 **Réponse HTTP**
 
@@ -429,8 +429,8 @@ IngestManifestAssets représente les ressources dans un IngestManifest qui sont 
     { "ParentIngestManifestId" : "nb:mid:UUID:5c77f186-414f-8b48-8231-17f9264e2048", "Asset" : { "Id" : "nb:cid:UUID:b757929a-5a57-430b-b33e-c05c6cbef02e"}}
 
 
-### <a name="create-the-ingestmanifestfiles-for-each-asset"></a>Création d’IngestManifestFiles pour chaque ressource
-Un IngestManifestFile représente un objet blob réel vidéo ou audio qui sera téléchargé dans le cadre de la réception en bloc pour une ressource. Des propriétés liées au chiffrement ne sont pas requises, sauf si la ressource utilise une option de chiffrement. L’exemple utilisé dans cette section illustre la création d’un IngestManifestFile qui fait appel à StorageEncryption pour la ressource créée précédemment.
+### <a name="create-hello-ingestmanifestfiles-for-each-asset"></a>Créer hello IngestManifestFiles pour chaque élément multimédia
+Un IngestManifestFile représente un objet blob réel vidéo ou audio qui sera téléchargé dans le cadre de la réception en bloc pour une ressource. Propriétés ne sont pas requises, sauf si l’élément multimédia de hello utilise une option de chiffrement liées au chiffrement. exemple Hello utilisé dans cette section illustre la création d’un IngestManifestFile qui fait appel au StorageEncryption pour hello que élément multimédia créé précédemment.
 
 **Réponse HTTP**
 
@@ -447,23 +447,23 @@ Un IngestManifestFile représente un objet blob réel vidéo ou audio qui sera t
 
     { "Name" : "REST_Example_File.wmv", "ParentIngestManifestId" : "nb:mid:UUID:5c77f186-414f-8b48-8231-17f9264e2048", "ParentIngestManifestAssetId" : "nb:maid:UUID:beed8531-9a03-9043-b1d8-6a6d1044cdda", "IsEncrypted" : "true", "EncryptionScheme" : "StorageEncryption", "EncryptionVersion" : "1.0", "EncryptionKeyId" : "nb:kid:UUID:32e6efaf-5fba-4538-b115-9d1cefe43510" }
 
-### <a name="upload-the-files-to-blob-storage"></a>Téléchargement des fichiers vers le stockage d’objets blob
-Vous pouvez utiliser n’importe quelle application cliente rapide capable de télécharger les fichiers de ressources sur l’URI du conteneur de stockage d’objets blob fourni par la propriété BlobStorageUriForUpload d’IngestManifest. [Aspera On Demand pour l'Application Azure](http://go.microsoft.com/fwlink/?LinkId=272001)est un service de téléchargement à grande vitesse intéressant.
+### <a name="upload-hello-files-tooblob-storage"></a>Télécharger les fichiers de hello tooBlob stockage
+Vous pouvez utiliser n’importe quelle application de client haute vitesse capable de télécharger le conteneur de stockage blob pour les fichiers actifs hello toohello Uri fourni par hello propriété BlobStorageUriForUpload Hello IngestManifest. [Aspera On Demand pour l'Application Azure](http://go.microsoft.com/fwlink/?LinkId=272001)est un service de téléchargement à grande vitesse intéressant.
 
 ### <a name="monitor-bulk-ingest-progress"></a>Surveillance de la progression de la réception en bloc
-Vous pouvez surveiller la progression des opérations de réception en bloc pour un IngestManifest en interrogeant la propriété Statistics d’IngestManifest. Cette propriété est de type complexe [IngestManifestStatistics](https://docs.microsoft.com/rest/api/media/operations/ingestmanifeststatistics). Pour interroger la propriété Statistics, envoyez une demande HTTP GET en transmettant l’ID d’IngestManifest.
+Vous pouvez surveiller la progression de hello de réception des opérations pour un IngestManifest en interrogeant la propriété de statistiques hello Hello IngestManifest en bloc. Cette propriété est de type complexe [IngestManifestStatistics](https://docs.microsoft.com/rest/api/media/operations/ingestmanifeststatistics). toopoll hello propriété Statistics, soumettre une demande HTTP GET en passant hello ID d’IngestManifest.
 
 ## <a name="create-contentkeys-used-for-encryption"></a>Créer des ContentKeys utilisées pour le chiffrement
-Si votre ressource utilise le chiffrement, vous devez créer la ContentKey à utiliser pour le chiffrement avant de créer les fichiers de ressources. Pour le chiffrement du stockage, les propriétés suivantes doivent être incluses dans le corps de la demande.
+Si votre élément multimédia utilise le chiffrement, vous devez créer hello ContentKey toobe est utilisé pour le chiffrement avant de créer des fichiers d’éléments multimédias hello. Pour le chiffrement de stockage, hello propriétés suivantes doivent être incluses dans le corps de la demande hello.
 
 | Propriété du corps de la demande | Description |
 | --- | --- |
-| Id |ID de ContentKey que nous générons nous-mêmes en utilisant le format suivant : « nb:kid:UUID:<NEW GUID> ». |
-| ContentKeyType |Il s’agit du type de clé de contenu en tant qu’entier pour cette clé de contenu. Nous transmettons la valeur 1 pour le chiffrement du stockage. |
-| EncryptedContentKey |Nous créons une valeur de clé de contenu qui est une valeur de 256 bits (32 octets). La clé est chiffrée à l’aide du certificat X.509 de chiffrement du stockage que nous récupérons à partir de Microsoft Azure Media Services en exécutant une demande HTTP GET pour les méthodes GetProtectionKeyId et GetProtectionKey. |
-| ProtectionKeyId |Il s’agit de l’ID de clé de protection pour le certificat X.509 de chiffrement de stockage qui a été utilisé pour chiffrer notre clé de contenu. |
-| ProtectionKeyType |Il s’agit du type de chiffrement de la clé de protection qui a été utilisé pour chiffrer la clé de contenu. Cette valeur est StorageEncryption(1) dans notre exemple. |
-| Somme de contrôle |La somme de contrôle calculée MD5 pour la clé de contenu. Elle est calculée en chiffrant l’ID de contenu avec la clé de contenu. L’exemple de code montre comment calculer la somme de contrôle. |
+| Id |Hello Id de ContentKey que nous générons nous-mêmes hello suivant à l’aide de mettre en forme, « Kid :<NEW GUID>». |
+| ContentKeyType |Type de clé de contenu hello il s’agit en tant qu’entier pour cette clé de contenu. Nous transmettons la valeur hello 1 pour le chiffrement de stockage. |
+| EncryptedContentKey |Nous créons une valeur de clé de contenu qui est une valeur de 256 bits (32 octets). clé de Hello est chiffré à l’aide de hello stockage certificat X.509 de chiffrement que nous récupérons à partir de Microsoft Azure Media Services en exécutant une demande HTTP GET hello GetProtectionKeyId et GetProtectionKey méthodes. |
+| ProtectionKeyId |Cela est hello id de clé de protection pour le certificat X.509 de chiffrement de stockage de hello a été utilisé tooencrypt notre clé de contenu. |
+| ProtectionKeyType |Il s’agit de type de chiffrement de hello pour la clé de protection hello clé de contenu utilisés tooencrypt hello. Cette valeur est StorageEncryption(1) dans notre exemple. |
+| Somme de contrôle |somme de contrôle calculée Hello MD5 pour la clé de contenu hello. Elle est calculée en chiffrant l’Id de contenu hello avec la clé de contenu hello. Hello exemple de code montre comment toocalculate hello somme de contrôle. |
 
 **Réponse HTTP**
 
@@ -480,8 +480,8 @@ Si votre ressource utilise le chiffrement, vous devez créer la ContentKey à ut
 
     {"Id" : "nb:kid:UUID:316d14d4-b603-4d90-b8db-0fede8aa48f8", "ContentKeyType" : 1, "EncryptedContentKey" : "Y4NPej7heOFa2vsd8ZEOcjjpu/qOq3RJ6GRfxa8CCwtAM83d6J2mKOeQFUmMyVXUSsBCCOdufmieTKi+hOUtNAbyNM4lY4AXI537b9GaY8oSeje0NGU8+QCOuf7jGdRac5B9uIk7WwD76RAJnqyep6U/OdvQV4RLvvZ9w7nO4bY8RHaUaLxC2u4aIRRaZtLu5rm8GKBPy87OzQVXNgnLM01I8s3Z4wJ3i7jXqkknDy4VkIyLBSQvIvUzxYHeNdMVWDmS+jPN9ScVmolUwGzH1A23td8UWFHOjTjXHLjNm5Yq+7MIOoaxeMlKPYXRFKofRY8Qh5o5tqvycSAJ9KUqfg==", "ProtectionKeyId" : "7D9BB04D9D0A4A24800CADBFEF232689E048F69C", "ProtectionKeyType" : 1, "Checksum" : "TfXtjCIlq1Y=" }
 
-### <a name="link-the-contentkey-to-the-asset"></a>Liaison de ContentKey à la ressource
-La ContentKey est associée à une ou plusieurs ressources en envoyant une demande HTTP POST. La demande suivante illustre la liaison de la ContentKey en exemple à la ressource en exemple par ID.
+### <a name="link-hello-contentkey-toohello-asset"></a>Lien hello ContentKey toohello actif
+Hello ContentKey est tooone associé ou les plus actifs en envoyant une demande HTTP POST. Hello demande suivante est un exemple toolink hello exemple ContentKey toohello exemple d’élément multimédia par Id.
 
 **Réponse HTTP**
 
@@ -513,7 +513,7 @@ La ContentKey est associée à une ou plusieurs ressources en envoyant une deman
 
 Vous pouvez désormais encoder vos éléments multimédias téléchargés. Pour plus d'informations, consultez [Encode an asset using Media Encoder Standard with the Azure portal (Encoder un élément multimédia à l’aide de Media Encoder Standard avec le portail Azure)](media-services-portal-encode.md).
 
-Vous pouvez également utiliser les fonctions Azure pour déclencher une tâche de codage à partir d’un fichier entrant dans le conteneur configuré. Pour plus d’informations, consultez [cet exemple](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
+Vous pouvez également utiliser les fonctions Azure tootrigger un travail d’encodage basé sur un fichier qui arrivent dans le conteneur de hello configuré. Pour plus d’informations, consultez [cet exemple](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -521,5 +521,5 @@ Vous pouvez également utiliser les fonctions Azure pour déclencher une tâche 
 ## <a name="provide-feedback"></a>Fournir des commentaires
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-[How to Get a Media Processor]: media-services-get-media-processor.md
+[How tooGet a Media Processor]: media-services-get-media-processor.md
 

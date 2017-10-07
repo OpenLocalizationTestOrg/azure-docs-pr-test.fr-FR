@@ -7,8 +7,8 @@
 ## [Conteneurs](../../virtual-machines-windows-containers.md)
 
 # Prise en main
-## [Créer une machine virtuelle à l’aide du portail](tutorial.md)
-## [Se connecter à une machine virtuelle](connect-logon.md)
+## [Créer une machine virtuelle à l’aide du portail de hello](tutorial.md)
+## [Ouvrez une session tooa machine virtuelle](connect-logon.md)
 ## [Installation d'Azure PowerShell](/powershell/azure/overview)
 ## [Installation de l’interface de ligne de commande Azure](../../../cli-install-nodejs.md)
 
@@ -20,9 +20,9 @@
 ### [Utiliser le lecteur D: comme disque de données](../../virtual-machines-windows-change-drive-letter.md)
 
 ## Réseau
-### [Configuration des points de terminaison](setup-endpoints.md)
+### [Comment tooset des points de terminaison](setup-endpoints.md)
 ### [Connecter des machines virtuelles à un réseau virtuel ou à un service cloud](connect-vms.md)
-### [Connecter des réseaux virtuels classiques à des réseaux virtuels Resource Manager](../../../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
+### [Se connecter à des réseaux virtuels classiques tooResource Manager VNets](../../../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
 ### [Créer un équilibrage de charge](../../../load-balancer/load-balancer-get-started-internet-classic-portal.md)
 ### [Gérer les groupes de sécurité réseau avec Azure PowerShell](../../../virtual-network/virtual-networks-create-nsg-classic-ps.md)
 
@@ -38,17 +38,17 @@
 ### [Application web Django Hello World](python-django-web-app.md)
 
 ## Configuration
-### [Réinitialiser un mot de passe ou le service Bureau à distance](../../virtual-machines-windows-reset-rdp.md)
+### [Réinitialiser un mot de passe ou hello un service Bureau à distance](../../virtual-machines-windows-reset-rdp.md)
 ### [Installer et configurer Symantec Endpoint Protection](install-symantec.md)
 ### [Installer et configurer Trend Micro Deep Security comme service](install-trend.md)
 ### [Configurer un groupe à haute disponibilité](configure-availability.md)
-### [Redimensionner une machine virtuelle Windows créée avec le modèle de déploiement classique](resize-vm.md)
+### [Redimensionner une machine virtuelle de Windows créé dans le modèle de déploiement classique de hello](resize-vm.md)
 ### [Maintenance](planned-maintenance-schedule.md)
 
 ## Gérer
-### [Migration à partir de déploiements classiques vers des déploiements Resource Manager](../../virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
+### [Migrer à partir de classique tooResource Manager](../../virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 ### [Gérer vos machines virtuelles à l'aide d'Azure PowerShell](manage-psh.md)
-### [À propos de l’agent et des extensions de machine virtuelle](agents-and-extensions.md)
+### [Sur les extensions et agent de machine virtuelle hello](agents-and-extensions.md)
 ### [Gérer les extensions de machine virtuelle](manage-extensions.md)
 ### [Extension de script personnalisé pour les machines virtuelles](extensions-customscript.md)
 ### [Injection de données personnalisées dans une machine virtuelle Azure](inject-custom-data.md)
@@ -64,10 +64,10 @@
 #### [Mettre à l’échelle automatiquement des ressources](hpcpack-cluster-node-autogrowshrink.md)
 #### [Gérer des nœuds de calcul](hpcpack-cluster-node-manage.md)
 #### [Créer un cluster](hpcpack-cluster-powershell-script.md)
-#### [Configurer un cluster pour exécuter des applications MPI](hpcpack-rdma-cluster.md)
+#### [Configurer une application de MPI cluster toorun](hpcpack-rdma-cluster.md)
 #### [Exécuter des charges de travail Excel et SOA](../../virtual-machines-windows-excel-cluster-hpcpack.md)
-#### [Créer le nœud principal avec une image de Marketplace](../../virtual-machines-windows-hpcpack-cluster-headnode.md)
-#### [Soumettre des travaux locaux vers Azure](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md)
+#### [Créer un nœud principal de hello avec une image de Marketplace](../../virtual-machines-windows-hpcpack-cluster-headnode.md)
+#### [Envoyer des travaux à partir de local tooAzure](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md)
 ### [MongoDB](install-mongodb.md)
 ### [MySQL](mysql-2008r2.md)
 ### [Oracle](../../workloads/oracle/oracle-considerations.md)
@@ -78,11 +78,11 @@
 ## Résolution des problèmes
 ### [Connexions Bureau à distance](../../virtual-machines-windows-troubleshoot-rdp-connection.md)
 ####[Étapes de dépannage détaillées pour les problèmes de connexion du Bureau à distance](../../virtual-machines-windows-detailed-troubleshoot-rdp.md)
-### [Accéder à une application](../../virtual-machines-windows-troubleshoot-app-connection.md)
+### [Application tooan d’accès](../../virtual-machines-windows-troubleshoot-app-connection.md)
 ### [Problèmes de déploiement classique liés à la création d’une machine virtuelle](troubleshoot-deployment-new-vm.md)
 ### [Problèmes de déploiement classique liés au redémarrage ou au redimensionnement d’une machine virtuelle existante](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
 ### [Réinitialiser le mot de passe RDP](reset-rdp.md)
-### [Attacher un disque dur virtuel pour résoudre des problèmes de machine virtuelle](troubleshoot-recovery-disks-portal.md)
+### [Attacher un disque dur virtuel tootroubleshooting machine virtuelle](troubleshoot-recovery-disks-portal.md)
 
 # Référence
 ## [PowerShell](/powershell/azure/overview)

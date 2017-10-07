@@ -1,6 +1,6 @@
 ---
-title: "Connecter Intel Edison (C) à Azure IoT - Leçon 1 : Obtenir des outils (Ubuntu) | Microsoft Docs"
-description: "Téléchargez et installez les outils et logiciels nécessaires pour le premier exemple d’application pour Edison sur Ubuntu."
+title: "Connect Intel Edison (C) tooAzure IoT - leçon 1 : obtenir les outils (Ubuntu) | Documents Microsoft"
+description: "Téléchargez et installez les outils nécessaires hello et des logiciels pour hello premier exemple d’application pour Edison sur Ubuntu."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,13 +17,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: e929a1cb38f1bacca833e86878c13f20e02885ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ebd599def4e8bb33d891517cc76bc2fcdc3c35a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-the-tools-ubuntu-1604"></a>Obtenir les outils (Ubuntu 16.04)
+# <a name="get-hello-tools-ubuntu-1604"></a>Obtenir les outils de hello (16.04 Ubuntu)
 
 > [!div class="op_single_selector"]
 > * [Windows 7 ou version ultérieure][windows]
@@ -31,28 +31,28 @@ ms.lasthandoff: 07/11/2017
 > * [macOS 10.10][macos]
 
 ## <a name="what-you-will-do"></a>Procédure à suivre
-Téléchargez les outils de développement et le logiciel pour le premier exemple d’application pour Intel Edison. Si vous rencontrez des problèmes, recherchez des solutions sur la [page de résolution des problèmes][troubleshooting].
+Télécharger les outils de développement hello et logiciel hello pour hello premier exemple d’application pour votre Edison Intel. Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes][troubleshooting].
 
 > [!NOTE]
-> Le langage de programmation de la logique principale est C. Cependant, les outils Node.js sont utilisés dans cette leçon pour créer et déployer des exemples d’applications.
+> Bien que hello langage de la logique principale de hello de programmation C, Node.js tools sont utilisés dans hello leçons toobuild et déploiement des exemples d’applications.
 
 ## <a name="what-you-will-learn"></a>Contenu
 Cet article portera sur les éléments suivants :
 
-* Comment installer Git et Node.js
-  * [Git](https://git-scm.com) est un système de contrôle de versions distribué open source très populaire. L’exemple d’application de cet article est stocké sur Git.
+* Comment tooinstall Git et Node.js
+  * [Git](https://git-scm.com) est un système de contrôle de versions distribué open source très populaire. exemple d’application Hello pour cet article est stockée sur Git.
   * [Node.js](https://nodejs.org/en/) est un runtime JavaScript avec un écosystème de packages riche.
-* Comment utiliser NPM pour installer des outils de développement Node.js supplémentaires.
-  * La version minimale requise de Node.js est 4.5 LTS.
-  * [NPM](https://www.npmjs.com) est l’un des gestionnaires de packages pour Node.js.
+* Comment toouse NPM tooinstall Node.js développement des outils supplémentaires.
+  * la version minimale requise Hello de Node.js est 4.5 LTS.
+  * [NPM](https://www.npmjs.com) est un des hello gestionnaires de packages pour Node.js.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
-Pour effectuer cette opération, vous avez besoin des éléments suivants :
-* Une connexion Internet pour télécharger les outils de développement et le logiciel.
+toocomplete cette opération, vous devez :
+* Un toodownload de connexion Internet hello des outils de développement et hello logiciel.
 * Un ordinateur exécutant Ubuntu 16.04 ou version ultérieure.
 
 ## <a name="install-git-nodejs-and-npm"></a>Installation de Git, Node.js et NPM
-Utilisez le raccourci clavier `Ctrl + Alt + T` pour ouvrir une fenêtre de terminal, puis exécutez les commandes suivantes :
+Utiliser le raccourci clavier hello `Ctrl + Alt + T` tooopen un Bonjour Terminal Server et d’exécution suivant des commandes :
 
 ```bash
 sudo apt-get update
@@ -62,24 +62,24 @@ sudo apt-get install git
 ```
 
 ## <a name="install-additional-nodejs-development-tools"></a>Installation des outils de développement Node.js supplémentaires
-Utilisez [gulp.js](http://gulpjs.com) pour automatiser le déploiement de l’exemple d’application sur Edison.
+Utilisez [fichier gulp.js](http://gulpjs.com) déploiement de hello tooautomate de tooEdison d’application exemple hello.
 
-Installez `gulp` en exécutant la commande suivante dans le terminal :
+Installer `gulp` en exécutant hello commande dans un terminal hello suivante :
 
 ```bash
 sudo npm install -g gulp
 ```
 
-Si vous rencontrez des problèmes pour installer Node.js et ces outils de développement supplémentaires sur Ubuntu, consultez le [guide de dépannage][troubleshooting] pour trouver des solutions aux problèmes courants.
+Si vous rencontrez des problèmes d’installation de Node.js et ces outils de développement supplémentaires sur Ubuntu, consultez hello [guide de dépannage] [ troubleshooting] des problèmes de toocommon solutions.
 
 ## <a name="install-visual-studio-code"></a>Installation de Visual Studio Code
-[Téléchargez](https://code.visualstudio.com/docs/setup/linux) et installez Visual Studio Code. Visual Studio Code est un éditeur de code source simple mais puissant pour Windows, Linux et Mac OS. Vous utiliserez cet éditeur ultérieurement dans ce didacticiel pour modifier l’exemple de code.
+[Téléchargez](https://code.visualstudio.com/docs/setup/linux) et installez Visual Studio Code. Visual Studio Code est un éditeur de code source simple mais puissant pour Windows, Linux et Mac OS. Vous utilisez cet éditeur ultérieurement dans le code d’exemple hello tooedit didacticiel hello.
 
 ## <a name="summary"></a>Résumé
-Vous avez installé les outils de développement et le logiciel nécessaire pour le premier exemple d’application. La tâche suivante consiste à créer, déployer et exécuter l’exemple d’application sur Edison.
+Vous avez installé les outils de développement hello requis et les logiciels pour hello premier exemple d’application. la tâche suivante Hello est toocreate, déployer et exécuter l’exemple d’application hello sur Edison.
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Création et déploiement de l’exemple d’application de clignotement][create-and-deploy-the-blink-application]
+[Créer et déployer l’application d’exemple hello blink][create-and-deploy-the-blink-application]
 
 <!-- Images and links -->
 

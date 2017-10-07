@@ -1,5 +1,5 @@
 ---
-title: "Génération en mode ligne de commande pour Azure | Microsoft Docs"
+title: build aaaCommand en ligne pour Azure | Documents Microsoft
 description: "Génération en ligne de commande pour Azure"
 services: visual-studio-online
 documentationcenter: na
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/05/2017
 ms.author: kraigb
-ms.openlocfilehash: 5fe910e2757dd5ec783538e23e7f52e2f5725b39
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 295b61ba162dd4373ee3f56cc1462decb3e16762
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="building-azure-projects-from-the-command-line"></a>Génération de projets Azure à partir de la ligne de commande
-À l’aide de Microsoft Build Engine (MSBuild), vous pouvez générer des produits dans des environnements de laboratoire-génération où Visual Studio n’est pas installé. MSBuild utilise pour les fichiers projet un format XML extensible et entièrement pris en charge par Microsoft. En utilisant le format de fichier MSBuild, vous pouvez décrire quels éléments doivent être générés pour une ou plusieurs plateformes et configurations.
+# <a name="building-azure-projects-from-hello-command-line"></a>Génération de projets Azure à partir de la ligne de commande hello
+À l’aide de hello Microsoft Build Engine (MSBuild), vous pouvez générer des produits dans des environnements de laboratoire de génération où Visual Studio n’est pas installé. MSBuild utilise pour les fichiers projet un format XML extensible et entièrement pris en charge par Microsoft. À l’aide du format de fichier hello MSBuild, vous pouvez décrire les éléments doivent être générées pour un ou plusieurs plateformes et configurations.
 
-Vous pouvez également exécuter MSBuild dans une ligne de commande, et cette rubrique décrit cette approche. En définissant des propriétés dans la ligne de commandes, vous pouvez créer des configurations propres à un projet. De même, vous pouvez également définir les cibles que MSBuild va générer. Pour plus d’informations sur les paramètres de ligne de commande et MSBuild, consultez la page [Référence de la ligne de commande MSBuild](https://msdn.microsoft.com/library/ms164311.aspx).
+Vous pouvez également exécuter MSBuild à la ligne de commande hello et cette rubrique décrit cette approche. En définissant des propriétés sur la ligne de commande hello, vous pouvez créer des configurations spécifiques d’un projet. De même, vous pouvez également définir des cibles de hello MSBuild génère. Pour plus d’informations sur les paramètres de ligne de commande et MSBuild, consultez la page [Référence de la ligne de commande MSBuild](https://msdn.microsoft.com/library/ms164311.aspx).
 
 ## <a name="msbuild-parameters"></a>Paramètres MSBuild
-La façon la plus simple de créer un package consiste à exécuter MSBuild avec l’option `/t:Publish` . Par défaut, cette commande crée un répertoire en relation avec le dossier racine du projet, par exemple `<ProjectDirectory>\bin\Configuration\app.publish\`. Lorsque vous générez un projet Azure, deux fichiers sont générés : le fichier de package et le fichier de configuration qui l'accompagne :
+toocreate de façon la plus simple Hello un package est toorun MSBuild avec hello `/t:Publish` option. Par défaut, cette commande crée un répertoire dans la relation toohello racine dossier hello projet, tel que `<ProjectDirectory>\bin\Configuration\app.publish\`. Lorsque vous générez un projet Windows Azure, deux fichiers sont générés : hello du fichier de package lui-même et le fichier de configuration associé hello :
 
 * Fichier de package (`project.cspkg`)
 * Fichier de configuration (`ServiceConfiguration.TargetProfile.cscfg`)
 
-Par défaut, tous les projets Azure comprennent un fichier de configuration de service pour les versions locales (débogage) et un autre pour les versions cloud (gestion intermédiaire ou production). Mais vous pouvez ajouter ou supprimer des fichiers de configuration de service selon vos besoins. Lorsque vous générez un package dans Visual Studio, il vous est demandé quels fichiers de configuration de service vous voulez inclure avec le package. Lorsque vous générez un package avec MSBuild, le fichier de configuration de service local est inclus par défaut. Pour inclure un autre fichier de configuration de service, définissez la propriété `TargetProfile` de la commande MSBuild (`MSBuild /t:Publish /p:TargetProfile=ProfileName`).
+Par défaut, tous les projets Azure comprennent un fichier de configuration de service pour les versions locales (débogage) et un autre pour les versions cloud (gestion intermédiaire ou production). Mais vous pouvez ajouter ou supprimer des fichiers de configuration de service selon vos besoins. Lorsque vous créez un package dans Visual Studio, vous êtes invité le tooinclude du fichier de configuration de service en même temps que le package de hello. Lorsque vous générez un package à l’aide de MSBuild, le fichier de configuration du service local hello est inclus par défaut. fichier tooinclude une configuration de service différents, jeu hello `TargetProfile` propriété Hello commande MSBuild (`MSBuild /t:Publish /p:TargetProfile=ProfileName`).
 
-Si vous souhaitez utiliser un autre répertoire pour les fichiers de configuration et de package stockés, définissez le chemin d'accès à l'aide de l’option `/p:PublishDir=Directory\`, en incluant la barre oblique inverse de fin comme séparateur.
+Si vous souhaitez toouse un autre répertoire pour hello stocké des fichiers de configuration et de package, définir le chemin à l’aide de hello hello `/p:PublishDir=Directory\` option, y compris hello séparateur de barre oblique inverse de fin.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une fois le package créé, vous pouvez le déployer sur Azure. Pour obtenir un didacticiel expliquant comment automatiser ce processus, consultez [Livraison continue pour les services cloud dans Azure](./cloud-services/cloud-services-dotnet-continuous-delivery.md).
+Une fois le package de hello est créé, vous pouvez le déployer tooAzure. Pour obtenir un didacticiel qui montre comment tooautomate ce processus, consultez [livraison continue pour les Services de Cloud dans Azure](./cloud-services/cloud-services-dotnet-continuous-delivery.md).
 

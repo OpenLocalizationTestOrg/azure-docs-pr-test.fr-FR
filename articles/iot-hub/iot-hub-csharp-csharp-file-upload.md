@@ -1,6 +1,6 @@
 ---
-title: "Charger des fichiers sur Azure IoT Hub à partir d’appareils avec .NET | Microsoft Docs"
-description: "Comment charger des fichiers sur le cloud à partir d’un appareil avec Azure IoT device SDK pour .NET. Les fichiers téléchargés sont stockés dans un conteneur d’objets blob de stockage Azure."
+title: "les fichiers à partir d’appareils tooAzure IoT Hub avec .NET aaaUpload | Documents Microsoft"
+description: "Comment tooupload les fichiers à partir d’un appareil cloud toohello à l’aide de l’appareil Azure IoT SDK pour .NET. Les fichiers téléchargés sont stockés dans un conteneur d’objets blob de stockage Azure."
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/04/2017
 ms.author: elioda
-ms.openlocfilehash: b45d85d0d77cf47f36cb793bc8c0dbe2d5c12634
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 07d555f6ba8b067bbd3233bc8eebaa220ad2388b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-files-from-your-device-to-the-cloud-with-iot-hub-using-net"></a>Charger des fichiers sur le cloud à partir d’un appareil avec IoT Hub en utilisant .NET
+# <a name="upload-files-from-your-device-toohello-cloud-with-iot-hub-using-net"></a>Télécharger des fichiers à partir de votre appareil toohello cloud avec IoT Hub à l’aide de .NET
 
 [!INCLUDE [iot-hub-file-upload-language-selector](../../includes/iot-hub-file-upload-language-selector.md)]
 
-Ce didacticiel s’appuie sur le code du didacticiel [Envoi de messages cloud à appareil avec IoT Hub](iot-hub-csharp-csharp-c2d.md) pour vous montrer comment utiliser les fonctions de téléchargement de fichier d’IoT Hub. Cette rubrique vous explique les procédures suivantes :
+Ce didacticiel s’appuie sur le code hello Bonjour [envoyer des messages Cloud-à-appareil avec IoT Hub](iot-hub-csharp-csharp-c2d.md) tooshow didacticiel vous comment toouse hello les fonctionnalités de téléchargement de fichier du IoT Hub. Cette rubrique vous explique les procédures suivantes :
 
 - Fournissez en toute sécurité à un appareil un URI d’objet blob Azure pour le chargement d’un fichier.
-- Utilisez les notifications de chargement de fichier IoT Hub pour déclencher le traitement du fichier dans votre serveur principal d’application.
+- Utilisez hello IoT Hub fichier téléchargement notifications tootrigger traitement du fichier hello dans votre principal de l’application.
 
-Les didacticiels [Bien démarrer avec IoT Hub](iot-hub-csharp-csharp-getstarted.md) et [Envoyer des messages du cloud vers un appareil avec IoT Hub](iot-hub-csharp-csharp-c2d.md) illustrent les fonctionnalités de base de la messagerie d’un appareil vers le cloud et du cloud vers un appareil offertes par IoT Hub. Le didacticiel [Traiter les messages appareil-à-cloud](iot-hub-csharp-csharp-process-d2c.md) décrit un moyen de stocker en toute fiabilité les messages appareil-à-cloud dans le stockage d’objets blob Azure. Toutefois, dans certains scénarios, vous ne pouvez pas facilement mapper les données que vos appareils envoient dans des messages appareil-à-cloud relativement petits et acceptés par IoT Hub. Par exemple :
+Hello [prise en main IoT Hub](iot-hub-csharp-csharp-getstarted.md) et [envoyer des messages Cloud-à-appareil avec IoT Hub](iot-hub-csharp-csharp-c2d.md) didacticiels montrent hello appareil-à-cloud et cloud-à-appareil messagerie fonctionnalités de base d’IoT Hub. Hello [messages processus appareil-à-Cloud](iot-hub-csharp-csharp-process-d2c.md) didacticiel décrit une façon tooreliably stocker appareil-à-cloud les messages dans le stockage blob Azure. Toutefois, dans certains scénarios vous ne peut pas mapper facilement les données de hello que vos appareils envoient en messages appareil-à-cloud relativement faible hello qui accepte une IoT Hub. Par exemple :
 
 * Fichiers volumineux qui contiennent des images
 * Vidéos
 * Données de vibration échantillonnées à une fréquence élevée
 * Un certain type de données prétraitées
 
-Ces fichiers sont généralement traités par lot dans le cloud à l’aide d’outils tels que [Azure Data Factory](../data-factory/index.md) ou de la pile [Hadoop](../hdinsight/index.md). Si vous avez besoin de charger des fichiers à partir d’un appareil, vous pouvez toujours exploiter la sécurité et la fiabilité d’IoT Hub.
+Ces fichiers sont généralement traitées dans le cloud hello à l’aide des outils tels que par lots [Azure Data Factory](../data-factory/index.md) ou hello [Hadoop](../hdinsight/index.md) pile. Lorsque vous avez besoin des fichiers tooupload à partir d’un appareil, vous pouvez toujours utiliser sécurité de hello et la fiabilité de IoT Hub.
 
-À la fin de ce didacticiel, vous exécutez deux applications console .NET :
+À la fin de hello de ce didacticiel, vous exécutez deux applications de console .NET :
 
-* **SimulatedDevice**, version modifiée de l’application créée dans le cadre du didacticiel [Envoyer des messages cloud-à-appareil avec IoT Hub](iot-hub-csharp-csharp-c2d.md). Cette application charge un fichier de stockage à l’aide d’un URI SAP fourni par votre IoT Hub.
+* **SimulatedDevice**, une version modifiée de l’application hello créée Bonjour [envoyer des messages Cloud-à-appareil avec IoT Hub](iot-hub-csharp-csharp-c2d.md) didacticiel. Cette application télécharge une toostorage de fichier à l’aide d’un URI SAS fournie par votre hub IoT.
 * **ReadFileUploadNotification**, qui reçoit les notifications de téléchargement de fichier à partir de votre IoT Hub.
 
 > [!NOTE]
-> IoT Hub offre la prise en charge de plusieurs plateformes d’appareils et plusieurs langages (notamment C, Java et Javascript) par le biais des Kits de développement logiciel (SDK) d’appareils Azure IoT. Pour obtenir des instructions pas à pas expliquant comment connecter votre appareil à Azure IoT Hub, voir le [Centre de développement Azure IoT].
+> IoT Hub offre la prise en charge de plusieurs plateformes d’appareils et plusieurs langages (notamment C, Java et Javascript) par le biais des Kits de développement logiciel (SDK) d’appareils Azure IoT. Consultez toohello [centre de développement Azure IoT] pour obtenir des instructions sur la façon de tooconnect votre tooAzure appareil IoT Hub.
 
-Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez hello suivant :
 
 * Visual Studio 2015 ou Visual Studio 2017
 * Un compte Azure actif. (Si vous ne possédez pas de compte, vous pouvez créer un [compte gratuit][lnk-free-trial] en quelques minutes.)
@@ -55,21 +55,21 @@ Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
 ## <a name="upload-a-file-from-a-device-app"></a>Charger un fichier à partir d’une application d’appareil
 
-Dans cette section, vous allez modifier l’application d’appareil créée dans [Envoyer des messages du cloud à votre appareil avec IoT Hub](iot-hub-csharp-csharp-c2d.md) pour recevoir des messages cloud-à-appareil en provenance de l’IoT Hub.
+Dans cette section, vous modifiez l’application d’appareil hello vous avez créé dans [envoyer des messages Cloud-à-appareil avec IoT Hub](iot-hub-csharp-csharp-c2d.md) tooreceive les messages cloud-à-appareil à partir du hub IoT de hello.
 
-1. Dans Visual Studio, cliquez avec le bouton droit sur le projet **SimulatedDevice**, cliquez sur **Ajouter**, puis sur **Élément existant**. Accédez à un fichier image et ajoutez-le à votre projet. Ce didacticiel suppose que l’image a pour nom `image.jpg`.
+1. Dans Visual Studio, avec le bouton droit hello **SimulatedDevice** de projet, cliquez sur **ajouter**, puis cliquez sur **élément existant**. Accédez de fichier d’image tooan et l’inclure dans votre projet. Ce didacticiel suppose que l’image de hello est nommée `image.jpg`.
 
-1. Cliquez avec le bouton droit sur l’image, puis cliquez sur **Propriétés**. Assurez-vous que l’option **Copier dans le répertoire de sortie** est définie sur **Toujours copier**.
+1. Avec le bouton droit sur l’image de hello, puis cliquez sur **propriétés**. Assurez-vous que **copier tooOutput active** est défini trop**toujours copier**.
 
     ![][1]
 
-1. Au début du fichier **Program.cs** , ajoutez les instructions suivantes :
+1. Bonjour **Program.cs** , ajoutez hello suivant les instructions haut hello du fichier de hello :
 
     ```csharp
     using System.IO;
     ```
 
-1. Ajoutez la méthode suivante à la classe **Program** :
+1. Ajouter hello suivant de méthode toohello **programme** classe :
 
     ```csharp
     private static async void SendToBlobAsync()
@@ -84,49 +84,49 @@ Dans cette section, vous allez modifier l’application d’appareil créée dan
         }
 
         watch.Stop();
-        Console.WriteLine("Time to upload file: {0}ms\n", watch.ElapsedMilliseconds);
+        Console.WriteLine("Time tooupload file: {0}ms\n", watch.ElapsedMilliseconds);
     }
     ```
 
-    La méthode `UploadToBlobAsync` utilise le nom de fichier et la source de flux du fichier à télécharger et gère le téléchargement vers le stockage. L’application console affiche le temps nécessaire pour télécharger le fichier.
+    Hello `UploadToBlobAsync` méthode accepte dans le nom de fichier hello et source de flux de hello fichier toobe téléchargé gère hello téléchargement toostorage. application de console Hello affiche hello temps fichier hello de tooupload.
 
-1. Ajoutez la méthode suivante à la méthode **Main** juste avant la ligne `Console.ReadLine()` :
+1. Ajouter hello méthode Bonjour **principal** méthode, juste avant hello `Console.ReadLine()` ligne :
 
     ```csharp
     SendToBlobAsync();
     ```
 
 > [!NOTE]
-> Par souci de simplicité, ce didacticiel n’implémente aucune stratégie de nouvelle tentative. Dans le code de production, vous devez mettre en œuvre des stratégies de nouvelle tentative (par exemple, une interruption exponentielle), comme indiqué dans l’article MSDN [Transient Fault Handling](Gestion des erreurs temporaires).
+> Par souci de simplicité, ce didacticiel n’implémente aucune stratégie de nouvelle tentative. Dans le code de production, vous devez implémenter des stratégies de nouvelle tentative (par exemple, d’interruption exponentielle), comme indiqué dans l’article hello [gestion des pannes temporaires].
 
 ## <a name="receive-a-file-upload-notification"></a>Recevoir une notification de téléchargement de fichier
 
 Dans cette section, vous allez écrire une application console .NET qui reçoit des messages de notification de téléchargement de fichier à partir d’IoT Hub.
 
-1. Dans la solution Visual Studio actuelle, créez un projet Windows Visual C# à l’aide du modèle de projet **d’application de console** . Nommez le projet **ReadFileUploadNotification**.
+1. Dans la solution de Visual Studio en cours de hello, créer un projet Windows Visual c# à l’aide de hello **Application Console** modèle de projet. Projet de hello nom **ReadFileUploadNotification**.
 
     ![Nouveau projet dans Visual Studio][2]
 
-1. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur le projet **ReadFileUploadNotification**, puis cliquez sur **Gérer les packages NuGet...**.
+1. Dans l’Explorateur de solutions, cliquez sur hello **ReadFileUploadNotification** de projet, puis cliquez sur **gérer les Packages NuGet...** .
 
-1. Dans la fenêtre **Gestionnaire de package NuGet**, recherchez **Microsoft.Azure.Devices**, cliquez sur **Installer** et acceptez les conditions d’utilisation.
+1. Bonjour **Gestionnaire de Package NuGet** fenêtre, recherchez **Microsoft.Azure.Devices**, cliquez sur **installer**et acceptez les conditions d’utilisation de hello.
 
-    Cette action a pour effet de télécharger, d’installer et d’ajouter une référence au [Package NuGet du SDK service IoT Azure] dans le projet **ReadFileUploadNotification**.
+    Cette action télécharge, installe et ajoute une référence toohello [package NuGet du SDK du service Azure IoT] Bonjour **ReadFileUploadNotification** projet.
 
-1. Au début du fichier **Program.cs** , ajoutez les instructions suivantes :
+1. Bonjour **Program.cs** , ajoutez hello suivant les instructions haut hello du fichier de hello :
 
     ```csharp
     using Microsoft.Azure.Devices;
     ```
 
-1. Ajoutez les champs suivants à la classe **Program** . Remplacez la valeur d’espace réservé par la chaîne de connexion de l’IoT Hub obtenue dans le didacticiel [Prise en main d’Azure IoT Hub] :
+1. Ajouter hello suivant champs toohello **programme** classe. Valeur d’espace réservé hello avec hello IoT hub chaîne de connexion de remplacement [prise en main IoT Hub] :
 
     ```csharp
     static ServiceClient serviceClient;
     static string connectionString = "{iot hub connection string}";
     ```
 
-1. Ajoutez la méthode suivante à la classe **Program** :
+1. Ajouter hello suivant de méthode toohello **programme** classe :
 
     ```csharp
     private async static void ReceiveFileUploadNotificationAsync()
@@ -148,37 +148,37 @@ Dans cette section, vous allez écrire une application console .NET qui reçoit 
     }
     ```
 
-    Notez que ce modèle de réception est le même que celui utilisé pour recevoir des messages cloud-à-appareil à partir de l’application de l’appareil.
+    Remarque : ce modèle de réception est hello les mêmes messages cloud-à-appareil tooreceive utilisé un à partir de l’application hello.
 
-1. Enfin, ajoutez les lignes suivantes à la méthode **Main** :
+1. Enfin, ajoutez hello suivant lignes toohello **Main** méthode :
 
     ```csharp
     Console.WriteLine("Receive file upload notifications\n");
     serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
     ReceiveFileUploadNotificationAsync();
-    Console.WriteLine("Press Enter to exit\n");
+    Console.WriteLine("Press Enter tooexit\n");
     Console.ReadLine();
     ```
 
-## <a name="run-the-applications"></a>Exécution des applications
+## <a name="run-hello-applications"></a>Exécuter des applications de hello
 
-Vous êtes maintenant prêt à exécuter les applications.
+Vous êtes maintenant prêt toorun les applications hello.
 
-1. Dans Visual Studio, cliquez avec le bouton droit sur votre solution et sélectionnez **Définir les projets de démarrage**. Sélectionnez **Plusieurs projets de démarrage**, puis sélectionnez l’action **Démarrer** pour **ReadFileUploadNotification** et **SimulatedDevice**.
+1. Dans Visual Studio, cliquez avec le bouton droit sur votre solution et sélectionnez **Définir les projets de démarrage**. Sélectionnez **plusieurs projets de démarrage**, puis sélectionnez hello **Démarrer** action pour **ReadFileUploadNotification** et **SimulatedDevice**.
 
-1. Appuyez sur **F5**. Les deux applications doivent démarrer. Vous devriez voir le téléchargement terminé dans une application console et le message de notification de téléchargement reçus par l’autre application console. Vous pouvez utiliser le [portail Azure] ou l’Explorateur de serveurs Visual Studio pour vérifier la présence du fichier chargé dans votre compte Azure Storage.
+1. Appuyez sur **F5**. Les deux applications doivent démarrer. Vous devez voir le téléchargement de hello terminé dans l’application d’une même console et de message de notification de téléchargement hello reçu par hello autre application de console. Vous pouvez utiliser hello [portail Azure] ou toocheck Explorateur de serveurs Visual Studio présence hello Hello téléchargé le fichier dans votre compte de stockage Azure.
 
     ![][50]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez appris à utiliser les fonctionnalités de téléchargement de fichier d’IoT Hub pour simplifier les chargements de fichiers à partir d’appareils. Vous pouvez continuer à explorer les scénarios et fonctionnalités d’IoT Hub avec les articles suivants :
+Dans ce didacticiel, vous avez appris comment toouse hello téléchargement fonctionnalités du IoT Hub toosimplify fichier télécharge à partir d’appareils. Vous pouvez poursuivre scénarios et fonctionnalités de hub IoT tooexplore hello suivant des articles :
 
 * [Créer un IoT Hub par programme][lnk-create-hub]
-* [Présentation du Kit de développement logiciel (SDK) C][lnk-c-sdk]
+* [Introduction tooC SDK][lnk-c-sdk]
 * [Kits de développement logiciel (SDK) Azure IoT][lnk-sdks]
 
-Pour explorer davantage les capacités de IoT Hub, consultez :
+toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :
 
 * [Simulation d’un appareil avec IoT Edge][lnk-iotedge]
 
@@ -192,10 +192,10 @@ Pour explorer davantage les capacités de IoT Hub, consultez :
 
 [portail Azure]: https://portal.azure.com/
 
-[Centre de développement Azure IoT]: http://www.azure.com/develop/iot
+[centre de développement Azure IoT]: http://www.azure.com/develop/iot
 
-[Transient Fault Handling]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
-[Package NuGet du SDK service IoT Azure]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
+[gestion des pannes temporaires]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+[package NuGet du SDK du service Azure IoT]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 
 [lnk-create-hub]: iot-hub-rm-template-powershell.md

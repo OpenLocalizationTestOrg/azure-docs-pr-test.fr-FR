@@ -1,6 +1,6 @@
 ---
-title: "Forum aux questions sur les machines virtuelles Linux classiques | Microsoft Docs"
-description: "Réponses à certaines questions courantes sur les machines virtuelles Linux Azure créées avec le modèle de déploiement classique."
+title: "Forum aux questions pour les machines virtuelles Linux classique d’aaaFrequently | Documents Microsoft"
+description: "Réponses toosome des questions courantes sur les machines virtuelles Azure Linux créés avec le modèle de déploiement classique hello."
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/28/2016
 ms.author: cynthn
-ms.openlocfilehash: 132868c00dc039e40b0782aae6da2cf29163706f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ecf36140814224f0ceeeb35b90479529d100025a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="frequently-asked-question-about-azure-linux-virtual-machines-created-with-the-classic-deployment-model"></a>Forum aux questions sur les machines virtuelles Linux Azure créées avec le modèle de déploiement classique
+# <a name="frequently-asked-question-about-azure-linux-virtual-machines-created-with-hello-classic-deployment-model"></a>Forum aux questions sur Azure Machines virtuelles Linux créés avec le modèle de déploiement classique de hello
 > [!IMPORTANT] 
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager. Pour accéder à la FAQ en cas d’utilisation du modèle Resource Manager, suivez [ce lien](../faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello. Pour le FAQ hello lorsque vous utilisez hello modèle du Gestionnaire de ressources, consultez [ici](../faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 [!INCLUDE [virtual-machines-common-classic-faq](../../../../includes/virtual-machines-common-classic-faq.md)]
 

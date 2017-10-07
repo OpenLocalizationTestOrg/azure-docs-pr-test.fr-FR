@@ -1,6 +1,6 @@
 ---
-title: "Affichage de votre application dans la galerie d’applications Azure AD"
-description: "Comment répertorier une application qui prend en charge l'authentification unique dans la galerie Azure Active Directory | Microsoft Azure"
+title: "aaaListing votre application dans la galerie d’applications Azure Active Directory hello"
+description: "Comment toolist une application qui prend en charge l’authentification unique dans hello Galerie d’Azure Active Directory | Microsoft Azure"
 services: active-directory
 documentationcenter: dev-center-name
 author: bryanla
@@ -15,27 +15,27 @@ ms.workload: identity
 ms.date: 04/27/2017
 ms.author: bryanla
 ms.custom: aaddev
-ms.openlocfilehash: cf25772bd9d92b59401aa5da76e6bbd5fa5ee3e5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 09ccd3b4645a180059b9a9d502e39f1b8933c988
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="listing-your-application-in-the-azure-active-directory-application-gallery"></a>Affichage de votre application dans la galerie d’applications Azure AD
-Pour répertorier une application qui prend en charge l'authentification unique avec Azure Active Directory dans la [galerie Azure AD](https://azure.microsoft.com/marketplace/active-directory/all/), l'application doit tout d'abord mettre en œuvre l'un des modes d'intégration suivants :
+# <a name="listing-your-application-in-hello-azure-active-directory-application-gallery"></a>Affichage de votre application dans la galerie d’applications Azure Active Directory hello
+une application qui prend en charge l’authentification unique sur avec Azure Active Directory Bonjour de toolist [Galerie d’Azure AD](https://azure.microsoft.com/marketplace/active-directory/all/), application hello doit tout d’abord une tooimplement Hello suivant des modes d’intégration :
 
-* **OpenID Connect** : intégration directe dans Azure AD à l'aide d'OpenID Connect pour l'authentification et l'API de consentement Azure AD pour la configuration. Si vous débutez une intégration et que votre application ne prend pas en charge SAML, il s'agit du mode de recommandé.
-* **SAML** : votre application a déjà la possibilité de configurer des fournisseurs d'identité tiers utilisant le protocole SAML.
+* **OpenID Connect** - intégration directe avec Azure AD en utilisant OpenID Connect pour l’authentification et hello consentement d’Azure AD API pour la configuration. Si vous commencez une intégration et votre application ne prend pas en charge SAML, il s’agit de mode de recommandation hello.
+* **SAML** : votre application a déjà des fournisseurs d’identité tiers hello capacité tooconfigure à l’aide du protocole SAML de hello.
 
 Les exigences pour chaque mode sont indiquées ci-dessous.
 
 ## <a name="openid-connect-integration"></a>Intégration d'OpenID Connect
-Pour intégrer votre application dans Azure AD, suivez les [instructions pour développeurs](active-directory-authentication-scenarios.md). Puis répondez aux questions ci-dessous et adressez vos réponses à waadpartners@microsoft.com.
+toointegrate votre application auprès d’Azure AD, hello suivant [les instructions de développeur](active-directory-authentication-scenarios.md). Répondez aux questions de hello ci-dessous, puis envoyer toowaadpartners@microsoft.com.
 
-* Fournissez des informations d'identification pour votre application pour un locataire ou un compte de test pouvant être utilisées par l'équipe Azure AD pour tester l'intégration.  
-* Fournissez des instructions sur la manière dont l'équipe Azure AD peut se connecter et connecter une instance d'Azure AD à votre application à l'aide de l' [infrastructure de consentement d'Azure AD](active-directory-integrating-applications.md#overview-of-the-consent-framework). 
-* Fournissez toute instruction supplémentaire nécessaire pour permettre à l'équipe Azure AD de tester l'authentification unique avec votre application. 
-* Fournissez les informations ci-dessous :
+* Fournissez les informations d’identification pour un compte ou un client de test avec l’application qui peut être utilisée par hello intégration d’Azure AD équipe tootest hello.  
+* Fournissent des instructions sur l’équipe de hello Azure AD peut se connecter et se connecter à une instance de l’application de tooyour Azure AD à l’aide de hello [infrastructure de consentement d’Azure AD](active-directory-integrating-applications.md#overview-of-the-consent-framework). 
+* Fournir des instructions supplémentaires requises pour hello Azure AD de l’équipe tootest single sign-on avec votre application. 
+* Spécifiez les informations de hello ci-dessous :
 
 > Nom de l’entreprise :
 > 
@@ -49,11 +49,11 @@ Pour intégrer votre application dans Azure AD, suivez les [instructions pour d�
 > 
 > Site web du support technique de l’application ou les informations de contact :
 > 
-> ID d’application de l’application, comme indiqué dans les détails de l’application à https://portal.azure.com :
+> ID d’application de l’application hello, comme indiqué dans les détails de l’application hello à https://portal.azure.com :
 > 
-> URL d’inscription d’application à laquelle les clients accèdent pour s’inscrire et/ou acheter l’application :
+> URL d’inscription de l’application où les clients vont toosign pour et et/ou d’achat application hello :
 > 
-> Sélectionnez jusqu’à trois catégories répertoriées pour votre application (pour connaître les catégories disponibles, consultez l'Azure Active Directory Marketplace) :
+> Choisissez les catégories de toothree pour votre toobe application répertoriés sous (pour les catégories disponibles voir hello Azure Active Directory Marketplace) :
 > 
 > Attacher une petite icône d’application (fichier PNG, 45 px par 45 px, couleur d’arrière-plan unie) :
 > 
@@ -64,12 +64,12 @@ Pour intégrer votre application dans Azure AD, suivez les [instructions pour d�
 > 
 
 ## <a name="saml-integration"></a>Intégration de SAML
-Toute application prenant en charge SAML 2.0 peut être intégrée directement dans un locataire Azure AD à l'aide de [ces instructions pour ajouter une application personnalisée](../active-directory-saas-custom-apps.md). Une fois que vous avez testé que l'intégration de votre application fonctionne avec Azure AD, envoyez les informations suivantes à l'adresse <mailto:waadpartners@microsoft.com>.
+N’importe quelle application qui prend en charge SAML 2.0 peut être intégrée directement à un locataire Azure AD à l’aide de [ces tooadd instructions une application personnalisée](../active-directory-saas-custom-apps.md). Une fois que vous avez testé que votre intégration d’application fonctionne avec Azure AD, envoyer hello informations suivantes trop<mailto:waadpartners@microsoft.com>.
 
-* Fournissez des informations d'identification pour votre application pour un locataire ou un compte de test pouvant être utilisées par l'équipe Azure AD pour tester l'intégration.  
-* Fournissez l'URL de connexion SAML, l'URL de l'émetteur (ID d'entité) et l'URL de réponse (Assertion Consumer Service) pour votre application, comme indiqué [ici](../active-directory-saas-custom-apps.md). Si vous fournissez généralement ces valeurs dans un fichier de métadonnées SAML, envoyez également ce dernier.
-* Fournissez une brève description de la configuration d'Azure AD comme fournisseur d'identité dans votre application à l'aide de SAML 2.0. Si votre application prend en charge la configuration d'Azure AD comme fournisseur d'identité via un portail d'administration en libre-service, assurez-vous que les informations d'identification fournies vous le permettent.
-* Fournissez les informations ci-dessous :
+* Fournissez les informations d’identification pour un compte ou un client de test avec l’application qui peut être utilisée par hello intégration d’Azure AD équipe tootest hello.  
+* Fournir hello SAML URL de connexion, URL de l’émetteur (ID d’entité), et l’URL de réponse (service de consommateur d’assertion) valeurs pour votre application, comme indiqué [ici](../active-directory-saas-custom-apps.md). Si vous fournissez généralement ces valeurs dans un fichier de métadonnées SAML, envoyez également ce dernier.
+* Fournissent une brève description de la façon tooconfigure Azure AD comme fournisseur d’identité dans votre application à l’aide de SAML 2.0. Si votre application prend en charge la configuration d’Azure AD comme fournisseur d’identité via un portail administratif libre-service, puis vérifiez que les informations d’identification de hello fournies ci-dessus incluent hello capacité tooset cette installation.
+* Spécifiez les informations de hello ci-dessous :
 
 > Nom de l’entreprise :
 > 
@@ -83,9 +83,9 @@ Toute application prenant en charge SAML 2.0 peut être intégrée directement d
 > 
 > Site web du support technique de l’application ou les informations de contact :
 > 
-> URL d’inscription d’application à laquelle les clients accèdent pour s’inscrire et/ou acheter l’application :
+> URL d’inscription de l’application où les clients vont toosign pour et et/ou d’achat application hello :
 > 
-> Sélectionnez jusqu'à trois catégories à répertorier pour votre application sous (pour connaître les catégories disponibles, consultez le site [Marketplace Azure Active Directory](https://azure.microsoft.com/marketplace/active-directory/)) :
+> Choisissez les catégories de toothree pour votre toobe application répertoriés sous (pour les catégories disponibles, consultez hello [Azure Active Directory Marketplace](https://azure.microsoft.com/marketplace/active-directory/))) :
 > 
 > Attacher une petite icône d’application (fichier PNG, 45 px par 45 px, couleur d’arrière-plan unie) :
 > 

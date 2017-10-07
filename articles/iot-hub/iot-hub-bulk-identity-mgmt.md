@@ -1,6 +1,6 @@
 ---
-title: "Importer/exporter des identités d’appareil Azure IoT Hub | Microsoft Docs"
-description: "Utilisation du Kit de développement logiciel (SDK) de service Azure IoT pour effectuer des opérations en bloc dans le registre des identités pour importer et exporter les identités des appareils. Les opérations d’importation vous permettent de créer, de mettre à jour et de supprimer des identités d’appareils en bloc."
+title: "exportation d’aaaImport des identités d’appareil Azure IoT Hub | Documents Microsoft"
+description: "Comment toouse hello Azure IoT service SDK tooperform opérations contre hello identité Registre tooimport en bloc et exporter les identités des appareils. Opérations d’importation permettent de toocreate, mise à jour et suppression des identités de périphérique en bloc."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: dobett
-ms.openlocfilehash: ad2c6d585eef5450f7f0912ffa4753fe80d86b37
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b67777d381e03de05d9c007b5ce6bdaf15bbb8f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-your-iot-hub-device-identities-in-bulk"></a>Gestion de vos identités d’appareil IoT Hub en bloc
 
-Chaque IoT Hub a un registre des identités que vous pouvez utiliser pour créer des ressources par appareil dans le service. Le registre des identités vous permet également de contrôler l’accès aux points de terminaison orientés appareil. Cet article explique comment importer et exporter les identités des appareils en bloc vers et à partir d’un registre des identités.
+Chaque hub IoT a un registre d’identité que vous pouvez utiliser les ressources de chaque appareil toocreate dans le service hello. Registre des identités Hello vous permet également de points de terminaison toocontrol accès toohello périphérique. Cet article décrit comment les identités d’appareil tooimport et d’exportation dans en bloc tooand à partir d’un registre d’identité.
 
-Les opérations d’importation et d’exportation se déroulent dans le cadre de *Tâches* , qui vous permettent d’exécuter des opérations de service en bloc par rapport à un IoT Hub.
+Opérations d’importation et d’exportation ont lieu dans le contexte de hello de *travaux* qui vous permettent des opérations de service tooexecute en bloc par rapport à un hub IoT.
 
-La classe **RegistryManager** comprend les méthodes **ExportDevicesAsync** et **ImportDevicesAsync**, qui utilisent l’infrastructure des **tâches**. Ces méthodes vous permettent d’exporter, d’importer et de synchroniser l’intégralité d’un registre des identités IoT hub.
+Hello **RegistryManager** classe inclut hello **ExportDevicesAsync** et **ImportDevicesAsync** les méthodes qui utilisent hello **travail** Framework. Ces méthodes permettent de tooexport, importation et synchroniser l’intégralité de hello de Registre des identités un hub IoT.
 
 ## <a name="what-are-jobs"></a>Que sont les tâches ?
 
-Les opérations de registre des identités utilisent le système de **tâches** lorsque l’opération :
+Les opérations de Registre identité utilisent hello **travail** système lorsque hello opération :
 
-* a un temps d’exécution potentiellement long par rapport à une opération d’exécution standard.
-* renvoie une grande quantité de données à l’utilisateur.
+* A une durée d’exécution peut être longue comparée toostandard opérations d’exécution.
+* Retourne une grande quantité d’utilisateur toohello de données.
 
-Au lieu d’avoir un seul appel d’API en attente ou qui se bloque sur le résultat de l’opération, l’opération crée de façon asynchrone un **travail** pour cet IoT Hub. L’opération renvoie alors immédiatement un objet **JobProperties**.
+Au lieu d’un seul appel d’API en attente ou de blocage sur le résultat de hello d’opération de hello, opération de hello crée de façon asynchrone un **travail** pour ce hub IoT. opération de Hello, puis retourne immédiatement un **JobProperties** objet.
 
-L’extrait de code C# suivant indique comment créer une tâche d’exportation :
+Hello suivant c# de code extrait de code montre comment toocreate un travail d’exportation :
 
 ```csharp
-// Call an export job on the IoT Hub to retrieve all devices
+// Call an export job on hello IoT Hub tooretrieve all devices
 JobProperties exportJob = await registryManager.ExportDevicesAsync(containerSasUri, false);
 ```
 
 > [!NOTE]
-> Pour utiliser la classe **RegistryManager** dans votre code C#, ajoutez le package NuGet **Microsoft.Azure.Devices** à votre projet. La classe **RegistryManager** se trouve dans l’espace de noms **Microsoft.Azure.Devices**.
+> toouse hello **RegistryManager** de classe dans votre code c#, ajoutez hello **Microsoft.Azure.Devices** projet tooyour de package NuGet. Hello **RegistryManager** classe se trouve dans hello **Microsoft.Azure.Devices** espace de noms.
 
-Vous pouvez utiliser la classe **RegistryManager** pour interroger l’état de la **tâche** à l’aide des métadonnées **JobProperties** retournées.
+Vous pouvez utiliser hello **RegistryManager** classe état de hello tooquery Hello **travail** à l’aide de hello retourné **JobProperties** métadonnées.
 
-L’extrait de code C# suivant indique comment envoyer des interrogations toutes les cinq secondes pour voir si la tâche a terminé son exécution :
+Hello extrait de code c# suivant montre comment toopoll toosee de toutes les cinq secondes si hello la tâche est terminée :
 
 ```csharp
 // Wait until job is finished
@@ -70,24 +70,24 @@ while(true)
 
 ## <a name="export-devices"></a>Exporter des appareils
 
-Utilisez la méthode **ExportDevicesAsync** pour exporter l’intégralité d’un registre des identités IoT Hub vers un conteneur d’objets blob [Azure Storage](../storage/index.md) à l’aide d’une [signature d’accès partagé](../storage/common/storage-security-guide.md#data-plane-security).
+Hello d’utilisation **ExportDevicesAsync** intégralité de hello méthode tooexport d’un tooan de Registre IoT hub identité [Azure Storage](../storage/index.md) conteneur d’objets blob à l’aide un [Signature d’accès partagé](../storage/common/storage-security-guide.md#data-plane-security).
 
-Cette méthode vous permet de créer des sauvegardes fiables de vos informations d’appareil dans un conteneur d’objets blob que vous contrôlez.
+Cette méthode vous permet de toocreate les sauvegardes fiable de vos informations de périphérique dans un conteneur d’objets blob que vous contrôlez.
 
-La méthode **ExportDevicesAsync** requiert deux paramètres :
+Hello **ExportDevicesAsync** méthode requiert deux paramètres :
 
-* Une *chaîne* qui contient l’URI d’un conteneur d’objets blob. Cet URI doit contenir un jeton SAP, qui accorde l’accès en écriture au conteneur. La tâche crée un objet blob de blocs dans ce conteneur pour stocker les données d’exportation d’appareil sérialisées. Le jeton SAP doit inclure ces autorisations :
+* Une *chaîne* qui contient l’URI d’un conteneur d’objets blob. Cet URI doit contenir un jeton SAS qui accorde un accès en écriture toohello conteneur. Hello crée un objet blob de blocs dans ces conteneur toostore hello sérialisé exporter périphérique des données. un jeton SAS Hello doit inclure ces autorisations :
 
    ```csharp
    SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
    ```
 
-* Un *booléen* qui indique si vous souhaitez exclure les clés d’authentification de vos données d’exportation. Si la valeur est **false**, des clés d’authentification sont incluses dans la sortie d’exportation. Dans le cas contraire, les clés sont exportées sous forme de valeur **null**.
+* A *booléenne* qui indique si vous souhaitez tooexclude clés d’authentification à partir de vos données d’exportation. Si la valeur est **false**, des clés d’authentification sont incluses dans la sortie d’exportation. Dans le cas contraire, les clés sont exportées sous forme de valeur **null**.
 
-L’extrait de code C# suivant montre comment lancer une tâche d’exportation qui inclut des clés d’authentification de l’appareil dans les données d’exportation, puis comment interroger l’exécution :
+Hello extrait de code c# suivant montre comment tooinitiate un travail d’exportation qui inclut des clés de l’authentification d’appareil Bonjour exporter des données et puis interroger fin :
 
 ```csharp
-// Call an export job on the IoT Hub to retrieve all devices
+// Call an export job on hello IoT Hub tooretrieve all devices
 JobProperties exportJob = await registryManager.ExportDevicesAsync(containerSasUri, false);
 
 // Wait until job is finished
@@ -106,9 +106,9 @@ while(true)
 }
 ```
 
-La tâche stocke sa sortie dans le conteneur d’objets blob fourni en tant qu’objet blob de blocs portant le nom **devices.txt**. Les données de sortie consistent en des données d’appareil JSON sérialisées, avec un appareil par ligne.
+Hello travail stocke sa sortie dans un conteneur d’objets blob hello fourni en tant qu’objet blob de blocs avec le nom de hello **devices.txt**. les données de sortie Hello se comprennent de données de l’appareil sérialisé au format JSON, avec un périphérique par ligne.
 
-L’exemple ci-après illustre les données de sortie :
+Hello suivant montre les données de sortie hello :
 
 ```json
 {"id":"Device1","eTag":"MA==","status":"enabled","authentication":{"symmetricKey":{"primaryKey":"abc=","secondaryKey":"def="}}}
@@ -118,7 +118,7 @@ L’exemple ci-après illustre les données de sortie :
 {"id":"Device5","eTag":"MA==","status":"enabled","authentication":{"symmetricKey":{"primaryKey":"abc=","secondaryKey":"def="}}}
 ```
 
-Si un appareil comporte des données de représentation, elles sont également exportées avec les données de l’appareil. L’exemple ci-après illustre ce format. Toutes les données à partir de la ligne « twinETag » jusqu'à la fin sont des données de représentation.
+Si un périphérique comporte des données de double, données de double hello sont également exportées avec les données de l’appareil hello. Hello suivant montre ce format. Toutes les données de ligne de « twinETag » hello jusqu'à la fin de hello sont les données double.
 
 ```json
 {
@@ -165,7 +165,7 @@ Si un appareil comporte des données de représentation, elles sont également e
 }
 ```
 
-Si vous avez besoin d’accéder à ces données sous forme de code, vous pouvez facilement désérialiser ces données à l’aide de la classe **ExportImportDevice** . L’extrait de code C# suivant montre comment lire les informations d’appareil qui ont été exportées précédemment vers un objet blob de bloc :
+Si vous devez accéder aux données toothis dans du code, vous pouvez facilement désérialiser ces données à l’aide de hello **ExportImportDevice** classe. Hello extrait de code c# suivant montre comment les informations de périphérique tooread qui a été précédemment exportées tooa objet blob de blocs :
 
 ```csharp
 var exportedDevices = new List<ExportImportDevice>();
@@ -182,44 +182,44 @@ using (var streamReader = new StreamReader(await blob.OpenReadAsync(AccessCondit
 ```
 
 > [!NOTE]
-> Vous pouvez également utiliser la méthode **GetDevicesAsync** de la classe **RegistryManager** pour extraire une liste de vos appareils. Toutefois, cette approche a une capacité stricte de 1 000 en ce qui concerne le nombre d’objets d’appareil renvoyés. La méthode **GetDevicesAsync** est surtout envisagée pour l’aide au débogage lors de scénarios de développement. Elle n’est pas recommandée pour les charges de travail de production.
+> Vous pouvez également utiliser hello **GetDevicesAsync** méthode Hello **RegistryManager** classe toofetch une liste de vos appareils. Toutefois, cette approche a une valeur maximale de 1000 nombre hello d’objets de périphérique qui sont retournées. Hello attendu de cas d’utilisation de hello **GetDevicesAsync** méthode est pour le débogage de tooaid de scénarios de développement et n’est pas recommandée pour les charges de production.
 
 ## <a name="import-devices"></a>Importer des appareils
 
-La méthode **ImportDevicesAsync** de la classe **RegistryManager** vous permet d’effectuer des opérations d’importation et de synchronisation en bloc dans un registre des identités IoT Hub. À la manière de la méthode **ExportDevicesAsync**, la méthode **ImportDevicesAsync** utilise l’infrastructure de **Tâches**.
+Hello **ImportDevicesAsync** méthode Bonjour **RegistryManager** classe vous permet d’opérations d’importation et synchronisation d’en bloc dans un registre des identités IoT hub tooperform. Comme hello **ExportDevicesAsync** (méthode), hello **ImportDevicesAsync** méthode utilise hello **travail** framework.
 
-Faites attention lors de l’utilisation de la méthode **ImportDevicesAsync**. Celle-ci peut, en plus d’approvisionner de nouveaux appareils dans le registre des identités, mettre à jour et supprimer des appareils existants.
+Prendre en charge à l’aide de hello **ImportDevicesAsync** (méthode), car dans Ajout tooprovisioning nouveaux appareils dans votre Registre des identités, il peut également mettre à jour et supprimer des périphériques existants.
 
 > [!WARNING]
-> Il est impossible d’annuler une opération d’importation. Sauvegardez toujours vos données existantes vers un autre conteneur d’objets blob, à l’aide de la méthode **ExportDevicesAsync**, avant de faire des modifications en bloc dans le registre des identités.
+> Il est impossible d’annuler une opération d’importation. Toujours sauvegarder vos données existantes à l’aide de hello **ExportDevicesAsync** conteneur d’objets blob méthode tooanother avant d’apporter en bloc modifie le Registre des identités tooyour.
 
-La méthode **ImportDevicesAsync** requiert deux paramètres :
+Hello **ImportDevicesAsync** méthode accepte deux paramètres :
 
-* Une *chaîne* qui contient l’URI d’un conteneur d’objets blob [Azure Storage](../storage/index.md) à utiliser comme *entrée* de la tâche. Cet URI doit contenir un jeton SAP qui accorde l’accès en lecture au conteneur. Ce conteneur doit inclure un objet blob du nom de **devices.txt** contenant les données d’appareil sérialisées pour importation dans le registre des identités. Les données d’importation doivent contenir des informations sur l’appareil au même format JSON que celui utilisé par la tâche **ExportImportDevice** lors de la création d’un objet blob **devices.txt**. Le jeton SAP doit inclure ces autorisations :
+* A *chaîne* qui contient l’URI d’un [Azure Storage](../storage/index.md) toouse conteneur comme des objets blob *d’entrée* toohello travail. Cet URI doit contenir un jeton SAS qui accorde l’accès en lecture toohello conteneur. Ce conteneur doit contenir un objet blob avec le nom de hello **devices.txt** qui contient tooimport de données de périphérique hello sérialisé dans le Registre de votre identité. Hello importer des données doivent contenir des informations de périphérique Bonjour même format JSON que hello **ExportImportDevice** travail utilise lorsqu’il crée un **devices.txt** blob. un jeton SAS Hello doit inclure ces autorisations :
 
    ```csharp
    SharedAccessBlobPermissions.Read
    ```
-* Une *chaîne* qui contient l’URI d’un conteneur d’objets blob [Azure Storage](https://azure.microsoft.com/documentation/services/storage/) à utiliser comme *sortie* de la tâche. La tâche crée un objet blob de blocs dans ce conteneur pour stocker toute information d’erreur à partir de la **tâche**d’importation terminée. Le jeton SAP doit inclure ces autorisations :
+* A *chaîne* qui contient l’URI d’un [Azure Storage](https://azure.microsoft.com/documentation/services/storage/) toouse conteneur comme des objets blob *sortie* à partir de la tâche de hello. Hello travail crée un objet blob de blocs dans ce conteneur toostore aucune information d’erreur de l’importation de hello terminée **travail**. un jeton SAS Hello doit inclure ces autorisations :
 
    ```csharp
    SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
    ```
 
 > [!NOTE]
-> Les deux paramètres peuvent pointer vers le même conteneur d’objets blob. Les paramètres distincts permettent simplement davantage de contrôle sur vos données, étant donné que le conteneur de sortie requiert des autorisations supplémentaires.
+> paramètres de Hello deux peuvent pointer toohello même conteneur d’objets blob. les paramètres distincts Hello activent simplement plus de contrôle sur vos données en tant que conteneur de sortie hello nécessite des autorisations supplémentaires.
 
-L’extrait de code C# suivant indique comment créer une tâche d’importation :
+Hello suivant c# de code extrait de code montre comment tooinitiate un travail d’importation :
 
 ```csharp
 JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
 ```
 
-Cette méthode peut également être utilisée pour importer les données pour la représentation de l’appareil. Le format des données d’entrée est le même que celui indiqué dans la section **ExportDevicesAsync**. De cette façon, vous pouvez réimporter les données exportées. Le **$metadata** est facultatif.
+Cette méthode peut également être données hello tooimport utilisé double du périphérique hello. format Hello hello d’entrée de données est hello même en tant que format hello illustré hello **ExportDevicesAsync** section. De cette façon, vous pouvez réimporter les données de hello exportée. Hello **$metadata** est facultatif.
 
 ## <a name="import-behavior"></a>Comportement d’importation
 
-Vous pouvez utiliser la méthode **ImportDevicesAsync** pour effectuer les opérations en bloc suivantes dans le registre des identités :
+Vous pouvez utiliser hello **ImportDevicesAsync** suivant de méthode tooperform hello en bloc des opérations dans le Registre de votre identité :
 
 * Inscription en bloc de nouveaux appareils
 * Suppression en bloc d’appareils existants
@@ -228,32 +228,32 @@ Vous pouvez utiliser la méthode **ImportDevicesAsync** pour effectuer les opér
 * Auto-régénération en bloc des clés d’authentification d’appareils
 * Mise à jour en bloc de données de représentation
 
-Vous pouvez effectuer n’importe quelle combinaison des opérations précédentes en un seul appel **ImportDevicesAsync** . Vous pouvez, par exemple, inscrire de nouveaux appareils, tout en supprimant ou mettant à jour des appareils existants. Lorsqu’il est utilisé avec la méthode **ExportDevicesAsync** , tous les appareils peuvent être migrés complètement à partir d’un IoT Hub vers un autre.
+Vous pouvez effectuer n’importe quelle combinaison de hello précédant les opérations dans un seul **ImportDevicesAsync** appeler. Par exemple, vous pouvez inscrire de nouveaux périphériques et supprimer ou mettre à jour des périphériques existants à hello même temps. Lorsqu’il est utilisé avec hello **ExportDevicesAsync** (méthode), vous pouvez entièrement migrer tous vos appareils à partir d’un tooanother de hub IoT.
 
-Si le fichier d’importation inclut les métadonnées de représentation, ces métadonnées remplacent les métadonnées de représentation existantes. Si le fichier d’importation n’inclut pas les métadonnées de représentation, seules les métadonnées `lastUpdateTime` sont mises à jour avec l’heure actuelle.
+Si le fichier d’importation hello inclut les métadonnées de double, ces métadonnées remplacent les métadonnées existantes du double hello. Si le fichier d’importation hello n’inclut pas de métadonnées de double, puis uniquement hello `lastUpdateTime` métadonnées sont mis à jour à l’aide de hello heure actuelle.
 
-Vous pouvez contrôler le processus d’importation par appareil en utilisant la propriété facultative **importMode** dans les données d’importation sérialisées pour chaque appareil. La propriété **importMode** propose les options suivantes :
+Hello utilisation facultative **importMode** propriété dans les données de sérialisation hello pour chaque périphérique toocontrol hello importation processus par périphérique. Hello **importMode** propriété a hello options suivantes :
 
 | importMode | Description |
 | --- | --- |
-| **createOrUpdate** |Si un appareil n’existe pas avec l’ **ID**spécifié, ce dernier a été inscrit récemment. <br/>Si l’appareil existe déjà, les informations existantes sont remplacées par les données d’entrée fournies, sans tenir compte de la valeur **ETag** . <br> L’utilisateur peut éventuellement spécifier des données de représentation avec les données de l’appareil. L’etag de la représentation, si elle est spécifiée, est traitée indépendamment de l’etag de l’appareil. S’il existe une incompatibilité avec l’etag existant de la représentation, une erreur est consignée dans le fichier journal. |
-| **create** |Si un appareil n’existe pas avec l’ **ID**spécifié, ce dernier a été inscrit récemment. <br/>Si l’appareil existe déjà, une erreur est consignée dans le fichier journal. <br> L’utilisateur peut éventuellement spécifier des données de représentation avec les données de l’appareil. L’etag de la représentation, si elle est spécifiée, est traitée indépendamment de l’etag de l’appareil. S’il existe une incompatibilité avec l’etag existant de la représentation, une erreur est consignée dans le fichier journal. |
-| **update** |Si un appareil avec **l’ID** spécifié existe déjà, les informations existantes sont remplacées par les données d’entrée fournies, sans tenir compte de la valeur **ETag**. <br/>Si l’appareil n’existe pas, une erreur est consignée dans le fichier journal. |
-| **updateIfMatchETag** |Si un appareil avec **l’ID** spécifié existe déjà, les informations existantes sont remplacées par les données d’entrée fournies, mais uniquement si la valeur **ETag** correspond. <br/>Si l’appareil n’existe pas, une erreur est consignée dans le fichier journal. <br/>En cas d’incompatibilité de valeur **ETag** , une erreur est consignée dans le fichier journal. |
-| **createOrUpdateIfMatchETag** |Si un appareil n’existe pas avec l’ **ID**spécifié, ce dernier a été inscrit récemment. <br/>Si un appareil existe déjà, les informations existantes sont remplacées par les données d’entrée fournies, mais uniquement si la valeur **ETag** correspond. <br/>En cas d’incompatibilité de valeur **ETag** , une erreur est consignée dans le fichier journal. <br> L’utilisateur peut éventuellement spécifier des données de représentation avec les données de l’appareil. L’etag de la représentation, si elle est spécifiée, est traitée indépendamment de l’etag de l’appareil. S’il existe une incompatibilité avec l’etag existant de la représentation, une erreur est consignée dans le fichier journal. |
-| **delete** |Si un appareil avec **l’ID** spécifié existe déjà, il est supprimé sans tenir compte de la valeur **ETag**. <br/>Si l’appareil n’existe pas, une erreur est consignée dans le fichier journal. |
-| **deleteIfMatchETag** |Si un appareil avec **l’ID** spécifié existe déjà, il est supprimé, mais uniquement si la valeur **ETag** correspond. Si l’appareil n’existe pas, une erreur est consignée dans le fichier journal. <br/>En cas d’incompatibilité de valeur ETag, une erreur est consignée dans le fichier journal. |
+| **createOrUpdate** |Si un appareil avec hello spécifié n’existe pas **id**, il est nouvellement inscrit. <br/>Si l’appareil de hello existe déjà, informations existantes sont remplacées par hello a fourni des données d’entrée sans se soucier des toohello **ETag** valeur. <br> utilisateur de Hello peut éventuellement spécifier des données de double en même temps que les données de l’appareil hello. etag du double Hello si spécifié, est traitée indépendamment de l’etag de l’appareil hello. S’il existe une incompatibilité avec les etag du double hello existant, une erreur est consignée toohello du journal. |
+| **create** |Si un appareil avec hello spécifié n’existe pas **id**, il est nouvellement inscrit. <br/>Si l’appareil de hello existe déjà, une erreur est consignée toohello du journal. <br> utilisateur de Hello peut éventuellement spécifier des données de double en même temps que les données de l’appareil hello. etag du double Hello si spécifié, est traitée indépendamment de l’etag de l’appareil hello. S’il existe une incompatibilité avec les etag du double hello existant, une erreur est consignée toohello du journal. |
+| **update** |Si un appareil existe déjà avec hello spécifié **id**, les informations existantes sont remplacées par hello a fourni des données d’entrée sans se soucier des toohello **ETag** valeur. <br/>Si l’appareil de hello n’existe pas, une erreur est consignée toohello du journal. |
+| **updateIfMatchETag** |Si un appareil existe déjà avec hello spécifié **id**, les informations existantes sont remplacées par hello a fourni des données d’entrée uniquement s’il existe un **ETag** correspondent. <br/>Si l’appareil de hello n’existe pas, une erreur est consignée toohello du journal. <br/>S’il existe un **ETag** incompatibilité, une erreur est consignée toohello du journal. |
+| **createOrUpdateIfMatchETag** |Si un appareil avec hello spécifié n’existe pas **id**, il est nouvellement inscrit. <br/>Si l’appareil de hello existe déjà, informations existantes sont remplacées par hello a fourni des données d’entrée uniquement s’il existe un **ETag** correspondent. <br/>S’il existe un **ETag** incompatibilité, une erreur est consignée toohello du journal. <br> utilisateur de Hello peut éventuellement spécifier des données de double en même temps que les données de l’appareil hello. etag du double Hello si spécifié, est traitée indépendamment de l’etag de l’appareil hello. S’il existe une incompatibilité avec les etag du double hello existant, une erreur est consignée toohello du journal. |
+| **delete** |Si un appareil existe déjà avec hello spécifié **id**, il est supprimé sans se soucier des toohello **ETag** valeur. <br/>Si l’appareil de hello n’existe pas, une erreur est consignée toohello du journal. |
+| **deleteIfMatchETag** |Si un appareil existe déjà avec hello spécifié **id**, il est supprimé uniquement s’il existe un **ETag** correspondent. Si l’appareil de hello n’existe pas, une erreur est consignée toohello du journal. <br/>S’il existe une non-correspondance d’ETag, une erreur est consignée toohello du journal. |
 
 > [!NOTE]
-> Si les données de sérialisation ne définissent pas explicitement un indicateur **importMode** pour un appareil donné, sa valeur par défaut sera **createOrUpdate** pendant l’opération d’importation.
+> Si les données de sérialisation hello ne définissent pas explicitement un **importMode** indicateur pour un périphérique, la valeur par défaut trop**createOrUpdate** hello lors de l’opération d’importation.
 
 ## <a name="import-devices-example--bulk-device-provisioning"></a>Exemple d’importation d’appareils : approvisionnement d’appareils en bloc
 
-L’exemple de code C# suivant illustre comment générer plusieurs identités d’appareil qui :
+Hello exemple de code c# suivant illustre comment toogenerate plusieurs identités d’appareil qui :
 
 * Comprennent des clés d’authentification.
-* Écrivent ces informations d’appareil sur un objet blob de blocs.
-* Importent les appareils dans le registre des identités.
+* Cet objet blob de blocs appareil informations tooa d’écriture.
+* Importer des appareils hello dans le Registre des identités hello.
 
 ```csharp
 // Provision 1,000 more devices
@@ -262,7 +262,7 @@ var serializedDevices = new List<string>();
 for (var i = 0; i < 1000; i++)
 {
   // Create a new ExportImportDevice
-  // CryptoKeyGenerator is in the Microsoft.Azure.Devices.Common namespace
+  // CryptoKeyGenerator is in hello Microsoft.Azure.Devices.Common namespace
   var deviceToAdd = new ExportImportDevice()
   {
     Id = Guid.NewGuid().ToString(),
@@ -278,11 +278,11 @@ for (var i = 0; i < 1000; i++)
     ImportMode = ImportMode.Create
   };
 
-  // Add device to the list
+  // Add device toohello list
   serializedDevices.Add(JsonConvert.SerializeObject(deviceToAdd));
 }
 
-// Write the list to the blob
+// Write hello list toohello blob
 var sb = new StringBuilder();
 serializedDevices.ForEach(serializedDevice => sb.AppendLine(serializedDevice));
 await blob.DeleteIfExistsAsync();
@@ -297,8 +297,8 @@ using (CloudBlobStream stream = await blob.OpenWriteAsync())
   }
 }
 
-// Call import using the blob to add new devices
-// Log information related to the job is written to the same container
+// Call import using hello blob tooadd new devices
+// Log information related toohello job is written toohello same container
 // This normally takes 1 minute per 100 devices
 JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
 
@@ -320,14 +320,14 @@ while(true)
 
 ## <a name="import-devices-example--bulk-deletion"></a>Exemple d’importation d’appareils : suppression en bloc
 
-L’exemple de code suivant montre comment supprimer les appareils ajoutés à l’aide de l’exemple de code précédent :
+Hello exemple de code suivant montre comment les appareils hello toodelete de que vous avez ajouté à l’aide hello exemple de code précédent :
 
 ```csharp
-// Step 1: Update each device's ImportMode to be Delete
+// Step 1: Update each device's ImportMode toobe Delete
 sb = new StringBuilder();
 serializedDevices.ForEach(serializedDevice =>
 {
-  // Deserialize back to an ExportImportDevice
+  // Deserialize back tooan ExportImportDevice
   var device = JsonConvert.DeserializeObject<ExportImportDevice>(serializedDevice);
 
   // Update property
@@ -337,7 +337,7 @@ serializedDevices.ForEach(serializedDevice =>
   sb.AppendLine(JsonConvert.SerializeObject(device));
 });
 
-// Step 2: Write the new import data back to the block blob
+// Step 2: Write hello new import data back toohello block blob
 await blob.DeleteIfExistsAsync();
 using (CloudBlobStream stream = await blob.OpenWriteAsync())
 {
@@ -349,7 +349,7 @@ using (CloudBlobStream stream = await blob.OpenWriteAsync())
   }
 }
 
-// Step 3: Call import using the same blob to delete all devices
+// Step 3: Call import using hello same blob toodelete all devices
 importJob = await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
 
 // Wait until job is finished
@@ -368,14 +368,14 @@ while(true)
 }
 ```
 
-## <a name="get-the-container-sas-uri"></a>Obtenir l’URI SAS du conteneur
+## <a name="get-hello-container-sas-uri"></a>Obtenir le conteneur de hello URI SAS
 
-L’exemple de code suivant montre comment générer un [URI de SAP](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md) avec des autorisations de lecture, d’écriture et de suppression pour un conteneur d’objets blob :
+Hello exemple de code suivant vous montre comment toogenerate un [URI SAS](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md) en lecture, écriture et suppression des autorisations pour un conteneur d’objets blob :
 
 ```csharp
 static string GetContainerSasUri(CloudBlobContainer container)
 {
-  // Set the expiry time and permissions for the container.
+  // Set hello expiry time and permissions for hello container.
   // In this case no start time is specified, so the
   // shared access signature becomes valid immediately.
   var sasConstraints = new SharedAccessBlobPolicy();
@@ -385,24 +385,24 @@ static string GetContainerSasUri(CloudBlobContainer container)
     SharedAccessBlobPermissions.Read | 
     SharedAccessBlobPermissions.Delete;
 
-  // Generate the shared access signature on the container,
-  // setting the constraints directly on the signature.
+  // Generate hello shared access signature on hello container,
+  // setting hello constraints directly on hello signature.
   string sasContainerToken = container.GetSharedAccessSignature(sasConstraints);
 
-  // Return the URI string for the container,
-  // including the SAS token.
+  // Return hello URI string for hello container,
+  // including hello SAS token.
   return container.Uri + sasContainerToken;
 }
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans cet article, vous avez appris comment effectuer des opérations en bloc dans le registre des identités dans un IoT Hub. Suivez ces liens pour en savoir plus sur la gestion de Azure IoT Hub :
+Dans cet article, vous avez appris comment tooperform en bloc des opérations sur le Registre des identités hello dans un hub IoT. Suivez ces liens de toolearn plus d’informations sur la gestion de Azure IoT Hub :
 
 * [Métriques d’IoT Hub][lnk-metrics]
 * [Surveillance des opérations][lnk-monitor]
 
-Pour explorer davantage les capacités de IoT Hub, consultez :
+toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :
 
 * [Guide du développeur IoT Hub][lnk-devguide]
 * [Simulation d’un appareil avec IoT Edge][lnk-iotedge]

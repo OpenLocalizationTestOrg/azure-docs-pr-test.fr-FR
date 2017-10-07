@@ -1,6 +1,6 @@
 ---
-title: "Guide de prise en main pour les développeurs sur Azure | Microsoft Docs"
-description: "Cette rubrique fournit des informations essentielles aux développeurs qui souhaitent commencer à utiliser la plateforme Microsoft Azure pour leurs besoins de développement."
+title: "guide d’aaaGet démarré pour les développeurs sur Azure | Documents Microsoft"
+description: "Cette rubrique fournit des informations essentielles pour les développeurs qui souhaitent tooget démarré à l’aide de la plateforme de Microsoft Azure hello pour les besoins de leur développement."
 services: 
 cloud: 
 documentationcenter: 
@@ -14,228 +14,228 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/05/2017
 ms.author: glenga
-ms.openlocfilehash: bfc69712a1ddcd4a225fd35cfcceb7fa0616887d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 72dc2678db7738923d4bc7783e297fea6fcded83
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-guide-for-azure-developers"></a>Guide de prise en main pour les développeurs Azure
 
 ## <a name="what-is-azure"></a>Qu’est-ce qu’Azure ?
 
-Azure est une plateforme cloud complète qui peut héberger vos applications existantes, simplifier le développement de nouvelles applications et même améliorer vos applications locales. Azure intègre les services cloud dont vous avez besoin pour développer, tester, déployer et gérer vos applications, tout en tirant parti de l’efficacité du cloud computing.
+Azure est une plateforme complète du cloud qui peut héberger vos applications existantes, rationaliser le développement de nouvelles applications hello et même améliorer des applications locales. Azure intègre les services de cloud computing hello que vous avez besoin de toodevelop, tester, déployer et gérer vos applications, tout en tirant parti de l’efficacité de hello de cloud computing.
 
-En hébergeant vos applications dans Azure, vous pouvez commencer à petite échelle et faire évoluer aisément vos applications à mesure que la demande client augmente. Azure offre également la fiabilité requise pour les applications à haute disponibilité, en permettant même un basculement entre les différentes régions. Le [portail Azure](https://portal.azure.com) vous permet de gérer facilement tous vos services Azure. Vous pouvez également gérer vos services par programmation en utilisant des API et des modèles spécifiques aux services.
+En hébergeant vos applications dans Azure, vous pouvez commencer à petite échelle et faire évoluer aisément vos applications à mesure que la demande client augmente. Azure propose également la fiabilité hello que nécessaire pour les applications de haute disponibilité, même y compris le basculement entre les différentes régions. Hello [portail Azure](https://portal.azure.com) vous permet de gérer facilement tous vos services Azure. Vous pouvez également gérer vos services par programmation en utilisant des API et des modèles spécifiques aux services.
 
-**À qui s’adresse ce guide ?** Ce guide est une introduction à la plateforme Azure pour les développeurs d’applications. Il fournit les conseils et les directions dont vous avez besoin pour commencer à élaborer de nouvelles applications dans Azure et à migrer vos applications existantes vers Azure.
+**Personnes concernées par ce**: ce guide est une plateforme Azure pour les développeurs d’applications de toohello introduction. Il fournit des instructions et la direction que vous avez besoin de toostart création de nouvelles applications dans Azure ou de migration tooAzure d’applications existant.
 
 ## <a name="where-do-i-start"></a>Par où commencer ?
 
-Avec tous les services qu’offre Azure, il peut être ardu d’identifier les services dont vous avez besoin pour prendre en charge votre architecture de solution. Cette section met en évidence les services Azure que les développeurs utilisent couramment. Pour obtenir la liste de tous les services Azure, consultez la [documentation d’Azure](../../index.md).
+Avec tous les services hello Azure offre, il peut être un toofigure tâche fastidieuse savoir quels services vous devez toosupport l’architecture de solution. Cette hello met en évidence de section Azure que les développeurs utilisent généralement des services. Pour obtenir la liste de tous les services Azure, consultez hello [documentation sur Azure](../../index.md).
 
-Tout d’abord, vous devez choisir la manière dont vous souhaitez héberger votre application dans Azure. Devez-vous gérer toute votre infrastructure en tant que machine virtuelle (VM) ? Pouvez-vous utiliser les installations de gestion de plateforme fournies par Azure ? Vous avez peut-être besoin uniquement d’un framework sans serveur pour héberger l’exécution de code ?
+Tout d’abord, vous devez décider sur la façon de toohost votre application dans Azure. Devez-vous toomanage votre infrastructure en tant qu’un ordinateur virtuel (VM). Vous pouvez utiliser des fonctionnalités de gestion de plateforme de hello Azure fournit ? Peut-être avez-vous besoin d’une infrastructure sans toohost l’exécution de code uniquement ?
 
 Votre application a besoin d’un stockage sur le cloud et Azure propose plusieurs options pour cela. Vous pouvez bénéficier de l’authentification en entreprise d’Azure. Il existe également des outils de développement et de surveillance basés sur le cloud, et la plupart des services d’hébergement offrent une intégration DevOps.
 
-À présent, passons en revue certains services spécifiques que nous vous recommandons d’examiner pour vos applications.
+À présent, examinons certains des services spécifiques hello que nous vous recommandons d’examiner pour vos applications.
 
 ### <a name="application-hosting"></a>Hébergement d’applications
 
-Azure propose plusieurs offres de calcul basées sur le cloud pour exécuter votre application sans avoir à vous soucier des détails d’infrastructure. Vous pouvez facilement monter en puissance ou augmenter la taille des instances de vos ressources à mesure que l’utilisation de vos applications augmente.
+Azure fournit plusieurs toorun d’offres de calcul basées sur le cloud à votre application afin que vous n’avez pas tooworry sur les détails de l’infrastructure hello. Vous pouvez facilement monter en puissance ou augmenter la taille des instances de vos ressources à mesure que l’utilisation de vos applications augmente.
 
-Azure propose des services qui prennent en charge vos besoins d’hébergement et de développement d’applications. Azure fournit une infrastructure as a service (IaaS) pour vous donner un contrôle total sur l’hébergement de vos applications. Les offres PaaS (platform as a service) d’Azure fournissent des services entièrement managés qui vous seront nécessaires pour dynamiser vos applications. Azure inclut même un hébergement sans serveur dans lequel il vous suffit d’écrire votre code.
+Azure propose des services qui prennent en charge vos besoins d’hébergement et de développement d’applications. Azure fournit l’infrastructure-as-a-service (IaaS) toogive vous contrôle total sur votre application d’hébergement. Azure platform-as-a-service (PaaS) assurent hello entièrement services nécessaires toopower vos applications gérées. Il existe un hébergement sans même true dans Azure où vous toodo suffit écrire votre code.
 
 ![Options d’hébergement d’applications Azure](./media/azure-developer-guide/azure-developer-hosting-options.png)
 
 
 #### <a name="azure-app-service"></a>Azure App Service 
 
-Si vous voulez bénéficier du moyen le plus rapide pour publier vos projets web, optez pour Azure App Service. App Service facilite l’extension de vos applications web pour prendre en charge vos clients mobiles et publier des API REST aisément consommées. Cette plateforme offre une authentification à l’aide des réseaux sociaux, une mise à l’échelle automatique basée sur le trafic, des tests en production et des déploiements continus et basés sur des conteneurs.
+Lorsque vous souhaitez toopublish de chemin d’accès rapide hello vos projets web, envisagez d’Azure App Service. Service d’applications permet de facilement tooextend votre web apps toosupport vos clients mobiles et de publier des API REST simple. Cette plateforme offre une authentification à l’aide des réseaux sociaux, une mise à l’échelle automatique basée sur le trafic, des tests en production et des déploiements continus et basés sur des conteneurs.
 
-Lorsque vous créez une application dans App Service, vous sélectionnez l’un des types suivants :
+Lorsque vous créez une application de Service d’applications, vous sélectionnez un des types suivants de hello :
 
 - [Web Apps](../../app-service-web/app-service-web-overview.md) : vous permet d’héberger des sites web et des applications web qui sont écrits en langage .NET, Java, PHP, Node.js ou Python.
 
-- [Mobile Apps](../../app-service-mobile/app-service-mobile-value-prop.md) : étend les applications web pour prendre en charge l’accès à partir des appareils mobiles. Ce type offre une authentification avec les réseaux sociaux et Azure Active Directory (Azure AD), fournit le stockage principal et s’intègre à [Azure Notification Hubs](../../notification-hubs/notification-hubs-push-notification-overview.md) pour les notifications Push.
+- [Applications mobiles](../../app-service-mobile/app-service-mobile-value-prop.md): accès de toosupport étend les applications Web à partir d’appareils mobiles. Ce type offre une authentification avec les réseaux sociaux et Azure Active Directory (Azure AD), fournit le stockage principal et s’intègre à [Azure Notification Hubs](../../notification-hubs/notification-hubs-push-notification-overview.md) pour les notifications Push.
 
-- [API Apps](../../app-service-api/app-service-api-apps-why-best-platform.md) : vous permet d’exposer de façon plus sécurisée vos API dans le cloud avec les métadonnées Swagger, afin que les clients puissent les consommer facilement.
+- [Applications API](../../app-service-api/app-service-api-apps-why-best-platform.md): vous permet de plus en toute sécurité exposer votre API dans le cloud hello avec des métadonnées Swagger afin que les clients puissent les utiliser facilement.
 
-Comme ces trois types d’application partagent le runtime App Service, vous pouvez héberger un site web, prendre en charge les clients mobiles et exposer vos API dans Azure, tout cela depuis un même projet ou une même solution. Pour en savoir plus sur App Service, consultez [Fonctionnement d’App Service](../../app-service/app-service-how-works-readme.md).
+Étant donné que tous les types de trois applications partagent hello runtime du Service de l’application, vous pouvez héberger un site Web, prendre en charge les clients mobiles et exposer votre API dans Azure, à partir d’hello même projet ou solution. toolearn en savoir plus sur le Service d’application, consultez [mode de fonctionnement du Service application](../../app-service/app-service-how-works-readme.md).
 
 App Service a été conçu en tenant compte de DevOps. Il prend en charge divers outils de déploiement d’intégration continue et de publication, notamment les webhooks GitHub, Jenkins, Visual Studio Team Services, TeamCity, etc.
 
-Vous pouvez migrer vos applications existantes vers App Service en utilisant l’[outil de migration en ligne](https://www.migratetoazure.net/).
+Vous pouvez migrer vos tooApp applications existantes Service à l’aide de hello [l’outil de migration en ligne](https://www.migratetoazure.net/).
 
->**Quand l’utiliser** : utilisez App Service quand vous migrez des applications web existantes vers Azure et quand vous avez besoin d’une plateforme d’hébergement entièrement gérée pour vos applications web. Vous pouvez également utiliser App Service lorsque vous avez besoin de prendre en charge les clients mobiles ou d’exposer des API REST avec votre application.
+>**Lorsque toouse**: utilisation du Service d’applications lorsque vous effectuez une migration tooAzure d’applications web existantes, et que vous devez une plateforme d’hébergement entièrement gérée pour vos applications web. Vous pouvez également utiliser le Service d’applications lorsque vous avez besoin des clients mobiles toosupport ou exposez des API REST avec votre application.
 
->**Démarrer** : App Service permet de créer et de déployer facilement votre première [application web](../../app-service-web/web-sites-dotnet-get-started.md), [application mobile](../../app-service-mobile/app-service-mobile-ios-get-started.md) ou [application API](../../app-service-api/app-service-api-dotnet-get-started.md).
+>**Prise en main**: Service d’applications rend facile toocreate et déployer votre premier [application web](../../app-service-web/web-sites-dotnet-get-started.md), [application mobile](../../app-service-mobile/app-service-mobile-ios-get-started.md), ou [application API](../../app-service-api/app-service-api-dotnet-get-started.md).
 
->**Essayez-le** : App Service vous permet de configurer une application de courte durée dans le but d’essayer la plateforme sans avoir à vous inscrire pour obtenir un compte Azure. Essayez la plateforme et [créez votre application Azure App Service](https://tryappservice.azure.com/).
+>**Essayez dès maintenant**: Service d’applications vous permet de configurer une courte durée de vie tootry hello plateforme d’applications sans avoir toosign pour un compte Azure. Essayez de plateforme de hello et [créer votre application Azure App Service](https://tryappservice.azure.com/).
 
 #### <a name="azure-virtual-machines"></a>Machines virtuelles Azure
 
-En tant que fournisseur d’infrastructure as a service (IaaS), Azure vous permet de déployer ou de migrer votre application vers des machines virtuelles Windows ou Linux. Avec Réseau virtuel Azure, le service Machines virtuelles Azure prend en charge le déploiement des machines virtuelles Windows ou Linux sur Azure. Avec les machines virtuelles, vous avez un contrôle total sur la configuration des machines. Lorsque vous utilisez des machines virtuelles, vous êtes responsable de toutes les tâches d’installation, de configuration et de maintenance du logiciel serveur, ainsi que des correctifs du système d’exploitation.
+Comme fournisseur d’infrastructure-as-a-service (IaaS), Azure vous permet de déployer tooor migrer votre tooeither d’application Windows ou les machines virtuelles Linux. Avec un réseau virtuel Azure, les Machines virtuelles Azure prend en charge le déploiement de hello de tooAzure Windows ou les machines virtuelles Linux. Avec des machines virtuelles, vous avez un contrôle total sur configuration hello de l’ordinateur de hello. Lorsque vous utilisez des machines virtuelles, vous êtes responsable de toutes les tâches d’installation, de configuration et de maintenance du logiciel serveur, ainsi que des correctifs du système d’exploitation.
 
-En raison du niveau de contrôle que vous avez avec les machines virtuelles, vous pouvez exécuter un large éventail de charges de travail serveur sur Azure, qui ne sont pas adaptées à un modèle PaaS. Ces charges de travail incluent les serveurs de base de données, Windows Server Active Directory et Microsoft SharePoint. Pour plus d’informations, consultez la documentation relative aux machines virtuelles pour [Linux](/azure/virtual-machines/linux/) ou [Windows](/azure/virtual-machines/windows/).
+En raison du niveau de hello de contrôle avec les machines virtuelles, vous pouvez exécuter un large éventail de charges de travail serveur sur Azure qui ne tiennent pas dans un modèle PaaS. Ces charges de travail incluent les serveurs de base de données, Windows Server Active Directory et Microsoft SharePoint. Pour plus d’informations, consultez la documentation de Machines virtuelles de hello pour soit [Linux](/azure/virtual-machines/linux/) ou [Windows](/azure/virtual-machines/windows/).
 
->**Quand les utiliser** : utilisez Machines virtuelles lorsque vous voulez un contrôle total sur votre infrastructure d’applications ou pour migrer des charges de travail d’application locales vers Azure sans avoir à apporter de modifications.
+>**Lorsque toouse**: utilisent des ordinateurs virtuels lorsque vous souhaitez complète de contrôler votre application d’une infrastructure ou toomigrate local application les charges de travail tooAzure sans avoir toomake modifications.
 
->**Démarrer** : créez une [machine virtuelle Linux](../../virtual-machines/virtual-machines-linux-quick-create-portal.md) ou une [machine virtuelle Windows](../../virtual-machines/virtual-machines-windows-hero-tutorial.md) à partir du portail Azure.
+>**Prise en main**: créer un [Linux VM](../../virtual-machines/virtual-machines-linux-quick-create-portal.md) ou [machine virtuelle Windows](../../virtual-machines/virtual-machines-windows-hero-tutorial.md) de hello portail Azure.
 
 #### <a name="azure-functions-serverless"></a>Azure Functions (sans serveur)
 
-Au lieu de vous préoccuper de créer et de gérer une application entière ou l’infrastructure pour exécuter votre code, ne serait-il pas mieux d’écrire simplement votre code et de l’exécuter en réponse à des événements ou selon une planification ?  [Azure Functions](../../azure-functions/functions-overview.md) est une offre de type « sans serveur » qui vous permet d’écrire juste le code nécessaire. Avec Functions, l’exécution du code est déclenchée par des requêtes HTTP, des webhooks, des événements de service cloud ou selon une planification. Vous pouvez écrire du code dans le langage de développement de votre choix, tel que C\#, F\#, Node.js, Python ou PHP. Avec une facturation basée sur la consommation, vous payez uniquement pour la durée pendant laquelle votre code s’exécute et Azure effectue la mise à l’échelle au besoin.
+Au lieu de se préoccuper création et la gestion d’un ensemble toorun d’infrastructure application ou hello votre code. Que se passe-t-il si vous pouvez simplement écrire votre code et qu’elle s’exécute dans la réponse tooevents ou selon une planification ?  [Les fonctions Azure](../../azure-functions/functions-overview.md) est un « sans serveur »-style de l’offre que vous permet d’écrire simplement hello code dont vous avez besoin. Avec Functions, l’exécution du code est déclenchée par des requêtes HTTP, des webhooks, des événements de service cloud ou selon une planification. Vous pouvez écrire du code dans le langage de développement de votre choix, tel que C\#, F\#, Node.js, Python ou PHP. Avec la facturation basée sur la consommation, vous payez uniquement pour les temps hello que votre code s’exécute, Azure met à l’échelle en fonction des besoins.
 
->**Quand l’utiliser** : utilisez Azure Functions lorsque vous avez du code qui est déclenché par d’autres services Azure, par des événements basés sur le web ou selon une planification. Vous pouvez également utiliser Functions quand vous n’avez pas besoin de la surcharge d’un projet hébergé complet ou quand vous voulez payer uniquement la durée d’exécution de votre code. Pour en savoir plus, consultez [Présentation d’Azure Functions](../../azure-functions/functions-overview.md).
+>**Lorsque toouse**: utiliser des fonctions Azure lorsque vous avez le code qui est déclenché par d’autres services Azure, en événements basés sur le web, ou selon une planification. Vous pouvez également utiliser les fonctions lorsque vous ne devez hello surcharge d’un projet hébergé ou lorsque vous souhaitez uniquement toopay pour hello exécution de votre code. toolearn, voir [vue d’ensemble des fonctions Azure](../../azure-functions/functions-overview.md).
 
->**Démarrer** : suivez le didacticiel de démarrage rapide de Functions pour [créer votre première fonction](../../azure-functions/functions-create-first-azure-function.md) à partir du portail.
+>**Prise en main**: suivez le didacticiel de démarrage rapide de fonctions hello trop[créer votre première fonction](../../azure-functions/functions-create-first-azure-function.md) à partir du portail de hello.
 
->**Essayez-le** : Azure Functions vous permet d’exécuter votre code sans avoir à vous inscrire pour créer un compte Azure. Essayez-le dès à présent et [créez votre première fonction Azure](https://tryappservice.azure.com/).
+>**Essayez dès maintenant**: fonctions d’Azure vous permet d’exécuter votre code sans avoir toosign pour un compte Azure. Essayez-le dès à présent et [créez votre première fonction Azure](https://tryappservice.azure.com/).
 
 #### <a name="azure-service-fabric"></a>Azure Service Fabric
 
-Azure Service Fabric est une plateforme de systèmes distribués qui facilite la création, la mise en package, le déploiement et la gestion de microservices scalables et fiables. Il fournit également des fonctionnalités complètes de gestion d’application pour la configuration, le déploiement, l’analyse, la mise à niveau/mise à jour corrective et la suppression d’applications déployées. Les applications s’exécutent sur un pool partagé de machines. Vous pouvez commencer à petite échelle puis évoluer pour prendre en charge des centaines ou des milliers de machines, selon les besoins.
+Azure Service Fabric est une plateforme de systèmes distribués qui rend facile toobuild, du package, déployer et gérer des microservices fiables et évolutives. Il fournit également des fonctionnalités complètes de gestion d’application pour la configuration, le déploiement, l’analyse, la mise à niveau/mise à jour corrective et la suppression d’applications déployées. Les applications qui s’exécutent sur un pool de machines, peuvent commencer petites et mettre à l’échelle toohundreds, voire des milliers d’ordinateurs en fonction des besoins.
 
-Service Fabric prend en charge WebAPI avec Open Web Interface for .NET (OWIN) et ASP.NET Core. Il fournit des kits SDK pour la création de services sur Linux en langage .NET Core ou Java. Pour en savoir plus sur Service Fabric, consultez le [parcours d’apprentissage Service Fabric](https://azure.microsoft.com/documentation/learning-paths/service-fabric/).
+Service Fabric prend en charge WebAPI avec Open Web Interface for .NET (OWIN) et ASP.NET Core. Il fournit des kits SDK pour la création de services sur Linux en langage .NET Core ou Java. toolearn en savoir plus sur l’infrastructure de Service, consultez hello [Service Fabric cursus](https://azure.microsoft.com/documentation/learning-paths/service-fabric/).
 
->**Quand l’utiliser** : Service Fabric est un bon choix quand vous créez une application ou réécrivez une application existante pour utiliser une architecture de microservices. Utilisez Service Fabric quand vous avez besoin d’un meilleur contrôle de l’infrastructure sous-jacente ou d’un accès direct à cette dernière.
+>**Lorsque toouse :** Service Fabric est un bon choix lors de la création d’une application ou réécrire un toouse d’application existant une architecture de microservice. Utiliser l’infrastructure de Service lorsque vous avez besoin de contrôler plus ou un accès direct à infrastructure sous-jacente de hello.
 
 >**Démarrer** : [créez votre première application Azure Service Fabric](../../service-fabric/service-fabric-create-your-first-application-in-visual-studio.md).
 
 ### <a name="enhance-your-applications-with-azure-services"></a>Améliorer vos applications avec les services Azure
 
-En plus de l’hébergement d’applications, Azure fournit des offres de service qui peuvent améliorer les fonctionnalités, le développement et la maintenance de vos applications, à la fois dans le cloud et localement.
+En outre, tooapplication d’hébergement, Azure fournit les offres de service qui peuvent améliorer les fonctionnalités de hello, de développement et de maintenance de vos applications, à la fois dans le cloud de hello et sur site.
 
 #### <a name="hosted-storage-and-data-access"></a>Stockage hébergé et accès aux données
 
-La plupart des applications doivent stocker des données. Par conséquent, quelle que soit la manière dont vous décidez d’héberger votre application dans Azure, prenez en considération un ou plusieurs des services de données et de stockage suivants.
+La plupart des applications doit stocker des données, ainsi en fonction de la façon dont vous décidez toohost votre application dans Azure, envisagez une ou plusieurs des hello suivant des services de stockage et de données.
 
--   **Azure SQL Database** : version basée sur Azure du moteur Microsoft SQL Server pour le stockage des données tabulaires relationnelles dans le cloud. SQL Database offre des performances prévisibles et une scalabilité sans interruption de service. Il assure aussi la continuité des activités et la protection des données.
+-   **Base de données SQL Azure**: basée sur un Azure la version du moteur de Microsoft SQL Server de hello pour le stockage des données relationnelles sous forme de tableau dans le cloud de hello. SQL Database offre des performances prévisibles et une scalabilité sans interruption de service. Il assure aussi la continuité des activités et la protection des données.
 
-    >**Quand l’utiliser** : lorsque votre application nécessite un stockage de données avec intégrité référentielle, une prise en charge transactionnelle et une prise en charge des requêtes TSQL.
+    >**Lorsque toouse**: lorsque votre application nécessite un stockage de données avec intégrité référentielle, prise en charge transactionnelle et prise en charge pour les requêtes TSQL.
 
-    >**Démarrer** : [créez une base de données SQL en quelques minutes à l’aide du portail Azure](../../sql-database/sql-database-get-started.md).
+    >**Prise en main**: [créer une base de données SQL en quelques minutes à l’aide de hello Azure portal](../../sql-database/sql-database-get-started.md).
 
--   **Stockage Azure** : offre un stockage durable, hautement disponible pour les objets blob, les files d’attente, les fichiers et d’autres types de données non relationnelles. Le service Stockage fournit la base de stockage utilisée pour les machines virtuelles.
+-   **Stockage Azure** : offre un stockage durable, hautement disponible pour les objets blob, les files d’attente, les fichiers et d’autres types de données non relationnelles. Stockage des fondements hello stockage pour les machines virtuelles.
 
-    >**Quand l’utiliser** : lorsque votre application stocke des données non relationnelles, telles que des paires clé-valeur (tables), des objets blob, des partages de fichiers ou des messages (files d’attente).
+    >**Lorsque toouse**: lorsque votre application stocke des données non relationnelles, telles que le paires clé-valeur (tables), les objets BLOB, partages de fichiers ou des messages (files d’attente).
 
     >**Démarrer** : choisissez parmi les types de stockage suivants : [objets blob](../../storage/blobs/storage-dotnet-how-to-use-blobs.md), [tables](../../cosmos-db/table-storage-how-to-use-dotnet.md), [files d’attente](../../storage/queues/storage-dotnet-how-to-use-queues.md) et [fichiers](../../storage/files/storage-dotnet-how-to-use-files.md).
 
 -   **Azure DocumentDB** : service de base de données NoSQL scalable et entièrement managé, qui permet l’exécution de requêtes SQL sur les données d’objet. Vous pouvez accéder à DocumentDB en utilisant des pilotes MongoDB existants.
-    >**Quand l’utiliser** : lorsque votre application doit être en mesure d’exécuter des requêtes SQL sur des documents JSON, ou si vous utilisez MongoDB.
+    >**Lorsque toouse :** quand votre application a besoin des requêtes SQL toobe en mesure de tooexecute sur des documents JSON, ou si vous utilisez MongoDB.
 
     >**Démarrer** : [générez une application console C# DocumentDB](../../documentdb/documentdb-get-started.md). Si vous êtes développeur MongoDB, consultez [Prise en charge du protocole DocumentDB pour MongoDB](../../documentdb/documentdb-protocol-mongodb.md).
 
-Vous pouvez utiliser [Azure Data Factory](../../data-factory/data-factory-introduction.md) pour déplacer des données locales existantes vers Azure. Si vous n’êtes pas prêt à déplacer des données vers le cloud, les [connexions hybrides](../../biztalk-services/integration-hybrid-connection-overview.md) dans BizTalk Services vous permettent de connecter votre application hébergée par App Service aux ressources locales. Vous pouvez également vous connecter aux services de données et de stockage Azure à partir de vos applications locales.
+Vous pouvez utiliser [Azure Data Factory](../../data-factory/data-factory-introduction.md) toomove locales existantes tooAzure de données. Si vous n’êtes pas prêt toomove données toohello dans le cloud, [connexions hybrides](../../biztalk-services/integration-hybrid-connection-overview.md) dans permet de BizTalk Services vous connecter votre application de Service hébergé ressources tooon local d’application. Vous pouvez également connecter des services de données et de stockage tooAzure à partir de vos applications sur site.
 
 #### <a name="docker-support"></a>Prise en charge de Docker
 
-Les conteneurs Docker, forme de virtualisation du système d’exploitation, vous permettent de déployer des applications de manière plus efficace et prévisible. Une application en conteneur fonctionne en production de la même façon que sur vos systèmes de développement et de test. Vous pouvez gérer les conteneurs à l’aide des outils Docker standard. Pour déployer et gérer des applications basées sur un conteneur dans Azure, vous pouvez utiliser vos compétences et des outils open source connus.
+Les conteneurs Docker, forme de virtualisation du système d’exploitation, vous permettent de déployer des applications de manière plus efficace et prévisible. Une application en conteneur fonctionne Bonjour de production même façon que sur vos systèmes de développement et de test. Vous pouvez gérer les conteneurs à l’aide des outils Docker standard. Vous pouvez utiliser vos compétences et les outils open source populaires toodeploy et gérer des applications basées sur le conteneur sur Azure.
 
-Azure permet d’utiliser des conteneurs dans vos applications de plusieurs façons différentes.
+Azure offre plusieurs moyens de conteneurs toouse dans vos applications.
 
--   **Extension Azure Docker VM** : permet de configurer votre machine virtuelle avec les outils Docker pour agir en tant qu’hôte Docker.
+-   **L’extension Docker VM Azure**: vous permet de configurer votre machine virtuelle avec tooact d’outils Docker en tant qu’un hôte Docker.
 
-    >**Quand l’utiliser** : lorsque vous souhaitez générer des déploiements de conteneur cohérents pour vos applications sur une machine virtuelle ou lorsque vous souhaitez utiliser [Docker Compose](https://docs.docker.com/compose/overview/).
+    >**Lorsque toouse**: lorsque vous souhaitez que les déploiements toogenerate conteneur cohérent pour vos applications sur un ordinateur virtuel, ou si vous voulez toouse [Docker Compose](https://docs.docker.com/compose/overview/).
 
-    >**Démarrer** : [créez un environnement Docker dans Azure en utilisant l’extension Docker VM](../../virtual-machines/virtual-machines-linux-dockerextension.md).
+    >**Prise en main**: [créer un environnement de Docker dans Azure à l’aide d’extension de machine virtuelle de Docker hello](../../virtual-machines/virtual-machines-linux-dockerextension.md).
 
--   **Azure Container Service** : permet la création, la configuration et la gestion d’un cluster de machines virtuelles préconfigurées pour exécuter des applications en conteneur. Pour en savoir plus sur Container Service, consultez [Présentation d’Azure Container Service](../../container-service/container-service-intro.md).
+-   **Service de conteneur Azure**: permet de créer, de configurer et de gérer un cluster d’ordinateurs virtuels qui sont préconfigurés toorun en conteneur applications. toolearn en savoir plus sur le Service de conteneur, consultez [introduction du Service de conteneur Azure](../../container-service/container-service-intro.md).
 
-    >**Quand l’utiliser** : lorsque vous devez créer des environnements scalables prêts pour la production qui exploitent d’autres outils de planification et de gestion, ou lorsque vous déployez un cluster Docker Swarm.
+    >**Lorsque toouse**: lorsque vous avez besoin toobuild prêt pour la production d’environnements évolutifs qui fournissent des outils de planification et de gestion supplémentaires, ou lorsque vous déployez un cluster Docker Swarm.
 
     >**Démarrer** : [déployez un cluster Container Service](../../container-service/dcos-swarm/container-service-deployment.md).
 
 -   **Docker Machine** : vous permet d’installer et de gérer un moteur Docker sur les ordinateurs hôtes virtuels en utilisant les commandes docker-machine.
 
-    >**Quand l’utiliser** : lorsque vous avez besoin de créer rapidement un prototype d’une application en créant un hôte Docker individuel.
+    >**Lorsque toouse**: lorsque vous devez tooquickly prototype une application en créant un seul hôte Docker.
 
 -   **Image Docker personnalisée pour App Service** : vous permet d’utiliser des conteneurs Docker à partir d’un registre de conteneurs ou d’un conteneur de clients lorsque vous déployez une application web sur Linux.
 
-    >**Quand l’utiliser** : lors du déploiement d’une application web sur Linux sur une image Docker.
+    >**Lorsque toouse**: lors du déploiement d’une application web sur l’image de Linux tooa Docker.
 
     >**Démarrer** : [utilisez une image Docker personnalisée pour App Service sur Linux](../../app-service-web/app-service-linux-using-custom-docker-image.md).
 
 ### <a name="authentication"></a>Authentification
 
-Il est essentiel non seulement de savoir qui utilise vos applications, mais aussi d’empêcher tout accès non autorisé à vos ressources. Azure offre plusieurs moyens d’authentifier vos clients d’application.
+Son toonot essentiel uniquement de savoir qui utilise vos applications, mais également tooprevent non autorisé d’accéder aux ressources tooyour. Azure fournit plusieurs façons tooauthenticate vos clients de l’application.
 
--   **Azure Active Directory (Azure AD)** : service Microsoft multilocataire basé sur le cloud qui gère les identités et les accès. Vous pouvez ajouter l’authentification unique (SSO) à vos applications en les intégrant à Azure AD. Vous pouvez accéder aux propriétés d’annuaire en utilisant l’API Graph Azure AD directement ou l’API Microsoft Graph. Vous pouvez exploiter la prise en charge d’Azure AD pour l’infrastructure d’autorisation OAuth2.0 et la connexion OpenID en utilisant les points de terminaison HTTP/REST natifs et les bibliothèques d’authentification Azure AD multiplateformes.
+-   **Azure Active Directory (Azure AD)**: hello mutualisée, basée sur le cloud, identité et accès service de gestion Microsoft. Vous pouvez ajouter l’authentification unique sur les applications tooyour (SSO) en intégrant avec Azure AD. Vous pouvez accéder à des propriétés de répertoire à l’aide de hello Azure AD Graph API directement ou hello Microsoft Graph API. Vous pouvez intégrer avec prise en charge d’Azure AD pour la structure de d’autorisation OAuth2.0 hello et ouvrez connecter d’ID à l’aide de points de terminaison HTTP/REST natifs et hello bibliothèques d’authentification multi-plateforme Azure AD.
 
-    >**Quand l’utiliser** : lorsque vous souhaitez fournir une expérience SSO, travailler avec des données basées sur Graph ou authentifier les utilisateurs de domaine.
+    >**Lorsque toouse**: tooprovide une expérience d’authentification, vous pouvez utiliser des données basées sur le graphique, ou authentifier les utilisateurs de domaine.
 
-    >**Démarrer** : pour en savoir plus, consultez le [Guide du développeur Azure Active Directory](../../active-directory/active-directory-developers-guide.md).
+    >**Prise en main**: toolearn, voir hello [guide du développeur Azure Active Directory](../../active-directory/active-directory-developers-guide.md).
 
--   **Authentification App Service** : lorsque vous choisissez App Service pour héberger votre application, vous bénéficiez également de la prise en charge de l’authentification intégrée pour Azure AD, ainsi que des fournisseurs d’identité sociale, notamment Facebook, Google, Microsoft et Twitter.
+-   **L’authentification du Service application**: lorsque vous choisissez toohost du Service de l’application de votre application, vous obtenez également prise en charge de l’authentification intégrée pour Azure AD, ainsi que les fournisseurs d’identité sociaux, notamment Facebook, Google, Microsoft et Twitter.
 
-    >**Quand l’utiliser** : lorsque vous souhaitez activer l’authentification dans une application App Service en utilisant Azure AD, des fournisseurs d’identité sociale, ou les deux.
+    >**Lorsque toouse**: lorsque vous souhaitez que l’authentification de tooenable dans une application de Service d’applications à l’aide d’Azure AD, fournisseurs d’identité sociaux, ou les deux.
 
-    >**Démarrer** : pour en savoir plus sur l’authentification dans App Service, consultez [Authentification et autorisation dans Azure App Service](../../app-service/app-service-authentication-overview.md).
+    >**Prise en main**: toolearn en savoir plus sur l’authentification dans le Service d’application, consultez [d’authentification et d’autorisation dans Azure App Service](../../app-service/app-service-authentication-overview.md).
 
-Pour en savoir plus sur les bonnes pratiques de sécurité dans Azure, consultez [Bonnes pratiques et modèle de sécurité dans Azure](../../security/security-best-practices-and-patterns.md).
+toolearn en savoir plus sur les meilleures pratiques de sécurité dans Azure, consultez [modèles et meilleures pratiques de sécurité Azure](../../security/security-best-practices-and-patterns.md).
 
 ### <a name="monitoring"></a>Surveillance
 
-Lorsque votre application est en cours d’exécution dans Azure, vous devez être en mesure de surveiller les performances, de déceler les problèmes éventuels et de voir comment les clients utilisent votre application. Azure fournit plusieurs options de surveillance.
+Votre application rapidement et en cours d’exécution dans Azure, vous devez toobe toomonitor en mesure de performances, surveillez les problèmes et voir comment les clients utilisent votre application. Azure fournit plusieurs options de surveillance.
 
--   **Visual Studio Application Insights** : service d’analyse extensible hébergé par Azure qui s’intègre à Visual Studio pour surveiller vos applications web en direct. Il vous fournit les données dont vous avez besoin pour améliorer continuellement les performances et la convivialité de vos applications, qu’elles soient hébergées sur Azure ou non.
+-   **Visual Studio Application Insights**: service hébergé d’un Azure l’analytique extensible qui s’intègre à Visual Studio toomonitor de vos applications web en direct. Elle vous donne les données hello que vous avez besoin de toocontinuously améliorent les performances de hello et de facilité d’utilisation de vos applications, si elles sont hébergés sur Azure ou non.
 
-    >**Démarrer** : suivez le [didacticiel d’Application Insights](../../application-insights/app-insights-overview.md).
+    >**Prise en main**: suivez hello [didacticiel d’Application Insights](../../application-insights/app-insights-overview.md).
 
--   **Azure Monitor** : service qui vous permet de visualiser, interroger, acheminer, archiver et traiter les métriques et les journaux qui sont générés par votre infrastructure et vos ressources Azure. Monitor fournit les vues de données que vous voyez dans le portail Azure et constitue une source unique pour la surveillance des ressources Azure.
+-   **Moniteur de Azure**: un service qui vous permet de toovisualize, requête, route, archive et agir sur les métriques hello et les journaux générés par l’infrastructure Azure et vos ressources. Analyse fournit des vues de données hello que vous consultez Bonjour portail Azure et êtes une source unique pour l’analyse des ressources Azure.
  
     >**Démarrer** : [prenez en main Azure Monitor](../../monitoring-and-diagnostics/monitoring-get-started.md).
 
 ### <a name="devops-integration"></a>Intégration DevOps
 
-Qu’il s’agisse de mettre en service des machines virtuelles ou de publier vos applications web avec une intégration continue, Azure s’intègre à la plupart des outils DevOps répandus. Avec la prise en charge d’outils tels que Jenkins, GitHub, Puppet, Chef, TeamCity, Ansible, VSTS, etc., vous pouvez travailler avec les outils dont vous disposez déjà et optimiser votre expérience.
+S’il est mise en service des machines virtuelles ou publier vos applications web avec l’intégration continue, Azure s’intègre à la plupart des outils de DevOps hello populaires. Avec prise en charge des outils comme Jenkins, GitHub, Puppet, Chef, TeamCity, Ansible, VSTS et d’autres personnes, vous pouvez travailler avec les outils que vous avez déjà et optimisez votre expérience de hello.
 
->**Essayez-le** : [essayez plusieurs intégrations DevOps](https://azure.microsoft.com/try/devops/).
+>**Essayez dès maintenant :** [essayer plusieurs intégrations de DevOps hello](https://azure.microsoft.com/try/devops/).
 
->**Démarrer** : pour voir les options DevOps d’une application App Service, consultez [Déploiement continu vers Azure App Service](../../app-service-web/app-service-continuous-deployment.md).
+>**Prise en main**: options de DevOps toosee pour une application de Service d’applications, consultez [tooAzure de déploiement continu du Service d’applications](../../app-service-web/app-service-continuous-deployment.md).
 
 
 ## <a name="azure-regions"></a>Régions Azure
 
-Azure est une plateforme cloud mondiale qui est disponible dans de nombreuses régions du monde. Lorsque vous configurez un service, une application ou une machine virtuelle dans Azure, vous êtes invité à sélectionner une région. Celle-ci représente le centre de données spécifique dans lequel votre application s’exécute ou dans lequel vos données sont stockées. Ces régions correspondent à des endroits spécifiques, qui sont publiés dans la page [Régions Azure](https://azure.microsoft.com/regions/).
+Azure est une plateforme de nuage global qui est généralement disponible dans plusieurs régions monde hello. Lorsque vous configurez un service, une application ou une machine virtuelle dans Azure, vous êtes invité tooselect une région qui représente un centre de données spécifique sur lequel votre application s’exécute ou où sont stockées vos données. Ces régions correspondent à des emplacements de toospecific, qui sont publiés sur hello [régions Azure](https://azure.microsoft.com/regions/) page.
 
-### <a name="choose-the-best-region-for-your-application-and-data"></a>Choisir la meilleure région pour votre application et vos données
+### <a name="choose-hello-best-region-for-your-application-and-data"></a>Choisir la région meilleures hello pour votre application et les données
 
-L’un des avantages de l’utilisation d’Azure est de pouvoir déployer des applications dans différents centres de données du monde. La région que vous choisissez peut affecter les performances de votre application. Par exemple, il est préférable de choisir une région proche de la plupart de vos clients afin de réduire la latence des demandes réseau. Vous pouvez également sélectionner votre région pour répondre aux exigences légales de distribution de votre application dans certains pays. Il est toujours recommandé de stocker les données d’application dans le même centre de données ou dans un centre de données aussi proche que possible du centre de données qui héberge votre application.
+Un des avantages de hello de l’utilisation d’Azure est que vous pouvez déployer vos centres de données toovarious applications monde hello. région de Hello que vous choisissez peut affecter les performances de hello de votre application. Par exemple, il est mieux toochoose une région toomost proche de votre latence tooreduce de clients dans les demandes réseau. Vous pouvez également vous tooselect votre région toomeet hello juridique configuration requise pour la distribution de votre application dans certains pays. Il est toujours une données d’application toostore meilleure pratique dans hello même centre de données ou dans un centre de données plus près possible toohello le centre de données qui héberge votre application.
 
 ### <a name="multi-region-apps"></a>Applications multirégions
 
-Même si cela est peu probable, il est possible qu’un centre de données soit mis intégralement hors connexion en raison d’une catastrophe naturelle ou d’une panne Internet. Pour garantir une disponibilité optimale, il est recommandé d’héberger les applications métier critiques dans plusieurs centres de données. L’utilisation de plusieurs régions peut également réduire la latence pour les utilisateurs internationaux et fournir une flexibilité supplémentaire lors des mises à jour d’applications.
+Bien qu’improbable, il n’est pas impossible pour un toogo de centre de données entier en mode hors connexion en raison d’un événement tel qu’une catastrophe naturelle ou l’échec de l’Internet. Il s’agit d’une meilleure pratique toohost les applications professionnelles essentielles dans plusieurs centres de données tooprovide assurer une disponibilité maximale. L’utilisation de plusieurs régions peut également réduire la latence pour les utilisateurs internationaux et fournir une flexibilité supplémentaire lors des mises à jour d’applications.
 
-Certains services, tels que Machines virtuelles et App Services, utilisent [Azure Traffic Manager](../../traffic-manager/traffic-manager-overview.md) pour obtenir une prise en charge multirégion avec basculement d’une région à une autre, ce qui permet de prendre en charge les applications d’entreprise à haute disponibilité. Pour en voir un exemple, consultez [Architecture de référence Azure : application web à haute disponibilité](../../guidance/guidance-web-apps-multi-region.md).
+Certains services, tels que les machines virtuelles et Services d’application, utilisent [Azure Traffic Manager](../../traffic-manager/traffic-manager-overview.md) prise en charge de plusieurs régions tooenable avec basculement entre les applications d’entreprise à haute disponibilité régions toosupport. Pour en voir un exemple, consultez [Architecture de référence Azure : application web à haute disponibilité](../../guidance/guidance-web-apps-multi-region.md).
 
->**Quand l’utiliser** : lorsque vous avez des applications d’entreprise à haute disponibilité qui bénéficient du basculement et de la réplication.
+>**Lorsque toouse**: lorsque vous avez des applications enterprise et haute disponibilité qui bénéficient de la réplication et de basculement.
 
 ## <a name="how-do-i-manage-my-applications-and-projects"></a>Comment gérer applications et projets ?
 
-Azure fournit un ensemble complet d’expériences qui vous permettent de créer et de gérer vos ressources, applications et projets Azure, que ce soit par programmation ou dans le [portail Azure](https://portal.azure.com/).
+Azure fournit un ensemble complet de nouvelles expériences toocreate et gérer vos ressources Azure, les applications et les projets, par programme et Bonjour [portail Azure](https://portal.azure.com/).
 
 ### <a name="command-line-interfaces-and-powershell"></a>Interfaces de ligne de commande et PowerShell
 
-Azure propose deux moyens de gérer vos applications et services à partir de la ligne de commande en utilisant Bash, Terminal, l’invite de commandes ou votre outil en ligne de commande préféré. En règle générale, vous pouvez effectuer les mêmes tâches à partir de la ligne de commande et dans le portail Azure, telles que la création et la configuration de machines virtuelles, de réseaux virtuels, d’applications web et d’autres services.
+Azure fournit deux façons toomanage vos applications et services à partir de la ligne de commande hello à l’aide d’un interpréteur de commandes, Terminal Server, invite de commandes hello ou votre outil de ligne de commande de choix. En règle générale, vous pouvez effectuer hello même tâches à partir de la ligne de commande hello comme hello portail Azure, telles que la création et la configuration des machines virtuelles, les réseaux virtuels, les applications web et les autres services.
 
--   [Interface de ligne de commande Azure](../../xplat-cli-install.md) : permet de vous connecter à un abonnement Azure et de programmer diverses tâches concernant les ressources Azure à partir de la ligne de commande.
+-   [Azure Interface de ligne de commande (CLI)](../../xplat-cli-install.md): vous permet de vous connecter tooan abonnement Azure et de programmer des tâches différentes par rapport à des ressources Azure à partir de la ligne de commande hello.
 
--   [Azure PowerShell](../../powershell-install-configure.md) : fournit un ensemble de modules avec des applets de commande qui vous permettent de gérer les ressources Azure en utilisant Windows PowerShell.
+-   [Azure PowerShell](../../powershell-install-configure.md): fournit un ensemble de modules avec les applets de commande qui vous toomanage Azure ressources à l’aide de Windows PowerShell.
 
 ### <a name="azure-portal"></a>Portail Azure
 
-Le portail Azure est une application web que vous pouvez utiliser pour créer, gérer et supprimer des services et des ressources Azure. Le portail Azure se trouve à l’adresse <https://portal.azure.com>. Il inclut un tableau de bord personnalisable, des outils de gestion des ressources Azure et l’accès aux paramètres d’abonnement et aux informations de facturation. Pour plus d’informations, consultez la [présentation du portail Azure](../../azure-portal-overview.md).
+Hello portail Azure est une application web que vous pouvez utiliser toocreate, gérer et supprimer des services et des ressources Azure. Hello portail Azure se trouve dans <https://portal.azure.com>. Elle inclut un tableau de bord personnalisable, des outils pour la gestion des ressources Azure et les paramètres d’accès toosubscription et les informations de facturation. Pour plus d’informations, consultez hello [vue d’ensemble du portail Azure](../../azure-portal-overview.md).
 
 ### <a name="rest-apis"></a>API REST
 
-Azure repose sur un ensemble d’API REST qui prennent en charge l’interface utilisateur du portail Azure. La plupart de ces API REST sont également prises en charge pour vous permettre de configurer et de gérer par programmation vos ressources et applications Azure à partir de n’importe quel appareil connecté à Internet. Pour accéder à la documentation complète des API REST, consultez [Informations de référence sur les API REST Azure](https://docs.microsoft.com/rest/api/).
+Azure repose sur un ensemble d’API REST qui prennent en charge hello interface utilisateur du portail Azure. La plupart de ces API REST sont également pris en charge toolet configurer et gérer vos ressources Azure et les applications à partir de n’importe quel appareil activées pour Internet par programmation. Pour un jeu complet de hello de documentation de l’API REST, consultez hello [référence SDK REST de Azure](https://docs.microsoft.com/rest/api/).
 
 ### <a name="apis"></a>API
 
-Outre les API REST, de nombreux services Azure vous permettent de gérer par programmation les ressources de vos applications en utilisant les kits SDK Azure spécifiques à la plateforme, notamment les kits SDK pour les plateformes de développement suivantes :
+En outre tooREST API, de nombreux services Azure également vous permettent de gérer par programmation des ressources à partir de vos applications à l’aide spécifique à la plateforme Azure SDK, y compris les kits de développement logiciel pour hello suivant des plateformes de développement :
 
 -   [.NET](https://go.microsoft.com/fwlink/?linkid=834925)
 -   [Node.JS](http://azure.github.io/azure-sdk-for-node/)
@@ -244,90 +244,90 @@ Outre les API REST, de nombreux services Azure vous permettent de gérer par pro
 -   [Python](http://azure-sdk-for-python.readthedocs.io/en/latest/)
 -   [Ruby](https://github.com/Azure/azure-sdk-for-ruby/blob/master/README.md)
 
-Des services tels que [Mobile Apps](../../app-service-mobile/app-service-mobile-dotnet-how-to-use-client-library.md) et [Azure Media Services](../../media-services/media-services-dotnet-how-to-use.md) fournissent des kits SDK côté client pour vous permettre d’accéder aux services à partir d’applications clientes web et mobiles.
+Les services tels que [Mobile Apps](../../app-service-mobile/app-service-mobile-dotnet-how-to-use-client-library.md) et [Azure Media Services](../../media-services/media-services-dotnet-how-to-use.md) fournissent toolet de kits de développement logiciel côté client vous accédez aux services à partir d’applications web et client mobile.
 
 ### <a name="azure-resource-manager"></a>Azure Resource Manager 
     
-L’exécution de votre application sur Azure implique probablement l’utilisation de plusieurs services Azure, qui ont tous le même cycle de vie et peuvent être vus comme une unité logique. Par exemple, une application web peut utiliser Web Apps, SQL Database, Stockage, Cache Redis Azure et les services Azure Content Delivery Network. [Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md) vous permet d’utiliser les ressources de votre application sous la forme d’un groupe. Vous pouvez déployer, mettre à jour et supprimer toutes les ressources dans le cadre d’une opération unique et coordonnée.
+Exécutez votre application sur Azure probablement implique de travailler avec plusieurs services Azure, tous de qui suivent hello vie même cycle et peut être considéré comme une unité logique. Par exemple, une application web peut utiliser Web Apps, SQL Database, Stockage, Cache Redis Azure et les services Azure Content Delivery Network. [Le Gestionnaire de ressources Azure](../../azure-resource-manager/resource-group-overview.md) permet de travailler avec les ressources hello dans votre application en tant que groupe. Vous pouvez déployer, mettre à jour ou supprimer toutes les ressources hello dans une opération unique et coordonnée.
 
-Outre le regroupement et la gestion logiques des ressources connexes, Azure Resource Manager inclut des fonctionnalités de déploiement qui vous permettent de personnaliser le déploiement et la configuration des ressources connexes. Par exemple, Resource Manager vous permet de déployer et de configurer une application qui se compose de plusieurs machines virtuelles, d’un équilibreur de charge et d’une base de données SQL Azure, comme une unité unique.
+En outre toologically grouper et gérer des ressources associées, Azure Resource Manager inclut les fonctionnalités de déploiement qui vous permettent de personnaliser le déploiement de hello et la configuration de ressources liées. Par exemple, Resource Manager vous permet de déployer et de configurer une application qui se compose de plusieurs machines virtuelles, d’un équilibreur de charge et d’une base de données SQL Azure, comme une unité unique.
 
-Vous développez ces déploiements à l’aide d’un modèle Azure Resource Manager, qui est un document au format JSON. Les modèles vous permettent de définir un déploiement et de gérer vos applications à l’aide de modèles déclaratifs, plutôt que de scripts. Vos modèles peuvent fonctionner pour différents environnements, par exemple des environnements de test, de préproduction et de production. Par exemple, vous pouvez utiliser des modèles pour ajouter un bouton à un dépôt GitHub qui déploie le code figurant dans le dépôt d’un seul clic dans un ensemble de services Azure.
+Vous développez ces déploiements à l’aide d’un modèle Azure Resource Manager, qui est un document au format JSON. Les modèles vous permettent de définir un déploiement et de gérer vos applications à l’aide de modèles déclaratifs, plutôt que de scripts. Vos modèles peuvent fonctionner pour différents environnements, par exemple des environnements de test, de préproduction et de production. Par exemple, à l’aide de modèles, vous pouvez ajouter un bouton tooa du référentiel GitHub qui déploie le code hello dans jeu de tooa hello référentiel des services Azure avec un seul clic.
 
->**Quand l’utiliser** : utilisez les modèles Resource Manager lorsque vous souhaitez un déploiement basé sur un modèle pour votre application que vous pouvez gérer par programmation à l’aide des API REST, de l’interface de ligne de commande Azure et d’Azure PowerShell.
+>**Lorsque toouse**: utilisez le Gestionnaire de ressources modèles lorsque vous souhaitez un déploiement basé sur un modèle pour votre application que vous pouvez gérer par programme à l’aide de l’API REST, hello CLI d’Azure et d’Azure PowerShell.
 
->**Démarrer** : pour commencer à utiliser des modèles, consultez [Créer des modèles Azure Resource Manager](../../resource-group-authoring-templates.md).
+>**Prise en main**: tooget démarré à l’aide de modèles, consultez [les modèles de programmation Azure Resource Manager](../../resource-group-authoring-templates.md).
 
 ## <a name="understanding-accounts-subscriptions-and-billing"></a>Présentation des comptes, des abonnements et de la facturation
 
-En tant que développeurs, nous aimons plonger directement dans le code et essayer de faire fonctionner nos applications aussi rapidement que possible. Nous souhaitons vous encourager à commencer à utiliser Azure de la façon la plus simple possible. Dans ce but, Azure propose un [essai gratuit](https://azure.microsoft.com/free/). Certains services ont même une fonctionnalité « Essai gratuit », comme [Azure App Service](https://tryappservice.azure.com/), qui ne vous demande pas de créer un compte. Aussi agréable que cela puisse être de plonger dans le code et le déploiement de votre application dans Azure, il est également important de prendre le temps de comprendre le fonctionnement d’Azure du point de vue des comptes d’utilisateur, des abonnements et de la facturation.
+En tant que développeurs, nous comme toodive directement dans le code de hello et essayez tooget démarré aussi rapidement que possible de rendre nos applications de s’exécuter. Nous voulons certainement tooencourage toostart fonctionne dans Azure, aussi facilement que possible. toohelp rendent facile, Azure offre une [version d’évaluation gratuite](https://azure.microsoft.com/free/). Certains services même ont une fonctionnalité « Essayez gratuitement », comme [Azure App Service](https://tryappservice.azure.com/), qui ne nécessite pas trop même créer un compte. Aussi amusant toodive dans le codage et le déploiement de votre application tooAzure, il est également important tootake certains toounderstand temps fonctionne d’Azure à partir d’un point de vue de facturation, les abonnements et les comptes d’utilisateur.
 
 ### <a name="what-is-an-azure-account"></a>Qu’est-ce qu’un compte Azure ?
 
-Pour pouvoir créer ou utiliser un abonnement Azure, vous devez disposer d’un compte Azure. Un compte Azure est simplement une identité dans Azure AD ou dans un annuaire, telle qu’une organisation professionnelle ou un établissement scolaire, qui est approuvée par Azure AD. Si vous n’appartenez pas à une organisation comme celle-ci, vous pouvez toujours créer un abonnement à l’aide de votre compte Microsoft, qui est approuvé par Azure AD. Pour en savoir plus sur l’intégration de Windows Server Active Directory sur site avec Azure AD, consultez [Intégration de vos identités locales avec Azure Active Directory](../../active-directory/active-directory-aadconnect.md).
+toocreate en mesure de toobe ou de travail avec un abonnement Azure, vous devez disposer d’un compte Azure. Un compte Azure est simplement une identité dans Azure AD ou dans un annuaire, telle qu’une organisation professionnelle ou un établissement scolaire, qui est approuvée par Azure AD. Si vous n’appartenez toosuch une organisation, vous pouvez toujours créer un abonnement à l’aide de votre Account Microsoft, qui est approuvé par Azure AD. toolearn plus sur l’intégration d’Active Directory sur site Windows Server avec Azure AD, consultez [intégrer vos identités locales avec Azure Active Directory](../../active-directory/active-directory-aadconnect.md).
 
-Chaque abonnement Azure dispose d’une relation d’approbation avec une instance Azure AD. Cela signifie qu'il approuve ce répertoire pour authentifier les utilisateurs, les services et les appareils. Plusieurs abonnements peuvent approuver le même annuaire, mais un abonnement n’approuve qu’un seul annuaire. Pour en savoir plus, consultez [Association des abonnements Azure avec Azure Active Directory](../../active-directory/active-directory-how-subscriptions-associated-directory.md).
+Chaque abonnement Azure dispose d’une relation d’approbation avec une instance Azure AD. Cela signifie qu’il approuve ce tooauthenticate Active les utilisateurs, les services et les périphériques. Plusieurs abonnements peuvent approuver hello même répertoire, mais un abonnement fait confiance à un seul répertoire. toolearn, voir [les abonnements Azure sont associés à Azure Active Directory](../../active-directory/active-directory-how-subscriptions-associated-directory.md).
 
-Outre des identités de compte Azure individuelles, également appelées *utilisateurs*, vous pouvez définir des *groupes* dans Azure AD. La création de groupes d’utilisateurs est un bon moyen de gérer l’accès aux ressources dans un abonnement à l’aide du contrôle d’accès en fonction du rôle (RBAC). Pour découvrir comment créer des groupes, consultez [Créer un groupe dans la préversion d’Azure Active Directory](../../active-directory/active-directory-groups-create-azure-portal.md). Vous pouvez également créer et gérer des groupes en [utilisant PowerShell](../../active-directory/active-directory-accessmanagement-groups-settings-v2-cmdlets.md).
+En plus des identités toodefining compte Azure individuel, également appelé *utilisateurs*, vous pouvez également définir *groupes* dans Azure AD. Création de groupes d’utilisateurs d’est une tooresources d’accès toomanage bon moyen d’un abonnement à l’aide du contrôle d’accès basé sur un rôle (RBAC). toolearn toocreate groupes, voir [créer un groupe dans la version préliminaire d’Azure Active Directory](../../active-directory/active-directory-groups-create-azure-portal.md). Vous pouvez également créer et gérer des groupes en [utilisant PowerShell](../../active-directory/active-directory-accessmanagement-groups-settings-v2-cmdlets.md).
 
 ### <a name="manage-your-subscriptions"></a>Gérer vos abonnements
 
-Un abonnement est une unité logique de services Azure qui est liée à un compte Azure. Chaque compte associé a un rôle dans un abonnement. La facturation des services Azure est effectuée abonnement par abonnement. Pour obtenir la liste des offres d’abonnement disponibles par type, consultez [Détails de l’offre Microsoft Azure](https://azure.microsoft.com/support/legal/offer-details/).
+Un abonnement est une unité logique de services Azure qui est lié tooan compte Azure. Chaque compte associé a un rôle dans un abonnement. La facturation des services Azure est effectuée par abonnement. Pour obtenir la liste des offres d’abonnement disponibles hello par type, consultez [détails de l’offre Microsoft Azure](https://azure.microsoft.com/support/legal/offer-details/).
 
 #### <a name="administrator-roles"></a>Rôles d’administrateur
 
 Un abonnement Azure a plusieurs rôles d’administrateur de compte que vous pouvez assigner à tout moment.
 
--   **Administrateur de compte** : ce rôle a un contrôle total sur l’abonnement et correspond au compte responsable de la facturation.
+-   **Administrateur de compte**: ce rôle dispose du contrôle total sur les abonnement hello et est hello compte qui est responsable de la facturation.
 
--   **Administrateur de services fédérés** : ce rôle a le contrôle sur tous les services figurant dans l’abonnement. Par défaut, il s’agit du même compte que l’administrateur de compte.
+-   **Administrateur de service**: ce rôle a un contrôle sur tous les services hello dans l’abonnement de hello. Par défaut, il s’agit hello même compte comme hello administrateur de compte.
 
--   **Coadministrateur** : ce rôle a les mêmes privilèges d’accès que l’administrateur de services fédérés, à ceci près qu’il ne peut pas changer la manière dont l’abonnement est associé à un annuaire Azure.
+-   **Coadministrateur**: ce rôle a hello même accéder en tant que hello administrateur de Service, sauf qu’il ne peut pas modifier association hello de hello abonnement tooan annuaire Azure.
 
-Pour en savoir plus sur les rôles d’administrateur, consultez [Ajout ou modification de rôles d’administrateur Azure](../../billing/billing-add-change-azure-subscription-administrator.md#add-an-admin-for-a-subscription).
+toolearn savoir plus sur les rôles d’administrateur, consultez [comment tooadd ou modifier les rôles administrateur Azure](../../billing/billing-add-change-azure-subscription-administrator.md#add-an-admin-for-a-subscription).
 
 #### <a name="resource-groups"></a>Groupes de ressources
 
-Lorsque vous configurez de nouveaux services Azure, vous le faites dans le cadre d’un abonnement donné. Les services Azure individuels, également appelés « ressources », sont créés dans le contexte d’un groupe de ressources. Les groupes de ressources facilitent le déploiement et la gestion des ressources de votre application. Un groupe de ressources doit contenir toutes les ressources de votre application que vous souhaitez utiliser en tant qu’unité. Vous pouvez déplacer les ressources entre les groupes de ressources et même vers d’autres abonnements. Pour en savoir plus sur le déplacement des ressources, consultez [Déplacer des ressources vers un nouveau groupe de ressources ou un nouvel abonnement](../../resource-group-move-resources.md).
+Lorsque vous configurez de nouveaux services Azure, vous le faites dans le cadre d’un abonnement donné. Différents services Azure, qui sont également appelées ressources, sont créés dans le contexte de hello d’un groupe de ressources. Groupes de ressources rendent toodeploy plus facile et gérer les ressources de votre application. Un groupe de ressources doit contenir toutes les ressources hello pour votre application souhaité toowork avec en tant qu’unité. Vous pouvez déplacer des ressources entre les groupes de ressources et même toodifferent abonnements. toolearn sur le déplacement de ressources, consultez [déplacer le groupe de ressources toonew ressources ou d’un abonnement](../../resource-group-move-resources.md).
 
-Azure Resource Explorer est un excellent outil de visualisation des ressources que vous avez déjà créées dans votre abonnement. Pour en savoir plus, consultez [Affichage et modification des ressources à l’aide d’Azure Resource Explorer](../../resource-manager-resource-explorer.md).
+Hello Explorateur de ressources Azure est un excellent outil pour visualiser les ressources hello que vous avez déjà créé dans votre abonnement. toolearn, voir [tooview d’utiliser l’Explorateur de ressources Azure et modifier des ressources](../../resource-manager-resource-explorer.md).
 
-#### <a name="grant-access-to-resources"></a>Accorder l’accès à des ressources
+#### <a name="grant-access-tooresources"></a>Accorder l’accès tooresources
 
-Lorsque vous autorisez l’accès à des ressources Azure, il est toujours recommandé de fournir aux utilisateurs les privilèges minimaux nécessaires pour effectuer une tâche donnée.
+Lorsque vous autorisez l’accès tooAzure ressources, il est toujours d’une meilleure pratique de fournir aux utilisateurs avec hello moindre privilège qui tooperform requis une tâche donnée.
 
--   **Contrôle d’accès en fonction du rôle (RBAC)** : dans Azure, vous pouvez accorder l’accès aux comptes d’utilisateur (principaux) dans une étendue spécifiée : abonnement, groupe de ressources ou ressources individuelles. RBAC vous permet de déployer un ensemble de ressources dans un groupe de ressources et d’accorder des autorisations à un utilisateur ou un groupe spécifique. Il permet également de limiter l’accès aux seules ressources qui appartiennent au groupe de ressources cible. Vous pouvez également accorder l’accès à une ressource unique, telle qu’une machine virtuelle ou un réseau virtuel. Pour accorder l’accès, vous assignez un rôle à l’utilisateur, au groupe ou au principal de service. Il existe de nombreux rôles prédéfinis et vous pouvez également définir vos propres rôles personnalisés.
+-   **Contrôle d’accès basé sur un rôle (RBAC)**: dans Azure, vous pouvez accorder l’accès des comptes toouser (principaux) dans une étendue spécifiée : abonnement, groupe de ressources ou des ressources individuelles. RBAC vous permet de déployer un ensemble de ressources dans un groupe de ressources et d’accorder des autorisations tooa utilisateur ou groupe spécifique. Il vous permettre également de limiter l’accès tooonly hello ressources qui font partie du groupe de ressources cible toohello. Vous pouvez également accorder l’accès tooa seule ressource, tel qu’un ordinateur virtuel ou d’un réseau virtuel. l’accès toogrant, attribuer un rôle toohello utilisateur, groupe ou principal du service. Il existe de nombreux rôles prédéfinis et vous pouvez également définir vos propres rôles personnalisés.
 
-    >**Quand l’utiliser** : lorsque vous avez besoin d’une gestion affinée des accès pour les utilisateurs et les groupes.
+    >**Lorsque toouse**: lorsque vous devez la gestion de l’accès affinée pour les utilisateurs et groupes.
 
-    >**Démarrer** : pour en savoir plus, consultez [Prise en main de la gestion des accès dans le portail Azure](../../active-directory/role-based-access-control-what-is.md).
+    >**Prise en main**: toolearn, voir [commencer avec la gestion des accès Bonjour Azure portal](../../active-directory/role-based-access-control-what-is.md).
 
--   **Objets Principal de service** : en plus de fournir l’accès aux groupes et principaux d’utilisateur, vous pouvez accorder le même accès à un principal de service.
+-   **Objets principales de service**: tooproviding en outre accéder à toouser principaux et des groupes, vous pouvez accorder hello même principal du service accès tooa.
 
-    > **Quand les utiliser** : lorsque vous gérez par programmation les ressources Azure ou accordez l’accès pour des applications. Pour plus d’informations, consultez [Créer une application Active Directory et un principal de service](../../resource-group-create-service-principal-portal.md).
+    > **Lorsque toouse**: lorsque vous utilisez la gestion des ressources Azure par programme ou accorder l’accès pour les applications. Pour plus d’informations, consultez [Créer une application Active Directory et un principal de service](../../resource-group-create-service-principal-portal.md).
 
-#### <a name="tags"></a>Balises
+#### <a name="tags"></a>Tags
 
-Azure Resource Manager vous permet d’assigner des balises personnalisées à des ressources individuelles. Les balises, qui sont des paires clé-valeur, peuvent être utiles lorsque vous devez organiser les ressources à des fins de facturation ou de surveillance. Les balises vous permettent d’effectuer le suivi des ressources entre plusieurs groupes de ressources. Vous pouvez assigner des balises dans le portail, dans le modèle Azure Resource Manager ou par programmation, en utilisant l’API REST, l’interface de ligne de commande Azure ou PowerShell. Vous pouvez assigner plusieurs balises à chaque ressource. Pour en savoir plus, consultez [Organisation des ressources Azure à l’aide de balises](../../resource-group-using-tags.md).
+Le Gestionnaire de ressources Azure vous permet d’affecter des balises personnalisées tooindividual ressources. Balises, qui sont des paires clé-valeur, peuvent être utiles lorsque vous avez besoin des ressources de tooorganize de facturation et d’analyse. Balises vous fournissent un moyen des ressources de tootrack sur plusieurs groupes de ressources. Vous pouvez affecter des balises dans le portail hello, dans le modèle de gestionnaire de ressources Azure hello, ou par programme, à l’aide de hello API REST, hello CLI d’Azure ou PowerShell. Vous pouvez affecter plusieurs balises tooeach ressource. toolearn, voir [à l’aide des balises tooorganize vos ressources Azure](../../resource-group-using-tags.md).
 
 ### <a name="billing"></a>Facturation
 
-Dans le cadre de la transition d’une informatique locale aux services hébergés sur le cloud, le suivi et l’estimation de l’utilisation des services et des coûts associés sont des préoccupations importantes. Il est essentiel de pouvoir évaluer le coût d’exploitation de nouvelles ressources sur une base mensuelle. Vous devez également être en mesure de projeter à quoi ressemblera la facturation pour un mois donné en fonction des dépenses actuelles.
+Dans move hello informatique de services hébergés toocloud sur site, le suivi et l’estimation de l’utilisation du service et les coûts associés sont des préoccupations importantes. Il est important toobe les tooestimate en mesure des nouvelles ressources coûts toorun sur une base mensuelle. Vous devez également tooproject en mesure de toobe aspect de la facturation de hello pour un mois donné, en fonction de dépense actuelle hello.
 
 #### <a name="get-resource-usage-data"></a>Obtenir les données d’utilisation des ressources
 
-Azure fournit un ensemble d’API REST de facturation qui donnent accès à la consommation des ressources et aux informations de métadonnées pour les abonnements Azure. Ces API de facturation vous permettent de mieux prévoir et gérer les coûts liés à Azure. Vous pouvez effectuer le suivi et l’analyse des dépenses par incréments horaires, créer des alertes de dépenses et prévoir la facturation à venir en fonction des tendances d’utilisation actuelles.
+Azure fournit un ensemble d’API REST de facturation qui donnent accès tooresource consommation et des informations de métadonnées pour les abonnements Azure. Ces permettent d’API de facturation hello de capacité toobetter prédire et gérer les coûts de Azure. Vous pouvez effectuer le suivi et l’analyse des dépenses par incréments horaires, créer des alertes de dépenses et prévoir la facturation à venir en fonction des tendances d’utilisation actuelles.
 
->**Démarrer** : pour en savoir plus sur l’utilisation des API de facturation, consultez [Vue d’ensemble des API de facturation Azure et RateCard](../../billing-usage-rate-card-overview.md).
+>**Prise en main**: toolearn plus sur l’utilisation de hello API de facturation, consultez [vue d’ensemble de l’utilisation de facturation d’Azure et RateCard APIs](../../billing-usage-rate-card-overview.md).
 
 #### <a name="predict-future-costs"></a>Prédire les coûts futurs
 
-Bien qu’il soit difficile d’estimer les coûts à l’avance, Azure intègre une [calculatrice de prix](https://azure.microsoft.com/pricing/calculator/) que vous pouvez utiliser pour estimer le coût des ressources déployées. Vous pouvez également utiliser le panneau Facturation dans le portail et les API REST de facturation pour estimer les coûts futurs en fonction de votre consommation actuelle.
+Bien qu’il est difficile de coûts tooestimate avance, Azure a un [calculatrice de prix](https://azure.microsoft.com/pricing/calculator/) que vous pouvez utiliser lorsque vous estimez le coût de hello de déployé des ressources. Vous pouvez également utiliser le panneau de facturation hello dans portail de hello et hello de facturation des API REST tooestimate les coûts futurs, en fonction de la consommation actuelle.
 
 >**Démarrer** : consultez [Vue d’ensemble des API de facturation Azure et RateCard](../../billing-usage-rate-card-overview.md).
 
-#### <a name="set-up-billing-alerts"></a>Définition des alertes de facturation
+#### <a name="set-up-billing-alerts"></a>Configurer des alertes de facturation
 
-Une fois que vous avez déployé votre application ou votre solution sur Azure, vous pouvez créer des alertes qui vous envoient un e-mail lorsque vous vous approchez des limites de dépenses définies dans ces alertes.
+Une fois que vous avez déployé votre application ou votre solution sur Azure, vous pouvez créer des alertes qui vous envoyer un que courriel lorsque vous approcher hello limites sont définies dans l’alerte de hello de dépense.
 
->**Démarrer** : pour en savoir plus, consultez [Configurer des alertes de facturation pour vos abonnements Microsoft Azure](../../billing-set-up-alerts.md).
+>**Prise en main**: toolearn, voir [configurer la facturation des alertes pour vos abonnements Microsoft Azure](../../billing-set-up-alerts.md).

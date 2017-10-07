@@ -1,6 +1,6 @@
 ---
-title: "Sauvegardes Azure SQL Data Warehouse - instantanés, géoredondant | Microsoft Docs"
-description: "Découvrez les sauvegardes de base de données intégrées de SQL Data Warehouse, qui vous permettent de restaurer un entrepôt de données SQL Azure à un point de restauration ou dans une autre région géographique."
+title: "sauvegardes de SQL Data Warehouse aaaAzure - captures instantanées, géo-redondant | Documents Microsoft"
+description: "En savoir plus sur les sauvegardes de base de données intégrée SQL Data Warehouse qui vous permettent de toorestore un point de restauration tooa Azure SQL Data Warehouse ou une autre région géographique."
 services: sql-data-warehouse
 documentationcenter: 
 author: Lakshmi1812
@@ -15,42 +15,42 @@ ms.workload: NA
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: 54c0149a769e654139bbdf709802d49127f041ac
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 34659480485246f54a1490e185fc1b903fb2520d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse-backups"></a>Sauvegardes de SQL Data Warehouse
-SQL Data Warehouse propose des sauvegardes locales et géographiques dans le cadre de ses fonctionnalités de sauvegarde d’entrepôt de données . Celles-ci incluent des captures instantanées Stockage Blob Azure et le stockage géoredondant. Utilisez des sauvegardes d’entrepôt de données pour restaurer votre entrepôt de données à un point de restauration dans la région primaire, ou pour restaurer dans une autre région géographique. Cet article explique les spécificités des sauvegardes dans SQL Data Warehouse.
+SQL Data Warehouse propose des sauvegardes locales et géographiques dans le cadre de ses fonctionnalités de sauvegarde d’entrepôt de données . Celles-ci incluent des captures instantanées Stockage Blob Azure et le stockage géoredondant. Utilisez les données entrepôt sauvegardes toorestore votre entrepôt de données tooa restauration point dans la région principale de hello ou restaurer tooa une autre région géographique. Cet article explique les spécificités de hello de sauvegardes dans l’entrepôt de données SQL.
 
 ## <a name="what-is-a-data-warehouse-backup"></a>Qu’est-ce qu’une sauvegarde d’entrepôt de données ?
-Une sauvegarde d’entrepôt de données est constituée de données que vous pouvez utiliser pour restaurer un entrepôt de données à un moment donné.  Comme SQL Data Warehouse est un système distribué, une sauvegarde d’entrepôt de données est constituée de nombreux fichiers qui sont stockés dans des objets blob Azure. 
+Une sauvegarde de l’entrepôt de données est que vous pouvez utiliser toorestore une heure spécifique de données entrepôt tooa les données de salutation.  Comme SQL Data Warehouse est un système distribué, une sauvegarde d’entrepôt de données est constituée de nombreux fichiers qui sont stockés dans des objets blob Azure. 
 
 Les sauvegardes de base de données sont une partie essentielle de toute stratégie de continuité d’activité ou de récupération d’urgence, dans la mesure où elles protègent vos données des corruptions et des suppressions accidentelles. Pour plus d’informations, consultez [Vue d’ensemble de la continuité de l’activité](../sql-database/sql-database-business-continuity.md).
 
 ## <a name="data-redundancy"></a>Redondance des données
-SQL Data Warehouse protège vos données en les stockant dans un stockage Premium Azure localement redondant. Cette fonctionnalité Stockage Azure stocke plusieurs copies synchrones des données dans le centre de données local afin de garantir une protection transparente des données en cas de défaillance localisée. La redondance des données garantit que vos données peuvent survivre à des problèmes liés à l’infrastructure, comme des défaillances de disque. La redondance des données assure la continuité des activités avec une infrastructure hautement disponible tolérante aux pannes.
+SQL Data Warehouse protège vos données en les stockant dans un stockage Premium Azure localement redondant. Cette fonctionnalité de stockage Azure stocke plusieurs copies synchrones des données de hello hello local protection de données centre tooguarantee transparent des données s’il existe des échecs localisées. La redondance des données garantit que vos données peuvent survivre à des problèmes liés à l’infrastructure, comme des défaillances de disque. La redondance des données assure la continuité des activités avec une infrastructure hautement disponible tolérante aux pannes.
 
-Pour en savoir plus sur :
+toolearn plus en détail :
 
-* Stockage Premium Azure : consultez [Introduction à Stockage Premium Azure](../storage/common/storage-premium-storage.md).
+* Le stockage Azure Premium, consultez [Introduction tooAzure stockage Premium](../storage/common/storage-premium-storage.md).
 * Stockage localement redondant : consultez [Réplication de Stockage Azure](../storage/common/storage-redundancy.md#locally-redundant-storage).
 
 ## <a name="azure-storage-blob-snapshots"></a>Captures instantanées d’objet blob Stockage Azure
-Un avantage de l’utilisation de Stockage Premium Azure est que SQL Data Warehouse utilise des captures instantanées d’objet blob Stockage Azure pour sauvegarder localement l’entrepôt de données. Vous pouvez restaurer un entrepôt de données à un point de restauration de capture instantanée. Les captures instantanées démarrent au minimum toutes les huit heures et sont disponibles pendant sept jours.  
+Comme un avantage de l’utilisation du stockage Azure Premium, pour SQL Data Warehouse utilise l’entrepôt de données objet Blob de stockage Azure instantanés toobackup hello localement. Vous pouvez restaurer un point de restauration de données entrepôt tooa instantané. Les captures instantanées démarrent au minimum toutes les huit heures et sont disponibles pendant sept jours.  
 
-Pour en savoir plus sur :
+toolearn plus en détail :
 
 * Captures instantanées d’objets blob Azure : consultez [Créer une capture instantanée d’objets blob](../storage/blobs/storage-blob-snapshots.md).
 
 ## <a name="geo-redundant-backups"></a>Sauvegardes géoredondantes
-Toutes les 24 heures, SQL Data Warehouse stocke l’entrepôt de données complet dans le stockage Standard. L’entrepôt de données complet est créé de façon à correspondre au moment de la dernière capture instantanée. Le stockage standard appartient à un compte de stockage géoredondant avec un accès en lecture (RA-GRS). La fonctionnalité RA-GRS du service Stockage Microsoft Azure réplique les fichiers de sauvegarde sur un [centre de données associé](../best-practices-availability-paired-regions.md). Cette géoréplication vous garantit de pouvoir restaurer un entrepôt de base de données dans le cas où vous ne pouvez pas accéder aux captures instantanées de votre région primaire. 
+Toutes les 24 heures, SQL Data Warehouse stocke hello data warehouse complet dans le stockage Standard. Hello l’entrepôt de données complète est créée toomatch hello heure du dernier instantané de hello. stockage standard de Hello appartient le compte de stockage géo-redondant tooa avec un accès en lecture (RA-GRS). fonctionnalité de stockage de Azure RA-GRS Hello réplique tooa des fichiers de sauvegarde hello [centre de données associés](../best-practices-availability-paired-regions.md). Cette géo-réplication garantit que vous pouvez restaurer l’entrepôt de données au cas où vous ne peut pas accéder aux instantanés de hello dans votre région primaire. 
 
-Cette fonctionnalité est activée par défaut. Si vous ne souhaitez pas utiliser des sauvegardes géo-redondantes, vous pouvez vous [désabonner] (https://docs.microsoft.com/powershell/resourcemanager/Azurerm.sql/v2.1.0/Set-AzureRmSqlDatabaseGeoBackupPolicy?redirectedfrom=msdn). 
+Cette fonctionnalité est activée par défaut. Si vous ne souhaitez pas toouse des sauvegardes géo-redondant, vous pouvez [refuser] (https://docs.microsoft.com/powershell/resourcemanager/Azurerm.sql/v2.1.0/Set-AzureRmSqlDatabaseGeoBackupPolicy?redirectedfrom=msdn). 
 
 > [!NOTE]
-> Dans le stockage Azure, le terme *réplication* fait référence à la copie de fichier d’un emplacement à un autre. La *réplication de base de données* de SQL fait référence à la gestion de la synchronisation de plusieurs bases de données secondaires avec une base de données primaire. 
+> Dans le stockage Azure, terme de hello *réplication* fait référence toocopying fichiers à partir d’un emplacement tooanother. SQL *réplication de base de données* fait référence tookeeping toomultiple bases de données secondaires synchronisées avec une base de données primaire. 
 > 
 > 
 
@@ -59,15 +59,15 @@ Cette fonctionnalité est activée par défaut. Si vous ne souhaitez pas utilise
 >
 > 
 
-Pour en savoir plus sur :
+toolearn plus en détail :
 
 * Le stockage géoredondant, consultez la section [Réplication Azure Storage](../storage/common/storage-redundancy.md).
 * Le stockage RA-GRS, consultez la section [Stockage géoredondant avec accès en lecture](../storage/common/storage-redundancy.md#read-access-geo-redundant-storage).
 
 ## <a name="data-warehouse-backup-schedule-and-retention-period"></a>Planification et période de rétention des sauvegardes d’entrepôt de données
-SQL Data Warehouse crée des captures instantanées sur vos entrepôts de données en ligne toutes les quatre à huit heures et conserve chaque capture instantanée pendant sept jours. Vous pouvez restaurer votre base de données en ligne à un des points de restauration des sept derniers jours. 
+SQL Data Warehouse crée des instantanés sur vos entrepôts de données en ligne chaque quatre tooeight heures et conserve chaque instantané pendant sept jours. Vous pouvez restaurer votre tooone en ligne de base de données de points de restauration hello Bonjour sept derniers jours. 
 
-Pour voir quand la dernière capture instantanée a démarré, exécutez cette requête sur votre entrepôt de données SQL Data Warehouse en ligne. 
+toosee au démarrage de la dernière capture instantanée de hello, exécutez cette requête dans votre entrepôt de données SQL en ligne. 
 
 ```sql
 select top 1 *
@@ -75,39 +75,39 @@ from sys.pdw_loader_backup_runs
 order by run_id desc;
 ```
 
-Si vous avez besoin de conserver une capture instantanée pendant plus de sept jours, vous pouvez restaurer un point de restauration sur un nouvel entrepôt de données. Une fois la restauration terminée, SQL Data Warehouse démarre la création de captures instantanées sur le nouvel entrepôt de données. Si vous n’apportez pas de modifications au nouvel entrepôt de données, les captures instantanées restent vides et par conséquent, le coût de la capture instantanée est minimal. Vous pouvez aussi suspendre la base de données pour éviter que SQL Data Warehouse crée des captures instantanées.
+Si vous avez besoin d’un instantané de tooretain pendant plus de sept jours, vous pouvez restaurer un restauration point tooa nouvel entrepôt de données. Après la fin de la restauration de hello, SQL Data Warehouse commence à créer des instantanés de l’entrepôt de données nouvelle hello. Si vous n’apportez des modifications toohello nouvel entrepôt de données, les instantanés hello restent vides et par conséquent hello instantané coût minimal. Vous pourriez également suspendre hello tookeep de base de données SQL Data Warehouse à partir de la création d’instantanés.
 
-### <a name="what-happens-to-my-backup-retention-while-my-data-warehouse-is-paused"></a>Que se passe-t-il pour la rétention de mes sauvegardes pendant la mise en suspens de mon entrepôt de données ?
-SQL Data Warehouse ne crée pas de captures instantanées et ne fait pas expirer les captures instantanées pendant la mise en suspens d’un entrepôt de données. L’ancienneté de la capture instantanée ne change pas pendant que l’entrepôt de données est mis en suspens. La rétention des captures instantanées est basée sur le nombre de jours pendant lesquels l’entrepôt de données est en ligne et non pas sur les jours du calendrier.
+### <a name="what-happens-toomy-backup-retention-while-my-data-warehouse-is-paused"></a>Que passe-t-il toomy rétention des sauvegardes pendant la suspension de mon magasin de données ?
+SQL Data Warehouse ne crée pas de captures instantanées et ne fait pas expirer les captures instantanées pendant la mise en suspens d’un entrepôt de données. âge de capture instantanée Hello ne change pas pendant la suspension de l’entrepôt de données hello. Rétention de l’instantané est basée sur hello nombre de jours de l’entrepôt de données hello en ligne, pas les jours calendaires.
 
-Par exemple, si une capture instantanée démarre le 1er octobre à 16h00 et que l’entrepôt de données est mis en suspens le 3 octobre à 16h00, l’ancienneté de la capture instantanée est de deux jours. Quand l’entrepôt de données revient en ligne, la capture instantanée a une ancienneté de deux jours. Si l’entrepôt de données est mis en ligne le 5 octobre à 16h00, l’instantané a une ancienneté de deux jours et est conservé pendant encore cinq jours.
+Par exemple, si un instantané démarre octobre 1 à 16 h 00 et l’entrepôt de données hello est suspendu le 3 octobre à 16 h 00, instantané d’hello est de deux jours. Chaque fois que l’entrepôt de données hello revient en ligne instantané d’hello a deux jours. Si l’entrepôt de données hello est mis en ligne 5 octobre à 16 h 00, instantané d’hello a deux jours et reste pendant plus de cinq jours.
 
-Quand l’entrepôt de données revient en ligne, SQL Data Warehouse reprend de nouvelles captures instantanées et fait expirer les captures instantanées quand elles ont plus de sept jours de données.
+Lors de l’entrepôt de données hello revient en ligne, l’entrepôt de données SQL reprend les nouveaux instantanés et expire les instantanés lorsqu’ils disposent de plus de sept jours de données.
 
-### <a name="how-long-is-the-retention-period-for-a-dropped-data-warehouse"></a>Quelle est la durée de la période de rétention pour un entrepôt de données supprimé ?
-Quand un entrepôt de données est supprimé, l’entrepôt de données et les captures instantanées sont enregistrés pour une durée de sept jours, puis ils sont supprimés. Vous pouvez restaurer l’entrepôt de données à un des points de restauration enregistrés.
+### <a name="how-long-is-hello-retention-period-for-a-dropped-data-warehouse"></a>Combien de temps est la période de rétention de hello pour un entrepôt de données supprimée ?
+Lorsqu’un entrepôt de données est supprimé, hello data warehouse et les instantanés de hello sont enregistrés pendant sept jours et puis supprimés. Vous pouvez restaurer tooany de l’entrepôt de données hello hello enregistré des points de restauration.
 
 > [!IMPORTANT]
-> Si vous supprimez une instance SQL Server logique, toutes les bases de données qui appartiennent à l’instance sont également supprimées, sans pouvoir être récupérées. Vous ne pouvez pas restaurer un serveur supprimé.
+> Si vous supprimez une instance SQL server logique, toutes les bases de données qui appartiennent toohello instance sont également supprimées et ne peuvent pas être récupérées. Vous ne pouvez pas restaurer un serveur supprimé.
 > 
 > 
 
 ## <a name="data-warehouse-backup-costs"></a>Coûts des sauvegardes des entrepôts de données
-Le coût total de votre entrepôt de données principal et de sept jours de captures instantanées d’objets blob Azure est arrondi au To le plus proche. Par exemple, si la taille de votre entrepôt de données est de 1,5 To et que les captures instantanées utilisent 100 Go, vous êtes facturé pour 2 To de données aux prix du Stockage Premium Azure. 
+Hello total coût de votre entrepôt de données primaire et les sept jours d’instantanés d’objets Blob Azure est arrondi toohello to la plus proche. Par exemple, si votre entrepôt de données est 1,5 To et des captures instantanées hello utilisent 100 Go, vous êtes facturé pour 2 To de données à des taux de stockage Azure Premium. 
 
 > [!NOTE]
-> Chaque capture instantanée est initialement vide et augmente à mesure que vous apportez des modifications à l’entrepôt de données principal. La taille de toutes les captures instantanées augmente au fil des modifications de l’entrepôt de données. Par conséquent, les coûts de stockage pour les captures instantanées augmentent en fonction de l’importance des modifications.
+> Chaque instantané est vide initialement et augmente à mesure que vous apportez à l’entrepôt de données principales modifications toohello. Toutes les captures instantanées augmentent la taille en tant que les modifications de l’entrepôt de données hello. Par conséquent, les coûts de stockage hello pour les instantanés atteindre des taux de toohello en fonction de modification.
 > 
 > 
 
-Si vous utilisez le stockage géoredondant, vous payez des frais de stockage distincts. Le stockage géoredondant est facturé au prix standard du stockage géoredondant avec accès en lecture (RA-GRS).
+Si vous utilisez le stockage géoredondant, vous payez des frais de stockage distincts. un stockage géo-redondant Hello est facturé au taux de Read-Access Geographically Redundant Storage (RA-GRS) standard hello.
 
 Pour plus d’informations sur la tarification de SQL Data Warehouse, consultez [SQL Data Warehouse Tarification](https://azure.microsoft.com/pricing/details/sql-data-warehouse/).
 
 ## <a name="using-database-backups"></a>Utilisation des sauvegardes de base de données
-La principale utilisation des sauvegardes SQL Data Warehouse est de restaurer l’entrepôt de données à un des points de restauration de la période de rétention.  
+Hello principale utilisation de sauvegardes de l’entrepôt de données SQL est tooone de l’entrepôt de données de hello toorestore hello de points de restauration au sein de la période de rétention hello.  
 
-* Pour restaurer un entrepôt de données SQL, consultez [Restaurer un entrepôt de données SQL](sql-data-warehouse-restore-database-overview.md).
+* toorestore un entrepôt de données SQL, consultez [restaurer un entrepôt de données SQL](sql-data-warehouse-restore-database-overview.md).
 
 ## <a name="related-topics"></a>Rubriques connexes
 ### <a name="scenarios"></a>Scénarios
@@ -115,7 +115,7 @@ La principale utilisation des sauvegardes SQL Data Warehouse est de restaurer l�
 
 <!-- ### Tasks -->
 
-* Pour restaurer un entrepôt de données, consultez [Restaurer un entrepôt de données SQL](sql-data-warehouse-restore-database-overview.md).
+* toorestore un entrepôt de données, consultez [restaurer un entrepôt de données SQL](sql-data-warehouse-restore-database-overview.md)
 
 <!-- ### Tutorials -->
 

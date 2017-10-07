@@ -1,6 +1,6 @@
 ---
-title: "Gestion des clusters HDInsight joints à un domaine - Azure | Microsoft Docs"
-description: "Découvrez comment gérer les clusters HDInsight joints à un domaine"
+title: "les clusters appartenant à un domaine de HDInsight aaaManage - Azure | Documents Microsoft"
+description: "Découvrez comment toomanage clusters appartenant à un domaine de HDInsight"
 services: hdinsight
 documentationcenter: 
 author: saurinsh
@@ -16,37 +16,37 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/25/2016
 ms.author: saurinsh
-ms.openlocfilehash: 9b56ce6cc5bdd3b8d48d047751e978cad08598e1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 233ddf0953e981f9a24b77d9dde194d590e5e6d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-domain-joined-hdinsight-clusters-preview"></a>Gestion des clusters HDInsight joints à un domaine (version préliminaire)
-Découvrez les utilisateurs et les rôles dans HDInsight joint à un domaine et apprenez à gérer des clusters HDInsight joints à un domaine.
+Découvrez les utilisateurs hello et rôles hello dans HDInsight de domaine, et comment toomanage clusters HDInsight de joints au domaine.
 
 ## <a name="users-of-domain-joined-hdinsight-clusters"></a>Utilisateurs des clusters HDInsight joints à un domaine
-Un cluster HDInsight qui n’est pas joint à un domaine comporte deux comptes d’utilisateur créés lors de la création du cluster :
+Un cluster HDInsight n'est pas joint au domaine a deux comptes d’utilisateur qui sont créés lors de la création du cluster hello :
 
-* **Administrateur Ambari** : ce compte est également appelé *utilisateur Hadoop* ou *utilisateur HTTP*. Ce compte peut être utilisé pour la connexion à Ambari via https://&lt;clustername>.azurehdinsight.net. Il peut également être utilisé pour exécuter des requêtes sur des vues Ambari, exécuter des travaux à l’aide d’outils externes (par exemple, PowerShell, Templeton, Visual Studio) et s’authentifier avec le pilote ODBC Hive et les outils décisionnels (Excel, PowerBI ou Tableau).
-* **Utilisateur SSH** : ce compte peut être utilisé avec SSH et exécuter des commandes sudo. Il dispose de privilèges root d’accès aux machines virtuelles Linux.
+* **Administrateur Ambari** : ce compte est également appelé *utilisateur Hadoop* ou *utilisateur HTTP*. Ce compte peut être utilisé toolog sur tooAmbari à https://&lt;nomcluster >. azurehdinsight.net. Peut également être toorun utilisé des requêtes sur les vues de Ambari, exécuter des travaux à l’aide des outils externes (par exemple, PowerShell, Templeton, Visual Studio) et s’authentifier avec le pilote ODBC de la ruche de hello et Outils BI (par exemple, Excel, Power BI ou Tableau).
+* **Utilisateur SSH** : ce compte peut être utilisé avec SSH et exécuter des commandes sudo. Il possède des privilèges de racine toohello les machines virtuelles Linux.
 
-Un cluster HDInsight joint à un domaine a trois nouveaux utilisateurs en plus de l’administrateur Ambari et de l’utilisateur SSH.
+Un cluster HDInsight appartenant au domaine a trois nouveaux utilisateurs dans Ajout tooAmbari Admin et SSH de l’utilisateur.
 
-* **Administrateur Ranger** : ce compte est le compte administrateur Apache Ranger local. Il ne s’agit pas d’un utilisateur de domaine Active Directory. Ce compte peut être utilisé pour configurer des stratégies et d’autres administrateurs utilisateurs ou administrateurs délégués (pour que ces utilisateurs puissent gérer les stratégies). Par défaut, le nom d’utilisateur est *admin* et le mot de passe est le même que le mot de passe administrateur Ambari. Le mot de passe peut être mis à jour à partir de la page Paramètres dans Ranger.
-* **Utilisateur de domaine administrateur de cluster** : ce compte est un utilisateur de domaine Active Directory désigné comme administrateur du cluster Hadoop, y compris Ambari et Ranger. Vous devez fournir les informations d’identification de cet utilisateur lors de la création du cluster. Cet utilisateur possède les privilèges suivants :
+* **Ranger admin**: ce compte est hello local Apache Ranger admin. Il ne s’agit pas d’un utilisateur de domaine Active Directory. Ce compte peut être toosetup utilisé des stratégies et effectuer d’autres administrateurs d’utilisateurs ou les administrateurs délégués (de sorte que les utilisateurs peuvent gérer les stratégies). Par défaut, le nom d’utilisateur hello est *admin* et le mot de passe hello est hello identique hello Ambari mot de passe administrateur. mot de passe Hello peut être mis à jour à partir de la page de paramètres hello dans Ranger.
+* **Utilisateur de domaine administrateur de cluster**: ce compte est un utilisateur de domaine Active Directory désigné comme administrateur de cluster Hadoop notamment Ambari et Ranger de hello. Vous devez fournir les informations d’identification de cet utilisateur lors de la création du cluster. Cet utilisateur a hello suivant de privilèges :
 
-  * Joindre des machines au domaine et les placer dans l’unité d’organisation que vous spécifiez lors de la création du cluster.
-  * Créer des principaux de service au sein de l’unité d’organisation que vous spécifiez lors de la création du cluster.
+  * Joindre le domaine de toohello d’ordinateurs et les placer dans hello unité d’organisation que vous spécifiez lors de la création du cluster.
+  * Créer des principaux de service au sein de hello unité d’organisation que vous spécifiez lors de la création du cluster.
   * Créer des entrées DNS inversées.
 
-    Notez que les autres utilisateurs d’Active Directory possèdent également ces privilèges.
+    Hello de Remarque autres utilisateurs AD également posséder les privilèges.
 
-    Il existe des points de terminaison au sein du cluster (par exemple, Templeton) qui ne sont pas gérés par Ranger et ne sont donc pas sécurisés. Ces points de terminaison sont verrouillés pour tous les utilisateurs, à l’exception de l’utilisateur de domaine administrateur du cluster.
-* **Standard** : pendant la création du cluster, vous pouvez fournir plusieurs groupes Active Directory. Les utilisateurs de ces groupes sont synchronisés avec Ranger et Ambari. Ce sont des utilisateurs de domaine qui ont accès uniquement aux points de terminaison gérés par Ranger (par exemple, Hiveserver2). Les stratégies RBAC et les audits sont tous applicables à ces utilisateurs.
+    Il existe certains points de terminaison dans le cluster hello (par exemple, Templeton) qui ne sont pas gérés par Ranger et par conséquent, ne sont pas sécurisées. Ces points de terminaison sont verrouillés pour tous les utilisateurs à l’exception de l’utilisateur de domaine du cluster admin hello.
+* **Standard** : pendant la création du cluster, vous pouvez fournir plusieurs groupes Active Directory. les utilisateurs de Hello dans ces groupes seront synchronisé tooRanger et Ambari. Ces utilisateurs sont des utilisateurs de domaine et ont accès tooonly gérés Ranger points de terminaison (par exemple, Hiveserver2). Tous les hello stratégies RBAC et d’audit seront les utilisateurs toothese applicable.
 
 ## <a name="roles-of-domain-joined-hdinsight-clusters"></a>Rôles des clusters HDInsight joints à un domaine
-Les rôles de HDInsight joint à un domaine sont les suivants :
+HDInsight de domaine ont hello suivant des rôles :
 
 * Administrateur de cluster
 * Opérateur de cluster
@@ -54,57 +54,57 @@ Les rôles de HDInsight joint à un domaine sont les suivants :
 * Opérateur de service
 * Utilisateur de cluster
 
-**Pour voir les autorisations de ces rôles.**
+**autorisations de hello toosee de ces rôles.**
 
-1. Ouvrez l’interface utilisateur de gestion Ambari.  Reportez-vous à [Ouverture de l’interface utilisateur de gestion Ambari](#open-the-ambari-management-ui).
-2. Dans le menu de gauche, cliquez sur **Rôles**.
-3. Cliquez sur le point d’interrogation bleu pour afficher les autorisations :
+1. Ouvrez hello Ambari interface utilisateur de gestion.  Consultez [hello ouvrir l’interface utilisateur de gestion de Ambari](#open-the-ambari-management-ui).
+2. Dans le menu de gauche hello, cliquez sur **rôles**.
+3. Cliquez sur hello bleu interrogation toosee hello des autorisations :
 
     ![Autorisations des rôles de HDInsight joint à un domaine](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-roles-permissions.png)
 
-## <a name="open-the-ambari-management-ui"></a>Ouverture de l’interface utilisateur de gestion Ambari
-1. Connectez-vous au [portail Azure](https://portal.azure.com).
+## <a name="open-hello-ambari-management-ui"></a>Ouvrez hello Ambari interface utilisateur de gestion
+1. Ouverture de session toohello [portail Azure](https://portal.azure.com).
 2. Ouvrez votre cluster HDInsight dans un panneau. Voir [Énumération et affichage des clusters](hdinsight-administer-use-management-portal.md#list-and-show-clusters).
-3. Cliquez sur **Tableau de bord** dans le menu du haut pour ouvrir Ambari.
-4. Connectez-vous à Ambari avec le nom d’utilisateur et le mot de passe du domaine de l’administrateur du cluster.
-5. Cliquez sur le menu déroulant **Admin** (Administrateur) dans l’angle supérieur droit, puis sur **Manage Ambari** (Gérer Ambari).
+3. Cliquez sur **tableau de bord** de hello menu supérieur tooopen Ambari.
+4. Ouvrez une session sur tooAmbari à l’aide de hello cluster administrateur domaine nom d’utilisateur et mot de passe.
+5. Cliquez sur hello **Admin** menu déroulant dans le coin supérieur droit de hello, puis cliquez sur **Ambari de gérer**.
 
     ![Gérer Ambari HDInsight joint à un domaine](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-manage-ambari.png)
 
-    L’interface utilisateur ressemble à ce qui suit :
+    l’interface utilisateur de Hello ressemble à ceci :
 
     ![Interface utilisateur de gestion Ambari HDInsight joint à un domaine](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui.png)
 
-## <a name="list-the-domain-users-synchronized-from-your-active-directory"></a>Énumération des utilisateurs du domaine synchronisés à partir d’Active Directory
-1. Ouvrez l’interface utilisateur de gestion Ambari.  Reportez-vous à [Ouverture de l’interface utilisateur de gestion Ambari](#open-the-ambari-management-ui).
-2. Dans le menu de gauche, cliquez sur **Utilisateurs**. Vous devriez voir tous les utilisateurs synchronisés à partir d’Active Directory sur le cluster HDInsight.
+## <a name="list-hello-domain-users-synchronized-from-your-active-directory"></a>Liste des utilisateurs du domaine hello synchronisés à partir de votre annuaire Active Directory
+1. Ouvrez hello Ambari interface utilisateur de gestion.  Consultez [hello ouvrir l’interface utilisateur de gestion de Ambari](#open-the-ambari-management-ui).
+2. Dans le menu de gauche hello, cliquez sur **utilisateurs**. Vous allez voir que tous les utilisateurs de hello synchronisés à partir de votre cluster HDInsight de toohello Active Directory.
 
     ![Énumération des utilisateurs interface utilisateur de gestion Ambari HDInsight joint à un domaine](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-users.png)
 
-## <a name="list-the-domain-groups-synchronized-from-your-active-directory"></a>Énumération des groupes du domaine synchronisés à partir d’Active Directory
-1. Ouvrez l’interface utilisateur de gestion Ambari.  Reportez-vous à [Ouverture de l’interface utilisateur de gestion Ambari](#open-the-ambari-management-ui).
-2. Dans le menu de gauche, cliquez sur **Groupes**. Vous devriez voir tous les groupes synchronisés à partir d’Active Directory sur le cluster HDInsight.
+## <a name="list-hello-domain-groups-synchronized-from-your-active-directory"></a>Liste des groupes de domaine hello synchronisés à partir de votre annuaire Active Directory
+1. Ouvrez hello Ambari interface utilisateur de gestion.  Consultez [hello ouvrir l’interface utilisateur de gestion de Ambari](#open-the-ambari-management-ui).
+2. Dans le menu de gauche hello, cliquez sur **groupes**. Vous allez voir que tous les groupes de hello synchronisés à partir de votre cluster HDInsight de toohello Active Directory.
 
     ![Énumération des groupes interface utilisateur de gestion Ambari HDInsight joint à un domaine](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-groups.png)
 
 ## <a name="configure-hive-views-permissions"></a>Configuration des autorisations des affichages Hive
-1. Ouvrez l’interface utilisateur de gestion Ambari.  Reportez-vous à [Ouverture de l’interface utilisateur de gestion Ambari](#open-the-ambari-management-ui).
-2. Dans le menu de gauche, cliquez sur **Views** (Affichages).
-3. Cliquez sur **HIVE** pour afficher les détails.
+1. Ouvrez hello Ambari interface utilisateur de gestion.  Consultez [hello ouvrir l’interface utilisateur de gestion de Ambari](#open-the-ambari-management-ui).
+2. Dans le menu de gauche hello, cliquez sur **vues**.
+3. Cliquez sur **HIVE** détails de hello tooshow.
 
     ![Affichages Hive interface utilisateur de gestion Ambari HDInsight joint à un domaine](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-hive-views.png)
-4. Cliquez sur le lien **Hive View** (Affichage Hive) pour configurer les affichages Hive.
-5. Faites défiler jusqu’à la section **Autorisations**.
+4. Cliquez sur hello **affichage de la ruche** de lier des vues de la ruche tooconfigure.
+5. Faites défiler vers le bas toohello **autorisations** section.
 
     ![Configuration des autorisations affichages Hive interface utilisateur de gestion Ambari HDInsight joint à un domaine](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-hive-views-permissions.png)
-6. Cliquez sur **Add User** (Ajouter un utilisateur) ou **Add Group** (Ajouter un groupe), puis spécifiez les utilisateurs ou les groupes que peuvent utiliser les affichages Hive.
+6. Cliquez sur **ajouter un utilisateur** ou **ajouter un groupe**, puis spécifiez les utilisateurs hello ou groupes qui peuvent utiliser les vues de la ruche.
 
-## <a name="configure-users-for-the-roles"></a>Configuration des utilisateurs pour les rôles
- Pour afficher une liste des rôles et de leurs autorisations, reportez-vous à [Rôles des clusters HDInsight joints à un domaine](#roles-of-domain---joined-hdinsight-clusters).
+## <a name="configure-users-for-hello-roles"></a>Configurer des utilisateurs pour les rôles de hello
+ toosee une liste de rôles et leurs autorisations, consultez [clusters HDInsight de rôles de domaine](#roles-of-domain---joined-hdinsight-clusters).
 
-1. Ouvrez l’interface utilisateur de gestion Ambari.  Reportez-vous à [Ouverture de l’interface utilisateur de gestion Ambari](#open-the-ambari-management-ui).
-2. Dans le menu de gauche, cliquez sur **Rôles**.
-3. Cliquez sur **Add User** (Ajouter un utilisateur) ou **Add Group** (Ajouter un groupe) pour affecter des utilisateurs et des groupes aux différents rôles.
+1. Ouvrez hello Ambari interface utilisateur de gestion.  Consultez [hello ouvrir l’interface utilisateur de gestion de Ambari](#open-the-ambari-management-ui).
+2. Dans le menu de gauche hello, cliquez sur **rôles**.
+3. Cliquez sur **ajouter un utilisateur** ou **ajouter un groupe** tooassign les utilisateurs et groupes de rôles de toodifferent.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Pour configurer un cluster HDInsight joint à un domaine, consultez [Configuration de clusters HDInsight joints à un domaine](hdinsight-domain-joined-configure.md).

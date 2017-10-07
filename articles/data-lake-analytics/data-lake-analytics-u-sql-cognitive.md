@@ -1,6 +1,6 @@
 ---
-title: "Utilisation de fonctionnalités cognitives U-SQL dans Azure Data Lake Analytics | Microsoft Docs"
-description: "Découvrez comment utiliser l’intelligence des fonctionnalités cognitives U-SQL"
+title: "capacités de U-SQL cognitifs aaaUsing dans Analytique de LAC de données Azure | Documents Microsoft"
+description: "Découvrez comment toouse hello intelligence de fonctionnalités cognitifs U-SQL"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: saveenr
-ms.openlocfilehash: f77329f9838d6e824afa7234de90f62257a004de
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9ac71f490e929070fa0e72b93c3ffdb1ab243b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-get-started-with-the-cognitive-capabilities-of-u-sql"></a>Didacticiel : Bien démarrer avec les capacités cognitives U-SQL
+# <a name="tutorial-get-started-with-hello-cognitive-capabilities-of-u-sql"></a>Didacticiel : Prise en main hello cognitifs aux capacités de U-SQL
 
-Les fonctionnalités cognitives de U-SQL permettent aux développeurs d’utiliser l’intelligence PUT dans leurs programmes de Big Data. Le processus général est simple :
+Fonctionnalités cognitifs pour U-SQL activer toouse développeurs placer intelligence dans leur programme de données volumineuses. Hello processus global dans simple :
 
-* Utilisation de l’instruction REFERENCE ASSEMBLY pour activer les fonctionnalités cognitives pour le script SQL-U
-* Appel de l’opération PROCESS pour utiliser les fonctionnalités cognitives 
+* Utiliser les fonctionnalités cognitifs hello de tooenable instruction hello ASSEMBLY de référence pour hello Script U-SQL
+* Appeler une opération de processus hello capacités de troubles cognitifs toouse hello 
 
 ## <a name="imaging-scenarios"></a>Scénarios d’acquisition d’images
 
 ### <a name="example-image-tagging"></a>Exemple : balisage d’images
 
-L’exemple suivant illustre une utilisation de bout en bout des fonctionnalités d’acquisition d’images pour détecter des objets dans des images.
+Bonjour à l’exemple suivant montre une utilisation de bout en bout de hello imaging objets toodetect de fonctionnalités dans des images.
 
     REFERENCE ASSEMBLY ImageCommon;
     REFERENCE ASSEMBLY FaceSdk;
@@ -44,7 +44,7 @@ L’exemple suivant illustre une utilisation de bout en bout des fonctionnalité
         FROM @"/images/{FileName:*}.jpg"
         USING new Cognition.Vision.ImageExtractor();
 
-    // Extract the number of objects on each image and tag them 
+    // Extract hello number of objects on each image and tag them 
     @objects =
         PROCESS @imgs 
         PRODUCE FileName,
@@ -120,7 +120,7 @@ Supposons que nous disposons d’une entrée composée de « Guerre et paix » d
                 Text
         USING new Cognition.Text.KeyPhraseExtractor();
 
-    // Tokenize the key phrases.
+    // Tokenize hello key phrases.
     @kpsplits =
         SELECT No,
             Year,

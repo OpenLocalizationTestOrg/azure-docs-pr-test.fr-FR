@@ -1,6 +1,6 @@
 ---
-title: "Démarrage rapide : Cluster Azure Docker Swarm pour Linux | Microsoft Docs"
-description: "Découvrez rapidement comment créer un cluster Docker Swarm pour des conteneurs Linux dans Azure Container Service, avec Azure CLI."
+title: aaaQuickstart - Swarm de Docker Azure de cluster pour Linux | Documents Microsoft
+description: "En savoir plus rapidement les toocreate un cluster Docker Swarm pour les conteneurs Linux dans le conteneur de Service Azure avec hello CLI d’Azure."
 services: container-service
 documentationcenter: 
 author: neilpeterson
@@ -17,25 +17,25 @@ ms.workload: na
 ms.date: 08/14/2017
 ms.author: nepeters
 ms.custom: 
-ms.openlocfilehash: 1d10c347795227ed056a95d1bcd4aff82af7b876
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3028d2d00585360ec163518bf98f69bb0dd44dec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-docker-swarm-cluster"></a>Déployer le cluster Docker Swarm
 
-Dans ce guide de démarrage rapide, un cluster Docker Swarm est déployé à l’aide d’Azure CLI. Une application à plusieurs conteneurs composée d’un serveur web frontal et d’une instance Redis est ensuite déployée, puis exécutée sur le cluster. Ceci fait, l’application est accessible via internet.
+Dans ce guide de démarrage rapide, un cluster Docker Swarm est déployé à l’aide de hello CLI d’Azure. Une application conteneur multi composé d’un serveur web frontal et une instance de Redis est puis déployée et exécutée sur le cluster de hello. Une fois terminé, l’application hello est accessible sur internet de hello.
 
 Si vous n’avez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) avant de commencer.
 
-Ce guide de démarrage rapide nécessite que vous exécutiez Azure CLI version 2.0.4 ou ultérieure. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).
+Ce démarrage rapide nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).
 
 ## <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
-Créez un groupe de ressources avec la commande [az group create](/cli/azure/group#create). Un groupe de ressources Azure est un groupe logique dans lequel des ressources Azure sont déployées et gérées.
+Créer un groupe de ressources avec hello [création de groupe de az](/cli/azure/group#create) commande. Un groupe de ressources Azure est un groupe logique dans lequel des ressources Azure sont déployées et gérées.
 
-L’exemple suivant crée un groupe de ressources nommé *myResourceGroup* à l’emplacement *westus*.
+Hello exemple suivant crée un groupe de ressources nommé *myResourceGroup* Bonjour *westus* emplacement.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location westus
@@ -58,19 +58,19 @@ Output:
 
 ## <a name="create-docker-swarm-cluster"></a>Créer le cluster Docker Swarm
 
-Pour créer un cluster Docker Swarm dans Azure Container Service, utilisez la commande [az acs create](/cli/azure/acs#create). 
+Créer un cluster de Docker Swarm dans le Service de conteneur Azure avec hello [az acs créer](/cli/azure/acs#create) commande. 
 
-L’exemple ci-après permet de créer un cluster nommé *mySwarmCluster*, qui inclut un nœud maître Linux et trois nœuds agents Linux.
+Hello exemple suivant crée un cluster nommé *mySwarmCluster* avec un Linux maître nœud et trois nœuds de l’agent Linux.
 
 ```azurecli-interactive
 az acs create --name mySwarmCluster --orchestrator-type Swarm --resource-group myResourceGroup --generate-ssh-keys
 ```
 
-Au bout de quelques minutes, la commande se termine et retourne des informations formatées Json sur le cluster.
+Après quelques minutes, commande hello se termine et retourne des informations au format json sur le cluster de hello.
 
-## <a name="connect-to-the-cluster"></a>Connexion au cluster
+## <a name="connect-toohello-cluster"></a>Se connecter toohello cluster
 
-Pour suivre ce guide de démarrage rapide, vous avez besoin de l’adresse IP du nœud maître Docker Swarm et du pool d’agents Docker. Exécutez la commande suivante pour retourner les deux adresses IP.
+Tout au long de ce guide de démarrage rapide, vous avez besoin de l’adresse IP hello principale de Docker Swarm hello et pool d’agents hello Docker. La commande suivante d’exécution hello tooreturn les deux adresses IP.
 
 
 ```bash
@@ -86,24 +86,24 @@ swarmm-agent-ip-myswarmcluster-myresourcegroup-d5b9d4agent-66066781  52.179.23.1
 swarmm-master-ip-myswarmcluster-myresourcegroup-d5b9d4mgmt-66066781  52.141.37.199
 ```
 
-Créez un tunnel SSH vers le nœud maître Docker Swarm. Remplacez `IPAddress` par l’adresse IP du nœud maître Docker Swarm.
+Créer un SSH maître de tunnel toohello essaim. Remplacez `IPAddress` avec adresse IP principale d’essaim hello hello.
 
 ```bash
 ssh -p 2200 -fNL 2375:localhost:2375 azureuser@IPAddress
 ```
 
-Définissez la variable d’environnement `DOCKER_HOST`. Ceci vous permet d’exécuter des commandes docker pour le Docker Swarm sans avoir à spécifier le nom de l’hôte.
+Ensemble hello `DOCKER_HOST` variable d’environnement. Ainsi, vous toorun les commandes docker sur hello Docker Swarm sans avoir le nom de hello toospecify d’hôte de hello.
 
 ```bash
 export DOCKER_HOST=:2375
 ```
 
-Vous êtes maintenant prêt à exécuter les services Docker sur le Docker Swarm.
+Vous êtes maintenant prêt toorun des services de Docker sur hello Docker Swarm.
 
 
-## <a name="run-the-application"></a>Exécution de l'application
+## <a name="run-hello-application"></a>Exécutez l’application hello
 
-Créez un fichier nommé `docker-compose.yaml`, puis copiez-y le contenu suivant.
+Créez un fichier nommé `docker-compose.yaml` et hello de copie suivant contenu dans celui-ci.
 
 ```yaml
 version: '3'
@@ -123,7 +123,7 @@ services:
         - "80:80"
 ```
 
-Exécutez la commande ci-dessous pour créer le service Azure Vote.
+Exécutez hello après commande toocreate hello Azure Vote service.
 
 ```bash
 docker-compose up -d
@@ -132,7 +132,7 @@ docker-compose up -d
 Output:
 
 ```bash
-Creating network "user_default" with the default driver
+Creating network "user_default" with hello default driver
 Pulling azure-vote-front (microsoft/azure-vote-front:redis-v1)...
 swarm-agent-EE873B23000005: Pulling microsoft/azure-vote-front:redis-v1...
 swarm-agent-EE873B23000004: Pulling microsoft/azure-vote-front:redis-v1... : downloaded
@@ -144,30 +144,30 @@ Creating azure-vote-front
 Creating azure-vote-back ...
 ```
 
-## <a name="test-the-application"></a>Test de l'application
+## <a name="test-hello-application"></a>Tester l’application hello
 
-Naviguez dans l’adresse IP du pool d’agents Swarm pour tester l’application Azure Vote.
+Parcourir l’adresse IP toohello hello essaim agent pool tootest d’application Azure Vote hello.
 
-![Image de la navigation vers Azure Vote](media/container-service-docker-swarm-mode-walkthrough/azure-vote.png)
+![Image de navigation tooAzure Vote](media/container-service-docker-swarm-mode-walkthrough/azure-vote.png)
 
 ## <a name="delete-cluster"></a>Supprimer un cluster
-Lorsque vous n’avez plus besoin du cluster, vous pouvez utiliser la commande [az group delete](/cli/azure/group#delete) pour supprimer le groupe de ressources, le service de conteneur et toutes les ressources associées.
+Lorsque le cluster de hello n’est plus nécessaire, vous pouvez utiliser hello [suppression du groupe az](/cli/azure/group#delete) groupe de ressources tooremove hello, service de conteneur et toutes les ressources de la commande.
 
 ```azurecli-interactive
 az group delete --name myResourceGroup --yes --no-wait
 ```
 
-## <a name="get-the-code"></a>Obtenir le code
+## <a name="get-hello-code"></a>Obtenir le code de hello
 
-Dans ce guide de démarrage rapide, des images de conteneur créées au préalable ont été utilisées pour créer un service Docker. Le code de l’application associé, Dockerfile, et le fichier Compose sont disponibles sur GitHub.
+Dans ce guide de démarrage rapide, les images de conteneur précréés ont été toocreate utilisé un service de Docker. Hello liés le code d’application, fichier Dockerfile, et le fichier de message sont disponibles sur GitHub.
 
 [https://github.com/Azure-Samples/azure-voting-app-redis](https://github.com/Azure-Samples/azure-voting-app-redis.git)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce guide de démarrage rapide, vous avez déployé un cluster Docker Swarm et vous y avez déployé une application de plusieurs conteneurs.
+Dans ce guide de démarrage rapide, vous déployé un cluster Docker Swarm et déployé une application conteneur multiples de tooit.
 
-Pour en savoir plus sur l’intégration de Docker Swarm avec Visual Studio Team Services, passez à la section CI/CD avec Docker Swarm et VSTS.
+toolearn sur l’intégration de Docker à chaud avec Visual Studio Team Services, continuer toohello CI/CD avec Docker Swarm et VSTS.
 
 > [!div class="nextstepaction"]
 > [CI/CD avec Docker Swarm et VSTS](./container-service-docker-swarm-setup-ci-cd.md)

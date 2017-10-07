@@ -1,5 +1,5 @@
 ---
-title: "Créer un rapport à partir d’un jeu de données dans Azure Power BI Embedded | Microsoft Docs"
+title: "aaaCreate un nouveau rapport à partir d’un jeu de données Azure Power BI Embedded | Documents Microsoft"
 description: "Il vous est à présent possible de créer des rapports Power BI Embedded à partir d’un jeu de données dans votre propre application."
 services: power-bi-embedded
 documentationcenter: 
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: 457f53aa76059dbb2faed6b264102f1f59b9918a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41a0a52e4c833313f495bb5ff14749203fef9b41
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-new-report-from-a-dataset-in-power-bi-embedded"></a>Créer un rapport à partir d’un jeu de données dans Power BI Embedded
 
 Il vous est à présent possible de créer des rapports Power BI Embedded à partir d’un jeu de données dans votre propre application. 
 
-La méthode d’authentification est similaire à celle des rapports d’incorporation. Elle est basée sur des jetons d’accès propres à un jeu de données. Les jetons utilisés pour PowerBI.com sont émis par Azure Active Directory (AAD), et les jetons Power BI Embedded par votre propre service.
+Hello méthode d’authentification est similaire incorporer des toothat du rapport. Il est basé sur les jetons d’accès qui sont le jeu de données tooa spécifique. Les jetons utilisés pour PowerBI.com sont émis par Azure Active Directory (AAD), et les jetons Power BI Embedded par votre propre service.
 
-Lors de la création d’un rapport Embedded, les jetons sont émis pour un jeu de données spécifique. Les jetons doivent être associés à l’URL d’incorporation sur le même élément, de sorte que chacune possède un jeton unique. Pour créer un rapport Embedded, les étendues *Dataset.Read et Workspace.Report.Create* doivent être fournies dans le jeton d’accès.
+Lorsque vous createing un rapport incorporé, hello jetons émis sont pour un jeu de données spécifique. Les jetons doivent être associées avec hello incorporer des URL sur hello même élément tooensure chaque a un jeton unique. Dans commande toocreate un rapport incorporé, *Dataset.Read et Workspace.Report.Create* étendues doivent être fournis dans le jeton d’accès hello.
 
-## <a name="create-access-token-needed-to-create-new-report"></a>Créer le jeton d’accès nécessaire à la création d’un rapport
+## <a name="create-access-token-needed-toocreate-new-report"></a>Créer rapport accès jeton toocreate nécessaires
 
-Power BI Embedded utilise des jetons d’incorporation, qui sont des jetons JSON Web Token signés HMAC. Les jetons sont signés avec la clé d’accès issue de votre collection d’espaces de travail Azure Power BI Embedded. Par défaut, les jetons d’incorporation sont utilisés pour fournir un accès en lecture seule à un rapport à incorporer dans une application. Les jetons d’incorporation sont émis pour un rapport donné et doivent être associés à une URL d’incorporation.
+Power BI Embedded utilise des jetons d’incorporation, qui sont des jetons JSON Web Token signés HMAC. les jetons de Hello sont signés avec la clé d’accès hello dans votre collection de l’espace de travail Azure Power BI Embedded. Incorporer des jetons, par défaut, sont utilisé tooprovide lire uniquement accès aux tooa rapport tooembed dans une application. Les jetons d’incorporation sont émis pour un rapport donné et doivent être associés à une URL d’incorporation.
 
-Les jetons d’accès doivent être créés sur le serveur, car les clés d’accès sont utilisées pour signer / chiffrer les jetons. Pour plus d’informations sur la création de jetons d’accès, consultez la page [Authentification et autorisation avec Power BI Embedded](power-bi-embedded-app-token-flow.md). Vous pouvez également consulter la méthode [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_). Voici un exemple de ce à quoi cela ressemblerait avec le Kit de développement logiciel (SDK) .NET pour Power BI.
+Les jetons d’accès doivent être créés sur le serveur de hello comme clés d’accès hello sont utilisées toosign/chiffrer les jetons hello. Pour plus d’informations sur la façon de toocreate un jeton d’accès, consultez [authentification et autorisation avec Power BI Embedded](power-bi-embedded-app-token-flow.md). Vous pouvez également examiner hello [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_) (méthode). Voici un exemple de ce que cela ressemble à l’aide de hello .NET SDK pour Power BI.
 
-Dans cet exemple, nous voulons créer un rapport sur notre ID de jeu de données. Nous devons également ajouter les étendues de *Dataset.Read et Workspace.Report.Create*.
+Dans cet exemple, nous avons notre id de jeu de données que nous souhaitons rapport toocreat hello sur. Nous devons également des étendues de hello tooadd pour *Dataset.Read et Workspace.Report.Create*.
 
-La *classe PowerBIToken* requiert l’installation du [package NuGet Power BI Core](https://www.nuget.org/packages/Microsoft.PowerBI.Core/).
+Hello *PowerBIToken classe* nécessite que vous installiez hello [Power BI Core NuGut Package](https://www.nuget.org/packages/Microsoft.PowerBI.Core/).
 
 **Installation du package NuGet**
 
@@ -59,10 +59,10 @@ var token = embedToken.Generate("{access key}");
 
 ## <a name="create-a-new-blank-report"></a>Créer un rapport vide
 
-Pour pouvoir créer un nouveau rapport, la configuration de création doit être fournie. Elle doit inclure le jeton d’accès, l’URL d’incorporation et l’ID de jeu de données sur lesquels nous souhaitons créer le rapport. Cela requiert l’installation du [package NuGet Power BI JavaScript](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/). L’URL d’incorporation est simplement https://embedded.powerbi.com/appTokenReportEmbed.
+Dans l’ordre toocreate un nouveau rapport, créez hello configuration doit être fournie. Cela doit inclure le jeton d’accès hello, hello embedURL et hello datasetID que nous souhaitons toocreate rapport hello. Cela requiert l’installation de nuget de hello [Power BI JavaScript package](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/). Hello embedUrl sera simplement https://embedded.powerbi.com/appTokenReportEmbed.
 
 > [!NOTE]
-> Vous pouvez utiliser [l’exemple d’incorporation de rapport JavaScript](https://microsoft.github.io/PowerBI-JavaScript/demo/) pour tester les fonctionnalités. Il donne également des exemples de code pour les différentes opérations disponibles.
+> Vous pouvez utiliser hello [incorporer l’exemple de rapport JavaScript](https://microsoft.github.io/PowerBI-JavaScript/demo/) tootest fonctionnalité. Elle donne également des exemples de code pour hello différentes opérations qui sont disponibles.
 
 **Installation du package NuGet**
 
@@ -81,23 +81,23 @@ var embedCreateConfiguration = {
         datasetId: '5dac7a4a-4452-46b3-99f6-a25915e0fe55',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Create report
     var report = powerbi.createReport(reportContainer, embedCreateConfiguration);
 ```
 
-Appeler *powerbi.createReport()* fait apparaître un canevas vide en mode Édition dans l’élément *div*.
+Appel de *powerbi.createReport()* fera une zone de dessin vide en mode d’édition à apparaître dans hello *div* élément.
 
 ![](media/power-bi-embedded-create-report-from-dataset/pbi-embedded-create-new-report.png)
 
 ## <a name="save-new-reports"></a>Enregistrer de nouveaux rapports
 
-Le rapport ne sera pas réellement créé avant que vous n’ayez appelé l’opération **enregistrer sous**. Vous pouvez le faire dans le menu Fichier ou à partir de JavaScript.
+rapport de Hello ne sera pas réellement créé jusqu'à ce que vous appeliez hello **enregistrer en tant que** opération. Vous pouvez le faire dans le menu Fichier ou à partir de JavaScript.
 
 ```
- // Get a reference to the embedded report.
+ // Get a reference toohello embedded report.
     report = powerbi.get(reportContainer);
     
     var saveAsParameters = {
@@ -109,13 +109,13 @@ Le rapport ne sera pas réellement créé avant que vous n’ayez appelé l’op
 ```
 
 > [!IMPORTANT]
-> Le nouveau rapport n’est créé qu’une fois que l’opération **enregistrer sous** a été appelée. Après l’enregistrement, le canevas continue d’afficher le jeu de données en mode Édition et non le rapport. Vous devez recharger le nouveau rapport comme vous le feriez pour tout autre rapport.
+> Le nouveau rapport n’est créé qu’une fois que l’opération **enregistrer sous** a été appelée. Après avoir enregistré, zone de dessin hello apparaît toujours hello dataset dans le rapport en mode et hello pas d’édition. Vous devez rapport hello tooreload comme vous le feriez pour tout autre rapport.
 
 ![](media/power-bi-embedded-create-report-from-dataset/pbi-embedded-save-new-report.png)
 
-## <a name="load-the-new-report"></a>Charger le nouveau rapport
+## <a name="load-hello-new-report"></a>Charge hello nouveau rapport
 
-Pour interagir avec le nouveau rapport, vous devez l’incorporer de la même façon que l’application incorpore un rapport normal, ce qui signifie qu’un nouveau jeton doit être émis spécifiquement pour le nouveau rapport avant que vous n’appeliez la méthode d’incorporation.
+Vous devez toointeract d’ordre avec le nouveau rapport de hello tooembed dans hello identique application hello incorpore un rapport régulier, sens, un nouveau jeton doit être émise spécifiquement pour le nouveau rapport de hello, puis appel hello incorporer la méthode.
 
 ```
 <div id="reportContainer"></div>
@@ -126,16 +126,16 @@ var embedConfiguration = {
         reportId: '5dac7a4a-4452-46b3-99f6-a25915e0fe54',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Embed report
     var report = powerbi.embed(reportContainer, embedConfiguration);
 ```
 
-## <a name="automate-save-and-load-of-a-new-report-using-the-saved-event"></a>Automatiser la sauvegarde et le chargement d’un nouveau rapport avec l’événement « enregistré »
+## <a name="automate-save-and-load-of-a-new-report-using-hello-saved-event"></a>Automatisation d’enregistrement et chargement d’un nouveau rapport à l’aide de hello « enregistré » des événements
 
-Pour automatiser le processus « enregistrer sous », puis charger le nouveau rapport, vous pouvez utiliser l’événement « enregistré ». Cet événement est déclenché quand l’opération « enregistrer » est terminée. Il retourne un objet JSON qui contient le nouvel ID du rapport, le nom du rapport, l’ancien ID du rapport (le cas échéant) et le type d’opération (« enregistrer sous » ou « enregistrer »).
+Dans le processus de hello tooautomate commande de « Enregistrer sous » et puis en le chargeant hello nouveau rapport que vous pouvez apporter de hello « enregistré » des événements. Cet événement est déclenché lorsque hello opération de sauvegarde est terminée et elle retourne un objet Json contenant l’identificateur reportId de nouveau hello, nom du rapport, identificateur reportId ancien de hello (le cas échéant) et si l’opération de hello a saveAs ou sur Enregistrer.
 
 ```
 {
@@ -146,7 +146,7 @@ Pour automatiser le processus « enregistrer sous », puis charger le nouveau 
 }
 ```
 
-Pour automatiser le processus, vous pouvez écouter l’événement « enregistrer », récupérer le nouvel ID du rapport, créer le nouveau jeton et y incorporer le nouveau rapport.
+tooAutomate hello, des processus que vous pouvez écouter sur l’événement de hello « enregistré », prendre identificateur reportId de nouveau hello créer nouveau jeton de hello et incorporer un nouveau rapport de hello avec lui.
 
 ```
 <div id="reportContainer"></div>
@@ -157,7 +157,7 @@ var embedCreateConfiguration = {
         datasetId: '5dac7a4a-4452-46b3-99f6-a25915e0fe55',
     };
     
-    // Grab the reference to the div HTML element that will host the report
+    // Grab hello reference toohello div HTML element that will host hello report
     var reportContainer = $('#reportContainer')[0];
 
     // Create report
@@ -171,14 +171,14 @@ var embedCreateConfiguration = {
     // SaveAs report
     report.saveAs(saveAsParameters);
 
-    // report.on will add an event handler which prints to Log window.
+    // report.on will add an event handler which prints tooLog window.
     report.on("saved", function(event) {
         
          // get new Token
          var newReportId =  event.detail.reportObjectId;
 
-        // create new Token. This is a function that the application should provide
-        var newToken = createAccessToken(newReportId,scopes /*provide the wanted scopes*/);
+        // create new Token. This is a function that hello application should provide
+        var newToken = createAccessToken(newReportId,scopes /*provide hello wanted scopes*/);
         
         
     var embedConfiguration = {
@@ -205,4 +205,4 @@ var embedCreateConfiguration = {
 [Exemple d’incorporation JavaScript](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
 [Package NuGet Power BI Core](https://www.nuget.org/packages/Microsoft.PowerBI.Core/)  
 [Package JavaScript Power BI Core](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/)  
-Des questions ? [Essayer la communauté Power BI](http://community.powerbi.com/)
+Des questions ? [Essayez de hello Communauté Power BI](http://community.powerbi.com/)

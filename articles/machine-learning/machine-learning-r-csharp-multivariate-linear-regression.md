@@ -1,5 +1,5 @@
 ---
-title: "(déconseillé) Régression linéaire multivariable - Azure | Microsoft Docs"
+title: "AAA(deprecated) Multivariate de régression linéaire - Azure | Documents Microsoft"
 description: "(déconseillé) Régression linéaire multivariable"
 services: machine-learning
 documentationcenter: 
@@ -16,42 +16,42 @@ ms.date: 01/06/2017
 ms.author: jaymathe
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 65a8005139e920cd19593e954fc1bf836354bdf3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 0ff7221cd06c0ef059b0c5bf327016588174dcfe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-multivariate-linear-regression"></a>(déconseillé) Régression linéaire multivariable
 
 > [!NOTE]
-> Microsoft DataMarket va être mis hors service et cette API est désormais déconseillée. 
+> Hello Microsoft DataMarket a été supprimée et que cette API est déconseillée. 
 > 
-> Vous trouverez de nombreux exemples d’expériences et d’API dans la [galerie Cortana Intelligence](http://gallery.cortanaintelligence.com). Pour plus d’informations sur la galerie, consultez [Partager et découvrir des ressources dans la galerie Cortana Intelligence](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Vous trouverez plusieurs API et les expériences d’exemple utile Bonjour [Cortana Intelligence galerie](http://gallery.cortanaintelligence.com). Pour plus d’informations sur la galerie de hello, consultez [partager et découvrir des ressources Bonjour Cortana Intelligence galerie](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-Supposons que vous disposez d’un jeu de données et que vous souhaitez prédire rapidement une variable dépendante (y) pour chaque individu (i) sur la base de variables indépendantes. La régression linéaire est une technique statistique répandue qui est utilisée pour de telles prédictions. Ici, la variable dépendante y est supposée être une valeur continue.  
+Supposons que vous avez un jeu de données serez comme tooquickly prédire une variable dépendante (y) pour chaque personne (i) en fonction de variables indépendantes. La régression linéaire est une technique statistique répandue qui est utilisée pour de telles prédictions. Ici, hello variable dépendante y est supposé toobe une valeur continue.  
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-Exemple de scénario simple : un chercheur tente de prédire le poids d'un individu (y) en fonction de sa taille (x). Exemple de scénario plus avancé : un chercheur dispose d'informations supplémentaires concernant la personne (par exemple, son poids, son genre et sa race) et tente de prédire son poids. Ce [service web](https://datamarket.azure.com/dataset/aml_labs/multivariate_regression) correspond au modèle de régression linéaire pour les données et renvoie la valeur prédite (y) pour chacune des observations dans les données.
+Un scénario simple peut être où chercheur de hello tente de poids de hello toopredict d’un individu (y) en fonction de leur hauteur (x). Un scénario plus avancé peut être où chercheur de hello comporte des informations supplémentaires pour hello individuel (par exemple, le poids, sexe, course) et tente de poids hello toopredict hello individuels. Cela [service web](https://datamarket.azure.com/dataset/aml_labs/multivariate_regression) sera ajusté hello toohello données du modèle de régression linéaire et sorties hello valeur prédite (y) pour chacun des observations hello dans les données de salutation.
 
-> Les utilisateurs peuvent potentiellement accéder à ce service web par le biais d’une application mobile, d’un site web ou même d’un ordinateur local, par exemple. Mais l’objectif du service web est également de servir d’exemple d’utilisation d’Azure Machine Learning pour créer des services web avec le code R. Avec seulement quelques lignes de code R et quelques clics dans Azure Machine Learning Studio, vous pouvez créer une expérience avec le code R et la publier en tant que service web. Le service web peut ensuite être publié sur Azure Marketplace afin que les utilisateurs et les appareils du monde entier l’utilisent sans que l’auteur du service web n’ait à configurer l’infrastructure.  
+> Les utilisateurs peuvent potentiellement accéder à ce service web par le biais d’une application mobile, d’un site web ou même d’un ordinateur local, par exemple. Mais hello objectif du service web de hello est également tooserve comme exemple illustrant comment Azure Machine Learning peuvent être des services web toocreate utilisé sur le code R. Avec seulement quelques lignes de code R et quelques clics dans Azure Machine Learning Studio, vous pouvez créer une expérience avec le code R et la publier en tant que service web. service web de Hello peut ensuite être publié toohello Azure Marketplace et consommé par les utilisateurs et périphériques sur Bonjour sans configuration d’infrastructure par l’auteur de hello du service web de hello.  
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Utilisation du service web
-Ce service web fournit les valeurs prédites de la variable dépendante sur base des variables indépendantes pour toutes les observations. Le service web attend de l’utilisateur final qu’il entre ses données sous forme de chaîne, dans laquelle les lignes sont séparées par des virgules (,) et les colonnes sont séparées par des points-virgules (;). Le service web attend 1 ligne à la fois et requiert que la première colonne soit la variable dépendante. Un exemple de jeu de données pourrait ressembler à ceci :
+Cette hello offre de service web a prédit des valeurs de variable dépendante de hello en fonction des variables indépendantes de hello pour toutes les observations de hello. service web de Hello attend des données tooinput hello sous forme de chaîne où lignes sont séparées par des virgules (,) et les colonnes sont séparées par des points-virgules ( ;). service web de Hello attend 1 ligne à la fois et attend hello première colonne toobe hello variable dépendante. Un exemple de jeu de données pourrait ressembler à ceci :
 
 ![Exemples de données][1]
 
-Les observations sans variable dépendante doivent être entrées en tant que « NA » pour y. Les données d’entrée pour le jeu de données ci-dessus seraient les suivantes : « 10;5;2,18;1;6,6;5.3;2.1,7;5;5,22;3;4,12;2;1,NA;3;4 ». La sortie correspond à la valeur prédite pour chacune des lignes selon les variables indépendantes. 
+Les observations sans variable dépendante doivent être entrées en tant que « NA » pour y. Hello données d’entrée pour hello au-dessus de jeu de données serait hello après chaîne : « 10 ; 5 2,18 ; 1 ; 6,6 ; 5.3 ; 2.1,7 ; 5 ; 5,22 ; 3 ; 4,12 ; 2 ; 1, NA, 3, 4 ». Hello sortie hello valeur prévue pour chacune des lignes de hello repose sur les variables indépendantes de hello. 
 
-> Étant hébergé sur Azure Marketplace, ce service est un service OData. Il peut être appelé à l’aide des méthodes POST ou GET. 
+> Ce service, comme hébergé sur hello Azure Marketplace, est un service OData ; Il peuvent être appelées par le biais des méthodes POST ou GET. 
 > 
 > 
 
-Il existe plusieurs façons d’utiliser le service de manière automatique (un exemple d’application est disponible [ici](http://microsoftazuremachinelearning.azurewebsites.net/MultipleLinearRegressionService.aspx)).
+Il existe plusieurs manières de consommation de service hello de manière automatique (un exemple d’application est [ici](http://microsoftazuremachinelearning.azurewebsites.net/MultipleLinearRegressionService.aspx)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>Début du code C# pour l'utilisation du service web :
     public class Input
@@ -84,11 +84,11 @@ Il existe plusieurs façons d’utiliser le service de manière automatique (un 
 
 
 ## <a name="creation-of-web-service"></a>Création du service web
-> Ce service web a été créé à l’aide d’Azure Machine Learning. Pour un essai gratuit, ainsi que des vidéos de présentation relatives à la création d’expériences et à la [publication de services web](machine-learning-publish-a-machine-learning-web-service.md), consultez [azure.com/ml](http://azure.com/ml). Voici une capture d'écran de l'expérience qui a créé le service web et l'exemple de code pour chacun des modules dans l'expérience.
+> Ce service web a été créé à l’aide d’Azure Machine Learning. Pour un essai gratuit, ainsi que des vidéos de présentation relatives à la création d’expériences et à la [publication de services web](machine-learning-publish-a-machine-learning-web-service.md), consultez [azure.com/ml](http://azure.com/ml). Voici une capture d’écran d’expérience hello qui a créé un code de service et un exemple hello web pour chacun des modules hello au sein de l’expérience de hello.
 > 
 > 
 
-À partir d’Azure Machine Learning, une nouvelle expérience vide a été créée et deux modules [Exécuter le script R][execute-r-script] ont été importés dans l’espace de travail. Ce service web exécute une expérience Azure Machine Learning avec un script R sous-jacent. Cette expérience se divise en 2 parties : définition du schéma et modèle d’apprentissage + évaluation. Le premier module définit la structure attendue du jeu de données en entrée, où la première variable correspond à la variable dépendante et les autres variables sont indépendantes. Le deuxième module correspond à un modèle de régression linéaire générique pour les données en entrée.  
+À partir d’Azure Machine Learning, une nouvelle expérience vide a été créée et deux [Execute R Script] [ execute-r-script] modules ont été collectés dans l’espace de travail hello. Ce service web exécute une expérience Azure Machine Learning avec un script R sous-jacent. Il existe 2 parties toothis expérimenter : définition de schéma, modèle d’apprentissage et de calcul de score. module de première Hello définit la structure hello attendu de dataset d’entrée hello, où hello première variable est variable dépendante de hello et autres variables de hello sont indépendantes. module de deuxième Hello associe un modèle de régression linéaire générique pour les données d’entrée hello.  
 
 ![Flux de l’expérience][3]
 
@@ -114,10 +114,10 @@ Il existe plusieurs façons d’utiliser le service de manière automatique (un 
     maml.mapOutputPort("out");  
 
 ## <a name="limitations"></a>Limitations
-Il s'agit d'un exemple très simple de service web pour régressions linéaires multiples. Comme illustré dans l’exemple de code ci-dessus, aucune interception des erreurs n’est implémentée et le service suppose que tout correspond à une variable continue (aucune fonctionnalité de catégorie n’est autorisée), dans la mesure où le service entre uniquement des valeurs numériques au moment de la création de ce service web. En outre, le service gère actuellement une limite de taille pour les données, en raison de la nature de la demande/réponse de l’appel de service web et du fait que le modèle est adapté chaque fois que le service web est appelé. 
+Il s'agit d'un exemple très simple de service web pour régressions linéaires multiples. Comme indiqué à partir du code d’exemple hello ci-dessus, aucune erreur interception n’est implémenté et service de hello suppose que tout est une variable continue (aucune fonctionnalité catégorielles autorisée), comme hello service uniquement les entrées numériques valeurs lors de la création de hello de ce site web hello service. En outre, service de hello gère actuellement taille limitée de données, en raison de la nature de demande/réponse toohello du service web de hello fait appel et hello que hello modèle est en cours correspondre à chaque fois hello web service est appelé. 
 
 ## <a name="faq"></a>Forum Aux Questions
-Pour les questions fréquemment posées relatives à l’utilisation du service web ou à la publication sur Azure Marketplace, consultez [ce lien](machine-learning-marketplace-faq.md).
+Pour les questions fréquemment posées sur la consommation de service web de hello ou publication toohello Azure Marketplace, consultez [ici](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-multivariate-linear-regression/multireg-img1.png
 [2]: ./media/machine-learning-r-csharp-multivariate-linear-regression/multireg-img2.png

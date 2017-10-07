@@ -1,5 +1,5 @@
 ---
-title: "Didacticiel Azure Container Instances - Préparer Azure Container Registry | Microsoft Docs"
+title: "didacticiel d’Instances de conteneurs aaaAzure - préparer un Registre de conteneur Azure | Documents Microsoft"
 description: "Didacticiel Azure Container Instances - Préparer Azure Container Registry"
 services: container-instances
 documentationcenter: 
@@ -17,62 +17,62 @@ ms.workload: na
 ms.date: 08/24/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: cc96ba9f5abd45a7503ba3327b30e1f809391384
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2525626125740c3c861fad36aad207d0b587ff54
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-and-use-azure-container-registry"></a>Déployer et utiliser Azure Container Registry
 
-Il s’agit de la deuxième partie d’un didacticiel en trois parties. À l’[étape précédente](./container-instances-tutorial-prepare-app.md), nous avons créé une image conteneur pour une application web simple écrite en [Node.js](http://nodejs.org). Dans ce didacticiel, nous allons envoyer cette image à Azure Container Registry. Si vous n’avez pas créé l’image de conteneur, retournez au [Didacticiel 1 : Créer une image conteneur](./container-instances-tutorial-prepare-app.md). 
+Il s’agit de la deuxième partie d’un didacticiel en trois parties. Bonjour [précédemment](./container-instances-tutorial-prepare-app.md), une image de conteneur a été créée pour une application web simple écrite [Node.js](http://nodejs.org). Dans ce didacticiel, cette image est transmise tooan Registre de conteneur Azure. Si vous n’avez pas créé image de conteneur hello, retourner trop[didacticiel 1 : créer une image de conteneur](./container-instances-tutorial-prepare-app.md). 
 
-Azure Container Registry est un registre privé Azure pour les images conteneur Docker. Ce didacticiel explique comment déployer une instance Azure Container Registry et lui envoyer une image conteneur. Les étapes accomplies sont les suivantes :
+Hello Registre de conteneur Azure est un registre basé sur Azure, privé, pour les images de conteneur Docker. Ce didacticiel Guide de déploiement d’une instance de Registre de conteneur Azure et l’envoi d’un tooit d’image de conteneur. Les étapes terminées sont les suivantes :
 
 > [!div class="checklist"]
 > * Déploiement d’une instance Azure Container Registry
 > * Balisage d’image conteneur pour Azure Container Registry
-> * Chargement d’image dans Azure Container Registry
+> * Télécharger l’image tooAzure Registre de conteneur
 
-Dans les didacticiels suivants vous déploierez le conteneur de votre Registre privé vers Azure Container Instances.
+Dans les didacticiels suivants vous déployez le conteneur de hello à partir de votre tooAzure Registre privé les Instances du conteneur.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Ce didacticiel nécessite que vous exécutiez Azure CLI version 2.0.4 ou ultérieure. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).
+Ce didacticiel nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).
 
 ## <a name="deploy-azure-container-registry"></a>Déployer Azure Container Registry
 
 Lorsque vous déployez un registre de conteneurs Azure, il vous faut tout d’abord un groupe de ressources. Un groupe de ressources Azure est une collection logique dans laquelle des ressources Azure sont déployées et gérées.
 
-Créez un groupe de ressources avec la commande [az group create](/cli/azure/group#create). Dans cet exemple, un groupe de ressources nommé *myResourceGroupVM* est créé dans la région *eastus*.
+Créer un groupe de ressources avec hello [création de groupe de az](/cli/azure/group#create) commande. Dans cet exemple, un groupe de ressources nommé *myResourceGroup* est créé dans hello *eastus* région.
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-Créez un registre de conteneurs Azure à l’aide de la commande [az acr create](/cli/azure/acr#create). Le nom d’un registre de conteneurs **doit être unique**. Dans l’exemple suivant, nous utilisons le nom *mycontainerregistry082*.
+Créer un Registre de conteneur Azure avec hello [az acr créer](/cli/azure/acr#create) commande. nom d’un Registre de conteneur de Hello **doit être unique**. Bonjour l’exemple suivant, nous utilisons le nom de hello *mycontainerregistry082*.
 
 ```azurecli
 az acr create --resource-group myResourceGroup --name mycontainerregistry082 --sku Basic --admin-enabled true
 ```
 
-Dans le reste de ce didacticiel, nous utilisons `<acrname>`. Ce nom correspond au registre de conteneurs que vous avez choisi.
+Dans l’ensemble de rest hello de ce didacticiel, nous utilisons `<acrname>` comme espace réservé pour le nom du Registre hello conteneur que vous avez choisi.
 
 ## <a name="container-registry-login"></a>Connexion au registre de conteneurs
 
-Vous devez vous connecter à votre instance ACR avant de lui envoyer des images. Utilisez la commande [az acr login](https://docs.microsoft.com/en-us/cli/azure/acr#login) pour terminer l’opération. Vous devez fournir le nom unique qui a été donné au Registre de conteneurs au moment de sa création.
+Vous devez vous connecter dans l’instance ACR tooyour avant d’installer des images tooit. Hello d’utilisation [connexion d’acr az](https://docs.microsoft.com/en-us/cli/azure/acr#login) opération de hello toocomplete de commandes. Vous devez tooprovide hello unique nom Registre de conteneur toohello lors de sa création.
 
 ```azurecli
 az acr login --name <acrName>
 ```
 
-Après son exécution, la commande retourne le message « Connexion réussie ».
+commande Hello renvoie un message de succès de la connexion une fois terminé.
 
 ## <a name="tag-container-image"></a>Baliser l’image de conteneur
 
-Pour pouvoir déployer une image conteneur à partir d’un registre privé, vous devez la baliser avec le `loginServer` nom du registre.
+toodeploy une image de conteneur à partir d’un Registre privé, image de hello doit toobe balisé avec hello `loginServer` nom du Registre de hello.
 
-Pour afficher une liste des images en cours, utilisez la commande `docker images`.
+toosee une liste d’images en cours, utilisez hello `docker images` commande.
 
 ```bash
 docker images
@@ -85,19 +85,19 @@ REPOSITORY                   TAG                 IMAGE ID            CREATED    
 aci-tutorial-app             latest              5c745774dfa9        39 seconds ago       68.1 MB
 ```
 
-Pour obtenir le nom de loginServer, exécutez la commande suivante.
+nom de loginServer hello tooget, exécutez hello commande suivante.
 
 ```azurecli
 az acr show --name <acrName> --query loginServer --output table
 ```
 
-Balisez l’image *aci-tutorial-app* à l’aide du loginServer du registre de conteneurs. En outre, ajoutez `:v1` à la fin du nom de l’image. Cette balise indique le numéro de version de l’image.
+Hello de balise *aci-didacticiel-app* image avec loginServer hello du Registre de conteneur hello. En outre, ajoutez `:v1` fin toohello de nom de l’image hello. Cette balise indique le numéro de version d’image hello.
 
 ```bash
 docker tag aci-tutorial-app <acrLoginServer>/aci-tutorial-app:v1
 ```
 
-Une fois marqué, exécutez `docker images` pour vérifier l’opération.
+Une fois que balisé, exécutez `docker images` opération hello de tooverify.
 
 ```bash
 docker images
@@ -111,11 +111,11 @@ aci-tutorial-app                                          latest              5c
 mycontainerregistry082.azurecr.io/aci-tutorial-app        v1                  a9dace4e1a17        7 minutes ago       68.1 MB
 ```
 
-## <a name="push-image-to-azure-container-registry"></a>Envoyer l’image à Azure Container Registry
+## <a name="push-image-tooazure-container-registry"></a>Push image tooAzure Registre de conteneur
 
-Envoyez l’image *aci-tutorial-app* au registre.
+Push hello *aci-didacticiel-app* Registre toohello d’images.
 
-À l’aide de l’exemple suivant, remplacez le nom loginServer du registre de conteneurs par le loginServer de votre environnement.
+À l’aide de hello l’exemple suivant, remplacez hello conteneur Registre loginServer par loginServer hello à partir de votre environnement.
 
 ```bash
 docker push <acrLoginServer>/aci-tutorial-app:v1
@@ -123,7 +123,7 @@ docker push <acrLoginServer>/aci-tutorial-app:v1
 
 ## <a name="list-images-in-azure-container-registry"></a>Énumérer les images dans Azure Container Registry
 
-Pour retourner une liste d’images qui ont été déplacées dans le registre de conteneurs Azure, utilisez la commande [az acr repository list](/cli/azure/acr/repository#list). Mettez à jour la commande avec le nom du registre de conteneurs.
+tooreturn une liste d’images qui ont été déplacées du Registre le conteneur Azure tooyour, hello d’utilisateur [liste des référentiels az acr](/cli/azure/acr/repository#list) commande. Mettre à jour la commande hello par le nom de Registre de conteneur hello.
 
 ```azurecli
 az acr repository list --name <acrName> --output table
@@ -137,7 +137,7 @@ Result
 aci-tutorial-app
 ```
 
-Puis, pour afficher les balises d’une image spécifique, utilisez la commande [az acr repository show-tags](/cli/azure/acr/repository#show-tags).
+Puis les balises de hello toosee d’une image spécifique, utilisez hello [az acr référentiel afficher-balises](/cli/azure/acr/repository#show-tags) commande.
 
 ```azurecli
 az acr repository show-tags --name <acrName> --repository aci-tutorial-app --output table
@@ -153,14 +153,14 @@ v1
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, nous avons préparé un Azure Container Registry pour une utilisation avec Azure Container Instances, et nous avons envoyé l’image conteneur. Les étapes suivantes ont été effectuées :
+Dans ce didacticiel, un Registre de conteneur Azure a été préparé pour une utilisation avec les Instances du conteneur Azure et image de conteneur hello a été envoyée. Hello suit ont été effectuée :
 
 > [!div class="checklist"]
 > * Déploiement d’une instance Azure Container Registry
 > * Balisage d’image conteneur pour Azure Container Registry
-> * Chargement d’image dans Azure Container Registry
+> * Télécharger l’image tooAzure Registre de conteneur
 
-Passez au didacticiel suivant pour en savoir plus sur le déploiement du conteneur sur Azure à l’aide d’Azure Container Instances.
+Avance toohello toolearn de didacticiel suivant sur le déploiement de hello tooAzure de conteneur à l’aide d’Instances de conteneurs Azure.
 
 > [!div class="nextstepaction"]
-> [Déployer des conteneurs sur Azure Container Instances](./container-instances-tutorial-deploy-app.md)
+> [Déployer des conteneurs tooAzure Instances de conteneurs](./container-instances-tutorial-deploy-app.md)

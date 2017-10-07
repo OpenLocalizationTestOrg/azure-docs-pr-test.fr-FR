@@ -1,6 +1,6 @@
 ---
-title: "Afficher les affectations d’accès aux ressources Azure | Microsoft Docs"
-description: "Affichez et gérez toutes les affectations de contrôle d’accès en fonction du rôle des utilisateurs ou groupes sur le Portail Azure"
+title: "affectations d’accès de ressource Azure d’aaaView | Documents Microsoft"
+description: "Afficher et gérer toutes les affectations de contrôle d’accès en fonction du rôle hello pour tout utilisateur ou groupe Bonjour portail Azure"
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/04/2017
 ms.author: andredm
-ms.openlocfilehash: 72c695d08bdf5de003d51ffb0768184e1e4d00ba
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ec96c9d4b9e2cb4925949b8bac78767bd564c8ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="view-access-assignments-for-users-and-groups-in-the-azure-portal"></a>Afficher les affectations d’accès des utilisateurs et des groupes sur le Portail Azure
+# <a name="view-access-assignments-for-users-and-groups-in-hello-azure-portal"></a>Afficher les affectations d’accès des utilisateurs et groupes Bonjour portail Azure
 > [!div class="op_single_selector"]
 > * [Gérer l’accès par utilisateur ou par groupe](role-based-access-control-manage-assignments.md)
 > * [Gérer l’accès par ressource](role-based-access-control-configure.md)
 
-Avec le contrôle d’accès en fonction du rôle (RBAC), intégré à Azure Active Directory (Azure AD), vous pouvez gérer l’accès à vos ressources Azure. 
+Avec le contrôle d’accès basé sur un rôle (RBAC) Bonjour Azure Active Directory (Azure AD), vous pouvez gérer l’accès tooyour Azure ressources. 
 
-Les accès affectés avec le RBAC sont précis car il existe deux façons de restreindre les autorisations :
+Accès attribué avec RBAC est affinée, car il existe deux façons, vous pouvez limiter les autorisations de hello :
 
-* **Étendue :** les affectations de rôles RBAC sont limitées à un abonnement, à un groupe de ressources ou à une ressource donnés. Un utilisateur ayant accès à une ressource en particulier ne peut pas accéder aux autres ressources du même abonnement.
-* **Rôle :** au sein de l’affectation d’étendue, l’accès est encore restreint par l’affectation d’un rôle. Les rôles peuvent être de haut niveau, comme propriétaire, ou spécifiques, comme lecteur de machines virtuelles.
+* **Étendue :** attributions de rôles RBAC sont tooa étendue des abonnement spécifique, groupe de ressources ou ressource. Un utilisateur donné accès tooa seule ressource ne peut pas accéder aux autres ressources de hello même abonnement.
+* **Rôle :** étendue hello d’affectation de hello, l’accès est restreint davantage par l’attribution d’un rôle. Les rôles peuvent être de haut niveau, comme propriétaire, ou spécifiques, comme lecteur de machines virtuelles.
 
-Les rôles peuvent être affectés au sein de l’abonnement, du groupe de ressources ou de la ressource qui constitue l’étendue de l’affectation. Mais vous pouvez afficher toutes les affectations d’accès d’un groupe ou d’un utilisateur donné en un seul et même endroit. Vous pouvez avoir jusqu’à 2000 attributions de rôles dans chaque abonnement. 
+Rôles peuvent uniquement être attribuées à partir d’abonnement de hello, groupe de ressources ou ressource qui est étendue hello pour l’attribution de hello. Mais vous pouvez afficher toutes les affectations d’accès hello pour un utilisateur donné ou un groupe dans un emplacement unique. Vous pouvez avoir des attributions de rôles too2000 dans chaque abonnement. 
 
-Pour en savoir plus, consultez [Utiliser les affectations de rôle pour gérer l’accès à vos ressources d’abonnement Azure](role-based-access-control-configure.md).
+Obtenir plus d’informations sur la façon de trop[utiliser les ressources de rôle affectations toomanage accès tooyour abonnement Azure](role-based-access-control-configure.md).
 
 ## <a name="view-access-assignments"></a>Afficher les affectations d’accès
-Pour rechercher les affectations d’accès d’un utilisateur ou d’un groupe en particulier, commencez dans Azure Active Directory sur le [Portail Azure](http://portal.azure.com).
+toolook les affectations d’accès hello pour un seul utilisateur ou un groupe, démarrer dans Azure Active Directory hello [portail Azure](http://portal.azure.com).
 
-1. Sélectionnez **Azure Active Directory**. Si cette option n’est pas visible dans votre liste de navigation, sélectionnez **Plus de services**, puis faites défiler vers le bas jusqu’à **Azure Active Directory**.
+1. Sélectionnez **Azure Active Directory**. Si cette option n’est pas visible dans votre liste de navigation, sélectionnez **plus Services** , puis faites défiler vers le bas toofind **Azure Active Directory**.
 2. Sélectionnez **Utilisateurs et groupes**, puis **Tous les utilisateurs** ou **Tous les groupes**. Pour cet exemple, nous nous concentrons sur les utilisateurs.
     ![Gérer les utilisateurs et les groupes dans Azure Active Directory - capture d’écran](./media/role-based-access-control-manage-assignments/rbac_users_groups.png)
-3. Recherchez l’utilisateur par nom ou par nom d’utilisateur.
-4. Sélectionnez **Ressources Azure** sur le panneau de l’utilisateur. Toutes les affectations d’accès de cet utilisateur s’affichent.
+3. Rechercher un utilisateur hello par nom ou nom d’utilisateur.
+4. Sélectionnez **ressources Azure** sur le panneau d’utilisateur hello. Toutes les attributions d’accès hello pour cet utilisateur s’affichent.
 
-### <a name="read-permissions-to-view-assignments"></a>Autorisations de lecture pour afficher les affectations
-Cette page affiche uniquement les affectations d’accès que vous êtes autorisé à lire. Par exemple, vous avez un accès en lecture à l’abonnement A et vous allez sur le panneau des ressources Azure pour consulter les affectations d’un utilisateur. Vous pouvez voir ses affectations d’accès pour l’abonnement A, mais vous ne pouvez pas voir qu’il a également des affectations d’accès dans l’abonnement B.
+### <a name="read-permissions-tooview-assignments"></a>Tooview affectations d’autorisations de lecture
+Cette page affiche uniquement les affectations d’accès hello que vous avez l’autorisation tooread. Par exemple, vous avez accès en lecture toosubscription A et accédez toohello ressources Azure panneau toocheck les affectations d’un utilisateur. Vous pouvez voir ses affectations d’accès pour l’abonnement A, mais vous ne pouvez pas voir qu’il a également des affectations d’accès dans l’abonnement B.
 
 ## <a name="delete-access-assignments"></a>Supprimer des affectations d’accès
-Sur ce panneau, vous pouvez supprimer les affectations d’accès affectées directement à un utilisateur ou un groupe. Si l’affectation d’accès a été héritée d’un groupe parent, vous devez accéder à la ressource ou l’abonnement et y gérer l’affectation.
+À partir de ce panneau, vous pouvez supprimer les affectations d’accès qui ont été directement affectées tooa utilisateur ou un groupe. Si l’assignation d’accès hello a été héritée d’un groupe parent, vous devez toogo toohello ressource ou un abonnement et gérez l’affectation hello il.
 
-1. Dans la liste de toutes les affectations d’accès d’un utilisateur ou d’un groupe, sélectionnez celle que vous souhaitez supprimer.
-2. Sélectionnez **Supprimer**, puis **Oui** pour confirmer.
+1. Dans liste de hello de toutes les affectations d’accès hello pour un utilisateur ou un groupe, sélectionnez hello une souhaité toodelete.
+2. Sélectionnez **supprimer** , puis **Oui** tooconfirm.
     ![Supprimer l’affectation de l’accès - capture d’écran](./media/role-based-access-control-manage-assignments/delete_assignment.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Familiarisez-vous avec le contrôle d’accès en fonction du rôle afin [d’Utiliser les affectations de rôle pour gérer l’accès à vos ressources d’abonnement Azure](role-based-access-control-configure.md)
-* Consultez les [rôles RBAC intégrés](role-based-access-built-in-roles.md)
+* Prise en main le contrôle d’accès en fonction du rôle trop[utiliser les ressources de rôle affectations toomanage accès tooyour abonnement Azure](role-based-access-control-configure.md)
+* Consultez hello [rôles intégrés RBAC](role-based-access-built-in-roles.md)
 

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Jive | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Jive."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de Jive."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,89 +13,89 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 957b152fdd40d08a867e788b0cb9f7d57ed481e4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b1c0d0bc2d79427c055f577fe5f9d30d10f1bbdd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-jive-for-user-provisioning"></a>Didacticiel : Configuration de Jive pour l’approvisionnement des utilisateurs
 
-L’objectif de ce didacticiel est de vous montrer les étapes à effectuer dans Jive et Azure AD pour approvisionner et retirer automatiquement des comptes utilisateur d’Azure AD vers Jive.
+objectif Hello de ce didacticiel est tooshow vous hello étapes que vous devez tooperform dans Jive et Azure AD tooautomatically approvisionner et configurer des comptes d’utilisateur à partir d’Azure AD tooJive.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Le scénario décrit dans ce didacticiel part du principe que vous disposez des éléments suivants :
+scénario de Hello décrite dans ce didacticiel part du principe que vous avez déjà hello éléments suivants :
 
 *   Un locataire Azure Active Directory.
 *   Un abonnement Jive pour lequel l’authentification unique est activée.
 *   Un compte utilisateur dans Jive avec les autorisations d’administrateur d’équipe.
 
-## <a name="assigning-users-to-jive"></a>Affectation d’utilisateurs à Jive
+## <a name="assigning-users-toojive"></a>Affectation d’utilisateurs tooJive
 
-Azure Active Directory utilise un concept appelé « affectations » pour déterminer les utilisateurs devant recevoir l’accès aux applications sélectionnées. Dans le cadre de l’approvisionnement automatique de comptes utilisateur, les utilisateurs et les groupes qui ont été « affectés » à une application dans Azure AD sont synchronisés.
+Azure Active Directory utilise un concept appelé toodetermine « affectations » les utilisateurs qui doivent recevoir l’accès tooselected applications. Dans le contexte de hello de configuration de compte automatique d’utilisateurs, seuls les utilisateurs de hello et les groupes qui ont été « affectés » application tooan dans Azure AD est synchronisé.
 
-Avant de configurer et d’activer le service d’approvisionnement, vous devez déterminer quels utilisateurs et/ou groupes dans Azure AD représentent les utilisateurs qui ont besoin d’accéder à votre application Jive. Une fois que vous avez choisi, vous pouvez affecter ces utilisateurs à votre application Jive en suivant les instructions fournies ici :
+Avant de configurer et de l’activation de hello service de configuration, vous devez toodecide quels utilisateurs ou des groupes dans Azure AD qui représentent des utilisateurs qui doivent accéder aux tooyour Jive application hello. Après choisi, vous pouvez attribuer à ces applications de Jive tooyour les utilisateurs en suivant les instructions hello ici :
 
-[Affecter un utilisateur ou un groupe à une application d’entreprise](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+[Affecter une application d’entreprise tooan utilisateur ou un groupe](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
 
-### <a name="important-tips-for-assigning-users-to-jive"></a>Conseils importants pour l’affectation d’utilisateurs à Jive
+### <a name="important-tips-for-assigning-users-toojive"></a>Conseils importants pour l’affectation d’utilisateurs tooJive
 
-*   Il est recommandé qu’un seul utilisateur Azure AD soit affecté à Jive pour tester la configuration de l’approvisionnement. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
+*   Il est recommandé qu’un seul utilisateur Azure AD avoir tooJive tootest hello est mise en service de configuration. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
 
-*   Quand vous affectez un utilisateur à Jive, vous devez sélectionner un rôle d’utilisateur valide. Le rôle « Accès par défaut » ne fonctionne pas pour l’approvisionnement.
+*   Lorsque vous affectez un tooJive d’utilisateur, vous devez sélectionner un rôle d’utilisateur valide. rôle de « Accès par défaut » Hello ne fonctionne pas pour la configuration.
 
-## <a name="enable-user-provisioning"></a>Activer l’approvisionnement d’utilisateurs
+## <a name="enable-user-provisioning"></a>Activer l’approvisionnement des utilisateurs
 
-Cette section vous guide lors de la connexion de votre instance Azure AD au compte utilisateur Jive fournissant l’API et la configuration du service d’approvisionnement pour créer, mettre à jour et désactiver les comptes utilisateur affectés dans Jive en fonction des attributions d’utilisateurs et de groupes dans Azure AD.
+Cette section vous guide à travers de la connexion du compte d’utilisateur de votre tooJive AD Azure API de configuration et configurez hello toocreate du service de configuration, de mettre à jour et de désactiver les comptes d’utilisateur affecté dans Jive en fonction de l’affectation d’utilisateurs et de groupes dans Azure AD.
 
 > [!TIP]
-> Vous pouvez également choisir d’activer l’authentification unique basée sur SAML pour Jive en suivant les instructions fournies dans le [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
+> Vous pouvez également choisir tooenabled basé sur SAML Single Sign-On pour Jive, en suivant les instructions hello fournies dans [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
 
-### <a name="to-configure-user-account-provisioning"></a>Pour configurer l’approvisionnement de comptes d’utilisateur
+### <a name="tooconfigure-user-account-provisioning"></a>approvisionnement des comptes utilisateur tooconfigure :
 
-Cette section décrit comment activer l’approvisionnement des utilisateurs des comptes d’utilisateurs Active Directory sur Jive.
-Dans le cadre de cette procédure, vous devez fournir un jeton de sécurité à demander sur Jive.com.
+objectif Hello de cette section est toooutline mode tooenable l’approvisionnement des utilisateurs d’utilisateur Active Directory de comptes tooJive.
+Dans le cadre de cette procédure, vous êtes tooprovide requis un jeton de sécurité utilisateur que vous avez besoin de toorequest jive.com.
 
-1. Dans le [portail Azure](https://portal.azure.com), accédez à la section **Azure Active Directory > Applications d’entreprise > Toutes les applications**.
+1. Bonjour [portail Azure](https://portal.azure.com), parcourir toohello **Azure Active Directory > applications d’entreprise > toutes les applications** section.
 
-2. Si vous avez déjà configuré Jive pour l’authentification unique, recherchez votre instance Jive à l’aide du champ de recherche. Sinon, sélectionnez **Ajouter** et recherchez **Jive** dans la galerie d’applications. Sélectionnez Jive dans les résultats de recherche et ajoutez-le à votre liste d’applications.
+2. Si vous avez déjà configuré Jive pour l’authentification unique, recherchez votre instance de Jive à l’aide du champ de recherche hello. Sinon, sélectionnez **ajouter** et recherchez **Jive** dans la galerie d’applications hello. Sélectionnez Jive à partir des résultats de recherche hello et ajoutez-le tooyour la liste des applications.
 
-3. Sélectionnez votre instance Jive, puis sélectionnez l’onglet **Approvisionnement**.
+3. Sélectionnez votre instance de Jive, puis hello **Provisioning** onglet.
 
-4. Définissez le **Mode d’approvisionnement** sur **Automatique**. 
+4. Ensemble hello **Mode d’approvisionnement** trop**automatique**. 
 
     ![approvisionnement](./media/active-directory-saas-jive-provisioning-tutorial/provisioning.png)
 
-5. Dans la section **Informations d’identification de l’administrateur**, fournissez les paramètres de configuration suivants :
+5. Sous hello **informations d’identification administrateur** section, fournissez hello suivant les paramètres de configuration :
    
-    a. Dans la zone de texte **Nom d’utilisateur admin Jive**, tapez le nom d’un compte Jive auquel le profil **System Administrator** est attribué dans Jive.com.
+    a. Bonjour **nom d’utilisateur Admin Jive** zone de texte, tapez un Jive compte nom a hello **administrateur système** profil dans Jive.com attribué.
    
-    b. Dans la zone de texte **Mot de passe de l’admin Jive** , tapez le mot de passe de ce compte.
+    b. Bonjour **mot de passe administrateur Jive** zone de texte, un mot de passe type hello pour ce compte.
    
-    c. Dans la zone de texte **URL de locataire Jive** , tapez l’URL de locataire Jive.
+    c. Bonjour **URL du client Jive** zone de texte, tapez l’URL client Jive hello.
       
       > [!NOTE]
-      > L’URL de locataire Jive est celle utilisée par votre organisation pour se connecter à Jive.  
-      > En règle générale, l’URL a le format suivant : **www.\<organisation\>.jive.com**.          
+      > URL de locataire Jive Hello est utilisé par votre toolog d’organisation dans tooJive.  
+      > En règle générale, les URL hello a hello suivant le format : **www.\< organisation\>. jive.com**.          
 
-6. Dans le portail Azure, cliquez sur **Tester la connexion** pour vérifier qu’Azure AD peut se connecter à votre application Jive.
+6. Bonjour portail Azure, cliquez sur **tester la connexion** tooensure AD Azure peut se connecter tooyour Jive application.
 
-7. Entrez l’adresse e-mail d’une personne ou d’un groupe qui doit recevoir les notifications d’erreur d’approvisionnement dans le champ **E-mail de notification**, puis cochez la case se trouvant en dessous.
+7. Entrez hello adresse de messagerie d’une personne ou un groupe qui doit recevoir des notifications d’erreur approvisionnement hello **courrier électronique de Notification** champ et la case à cocher hello ci-dessous.
 
 8. Cliquez sur **Enregistrer.**
 
-9. Dans la section Mappages, sélectionnez **Synchroniser les utilisateurs Azure Active Directory avec Jive**.
+9. Sous la section des mappages de hello, sélectionnez **tooJive de synchronisation Azure Active Directory Users.**
 
-10. Dans la section **Mappages des attributs**, passez en revue les attributs utilisateur qui sont synchronisés d’Azure AD vers Jive. Les attributs sélectionnés en tant que propriétés de **Correspondance** sont utilisés pour faire correspondre les comptes utilisateur dans Jive pour les opérations de mise à jour. Cliquez sur le bouton Enregistrer pour valider les modifications.
+10. Bonjour **des mappages d’attributs** section, passez en revue les attributs utilisateur hello qui sont synchronisés à partir d’Azure AD tooJive. Hello attributs sélectionnés en tant que **correspondance** propriétés sont des comptes d’utilisateur hello toomatch utilisés dans Jive pour les opérations de mise à jour. Sélectionnez toocommit de bouton hello enregistrer toutes les modifications.
 
-11. Pour activer le service d’approvisionnement Azure AD pour Jive, définissez le paramètre **État d’approvisionnement** sur **Activé** dans la section Paramètres.
+11. tooenable hello service de configuration d’Azure AD pour Jive, modification hello **état d’approvisionnement** trop**sur** Bonjour section de paramètres
 
 12. Cliquez sur **Enregistrer.**
 
-Cette commande démarre la synchronisation initiale des utilisateurs et/ou des groupes affectés à Jive dans la section Utilisateurs et Groupes. La synchronisation initiale prend plus de temps que les synchronisations suivantes, qui se produisent environ toutes les 20 minutes, tant que le service est en cours d’exécution. Vous pouvez utiliser la section **Détails de la synchronisation** pour surveiller la progression et les liens vers les rapports d’activité d’approvisionnement, qui décrivent toutes les actions effectuées par le service de configuration dans votre application Jive.
+Il démarre la synchronisation initiale d’utilisateurs et/ou groupes affectés tooJive Bonjour les utilisateurs et la section groupes de hello. la synchronisation initiale Hello prend tooperform plus de temps que les synchronisations suivantes, qui se produisent toutes les 20 minutes environ tant que service de hello est en cours d’exécution. Vous pouvez utiliser hello **détails de synchronisation** section toomonitor cours et suivre des rapports d’activité tooprovisioning des liens, qui décrivent toutes les actions effectuées par hello mise en service du service dans votre application de Jive.
 
-Vous pouvez à présent créer un compte de test. Patientez jusqu’à 20 minutes et vérifiez que le compte a bien été synchronisé avec Jive.
+Vous pouvez à présent créer un compte de test. Attendez que les minutes too20 tooverify hello compte a été synchronisé tooJive.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 

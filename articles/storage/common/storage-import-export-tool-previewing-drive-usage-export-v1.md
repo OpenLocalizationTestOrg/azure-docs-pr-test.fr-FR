@@ -1,6 +1,6 @@
 ---
-title: "Aperçu de l’utilisation d’un lecteur pour un travail d’exportation Azure Import/Export - v1 | Microsoft Docs"
-description: "Découvrez comment afficher un aperçu de la liste d’objets blob que vous avez sélectionnés pour un travail d’exportation dans le service Azure Import-Export."
+title: "l’utilisation des lecteurs pour un travail d’exportation Azure Import/Export - v1 aaaPreviewing | Documents Microsoft"
+description: "Découvrez la liste de hello toopreview d’objets BLOB que vous avez sélectionné pour un travail d’exportation dans le service d’importation/exportation Azure hello."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 6ec74ae0b0931f3fed99a43f4f7e58f9d425b138
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7378c159f6d11702cda9ae7654e84d85f9b671b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="previewing-drive-usage-for-an-export-job"></a>Aperçu de l’utilisation des lecteurs pour un travail d’exportation
-Avant de créer un travail d’exportation, vous devez choisir un ensemble d’objets blob à exporter. Le service Microsoft Azure Import/Export vous permet d’utiliser une liste de chemins d’accès ou de préfixes d’objets blob pour représenter les objets blob que vous avez sélectionnés.  
+Avant de créer un travail d’exportation, vous devez toochoose un ensemble d’objets BLOB toobe exporté. Hello service Microsoft Azure Import/Export vous permet de toouse une liste de chemins d’accès de l’objet blob ou objet blob de préfixes d’objets BLOB de hello toorepresent que vous avez sélectionné.  
   
-Ensuite, vous devez déterminer le nombre de lecteurs à envoyer. L’outil Import/Export offre la commande `PreviewExport` permettant d’afficher un aperçu de l’utilisation du disque pour les objets blob que vous avez sélectionnés, en fonction de la taille des disques que vous voulez utiliser.
+Ensuite, vous devez toodetermine, nombre de disques dont vous avez besoin de toosend. Hello outil Import/Export fournit hello `PreviewExport` l’utilisation des lecteurs toopreview commande pour les objets BLOB de hello que vous avez sélectionné, en fonction de taille hello hello lecteurs que vous vous apprêtez toouse.
 
 ## <a name="command-line-parameters"></a>Paramètres de ligne de commande
 
-Vous pouvez utiliser les paramètres suivants lorsque vous utilisez la commande `PreviewExport` de l’outil Import/Export.
+Vous pouvez utiliser hello paramètres suivants lors de l’utilisation de hello `PreviewExport` commande Hello outil d’importation/exportation.
 
 |Paramètre de ligne de commande|Description|  
 |--------------------------|-----------------|  
-|**/logdir:**<LogDirectory\>|facultatif. Répertoire contenant les journaux. Les fichiers journaux détaillés seront écrits dans ce répertoire. Si aucun répertoire de journaux n’est spécifié, le répertoire courant est utilisé comme répertoire de journaux.|  
-|**/sn:**<StorageAccountName\>|Obligatoire. Nom du compte de stockage du travail d’exportation.|  
-|**/sk:**<StorageAccountKey\>|Obligatoire si et seulement si aucune SAP de conteneur n’est spécifiée. Clé du compte de stockage du travail d’exportation.|  
-|**/csas:**<ContainerSas\>|Obligatoire si et seulement si aucune clé du compte de stockage n’est spécifiée. SAP du conteneur pour lister les objets blob à exporter dans le travail d’exportation.|  
-|**/ExportBlobListFile:**<ExportBlobListFile\>|Obligatoire. Chemin d’accès au fichier XML contenant la liste des chemins d’accès ou des préfixes de chemin d’accès aux objets blob à exporter. Format du fichier utilisé dans l’élément `BlobListBlobPath` dans l’opération [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) de l’API REST du service Import/Export.|  
-|**/DriveSize:**<DriveSize\>|Obligatoire. Taille des disques à utiliser pour un travail d’exportation, *par exemple* 500 Go ou 1,5 To.|  
+|**/logdir:**&lt;LogDirectory\>|facultatif. répertoire de journal Hello. Les fichiers journaux détaillés seront écrit toothis active. Si aucun répertoire de journal est spécifié, répertoire actuel de hello sera utilisé comme répertoire de journal hello.|  
+|**/sn:**&lt;StorageAccountName\>|Obligatoire. tâche d’exportation de nom Hello hello du compte de stockage pour hello.|  
+|**/sk:**&lt;StorageAccountKey\>|Obligatoire si et seulement si aucune SAP de conteneur n’est spécifiée. tâche d’exportation de clé de compte Hello hello compte de stockage pour hello.|  
+|**/csas:**&lt;ContainerSas\>|Obligatoire si et seulement si aucune clé du compte de stockage n’est spécifiée. SAP de conteneur Hello pour toobe d’objets BLOB annonce hello exportée dans le travail d’exportation hello.|  
+|**/ExportBlobListFile:**&lt;ExportBlobListFile\>|Obligatoire. Chemin d’accès toohello XML du fichier contenant la liste des chemins d’accès de l’objet blob ou préfixes de chemin d’accès pour toobe d’objets BLOB hello exportée d’objets blob. format de fichier Hello utilisé Bonjour `BlobListBlobPath` élément Bonjour [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) opération Hello API REST du service importation/exportation.|  
+|**/DriveSize:**&lt;DriveSize\>|Obligatoire. taille de toouse de lecteurs pour un travail d’exportation, de Hello *, par exemple*, 500 Go, 1,5 To.|  
 
 ## <a name="command-line-example"></a>Exemple de ligne de commande
 
-L’exemple suivant illustre la commande `PreviewExport` :  
+exemple Hello illustre hello `PreviewExport` commande :  
   
 ```  
 WAImportExport.exe PreviewExport /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /ExportBlobListFile:C:\WAImportExport\mybloblist.xml /DriveSize:500GB    
 ```  
   
-Le fichier de liste d’objets blob à exporter peut contenir des noms et des préfixes d’objets blob, comme l’illustre ce code :  
+Hello blob liste et fichier d’exportation peut contenir des noms d’objet blob d’objets blob préfixes, comme illustré ici :  
   
 ```xml 
 <?xml version="1.0" encoding="utf-8"?>  
@@ -57,9 +57,9 @@ Le fichier de liste d’objets blob à exporter peut contenir des noms et des pr
 </BlobList>  
 ```
 
-L’outil Azure Import/Export liste tous les objets blob à exporter et calcule leur répartition sur des lecteurs de la taille spécifiée, en prenant en compte les éventuelles surcharges nécessaires, puis évalue le nombre de disques requis pour contenir les objets blob et les informations sur l’utilisation des lecteurs.  
+Hello, outil d’importation/exportation Azure répertorie tous les objets BLOB toobe exporté et calcule comment toopack les lecteurs de hello spécifié la taille, en prenant en compte toute surcharge nécessaire, évalue ensuite le nombre de hello de lecteurs nécessaires blobs de hello toohold et l’utilisation des lecteurs plus d’informations.  
   
-Voici un exemple de sortie, les journaux d’information étant omis :  
+Voici un exemple de sortie de hello, avec des journaux d’information omis :  
   
 ```  
 Number of unique blob paths/prefixes:   3  

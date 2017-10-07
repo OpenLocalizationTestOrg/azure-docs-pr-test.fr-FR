@@ -1,6 +1,6 @@
 ---
-title: Diagnostics et surveillance des performances Azure Service Fabric | Microsoft Docs
-description: "Cet article décrit les fonctionnalités de surveillance des performances dans le runtime Reliable Service Remoting de Service Fabric, notamment les compteurs de performances émis par celui-ci."
+title: aaaAzure ServiceFabric diagnostics et surveillance | Documents Microsoft
+description: "Cet article décrit les fonctionnalités de surveillance de performances hello dans hello ServiceRemoting fiable de l’infrastructure de Service runtime, tels que les compteurs de performance émis par celui-ci."
 services: service-fabric
 documentationcenter: .net
 author: suchiagicha
@@ -14,89 +14,89 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: suchiagicha
-ms.openlocfilehash: f54e157654fb15d2f7ff48ddc666c6c8803c75a2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 64db9a890bd59a1326e587d14b89c007b71a9059
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="diagnostics-and-performance-monitoring-for-reliable-service-remoting"></a>Diagnostics et surveillance des performances pour Reliable Service Remoting
-Le runtime Reliable Service Remoting émet des [compteur de performances](https://msdn.microsoft.com/library/system.diagnostics.performancecounter.aspx). Ils fournissent des informations sur le fonctionnement du runtime Service Remoting et permettent de résoudre les problèmes et de surveiller les performances.
+exécution de ServiceRemoting fiable Hello émet [les compteurs de performance](https://msdn.microsoft.com/library/system.diagnostics.performancecounter.aspx). Ces fournissent des informations sur le fonctionne de hello ServiceRemoting et aider à l’analyse des performances et le dépannage.
 
 
 ## <a name="performance-counters"></a>Compteurs de performances
-Le runtime Reliable Service Remoting définit les catégories suivantes de compteur de performances :
+Hello ServiceRemoting fiable runtime définit hello suivant des catégories de compteurs de performances :
 
 | Catégorie | Description |
 | --- | --- |
-| Service Fabric Service |Compteurs spécifiques à Azure Service Fabric Service Remoting, par exemple, temps moyen nécessaire pour traiter la demande |
-| Méthode de service Service Fabric |Compteurs spécifiques des méthodes implémentées par Service Fabric Remoting Service. Par exemple, la fréquence à laquelle une méthode de service est appelée |
+| Service Fabric Service |Compteurs spécifique tooAzure de communication à distance du Service Service Fabric, par exemple, le temps moyen nécessaire tooprocess demander |
+| Méthode de service Service Fabric |Toomethods spécifique de compteurs implémentée par le Service de communication à distance l’ensemble fibre optique, par exemple, la fréquence à laquelle une méthode de service est appelée |
 
-Chacune des catégories précédentes possède un ou plusieurs compteurs.
+Chaque hello précédant les catégories a un ou plusieurs compteurs.
 
-L'application [Analyseur de performances Windows](https://technet.microsoft.com/library/cc749249.aspx) , disponible par défaut dans le système d'exploitation Windows, peut être utilisée pour collecter et afficher les données de compteur de performances. [Diagnostics Azure](../cloud-services/cloud-services-dotnet-diagnostics.md) est une autre option pour collecter les données de compteur de performances et les télécharger dans les tables Azure.
+Hello [Analyseur de performances Windows](https://technet.microsoft.com/library/cc749249.aspx) application qui est disponible par défaut dans le système d’exploitation de Windows hello peut être utilisé toocollect et affichage de données compteur de performance. [Diagnostics Azure](../cloud-services/cloud-services-dotnet-diagnostics.md) est une autre option pour la collecte de données de compteur de performances et de les télécharger tooAzure tables.
 
 ### <a name="performance-counter-instance-names"></a>Noms d'instance de compteur de performances
-Un cluster avec un grand nombre de services ou de partitions Service Remoting dispose d'un grand nombre d'instances de compteur de performances. Les noms d'instance de compteur de performances peuvent aider à identifier la partition et la méthode Service (le cas échéant) spécifiques associées à l'instance de compteur de performances.
+Un cluster avec un grand nombre de services ou de partitions Service Remoting dispose d'un grand nombre d'instances de compteur de performances. instance de compteur de performance Hello noms peuvent vous aider à identifier la partition spécifique de hello et la méthode de Service (le cas échéant) associée à cette instance de compteur de performances hello.
 
 #### <a name="service-fabric-service-category"></a>Catégorie de service Fabric Service
-Pour la catégorie `Service Fabric Service`, les noms d'instance de compteur ont le format suivant :
+Pour la catégorie de hello `Service Fabric Service`, noms d’instance de compteur de hello sont Bonjour suivant le format :
 
 `ServiceFabricPartitionID_ServiceReplicaOrInstanceId_ServiceRuntimeInternalID`
 
-*ServiceFabricPartitionID* est la représentation sous forme de chaîne de l'ID de partition Service Fabric associée à l'instance de compteur de performances. L'ID de partition est un GUID et sa représentation sous forme de chaîne est générée à l'aide de la méthode [`Guid.ToString`](https://msdn.microsoft.com/library/97af8hh4.aspx) avec le spécificateur de format « D ».
+*ServiceFabricPartitionID* est représentation de chaîne hello Hello ID de partition de Service Fabric qui hello l’instance de compteur de performance est associé. ID de partition Hello est un GUID, et sa représentation sous forme de chaîne est générée via hello [ `Guid.ToString` ](https://msdn.microsoft.com/library/97af8hh4.aspx) méthode avec le spécificateur de format « D ».
 
-*ServiceReplicaOrInstanceId* est la représentation sous forme de chaîne de l'ID du réplica/de l’instance Service Fabric associé(e) à l'instance de compteur de performances.
+*ServiceReplicaOrInstanceId* est représentation de chaîne hello Hello ID de réplica/Instance Service Fabric hello l’instance de compteur de performance est associé.
 
-*ServiceRuntimeInternalID* est la représentation sous forme de chaîne d'un entier 64 bits généré par le runtime Fabric Service pour son usage interne. Il est inclus dans le nom de l'instance de compteur de performances pour garantir l'unicité et éviter tout conflit avec d'autres noms d'instance de compteur de performances. Les utilisateurs ne doivent pas tenter d'interpréter cette partie du nom de l'instance de compteur de performances.
+*ServiceRuntimeInternalID* est la représentation sous forme de chaîne hello d’un entier 64 bits qui est généré par le runtime du Service de l’ensemble fibre optique hello pour son usage interne. Il est inclus dans l’instance de compteur de performance hello nom tooensure son unicité et éviter les conflits avec les autres noms d’instance des compteurs de performance. Les utilisateurs ne doivent pas essayer toointerpret cette partie du nom instance de compteur de performance hello.
 
-Voici un exemple de nom d'instance de compteur pour un compteur appartenant à la catégorie `Service Fabric Service` :
+Hello Voici un exemple d’un nom d’instance de compteur pour un compteur qui appartient toohello `Service Fabric Service` catégorie :
 
 `2740af29-78aa-44bc-a20b-7e60fb783264_635650083799324046_5008379932`
 
-Dans l'exemple précédent, `2740af29-78aa-44bc-a20b-7e60fb783264` est la représentation sous forme de chaîne de l'ID de partition Service Fabric, `635650083799324046` est la représentation sous forme de chaîne de l'ID du réplica/de l’instance, et `5008379932` est l’ID 64 bits généré pour l'usage interne du runtime.
+Bonjour précédent exemple, `2740af29-78aa-44bc-a20b-7e60fb783264` est la représentation sous forme de chaîne hello d’ID de partition de Service Fabric hello, `635650083799324046` est la représentation sous forme de chaîne de réplica/InstanceId et `5008379932` hello 64 bits ID généré pour interne du runtime de hello à utiliser.
 
 #### <a name="service-fabric-service-method-category"></a>Catégorie de méthode de service Service Fabric
-Pour la catégorie `Service Fabric Service Method`, les noms d'instance de compteur ont le format suivant :
+Pour la catégorie de hello `Service Fabric Service Method`, noms d’instance de compteur de hello sont Bonjour suivant le format :
 
 `MethodName_ServiceRuntimeMethodId_ServiceFabricPartitionID_ServiceReplicaOrInstanceId_ServiceRuntimeInternalID`
 
-*MethodName* est le nom de la méthode de service associée à l'instance de compteur de performances. Le format du nom de méthode est déterminé selon une logique du runtime Fabric Service qui équilibre la lisibilité du nom avec des contraintes sur la longueur maximale des noms d'instance de compteur de performances sous Windows.
+*MethodName* est le nom de hello de méthode de service hello hello l’instance de compteur de performance est associé. format Hello hello du nom de méthode est déterminée selon une logique dans le runtime Service Fabric hello qui équilibre la lisibilité hello du nom hello avec des contraintes sur la longueur maximale de hello de noms des instances de compteur performance hello sur Windows.
 
-*ServiceRuntimeMethodId* est la représentation sous forme de chaîne d'un entier 32 bits généré par le runtime Fabric Service pour son usage interne. Il est inclus dans le nom de l'instance de compteur de performances pour garantir l'unicité et éviter tout conflit avec d'autres noms d'instance de compteur de performances. Les utilisateurs ne doivent pas tenter d'interpréter cette partie du nom de l'instance de compteur de performances.
+*ServiceRuntimeMethodId* est la représentation sous forme de chaîne hello d’un entier 32 bits qui est généré par le runtime du Service de l’ensemble fibre optique hello pour son usage interne. Il est inclus dans l’instance de compteur de performance hello nom tooensure son unicité et éviter les conflits avec les autres noms d’instance des compteurs de performance. Les utilisateurs ne doivent pas essayer toointerpret cette partie du nom instance de compteur de performance hello.
 
-*ServiceFabricPartitionID* est la représentation sous forme de chaîne de l'ID de partition Service Fabric associée à l'instance de compteur de performances. L'ID de partition est un GUID et sa représentation sous forme de chaîne est générée à l'aide de la méthode [`Guid.ToString`](https://msdn.microsoft.com/library/97af8hh4.aspx) avec le spécificateur de format « D ».
+*ServiceFabricPartitionID* est représentation de chaîne hello Hello ID de partition de Service Fabric qui hello l’instance de compteur de performance est associé. ID de partition Hello est un GUID, et sa représentation sous forme de chaîne est générée via hello [ `Guid.ToString` ](https://msdn.microsoft.com/library/97af8hh4.aspx) méthode avec le spécificateur de format « D ».
 
-*ServiceReplicaOrInstanceId* est la représentation sous forme de chaîne de l'ID du réplica/de l’instance Service Fabric associé(e) à l'instance de compteur de performances.
+*ServiceReplicaOrInstanceId* est représentation de chaîne hello Hello ID de réplica/Instance Service Fabric hello l’instance de compteur de performance est associé.
 
-*ServiceRuntimeInternalID* est la représentation sous forme de chaîne d'un entier 64 bits généré par le runtime Fabric Service pour son usage interne. Il est inclus dans le nom de l'instance de compteur de performances pour garantir l'unicité et éviter tout conflit avec d'autres noms d'instance de compteur de performances. Les utilisateurs ne doivent pas tenter d'interpréter cette partie du nom de l'instance de compteur de performances.
+*ServiceRuntimeInternalID* est la représentation sous forme de chaîne hello d’un entier 64 bits qui est généré par le runtime du Service de l’ensemble fibre optique hello pour son usage interne. Il est inclus dans l’instance de compteur de performance hello nom tooensure son unicité et éviter les conflits avec les autres noms d’instance des compteurs de performance. Les utilisateurs ne doivent pas essayer toointerpret cette partie du nom instance de compteur de performance hello.
 
-Voici un exemple de nom d'instance de compteur pour un compteur appartenant à la catégorie `Service Fabric Service Method` :
+Hello Voici un exemple d’un nom d’instance de compteur pour un compteur qui appartient toohello `Service Fabric Service Method` catégorie :
 
 `ivoicemailboxservice.leavemessageasync_2_89383d32-e57e-4a9b-a6ad-57c6792aa521_635650083804480486_5008380`
 
-Dans l'exemple précédent, `ivoicemailboxservice.leavemessageasync` est le nom de la méthode, `2` est l'ID 32 bits généré pour l'usage interne du runtime, `89383d32-e57e-4a9b-a6ad-57c6792aa521` est la représentation sous forme de chaîne de l'ID de partition Service Fabric, `635650083804480486` est la représentation sous forme de chaîne de l'ID du réplica/de l’instance Service Fabric, et `5008380` est l'ID 64 bits généré pour l'usage interne du runtime.
+Bonjour précédent exemple, `ivoicemailboxservice.leavemessageasync` est le nom de la méthode hello `2` est hello ID 32 bits généré pour interne du runtime de hello utiliser, `89383d32-e57e-4a9b-a6ad-57c6792aa521` est la représentation sous forme de chaîne hello d’ID de partition de Service Fabric hello,`635650083804480486` est hello chaîne représentation sous forme de hello ID de réplica/Instance Service Fabric et `5008380` est hello 64 bits ID est généré pour interne du runtime de hello utiliser.
 
 ## <a name="list-of-performance-counters"></a>Liste des compteurs de performances
 ### <a name="service-method-performance-counters"></a>Compteurs de performances de la méthode Service
 
-Le runtime Reliable Service publie les compteurs de performances suivants liés à l'exécution des méthodes de service.
+exécution du Service fiable Hello publie hello suivant des compteurs de performances connexes toohello d’exécution des méthodes de service.
 
 | Nom de la catégorie | Nom du compteur | Description |
 | --- | --- | --- |
-| Méthode de service Service Fabric |Appels/s |Nombre de fois où la méthode de service est appelée par seconde |
-| Méthode de service Service Fabric |Moyenne en millisecondes par appel |Durée d'exécution de la méthode de service en millisecondes |
-| Méthode de service Service Fabric |Exceptions levées/s |Nombre de fois où la méthode de service lève une exception par seconde |
+| Méthode de service Service Fabric |Appels/s |Nombre de fois que la méthode de service hello est appelé par seconde |
+| Méthode de service Service Fabric |Moyenne en millisecondes par appel |Durée de la méthode de service tooexecute hello en millisecondes |
+| Méthode de service Service Fabric |Exceptions levées/s |Nombre de fois que hello la méthode de service a levé une exception par seconde |
 
 ### <a name="service-request-processing-performance-counters"></a>Compteurs de performances de traitement de la requête de service
-Lorsqu'un client appelle une méthode via un objet proxy de service, un message de requête est envoyé via le réseau au service à distance. Le service traite le message de requête et renvoie une réponse au client. Le runtime Reliable Service Remoting publie les compteurs de performances suivants liés au traitement de la requête de service.
+Lorsqu’un client appelle une méthode via un objet proxy de service, il renvoie un message de demande qui est envoyé sur le service d’accès distant toohello hello réseau. service de Hello traite le message de demande hello et envoie une réponse au client toohello précédent. Hello ServiceRemoting fiable runtime publie hello après le traitement de la demande des compteurs connexes tooservice performances.
 
 | Nom de la catégorie | Nom du compteur | Description |
 | --- | --- | --- |
-| Service Fabric Service |Nombre de requêtes en attente |Nombre de requêtes en cours de traitement dans le service |
-| Service Fabric Service |Moyenne en millisecondes par requête |Durée (en millisecondes) nécessaire au service pour traiter une requête |
-| Service Fabric Service |Moyenne en millisecondes pour la désérialisation de la requête |Durée (en millisecondes) nécessaire pour désérialiser le message de requête de service lorsqu'il est reçu au niveau du service |
-| Service Fabric Service |Moyenne en millisecondes pour la sérialisation de la réponse |Durée (en millisecondes) nécessaire pour sérialiser le message de réponse de service au niveau du service avant l’envoi de la réponse au client |
+| Service Fabric Service |Nombre de requêtes en attente |Nombre de demandes traitées dans le service hello |
+| Service Fabric Service |Moyenne en millisecondes par requête |Durée (en millisecondes) de hello service tooprocess une demande |
+| Service Fabric Service |Moyenne en millisecondes pour la désérialisation de la requête |Message de demande de service temps toodeserialize prises (en millisecondes) lorsqu’elle est reçue au niveau de service de hello |
+| Service Fabric Service |Moyenne en millisecondes pour la sérialisation de la réponse |Message de réponse temps tooserialize prises (en millisecondes) hello service au service hello avant hello est envoyée toohello client |
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Exemple de code](https://github.com/Azure/servicefabric-samples)

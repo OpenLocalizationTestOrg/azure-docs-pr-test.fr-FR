@@ -1,6 +1,6 @@
 ---
-title: "Prise en main d’un exemple"
-description: "Power BI Embedded, utiliser SDK pour ajouter des rapports interactifs Power BI à votre application business intelligence"
+title: "démarré avec un exemple d’aaaGet"
+description: "Power BI incorporé, utilisez tooadd du Kit de développement logiciel des rapports interactifs Power BI dans votre application business intelligence"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/02/2017
 ms.author: asaxton
-ms.openlocfilehash: c3cb1763f807220a4a829f410d7eb77974b25776
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1fef9dd8e0f734b748b930d3f85ad4b517d9661e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-power-bi-embedded-sample"></a>Prise en main de l’exemple Power BI Embedded
 
-Avec **Microsoft Power BI Embedded**, vous pouvez intégrer des rapports Power BI dans vos applications web ou mobiles. Dans cet article, nous vous présenterons l’exemple de prise en main **Power BI Embedded** .
+Avec **Microsoft Power BI Embedded**, vous pouvez intégrer des rapports Power BI dans vos applications web ou mobiles. Dans cet article, nous allons vous présenter toohello **Power BI Embedded** exemple démarrée de get.
 
-Avant de poursuivre, vous souhaiterez probablement enregistrer les ressources suivantes. Elles vous aideront lors de l’intégration de rapports Power BI dans l’exemple d’application et vos propres applications également.
+Avant d’aller plus loin, vous souhaiterez probablement hello toosave suivant des ressources. Ils vous aiderons à lors de l’intégration des rapports Power BI trop dans l’exemple d’application hello et vos propres applications.
 
 * [Exemple d’application web d’espace de travail](http://go.microsoft.com/fwlink/?LinkId=761493)
 * [Référence de l’API Power BI Embedded](https://msdn.microsoft.com/en-US/library/azure/mt711507.aspx)
@@ -33,26 +33,26 @@ Avant de poursuivre, vous souhaiterez probablement enregistrer les ressources su
 * [Exemple de rapport JavaScript intégré](https://microsoft.github.io/PowerBI-JavaScript/demo)
 
 > [!NOTE] 
-> Avant de configurer et d’exécuter l’exemple de prise en main de Power BI Embedded, vous devez créer au moins une **collection d’espaces de travail** dans votre abonnement Azure. Pour savoir comment créer une **collection d’espaces de travail** dans le portail Azure, consultez [Prise en main de Power BI Embedded (aperçu)](power-bi-embedded-get-started.md).
+> Avant que vous pouvez configurer et d’exécution hello obtenir Power BI Embedded a démarré l’exemple, vous devez toocreate au moins un **Collection de l’espace de travail** dans votre abonnement Azure. toolearn comment toocreate un **Collection de l’espace de travail** Bonjour portail Azure, consultez [prise en main de Power BI Embedded](power-bi-embedded-get-started.md).
 
-## <a name="configure-the-sample-app"></a>Configurer l’exemple d’application
+## <a name="configure-hello-sample-app"></a>Configurer l’application d’exemple hello
 
-Passons à la configuration de votre environnement de développement Visual Studio pour accéder aux composants nécessaires à l’exécution de l’exemple d’application.
+Procédure pas à pas comment configurer votre application exemple Visual Studio development environnement tooaccess hello composants nécessaires toorun hello.
 
-1. Téléchargez et décompressez l’exemple [Power BI Embedded - Intégrer un rapport dans une application web](http://go.microsoft.com/fwlink/?LinkId=761493) sur GitHub.
-2. Ouvrez **PowerBI-embedded.sln** dans Visual Studio. Vous devrez peut-être exécuter la commande **Update-Package** dans la Console du Gestionnaire de Package NuGet pour mettre à jour les packages utilisés dans cette solution.
-3. Générez la solution.
-4. Exécutez l’application de console **ProvisionSample** . Dans l’exemple d’application console, vous allez approvisionner un espace de travail et importer un fichier PBIX.
-5. Pour approvisionner un nouvel **espace de travail**, sélectionnez l’option 1, **Collection management** (Gestion des collections), puis choisissez l’option 6, **Provision a new Workspace** (Approvisionner un nouvel espace de travail).
-6. Pour importer un nouveau **rapport**, sélectionnez l’option 2, **Report management** (Gestion de rapport), puis sélectionnez l’option 3, **Import PBIX Desktop file into a workspace** (Importer le fichier PBIX Desktop dans un espace de travail).
+1. Téléchargez et décompressez hello [Power BI Embedded - intégrer un rapport à une application web](http://go.microsoft.com/fwlink/?LinkId=761493) exemples sur GitHub.
+2. Ouvrez **PowerBI-embedded.sln** dans Visual Studio. Vous devrez peut-être tooexecute hello **Package de mise à jour** commande hello NuGET Package Manager Console dans les packages de hello tooupdate ordre utilisé dans cette solution.
+3. Générez la solution de hello.
+4. Exécutez hello **ProvisionSample** application console. Dans l’exemple hello d’application de console, vous configurez un espace de travail et importez un fichier PBIX.
+5. tooprovision un nouveau **espace de travail**, sélectionnez l’option 1, **gestion de la Collection**, puis sélectionnez l’option 6, **configurer un espace de travail**
+6. tooimport un nouveau **rapport**, sélectionnez l’option 2, **gestion de rapports**, puis sélectionnez l’option 3, **fichier d’importation PBIX bureau dans un espace de travail**.
 
-7. Entrez le nom de votre **collection d’espaces de travail** et la **clé d’accès**. Vous pouvez les obtenir dans le **Portail Azure**. Pour en savoir plus sur la façon d’obtenir votre **clé d’accès**, consultez [Affichage des touches d’accès rapide aux API de Power BI](power-bi-embedded-get-started.md#view-power-bi-api-access-keys) dans Prise en main de Microsoft Power BI Embedded.
+7. Entrez le nom de votre **collection d’espaces de travail** et la **clé d’accès**. Vous pouvez obtenir ces Bonjour **Azure Portal**. toolearn plus sur la façon tooget votre **clé d’accès**, consultez [afficher les clés d’accès Power BI API](power-bi-embedded-get-started.md#view-power-bi-api-access-keys) dans prise en main Microsoft Power BI Embedded.
 
     ![](media/powerbi-embedded-get-started-sample/azure-portal.png)
-8. Copiez et enregistrez **l’ID d’espace de travail** qui vient d’être créé et qui sera utilisé ultérieurement dans cet article. Une fois l’**ID d’espace de travail** créé, il est disponible dans le **portail Azure**.
+8. Copiez et enregistrez hello nouvellement créé **ID de l’espace de travail** toouse plus loin dans cet article. Après avoir hello **ID de l’espace de travail** est créé, il peut s’avérer hello **Azure Portal**.
 
     ![](media/powerbi-embedded-get-started-sample/workspace-id.png)
-9. Pour importer un fichier PBIX dans votre **espace de travail**, sélectionnez l’option **6. Importez le fichier PBIX Desktop dans un espace de travail existant**. Si vous n’avez pas de fichier PBIX sous la main, téléchargez [l’exemple PBIX Analyse des données de vente](http://go.microsoft.com/fwlink/?LinkID=780547).
+9. tooimport un PBIX fichier dans votre **espace de travail**, sélectionnez l’option **6. Importez le fichier PBIX Desktop dans un espace de travail existant**. Si vous n’avez pas un PBIX pratique de fichiers, vous pouvez télécharger hello [PBIX d’exemple Retail Analysis](http://go.microsoft.com/fwlink/?LinkID=780547).
 10. Si vous y êtes invité, entrez un nom convivial pour votre **jeu de données**.
 
 La réponse doit ressembler à ceci :
@@ -63,15 +63,15 @@ Checking import state... Succeeded
 ```
 
 > [!NOTE]
-> Si votre fichier PBIX contient des connexions de requête directe, exécutez l’option 7 pour mettre à jour les chaînes de connexion.
+> Si votre fichier PBIX contient toutes les connexions de requête directe, exécutez les chaînes de connexion hello tooupdate 7.
 
-À ce stade, vous avez un rapport PBIX Power BI qui a été importé dans votre **espace de travail**. Voyons maintenant comment exécuter l’exemple d’application web de prise en main de **Power BI Embedded**.
+À ce stade, vous avez un rapport PBIX Power BI qui a été importé dans votre **espace de travail**. À présent, voyons comment toorun hello **Power BI Embedded** obtenir démarrée exemple d’application web.
 
-## <a name="run-the-sample-web-app"></a>Exécuter l’exemple d’application web
-L’exemple d’application web est un exemple d’application qui restitue les rapports importés dans votre **espace de travail**. Voici comment configurer l’exemple d’application web.
+## <a name="run-hello-sample-web-app"></a>Exécuter l’exemple hello d’application web
+exemple d’application web Hello est un exemple d’application qui affiche les rapports importés dans votre **espace de travail**. Voici comment tooconfigure hello exemple d’application web.
 
-1. Dans la solution Visual Studio **PowerBI-embedded**, cliquez avec le bouton droit sur l’application web **EmbedSample**, puis choisissez **Définir comme projet de démarrage**.
-2. Dans **web.config**, dans l’application web **EmbedSample**, modifiez la section **appSettings** : **AccessKey**, le nom **WorkspaceCollection** et **WorkspaceId**.
+1. Bonjour **incorporées PowerBI** solution Visual Studio, à droite cliquez sur hello **EmbedSample** application web, puis choisissez **définir comme projet de démarrage**.
+2. Dans **web.config**, Bonjour **EmbedSample** application web, modifiez hello **appSettings**: **AccessKey**, ** WorkspaceCollection** nom, et **Id_espace_de_travail**.
 
     ```
     <appSettings>
@@ -81,28 +81,28 @@ L’exemple d’application web est un exemple d’application qui restitue les 
         <add key="powerbi:WorkspaceId" value="" />
     </appSettings>
     ```
-3. Exécutez l’application web **EmbedSample**.
+3. Exécutez hello **EmbedSample** application web.
 
-Une fois que vous avez exécuté l’application web **EmbedSample**, le volet de navigation gauche doit contenir un menu **Rapports**. Pour afficher le rapport que vous avez importé, développez **Rapports**, puis cliquez sur un rapport. Si vous avez importé l’[exemple PBIX Analyse des données de vente](http://go.microsoft.com/fwlink/?LinkID=780547), l’exemple d’application web a l’aspect suivant :
+Une fois que vous exécutez hello **EmbedSample** application web, le volet de navigation gauche hello doit contenir un **rapports** menu. rapport de hello tooview vous avez importé, développez **rapports**, puis cliquez sur un rapport. Si vous avez importé hello [PBIX d’exemple Retail Analysis](http://go.microsoft.com/fwlink/?LinkID=780547), hello exemple d’application web ressemble à ceci :
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-sample-left-nav.png)
 
-Une fois que vous avez cliqué sur un rapport, l’application web **EmbedSample** doit avoir l’aspect suivant :
+Après avoir cliqué sur un rapport, hello **EmbedSample** application web doit ressembler cela :
 
 ![](media/powerbi-embedded-get-started-sample/sample-web-app.png)
 
-## <a name="explore-the-sample-code"></a>Explorer l’exemple de code
+## <a name="explore-hello-sample-code"></a>Explorer l’exemple de code hello
 
-L’exemple **Microsoft Power BI Embedded** est un exemple d’application web qui vous montre comment intégrer des rapports **Power BI** dans votre application. Il utilise un modèle de conception MVC (Model-View-Controller) pour illustrer les meilleures pratiques. Cette section met en évidence les parties de l’exemple de code que vous pouvez explorer dans la solution d’application web **PowerBI-embedded**. Le modèle MVC (Model-View-Controller) sépare la modélisation du domaine, la présentation et les actions basées sur les entrées des utilisateurs en trois classes distinctes : modèle, affichage et contrôle. Pour plus d’informations sur MVC, consultez [En savoir plus sur ASP.NET](http://www.asp.net/mvc).
+Hello **Microsoft Power BI Embedded** exemple est un exemple d’application web qui vous montre comment toointegrate **Power BI** rapports dans votre application. Il utilise un Model-View-Controller (MVC) toodemonstrate meilleures pratiques du modèle de conception. Cette section met en évidence les parties de l’exemple de code hello que vous pouvez Explorer dans hello **Power BI incorporé** solution d’application web. Hello modèle Model-View-Controller (MVC) sépare la modélisation de domaine de hello, hello présentation et les actions de hello en fonction de l’entrée d’utilisateur en trois classes distinctes hello : modèle, vue et le contrôle. toolearn en savoir plus sur MVC, consultez [en savoir plus sur ASP.NET](http://www.asp.net/mvc).
 
-L’exemple **Microsoft Power BI Embedded** inclut les sections suivantes. Chacune d’elles inclut le nom de fichier dans la solution PowerBI-embedded.sln afin que vous puissiez facilement trouver le code dans l’exemple.
+Hello **Microsoft Power BI Embedded** exemple de code est séparé comme suit. Chaque section inclut le nom de fichier hello Bonjour Power BI-embedded.sln solution afin que vous pouvez rechercher facilement les code hello dans l’exemple hello.
 
 > [!NOTE]
-> Cette section est un résumé de l’exemple de code qui montre comment le code a été écrit. Pour afficher l’exemple complet, chargez la solution PowerBI-embedded.sln dans Visual Studio.
+> Cette section est un résumé de l’exemple de code hello qui montre comment le code de hello a été écrit. hello tooview complète exemple, Veuillez charger hello Power BI-embedded.sln la solution dans Visual Studio.
 
 ### <a name="model"></a>Modèle
 
-L’exemple inclut deux modèles : **ReportsViewModel** et **ReportViewModel**.
+exemple Hello a un **ReportsViewModel** et **ReportViewModel**.
 
 **ReportsViewModel.cs** : représente les rapports Power BI.
 
@@ -122,7 +122,7 @@ L’exemple inclut deux modèles : **ReportsViewModel** et **ReportViewModel**.
 
 ### <a name="connection-string"></a>Chaîne de connexion
 
-La chaîne de connexion doit avoir le format suivant :
+chaîne de connexion Hello doit être Bonjour suivant le format :
 
 ```
 Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
@@ -132,14 +132,14 @@ L’utilisation d’attributs de serveur et de base de données communs échoue.
 
 ### <a name="view"></a>Affichage
 
-L’**affichage** gère la présentation des **rapports** Power BI et d’un **rapport** Power BI.
+Hello **vue** gère affichage hello de Power BI **rapports** et un Power BI **rapport**.
 
-**Reports.cshtml** : effectue une itération sur **Model.Reports** pour créer un **ActionLink**. **ActionLink** est composé comme suit :
+**Reports.cshtml**: itérer sur **Model.Reports** toocreate un **ActionLink**. Hello **ActionLink** est composé comme suit :
 
 | Partie | Description |
 | --- | --- |
-| Intitulé |Nom du rapport. |
-| QueryString |Lien vers l’ID de rapport. |
+| Intitulé |Nom du rapport de hello. |
+| QueryString |Un lien de toohello ID d’état. |
 
     <div id="reports-nav" class="panel-collapse collapse">
         <div class="panel-body">
@@ -155,7 +155,7 @@ L’**affichage** gère la présentation des **rapports** Power BI et d’un **r
         </div>
     </div>
 
-Report.cshtml : définit **Model.AccessToken** et l’expression lambda pour **PowerBIReportFor**.
+Report.cshtml : Définir hello **Model.AccessToken**, et hello expression Lambda pour **PowerBIReportFor**.
 
     @model ReportViewModel
 
@@ -168,7 +168,7 @@ Report.cshtml : définit **Model.AccessToken** et l’expression lambda pour **P
 
 ### <a name="controller"></a>Controller
 
-**DashboardController.cs** : crée un PowerBIClient qui transmet un **jeton d’application**. Un jeton JWT (JSON Web Token) est généré à partir de la **clé de signature** pour obtenir les **informations d’identification**. Les **informations d’identification** sont utilisées pour créer une instance de **PowerBIClient**. Une fois que vous avez une instance de **PowerBIClient**, vous pouvez appeler GetReports() et GetReportsAsync().
+**DashboardController.cs** : crée un PowerBIClient qui transmet un **jeton d’application**. Un jeton de Web JSON (JWT) est généré à partir de hello **clé de signature** tooget hello **informations d’identification**. Hello **informations d’identification** est toocreate utilisé une instance de **PowerBIClient**. Une fois que vous avez une instance de **PowerBIClient**, vous pouvez appeler GetReports() et GetReportsAsync().
 
 CreatePowerBIClient()
 
@@ -223,13 +223,13 @@ Task<ActionResult> Report(string reportId)
 
 ### <a name="integrate-a-report-into-your-app"></a>Intégrer un rapport dans votre application
 
-Une fois que vous avez un **rapport**, utilisez un **iframe** pour incorporer le **rapport** Power BI. Voici un extrait de code powerbi.js dans l’exemple **Microsoft Power BI Embedded**.
+Une fois que vous avez un **rapport**, vous utilisez un **IFrame** tooembed hello Power BI **rapport**. Voici un extrait de code à partir de powerbi.js Bonjour **Microsoft Power BI Embedded** exemple.
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-iframe-code.png)
 
 ## <a name="filter-reports-embedded-in-your-application"></a>Filtrer les rapports incorporés dans votre application
 
-Vous pouvez filtrer un rapport incorporé à l’aide d’une syntaxe d’URL. Pour ce faire, ajoutez un paramètre de chaîne de requête **$filter** avec un opérateur **eq** à l’URL src iframe avec le filtre spécifié. Voici la syntaxe de requête de filtre :
+Vous pouvez filtrer un rapport incorporé à l’aide d’une syntaxe d’URL. toodo, vous ajoutez un **$filter** interroger le paramètre de chaîne avec un **eq** opérateur tooyour l’url src iFrame avec filtre hello spécifié. Voici la syntaxe de requête de filtre hello :
 
 ```
 https://app.powerbi.com/reportEmbed
@@ -238,7 +238,7 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 ```
 
 > [!NOTE]
-> {tableName/fieldName} ne peut pas contenir d’espaces ou de caractères spéciaux. {fieldValue} accepte une seule valeur de catégorie.  
+> {tableName/fieldName} ne peut pas contenir d’espaces ou de caractères spéciaux. Bonjour {fieldValue} accepte une seule valeur par catégorie.  
 
 ## <a name="see-also"></a>Voir aussi
 
@@ -248,4 +248,4 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 [Créer un rapport à partir d’un jeu de données](power-bi-embedded-create-report-from-dataset.md)  
 [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
 [Exemple d’incorporation JavaScript](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
-Des questions ? [Essayer la communauté Power BI](http://community.powerbi.com/)
+Des questions ? [Essayez de hello Communauté Power BI](http://community.powerbi.com/)

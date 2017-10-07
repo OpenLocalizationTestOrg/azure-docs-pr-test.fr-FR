@@ -1,5 +1,5 @@
 ---
-title: "FAQ sur l’inscription d’appareils automatique Azure Active Directory | Microsoft Docs"
+title: "aaaAzure Active l’inscription automatique FAQ | Documents Microsoft"
 description: "FAQ sur l’inscription d’appareils automatique avec Azure Active Directory."
 services: active-directory
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: 29751239ae2a26cd7b07ddd0d8a8e706d4056b68
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ba7f113fd3bc310def001a1f44d938b0be71dba8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-automatic-device-registration-faq"></a>FAQ sur l’inscription d’appareils automatique Azure Active Directory
 
-**Q : J’ai enregistré récemment l’appareil. Pourquoi ne puis-je pas voir l’appareil sous mes informations d’utilisateur dans le portail Azure ?**
+**Q : j’inscrit les appareils hello récemment. Pourquoi ne peux pas voir les périphériques hello sous Mes infos utilisateur Bonjour portail Azure ?**
 
-**R :** Les appareils Windows 10 qui sont joints à un domaine avec l’inscription d’appareils automatique ne s’affichent pas sous les informations UTILISATEUR.
-Vous devez utiliser PowerShell pour afficher tous les appareils. 
+**R :** les appareils Windows 10 qui sont joints à un domaine avec l’inscription automatique ne s’affichent pas sous les informations d’utilisateur hello.
+Vous devez toouse PowerShell toosee tous les appareils. 
 
-Seuls les appareils suivants sont répertoriés sous les informations UTILISATEUR :
+Uniquement hello périphériques suivants sont répertoriés sous les informations d’utilisateur hello :
 
 - Tous les appareils personnels qui ne sont pas joints à une entreprise 
 - Tous les appareils non Windows 10 / Windows Server 2016 
@@ -35,38 +35,38 @@ Seuls les appareils suivants sont répertoriés sous les informations UTILISATEU
 
 ---
 
-**Q : Pourquoi ne puis-je pas voir tous les appareils inscrits auprès d’Azure Active Directory dans le portail Azure ?** 
+**Q : Pourquoi ne puis-je pas voir tous les appareils hello inscrits dans Azure Active Directory Bonjour portail Azure ?** 
 
-**R :** Actuellement, il n’existe aucun moyen d’afficher tous les appareils inscrits dans le portail Azure. Vous pouvez utiliser Azure PowerShell pour rechercher tous les appareils. Pour plus d’informations, consultez l’applet de commande [Get-MsolDevice](/powershell/module/msonline/get-msoldevice?view=azureadps-1.0).
+**R :** , il n’existe actuellement aucune toosee de façon tous les appareils inscrits Bonjour portail Azure. Vous pouvez utiliser Azure PowerShell toofind tous les appareils. Pour plus d’informations, consultez hello [Get-MsolDevice](/powershell/module/msonline/get-msoldevice?view=azureadps-1.0) applet de commande.
 
 --- 
 
-**Q : Comment puis-je connaître l’état de l’inscription d’appareils du client ?**
+**Q : comment savoir quel état de l’inscription de périphérique hello du client de hello est ?**
 
-**R :** L’état de l’inscription d’appareils dépend des facteurs suivants :
+**R :** dépend de l’état de l’inscription de périphérique hello :
 
-- du type d’appareil concerné ;
+- Quel périphérique hello est
 - de la manière dont il a été inscrit ; 
-- de tous les détails qui lui sont associés. 
+- Les informations relatives à tooit. 
  
 
 ---
 
-**Q : Pourquoi un appareil que j’ai supprimé dans le portail Azure ou à l’aide de Windows PowerShell est-il toujours répertorié comme inscrit ?**
+**Q : Pourquoi est un périphérique que j’ai supprimé Bonjour Azure portal ou à l’aide de Windows PowerShell toujours répertoriés comme inscrit ?**
 
-**R :** Il s’agit du comportement par défaut. L’appareil n’aura pas accès aux ressources dans le cloud. Si vous souhaitez supprimer l’appareil et l’inscrire à nouveau, vous devez effectuer une action manuelle sur celui-ci. 
+**R :** Il s’agit du comportement par défaut. Appareil de Hello n’auront pas accès tooresources dans le cloud de hello. Si vous voulez tooremove hello périphérique et inscrivez de nouveau, une action manuelle doit être toobe effectuée sur le périphérique de hello. 
 
 Pour Windows 10 et Windows Server 2016 sur site AD et joints à un domaine :
 
-1.  Ouvrez une invite de commandes en tant qu’administrateur.
+1.  Ouvrez l’invite de commandes hello en tant qu’administrateur.
 
 2.  Saisissez `dsregcmd.exe /debug /leave`
 
-3.  Déconnectez puis reconnectez-vous pour déclencher la tâche planifiée qui inscrit à nouveau l’appareil. 
+3.  Se déconnecter et se dans la tâche planifiée tootrigger hello qui inscrit le périphérique de hello à nouveau. 
 
 Pour les autres plateformes Windows sur site AD et jointes à un domaine :
 
-1.  Ouvrez une invite de commandes en tant qu’administrateur.
+1.  Ouvrez l’invite de commandes hello en tant qu’administrateur.
 2.  Saisissez `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /l"`.
 3.  Saisissez `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /j"`.
 
@@ -76,78 +76,78 @@ Pour les autres plateformes Windows sur site AD et jointes à un domaine :
 
 **R :**
 
--   Pour Windows 10 et Windows Server 2016, en cas de tentatives répétées visant à disjoindre et à joindre à nouveau le même appareil, des entrées dupliquées peuvent s’afficher. 
+-   Pour Windows 10 et Windows Server 2016, s’ils sont des tentatives répétées toounjoin et joignez de nouveau hello même appareil, il peut y avoir des entrées en double. 
 
--   Si vous avez utilisé « Ajouter un compte professionnel ou scolaire », chaque utilisateur Windows qui utilise « Ajouter un compte professionnel ou scolaire » créera un nouvel enregistrement d’appareil avec le même nom d’appareil.
+-   Si vous avez utilisé Ajouter compte professionnel ou scolaire, chaque utilisateur de windows qui utilise Ajouter compte professionnel ou scolaire créera un nouvel enregistrement d’appareil avec hello même nom de périphérique.
 
--   Les autres plateformes Windows sur site AD jointes à un domaine à l’aide de l’inscription automatique créeront un nouvel enregistrement d’appareil avec le même nom d’appareil pour chaque utilisateur du domaine qui se connecte à l’appareil. 
+-   Autres plates-formes Windows local AD appartenant au domaine à l’aide de l’inscription automatique créera un nouvel enregistrement d’appareil avec hello même nom de périphérique pour chaque utilisateur de domaine qui se connecte à un périphérique de hello. 
 
--   Une machine AADJ qui a été réinitialisée, réinstallée et jointe à nouveau avec le même nom s’affichera en tant que nouvel enregistrement avec le même nom d’appareil.
+-   Un ordinateur AADJ qui a été réinitialisé, réinstallé et nouveau en souscrivant hello même nom, apparaîtront en tant qu’un autre enregistrement hello même nom de périphérique.
 
 ---
 
-**Q : Pourquoi un utilisateur peut-il toujours accéder aux ressources à partir d’un appareil que j’ai désactivé dans le portail Azure ?**
+**Q : Pourquoi peut un utilisateur encore accéder aux ressources d’un appareil, que j’ai désactivé Bonjour portail Azure ?**
 
-**R :** Une opération de révocation peut prendre jusqu’à une heure pour être entièrement appliquée.
+**R :** peut prendre jusqu'à une heure tooan pour un toobe revoke appliqué.
 
 >[!Note] 
->Pour les appareils perdus, nous vous recommandons de réinitialiser l’appareil pour vous assurer que les utilisateurs ne puissent pas y accéder. Pour plus d’informations, consultez [Inscrire des appareils pour la gestion dans Intune](https://docs.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune). 
+>Pour les appareils perdus, nous vous recommandons de réinitialisation hello tooensure de périphérique que les utilisateurs ne peut pas accéder à des appareils de hello. Pour plus d’informations, consultez [Inscrire des appareils pour la gestion dans Intune](https://docs.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune). 
 
 
 ---
 
 **Q : Pourquoi mes utilisateurs voient-ils s’afficher « Vous ne pouvez pas accéder à cet emplacement à partir d’ici » ?**
 
-**R :** Si vous avez configuré certaines règles d’accès conditionnel pour exiger un état d’appareil spécifique et que l’appareil ne respecte pas les critères, les utilisateurs sont bloqués et ce message s’affiche. Veuillez évaluer les règles et vous assurer que l’appareil est en mesure de respecter les critères pour éviter l’affichage de ce message.
+**R :** si vous avez configuré certain toorequire de règles d’accès conditionnel un état de périphérique spécifique et les appareils hello ne répond pas aux critères de hello, les utilisateurs sont bloquées et ce message s’affiche. Veuillez évaluer les règles de hello et assurez-vous de cet appareil hello est en mesure de toomeet hello critères tooavoid ce message.
 
 ---
 
 
-**Q : Je vois l’enregistrement d’appareil sous les informations UTILISATEUR dans le portail Azure, ainsi que l’état en tant qu’inscrit sur le client. Ma configuration est-elle correcte pour l’utilisation de l’accès conditionnel ?**
+**Q : je consultez enregistrement d’appareil hello sous les informations d’utilisateur hello Bonjour portail Azure et que vous pouvez voir l’état de hello tel qu’enregistré sur le client de hello. Ma configuration est-elle correcte pour l’utilisation de l’accès conditionnel ?**
 
-**R :** L’enregistrement d’appareil (deviceID) et l’état sur le portail Azure doivent correspondre au client et respecter les critères d’évaluation de l’accès conditionnel. Pour plus d’informations, consultez [Bien démarrer avec le service Azure Active Directory Device Registration](active-directory-device-registration.md).
+**R :** enregistrement d’appareil hello (deviceID) et son état sur hello portail Azure doivent correspondre à des clients de hello et répondent à tous les critères d’évaluation pour l’accès conditionnel. Pour plus d’informations, consultez [Bien démarrer avec le service Azure Active Directory Device Registration](active-directory-device-registration.md).
 
 ---
 
-**Q : Pourquoi est-ce que je reçois le message « nom d’utilisateur ou mot de passe incorrect » pour un appareil que je viens juste de joindre à Azure AD ?**
+**Q : je reçois un message « nom d’utilisateur ou mot de passe est incorrect » pour un périphérique j’ai viennent de rejoindre tooAzure AD ?**
 
 **R :** Les raisons les plus courantes sont les suivantes :
 
 - Vos informations d’identification ne sont plus valides.
 
-- Votre ordinateur n’est pas en mesure de communiquer avec Azure Active Directory. Vérifiez les éventuels problèmes de connectivité réseau.
+- Votre ordinateur est toocommunicate impossible avec Azure Active Directory. Vérifiez les éventuels problèmes de connectivité réseau.
 
-- Les conditions préalables pour la jonction à Azure AD n’ont pas été respectées. Veuillez vous assurer que vous avez respecté les étapes de la section [Extension des fonctionnalités du cloud aux appareils Windows 10 via Azure Active Directory Join](active-directory-azureadjoin-overview.md).  
+- Bonjour Azure AD Join conditions préalables n’ont pas été respectées. Veuillez vous assurer que vous avez suivi les étapes de hello pour [extension cloud appareils tooWindows 10 de fonctionnalités via Azure Active Directory Join](active-directory-azureadjoin-overview.md).  
 
-- Les connexions fédérées nécessitent que votre serveur de fédération prenne en charge un point de terminaison WS-Trust actif. 
+- Connexions fédérées nécessite votre toosupport de serveur de fédération un point de terminaison WS-Trust active. 
 
 ---
 
-**Q : Pourquoi la boîte de dialogue « Désolé... une erreur s’est produite ! » s’affiche-t-elle lorsque j’essaye d’inscrire mon ordinateur ?**
+**Q : Pourquoi hello « Désolé... une erreur s’est produite ! « boîte de dialogue lors de le ne joignez pas mon ordinateur ?**
 
 **R :** Cela résulte de la configuration de l’inscription Azure Active Directory avec Intune. Pour plus d’informations, consultez [Configurer la gestion des appareils Windows](https://docs.microsoft.com/intune/deploy-use/set-up-windows-device-management-with-microsoft-intune#azure-active-directory-enrollment).  
 
 ---
 
-**Q : Pourquoi ma tentative d’inscription d’un ordinateur a-t-elle échoué alors que je n’ai reçu aucune information d’erreur ?**
+**Q : Pourquoi mon toojoin tentative un PC échouer même si je n’ai reçu aucune information d’erreur ?**
 
-**R :** Une cause possible est que l’utilisateur est connecté à l’appareil à l’aide du compte administrateur intégré. Créez un compte local distinct avant d’utiliser Azure Active Directory Join pour terminer la configuration. 
-
----
-
-**Q : Où puis-je trouver des instructions pour la configuration de l’inscription automatique  d’appareils ?**
-
-**R :** Pour plus d’instructions, consultez [Configuration de l’inscription automatique auprès d’Azure Active Directory d’appareils Windows joints à un domaine](active-directory-conditional-access-automatic-device-registration-setup.md)
+**R :** une cause possible est que l’utilisateur hello est enregistré dans le périphérique toohello à l’aide du compte d’administrateur intégré hello. Créez un autre compte local avant d’utiliser le programme d’installation de Azure Active Directory Join toocomplete hello. 
 
 ---
 
-**Q : Où puis-je trouver des informations de résolution des problèmes concernant l’inscription d’appareils automatique ?**
+**Q : où puis-je trouver des instructions d’inscription automatique pour le programme d’installation Bonjour ?**
+
+**R :** pour obtenir des instructions détaillées, consultez [comment tooconfigure l’inscription automatique de Windows appartenant au domaine des appareils avec Azure Active Directory](active-directory-conditional-access-automatic-device-registration-setup.md)
+
+---
+
+**Q : où puis-je trouver dépannage plus d’informations sur l’inscription automatique hello ?**
 
 **R :** Pour obtenir des informations de résolution des problèmes, consultez :
 
-- [Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine à Azure AD – Windows 10 et Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md)
+- [Résolution des problèmes d’enregistrement automatique du domaine joint ordinateurs tooAzure AD – Windows 10 et Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md)
 
-- [Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine à Azure AD pour les clients de bas niveau Windows](active-directory-device-registration-troubleshoot-windows-legacy.md)
+- [Résolution des problèmes d’enregistrement automatique du domaine joint tooAzure d’ordinateurs Active Directory pour les clients de bas niveau de Windows](active-directory-device-registration-troubleshoot-windows-legacy.md)
  
 ---
 

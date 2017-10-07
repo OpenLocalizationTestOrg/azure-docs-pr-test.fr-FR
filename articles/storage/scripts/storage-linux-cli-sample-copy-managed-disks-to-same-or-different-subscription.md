@@ -1,6 +1,6 @@
 ---
-title: "Exemple de script Azure CLI - Copier (déplacer) des disques managés vers un abonnement identique ou différent | Microsoft Docs"
-description: "Exemple de script Azure CLI - Copier (déplacer) des disques managés vers un abonnement identique ou différent"
+title: "aaaAzure exemple de Script CLI - copie (déplacer) géré toosame de disques ou d’un autre abonnement | Documents Microsoft"
+description: "Exemple de Script CLI Azure - Copy (déplacer) gérés disques toosame ou autre abonnement"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: 784ad81db2c83da14665fa926425928f12a15c27
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8581169baa0fd0e0eec1c72eab77b657f48b1cfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-managed-disks-to-same-or-different-subscription-with-cli"></a>Copier des disques managés vers un abonnement identique ou différent avec l’interface de ligne de commande
+# <a name="copy-managed-disks-toosame-or-different-subscription-with-cli"></a>Copier les disques gérés toosame ou autre abonnement avec l’interface CLI
 
-Ce script copie le disque managé vers un abonnement identique ou différent, mais dans la même région. 
+Ce script copie un disque géré toosame ou un autre abonnement, mais dans hello même région. 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -32,22 +32,22 @@ Ce script copie le disque managé vers un abonnement identique ou différent, ma
 
 ## <a name="sample-script"></a>Exemple de script
 
-[!code-azurecli[main](../../../cli_scripts/storage/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.sh "Copier un disque managé")]
+[!code-azurecli[main](../../../cli_scripts/storage/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.sh "Copy managed disk")]
 
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise les commandes suivantes pour créer un disque géré dans l’abonnement cible à l’aide de l’ID du disque source géré. Chaque commande du tableau renvoie à une documentation spécifique.
+Ce script utilise suivante commandes toocreate un nouveau disque géré à l’aide d’abonnement cible hello hello Id de source de hello gérés disque. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
 
 | Commande | Remarques |
 |---|---|
-| [az disk show](https://docs.microsoft.com/cli/azure/disk#show) | Obtient toutes les propriétés d’un disque managé en utilisant les propriétés de nom et de groupe de ressources du disque managé. La propriété de l’identifiant est utilisée pour copier le disque managé vers un autre abonnement.  |
-| [az disk create](https://docs.microsoft.com/cli/azure/disk#create) | Copie un disque managé en créant un disque managé dans un autre abonnement à l’aide de l’identifiant et du nom du disque managé parent.  |
+| [az disk show](https://docs.microsoft.com/cli/azure/disk#show) | Obtient toutes les propriétés de hello d’un disque géré à l’aide des propriétés du groupe hello nom et les ressources de disque géré de hello. Propriété ID est utilisé toocopy hello géré disque toodifferent abonnement.  |
+| [az disk create](https://docs.microsoft.com/cli/azure/disk#create) | Copie d’un disque géré en créant un nouveau disque géré dans un autre abonnement à l’aide d’Id et nom du parent de hello gérés disque.  |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Créer une machine virtuelle à partir d’un disque managé](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
+[Créer une machine virtuelle à partir d’un disque géré](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
 
-Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous trouverez des exemples supplémentaires de scripts CLI de machine virtuelle et de disques managés dans la [documentation relative aux machines virtuelles Linux Azure](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Machine virtuelle supplémentaire et des exemples de scripts CLI de disques gérés sont accessibles dans hello [documentation de la machine virtuelle de Azure Linux](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

@@ -1,6 +1,6 @@
 ---
-title: "Gestion de la puissance de calcul dans Azure SQL Data Warehouse (Vue d’ensemble) | Documents Microsoft"
-description: "Capacités de montée en puissance des performances dans Azure SQL Data Warehouse. Montez en puissance en ajustant le nombre d’unités DWU ou suspendez et reprenez des ressources de calcul pour réduire les coûts."
+title: "aaaManage de calcul power dans l’entrepôt de données SQL Azure (aperçu) | Documents Microsoft"
+description: "Capacités de montée en puissance des performances dans Azure SQL Data Warehouse. Montée en puissance parallèle en ajustant les Dwu ou suspendre et reprendre les coûts toosave de ressources de calcul."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 03/22/2017
 ms.author: elbutter
-ms.openlocfilehash: abe22f542a79714f6e894870872ee6b76ffe7633
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ffbe8d694ac181eaeb6f585a2cee87a570ed7d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-overview"></a>Gestion de la puissance de calcul dans Azure SQL Data Warehouse (Vue d’ensemble)
 > [!div class="op_single_selector"]
@@ -31,16 +31,16 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-L’architecture de SQL Data Warehouse sépare le stockage du calcul, ce qui permet de les mettre à l’échelle indépendamment l’un de l’autre. En conséquence, le calcul peut être mis à l’échelle pour répondre aux exigences de performance, indépendamment du volume de données. Une conséquence naturelle de cette architecture est la séparation de la [facturation][billed] du calcul et du stockage. 
+architecture Hello de SQL Data Warehouse sépare le stockage et calcul, ce qui permet de chaque tooscale indépendamment. Par conséquent, le calcul peut être les demandes de performances toomeet à l’échelle indépendante de la quantité de hello de données. Une conséquence naturelle de cette architecture est la séparation de la [facturation][billed] du calcul et du stockage. 
 
-Cette présentation décrit le fonctionnement de la mise à l’échelle avec SQL Data Warehouse. Elle explique également comment utiliser les fonctionnalités de mise en pause, de reprise et de mise à l’échelle de SQL Data Warehouse. Consultez la page sur les [Data Warehouse Units (DWU)][data warehouse units (DWUs)] pour en apprendre davantage sur les DWU et leurs performances. 
+Cette présentation décrit comment monter en charge fonctionne avec SQL Data Warehouse et comment tooutilize hello suspendre, reprendre et des fonctionnalités de mise à l’échelle de l’entrepôt de données SQL. Consultez hello [unités (Dwu) de l’entrepôt de données] [ data warehouse units (DWUs)] toolearn page Comment Dwu et les performances sont liés. 
 
 ## <a name="how-compute-management-operations-work-in-sql-data-warehouse"></a>Fonctionnement des opérations de gestion du calcul dans SQL Data Warehouse
-L’architecture de SQL Data Warehouse consiste en un nœud de contrôle, des nœuds de calcul et la couche de stockage, le tout réparti sur 60 distributions. 
+architecture Hello pour SQL Data Warehouse se compose d’un nœud de contrôle, le calcul des nœuds et une couche de stockage hello réparties sur les 60 distributions. 
 
-Au cours d’une session active normale dans SQL Data Warehouse, le nœud principal du système gère les métadonnées et contient l’optimiseur de requête distribuée. Sous ce nœud principal, se trouvent les nœuds de calcul et la couche de stockage. Pour une instance de 400 DWU, votre système possède un nœud principal, quatre nœuds de calcul et la couche de stockage, soit 60 distributions. 
+Pendant une session active normale dans l’entrepôt de données SQL, nœud de tête de votre système gère les métadonnées hello et contient l’optimiseur de requête hello distribué. Sous ce nœud principal, se trouvent les nœuds de calcul et la couche de stockage. Pour une 400 DWU, votre système a un nœud principal, quatre nœuds de calcul et couche de stockage hello, consistant à 60 distributions. 
 
-Lorsque vous entreprenez une mise à l’échelle ou que vous interrompez l’opération, le système supprime tout d’abord toutes les requêtes entrantes, puis restaure les transactions pour garantir un état cohérent. La mise à l’échelle intervient uniquement une fois la restauration des transactions effectuée. Pour une opération de montée en puissance, le système configure le nombre de nœuds de calcul souhaité, puis commence le rattachement des nœuds de calcul à la couche de stockage. Pour une opération de descente en puissance, les nœuds inutiles sont rendus disponibles et les nœuds de calcul restants sont rattachés au nombre de distributions approprié. Pour une opération de mise en pause, tous les nœuds de calcul sont rendus disponibles et le système entreprend diverses opérations sur les métadonnées afin de garantir la stabilité du système final.
+Lorsque vous subir une échelle ou interrompez l’opération, système de hello tout d’abord supprime toutes les requêtes entrantes et restaure les transactions tooensure un état cohérent. La mise à l’échelle intervient uniquement une fois la restauration des transactions effectuée. Pour une opération de montée en puissance parallèle, les dispositions de système de hello hello du nombre de nœuds de calcul supplémentaire souhaité et commence ensuite le rattachement de couche de stockage toohello hello calcul nœuds. Pour une opération de réduction, hello nœuds inutiles sont publiées et autres nœuds de calcul hello eux-mêmes rattachement toohello le nombre approprié de distributions. Pour une opération de pause, toutes les calcul nœuds sont publiées et votre système est soumises à une variété de tooleave des opérations de métadonnées de votre système final dans un état stable.
 
 | DWU  | \# de nœuds de calcul | \# de distributions par nœud |
 | ---- | ------------------ | ---------------------------- |
@@ -57,15 +57,15 @@ Lorsque vous entreprenez une mise à l’échelle ou que vous interrompez l’op
 | 3000 | 30                 | 2                            |
 | 6000 | 60                 | 1                            |
 
-Les trois principales fonctions pour la gestion du calcul sont :
+trois fonctions principales Hello pour la gestion de compute sont :
 
 1. Suspendre
 2. Reprendre
-3. Scale
+3. Mettre à l'échelle
 
-Chacune de ces opérations peut prendre plusieurs minutes. Si vous effectuez une mise à l’échelle/mise en pause/reprise automatique, il vous faudra peut-être implémenter une logique pour vous assurer que certaines opérations sont bien terminées avant de passer à une autre action. 
+Chacune de ces opérations peut-être prendre plusieurs minutes toocomplete. Si vous êtes mise à l’échelle, suspension/reprise automatiquement, vous souhaiterez tooensure de logique de tooimplement que certaines opérations ont été effectuées avant de procéder à une autre action. 
 
-Nous vous conseillons de vérifier l’état de la base de données en différents points de terminaison afin d’automatiser correctement de telles opérations. Si le portail vous informe de la fin d’une opération et de l’état actuel des bases de données, il ne vous permet pas de programmer la vérification de l’état. 
+Vérification de l’état de base de données hello via différents points de terminaison vous permettra de toocorrectly implémenter l’automatisation de ces opérations. portail de Hello fournira une notification à la fin d’un état actuel de bases de données opération et hello mais n’autorise pas de vérification de la programmation de l’état. 
 
 >  [!NOTE]
 >
@@ -86,12 +86,12 @@ Nous vous conseillons de vérifier l’état de la base de données en différen
 
 ## <a name="scale-compute"></a>Mise à l’échelle des ressources de calcul
 
-Les performances dans SQL Data Warehouse se mesurent en [Data Warehouse Units (DWU)][data warehouse units (DWUs)] qui sont une unité abstraite de ressources de calcul (processeur, mémoire et bande passante d’E/S). Un utilisateur qui souhaite augmenter les performances de son système peut y parvenir de plusieurs façons, par exemple via le portail, T-SQL et les API REST. 
+Les performances dans SQL Data Warehouse se mesurent en [Data Warehouse Units (DWU)][data warehouse units (DWUs)] qui sont une unité abstraite de ressources de calcul (processeur, mémoire et bande passante d’E/S). Un utilisateur qui souhaite tooscale les performances de leur système pouvez le faire par différents moyens, par exemple via le portail de hello, T-SQL et les API REST. 
 
 ### <a name="how-do-i-scale-compute"></a>Comment mettre à l’échelle les ressources de calcul ?
-La puissance de calcul est gérée pour vous par SQL Data Warehouse en modifiant le paramètre DWU. Les performances augmentent [de manière linéaire][linearly] à mesure que vous ajoutez des DWU pour certaines opérations.  Nous proposons des offres DWU qui vous garantissent une évolution notable de vos performances lorsque vous effectuez une montée ou une descente en puissance de votre système. 
+La puissance de calcul est gérée pour vous SQL Data Warehouse en modifiant la valeur dwu hello. Les performances augmentent [de manière linéaire][linearly] à mesure que vous ajoutez des DWU pour certaines opérations.  Nous proposons des offres DWU qui vous garantissent une évolution notable de vos performances lorsque vous effectuez une montée ou une descente en puissance de votre système. 
 
-Pour ajuster les unités DWU, vous pouvez utiliser l’une des différentes méthodes suivantes.
+tooadjust Dwu, vous pouvez utiliser une de ces méthodes individuelles.
 
 * [Mise à l’échelle de la puissance de calcul avec le portail Azure][Scale compute power with Azure portal]
 * [Mise à l’échelle de la puissance de calcul avec PowerShell][Scale compute power with PowerShell]
@@ -100,41 +100,41 @@ Pour ajuster les unités DWU, vous pouvez utiliser l’une des différentes mét
 
 ### <a name="how-many-dwus-should-i-use"></a>Combien d’unités DWU dois-je utiliser ?
 
-Pour obtenir votre valeur DWU idéale, essayez d’augmenter et de réduire vos DWU et d’exécuter quelques requêtes après le chargement de vos données. La mise à l’échelle étant rapide, vous pouvez essayer plusieurs niveaux de performances en une heure ou moins. 
+toounderstand votre valeur DWU idéale est, essayez d’et vers le bas jusqu'à la mise à l’échelle et des requêtes en cours d’exécution après le chargement de vos données. La mise à l’échelle étant rapide, vous pouvez essayer plusieurs niveaux de performances en une heure ou moins. 
 
 > [!Note] 
-> SQL Data Warehouse est conçu pour traiter de grandes quantités de données. Pour étudier ses fonctionnalités de mise à l’échelle, en particulier sur les unités DWU de grande taille, nous vous conseillons d’utiliser un jeu de données qui avoisine ou dépasse 1 To.
+> Entrepôt de données SQL est conçu tooprocess de grandes quantités de données. toosee ses fonctionnalités trues pour la mise à l’échelle, surtout au plus grand Dwu, que vous souhaitez toouse un jeu de données volumineux qui approche ou dépasse 1 To.
 
-Recommandations pour rechercher l’unité DWU la mieux adaptée à votre charge de travail :
+Recommandations relatives à la recherche hello meilleures DWU de votre charge de travail :
 
 1. Si vous disposez d’un entrepôt de données en développement, commencez par sélectionner un niveau de performances utilisant un nombre réduit d’unités DWU.  DW400 ou DW200 est un bon point de départ.
-2. Surveillez les performances de votre application, en observant notamment le nombre d’unités DWU sélectionné.
-3. Déterminez le niveau de performances le mieux adapté aux exigences en modulant la capacité de votre système à l’aide d’une mise à l’échelle linéaire.
-4. Augmentez ou diminuez le nombre de DWU en fonction de la performance de charge de travail dont vous avez besoin. 
+2. Surveiller les performances de votre application, en observant nombre hello de Dwu sélectionné par rapport performances toohello que vous observez.
+3. Déterminez la quantité accélérer ou ralentir les performances pour vous tooreach hello niveau de performance optimal pour les besoins de votre par en supposant que l’échelle linéaire.
+4. Augmentez ou diminuez le nombre de hello Dwu dans toohow proportion beaucoup plus rapide ou plus lent vous voulez tooperform de votre charge de travail. 
 5. Continuez à effectuer des ajustements jusqu’à ce que vous atteigniez le niveau de performances requis par vos activités.
 
 > [!NOTE]
 >
-> Si les travaux peuvent être fractionnés entre les nœuds de calcul, les performances des requêtes augmentent uniquement avec une parallélisation renforcée. Si vous trouvez que la mise à l’échelle ne modifie pas les performances, consultez nos articles sur le réglage des performances et voyez si vos données sont distribuées de manière inégale ou si vous provoquez un déplacement trop important des données. 
+> Performances des requêtes augmentent avec plus de parallélisation uniquement si le travail de hello peut être répartis entre les nœuds de calcul. Si vous trouvez que la mise à l’échelle ne change pas les performances, consultez nos articles toocheck si vos données sont distribuées inégalement ou si vous introduisez une grande quantité de déplacement des données de réglage des performances. 
 
 ### <a name="when-should-i-scale-dwus"></a>Quand dois-je mettre les unités DWU à l’échelle ?
-La mise à l’échelle des unités DWU modifie les principaux scénarios suivants :
+Mise à l’échelle Dwu modifie hello scénarios importants suivants :
 
-1. Modification linéaire des performances du système pour les analyses, les agrégations et les instructions CTAS
-2. Augmentation du nombre de lecteurs et d’auteurs lors du chargement des données avec PolyBase
+1. Modification linéaire des performances du système hello pour les analyses, les agrégations et les instructions de SACT
+2. Nombre de hello croissant de lecteurs et writers lors du chargement avec PolyBase
 3. Nombre maximal de requêtes simultanées et d’emplacements concurrentiels
 
-Recommandations sur le moment approprié pour mettre des unités DWU à l’échelle :
+Quand tooscale Dwu :
 
 1. Avant d’exécuter une opération de chargement ou de transformation de données importante, vous pouvez augmenter le nombre d’unités DWU afin que vos données soient disponibles plus rapidement.
-2. Pendant les heures de pointe, envisagez une mise à l’échelle pour prendre en charge un nombre plus important de requêtes simultanées. 
+2. Pendant les heures de pointe, l’échelle tooaccommodate plus grand nombre de requêtes simultanées. 
 
 <a name="pause-compute-bk"></a>
 
 ## <a name="pause-compute"></a>Suspension du calcul
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-Pour suspendre une base de données, utilisez l’une des différentes méthodes suivantes.
+toopause une base de données, utilisez une de ces méthodes individuelles.
 
 * [Suspension du calcul avec le portail Azure][Pause compute with Azure portal]
 * [Suspension du calcul avec PowerShell][Pause compute with PowerShell]
@@ -145,7 +145,7 @@ Pour suspendre une base de données, utilisez l’une des différentes méthodes
 ## <a name="resume-compute"></a>Reprise du calcul
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-Pour reprendre une base de données, utilisez l’une des différentes méthodes suivantes.
+tooresume une base de données, utilisez une de ces méthodes individuelles.
 
 * [Reprise du calcul avec le portail Azure][Resume compute with Azure portal]
 * [Reprise du calcul avec PowerShell][Resume compute with PowerShell]
@@ -153,9 +153,9 @@ Pour reprendre une base de données, utilisez l’une des différentes méthodes
 
 <a name="check-compute-bk"></a>
 
-## <a name="check-database-state"></a>Vérifier l’état de la base de données 
+## <a name="check-database-state"></a>Vérifier l’état de base de données 
 
-Pour reprendre une base de données, utilisez l’une des différentes méthodes suivantes.
+tooresume une base de données, utilisez une de ces méthodes individuelles.
 
 - [Vérifier l’état de la base de données avec T-SQL][Check database state with T-SQL]
 - [Vérifier l’état de la base de données avec PowerShell][Check database state with PowerShell]
@@ -163,12 +163,12 @@ Pour reprendre une base de données, utilisez l’une des différentes méthodes
 
 ## <a name="permissions"></a>Autorisations
 
-La mise à l’échelle de la base de données requiert les autorisations décrites dans [ALTER DATABASE][ALTER DATABASE].  La suspension et la reprise requièrent l’autorisation [SQL DB Contributor][SQL DB Contributor], notamment Microsoft.Sql/servers/databases/action.
+Base de données de mise à l’échelle hello nécessite des autorisations de hello décrites dans [ALTER DATABASE][ALTER DATABASE].  Suspendre et reprendre nécessitent hello [SQL DB collaborateur] [ SQL DB Contributor] autorisation, spécifiquement Microsoft.Sql/servers/databases/action.
 
 <a name="next-steps-bk"></a>
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez les articles suivants pour mieux comprendre certains concepts supplémentaires essentiels en matière de performances :
+Consultez toohello suivant toohelp articles vous comprenez certains concepts de performance clés supplémentaires :
 
 * [Gestion des charges de travail et d’accès concurrentiel][Workload and concurrency management]
 * [Vue d’ensemble de conception de table][Table design overview]

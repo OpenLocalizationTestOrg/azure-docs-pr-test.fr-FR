@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Wingspan eTMF | Microsoft Azure"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Wingspan eTMF."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Wingspan eTMF."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,113 +13,113 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 8c76fb64229abcad0cabb910e7c170979a79d839
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ed5fda5318a0d3841af8b2db4fb74db550befaea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-wingspan-etmf"></a>Didacticiel : Intégration d’Azure Active Directory à Wingspan eTMF
 
-Dans ce didacticiel, vous découvrez comment intégrer Wingspan eTMF à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment eTMF de Wingspan toointegrate avec Azure Active Directory (Azure AD).
 
-L’intégration de Wingspan eTMF à Azure AD vous offre les avantages suivants :
+Intégration Wingspan eTMF à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à Wingspan eTMF.
-- Vous pouvez permettre aux utilisateurs de se connecter automatiquement à Wingspan eTMF (par le biais de l’authentification unique) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooWingspan eTMF
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooWingspan eTMF (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Prérequis
+## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à Wingspan eTMF, vous avez besoin des éléments suivants :
+intégration d’Azure AD avec Wingspan eTMF de tooconfigure, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Wingspan eTMF pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Wingspan eTMF à partir de la galerie
+1. Ajout de Wingspan eTMF à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-wingspan-etmf-from-the-gallery"></a>Ajout de Wingspan eTMF à partir de la galerie
-Pour configurer l’intégration de Wingspan eTMF à Azure AD, vous devez ajouter Wingspan eTMF à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-wingspan-etmf-from-hello-gallery"></a>Ajout de Wingspan eTMF à partir de la galerie de hello
+intégration de hello tooconfigure de Wingspan eTMF dans Azure AD, vous devez eTMF de Wingspan tooadd à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Wingspan eTMF à partir de la galerie, procédez comme suit :**
+**eTMF de Wingspan tooadd à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **Wingspan eTMF**.
+4. Dans la zone de recherche de hello, tapez **Wingspan eTMF**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-wingspanetmf-tutorial/tutorial_wingspanetmf_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Wingspan eTMF** puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **Wingspan eTMF**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-wingspanetmf-tutorial/tutorial_wingspanetmf_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous configurez et vous testez l’authentification unique Azure AD avec Wingspan eTMF, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Wingspan eTMF équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur Wingspan eTMF associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Wingspan eTMF est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Wingspan eTMF doit toobe établie.
 
-Pour cela, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** dans Wingspan eTMF.
+Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans Wingspan eTMF.
 
-Pour configurer et tester l’authentification unique Azure AD avec Wingspan eTMF, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec Wingspan eTMF, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Wingspan eTMF](#creating-a-wingspan-etmf-test-user)** pour avoir un équivalent de Britta Simon dans Wingspan eTMF lié à la représentation Azure AD de l’utilisateur.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test eTMF Wingspan](#creating-a-wingspan-etmf-test-user)**  -toohave un homologue de Britta Simon dans eTMF Wingspan qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et vous configurez l’authentification unique dans votre application Wingspan eTMF.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application d’eTMF Wingspan.
 
-**Pour configurer l’authentification unique Azure AD avec Wingspan eTMF, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec Wingspan eTMF, effectuez hello comme suit :**
 
-1. Dans le portail Azure, sur la page d’intégration de l’application **Wingspan eTMF**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Wingspan eTMF** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-wingspanetmf-tutorial/tutorial_wingspanetmf_samlbase.png)
 
-3. Dans la section **Domaine et URL Wingspan eTMF**, procédez comme suit :
+3. Sur hello **Wingspan eTMF domaine et les URL** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-wingspanetmf-tutorial/tutorial_wingspanetmf_url11.png)
 
-    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<customer name>.<instance name>.mywingspan.com/saml`
+    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<customer name>.<instance name>.mywingspan.com/saml`
 
-    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `http://saml.<instance name>.wingspan.com/shibboleth`
+    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`http://saml.<instance name>.wingspan.com/shibboleth`
 
-    c. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<customer name>.<instance name>.mywingspan.com/`
+    c. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<customer name>.<instance name>.mywingspan.com/`
      
     > [!NOTE] 
-    > Il ne s’agit pas des valeurs réelles. Mettre à jour ces valeurs avec l’URL d’ouverture de session réelle, un identificateur et une URL de réponse, avec notamment les noms réels du client et de l’instance. Pour obtenir ces valeurs, contactez l’[équipe de support technique de Wingspan eTMF](http://www.wingspan.com/contact-us/). 
+    > Ces valeurs ne sont pas hello réel. Mettre à jour ces valeurs hello réelle URL de connexion, identificateur et réponse à une URL, y compris le nom du client réel hello et le nom de l’instance. Contact [équipe de support Client Wingspan eTMF](http://www.wingspan.com/contact-us/) tooget ces valeurs. 
 
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-wingspanetmf-tutorial/tutorial_wingspanetmf_certificate.png) 
 
@@ -127,64 +127,64 @@ Dans cette section, vous activez l’authentification unique Azure AD dans le p
 
     ![Configurer l’authentification unique](./media/active-directory-saas-wingspanetmf-tutorial/tutorial_general_400.png)
 
-6. Pour configurer l’authentification unique du côté **Wingspan eTMF**, vous devez envoyer le fichier **XML des métadonnées** téléchargé au [support technique de Wingspan eTMF](http://www.wingspan.com/contact-us/). Ils configurent les éléments pour que la connexion SSO SAML soit définie correctement des deux côtés.
+6. tooconfigure l’authentification unique sur **Wingspan eTMF** côté, vous devez hello toosend téléchargé **Metadata XML** trop[prise en charge de Wingspan eTMF](http://www.wingspan.com/contact-us/). Ils configurer toohave hello connexion SSO SAML correctement des deux côtés.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
  
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-wingspanetmf-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-wingspanetmf-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-wingspanetmf-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-wingspanetmf-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-wingspan-etmf-test-user"></a>Création d’un utilisateur de test de Wingspan eTMF
 
-Dans cette section, vous créez un utilisateur appelé Britta Simon dans Wingspan eTMF. Collaborez avec le [support technique de Wingspan eTMF](http://www.wingspan.com/contact-us/) pour ajouter des utilisateurs dans l’application Wingspan eTMF. Les utilisateurs doivent être créés et activés avant que vous utilisiez l’authentification unique.
+Dans cette section, vous créez un utilisateur appelé Britta Simon dans Wingspan eTMF. Travailler avec [prise en charge de Wingspan eTMF](http://www.wingspan.com/contact-us/) tooadd les utilisateurs de hello Bonjour application eTMF de Wingspan. Les utilisateurs doivent être créés et activés avant que vous utilisiez l’authentification unique.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Wingspan eTMF.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooWingspan eTMF.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à Wingspan eTMF, procédez comme suit :**
+**tooassign Britta Simon tooWingspan eTMF, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Wingspan eTMF**.
+2. Dans la liste des applications hello, sélectionnez **Wingspan eTMF**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-wingspanetmf-tutorial/tutorial_wingspanetmf_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -192,7 +192,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -200,13 +200,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès. 
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès. 
 
-Cliquez sur la vignette Wingspan eTMF dans le volet d’accès. Vous êtes redirigé vers la page d’authentification d’une organisation. Une fois authentifié, vous êtes connecté à votre application Wingspan eTMF. Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](https://msdn.microsoft.com/library/dn308586).
+Cliquez sur la vignette d’eTMF Wingspan hello Bonjour volet d’accès, vous serez redirigé tooOrganization page d’authentification. Connexion réussie, vous serez connecté tooyour application eTMF de Wingspan. Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](https://msdn.microsoft.com/library/dn308586).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

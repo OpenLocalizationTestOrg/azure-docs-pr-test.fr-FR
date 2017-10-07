@@ -1,5 +1,5 @@
 ---
-title: "Exemples d’interface de ligne de commande Azure Batch | Microsoft Docs"
+title: aaaAzure exemples de commandes CLI | Documents Microsoft
 description: "Exemples d’interface de ligne de commande Azure Batch"
 services: batch
 documentationcenter: 
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/01/2017
 ms.author: antisch
-ms.openlocfilehash: 51fd27536994ca36bf9559a780660c3a16bf30cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d700a6edebd35a3b2bb86926d1e57d4a33584b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-batch-cli-samples"></a>Exemples d’interface de ligne de commande Azure Batch
 
 ## <a name="tutorials-with-sample-shell-scripts"></a>Didacticiels avec exemples de scripts de l’interpréteur de commandes
 
-Le tableau suivant contient des liens vers des scripts Bash créés à l’aide de l’interface de ligne de commande Azure montrant l’utilisation du service Batch.
+Hello tableau suivant inclut des liens toobash des scripts créés à l’aide de hello CLI d’Azure qui illustrent l’utilisation du service de traitement par lots hello.
 
 | Script | Remarques |
 |---|---|
@@ -35,4 +35,4 @@ Le tableau suivant contient des liens vers des scripts Bash créés à l’aide 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).

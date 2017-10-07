@@ -1,5 +1,5 @@
 ---
-title: Audit de table, redirection TDS et points de terminaison IP pour Azure SQL Database | Microsoft Docs
+title: "aaaTable l’audit, la redirection de TDS et les points de terminaison IP pour la base de données SQL Azure | Documents Microsoft"
 description: "Découvrez l’audit, la redirection TDS et les modifications de point de terminaison IP pendant l’implémentation de l’audit de table dans Azure SQL Database."
 services: sql-database
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: giladm
-ms.openlocfilehash: d4a7e6658ec65a70bd7e07859e2a69acee58b7b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 966c23f92fab6fa459a515ad841bb2d5f75436aa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-table-auditing"></a>SQL Database : prise en charge des clients de niveau inférieur et modification des points de terminaison IP à des fins d’audit de table
 
 > [!IMPORTANT]
-> Ce document s’applique uniquement à l’audit de table, qui est **maintenant déprécié**.<br>
-> Utilisez la nouvelle méthode [d’audit d’objets blob](sql-database-auditing.md), qui **n’exige pas** de modifications de la chaîne de connexion pour les clients de niveau inférieur. Vous trouverez des informations supplémentaires sur l’audit d’objets blob dans [Prise en main de l’audit de base de données SQL](sql-database-auditing.md).
+> Ce document s’applique uniquement tooTable l’audit, qui est **désormais déconseillées**.<br>
+> Utilisez hello nouveau [l’audit des objets Blob](sql-database-auditing.md) (méthode), qui **pas** requièrent des modifications de chaîne de connexion de client de bas niveau. Vous trouverez des informations supplémentaires sur l’audit d’objets blob dans [Prise en main de l’audit de base de données SQL](sql-database-auditing.md).
 
-L’[audit de base de données](sql-database-auditing.md) fonctionne automatiquement avec les clients SQL qui prennent en charge la redirection TDS. Notez que la redirection ne s’applique pas lorsque vous utilisez la méthode de l’audit d’objets Blob.
+L’[audit de base de données](sql-database-auditing.md) fonctionne automatiquement avec les clients SQL qui prennent en charge la redirection TDS. Notez que la redirection ne s’applique pas à l’aide de la méthode de l’audit des objets Blob hello.
 
 ## <a id="subheading-1"></a>Prise en charge des clients de niveau inférieur
-Tout client qui implémente TDS 7.4 doit également prendre en charge la redirection. Cependant, cette règle comporte deux exceptions : JDBC 4.0, qui ne prend pas complètement en charge la fonctionnalité de redirection et Tedious pour Node.JS, où la redirection n’a pas été implémentée.
+Tout client qui implémente TDS 7.4 doit également prendre en charge la redirection. Exceptions toothis incluent JDBC 4.0 quelle fonctionnalité de redirection hello n’est pas entièrement pris en charge et fastidieuses pour Node.JS dans lequel la redirection n’était pas implémentée.
 
-Pour les « clients de niveau inférieur », c’est-à-dire ceux qui prennent en charge la version 7.3 de TDS et les versions antérieures, le nom de domaine complet du serveur dans la chaîne de connexion doit être modifié :
+Pour les « Clients de bas niveau », autrement dit, qui prend en charge de TDS version 7.3 et ci-dessous - hello FQDN du serveur dans la chaîne de connexion hello doit être modifié :
 
-Nom de domaine complet du serveur d’origine dans la chaîne de connexion : <*nom du serveur*>.database.windows.net
+FQDN du serveur d’origine dans la chaîne de connexion hello : <*nom du serveur*>. database.windows.net
 
-Nom de domaine complet du serveur modifié dans la chaîne de connexion : <*nom du serveur*>.database.**secure**.windows.net
+FQDN du serveur modifié dans la chaîne de connexion hello : <*nom du serveur*> .database. **sécurisé**. windows.net
 
 Voici une liste non exhaustive de « clients de niveau inférieur » :
 
 * .NET 4.0 et versions antérieures
 * ODBC 10.0 et versions antérieures
-* JDBC (bien que JDBC prenne en charge la version 7.4 de TDS, la fonctionnalité de redirection TDS n’est pas entièrement prise en charge)
+* JDBC (pendant JDBC prend en charge de TDS 7.4, hello fonctionnalité de redirection de TDS n’est pas entièrement pris en charge)
 * Tedious (pour Node.JS)
 
-**Remarque :** la modification des noms de domaines complets de serveur précédents peut aussi être utile pour appliquer une stratégie d’audit au niveau de SQL Server sans avoir à configurer chaque base de données (atténuation temporaire).
+**Remarque :** hello au-dessus de modification de nom de domaine complet de serveur peut être utile également pour appliquer une stratégie d’audit au niveau de SQL Server sans nécessité d’une configuration de l’étape dans chaque base de données (atténuation temporaire).
 
 ## <a id="subheading-2"></a>Modification des points de terminaison IP lors de l’activation de l’audit
-Notez que l’activation de l’audit de table a pour effet de modifier le point de terminaison IP de votre base de données. Si vous avez défini des paramètres de pare-feu stricts, mettez-les à jour en conséquence.
+Notez que lorsque vous activez l’audit de Table, point de terminaison IP hello de votre base de données change. Si vous avez défini des paramètres de pare-feu stricts, mettez-les à jour en conséquence.
 
-Le nouveau point de terminaison IP de la base de données dépend de la région de votre base de données :
+Hello nouvelle base de données point de terminaison IP dépend de la région de base de données hello :
 
 | Région de base de données | Points de terminaison IP possibles |
 | --- | --- |

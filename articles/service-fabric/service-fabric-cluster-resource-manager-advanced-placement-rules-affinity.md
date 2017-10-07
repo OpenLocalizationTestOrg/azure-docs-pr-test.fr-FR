@@ -1,5 +1,5 @@
 ---
-title: "Cluster Resource Manager Service Fabric - Affinité | Microsoft Docs"
+title: "aaaService Gestionnaire de ressources de Cluster de l’ensemble fibre optique - affinité | Documents Microsoft"
 description: "Présentation de la configuration de l’affinité pour les services Service Fabric"
 services: service-fabric
 documentationcenter: .net
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 3efda4ee4016245668e5da431d7b8868a21c790e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7dc9b6d9c18d9d615d39cff7de9d7cba1c040474
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-and-using-service-affinity-in-service-fabric"></a>Configuration et utilisation de l’affinité de service dans Service Fabric
-L’affinité est un contrôle qui permet principalement de faciliter la transition d’applications volumineuses monolithiques vers le cloud et les microservices. Elle peut également servir pour améliorer les performances des services, même si cela peut avoir des conséquences.
+Affinité est un contrôle qui est fourni principalement toohelp facilité hello transition de grandes applications monolithiques dans le cloud et microservices Bonjour. Il est également utilisé en guise d’optimisation pour améliorer les performances de hello de services, bien que cela peut avoir les effets secondaires.
 
-Prenons un exemple : vous importez une application volumineuse ou qui n’a pas été conçue pour les microservices dans Service Fabric (ou tout environnement distribué). Ce type de transition est courant. Vous commencez par intégrer l’application complète dans l’environnement, vous la déployez et vous vous assurez qu’elle fonctionne sans problème Puis vous la décomposez en différents services plus petits qui communiquent entre eux.
+Supposons que vous importez une application plus volumineuse ou avec un uniquement n’a pas été conçue avec microservices dans l’esprit, tooService Fabric (ou n’importe quel environnement distribué). Ce type de transition est courant. Vous commencez par levage hello ensemble de votre application dans un environnement de hello, empaqueter et s’assurer qu’il fonctionne correctement. Puis vous démarrez avec rupture dans différents services plus petits que tous les contacter tooeach autres.
 
-Par la suite, vous pouvez constater que l’application rencontre des problèmes. Ces problèmes se situent généralement dans l’une des catégories suivantes :
+Par la suite, vous pouvez constater qu’application hello rencontrent des problèmes. problèmes de Hello appartiennent généralement à une de ces catégories :
 
-1. Certains composants X de l’application monolithique avaient une dépendance non documentée sur le composant Y et vous les avez transformés en services séparés. Dans la mesure où ces services sont maintenant exécutés sur différents nœuds du cluster, ils sont interrompus.
-2. Ces composants communiquent par vecteur (canaux locaux nommés | mémoire partagée | fichiers sur disque), et ils doivent maintenant pouvoir écrire sur une ressource locale partagée pour des raisons de performances. Cette dépendance ferme est éventuellement supprimée ultérieurement.
-3. Tout fonctionne correctement, sauf que ces deux composants sont en fait très occupés et sensibles aux performances. Lorsqu’ils sont transférés dans des services distincts, la performance globale des applications diminue ou la latence augmente. Par conséquent, l’application globale ne répond pas aux attentes.
+1. Quelques composants X, dans l’application monolithique hello avait une dépendance non documentée sur le composant Y, et vous avez activé uniquement les composants en services distincts. Étant donné que ces services sont en cours d’exécution sur différents nœuds dans un cluster de hello, ils sont rompus.
+2. Ces composants communiquent (canaux nommés locaux | mémoire partagée | fichiers sur le disque) et ils ont vraiment besoin toobe toowrite en mesure de la ressource locale tooa partagé pour des raisons de performances dès maintenant. Cette dépendance ferme est éventuellement supprimée ultérieurement.
+3. Tout fonctionne correctement, sauf que ces deux composants sont en fait très occupés et sensibles aux performances. Lorsqu’ils sont transférés dans des services distincts, la performance globale des applications diminue ou la latence augmente. Par conséquent, hello globales de l’application ne répond pas aux attentes.
 
-Dans ce cas, nous ne voulons pas perdre notre travail de refactorisation et nous ne souhaitons pas revenir au modèle monolithique. La dernière condition peut même être souhaitable comme optimisation brute. Cependant, jusqu’à ce que nous puissions modifier les composants de manière à ce qu’ils fonctionnent naturellement en tant que services (ou jusqu’à ce que nous puissions répondre autrement aux attentes en matière de performances), nous devrons avoir une certaine notion de la localisation.
+Dans ce cas, nous ne voulez toolose notre travail de refactorisation ou non toogo toohello arrière monolithique. Hello dernière condition peut même être souhaitable, dans une optimisation simple. Toutefois, jusqu'à ce que nous pouvons reconcevoir hello composants toowork naturellement en tant que services (ou jusqu'à ce que nous pouvons résoudre une autre façon les attentes de performance hello) nous allons tooneed un sens de la localité.
 
-Que faire, alors ? Il est possible d’activer l’affinité.
+Le toodo ? Il est possible d’activer l’affinité.
 
-## <a name="how-to-configure-affinity"></a>Configuration de l’affinité
-Pour configurer l’affinité, vous définissez une relation d’affinité entre deux services distincts. Cela revient à faire pointer un service sur un autre, ce qui fait qu’un service peut uniquement fonctionner quand cet autre service est en cours d’exécution. Il s’agit parfois de relations parent-enfant (où l’enfant pointe sur le parent). L’affinité permet de s’assurer que les instances ou les réplicas d’un service sont placés sur les mêmes nœuds que les réplicas ou instances d’un autre service.
+## <a name="how-tooconfigure-affinity"></a>Comment les affinités tooconfigure
+tooset une affinité, vous définissez une relation d’affinité entre deux services. Cela revient à faire pointer un service sur un autre, ce qui fait qu’un service peut uniquement fonctionner quand cet autre service est en cours d’exécution. Nous appelons parfois tooaffinity une relation parent/enfant (où vous pointez les enfants hello au parent de hello). Affinité garantit que les réplicas hello ou instances d’un service sont placés sur hello même nœuds en tant que ceux d’un autre service.
 
 ```csharp
 ServiceCorrelationDescription affinityDescription = new ServiceCorrelationDescription();
@@ -47,39 +47,39 @@ await fabricClient.ServiceManager.CreateServiceAsync(serviceDescription);
 ```
 
 > [!NOTE]
-> Un service enfant ne peut participer qu’à une seule relation d’affinité. Si vous souhaitez créer une affinité entre un enfant et deux services parent à la fois, vous avez deux options :
-> - Inverser les relations (faire pointer parentService1 et parentService2 vers le service enfant actuel), ou
-> - Désigner l’un des parents comme concentrateur par convention et faire pointer tous les services vers ce service. 
+> Un service enfant ne peut participer qu’à une seule relation d’affinité. Si vous souhaitiez hello enfant toobe d’affinité tootwo parent services à la fois, vous avez deux options :
+> - Inverser les relations hello (avoir parentService1 et parentService2 point au niveau de service d’enfants actuelle hello), ou
+> - Un des parents de hello désigner comme un concentrateur, par convention et avoir tous les services pointent vers ce service. 
 >
-> Le comportement de placement qui en résulte dans le cluster doit être le même.
+> Hello, ce qui entraîne le comportement de placement dans un cluster de hello doit être hello même.
 >
 
 ## <a name="different-affinity-options"></a>Différentes options d’affinité
-L’affinité est représentée par un des jeux de corrélations et comporte deux modes différents. Le mode d’affinité courant est ce que nous appelons « affinité non alignée ». Dans ce mode, les réplicas ou instances des différents services sont placés sur les mêmes nœuds. L’autre mode est appelé « affinité alignée ». L’affinité alignée est utilisée uniquement avec les services avec état. La configuration de deux services avec état pour obtenir une affinité alignée garantit que les serveurs primaires de ces services sont placés sur les mêmes nœuds que d’autres. Par conséquent, chaque paire de serveurs secondaires est placée sur les mêmes nœuds. Il est également possible (bien que moins fréquent) de configurer l’affinité non alignée pour les services avec état. Pour NonAlignedAffinity les différents réplicas des deux services avec état s’exécuteraient sur les mêmes nœuds, mais leurs serveurs primaires seraient installés sur des nœuds différents.
+L’affinité est représentée par un des jeux de corrélations et comporte deux modes différents. Hello le mode courants d’affinité est ce que nous appelons NonAlignedAffinity. Dans NonAlignedAffinity, hello réplicas ou les instances de services différents de hello sont placés sur hello même nœuds. Bonjour autre mode est AlignedAffinity. L’affinité alignée est utilisée uniquement avec les services avec état. Configuration dynamique de deux services toohave aligné affinité garantit qu’indistinctement hello de ces services est placés sur hello mêmes nœuds les uns des autres. Il est également générée chaque paire de bases de données secondaires pour ces toobe services placé sur hello même nœuds. Il est également possible (bien que moins fréquent) tooconfigure NonAlignedAffinity pour les services avec état. Pour NonAlignedAffinity, différents réplicas de hello Hello deux services avec état s’exécuterait sur hello mêmes nœuds, mais leurs couleurs primaires peuvent se retrouver sur différents nœuds.
 
 <center>
 ![Modes d’affinité et leurs effets][Image1]
 </center>
 
 ### <a name="best-effort-desired-state"></a>Meilleur état souhaité
-Une relation d’affinité est conseillée. Elle n’offre pas les mêmes garanties de colocation ou de fiabilité que l’exécution dans le même processus exécutable. Les services dans une relation d’affinité sont fondamentalement différentes entités qui peuvent échouer et être déplacées séparément. Une relation d’affinité peut également être interrompue, bien que ces interruptions soient temporaires. Par exemple, des limites de capacité peuvent indiquer que seuls certains objets de services peuvent être inclus sur un nœud donné. Dans ces cas, même s’il existe une relation d’affinité, elle n’est pas appliquée en raison des autres contraintes. Si la situation le permet, la violation sera corrigée automatiquement plus tard.
+Une relation d’affinité est conseillée. Il ne fournit pas hello mêmes garanties de fiabilité qui est en cours d’exécution dans hello même processus exécutable ou de colocalisation. services Hello dans une relation d’affinité sont fondamentalement différentes entités peuvent échouer et être déplacées séparément. Une relation d’affinité peut également être interrompue, bien que ces interruptions soient temporaires. Par exemple, les limites de capacité peuvent signifier que seules certaines hello des objets de service dans la relation d’affinité hello peuvent tenir sur un nœud donné. Dans ces cas même s’il existe une relation d’affinité sur place, il ne peut pas être appliquée échéance toohello autres contraintes. S’il est donc possible toodo, violation de hello est corrigée automatiquement plus tard.
 
 ### <a name="chains-vs-stars"></a>Chaînes et étoiles
-Actuellement, Cluster Resource Manager ne peut pas modéliser les chaînes de relations d’affinité. Cela signifie qu’un service qui est un service enfant dans une relation d’affinité ne peut pas être un parent dans une autre relation d’affinité. Si vous souhaitez modéliser ce type de relation, vous devez le modéliser en étoile plutôt qu’en chaîne. Pour passer d’une chaîne à une étoile, l’enfant le plus bas est apparenté au parent du premier enfant. En fonction de la disposition de vos services, il est possible que vous deviez effectuer cette opération plusieurs fois. S’il n’existe aucun service parent naturel, il est possible que vous deviez en créer un qui sert d’espace réservé. Selon vos besoins, vous pouvez également opter pour les [Groupes d’applications](service-fabric-cluster-resource-manager-application-groups.md).
+Aujourd'hui, hello Gestionnaire de ressources du Cluster n’est pas toomodel en mesure des chaînes de relations d’affinité. Cela signifie qu’un service qui est un service enfant dans une relation d’affinité ne peut pas être un parent dans une autre relation d’affinité. Si vous souhaitez toomodel ce type de relation, vous disposez effectivement toomodel comme une étoile, plutôt qu’une chaîne. toomove à partir d’une étoile tooa chaîne, les enfants plus bas hello serait parent du toohello apparenté premier enfant à la place. Selon la disposition de hello de vos services, vous avez peut-être toodo cette opération plusieurs fois. S’il n’existe aucun service parent naturel, vous avez peut-être toocreate qui sert d’espace réservé. Selon vos besoins, vous pouvez également toolook dans [groupes d’applications](service-fabric-cluster-resource-manager-application-groups.md).
 
 <center>
-![Chaînes et étoiles dans le contexte des relations d’affinité][Image2]
+![Chaînes et Étoiles dans le contexte des relations d’affinité de hello][Image2]
 </center>
 
-Notez également que les relations d’affinité d’aujourd’hui sont directionnelles. Cela signifie que la règle d’affinité implique que l’enfant se trouve au même endroit que le parent. Elle ne garantit pas que le parent se trouve au même endroit que l’enfant. Il est également important de noter que la relation d’affinité ne peut pas être idéale ou instantanément appliquée car différents services ont différents cycles de vie et peuvent échouer et se déplacer indépendamment. Par exemple, supposons que le parent bascule soudainement vers un autre nœud suite à un plantage. Cluster Resource Manager et Failover Manager gèrent d’abord le basculement puisque le maintien, la cohérence et la disponible des services restent la priorité. Une fois le basculement terminé, la relation d’affinité est brisée, mais Cluster Resource Manager pense que tout fonctionne correctement, jusqu’à ce qu’il remarque que l’enfant ne se trouve pas avec le parent. Ces types de vérifications sont effectuées régulièrement. Vous trouverez plus d’informations sur la façon dont Cluster Resource Manager évalue les contraintes dans [cet article](service-fabric-cluster-resource-manager-management-integration.md#constraint-types), et [celui-ci](service-fabric-cluster-resource-manager-balancing.md) explique comment configurer la cadence à laquelle ces contraintes sont évaluées.   
+Aujourd'hui, un autre chose toonote, sur les relations d’affinité est qu’ils sont directionnelles. Cela signifie que cette règle d’affinité hello applique uniquement cet enfant hello placé avec le parent de hello. Il ne garantit pas le que parent hello se trouve avec les enfants hello. Il est également important toonote qui hello relation d’affinité ne peut pas être idéal ou instantanément appliquée, car les différents services ont des différents cycles de vie et peuvent échouer et déplacer indépendamment. Par exemple, supposons que parent de hello subit une défaillance sur le nœud de tooanother, car il est arrêté anormalement. Hello Gestionnaire de ressources du Cluster et le handle du Gestionnaire de basculement hello tout d’abord, le basculement en conservant les services hello, cohérente et disponibles étant priorité de hello. Une fois le basculement de hello se termine, relation d’affinité hello est interrompue, mais hello Gestionnaire de ressources du Cluster pense que tout se passe bien jusqu'à ce qu’il remarque que les enfants hello n’est pas situé sur le parent de hello. Ces types de vérifications sont effectuées régulièrement. Vous trouverez plus d’informations sur comment hello Gestionnaire de ressources du Cluster évalue les contraintes dans [cet article](service-fabric-cluster-resource-manager-management-integration.md#constraint-types), et [celle-ci](service-fabric-cluster-resource-manager-balancing.md) présente plus en détail comment tooconfigure hello cadence à laquelle ces contraintes sont évaluée.   
 
 
 ### <a name="partitioning-support"></a>Prise en charge du partitionnement
-Voici une dernière remarque concernant l’affinité : les relations d’affinité ne sont pas prises en charge lorsque le parent est partitionné. Des services parent partitionnés peuvent être pris en charge par la suite, mais cela n’est pas autorisé à l’heure actuelle.
+toonotice de dernière chose Hello sur l’affinité est que les relations d’affinité ne sont pas pris en charge où le parent de hello est partitionnée. Des services parent partitionnés peuvent être pris en charge par la suite, mais cela n’est pas autorisé à l’heure actuelle.
 
 ## <a name="next-steps"></a>Étapes suivantes
 - Pour plus d’informations sur la configuration des services, consultez la rubrique [En savoir plus sur la configuration des services](service-fabric-cluster-resource-manager-configure-services.md)
-- Pour limiter les services à un petit nombre d’ordinateurs ou agréger la charge des services, utilisez [Groupes d’applications](service-fabric-cluster-resource-manager-application-groups.md)
+- services de toolimit tooa un petit ensemble d’ordinateurs ou d’agrégation charge hello de services, utilisez [groupes d’applications](service-fabric-cluster-resource-manager-application-groups.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-advanced-placement-rules-affinity/cluster-resrouce-manager-affinity-modes.png
 [Image2]:./media/service-fabric-cluster-resource-manager-advanced-placement-rules-affinity/cluster-resource-manager-chains-vs-stars.png

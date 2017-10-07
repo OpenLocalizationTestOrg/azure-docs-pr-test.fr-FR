@@ -1,6 +1,6 @@
 ---
-title: "Sélection de noms d’utilisateur pour Linux | Microsoft Docs"
-description: "Apprenez à sélectionner des noms d'utilisateur pour une machine virtuelle Linux dans Azure."
+title: "aaaSelecting noms d’utilisateur pour Linux | Documents Microsoft"
+description: "Découvrez comment des noms tooselect utilisateur pour un ordinateur virtuel de Linux dans Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,24 +15,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 1874d72e5f88816036667932371ff28704d186c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c65e2ac46f40bb8c9d74cccbaf248a070c0fa6cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="selecting-user-names-for-linux-on-azure"></a>Sélection de noms d'utilisateur pour Linux dans Azure
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Quand vous configurez une machine virtuelle Linux sur Azure, vous devez spécifier le nom d’utilisateur non racine que vous pourrez utiliser ultérieurement pour vous connecter à la machine virtuelle. Vous pouvez choisir le nom du nouvel utilisateur, ou en cas d’approvisionnement via le portail Azure Classic, vous pouvez accepter le nom par défaut, « azureuser ».
+Lorsque vous configurez un ordinateur virtuel de Linux sur Azure, vous devez spécifier nom hello d’un utilisateur non racine que vous pouvez utiliser ultérieurement toolog dans hello machine virtuelle. Vous pouvez choisir le nom hello du nouvel utilisateur de hello, ou si la configuration via hello portail Azure classic accepter par défaut de hello nom « azureuser ».
 
-Dans la plupart des cas, ce nouvel utilisateur n’existe pas dans l’image de base et sera créé pendant le processus d’approvisionnement. Si l’utilisateur existe dans l’image de machine virtuelle de base, l’agent Linux Azure configure simplement le mot de passe et/ou la clé SSH pour cet utilisateur selon les informations indiquées lors de la création de la machine virtuelle.
+Dans la plupart des cas, cet utilisateur n’existe pas sur l’image de base hello et sera créé pendant le processus d’approvisionnement de hello. Si l’utilisateur hello existe sur l’image de machine virtuelle base hello, puis hello Azure Linux agent simplement configure un mot de passe hello et/ou une clé SSH pour cet utilisateur en fonction des informations hello que vous avez spécifié lors de la création de hello machine virtuelle.
 
-**Toutefois**, Linux définit un ensemble de noms d’utilisateur à ne pas utiliser pour la création de nouveaux utilisateurs. Le processus d’approvisionnement **échoue** si vous essayez d’approvisionner une machine virtuelle Linux via un utilisateur système existant, défini comme utilisateur avec un ID utilisateur de 0 à 99. L’utilisateur `root` , présentant l’ID utilisateur 0, en est un bon exemple.
+**Toutefois**, Linux définit un ensemble de noms d’utilisateur à ne pas utiliser pour la création de nouveaux utilisateurs. Hello mise en service du processus sera **échouer** si vous essayez de tooprovision une VM Linux à l’aide d’un utilisateur système existant, qui est défini en tant qu’utilisateur avec UID 0 et 99. Un exemple classique est hello `root` utilisateur, ce qui a des UID 0.
 
 * Voir aussi [Base standard Linux : plages d’ID utilisateur](http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/uidrange.html)
 
-Voici une liste d’utilisateurs système intégrés courants pour CentOS et Ubuntu que vous devez éviter d’utiliser lors de l’approvisionnement d’une machine virtuelle Linux sur Azure. Cette liste n’est qu’un exemple. Reportez-vous à la documentation relative à votre distribution pour vous assurer que le nom d’utilisateur que vous choisissez n’est pas en conflit avec un utilisateur système existant.
+Hello Voici une liste des utilisateurs système intégré commun CentOS et Ubuntu que vous devez éviter d’utiliser lors de la configuration d’un ordinateur virtuel de Linux sur Azure. Cette liste est juste un exemple, consultez toohello documentation pour votre tooensure distribution username hello que vous choisissez ne sont pas en conflit avec un utilisateur système existant.
 
 ## <a name="centos"></a>CentOS
 * abrt

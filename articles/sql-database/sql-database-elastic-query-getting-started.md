@@ -1,6 +1,6 @@
 ---
-title: "Créer des rapports sur des bases de données cloud avec montée en charge (partitionnement horizontal) | Microsoft Docs"
-description: "comment utiliser des requêtes entre plusieurs bases de données"
+title: "aaaReport sur les bases de données à grande échelle cloud (partitionnement horizontal) | Documents Microsoft"
+description: "Comment toouse franchissent les requêtes de base de données de base de données"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2016
 ms.author: mlandzic
-ms.openlocfilehash: 8eb56d44c3a261f6325d4fc91f169d09bf108160
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e34f398f8d408cffd91a70fc2cfbda73daec3550
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="report-across-scaled-out-cloud-databases-preview"></a>Créer des rapports sur des bases de données cloud avec montée en charge (version préliminaire)
-Vous pouvez créer des rapports tirés de plusieurs bases de données SQL Azure à partir d’un point de connexion unique par le biais d’une [requête élastique](sql-database-elastic-query-overview.md). Les bases de données doivent être partitionnées horizontalement.
+Vous pouvez créer des rapports tirés de plusieurs bases de données SQL Azure à partir d’un point de connexion unique par le biais d’une [requête élastique](sql-database-elastic-query-overview.md). bases de données Hello doivent être partitionnées horizontalement (également appelé « partitionnée »).
 
-Si vous avez déjà une base de données, consultez [Migrer des bases de données existantes vers des bases de données mises à l’échelle](sql-database-elastic-convert-to-use-elastic-tools.md).
+Si vous avez une base de données existante, consultez [existant de la migration des bases de données bases de données tooscaled](sql-database-elastic-convert-to-use-elastic-tools.md).
 
-Pour connaître les objets SQL requis dans le cadre d’une requête, consultez [Interroger plusieurs bases de données partitionnées horizontalement](sql-database-elastic-query-horizontal-partitioning.md).
+les objets SQL toounderstand hello nécessaires tooquery, consultez [interroger plusieurs bases de données partitionnées horizontalement](sql-database-elastic-query-horizontal-partitioning.md).
 
-## <a name="prerequisites"></a>Configuration requise
-Téléchargez et exécutez l’exemple de la rubrique [Prise en main des outils de base de données élastique](sql-database-elastic-scale-get-started.md).
+## <a name="prerequisites"></a>Composants requis
+Téléchargez et exécutez hello [mise en route avec l’exemple des outils de base de données élastique](sql-database-elastic-scale-get-started.md).
 
-## <a name="create-a-shard-map-manager-using-the-sample-app"></a>Créez un gestionnaire des cartes de partitions à l’aide de l’exemple d’application
-Ici vous allez créer un gestionnaire des cartes de partitions avec plusieurs partitions, puis insérer des données dans les partitions. Si vos partitions comportent déjà des données partitionnées, vous pouvez ignorer ces étapes et passer à la section suivante.
+## <a name="create-a-shard-map-manager-using-hello-sample-app"></a>Créer une carte de partitions manager à l’aide de hello, exemple d’application
+Ici vous allez créer une carte de partitions manager ainsi que plusieurs partitions, suivie de l’insertion de données dans les partitions hello. Si vous vous trouvez tooalready contiennent le programme d’installation de partitions avec des données partitionnées, vous pouvez ignorer hello comme suit et déplacer la section suivante de toohello.
 
-1. Créez et exécutez l’exemple d’application de la rubrique **Prise en main des outils de base de données élastique** . Suivez la procédure jusqu’à l’étape 7 dans la section [Télécharger et exécuter l’exemple d’application](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app). À la fin de l’étape 7, vous verrez l’invite de commande suivante :
+1. Générez et exécutez hello **prise en main des outils de base de données élastique** exemple d’application. Hello comme suit avant l’étape 7 de la section de hello [télécharger et exécuter l’exemple d’application hello](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app). Extrémité hello de l’étape 7, vous verrez hello après l’invite de commandes :
 
     ![invite de commande][1]
-2. Dans la fenêtre de commande, entrez « 1 » et appuyez sur **Entrée**. Cela crée le gestionnaire des cartes de partitions et ajoute deux partitions sur le serveur. Tapez « 3 », puis appuyez sur **Entrée**. Répétez l’action quatre fois. Cela permet d’insérer des lignes d’exemples de données dans vos partitions.
-3. Le [portail Azure](https://portal.azure.com) doit alors montrer trois nouvelles bases de données dans votre serveur :
+2. Dans la fenêtre de commande hello, tapez « 1 » et appuyez sur **entrée**. Cela crée le Gestionnaire de carte de partitions hello et ajoute le serveur de toohello deux partitions. Tapez « 3 », puis appuyez sur **entrée**; Répétez l’action de hello quatre fois. Cela permet d’insérer des lignes d’exemples de données dans vos partitions.
+3. Hello [portail Azure](https://portal.azure.com) doivent s’afficher trois nouvelles bases de données dans votre serveur :
 
    ![Confirmation Visual Studio][2]
 
-   À ce stade, les requêtes de bases de données croisées sont prises en charge via les bibliothèques clientes de bases de données élastiques. Par exemple, utilisez l’option 4 dans la fenêtre de commande. Les résultats d’une requête de plusieurs partitions sont toujours un élément **UNION ALL** des résultats de toutes les partitions.
+   À ce stade, les requêtes de bases de données croisées sont pris en charge via les bibliothèques clientes hello élastique de base de données. Par exemple, utilisez l’option 4 dans la fenêtre de commande hello. Hello les résultats d’une requête de plusieurs partition sont toujours un **UNION ALL** de résultats hello à partir de toutes les partitions.
 
-   Dans la section suivante, nous créons un exemple de point de terminaison de base de données qui prend en charge une interrogation plus riche des données entre les partitions.
+   Dans la section suivante de hello, nous créer un point de terminaison de base de données exemple qui prend en charge l’interrogation plus riche de données de hello entre les partitions.
 
 ## <a name="create-an-elastic-query-database"></a>Créez une base de données de requête élastique
-1. Ouvrez le [portail Azure](https://portal.azure.com) et connectez-vous.
-2. Créez une nouvelle base de données SQL Azure dans le même serveur que votre partition configurée. Nommez la base de données « ElasticDBQuery ».
+1. Ouvrez hello [portail Azure](https://portal.azure.com) et connectez-vous.
+2. Créer une nouvelle base de données SQL Azure Bonjour même serveur que votre programme d’installation de la partition. Nom de la base de données hello « ElasticDBQuery ».
 
     ![Portail Azure et tarification][3]
 
     > [!NOTE]
-    > Vous pouvez utiliser une base de données existante. Si c’est le cas, il ne doit pas s’agir de l’une des partitions sur laquelle vous souhaitez exécuter les requêtes. Cette base de données sera utilisée pour la création d’objets de métadonnées pour une requête de base de données élastique.
+    > Vous pouvez utiliser une base de données existante. Si vous pouvez le faire, il ne doit pas être une des partitions hello que vous aimeriez tooexecute vos requêtes sur. Cette base de données sera utilisé pour la création d’objets de métadonnées pour une requête de base de données élastique hello.
     >
 
 ## <a name="create-database-objects"></a>Créez des objets de base de données
 ### <a name="database-scoped-master-key-and-credentials"></a>Clé principale et informations d’identification de la base de données
-Celles-ci sont utilisées pour se connecter au gestionnaire des cartes de partition et aux partitions :
+Il s’agit de gestionnaire de carte de partitions toohello tooconnect utilisés et les partitions hello :
 
 1. Ouvrez SQL Server Management Studio ou SQL Server Data Tools dans Visual Studio.
-2. Connectez-vous à la base de données ElasticDBQuery et exécutez les commandes T-SQL suivantes :
+2. Se connecter tooElasticDBQuery de base de données et exécutez hello suivant de commandes T-SQL :
 
         CREATE MASTER KEY ENCRYPTION BY PASSWORD = '<password>';
 
@@ -68,10 +68,10 @@ Celles-ci sont utilisées pour se connecter au gestionnaire des cartes de partit
         WITH IDENTITY = '<username>',
         SECRET = '<password>';
 
-    Le nom d’utilisateur et le mot de passe doivent être les mêmes que les informations de connexion utilisées à l’étape 6 de la rubrique [Télécharger et exécuter l’exemple d’application](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app) dans [Prise en main des outils de base de données élastique](sql-database-elastic-scale-get-started.md).
+    « username » et « password » doit être hello même en tant qu’informations de connexion utilisées à l’étape 6 de [télécharger et exécuter l’exemple d’application hello](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app) dans [prise en main des outils de base de données élastique](sql-database-elastic-scale-get-started.md).
 
 ### <a name="external-data-sources"></a>Sources de données externes
-Pour créer une source de données externe, exécutez la commande suivante sur la base de données ElasticDBQuery :
+toocreate source de données externe, exécutez hello suivant de commande de base de données ElasticDBQuery hello :
 
     CREATE EXTERNAL DATA SOURCE MyElasticDBQueryDataSrc WITH
       (TYPE = SHARD_MAP_MANAGER,
@@ -81,10 +81,10 @@ Pour créer une source de données externe, exécutez la commande suivante sur l
        SHARD_MAP_NAME = 'CustomerIDShardMap'
     ) ;
 
- « CustomerIDShardMap » est le nom de la carte de partition, si vous avez créé la carte de partition et le gestionnaire des cartes de partition à l’aide de l’exemple d’outils souples de la base de données. Toutefois, si vous avez utilisé l’installation personnalisée pour cet exemple, le nom de carte de partition doit correspondre au nom choisi dans l’application.
+ « CustomerIDShardMap » est le nom hello de carte de partitions hello, si vous avez créé carte de partitions et de carte de partitions hello manager à l’aide des exemples d’outils hello élastique de base de données. Toutefois, si vous avez utilisé votre installation personnalisée pour cet exemple, il doit être nom de mappage de partitions hello choisis dans votre application.
 
 ### <a name="external-tables"></a>Tables externes
-Créez une table externe qui correspond à la table des clients sur les partitions en exécutant la commande suivante sur la base de données ElasticDBQuery :
+Créer une table externe qui correspond à celui de la table de clients de hello sur les partitions hello en exécutant la commande suivante sur la base de données ElasticDBQuery de hello :
 
     CREATE EXTERNAL TABLE [dbo].[Customers]
     ( [CustomerId] [int] NOT NULL,
@@ -98,33 +98,33 @@ Créez une table externe qui correspond à la table des clients sur les partitio
 ## <a name="execute-a-sample-elastic-database-t-sql-query"></a>Exécutez un exemple de requête T-SQL de base de données élastique
 Après avoir défini vos tables externes et votre source de données externe, vous pouvez utiliser l’ensemble T-SQL sur vos tables externes.
 
-Exécutez cette requête sur la base de données ElasticDBQuery :
+Exécutez cette requête sur la base de données ElasticDBQuery hello :
 
     select count(CustomerId) from [dbo].[Customers]
 
-Vous remarquerez que la requête regroupe les résultats de toutes les partitions et donne le résultat suivant :
+Vous remarquerez cette requête hello regroupe les résultats à partir de toutes les partitions hello et donne hello suivant de sortie :
 
 ![Détails des résultats][4]
 
-## <a name="import-elastic-database-query-results-to-excel"></a>Importez les résultats de la requête de base de données élastique dans Excel
- Vous pouvez importer les résultats d’une requête vers un fichier Excel.
+## <a name="import-elastic-database-query-results-tooexcel"></a>Importer tooExcel de résultats de requête de base de données élastique
+ Vous pouvez importer les résultats hello à partir d’un fichier Excel de tooan requête.
 
 1. Lancez Excel 2013.
-2. Accédez au ruban **Données** .
+2. Accédez toohello **données** ruban.
 3. Cliquez sur **À partir d’autres sources** et sur **À partir de SQL Server**.
 
    ![Importation au format Excel à partir d’autres sources][5]
-4. Dans l’ **Assistant de connexion de données** saisissez le nom du serveur et les informations de connexion. Cliquez ensuite sur **Suivant**.
-5. Dans la boîte de dialogue **Sélectionner la base de données qui contient les données que vous souhaitez**, sélectionnez la base de données **ElasticDBQuery**.
-6. Sélectionnez la table **Clients** dans la liste et cliquez sur **Suivant**. Puis, cliquez sur **Terminer**.
-7. Dans le formulaire **Importer des données**, sous **Sélectionner le mode d’affichage des données dans votre classeur**, sélectionnez **Table** et cliquez sur **OK**.
+4. Bonjour **Assistant connexion de données** tapez hello des informations d’identification nom et la connexion de serveur. Cliquez ensuite sur **Suivant**.
+5. Dans la boîte de dialogue hello **base de données hello Select qui contient les données hello**, sélectionnez hello **ElasticDBQuery** base de données.
+6. Sélectionnez hello **clients** de table dans la vue de liste hello et cliquez sur **suivant**. Puis, cliquez sur **Terminer**.
+7. Bonjour **importer des données** formulaire sous **Choisissez comment vous voulez que tooview ces données dans votre classeur**, sélectionnez **Table** et cliquez sur **OK**.
 
-Toutes les lignes de la table **Clients** , stockées dans des partitions différentes, remplissent la feuille Excel.
+Tous les hello des lignes à partir de **clients** table, stockée dans des partitions différentes remplir la feuille de calcul Excel hello.
 
-Vous pouvez maintenant utiliser les fonctions de visualisation de données puissantes d’Excel. Vous pouvez utiliser la chaîne de connexion avec votre nom de serveur, votre nom de base de données et les informations d’identification pour vous connecter vos outils d’intégration BI et de données dans la base de données de requête élastique. Assurez-vous que SQL Server est pris en charge comme source de données pour votre outil. Vous pouvez vous traiter la base de données de requête élastique et les tables externes comme n’importe quelles bases de données SQL Server et tables SQL Server auxquelles vous vous connectez avec votre outil.
+Vous pouvez maintenant utiliser les fonctions de visualisation de données puissantes d’Excel. Vous pouvez utiliser de chaîne de connexion hello avec le nom de votre serveur, nom de la base de données et que vous les informations d’identification tooconnect votre BI et données intégration outils toohello requête élastique de base de données. Assurez-vous que SQL Server est pris en charge comme source de données pour votre outil. Vous pouvez consulter la base de données de requête élastique toohello et des tables externes comme toute autre base de données SQL Server et des tables SQL Server que vous devez vous connecter toowith votre outil.
 
 ### <a name="cost"></a>Coût
-La fonction de requête de base de données élastique n’entraîne aucuns frais supplémentaires.
+Il n’existe aucun frais supplémentaire pour à l’aide de la fonctionnalité de requête de base de données élastique hello.
 
 Pour plus d’informations sur la tarification, consultez la page [Tarification - Base de données SQL](https://azure.microsoft.com/pricing/details/sql-database/).
 

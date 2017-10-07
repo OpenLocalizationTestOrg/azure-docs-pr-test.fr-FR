@@ -1,6 +1,6 @@
 ---
-title: Comprendre les quotas Azure IoT Hub et la limitation | Microsoft Docs
-description: "Guide du développeur - description des quotas qui s’appliquent à IoT Hub et comportement de limitation attendu."
+title: les quotas aaaUnderstand Azure IoT Hub et la limitation | Documents Microsoft
+description: "Guide du développeur - description de quotas hello qui s’appliquent tooIoT Hub et hello attendu de comportement de limitation."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
-ms.openlocfilehash: dfe06ee6b8fadfe6d34397661c974181f870239e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 023fa29bfbfb1de35708d6d121a1c56b50adfed9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reference---iot-hub-quotas-and-throttling"></a>Référence - Quotas et limitation IoT Hub
 
 ## <a name="quotas-and-throttling"></a>Quotas et limitation
 Chaque abonnement Azure peut avoir au maximum 10 IoT Hubs, et au maximum un hub gratuit.
 
-Chaque IoT Hub est configuré avec un certain nombre d’unités dans une référence SKU spécifique (pour plus d’informations, consultez [Tarification Azure IoT Hub][lnk-pricing]). La référence et le nombre d’unités déterminent le quota quotidien maximal de messages que vous pouvez envoyer.
+Chaque IoT Hub est configuré avec un certain nombre d’unités dans une référence SKU spécifique (pour plus d’informations, consultez [Tarification Azure IoT Hub][lnk-pricing]). Hello référence (SKU) et le nombre d’unités déterminent hello maximale quotidienne de quota de messages que vous pouvez envoyer.
 
-La référence détermine également le seuil de limitation qu’IoT Hub applique sur les opérations.
+Hello référence (SKU) détermine également hello limites IoT Hub applique sur toutes les opérations.
 
 ## <a name="operation-throttles"></a>Limitations d’opérations
-Les limitations d’opération sont les limites de taux qui sont appliquées dans les plages de minutes et sont destinées à éviter les abus. IoT Hub essaie d’éviter le renvoi d’erreurs chaque fois que c’est possible, mais les exceptions commencent à être renvoyées si la limitation est dépassée pendant trop longtemps.
+Limitations de l’opération sont les limites de taux qui sont appliquées dans les plages minute hello et qui sont destinés tooavoid abus. IoT Hub essaie tooavoid renvoie des erreurs chaque fois que possible, mais il commence à retourner des exceptions si la limitation de bande passante hello est violée trop longtemps.
 
-Le tableau suivant présente les limitations appliquées. Les valeurs font référence à un hub individuel.
+Hello suivant table affiche hello appliquée accélérateurs. Les valeurs font référence hub individuels de tooan.
 
 | Limitation | Hubs gratuits et S1 | Hubs S2 | Hubs S3 | 
 | -------- | ------- | ------- | ------- |
@@ -48,14 +48,14 @@ Le tableau suivant présente les limitations appliquées. Les valeurs font réf�
 | Opérations de travaux <br/> (créer, mettre à jour, répertorier, supprimer) | 1.67/s/unité (100/min/unité) | 1.67/s/unité (100/min/unité) | 83.33/s/unité (5 000/min/unité) |
 | Débit d’opérations de travaux par appareil | 10/s | 10/s ou 1/s/unité maximum | 50/s/unité |
 
-Il est important de préciser que la limitation des *connexions d’appareil* régit la fréquence à laquelle de nouvelles connexions d’appareil peuvent être établies avec un IoT Hub. La limitation des *connexions d’appareils* ne régit pas le nombre maximal d’appareils connectés simultanément. La limitation dépend du nombre d’unités configurées pour l’IoT Hub.
+Il est important tooclarify qui hello *les connexions d’appareils* taux hello à laquelle les nouvelles connexions d’appareil peuvent être établies avec un hub IoT détermine la limitation de bande passante. Hello *les connexions d’appareils* limitation de bande passante ne gère pas le nombre maximal de hello des périphériques connectés simultanément. limitation de bande passante Hello dépend du nombre hello d’unités qui sont configurés pour le hub IoT de hello.
 
-Par exemple, si vous achetez une seule unité S1, vous obtenez une limitation de 100 connexions par seconde. Par conséquent, pour connecter 100 000 appareils, au moins 1 000 secondes (soit environ 16 minutes) sont nécessaires. Toutefois, vous pouvez avoir autant d’appareils connectés simultanément que d’appareils enregistrés dans le registre des identités.
+Par exemple, si vous achetez une seule unité S1, vous obtenez une limitation de 100 connexions par seconde. Par conséquent, tooconnect 100 000 appareils, il prend au moins 1 000 secondes (environ 16 minutes). Toutefois, vous pouvez avoir autant d’appareils connectés simultanément que d’appareils enregistrés dans le registre des identités.
 
-Le billet de blog [IoT Hub throttling and you][lnk-throttle-blog] (Limitation d’IoT Hub et vous) fournit une présentation détaillée du comportement de limitation d’IoT Hub.
+Pour une discussion détaillée de IoT Hub de limitation, consultez hello billet de blog [IoT Hub la limitation et vous][lnk-throttle-blog].
 
 > [!NOTE]
-> À tout moment, il est possible d’augmenter les quotas ou les limites en augmentant le nombre d’unités approvisionnées dans un hub IoT.
+> À un moment donné, il est possible tooincrease quotas ou limiter les limites en augmentant le nombre de hello d’unités configurées dans un hub IoT.
 > 
 > [!IMPORTANT]
 > Les opérations de registre des identités sont prévues pour une utilisation au moment de l’exécution dans les scénarios de gestion et d’approvisionnement des appareils. La lecture ou la mise à jour d’un grand nombre d’identités d’appareils est prise en charge par le biais des [travaux d’importation et d’exportation][lnk-importexport].
@@ -69,7 +69,7 @@ IoT Hub impose d’autres limites opérationnelles :
 | Opération | Limite |
 | --------- | ----- |
 | URI de chargement de fichiers | 10 000 URI de SAP peuvent être générés à la fois pour un compte de stockage. <br/> 10 URI de signature d’accès partagé/appareil peuvent être générés à la fois. |
-| Travaux | L’historique des travaux est conservé pendant 30 jours maximum. <br/> Le nombre maximal de travaux simultanés est 1 (pour les niveaux gratuit et S1), 5 (pour S2) ou 10 (pour S3). |
+| Tâches | Historique des travaux est conservé too30 jours <br/> Le nombre maximal de travaux simultanés est 1 (pour les niveaux gratuit et S1), 5 (pour S2) ou 10 (pour S3). |
 | Points de terminaison supplémentaires | Les hubs avec SKU payants peuvent avoir 10 points de terminaison supplémentaires. Les hubs avec SKU gratuits peuvent avoir un point de terminaison supplémentaire. |
 | Règles de routage de messages | Les hubs avec SKU payants peuvent avoir 100 règles de routage. Les hubs avec SKU gratuits peuvent avoir cinq règles de routage. |
 | Messages d’appareil-à-cloud | Taille maximale des messages 256 Ko |
@@ -77,14 +77,14 @@ IoT Hub impose d’autres limites opérationnelles :
 | Messages de cloud-à-appareil | Le nombre maximal de messages en attente de remise est 50 |
 
 > [!NOTE]
-> Actuellement, le nombre maximal d’appareils que vous pouvez connecter à un IoT Hub unique est 500 000. Si vous souhaitez augmenter cette limite, contactez le [support Microsoft](https://azure.microsoft.com/support/options/).
+> Actuellement, hello nombre maximal de périphériques que vous pouvez vous connecter tooa unique IoT hub est de 500 000. Si vous souhaitez tooincrease cette limite, contactez [Support technique de Microsoft](https://azure.microsoft.com/support/options/).
 
-## <a name="latency"></a>Latence
-IoT Hub s’efforce de fournir une faible latence pour toutes les opérations. Toutefois, en raison des conditions réseau et d’autres facteurs imprévisibles, il ne peut pas garantir une latence maximale. Lorsque vous concevez votre solution, vous devez :
+## <a name="latency"></a>Latency
+IoT Hub s’efforce tooprovide faible latence pour toutes les opérations. Toutefois, en raison de conditions de toonetwork et d’autres facteurs imprévisibles, il ne peut pas garantir une latence maximale. Lorsque vous concevez votre solution, vous devez :
 
-* Éviter de faire d’hypothèses concernant la latence maximale de toute opération IoT Hub.
-* Configurer votre hub IoT dans la région Azure le plus proche de vos appareils.
-* Envisager d’utiliser Azure IoT Edge pour effectuer des opérations sensibles à la latence sur l’appareil ou sur une passerelle proche de celui-ci.
+* Évitez de faire d’hypothèses sur la latence maximale de hello de toute opération d’IoT Hub.
+* Configurer votre concentrateur IoT appareils tooyour le plus proche de hello région Azure.
+* Envisagez d’utiliser Azure IoT bord tooperform raison d’opérations sensibles sur l’appareil de hello ou sur un périphérique de fermer toohello de passerelle.
 
 Plusieurs unités IoT Hub affectent la limitation comme décrit précédemment, mais ne fournissent pas d’avantages ni de garanties supplémentaires en termes de latence.
 Si vous constatez des augmentations inattendues de la latence des opérations, contactez le [Support Microsoft](https://azure.microsoft.com/support/options/).

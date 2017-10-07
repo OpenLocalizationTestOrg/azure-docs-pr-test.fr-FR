@@ -1,6 +1,6 @@
 ---
-title: "Exportation de données Log Analytics vers Power BI | Microsoft Docs"
-description: "Power BI est un service Microsoft d’analyse commerciale basé sur le cloud qui fournit de riches fonctions de visualisation et de rapport afin de faciliter l’analyse de différents jeux de données.  Log Analytics peut exporter des données en continu entre le référentiel OMS et Power BI afin de vous permettre de tirer parti de ses visualisations et de ses outils d’analyse.  Cet article décrit comment configurer des requêtes dans Log Analytics pour exécuter automatiquement des exportations vers Power BI à intervalles réguliers."
+title: "tooPower de données Analytique de journal aaaExport BI | Documents Microsoft"
+description: "Power BI est un service Microsoft d’analyse commerciale basé sur le cloud qui fournit de riches fonctions de visualisation et de rapport afin de faciliter l’analyse de différents jeux de données.  Analytique de journal permettre en permanence exporter des données à partir du référentiel OMS de hello dans Power BI afin de vous pouvez tirer parti de ses visualisations et les outils d’analyse.  Cet article décrit le fonctionnement des requêtes tooconfigure dans Analytique de journal qui exportent automatiquement tooPower BI à intervalles réguliers."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,114 +14,114 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/24/2017
 ms.author: bwren
-ms.openlocfilehash: 98befb16d27387e8f65a27771a2a32c264119d74
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4822f99677e5d1080c72e95cda410da81615bac5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="export-log-analytics-data-to-power-bi"></a>Exportation de données Log Analytics vers Power BI
+# <a name="export-log-analytics-data-toopower-bi"></a>Exporter les données de journal Analytique tooPower BI
 
 >[!NOTE]
-> Une fois votre espace de travail mis à niveau vers le [nouveau langage de requête de Log Analytics](log-analytics-log-search-upgrade.md), le processus d’exportation des données de Log Analytics à Power BI ne fonctionne plus.  Toutes les planifications existantes que vous avez créées avant la mise à niveau sont alors désactivées. 
+> Si votre espace de travail a été mis à niveau toohello [Analytique de journal nouveau langage de requête](log-analytics-log-search-upgrade.md), puis ce processus d’exportation des données de journal Analytique tooPower BI ne fonctionnera plus.  Toutes les planifications existantes que vous avez créées avant la mise à niveau sont alors désactivées. 
 >
-> Après la mise à niveau, Azure Log Analytics utilise la même plateforme qu’Application Insights et vous devez utiliser le même processus vous permettant d’exporter des requêtes de Log Analytics vers Power BI comme [processus d’exportation des requêtes d’Application Insights vers Power BI](../application-insights/app-insights-export-power-bi.md#export-analytics-queries).  Vous pouvez soit exporter la requête à l’aide de la console Analytics comme décrit dans cet article, soit sélectionner le bouton **Power BI** situé dans le coin supérieur de l’écran du portail de recherche dans les journaux.
+> Après la mise à niveau, les utilisations Analytique de journal Azure hello même plateforme en tant qu’Application Insights et que vous utilisez hello même processus tooexport Analytique de journal des requêtes tooPower BI en tant que [hello processus tooexport Application Insights interroge tooPower BI](../application-insights/app-insights-export-power-bi.md#export-analytics-queries).  Vous pouvez exporter requête hello à l’aide de la console d’Analytique hello comme décrit dans cet article, ou vous pouvez sélectionner hello **Power BI** bouton haut hello écran hello dans le portail de recherche de journal hello.
 
 
 
-[Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/) est un service Microsoft d’analyse commerciale basé sur le cloud qui fournit de riches fonctions de visualisation et de rapport afin de faciliter l’analyse de différents jeux de données.  Log Analytics peut exporter automatiquement les données entre le référentiel OMS et Power BI afin de vous permettre de tirer parti de ses visualisations et de ses outils d’analyse.
+[Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/) est un service Microsoft d’analyse commerciale basé sur le cloud qui fournit de riches fonctions de visualisation et de rapport afin de faciliter l’analyse de différents jeux de données.  Analytique de journal peut automatiquement exporter des données à partir du référentiel d’OMS hello dans Power BI afin de vous pouvez tirer parti de ses visualisations et les outils d’analyse.
 
-Lorsque vous configurez Power BI avec Log Analytics, vous créez des requêtes de journal qui exportent les résultats vers les jeux de données correspondants dans Power BI.  La requête et l’exportation poursuivent automatiquement leur exécution selon une planification que vous avez définie afin de maintenir à jour le jeu de données avec les dernières données collectées par Log Analytics.
+Lorsque vous configurez Power BI avec Analytique de journal, vous créez des requêtes de journal qui exportent leurs résultats toocorresponding des groupes de données dans Power BI.  exportation et requête de hello continue tooautomatically exécuter selon une planification que vous définissez un dataset de hello tookeep des toodate avec les données les plus récentes hello collectées par Analytique de journal.
 
-![Log Analytics vers Power BI](media/log-analytics-powerbi/overview.png)
+![Journal Analytique tooPower BI](media/log-analytics-powerbi/overview.png)
 
 ## <a name="power-bi-schedules"></a>Planifications Power BI
-Une *planification Power BI* inclut une recherche de journal qui exporte un jeu de données du référentiel OMS vers un jeu de données correspondant dans Power BI, ainsi qu’une planification qui définit la fréquence d’exécution de cette recherche afin de maintenir à jour le jeu de données.
+A *Power BI planification* inclut une recherche de journal qui exporte un jeu de données à partir de hello OMS référentiel tooa jeu de données correspondant dans Power BI et une planification qui définit la fréquence à laquelle cette recherche est exécutée dataset de hello tookeep actuel.
 
-Les champs du jeu de données correspondent aux propriétés des enregistrements renvoyés par la recherche de journal.  Si la recherche renvoie des enregistrements de différents types, le jeu de données inclura toutes les propriétés de chacun des types d’enregistrements inclus.  
+champs Hello hello dataset correspondront propriétés hello d’enregistrements de hello renvoyés par la recherche de journal hello.  Si la recherche de hello retourne des enregistrements de différents types hello dataset inclut toutes les propriétés de hello de chacun des hello incluses types d’enregistrements.  
 
 > [!NOTE]
-> Il est recommandé d’utiliser une requête de recherche de journal qui retourne des données brutes, plutôt que d’effectuer une consolidation à l’aide de commandes de type [Mesure](log-analytics-search-reference.md#measure).  Vous pouvez effectuer des agrégations et des calculs dans Power BI à partir des données brutes.
+> Il s’agit d’une meilleure toouse de pratique une requête de recherche de journal qui retourne des données brutes en opposition tooperforming une consolidation à l’aide des commandes telles que [mesure](log-analytics-search-reference.md#measure).  Vous pouvez effectuer n’importe quel regroupement et les calculs dans Power BI à partir des données brutes de hello.
 >
 >
 
-## <a name="connecting-oms-workspace-to-power-bi"></a>Connexion de l’espace de travail OMS à Power BI
-Avant de pouvoir exporter des données de Log Analytics vers Power BI, vous devez connecter à votre espace de travail OMS à votre compte Power BI. Pour cela, procédez comme suit :  
+## <a name="connecting-oms-workspace-toopower-bi"></a>Connexion tooPower d’espace de travail OMS BI
+Avant de pouvoir exporter à partir de l’Analytique de journal tooPower BI, vous devez vous connecter à votre espace de travail tooyour Power BI de compte OMS à l’aide de la procédure de hello.  
 
-1. Dans la console OMS, cliquez sur la vignette **Paramètres** .
+1. Dans la console OMS hello, cliquez sur hello **paramètres** vignette.
 2. Sélectionnez **Comptes**.
-3. Dans la section **Informations sur l’espace de travail**, cliquez sur **Se connecter à un compte Power BI**.
-4. Entrez les informations d’identification de votre compte Power BI.
+3. Bonjour **informations de l’espace de travail** cliquez sur la section **connecter tooPower compte BI**.
+4. Entrez des informations d’identification de hello pour votre compte Power BI.
 
 ## <a name="create-a-power-bi-schedule"></a>Création d’une planification Power BI
-Créez une planification Power BI pour chaque jeu de données à l’aide de la procédure suivante.
+Créer une planification de BI de puissance pour chaque jeu de données à l’aide de la procédure de hello.
 
-1. Dans la console OMS, cliquez sur la vignette **Recherche de journal** .
-2. Entrez une nouvelle requête ou sélectionnez une recherche enregistrée qui retourne les données que vous souhaitez exporter vers **Power BI**.  
-3. Cliquez sur le bouton **Power BI** en haut de la page pour ouvrir la boîte de dialogue **Power BI**.
-4. Renseignez les informations du tableau suivant et cliquez sur **Enregistrer**.
+1. Dans la console OMS hello, cliquez sur hello **recherche de journal** vignette.
+2. Tapez une nouvelle requête ou sélectionnez une recherche enregistrée que retourne hello des données que vous souhaitez trop tooexport**Power BI**.  
+3. Cliquez sur hello **Power BI** bouton haut hello hello de hello page tooopen **Power BI** boîte de dialogue.
+4. Fournir des informations de hello Bonjour suivante, la table et cliquez sur **enregistrer**.
 
 | Propriété | Description |
 |:--- |:--- |
-| Nom |Nom permettant d’identifier la planification dans la liste des planifications Power BI. |
-| Recherche enregistrée |Recherche de journal à exécuter.  Vous pouvez sélectionner la requête en cours ou sélectionner une recherche enregistrée dans la zone de liste déroulante. |
-| Planification |Fréquence d’exécution de la recherche enregistrée et d’exportation des résultats vers le jeu de données Power BI.  La valeur doit être comprise entre 15 minutes et 24 heures. |
-| Nom du jeu de données |Nom du jeu de données dans Power BI.  Ce nom sera créé s’il n’existe pas ; dans le cas contraire, il sera mis à jour. |
+| Nom |Planification de la hello de tooidentify nom lorsque vous affichez la liste hello des planifications de Power BI. |
+| Recherche enregistrée |toorun de recherche de journal Hello.  Vous pouvez sélectionner la requête en cours hello ou sélectionnez une recherche enregistrée à partir de la zone de liste déroulante hello. |
+| Planification |La fréquence à laquelle hello toorun enregistré recherche et d’exportation de jeu de données toohello Power BI.  Hello doit être comprise entre 15 minutes et 24 heures. |
+| Nom du jeu de données |nom Hello du jeu de données hello dans Power BI.  Ce nom sera créé s’il n’existe pas ; dans le cas contraire, il sera mis à jour. |
 
 ## <a name="viewing-and-removing-power-bi-schedules"></a>Affichage et suppression de planifications Power BI
-Utilisez la procédure suivante pour afficher la liste des planifications Power BI.
+Afficher la liste hello des planifications de BI Power existantes avec hello suivant la procédure.
 
-1. Dans la console OMS, cliquez sur la vignette **Paramètres** .
+1. Dans la console OMS hello, cliquez sur hello **paramètres** vignette.
 2. Sélectionnez **Power BI**.
 
-Vous obtenez, outre les détails de la planification, le nombre d’exécutions de la planification au cours de la semaine précédente ainsi que l’état de la dernière synchronisation.  Si la synchronisation a rencontré des erreurs, vous pouvez cliquer sur le lien pour exécuter une recherche de journal afin d’obtenir les enregistrements et les détails de l’erreur.
+De plus de planifier des détails toohello Hello, nombre hello de hello planification s’est exécutée hello semaine dernière et état de hello de hello dernière synchronisation sont affichés.  Si la synchronisation de hello a rencontré des erreurs, vous pouvez cliquer sur hello lien toorun une recherche de journal pour les enregistrements avec les détails de l’erreur de hello.
 
-Vous pouvez supprimer une planification en cliquant sur le **X** dans **Supprimer la colonne**.  Pour désactiver une planification, sélectionnez **Désactivé**.  Pour modifier une planification, vous devez la supprimer et la recréer avec les nouveaux paramètres.
+Vous pouvez supprimer une planification en cliquant sur hello **X** Bonjour **Supprimer colonne**.  Pour désactiver une planification, sélectionnez **Désactivé**.  toomodify une planification, vous devez le supprimer et recréer avec les nouveaux paramètres de hello.
 
 ![Planifications Power BI](media/log-analytics-powerbi/schedules.png)
 
 ## <a name="sample-walkthrough"></a>Exemple de procédure pas à pas
-La section suivante explique, au travers d’un exemple, comment création une planification Power BI et utiliser son jeu de données pour créer un rapport simple.  Dans cet exemple, toutes les données de performances d’un ensemble d’ordinateurs sont exportées vers Power BI. Un graphique linéaire est ensuite créé pour afficher l’utilisation du processeur.
+Hello suivante section décrit un exemple de création d’une planification de BI Power et à l’aide de son toocreate dataset un rapport simple.  Dans cet exemple, toutes les données de performances pour un ensemble d’ordinateurs est exporté tooPower BI et un graphique linéaire est créé toodisplay d’utilisation du processeur.
 
 ### <a name="create-log-search"></a>Création de la recherche de journal
-Nous allons commencer par créer une recherche de journal sur les données que vous souhaitez envoyer au jeu de données.  Dans cet exemple, nous allons utiliser une requête qui retourne toutes les données de performances des ordinateurs dont le nom commence par *srv*.  
+Nous commençons par créer une recherche de journal pour les données hello que nous souhaitons toosend toohello dataset.  Dans cet exemple, nous allons utiliser une requête qui retourne toutes les données de performances des ordinateurs dont le nom commence par *srv*.  
 
 ![Planifications Power BI](media/log-analytics-powerbi/walkthrough-query.png)
 
 ### <a name="create-power-bi-search"></a>Création d’une recherche Power BI
-Cliquez sur le bouton **Power BI** pour ouvrir la boîte de dialogue Power BI et renseignez les informations requises.  Vous souhaitez exécuter cette recherche une fois par heure et créer un jeu de données nommé *Contoso Perf*.  Puisque vous avez déjà ouvert la recherche qui permet de créer les données souhaitées, conservez la valeur par défaut de l’option *Utiliser la requête de recherche active* pour **Recherche enregistrée**.
+Cliquez sur hello **Power BI** bouton boîte de dialogue tooopen hello Power BI et fournissent des informations de hello requis.  Cette toorun recherche une fois par heure et nous créer un dataset nommé *Contoso Perf*.  Étant donné que nous avons déjà ouvrir recherche hello qui crée les données de hello nous souhaitons, nous conservons hello comme valeur par défaut *utiliser la requête de recherche en cours* pour **recherche enregistrée**.
 
 ![Recherche Power BI](media/log-analytics-powerbi/walkthrough-schedule.png)
 
 ### <a name="verify-power-bi-search"></a>Vérification de la recherche Power BI
-Pour vérifier que la planification a été correctement créée, affichez la liste des recherches Power BI sous la vignette **Paramètres** dans le tableau de bord OMS.  Attendez quelques minutes et actualisez cette vue jusqu’à ce que vous obteniez confirmation que la synchronisation a été exécutée.
+tooverify que nous avons créé la planification de hello correctement, nous permet d’afficher hello liste de Power BI recherche sous hello **paramètres** vignette dans le tableau de bord OMS hello.  Nous Patientez quelques minutes et actualiser cette vue jusqu'à ce qu’il signale que la synchronisation de hello a été exécutée.
 
 ![Recherche Power BI](media/log-analytics-powerbi/walkthrough-schedules.png)
 
-### <a name="verify-the-dataset-in-power-bi"></a>Vérification du jeu de données dans Power BI
-Connectez-vous à votre compte à l’adresse [powerbi.microsoft.com](http://powerbi.microsoft.com/) et faites défiler le volet gauche vers le bas jusque **Jeux de données** .  Comme vous pouvez le voir, le jeu de données *Contoso Perf* apparaît, ce qui signifie que l’exportation a réussi.
+### <a name="verify-hello-dataset-in-power-bi"></a>Vérifiez que le dataset hello dans Power BI
+Nous allons nous connecter à notre compte [powerbi.microsoft.com](http://powerbi.microsoft.com/) et faites défiler trop**Datasets** bas hello du volet de gauche hello.  Nous pouvons voir que hello *Contoso Perf* jeu de données est répertorié, indiquant que notre exportation a été exécutée avec succès.
 
 ![Jeu de données Power BI](media/log-analytics-powerbi/walkthrough-datasets.png)
 
 ### <a name="create-report-based-on-dataset"></a>Création d’un rapport dérivé du jeu de données
-Sélectionnez le jeu de données **Contoso Perf**, puis cliquez sur **Résultats** dans le volet **Champs** pour afficher les champs qui font partie de ce jeu de données.  Pour créer un graphique linéaire illustrant l’utilisation des ressources processeur de chaque ordinateur, effectuez les actions suivantes.
+Nous allons sélectionner hello **Contoso Perf** jeu de données, puis cliquez sur **résultats** Bonjour **champs** volet sur des champs hello hello tooview droit qui font partie de ce jeu de données.  toocreate ligne graphique montrant l’utilisation de processeur pour chaque ordinateur, nous effectuons hello suivant des actions.
 
-1. Sélectionnez la visualisation Graphique en courbes.
-2. Faites glisser **ObjectName** sur **Filtre du niveau de rapport** et cochez la case **Processeur**.
-3. Faites glisser **CounterName** sur **Filtre du niveau de rapport** et cochez **% temps processeur**.
-4. Faites glisser **CounterValue** sur **Valeurs**.
-5. Faites glisser **Ordinateur** sur **Légende**.
-6. Faites glisser **TimeGenerated** sur **Axe**.
+1. Sélectionnez la visualisation de graphique de ligne hello.
+2. Faites glisser **ObjectName** trop**filtre de rapport** et **processeur**.
+3. Faites glisser **CounterName** trop**filtre de rapport** et **% temps processeur**.
+4. Faites glisser **CounterValue** trop**valeurs**.
+5. Faites glisser **ordinateur** trop**légende**.
+6. Faites glisser **TimeGenerated** trop**axe**.
 
-Comme vous pouvez le voir, le graphique en courbes obtenu s’affiche avec les données de notre jeu de données.
+Nous pouvons voir que hello résultant ligne ce graphique est affiché avec les données de hello à partir de notre jeu de données.
 
 ![Graphique en courbes Power BI](media/log-analytics-powerbi/walkthrough-linegraph.png)
 
-### <a name="save-the-report"></a>Enregistrement du rapport
-Pour enregistrer le rapport, cliquez sur le bouton Enregistrer en haut de l’écran, puis vérifiez qu’il apparaît désormais dans la section Rapports dans le volet gauche.
+### <a name="save-hello-report"></a>Enregistrer le rapport de hello
+Nous enregistrer le rapport hello en cliquant sur hello bouton haut hello écran hello enregistrer et valider qu’il est maintenant répertorié dans la section rapports de hello dans le volet gauche de hello.
 
 ![Rapports Power BI](media/log-analytics-powerbi/walkthrough-report.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment les [recherches de journaux](log-analytics-log-searches.md) peuvent vous aider à générer des requêtes pouvant être exportées vers Power BI.
-* Découvrez comment utiliser [Power BI](http://powerbi.microsoft.com) pour créer des visualisations basées sur des exportations Log Analytics.
+* En savoir plus sur [recherche de journal](log-analytics-log-searches.md) toobuild les requêtes qui peuvent être exportées tooPower BI.
+* En savoir plus sur [Power BI](http://powerbi.microsoft.com) toobuild visualisations selon les exportations Analytique de journal.

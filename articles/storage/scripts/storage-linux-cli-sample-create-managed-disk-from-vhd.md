@@ -1,6 +1,6 @@
 ---
-title: "Exemple de script avec l’interface de ligne de commande Azure CLI - Créer un disque managé à partir d’un fichier de VHD dans un compte de stockage dans le même abonnement | Microsoft Docs"
-description: "Exemple de script avec l’interface de ligne de commande Azure CLI - Créer un disque managé à partir d’un fichier de VHD dans un compte de stockage dans le même abonnement"
+title: "aaaAzure exemple de Script CLI - créer un disque géré à partir d’un fichier de disque dur virtuel dans un compte de stockage Bonjour même abonnement | Documents Microsoft"
+description: "Le Script CLI Azure exemple : création d’un disque géré à partir d’un fichier de disque dur virtuel dans un compte de stockage Bonjour même abonnement"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: 5022ca23ac2c2e515a9b80d44b1221f3c05fecb1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1e792fdbb7daea92bf6a6589a5d8aab5b9b5a670
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-managed-disk-from-a-vhd-file-in-a-storage-account-in-the-same-subscription-with-cli"></a>Créer un disque managé à partir d’un fichier de VHD dans un compte de stockage dans le même abonnement avec l’interface de ligne de commande
+# <a name="create-a-managed-disk-from-a-vhd-file-in-a-storage-account-in-hello-same-subscription-with-cli"></a>Créer un disque géré à partir d’un fichier de disque dur virtuel dans un compte de stockage Bonjour même abonnement avec l’interface CLI
 
-Ce script crée un disque managé à partir d’un fichier de VHD dans un compte de stockage dans le même abonnement. Utilisez ce script pour importer un VHD spécialisé (non généralisé/préparé avec Sysprep) vers un disque de système d’exploitation managé pour créer une machine virtuelle. Ou bien, utilisez-le pour importer un VHD de données vers un disque de données managées. 
+Ce script crée un disque géré à partir d’un fichier de disque dur virtuel dans un compte de stockage Bonjour même abonnement. Utilisez cette tooimport script un spécialisé toocreate (pas généralisé/préparée avec Sysprep) disque dur virtuel toomanaged du système d’exploitation disque un ordinateur virtuel. Ou bien, utilisez-la tooimport un disque de données toomanaged données disque dur virtuel. 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -32,21 +32,21 @@ Ce script crée un disque managé à partir d’un fichier de VHD dans un compte
 
 ## <a name="sample-script"></a>Exemple de script
 
-[!code-azurecli[main](../../../cli_scripts/storage/create-managed-data-disks-from-vhd/create-managed-data-disks-from-vhd.sh "Créer un disque managé à partir d’un VHD")]
+[!code-azurecli[main](../../../cli_scripts/storage/create-managed-data-disks-from-vhd/create-managed-data-disks-from-vhd.sh "Create managed disk from VHD")]
 
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script a recours aux commandes suivantes pour créer un disque managé à partir d’un VHD. Chaque commande du tableau renvoie à une documentation spécifique.
+Ce script utilise à la suite de commandes toocreate un disque géré à partir d’un disque dur virtuel. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
 
 | Commande | Remarques |
 |---|---|
-| [az disk create](https://docs.microsoft.com/cli/azure/disk#create) | Crée un disque managé en utilisant l’URI d’un VHD dans un compte de stockage dans le même abonnement |
+| [az disk create](https://docs.microsoft.com/cli/azure/disk#create) | Crée un disque géré à l’aide de l’URI d’un disque dur virtuel dans un compte de stockage hello même abonnement |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Créer une machine virtuelle en joignant un disque managé en tant que disque de système d’exploitation](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json)
+[Créer une machine virtuelle en attachant un disque géré en tant que disque de système d’exploitation](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json)
 
-Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous trouverez des exemples supplémentaires de scripts CLI de machine virtuelle et de disques managés dans la [documentation relative aux machines virtuelles Linux Azure](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Machine virtuelle supplémentaire et des exemples de scripts CLI de disques gérés sont accessibles dans hello [documentation de la machine virtuelle de Azure Linux](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

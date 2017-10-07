@@ -1,5 +1,5 @@
 ---
-title: "Flux de données en temps réel IoT et Azure Stream Analytics | Microsoft Docs"
+title: "aaaIoT des flux de données en temps réel et Analytique de flux de données Azure | Documents Microsoft"
 description: "Flux de données et balises de capteur IoT avec analyses de flux et traitement des données en temps réel"
 keywords: "solution IoT, prise en main d’IoT"
 services: stream-analytics
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 3af5aaa833478ef35fb57664c573ebf22d7a4599
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 422e6b719d0289880aa7f17fdc585e2b768c63d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-stream-analytics-to-process-data-from-iot-devices"></a>Prendre en main Azure Stream Analytics pour traiter des données à partir d’appareils IoT
-Dans ce didacticiel, vous allez apprendre à créer une logique de traitement de flux pour collecter des données à partir d’appareils IoT (Internet des objets). Nous allons recourir à un cas d’utilisation réel de l’IoT pour vous montrer comment générer votre solution rapidement et à moindre coût.
+# <a name="get-started-with-azure-stream-analytics-tooprocess-data-from-iot-devices"></a>Prise en main avec les données de tooprocess Analytique de flux de données Azure à partir des appareils IoT
+Dans ce didacticiel, vous allez apprendre comment toocreate flux-traitement logique toogather des données à partir d’appareils de l’Internet des objets (IoT). Nous allons utiliser un toodemonstrate de cas d’utilisation Internet of Things (IoT) réel, comment toobuild votre solution rapidement et à moindre coût.
 
 ## <a name="prerequisites"></a>Composants requis
 * [Abonnement Azure](https://azure.microsoft.com/pricing/free-trial/)
 * Exemples de fichiers de requête et de données téléchargeables à partir de [GitHub](https://aka.ms/azure-stream-analytics-get-started-iot)
 
 ## <a name="scenario"></a>Scénario
-Entreprise du secteur de l’automatisation industrielle, Contoso a complètement automatisé son processus de fabrication. Les machines de cette usine possèdent des capteurs capables de générer des flux de données en temps réel. Dans ce scénario, un responsable d’atelier de production souhaite obtenir des informations en temps réel à partir des données des capteurs pour rechercher des modèles et effectuer des actions sur ceux-ci. Nous allons utiliser le langage de requête Stream Analytics (SAQL, Stream Analytics Query Language) sur les données des capteurs pour rechercher des modèles intéressants à partir du flux de données entrant.
+Contoso, qui est une société dans l’espace d’automatisation industrielle hello, automatisées complètement son processus de fabrication. Hello dans cette installation est capteurs compatibles avec l’émission de flux de données en temps réel. Dans ce scénario, un gestionnaire de plancher de production souhaite toohave des informations en temps réel à partir de toolook de données de capteur hello pour les modèles et effectuer des opérations sur les. Nous allons utiliser hello langage de requête Analytique flux (SAQL) sur les modèles intéressants hello capteur données toofind hello flux d’entrée de données.
 
 Dans notre cas, les données sont générées à partir d’un appareil Texas Instruments SensorTag.
 
 ![Texas Instruments SensorTag](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-01.jpg)
 
-La charge utile des données est au format JSON et ressemble à ceci :
+charge utile de Hello de données de hello est au format JSON et l’aspect de hello suivantes :
 
     {
         "time": "2016-01-26T20:47:53.0000000",  
@@ -44,16 +44,16 @@ La charge utile des données est au format JSON et ressemble à ceci :
         "hmdt": 34  
     }  
 
-Dans un scénario réel, des centaines de capteurs de ce type pourraient générer des événements sous forme de flux. Dans l’idéal, un appareil de passerelle exécuterait du code pour transmettre ces événements à [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/) ou [Azure IoT Hubs](https://azure.microsoft.com/services/iot-hub/). Votre tâche Stream Analytics ingèrerait ces événements depuis Event Hubs et exécuterait des requêtes d’analyse en temps réel sur les flux. Vous pourriez ensuite envoyer les résultats à l’une des [sorties prises en charge](stream-analytics-define-outputs.md).
+Dans un scénario réel, des centaines de capteurs de ce type pourraient générer des événements sous forme de flux. Dans l’idéal, un périphérique de passerelle exécuterait code toopush ces événements trop[Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/) ou [Azure IoT Hubs](https://azure.microsoft.com/services/iot-hub/). Votre tâche de flux de données Analytique serait ces événements à partir des concentrateurs d’événements de réception et exécuter des requêtes de l’analytique en temps réel sur les flux hello. Ensuite, vous pouvez envoyer tooone de résultats hello Hello [prise en charge des sorties](stream-analytics-define-outputs.md).
 
-Pour plus de convivialité, ce guide de mise en route fournit un exemple de fichier de données capturé à partir de balises de capteur réelles. Vous pouvez exécuter des requêtes sur les exemples de données et afficher les résultats. Dans les didacticiels suivants, vous apprendrez comment connecter votre travail aux entrées et sorties et le déployer sur le service Azure.
+Pour plus de convivialité, ce guide de mise en route fournit un exemple de fichier de données capturé à partir de balises de capteur réelles. Vous pouvez exécuter des requêtes sur les données d’exemple hello et consultez les résultats. Dans les didacticiels suivants, vous allez apprendre comment tooconnect votre tooinputs et les sorties de la tâche et de les déployer toohello service Azure.
 
 ## <a name="create-a-stream-analytics-job"></a>Création d’un travail Stream Analytics
-1. Dans le [portail Azure](http://portal.azure.com), cliquez sur le signe +, puis saisissez **STREAM ANALYTICS** dans le champ de texte situé à droite. Sélectionnez ensuite **Stream Analytics job** (tâche Stream Analytics) dans la liste des résultats.
+1. Bonjour [portail Azure](http://portal.azure.com), cliquez sur le signe plus hello, puis tapez **STREAM ANALYTICS** dans hello texte fenêtre toohello vers la droite. Puis sélectionnez **tâche de flux de données Analytique** dans la liste des résultats hello.
    
     ![Créer une tâche Stream Analytics](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-02.png)
-2. Saisissez un nom de tâche unique et vérifiez que l’abonnement est approprié pour votre tâche. Ensuite, créez un groupe de ressources ou sélectionnez un groupe existant dans votre abonnement.
-3. Sélectionnez ensuite l’emplacement où vous souhaitez placer la tâche. Afin d’accélérer le traitement et réduire les coûts de transfert de données, il est recommandé de sélectionner le même emplacement que celui du groupe de ressources et celui prévu pour le compte de stockage.
+2. Entrez un nom unique de la tâche et vérifiez l’abonnement de hello est hello un approprié pour votre travail. Ensuite, créez un groupe de ressources ou sélectionnez un groupe existant dans votre abonnement.
+3. Sélectionnez ensuite l’emplacement où vous souhaitez placer la tâche. Pour la vitesse de traitement et de réduire les coûts de transfert de données en sélectionnant hello même emplacement que le groupe de ressources hello et compte de stockage concerné est recommandé.
    
     ![Créer une tâche Stream Analytics - détails](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-03.png)
    
@@ -61,61 +61,61 @@ Pour plus de convivialité, ce guide de mise en route fournit un exemple de fich
    > Vous devez créer ce compte de stockage une seule fois par région. Ce stockage sera partagé entre toutes les tâches Stream Analytics qui sont créées dans cette région.
    > 
    > 
-4. Cochez la case pour placer votre travail sur votre tableau de bord, puis cliquez sur **CRÉER**.
+4. Hello boîte tooplace votre travail sur votre tableau de bord, puis cliquez sur **créer**.
    
     ![création de la tâche en cours](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-03a.png)
-5. Vous devriez voir le message « Deployment started » (déploiement démarré) s’afficher en haut à droite de la fenêtre de votre navigateur. Il fera rapidement place à une fenêtre indiquant l’achèvement du déploiement, comme illustré ci-dessous.
+5. Vous devez voir un « déploiement démarré...' affichée dans hello en haut à droite de la fenêtre du navigateur. Bientôt, elle deviendra tooa terminée fenêtre comme indiqué ci-dessous.
    
     ![création de la tâche en cours](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-03b.png)
 
 ### <a name="create-an-azure-stream-analytics-query"></a>Création d’une requête Azure Stream Analytics
-Une fois votre tâche créée, vous pouvez l’ouvrir et créer une requête. Pour accéder à votre tâche, il vous suffit de cliquer sur la mosaïque correspondante.
+Une fois votre travail est créé tooopen de son temps et créer une requête. Vous pouvez accéder facilement votre travail en cliquant sur la vignette de hello pour celle-ci.
 
 ![Titre de la tâche](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-04.png)
 
-Dans le volet **Job Topology** (Topologie des tâches), cochez la case **REQUÊTE** pour accéder à l’éditeur de requête. L’éditeur de **REQUÊTE** vous permet d’entrer une requête T-SQL qui exécute la transformation sur les données d’événement entrantes.
+Bonjour **travail topologie** volet cliquez sur hello **requête** zone toogo toohello l’éditeur de requête. Hello **requête** éditeur vous permet de requête tooenter T-SQL qui exécute la transformation de hello sur les données d’événements entrants hello.
 
 ![Case de requête](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-05.png)
 
 ### <a name="query-archive-your-raw-data"></a>Requête : Archiver vos données brutes
-La forme de requête la plus simple est une requête directe qui archive toutes les données d’entrée dans sa sortie désignée. Téléchargez l’exemple de fichier de données de [GitHub](https://aka.ms/azure-stream-analytics-get-started-iot) vers un emplacement de votre ordinateur. 
+forme la plus simple de Hello de requête est une requête directe qui archive toutes les données d’entrée tooits désignés de sortie. Télécharger le fichier de données d’exemple hello de [GitHub](https://aka.ms/azure-stream-analytics-get-started-iot) emplacement tooa sur votre ordinateur. 
 
-1. Copiez et collez la requête du fichier PassThrough.txt. 
+1. Collez la requête hello à partir du fichier de PassThrough.txt hello. 
    
     ![Flux d’entrée du test](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-06.png)
-2. Cliquez sur les trois points en regard de votre entrée, puis cochez la case **Upload sample data from file** (charger les exemples de données à partir d'un fichier).
+2. Cliquez sur entrée tooyour suivante de hello trois points et sélectionnez **télécharger des exemples de données à partir du fichier** boîte.
    
     ![Flux d’entrée du test](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-06a.png)
-3. Un volet s’ouvre alors sur la droite. Dans ce volet, sélectionnez le fichier de données HelloWorldASA-InputStream.json à partir de votre emplacement de téléchargement et cliquez sur **OK** en bas du volet.
+3. Un volet s’ouvre sur hello à droite, par conséquent, qu’il contient les données de hello sélectionnez HelloWorldASA-InputStream.json à partir de votre emplacement de téléchargement de fichiers, cliquez sur **OK** bas hello du volet de hello.
    
     ![Flux d’entrée du test](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-06b.png)
-4. Cliquez ensuite sur l’engrenage de **Test** dans la zone supérieure gauche de la fenêtre et exécutez votre requête sur les exemples de données. Une fois le traitement terminé, une fenêtre de résultats s’ouvre sous votre requête.
+4. Puis cliquez sur hello **Test** ENGRENAGE dans hello zone supérieure gauche de la fenêtre hello et traiter votre requête de test dans le jeu de données exemple hello. Une fenêtre de résultats s’ouvre sous votre requête que le traitement de hello est terminé.
    
     ![Résultats du test](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-07.png)
 
-### <a name="query-filter-the-data-based-on-a-condition"></a>Requête : Filtrer les données en fonction d’une condition
-Essayons de filtrer les résultats en fonction d’une condition. Nous souhaitons limiter les résultats aux événements qui proviennent de « SensorA ». La requête se trouve dans le fichier Filtering.txt.
+### <a name="query-filter-hello-data-based-on-a-condition"></a>Requête : Filtrer les données de hello basées sur une condition
+Essayons de résultats de hello toofilter basés sur une condition. Nous aimerions résultats tooshow pour que les événements provenant de « sensorA ». requête de Hello est dans un fichier de Filtering.txt hello.
 
 ![Filtrage d’un flux de données](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-08.png)
 
-Vous pouvez voir que la requête respecte la casse et compare des valeurs de chaîne. Cliquez à nouveau sur l’engrenage de **Test** pour exécuter la requête. La requête doit renvoyer uniquement 389 lignes sur 1860 événements.
+Notez que cette requête de la casse hello compare la valeur de chaîne. Cliquez sur hello **Test** engrenage à nouveau des requêtes de hello tooexecute. requête de Hello doit retourner des 389 lignes 1860 événements.
 
 ![Résultats de la deuxième sortie du test de requête](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-09.png)
 
-### <a name="query-alert-to-trigger-a-business-workflow"></a>Requête : Alerte déclenchant un flux de travail métier
-Nous allons maintenant affiner notre requête. Pour chaque type de capteur, nous souhaitons surveiller la température moyenne par fenêtre de 30 secondes et afficher les résultats uniquement si la température moyenne se situe au-dessus de 100 degrés. Nous écrivons la requête suivante et cliquons sur **Test** pour afficher les résultats. La requête se trouve dans le fichier ThresholdAlerting.txt.
+### <a name="query-alert-tootrigger-a-business-workflow"></a>De requête : Tootrigger d’alerte un flux de travail d’entreprise
+Nous allons maintenant affiner notre requête. Pour chaque type de capteur, nous souhaitez toomonitor la température moyenne par de 30 secondes et afficher les résultats uniquement si la température moyenne de hello est supérieure à 100 degrés. Nous allons écrire suivant de hello de requête, puis cliquez sur **Test** des résultats toosee hello. requête de Hello est dans un fichier de ThresholdAlerting.txt hello.
 
 ![Requête de filtre de 30 secondes](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-10.png)
 
-Les résultats doivent maintenant contenir uniquement 245 lignes et répertorier les noms des capteurs pour lesquels la température moyenne est supérieure à 100 degrés. Dans cette requête, nous avons regroupé le flux d’événements en fonction du champ **dspl**, qui correspond au nom du capteur, et par valeur **Intervalle de temps** de 30 secondes. Les requêtes temporelles doivent indiquer le mode de calcul du temps. À l’aide de la clause **TIMESTAMP BY**, nous avons spécifié la colonne **OUTPUTTIME** pour associer les valeurs de temps avec l’ensemble des calculs temporels. Pour obtenir des informations détaillées, consultez les rubriques MSDN sur la [gestion du temps](https://msdn.microsoft.com/library/azure/mt582045.aspx) et les [fonctions de fenêtrage](https://msdn.microsoft.com/library/azure/dn835019.aspx).
+Vous devez maintenant voir des résultats qui contiennent des lignes et des noms des capteurs 245 uniquement où moyenne hello températures est supérieure à 100. Cette requête regroupe des flux hello d’événements par **dspl**, qui est supérieure à nom du capteur hello, un **fenêtre bascule** de 30 secondes. Des requêtes temporelles doivent indiquer comment nous souhaitons tooprogress de temps. À l’aide de hello **TIMESTAMP BY** clause, nous avons spécifié hello **OUTPUTTIME** fois tooassociate de colonne avec tous les calculs temporelle. Pour plus d’informations, consultez articles MSDN de hello [gestion du temps](https://msdn.microsoft.com/library/azure/mt582045.aspx) et [fonctions de fenêtrage](https://msdn.microsoft.com/library/azure/dn835019.aspx).
 
 ### <a name="query-detect-absence-of-events"></a>Requête : Détection de l’absence d’événements
-Comment écrire une requête pour rechercher une absence d’événements d’entrée ? Recherchons la dernière fois qu’un capteur a envoyé des données, puis qu’il n’a pas envoyé d’événements au cours de la minute suivante. La requête se trouve dans le fichier AbsenseOfEvent.txt.
+Comment pouvons-nous nous écrivons une requête toofind un manque d’événements d’entrée ? Nous allons rechercher hello dernière fois qu’un capteur envoyé des données et puis n’a pas envoyé d’événements pour hello prochaine minute. requête de Hello est dans un fichier de AbsenseOfEvent.txt hello.
 
 ![Détection de l’absence d’événements](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-11.png)
 
-Ici, nous utilisons une jointure **LEFT OUTER** sur le même flux de données (jointure réflexive). Pour une jointure **INNER**, un résultat n’est renvoyé que si une correspondance est trouvée.  Par contre, pour une jointure **LEFT OUTER**, si un événement du côté gauche de la jointure n’a pas de correspondance, une ligne contenant la valeur NULL pour toutes les colonnes de la ligne de droite est renvoyée. Cette technique est très utile pour rechercher une absence d’événements. Pour en savoir plus sur [JOIN](https://msdn.microsoft.com/library/azure/dn835026.aspx), consultez notre documentation MSDN.
+Nous utilisons ici un **LEFT OUTER** joindre toohello du flux de données mêmes (jointure réflexive). Pour une jointure **INNER**, un résultat n’est renvoyé que si une correspondance est trouvée.  Pour un **LEFT OUTER** jointure, si un événement à partir de hello à gauche de la jointure de hello est non appariée, une ligne qui a une valeur NULL pour tous les hello colonnes du côté droit de hello est retournée. Cette technique est très utile toofind une absence d’événements. Pour en savoir plus sur [JOIN](https://msdn.microsoft.com/library/azure/dn835026.aspx), consultez notre documentation MSDN.
 
 ## <a name="conclusion"></a>Conclusion
-L’objectif de ce didacticiel est de montrer comment écrire différentes requêtes en langage de requête Stream Analytics et afficher les résultats dans le navigateur. Toutefois, il ne s’agit que d’une prise en main. Stream Analytics offre de nombreuses autres possibilités. Ce langage prend en charge un large éventail d’entrées et de sorties et peut même tirer parti de fonctions d’Azure Machine Learning, ce qui en fait un outil robuste pour l’analyse des flux de données. Vous pouvez obtenir des informations supplémentaires sur Stream Analytics via notre [parcours d’apprentissage](https://azure.microsoft.com/documentation/learning-paths/stream-analytics/). Pour en savoir plus sur la méthode à suivre pour écrire des requêtes, voir [Exemples de requête pour les modes d’utilisation courants dans Stream Analytics](stream-analytics-stream-analytics-query-patterns.md).
+Hello ce didacticiel vise toodemonstrate affichage des résultats de requêtes langage de requête Analytique Stream toowrite et voir dans le navigateur de hello. Toutefois, il ne s’agit que d’une prise en main. Stream Analytics offre de nombreuses autres possibilités. Analytique de flux de données prend en charge une variété d’entrées et sorties, et peut même utiliser les fonctions dans Azure Machine Learning toomake il un outil puissant pour l’analyse des flux de données. Vous pouvez démarrer tooexplore plus d’informations sur les flux de données Analytique à l’aide de notre [parcours d’apprentissage](https://azure.microsoft.com/documentation/learning-paths/stream-analytics/). Pour plus d’informations sur les requêtes toowrite, lisez l’article de hello sur [modèles de requête courants](stream-analytics-stream-analytics-query-patterns.md).
 

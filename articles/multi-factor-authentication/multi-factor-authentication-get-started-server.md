@@ -1,6 +1,6 @@
 ---
-title: Prise en main du serveur Azure Multi-Factor Authentication | Microsoft Docs
-description: "Ceci est la page d'authentification multifacteur Azure qui explique la prise en main du serveur Azure MFA."
+title: "aaaGetting a démarré le serveur Azure multi-Factor Authentication | Documents Microsoft"
+description: "Il s’agit de page d’authentification multifacteur Azure hello qui décrit comment tooget démarrer avec le serveur Azure MFA."
 services: multi-factor-authentication
 keywords: "authentification serveur, page d’activation d’application d’authentification Azure Multi Factor Authentication, téléchargement du serveur d’authentification"
 documentationcenter: 
@@ -16,25 +16,25 @@ ms.date: 08/23/2017
 ms.author: joflore
 ms.reviewer: alexwe
 ms.custom: it-pro
-ms.openlocfilehash: ebc5fd442c1f0dd9841c1423c174a073d286911a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 92a6a586eb96375e92a9455ad64e67221001db81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="getting-started-with-the-azure-multi-factor-authentication-server"></a>Prise en main du serveur Azure Multi-Factor Authentication
+# <a name="getting-started-with-hello-azure-multi-factor-authentication-server"></a>Prise en main de hello serveur Azure multi-Factor Authentication
 
 <center>![MFA en local](./media/multi-factor-authentication-get-started-server/server2.png)</center>
 
-Maintenant que nous avons déterminé s’il fallait utiliser le serveur Multi-Factor Authentication local, nous pouvons commencer. Cette page vous indique comment installer le serveur et le configurer avec votre Active Directory local. Si le serveur MFA est déjà installé et que vous souhaitez effectuer une mise à niveau, voir [Mise à niveau vers le serveur Azure Multi-Factor Authentication le plus récent](multi-factor-authentication-server-upgrade.md). Pour plus d’informations sur l’installation du service web, voir [Déploiement du service web de l’application mobile pour le serveur Azure Multi-Factor Authentication](multi-factor-authentication-get-started-server-webservice.md).
+Maintenant que nous avons déterminé toouse local Server de l’authentification multifacteur, allons-y. Cette page traite une nouvelle installation du serveur de hello et de la configuration Active Directory local. Si vous avez déjà hello MFA server êtes installé et que vous cherchez tooupgrade, consultez [mise à niveau toohello dernière serveur Azure multi-Factor Authentication](multi-factor-authentication-server-upgrade.md). Si vous recherchez des informations sur l’installation de simplement les service hello web, consultez [hello du déploiement de Service Web d’application Azure multi-Factor Authentication Server Mobile](multi-factor-authentication-get-started-server-webservice.md).
 
 ## <a name="plan-your-deployment"></a>Planifier votre déploiement
 
-Avant de télécharger le serveur Microsoft Azure Multi-Factor Authentication, pensez à vos exigences en termes de charge et de haute disponibilité. Prenez en compte ces informations pour décider de quelle manière et à quel endroit effectuer le déploiement.
+Avant de télécharger hello serveur Azure multi-Factor Authentication, pensez à votre charge et les exigences de haute disponibilité. Utilisez cette toodecide informations comment et où toodeploy.
 
-Le nombre d’utilisateurs que vous souhaitez authentifier, sur une base régulière, est une bonne ligne directrice pour avoir une idée de la quantité de mémoire nécessaire.
+Recommandé pour la quantité de hello de mémoire dont vous avez besoin est nombre hello d’utilisateurs souhaitées tooauthenticate régulièrement.
 
-| Users | RAM |
+| Utilisateurs | RAM |
 | ----- | --- |
 | 1-10,000 | 4 Go |
 | 10,001-50,000 | 8 Go |
@@ -42,38 +42,38 @@ Le nombre d’utilisateurs que vous souhaitez authentifier, sur une base réguli
 | 100,000-200,001 | 16 Go |
 | 200,001+ | 32 Go |
 
-Vous devez configurer plusieurs serveurs pour l’équilibrage de charge ou la haute disponibilité ? Il existe plusieurs façons de définir cette configuration avec le serveur Azure MFA. Lorsque vous installez votre premier serveur Azure MFA, il devient le maître. Tous les serveurs supplémentaires deviennent ses subordonnés. Ils synchronisent automatiquement les utilisateurs ainsi que la configuration avec le serveur maître. Par la suite, vous pouvez configurer un serveur principal et conserver le reste des serveurs en tant que serveurs de sauvegarde. Vous pouvez aussi configurer l’équilibrage de charge parmi l’ensemble des serveurs.
+Devez tooset installer plusieurs serveurs pour la haute disponibilité ou l’équilibrage de charge ? Il existe un certain nombre de façons les tooset cette configuration avec le serveur Azure MFA. Lorsque vous installez votre premier serveur de l’authentification Multifacteur Azure, il devient le maître de hello. Tous les serveurs supplémentaires deviennent subordonnés et synchronisent automatiquement des utilisateurs et configuration avec maître de hello. Ensuite, vous pouvez configurer un serveur principal et les autres hello agissent comme sauvegarde, ou vous pouvez configurer équilibrage de charge entre tous les serveurs hello.
 
-Lorsqu’un serveur Azure MFA maître est hors connexion, les serveurs subordonnés peuvent continuer à traiter les requêtes de vérification en deux étapes. Toutefois, vous ne pouvez pas ajouter de nouveaux utilisateurs. Quant aux utilisateurs existants, ils ne peuvent mettre à jour leurs paramètres que lorsqu’un serveur maître est à nouveau en ligne ou qu’un serveur subordonné est promu.
+Lorsqu’un serveur Azure MFA maître est déconnecté, les serveurs subordonnés hello peuvent toujours traiter les demandes de vérification en deux étapes. Toutefois, vous ne pouvez pas ajouter des utilisateurs et les utilisateurs existants ne peut pas mettre à jour leurs paramètres jusqu'à ce que le maître de hello est remis en ligne ou secondaire est promue.
 
 ### <a name="prepare-your-environment"></a>Préparation de votre environnement
 
-Assurez-vous que le serveur que vous utilisez pour l’authentification multifacteur Azure répond aux exigences suivantes :
+Vérifiez que serveur hello que vous utilisez pour l’authentification multifacteur Azure présente hello suivant les exigences :
 
 | Configuration requise du serveur Azure Multi-Factor Authentication | Description |
 |:--- |:--- |
 | Matériel |<li>200 Mo d’espace disque</li><li>Processeur compatible x32 ou x64</li><li>1 Go de RAM ou plus</li> |
-| Logiciel |<li>Windows Server 2008 ou version ultérieure si l’hôte est un système d’exploitation de serveur</li><li>Windows 7 ou version ultérieure si l’hôte est un système d’exploitation client</li><li>Microsoft .NET 4.0 Framework</li><li>IIS 7.0 ou version ultérieure si vous installez le kit de développement logiciel du portail de l’utilisateur ou du service web</li> |
+| Logiciel |<li>Windows Server 2008 ou supérieur, si l’hôte hello est un serveur de système d’exploitation</li><li>Windows 7 ou version ultérieure si l’hôte hello est un système d’exploitation client</li><li>Microsoft .NET 4.0 Framework</li><li>IIS version 7.0 ou ultérieure si l’installation hello utilisateur portail ou un service web SDK</li> |
 
 ### <a name="azure-mfa-server-components"></a>Composants du serveur Azure MFA
 
 Le serveur Azure MFA est constitué de trois composants Web :
 
-* Kit de développement logiciel (SDK) Web Services : il assure la communication avec les autres composants et est installé sur le serveur d’applications Azure MFA
-* Portail utilisateur : un site web IIS qui permet aux utilisateurs de s’inscrire dans Azure Multi-Factor Authentication (MFA) et de mettre à jour leurs comptes.
-* Service Web de l’application mobile : il permet l’utilisation d’une application mobile comme l’application Microsoft Authenticator, pour une vérification en deux étapes.
+* Le Service SDK - permet la communication avec hello d’autres composants et est installé sur le serveur d’applications Azure MFA hello Web
+* Portail de l’utilisateur - un site web IIS qui permet aux utilisateurs tooenroll dans Azure multi-Factor Authentication (MFA) et de gérer leurs comptes.
+* Service d’application Web mobile - permet à l’aide d’une application mobile comme application de Microsoft Authenticator hello pour vérification en deux étapes.
 
-Ces trois composants peuvent être installés sur le même serveur s’il est accessible sur Internet. Si vous séparez les composants, le kit de développement logiciel (SDK) Web Service est installé sur le serveur d’applications Azure MFA. Le portail utilisateur et le service Web de l’application mobile sont quant à eux installés sur un serveur accessible sur Internet.
+Les trois composants peuvent être installés sur hello server même si le serveur de hello est connecté à internet. Si l’arrêt des composants de hello, hello SDK du Service Web est installé sur le serveur d’applications Azure MFA hello et hello portail de l’utilisateur et Service Web d’application Mobile sont installés sur un serveur connecté à internet.
 
 ### <a name="azure-multi-factor-authentication-server-firewall-requirements"></a>Configuration requise du serveur Azure Multi-Factor Authentication
 
-Chaque serveur MFA doit pouvoir communiquer sur les éléments sortants du port 443, vers les adresses suivantes :
+Chaque serveur de l’authentification Multifacteur doit être en mesure de toocommunicate sur le port 443 sortant toohello est suivant adresses :
 
 * https://pfd.phonefactor.net
 * https://pfd2.phonefactor.net
 * https://css.phonefactor.net
 
-Si les pare-feu sortants sont limités sur le port 443, ouvrez les plages d'adresses IP suivantes :
+Si le pare-feu sortants sont restreints sur le port 443, ouvrez hello suivant des plages d’adresses IP :
 
 | Sous-réseau IP | Masque réseau | Plage d’adresses IP |
 |:---: |:---: |:---: |
@@ -81,7 +81,7 @@ Si les pare-feu sortants sont limités sur le port 443, ouvrez les plages d'adre
 | 134.170.165.0/25 |255.255.255.128 |134.170.165.1 – 134.170.165.126 |
 | 70.37.154.128/25 |255.255.255.128 |70.37.154.129 – 70.37.154.254 |
 
-Si vous n’utilisez pas la fonctionnalité de confirmation d’événement et que les utilisateurs ne se servent pas d’applications mobiles pour effectuer des vérifications à partir des appareils sur le réseau de l’entreprise, vous avez uniquement besoin des plages suivantes :
+Si vous n’utilisez pas de fonctionnalité de Confirmation d’événement hello et que vos utilisateurs ne sont pas à l’aide de tooverify des applications mobiles à partir de périphériques sur le réseau d’entreprise de hello, vous devez uniquement hello suivant plages :
 
 | Sous-réseau IP | Masque réseau | Plage d’adresses IP |
 |:---: |:---: |:---: |
@@ -89,10 +89,10 @@ Si vous n’utilisez pas la fonctionnalité de confirmation d’événement et q
 | 134.170.165.72/29 |255.255.255.248 |134.170.165.72 – 134.170.165.79 |
 | 70.37.154.200/29 |255.255.255.248 |70.37.154.201 – 70.37.154.206 |
 
-## <a name="download-the-azure-multi-factor-authentication-server"></a>Téléchargement du serveur Azure Multi-Factor Authentication
+## <a name="download-hello-azure-multi-factor-authentication-server"></a>Télécharger hello serveur Azure multi-Factor Authentication
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com) en tant qu’administrateur.
-2. À gauche, sélectionnez **Active Directory**
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) en tant qu’administrateur.
+2. Sur hello gauche, sélectionnez **Active Directory**
 3. Cliquez sur **Utilisateurs et groupes**
 4. Cliquez sur **Tous les utilisateurs**
 5. Cliquez sur **Authentification multifacteur**
@@ -100,69 +100,69 @@ Si vous n’utilisez pas la fonctionnalité de confirmation d’événement et q
 
    ![Page Paramètres du service](./media/multi-factor-authentication-get-started-server/servicesettings.png)
 
-6. Au bas de la page Paramètres du service, cliquez sur **Accéder au portail**. Une nouvelle page s’ouvre.
+6. Dans la page Paramètres de services hello, bas hello écran hello, cliquez sur **Go toohello portal**. Une nouvelle page s’ouvre.
 7. Cliquez sur **Téléchargements**.
-8. Cliquez sur le lien de **téléchargement** et enregistrez le programme d’installation.
+8. Cliquez sur hello **télécharger** lier et enregistrer le programme d’installation hello.
 
    ![Télécharger le serveur MFA](./media/multi-factor-authentication-get-started-server/download4.png)
 
-9. Ne fermez pas cette page, car nous y faisons mention après avoir exécuté le programme d’installation.
+9. Laissez cette page ouverte nous appelons tooit après le programme d’installation de hello en cours d’exécution.
 
-## <a name="install-and-configure-the-azure-multi-factor-authentication-server"></a>Installer et configurer le serveur Azure Multi-Factor Authentication
+## <a name="install-and-configure-hello-azure-multi-factor-authentication-server"></a>Installer et configurer le serveur Azure multi-Factor Authentication de hello
 
-Maintenant que vous avez téléchargé le serveur, vous pouvez l’installer et le configurer. Assurez-vous que le serveur que vous installez répond aux exigences regroupées sur la liste dans la section de planification.
+Maintenant que vous avez téléchargé le serveur hello vous pouvez installer et configurer. Veillez à ce serveur hello sur que vous l’installez répond aux conditions requises répertoriées dans la planification de la section de hello.
 
-1. Double-cliquez sur le fichier exécutable.
-2. Sur l'écran Sélectionner le dossier d’installation, assurez-vous que le dossier est correct, puis cliquez sur **Suivant**.
-3. Une fois l'installation terminée, cliquez sur **Terminer**.  L'Assistant de configuration démarre.
-4. Sur l’écran d’accueil de l’Assistant Configuration, cochez l’option **Ignorer l’Assistant Configuration de l’authentification**, puis cliquez sur **Suivant**.  La fermeture de l’Assistant intervient et le serveur démarre.
+1. Double-cliquez sur hello exécutable.
+2. Sur l’écran de sélection du dossier Installation Bonjour, assurez-vous que le dossier hello est correct, cliquez sur **suivant**.
+3. Une fois l’installation de hello est terminée, cliquez sur **Terminer**.  Assistant de configuration Hello démarre.
+4. Sur l’écran Bienvenue hello configuration Assistant, vérifiez **ignorer à l’aide de hello Assistant de Configuration de l’authentification** et cliquez sur **suivant**.  Hello Assistant se ferme et le démarrage du serveur hello.
 
    ![Cloud](./media/multi-factor-authentication-get-started-server/skip2.png)
 
-5. Revenez à la page à partir de laquelle vous avez téléchargé le serveur, puis cliquez sur le bouton **Générer des informations d’identification d’activation** . Copiez ces informations dans les zones appropriées du serveur Azure MFA, puis cliquez sur **Activer**.
+5. Retour hello page que nous avons téléchargé serveur hello à partir de, cliquez sur hello **générer les informations d’identification d’Activation** bouton. Copier ces informations dans hello serveur Azure MFA dans des zones de hello fournies et cliquez sur **activer**.
 
 ## <a name="send-users-an-email"></a>Envoi d’un e-mail aux utilisateurs
 
-Pour faciliter le lancement, autorisez le serveur MFA à communiquer avec vos utilisateurs. Le serveur MFA peut envoyer un e-mail les informant qu’ils ont été inscrits pour la vérification en deux étapes.
+lancement tooease, d’autoriser le serveur MFA toocommunicate avec vos utilisateurs. Serveur MFA peut envoyer un courrier électronique tooinform leur qu’ils ont été inscrits pour la vérification en deux étapes.
 
-L’e-mail que vous envoyez doit être déterminé par la façon dont vous configurez vos utilisateurs pour la vérification en deux étapes. Par exemple, si vous pouvez importer les numéros de téléphone à partir du répertoire de l’entreprise, l’e-mail doit inclure les numéros de téléphone par défaut afin que les utilisateurs sachent à quoi s’attendre. Si vous ne pouvez pas importer les numéros de téléphone ou si les utilisateurs doivent recourir à l’application mobile, envoyez-leur un e-mail leur demandant d’effectuer l’inscription de leur compte. en fournissant un lien hypertexte permettant d’accéder au portail utilisateur Azure Multi-Factor Authentication.
+messagerie Hello que vous envoyez doit être déterminée par la configuration de vos utilisateurs pour la vérification en deux étapes. Par exemple, si vous êtes en mesure de tooimport les numéros de téléphone à partir de l’annuaire de l’entreprise hello, par courrier électronique hello doit inclure les numéros de téléphone hello par défaut afin que les utilisateurs savent quels tooexpect. Si vous n’importez pas de numéros de téléphone ou vos utilisateurs vont application mobile de toouse hello, leur envoyer un message électronique qui les dirige toocomplete l’inscription de leur compte. Inclure un lien hypertexte de toohello portail d’utilisateur Azure multi-Factor Authentication par courrier électronique hello.
 
-Le contenu de l’e-mail varie en fonction de la méthode de vérification définie pour l'utilisateur (appel téléphonique, SMS ou application mobile).  Par exemple, si l'utilisateur doit saisir un code confidentiel pour s'authentifier, l’e-mail lui indique le code confidentiel initial qui a été défini.  Les utilisateurs doivent modifier leur code PIN lors de leur première vérification.
+le contenu des messages électroniques de hello Hello varie également selon la méthode hello de vérification qui a été définie pour l’utilisateur hello (appel téléphonique, SMS ou application mobile).  Par exemple, si l’utilisateur de hello est requis toouse un code confidentiel pour s’authentifier, par courrier électronique hello lui indique ce que son code PIN initial a été défini.  Les utilisateurs est requis toochange leur code confidentiel lors de leur première vérification.
 
 ### <a name="configure-email-and-email-templates"></a>Configuration du courrier électronique et des modèles de courrier électronique
 
-Cliquez sur l'icône de courrier électronique sur la gauche pour configurer les paramètres d'envoi de ces e-mails. Cette page vous permet de saisir les informations SMTP de votre serveur de messagerie et d’envoyer des e-mails, en cochant la case **Envoyer des e-mails aux utilisateurs**.
+Sur hello messagerie icône hello de gauche tooset des paramètres de hello pour l’envoi de ces messages électroniques. Cette page est où vous pouvez entrer des informations hello SMTP de votre messagerie serveur et envoyer un courrier électronique en vérifiant hello **envoyer des e-mails toousers** case à cocher.
 
 ![Configuration de la messagerie du serveur MFA](./media/multi-factor-authentication-get-started-server/email1.png)
 
-L'onglet Contenu des e-mails présente tous les modèles d’e-mail disponibles. Selon la façon dont les utilisateurs ont été configurés pour utiliser la vérification en deux étapes, vous pouvez choisir le modèle qui correspond le mieux à vos besoins.
+Sur l’onglet contenu des E-mails de hello, vous pouvez voir les modèles de messagerie hello toochoose disponible à partir de. Selon comment vous avez configuré votre vérification en deux étapes de tooperform les utilisateurs, choisissez le modèle hello qui vous convient le mieux.
 
 ![Modèles d’e-mail du serveur MFA](./media/multi-factor-authentication-get-started-server/email2.png)
 
 ## <a name="import-users-from-active-directory"></a>Importation des utilisateurs à partir d'Active Directory
 
-Maintenant que le serveur est installé, vous devez ajouter des utilisateurs. Vous pouvez les créer manuellement, importer des utilisateurs à partir d’Active Directory ou configurer la synchronisation automatique avec Active Directory.
+Maintenant que le serveur hello est installé, vous devez tooadd utilisateurs. Vous pouvez choisir toocreate manuellement, importer des utilisateurs d’Active Directory ou configurer la synchronisation automatique avec Active Directory.
 
 ### <a name="manual-import-from-active-directory"></a>Importation manuelle à partir d’Active Directory
 
-1. Sur la gauche du serveur Azure MFA, sélectionnez **Utilisateurs**.
-2. En bas de la page, sélectionnez **Importer à partir d’Active Directory**.
-3. Vous pouvez désormais rechercher des utilisateurs individuels ou bien le répertoire Active des unités d'organisation, composé lui-même d’utilisateurs.  Dans ce cas, nous spécifions l'unité d'organisation des utilisateurs.
-4. Mettez en surbrillance tous les utilisateurs mentionnés sur la droite, puis cliquez sur **Importer**.  Vous devriez recevoir un message vous indiquant que l’opération a été réalisée avec succès.  Fermez la fenêtre d'importation.
+1. Bonjour, le serveur Azure MFA sur hello gauche, sélectionnez **utilisateurs**.
+2. Au bas de hello, sélectionnez **importer à partir d’Active Directory**.
+3. Maintenant vous pouvez soit rechercher des utilisateurs individuels ou hello de recherche annuaire AD pour les unités d’organisation avec des utilisateurs dans les.  Dans ce cas, nous spécifions d’unité d’organisation des utilisateurs hello.
+4. Mettez en surbrillance tous les utilisateurs de hello sur hello droit et cliquez sur **importation**.  Vous devriez recevoir un message vous indiquant que l’opération a été réalisée avec succès.  Fenêtre d’importation hello fermer.
 
    ![Importation des utilisateurs du serveur MFA](./media/multi-factor-authentication-get-started-server/import2.png)
 
 ### <a name="automated-synchronization-with-active-directory"></a>Synchronisation automatique avec Active Directory
 
-1. Sur la gauche du serveur Azure MFA, sélectionnez **Intégration d’annuaire**.
-2. Accédez à l’onglet **Synchronisation**.
-3. En bas, choisissez **Ajouter**
-4. Dans la zone **Ajouter objet à synchroniser** qui s’affiche, choisissez le domaine, l’unité d’organisation **ou** le groupe de sécurité, les paramètres, la méthode et la langue par défaut de cette tâche de synchronisation, puis cliquez sur **Ajouter**.
-5. Vérifiez la zone intitulée **Activer la synchronisation avec Active Directory** et choisissez un **Intervalle de synchronisation** compris entre une minute et 24 heures.
+1. Bonjour, le serveur Azure MFA sur hello gauche, sélectionnez **intégration d’annuaire**.
+2. Accédez toohello **synchronisation** onglet.
+3. En bas de hello, choisissez **ajouter**
+4. Bonjour **ajouter un élément de synchronisation** boîte qui apparaît choisissez hello domaine, unité d’organisation **ou** groupe de sécurité, paramètres, méthode par défaut et langage par défaut pour cette synchronisation de tâches et cliquez sur **Ajouter**.
+5. Case à cocher hello appelée **activer la synchronisation avec Active Directory** et choisissez une **l’intervalle de synchronisation** entre une minute et 24 heures.
 
-## <a name="how-the-azure-multi-factor-authentication-server-handles-user-data"></a>Comment le serveur Azure Multi-Factor Authentication gère les données utilisateur
+## <a name="how-hello-azure-multi-factor-authentication-server-handles-user-data"></a>Comment hello serveur Azure multi-Factor Authentication traite les données utilisateur
 
-Lorsque vous utilisez le serveur Multi-Factor Authentication (MFA) sur site, les données utilisateur sont stockées sur les serveurs locaux. Aucune donnée utilisateur persistante n'est stockée dans le cloud. Lorsque l'utilisateur effectue une vérification en deux étapes, le serveur MFA envoie des données au service cloud Azure MFA pour effectuer la vérification. Lorsque ces demandes d'authentification sont envoyées au service cloud, les champs suivants sont envoyés dans la demande et les journaux afin qu'ils soient disponibles dans les rapports d'utilisation/d'authentification du client. Certains champs étant facultatifs, ils peuvent être activés ou désactivés sur le serveur Multi-Factor Authentication. La communication du serveur MFA au service cloud MFA utilise SSL/TLS sur le port 443 sortant. Ces champs sont les suivants :
+Lorsque vous utilisez hello serveur multi-Factor Authentication (MFA) localement, les données d’un utilisateur sont stockées dans hello sur des serveurs locaux. Aucune donnée utilisateur persistante n’est stockée dans le cloud de hello. Lorsque l’utilisateur de hello qui effectue une vérification en deux étapes, hello serveur MFA envoie des données toohello vérification de l’authentification Multifacteur Azure cloud service tooperform hello. Lorsque ces demandes d’authentification sont envoyés de service de cloud computing toohello, hello champs suivants sont envoyés dans les journaux et de la demande de hello afin qu’ils soient disponibles dans les rapports de l’authentification de l’utilisation du client hello. Certains des champs de hello étant facultatif peut être activés ou désactivés dans hello serveur multi-Factor Authentication. communication Hello hello service de cloud serveur MFA toohello MFA utilise SSL/TLS sur le port 443 sortant. Ces champs sont les suivants :
 
 * ID unique : nom d'utilisateur ou ID du serveur MFA interne
 * Prénom et nom (facultatif)
@@ -175,28 +175,28 @@ Lorsque vous utilisez le serveur Multi-Factor Authentication (MFA) sur site, les
 * Adresse IP du serveur MFA
 * Adresse IP du client (si disponible)
 
-En plus des champs ci-dessus, le résultat de la vérification (réussite/échec) et le motif de refus sont également stockés avec les données d'authentification et disponibles dans les rapports d'utilisation/d'authentification.
+En outre, toohello champs ci-dessus, résultat de la vérification hello (réussite/refus) et la raison de tout refus est également stockée avec les données d’authentification hello et disponibles via les rapports d’utilisation de l’authentification/hello.
 
 ## <a name="back-up-and-restore-azure-mfa-server"></a>Sauvegarder et restaurer le serveur Azure MFA
 
-Être sûr de disposer d’une sauvegarde valide est une étape importante dans l’utilisation de n’importe quel système.
+S’assurer que vous disposez d’une sauvegarde saine est un tootake étape importante avec n’importe quel système.
 
-Pour sauvegarder le serveur Azure MFA, veillez à disposer d’une copie du dossier **C:\Program Files\Multi-Factor Authentication Server\Data**, avec le fichier **PhoneFactor.pfdata**. 
+tooback Azure MFA Server, assurez-vous que vous disposez d’une copie de hello **C:\Program Files\Multi-Factor Authentication Server\Data** dossier notamment hello **PhoneFactor.pfdata** fichier. 
 
-Si une restauration est nécessaire, procédez comme suit :
+En l’occurrence, une restauration est nécessaire hello complète comme suit :
 
 1. Réinstallez le serveur Azure MFA sur un nouveau serveur.
-2. Activez le nouveau serveur Azure MFA.
-3. Arrêtez le service **MultiFactorAuth**.
-4. Remplacez le fichier **PhoneFactor.pfdata** par la copie sauvegardée.
-5. Démarrez le service **MultiFactorAuth**.
+2. Activer hello nouveau serveur Azure MFA.
+3. Arrêt hello **MultiFactorAuth** service.
+4. Remplacer hello **PhoneFactor.pfdata** avec hello sauvegardé.
+5. Démarrer hello **MultiFactorAuth** service.
 
-Le nouveau serveur est maintenant en place, avec les données d’utilisateur et de configuration d’origine que vous aviez sauvegardées.
+Hello nouveau serveur est maintenant en cours d’exécution avec hello d’origine sauvegardé configuration et les données utilisateur.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Installez et configurez le [portail utilisateur](multi-factor-authentication-get-started-portal.md) pour une utilisation en libre-service.
-- Installez et configurez le serveur Azure MFA avec [Active Directory Federation Service](multi-factor-authentication-get-started-adfs.md), [l’authentification RADIUS](multi-factor-authentication-get-started-server-radius.md) ou [l’authentification LDAP](multi-factor-authentication-get-started-server-ldap.md).
+- Installer et configurer hello [portail de l’utilisateur](multi-factor-authentication-get-started-portal.md) pour utilisateur libre-service.
+- Installer et configurer hello du serveur Azure MFA avec [Active Directory Federation Services](multi-factor-authentication-get-started-adfs.md), [l’authentification RADIUS](multi-factor-authentication-get-started-server-radius.md), ou [l’authentification LDAP](multi-factor-authentication-get-started-server-ldap.md).
 - Installez et configurez la [passerelle des services Bureau à distance et Azure Multi-Factor Authentication Server avec RADIUS](multi-factor-authentication-get-started-server-rdg.md).
-- [Déployez le service web de l’application mobile du serveur Azure Multi-Factor Authentication](multi-factor-authentication-get-started-server-webservice.md).
+- [Déployer hello Service Web d’application Azure multi-Factor Authentication Server Mobile](multi-factor-authentication-get-started-server-webservice.md).
 - [Scénarios avancés avec Azure Multi-Factor Authentication et des VPN tiers](multi-factor-authentication-advanced-vpn-configurations.md).

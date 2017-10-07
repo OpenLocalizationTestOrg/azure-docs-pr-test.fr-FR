@@ -1,5 +1,5 @@
 ---
-title: Traiter des messages par lots (groupe ou collection de messages) - Azure Logic Apps | Microsoft Docs
+title: traiter les messages aaaBatch comme un groupe ou de la collection - Azure Logic Apps | Documents Microsoft
 description: "Envoyer et recevoir des messages à traiter par lots dans les applications logiques"
 keywords: lot, traitement par lots
 author: jonfancey
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/7/2017
 ms.author: LADocs; estfan; jonfan
-ms.openlocfilehash: 480ffce5dbe7c25181bb0ba5639de884e98ff4e6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2603db71ee0659d5b6bf5ce3d32f1b0d13c34194
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="send-receive-and-batch-process-messages-in-logic-apps"></a>Envoyer, recevoir et traiter par lots des messages dans les applications logiques
 
-Pour traiter des groupes de messages, vous pouvez envoyer des éléments de données, ou des messages, vers un *lot*, puis traiter ce lot. Cette méthode est utile lorsque vous souhaitez regrouper les éléments de données d’une certaine manière et les traiter ensemble. 
+tooprocess les messages dans des groupes, vous pouvez envoyer tooa d’éléments, ou les messages, données *lot*, puis traite ces éléments en tant que lot. Cette approche est utile lorsque vous souhaitez toomake que l’option des éléments de données sont regroupés de manière spécifique et sont traitées ensemble. 
 
-Vous pouvez créer des applications logiques destinées à recevoir des éléments regroupés dans un lot grâce au déclencheur **Lot**. Vous pouvez créer des applications logiques destinées à envoyer des éléments regroupés dans un lot grâce à **l’opération de traitement par lots**.
+Vous pouvez créer des applications de la logique qui reçoivent des éléments en tant que lot à l’aide de hello **lot** déclencheur. Vous pouvez ensuite créer des applications de la logique qui envoient des éléments tooa lot à l’aide de hello **lot** action.
 
 Cette rubrique montre comment créer une solution de traitement par lot en effectuant les tâches suivantes : 
 
-* [Créer une application logique destinée à recevoir et collecter des éléments regroupés dans un lot](#batch-receiver). Cette application logique « réceptrice de lots » spécifie les critères relatifs au nom et à la version du lot qui doivent être respectés avant que l’application logique ne publie et traite les éléments. 
+* [Créer une application logique destinée à recevoir et collecter des éléments regroupés dans un lot](#batch-receiver). Cette application de la logique « récepteur lot » spécifie toomeet critères hello lot nom et la version avant application logique de récepteur hello libère et traite les éléments. 
 
-* [Créer une application logique qui envoie les éléments vers un lot](#batch-sender). Cette application logique « expéditrice de lots » spécifie où envoyer les éléments, qui doivent se trouver dans une application logique réceptrice de lots existante. Vous pouvez également spécifier une clé unique (telle qu’un numéro de client) pour que le lot cible soit divisé en sous-ensembles, en fonction de cette clé. De cette façon, tous les éléments associés à cette clé sont collectés et traités ensemble. 
+* [Créer une application de la logique qui envoie des éléments tooa lot](#batch-sender). Cette application de la logique « expéditeur lot » Spécifie l’emplacement des éléments toosend, qui doivent être une application de la logique de récepteur lot existante. Vous pouvez également spécifier une clé unique, par exemple, un numéro de client, trop de « partition » ou divisez, lot cible de hello en sous-ensembles, en fonction de cette clé. De cette façon, tous les éléments associés à cette clé sont collectés et traités ensemble. 
 
 ## <a name="requirements"></a>Configuration requise
 
-Pour suivre cet exemple, vous avez besoin de ce qui suit :
+toofollow cet exemple, vous avez besoin de ces éléments :
 
 * Un abonnement Azure. Si vous ne disposez d’aucun abonnement, vous pouvez [commencer par créer gratuitement un compte Azure](https://azure.microsoft.com/free/). Sinon, vous pouvez souscrire à un [abonnement de type paiement à l’utilisation](https://azure.microsoft.com/pricing/purchase-options/).
 
-* Des connaissances de base en [création d’applications logiques](../logic-apps/logic-apps-create-a-logic-app.md) 
+* Connaissance de base [comment toocreate logique applications](../logic-apps/logic-apps-create-a-logic-app.md) 
 
 * Un compte de courrier de n’importe quel [fournisseur de messagerie pris en charge par Azure Logic Apps](../connectors/apis-list.md)
 
@@ -47,32 +47,32 @@ Pour suivre cet exemple, vous avez besoin de ce qui suit :
 
 ## <a name="create-logic-apps-that-receive-messages-as-a-batch"></a>Créer des applications logiques destinées à recevoir des messages regroupés dans un lot
 
-Avant de pouvoir envoyer des messages vers un lot, vous devez d’abord créer une application logique « réceptrice de lots » à l’aide du déclencheur **Lot**. De cette façon, vous pouvez sélectionner cette application logique réceptrice lorsque vous créez l’application logique expéditrice. Pour l’application réceptrice, vous devez spécifier le nom du lot, les critères de déclenchement, ainsi que d’autres paramètres. 
+Avant d’envoyer le traitement par lots de messages tooa, vous devez d’abord créer une application de logique « récepteur lot » avec hello **lot** déclencheur. De cette façon, vous pouvez sélectionner cette application logique de récepteur quand vous créez une application de logique hello expéditeur. Pour le récepteur hello, vous spécifiez le nom du lot hello, les critères de déclenchement et les autres paramètres. 
 
-Les applications logiques expéditrices doivent savoir où envoyer les éléments. Les applications logiques réceptrices, quant à elles, n’ont rien à savoir sur les applications expéditrices.
+Applications de la logique de l’expéditeur doivent connaître où toosend éléments, tandis que les applications de la logique de récepteur n’avez pas besoin tooknow n’est pas défini sur les expéditeurs hello.
 
-1. Dans le [portail Azure](https://portal.azure.com), créez une application logique et nommez-la « BatchReceiver ». 
+1. Bonjour [portail Azure](https://portal.azure.com), créez une application de logique avec ce nom : « BatchReceiver » 
 
-2. Dans le Concepteur d'applications logiques, ajoutez le déclencheur **Lot** qui démarre le flux de travail de votre application logique. Dans la zone de recherche, entrez « lot » comme filtre. Sélectionnez le déclencheur **Lot – Traiter les messages par lots**.
+2. Dans le Concepteur d’applications logique, ajouter hello **lot** déclencheur qui démarre le workflow d’application logique. Dans la zone de recherche de hello, entrez « batch » comme filtre. Sélectionnez le déclencheur **Lot – Traiter les messages par lots**.
 
    ![Ajout du déclencheur Lot](./media/logic-apps-batch-process-send-receive-messages/add-batch-receiver-trigger.png)
 
-3. Fournissez un nom pour le lot, puis spécifiez des critères pour son déclenchement, par exemple :
+3. Fournissez un nom pour le traitement par lots hello et spécifiez les critères pour libérer le lot de hello, par exemple :
 
-   * **Nom du lot** : nom utilisé pour identifier le lot (« TestBatch » dans cet exemple).
-   * **Nombre de messages** : nombre de messages devant être contenus dans un lot avant le déclenchement du traitement (« 5 » dans cet exemple).
+   * **Nom du lot**: hello nom utilisé tooidentify hello lot, c'est-à-dire « TestBatch » dans cet exemple.
+   * **Nombre de messages**: hello du nombre de messages toohold en tant que lot avant de libérer pour le traitement, qui est « 5 » dans cet exemple.
 
    ![Détails à fournir concernant le déclencheur Lot](./media/logic-apps-batch-process-send-receive-messages/receive-batch-trigger-details.png)
 
-4. Ajoutez une autre action qui envoie un e-mail lorsque le lot est déclenché. Chaque fois que le lot atteint cinq éléments, l’application logique envoie un e-mail.
+4. Ajouter une autre action qui envoie un message électronique au déclenchement de déclenchement du lot hello. Chaque lot de hello temps comporte cinq éléments, hello logique application envoie un message électronique.
 
-   1. Sous le déclencheur Lot, choisissez **+ Nouvelle étape** > **Ajouter une action**.
+   1. Sous le déclenchement du lot hello, choisissez **+ nouvelle étape** > **ajouter une action**.
 
-   2. Dans la zone de recherche, entrez « e-mail » comme filtre.
+   2. Dans la zone de recherche de hello, entrez « email » comme filtre.
    Sélectionnez un connecteur de messagerie en fonction de votre fournisseur de messagerie.
    
-      Par exemple, si vous avez un compte professionnel ou scolaire, sélectionnez le connecteur Outlook Office 365. 
-      Si vous avez un compte Gmail, sélectionnez le connecteur Gmail.
+      Par exemple, si vous avez un compte professionnel ou scolaire, sélectionnez Connecteur Outlook Office 365 de hello. 
+      Si vous avez un compte Gmail, sélectionnez le connecteur de Gmail hello.
 
    3. Sélectionnez cette action pour votre connecteur : **{*fournisseur de messagerie*} - Envoyer un message électronique**
 
@@ -82,26 +82,26 @@ Les applications logiques expéditrices doivent savoir où envoyer les élément
 
 5. Si vous n’avez pas déjà créé une connexion pour votre fournisseur de messagerie, entrez votre adresse e-mail et votre mot de passe lorsque vous êtes invité à vous authentifier. En savoir plus sur [l’authentification à l’aide d’une adresse e-mail et d’un mot de passe](../logic-apps/logic-apps-create-a-logic-app.md).
 
-6. Définissez les propriétés de l’action que vous venez d’ajouter.
+6. Définir les propriétés de hello pour action hello que vous venez d’ajouter.
 
-   * Dans la zone **À**, entrez l’adresse e-mail du destinataire. 
+   * Bonjour **à** , entrez l’adresse de messagerie du destinataire hello. 
    À des fins de test, vous pouvez utiliser votre propre adresse e-mail.
 
-   * Dans la zone **Objet**, lorsque la liste **Contenu dynamique** s’affiche, sélectionnez le champ **Nom de partition**.
+   * Bonjour **sujet** boîte lorsque hello **contenu dynamique** liste apparaît, sélectionnez hello **nom de la Partition** champ.
 
-     ![Dans la liste « Contenu dynamique », sélectionnez « Nom de partition »](./media/logic-apps-batch-process-send-receive-messages/send-email-action-details.png)
+     ![Dans la liste « Contenu dynamique » hello, sélectionnez « Nom de Partition »](./media/logic-apps-batch-process-send-receive-messages/send-email-action-details.png)
 
-     Dans une section ultérieure, vous pourrez spécifier une clé de partition unique afin de diviser le lot cible en plusieurs ensembles logiques vers lesquels envoyer des messages. 
-     Chaque ensemble est associé à un numéro unique qui est généré par l’application logique expéditrice. 
-     Cette fonctionnalité permet d’utiliser un lot comprenant plusieurs sous-ensembles et de définir chaque sous-ensemble avec le nom que vous fournissez.
+     Dans une section ultérieure, vous pouvez spécifier une clé de partition unique que le divise hello lot cible dans la logique définit toowhere, vous pouvez envoyer des messages. 
+     Chaque jeu possède un numéro unique qui est généré par l’application de la logique d’expéditeur hello. 
+     Cette fonctionnalité vous permet d’utiliser un lot unique avec plusieurs sous-ensembles et définir chaque sous-ensemble avec nom hello que vous fournissez.
 
-   * Dans la zone **Corps**, lorsque la liste **Contenu dynamique** s’affiche, sélectionnez le champ **ID de message**.
+   * Bonjour **corps** boîte lorsque hello **contenu dynamique** liste apparaît, sélectionnez hello **Id de Message** champ.
 
      ![Pour « Corps », sélectionnez « ID de message »](./media/logic-apps-batch-process-send-receive-messages/send-email-action-details-for-each.png)
 
-     Étant donné que l’entrée de l’action Envoyer un message électronique se présente sous la forme d’un tableau, le concepteur ajoute automatiquement une boucle **For each** autour de l’action **Envoyer un message électronique**. 
-     Cette boucle effectue l’action interne sur chaque élément du lot. 
-     Étant donné que le déclencheur de lot est défini sur cinq éléments, vous recevez cinq e-mails chaque fois qu’un lot est déclenché.
+     Étant donné que l’entrée hello pour l’action d’envoi de message hello est un tableau, hello concepteur ajoute automatiquement une **pour chaque** boucle autour hello **envoyer un courrier électronique** action. 
+     Cette boucle effectue une action interne de hello sur chaque élément dans un lot de hello. 
+     Par conséquent, avec hello lot déclencheur ensemble toofive éléments, vous obtenez des cinq messages électroniques que chaque déclencheur hello de temps est activé.
 
 7.  Maintenant que vous avez créé l’application logique réceptrice de lots, enregistrez-la.
 
@@ -109,61 +109,61 @@ Les applications logiques expéditrices doivent savoir où envoyer les élément
 
 <a name="batch-sender"></a>
 
-## <a name="create-logic-apps-that-send-messages-to-a-batch"></a>Créer des applications logiques qui envoient des messages vers un lot
+## <a name="create-logic-apps-that-send-messages-tooa-batch"></a>Créer des applications de la logique qui envoient le traitement par lots de messages tooa
 
-À présent, créez une ou plusieurs applications logiques qui envoient des éléments vers le lot défini par l’application logique réceptrice. Pour l’application expéditrice, vous spécifiez l’application logique réceptrice, le nom du lot, le contenu du message et tout autre paramètre nécessaire. Vous pouvez éventuellement fournir une clé de partition unique pour diviser le lot en sous-ensembles dont le but est de collecter les éléments associés à cette clé.
+À présent créer une ou plusieurs applications de logique qui envoient des éléments toohello lot est définie par l’application de la logique de récepteur hello. Pour un expéditeur hello, vous spécifiez application logique de récepteur hello et nom du lot, contenu du message et tous les autres paramètres. Vous pouvez éventuellement fournir un lot de hello de toodivide clé de partition unique dans éléments toocollect de sous-ensembles avec cette clé.
 
-Les applications logiques expéditrices doivent savoir où envoyer les éléments. Les applications logiques réceptrices, quant à elles, n’ont rien à savoir sur les applications expéditrices.
+Applications de la logique de l’expéditeur doivent connaître où toosend éléments, tandis que les applications de la logique de récepteur n’avez pas besoin tooknow n’est pas défini sur les expéditeurs hello.
 
 1. Créez une autre application logique et nommez-la « BatchSender ».
 
-   1. Dans la zone de recherche, entrez « récurrence » comme filtre. 
+   1. Dans la zone de recherche de hello, entrez « recurrence » comme filtre. 
    Sélectionnez le déclencheur **Planification - Récurrence**
 
-      ![Ajout du déclencheur « Planification - Récurrence »](./media/logic-apps-batch-process-send-receive-messages/add-schedule-trigger-batch-receiver.png)
+      ![Ajouter le déclencheur de hello « Planification Recurrence »](./media/logic-apps-batch-process-send-receive-messages/add-schedule-trigger-batch-receiver.png)
 
-   2. Définissez la fréquence et l’intervalle d’exécution de l’application logique expéditrice sur une minute.
+   2. Définir la fréquence de hello et intervalle toorun hello expéditeur logique application toutes les minutes.
 
       ![Définition de la fréquence et de l’intervalle pour le déclencheur Récurrence](./media/logic-apps-batch-process-send-receive-messages/recurrence-trigger-batch-receiver-details.png)
 
-2. Ajoutez une nouvelle étape pour envoyer des messages vers un lot.
+2. Ajouter une nouvelle étape pour l’envoi de lot tooa de messages.
 
-   1. Sous le déclencheur Récurrence, choisissez **+ Nouvelle étape** > **Ajouter une action**.
+   1. Sous le déclencheur de périodicité hello, choisissez **+ nouvelle étape** > **ajouter une action**.
 
-   2. Dans la zone de recherche, entrez « lot » comme filtre. 
+   2. Dans la zone de recherche de hello, entrez « batch » comme filtre. 
 
-   3. Sélectionnez l’action **Envoyer les messages au lot - Choisir un workflow Logic Apps avec déclencheur de lot**.
+   3. Sélectionnez cette action : **envoyer des messages toobatch : choisissez un flux de travail Logic Apps avec déclenchement du lot**
 
-      ![Sélection de l’option « Envoyer les messages au lot »](./media/logic-apps-batch-process-send-receive-messages/send-messages-batch-action.png)
+      ![Sélectionnez « Envoyer des messages toobatch »](./media/logic-apps-batch-process-send-receive-messages/send-messages-batch-action.png)
 
    4. Maintenant, sélectionnez l’application logique « BatchReceiver » créée précédemment, qui s’affiche désormais en tant qu’action.
 
       ![Sélection de l’application logique « BatchReceiver »](./media/logic-apps-batch-process-send-receive-messages/send-batch-select-batch-receiver.png)
 
       > [!NOTE]
-      > La liste affiche également toutes les autres applications logiques qui sont associées à un déclencheur de lot.
+      > liste de Hello montre également toutes les autres applications de la logique qui ont des déclencheurs de lot.
 
-3. Définissez les propriétés du lot.
+3. Définir les propriétés de lot hello.
 
-   * **Nom du lot** : nom défini par l’application logique réceptrice, (« TestBatch » dans cet exemple) qui est validé lors de l’exécution.
+   * **Nom du lot**: nom du lot hello défini par l’application hello récepteur logique, qui est « TestBatch » dans cet exemple est validée lors de l’exécution.
 
      > [!IMPORTANT]
-     > Veillez à ne pas modifier le nom du lot, car il doit correspondre au nom de lot spécifié par l’application logique réceptrice.
-     > Si vous modifiez son nom, l’application logique expéditrice échouera.
+     > Assurez-vous que vous ne pas modifier le nom du lot hello, qui doit correspondre au nom de lot hello spécifié par l’application de la logique de récepteur hello.
+     > Modification du nom de lot hello provoque l’expéditeur de hello toofail d’application logique.
 
-   * **Contenu du message** : contenu du message que vous souhaitez envoyer. 
-   Pour cet exemple, ajoutez cette expression qui insère la date et l’heure actuelles dans le contenu du message que vous envoyez vers le lot :
+   * **Contenu du message**: hello du contenu du message que vous souhaitez toosend. 
+   Pour cet exemple, ajoutez cette expression que les insertions hello date et heure actuelles dans le message de type hello contenu que vous envoyez un lot de toohello :
 
-     1. Lorsque la liste **Contenu dynamique** s’affiche, choisissez **Expression**. 
-     2. Entrez l’expression **utcnow()**, puis choisissez **OK**. 
+     1. Hello lorsque **contenu dynamique** liste apparaît, choisissez **Expression**. 
+     2. Entrez l’expression de hello **utcnow()**, puis choisissez **OK**. 
 
         ![Dans « Contenu du message », choisissez « Expression ». Entrez « utcnow() ».](./media/logic-apps-batch-process-send-receive-messages/send-batch-receiver-details.png)
 
-4. À présent, définissez une partition pour le lot. Dans l’action « BatchReceiver », choisissez **Afficher les options avancées**.
+4. Définir une partition pour le traitement par lots hello. Bonjour « BatchReceiver » action, choisissez **Show advanced options**.
 
-   * **Nom de partition** : clé de partition unique facultative à utiliser pour diviser le lot cible. Pour cet exemple, ajoutez une expression qui génère un nombre aléatoire compris entre 1 et 5.
+   * **Nom de partition**: un toouse clé de partition unique facultatif permettant de diviser le traitement par lots de hello cible. Pour cet exemple, ajoutez une expression qui génère un nombre aléatoire compris entre 1 et 5.
    
-     1. Lorsque la liste **Contenu dynamique** s’affiche, choisissez **Expression**.
+     1. Hello lorsque **contenu dynamique** liste apparaît, choisissez **Expression**.
      2. Entrez l’expression **rand(1,6)**.
 
         ![Définition d’une partition pour le lot cible](./media/logic-apps-batch-process-send-receive-messages/send-batch-receiver-partition-advanced-options.png)
@@ -174,18 +174,18 @@ Les applications logiques expéditrices doivent savoir où envoyer les élément
    * **ID du message** : identificateur de message facultatif. Lorsqu’il est vide, c’est un GUID généré. 
    Pour cet exemple, laissez cette zone vide.
 
-5. Enregistrez votre application logique. Votre application logique expéditrice doit désormais ressembler à ceci :
+5. Enregistrez votre application logique. Votre application de la logique d’expéditeur ressemble exemple toothis similaire :
 
    ![Enregistrement de l’application logique](./media/logic-apps-batch-process-send-receive-messages/send-batch-receiver-details-finished.png)
 
 ## <a name="test-your-logic-apps"></a>Tester les applications logiques
 
-Pour tester votre solution de traitement par lots, laissez vos applications logiques s’exécuter pendant quelques minutes. Vous allez commencer à recevoir des e-mails par groupes de cinq, tous avec la même clé de partition.
+tootest votre solution, de traitement par lot laisser vos applications logiques en cours d’exécution pendant quelques minutes. Bientôt, vous commencez à recevoir des messages électroniques dans les groupes de cinq, toutes les données avec hello même clé de partition.
 
-Votre application logique BatchSender s’exécute chaque minute, génère un nombre aléatoire compris entre 1 et 5 et utilise ce numéro généré comme clé de partition pour le lot cible où sont envoyés les messages. Chaque fois que le lot atteint cinq éléments ayant une même clé de partition, l’application logique BatchReceiver est déclenchée et envoie un e-mail.
+Votre application de la logique BatchSender s’exécute chaque minute, génère un nombre aléatoire compris entre 1 et 5 et utilise ce numéro généré en tant que clé de partition hello pour le traitement par lots de hello cible où les messages sont envoyés. Chaque fois que les commandes hello a cinq éléments par hello même clé de partition, votre application de la logique BatchReceiver se déclenche et envoie un message pour chaque message.
 
 > [!IMPORTANT]
-> Lorsque vous avez terminé vos tests, veillez à désactiver l’application logique BatchSender afin d’arrêter l’envoi de messages et éviter la surcharge de la boîte de réception.
+> Lorsque vous avez terminé de test, assurez-vous que vous désactivez hello BatchSender logique application toostop envoi de messages et évitez de surcharger votre boîte de réception.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

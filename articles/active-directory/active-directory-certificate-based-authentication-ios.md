@@ -1,6 +1,6 @@
 ---
-title: Authentification par certificat Azure Active Directory sur iOS | Microsoft Docs
-description: "En savoir plus sur les scénarios pris en charge et la configuration requise pour la configuration de l’authentification par certificat dans les solutions avec les appareils iOS"
+title: "aaaAzure l’authentification basée sur certificat Active Directory sur iOS | Documents Microsoft"
+description: "En savoir plus sur les scénarios de hello pris en charge et les exigences de hello pour la configuration de l’authentification basée sur certificat dans les solutions avec les appareils iOS"
 services: active-directory
 author: MarkusVi
 documentationcenter: na
@@ -14,22 +14,22 @@ ms.workload: identity
 ms.date: 08/24/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: c781f3f054fad5c5092fed5058c932fd4e97cf35
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4486ff5239c2897b3bc187053f31d74807430301
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-certificate-based-authentication-on-ios"></a>Authentification par certificat Azure Active Directory sur iOS
 
-L’authentification par certificat (CBA) vous permet d’être authentifié par Azure Active Directory avec un certificat client sur un appareil Windows, Android ou iOS lors de la connexion de votre compte Exchange Online à : 
+Authentification par certificat (Services) vous permet de toobe authentifié par Azure Active Directory avec un certificat client sur un appareil Windows, Android ou iOS lors de la connexion de votre compte en ligne Exchange pour : 
 
 * Des applications mobiles Office, telles que Microsoft Outlook et Microsoft Word ;   
 * Des clients Exchange ActiveSync (EAS). 
 
-La configuration de cette fonctionnalité élimine le besoin d’entrer un nom d’utilisateur et un mot de passe dans certaines applications de messagerie et Microsoft Office sur votre appareil mobile. 
+La configuration de cette fonctionnalité évite hello besoin tooenter un nom d’utilisateur et mot de passe dans certaines applications de Microsoft Office sur votre appareil mobile et de messagerie. 
 
-Cette rubrique vous indique la configuration requise et les scénarios pris en charge pour la configuration de l’authentification par certificat sur un appareil iOS (Android) pour les utilisateurs des locataires des plans Office 365 Enterprise, Business, Education, US Government, Chine et Allemagne.
+Cette rubrique vous fournit des exigences de hello et les scénarios de hello pris en charge pour la configuration des services sur un appareil iOS(Android) pour les utilisateurs de clients dans Office 365 entreprise, entreprise, éducation, du gouvernement, Chine, et plans de l’Allemagne.
 
 Cette fonctionnalité est disponible en version préliminaire dans les plans Office 365 US Government Defense et US Government Federal.
 
@@ -53,40 +53,40 @@ Cette fonctionnalité est disponible en version préliminaire dans les plans Off
 
 ## <a name="requirements"></a>Configuration requise 
 
-La version du système d’exploitation de l’appareil doit être iOS 9 ou toute version ultérieure 
+Hello version du système d’exploitation de périphérique doit être iOS 9 et versions ultérieures 
 
 Un serveur de fédération doit être configuré.  
 
 Microsoft Authenticator est requis pour les applications Office sur iOS.  
 
-Pour qu’Azure Active Directory révoque un certificat client, le jeton ADFS doit posséder les déclarations suivantes :  
+Pour Azure Active Directory toorevoke un certificat client, jeton d’ADFS hello doit avoir hello suivant revendications :  
 
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/<serialnumber>`  
-  (Le numéro de série du certificat client) 
+  (hello le numéro de série du certificat de client hello) 
 * `http://schemas.microsoft.com/2012/12/certificatecontext/field/<issuer>`  
-  (La chaîne de l’émetteur du certificat client) 
+  (chaîne hello pour émetteur hello du certificat de client hello) 
 
-Azure Active Directory ajoute ces déclarations au jeton d’actualisation si elles sont disponibles dans le jeton ADFS (ou n’importe quel autre jeton SAML). Lorsque le jeton d’actualisation doit être validé, ces informations sont utilisées pour vérifier la révocation. 
+Azure Active Directory ajoute ces revendications toohello actualiser le jeton si elles sont disponibles dans le jeton d’ADFS hello (ou tout autre jeton SAML). Lorsque le jeton d’actualisation hello doit toobe validé, ces informations sont utilisées toocheck hello révocation. 
 
-La meilleure pratique consiste à mettre à jour les pages d’erreur ADFS avec les éléments suivants :
+Comme meilleure pratique, mettez à jour les pages d’erreurs hello ADFS avec les éléments suivants de hello :
 
-* La configuration requise pour l’installation de Microsoft Authenticator sur iOS
-* Instructions sur l’obtention d’un certificat utilisateur. 
+* spécification de Hello pour l’installation de hello Microsoft Authenticator sur iOS
+* Obtenir des instructions sur la façon de tooget un certificat utilisateur. 
 
-Pour plus d’informations, consultez [Personnalisation des pages de connexion AD FS](https://technet.microsoft.com/library/dn280950.aspx).
+Pour plus d’informations, consultez [personnalisation des Pages de hello AD FS Sign-in](https://technet.microsoft.com/library/dn280950.aspx).
 
-Certaines applications Office (avec l’authentification moderne activée) envoient « *prompt=login* » à Azure AD dans leur demande. Par défaut, Azure AD traduit cela dans la demande aux services ADFS en « *wauth=usernamepassworduri* » (demande aux services ADFS d’effectuer l’authentification U/P) et « *wfresh=0* » (demande aux services ADFS d’ignorer l’état d’authentification unique et d’effectuer une nouvelle authentification). Si vous souhaitez activer l’authentification par certificat pour ces applications, vous devez modifier le comportement par défaut d’Azure AD. Définissez simplement « *PromptLoginBehavior* » dans vos paramètres de domaine fédéré sur « *Désactivé* ». Vous pouvez utiliser l’applet de commande [MSOLDomainFederationSettings](/powershell/module/msonline/set-msoldomainfederationsettings?view=azureadps-1.0) pour effectuer cette tâche :
+Certaines applications Office (avec l’authentification moderne activée) envoyer '*prompt = connexion*' tooAzure AD dans sa demande. Par défaut, Azure AD convertit ce dans hello demande tooADFS trop '*wauth = usernamepassworduri*» (demande d’authentification ADFS toodo U/P) et «*wfresh = 0*» (demande d’état de l’authentification AD FS tooignore et effectuez une nouvelle authentification) . Si vous souhaitez que l’authentification basée sur certificat tooenable pour ces applications, vous devez toomodify hello Azure AD par défaut. Simplement ensemble hello '*PromptLoginBehavior*' dans les paramètres de votre domaine fédéré trop '*désactivé*'. Vous pouvez utiliser hello [MSOLDomainFederationSettings](/powershell/module/msonline/set-msoldomainfederationsettings?view=azureadps-1.0) tooperform de l’applet de commande cette tâche :
 
 `Set-MSOLDomainFederationSettings -domainname <domain> -PromptLoginBehavior Disabled`
   
 
 ## <a name="exchange-activesync-clients-support"></a>Prise en charge des clients Exchange ActiveSync
-Dans iOS 9 ou version ultérieure, le client de messagerie iOS natif est pris en charge. Pour toutes les autres applications Exchange ActiveSync, pour savoir si cette fonctionnalité est prise en charge, contactez le développeur de votre application.  
+Sur iOS 9 ou version ultérieure, client de messagerie iOS natif hello est pris en charge. Pour toutes les autres applications Exchange ActiveSync, toodetermine si cette fonctionnalité est prise en charge, contactez le développeur de votre application.  
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Si vous souhaitez configurer l’authentification par certificat dans votre environnement, consultez [Bien démarrer avec l’authentification par certificat sur Android](active-directory-certificate-based-authentication-get-started.md) pour obtenir des instructions.
+Si vous souhaitez que l’authentification par certificat tooconfigure dans votre environnement, consultez [prise en main l’authentification basée sur le certificat sur Android](active-directory-certificate-based-authentication-get-started.md) pour obtenir des instructions.
 
 
 <!--Image references-->

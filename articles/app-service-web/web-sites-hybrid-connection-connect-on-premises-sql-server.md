@@ -1,6 +1,6 @@
 ---
-title: "Connexion à un serveur SQL Server local à partir d’une application web dans Azure App Service au moyen de connexions hybrides"
-description: "Créer une application web sur Microsoft Azure et la connecter à une base de données SQL Server locale"
+title: "aaaConnect tooon local SQL Server à partir d’une application web dans Azure App Service à l’aide de connexions hybrides"
+description: "Créer une application web sur Microsoft Azure et le connecter à base de données SQL Server tooan local"
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -14,255 +14,255 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2016
 ms.author: cephalin
-ms.openlocfilehash: 12456ef3e2aecfa7a03cca97de2ff6ffd9602357
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2e8f8f7e0b9733cfb0433697615faba4358c6023
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-on-premises-sql-server-from-a-web-app-in-azure-app-service-using-hybrid-connections"></a>Connexion à un serveur SQL Server local à partir d’une application web dans Azure App Service au moyen de connexions hybrides
-Les connexions hybrides permettent de connecter des applications web [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) à des ressources locales qui utilisent un port TCP statique. Les ressources prises en charge incluent Microsoft SQL Server, MySQL, les API web HTTP, App Service et la plupart des services web personnalisés.
+# <a name="connect-tooon-premises-sql-server-from-a-web-app-in-azure-app-service-using-hybrid-connections"></a>Se connecter tooon local SQL Server à partir d’une application web dans Azure App Service à l’aide de connexions hybrides
+Connexions hybrides peuvent se connecter [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) ressources tooon local des applications Web qui utilisent un port TCP statique. Les ressources prises en charge incluent Microsoft SQL Server, MySQL, les API web HTTP, App Service et la plupart des services web personnalisés.
 
-Dans ce didacticiel, vous allez apprendre à créer une application web App Service dans le [portail Azure](http://go.microsoft.com/fwlink/?LinkId=529715), à la connecter à votre base de données SQL Server locale à l’aide de la nouvelle fonctionnalité de connexion hybride, à créer une application ASP.NET simple qui utilisera la connexion hybride et à déployer l’application sur l’application web App Service. L’application web finalisée sur Azure stocke les informations d’identification des membres dans une base de données locale. Ce didacticiel ne requiert aucune d'expérience préalable dans l'utilisation d'Azure ou ASP.NET.
+Dans ce didacticiel, vous allez apprendre comment toocreate un Service d’application web application Bonjour [Azure Portal](http://go.microsoft.com/fwlink/?LinkId=529715), connecter hello web application tooyour sur site local SQL Server de base de données à l’aide de la nouvelle fonctionnalité de connexion hybride hello, créer un simple ASP.NET application qui utilise la connexion hybride hello et déployer hello application toohello application Service web d’application. Hello terminé l’application web sur Azure stocke les informations d’identification de l’utilisateur dans une base de données d’appartenance local. Hello est supposé aucune expérience préalable à l’aide de Azure ou ASP.NET.
 
 > [!NOTE]
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application web de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
 > 
-> La partie Web Apps de la fonctionnalité Connexions hybrides n’est disponible que dans le [portail Azure](https://portal.azure.com). Pour créer une connexion dans BizTalk Services, consultez la page [Connexions hybrides](http://go.microsoft.com/fwlink/p/?LinkID=397274).  
+> partie des applications Web Hello de fonctionnalité de connexions hybrides hello est uniquement disponible dans hello [Azure Portal](https://portal.azure.com). toocreate une connexion dans les Services BizTalk, consultez [connexions hybrides](http://go.microsoft.com/fwlink/p/?LinkID=397274).  
 > 
 > 
 
-## <a name="prerequisites"></a>Configuration requise
-Pour réaliser ce didacticiel, vous avez besoin des produits suivants. Tous sont disponibles gratuitement, de sorte que vous pouvez commencer à développer gratuitement pour Azure.
+## <a name="prerequisites"></a>Composants requis
+toocomplete ce didacticiel, vous devez hello suite de produits. Tous sont disponibles gratuitement, de sorte que vous pouvez commencer à développer gratuitement pour Azure.
 
 * **Abonnement Azure** : pour un abonnement gratuit, consultez la page [Version d'évaluation gratuite d'Azure](/pricing/free-trial/).
-* **Visual Studio 2013** - Pour télécharger une version d'évaluation gratuite de Visual Studio 2013, consultez la page [Téléchargements Visual Studio](http://www.visualstudio.com/downloads/download-visual-studio-vs). Installez ceci avant de poursuivre.
-* **Microsoft .NET Framework 3.5 Service Pack 1** : si votre système d'exploitation est Windows 8.1, Windows Server 2012 R2, Windows 8, Windows Server 2012, Windows 7 ou Windows Server 2008 R2, vous pouvez activer cette mise à jour dans Panneau de configuration > Programmes et fonctionnalités > Activer ou désactiver des fonctionnalités Windows. Sinon, vous pouvez la télécharger depuis le [Centre de téléchargement Microsoft](http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=22).
-* **SQL Server 2014 Express with Tools** - Téléchargez gratuitement Microsoft SQL Server Express sur la [page des bases de données Microsoft Web Platform](http://www.microsoft.com/web/platform/database.aspx). Choisissez la version **Express** (pas LocalDB). La version **Express with Tools** inclut SQL Server Management Studio, que vous utiliserez dans ce didacticiel.
-* **SQL Server Management Studio Express** : cet outil est inclus dans le téléchargement de SQL Server 2014 Express with Tools mentionné plus haut, mais si vous avez besoin de l'installer séparément, vous pouvez le télécharger et l'installer à partir de la [page de téléchargement de SQL Server Express](http://www.microsoft.com/web/platform/database.aspx).
+* **Visual Studio 2013** -consultez d’une version d’évaluation gratuite de Visual Studio 2013, toodownload [téléchargements Visual Studio](http://www.visualstudio.com/downloads/download-visual-studio-vs). Installez ceci avant de poursuivre.
+* **Microsoft .NET Framework 3.5 Service Pack 1** : si votre système d'exploitation est Windows 8.1, Windows Server 2012 R2, Windows 8, Windows Server 2012, Windows 7 ou Windows Server 2008 R2, vous pouvez activer cette mise à jour dans Panneau de configuration &gt; Programmes et fonctionnalités &gt; Activer ou désactiver des fonctionnalités Windows. Sinon, vous pouvez le télécharger depuis hello [Microsoft Download Center](http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=22).
+* **SQL Server 2014 Express with Tools** -télécharger Microsoft SQL Server Express gratuitement sur hello [page de base de données de Microsoft Web Platform](http://www.microsoft.com/web/platform/database.aspx). Choisissez hello **Express** (pas LocalDB) version. Hello **Express with Tools** version inclut SQL Server Management Studio, que vous utiliserez dans ce didacticiel.
+* **SQL Server Management Studio Express** - est incluse avec hello SQL Server 2014 Express avec le téléchargement des outils mentionné ci-dessus, mais si vous avez besoin de tooinstall il séparément, vous pouvez télécharger et l’installer à partir de hello [SQL Server Express page de téléchargement](http://www.microsoft.com/web/platform/database.aspx).
 
-Ce didacticiel part du principe que vous possédez un abonnement Azure, que vous avez installé Visual Studio 2013 et que vous avez installé ou activé .NET Framework 3.5. Il explique comment installer SQL Server 2014 Express dans une configuration adaptée à la fonctionnalité Connexions hybrides d'Azure (une instance par défaut avec un port IP statique). Avant de commencer ce didacticiel, téléchargez SQL Server 2014 Express with Tools depuis l'emplacement mentionné ci-dessus si vous n'avez pas installé SQL Server.
+Hello est supposé que vous disposez d’un abonnement Azure, que vous avez installé Visual Studio 2013, et que vous avez installé ou activé le .NET Framework 3.5. didacticiel de Hello vous montre comment tooinstall SQL Server 2014 Express dans une configuration qui fonctionne bien avec les connexions hybrides hello fonctionnalité (une instance par défaut avec un port TCP statique). Avant de commencer le didacticiel de hello, téléchargez SQL Server 2014 Express with Tools à partir de l’emplacement hello mentionné ci-dessus, si vous n’avez pas installé de SQL Server.
 
 ### <a name="notes"></a>Remarques
-Pour utiliser une base de données SQL Server ou SQL Server Express locale avec une connexion hybride, TCP/IP doit être activé sur un port statique. Les instances par défaut dans SQL Server utilisent le port statique 1433, mais pas les instances nommées.
+toouse un local SQL Server ou la base de données SQL Server Express avec une connexion hybride, TCP/IP doit toobe activé sur un port statique. Les instances par défaut dans SQL Server utilisent le port statique 1433, mais pas les instances nommées.
 
-L'ordinateur sur lequel vous installez l'agent Gestionnaire de connexion hybride local :
+ordinateur Hello sur lequel vous installez l’agent de gestionnaire de connexions hybrides hello local :
 
-* doit disposer d'une connectivité à Azure via :
+* Connectivité sortante tooAzure devez sur :
 
 | Port | Pourquoi |
 | --- | --- |
 | 80 |**Obligatoire** pour le port HTTP pour la validation du certificat et éventuellement la connectivité des données. |
-| 443 |**Facultatif** pour la connectivité des données. Si la connectivité sortante à 443 n'est pas disponible, le port TCP 80 est utilisé. |
-| 5671 et 9352 |**Recommandé** mais facultatif pour la connectivité des données. Notez que ce mode entraîne habituellement un débit plus élevé. Si la connectivité sortante à ces ports n'est pas disponible, le port TCP 443 est utilisé. |
+| 443 |**Facultatif** pour la connectivité des données. Si la connectivité sortante too443 n’est pas disponible, le port TCP 80 est utilisé. |
+| 5671 et 9352 |**Recommandé** mais facultatif pour la connectivité des données. Notez que ce mode entraîne habituellement un débit plus élevé. Si les ports toothese connexion sortante n’est pas disponible, le port TCP 443 est utilisé. |
 
-* doit être capable d'accéder au *hostname*:*numéro_de_port* de votre ressource locale.
+* Doit être en mesure de tooreach hello *nom d’hôte*:*numéro_port* de votre ressource locale.
 
-Les étapes décrites dans cet article partent du principe que vous utilisez le navigateur à partir de l'ordinateur qui hébergera l'agent de connexion hybride local.
+Hello dans cet article suppose que vous utilisez le navigateur hello à partir de l’ordinateur hello qui hébergera l’agent de connexion hybride hello localement.
 
-Si vous avez déjà installé SQL Server dans une configuration et dans un environnement qui répondent aux conditions décrites ci-dessus, vous pouvez passer directement à [Création d'une base de données SQL Server en local](#CreateSQLDB).
+Si vous avez déjà SQL Server est installé dans une configuration et dans un environnement qui répond aux conditions hello décrites ci-dessus, vous pouvez passer et commencer par [créer une base de données SQL Server sur site](#CreateSQLDB).
 
 <a name="InstallSQL"></a>
 
-## <a name="a-install-sql-server-express-enable-tcpip-and-create-a-sql-server-database-on-premises"></a>A. Installation de SQL Server Express, activation de TCP/IP et création d'une base de données SQL Server en local
-Cette section explique comment installer SQL Server Express, activer TCP/IP et créer une base de données de telle sorte que votre application web fonctionne avec l'environnement du portail Azure.
+## <a name="a-install-sql-server-express-enable-tcpip-and-create-a-sql-server-database-on-premises"></a>R : Installation de SQL Server Express, activation de TCP/IP et création d'une base de données SQL Server en local
+Cette section vous montre comment tooinstall SQL Server Express, activez TCP/IP et comment créer une base de données afin que votre application web fonctionne avec hello portail Azure.
 
 ### <a name="install-sql-server-express"></a>Installation de SQL Server Express
-1. Pour installer SQL Server Express, exécutez le fichier **SQLEXPRWT_x64_ENU.exe** ou **SQLEXPR_x86_ENU.exe** que vous avez téléchargé. Le Centre d'installation SQL Server s'affiche.
+1. tooinstall SQL Server Express, exécutez hello **SQLEXPRWT_x64_ENU.exe** ou **SQLEXPR_x86_ENU.exe** fichier que vous avez téléchargé. Assistant du centre d’Installation SQL Server Hello s’affiche.
    
     ![SQL Server Install][SQLServerInstall]
-2. Choisissez **Nouvelle installation autonome SQL Server ou ajout de fonctionnalités à une installation existante**. Suivez les instructions, en acceptant les options et les paramètres par défaut, jusqu'à l'affichage de la page **Configuration de l'instance** .
-3. Sur la page **Configuration de l'instance**, choisissez **Instance par défaut**.
+2. Choisissez **nouvelle installation SQL Server autonome ou ajoutez l’installation existante de fonctionnalités tooan**. Suivez les instructions de hello, en acceptant les choix par défaut hello et les paramètres, jusqu'à ce que vous atteigniez toohello **Configuration de l’Instance** page.
+3. Sur hello **Configuration de l’Instance** choisissez **instance par défaut**.
    
     ![Choose Default Instance][ChooseDefaultInstance]
    
-    Par défaut, l'instance par défaut de SQL Server écoute les demandes des clients SQL Server sur le port statique 1433. C'est une exigence de la fonctionnalité Connexions hybrides. Les instances nommées utilisent des ports dynamiques et UDP, qui ne sont pas pris en charge par Connexions hybrides.
-4. Acceptez les valeurs par défaut sur la page **Configuration du serveur** .
-5. Sur la page **Configuration du moteur de base de données**, sous **Mode d'authentification**, choisissez **Mode mixte (authentification SQL Server et authentification Windows)** et fournissez un mot de passe.
+    Par défaut, instance par défaut de hello de SQL Server écoute les demandes des clients de SQL Server sur le port statique 1433, c'est-à-dire le connexions hybrides fonctionnalité nécessite hello. Les instances nommées utilisent des ports dynamiques et UDP, qui ne sont pas pris en charge par Connexions hybrides.
+4. Accepter les valeurs par défaut hello hello **Configuration du serveur** page.
+5. Sur hello **Configuration du moteur de base de données** sous **Mode d’authentification**, choisissez **en Mode mixte (authentification SQL Server et l’authentification Windows)**et fournir un mot de passe.
    
     ![Choose Mixed Mode][ChooseMixedMode]
    
-    Dans ce didacticiel, vous allez utiliser l'authentification SQL Server. N'oubliez pas votre mot de passe, car vous en aurez besoin ultérieurement.
-6. Parcourez les autres étapes de l'Assistant pour terminer l'installation.
+    Dans ce didacticiel, vous allez utiliser l'authentification SQL Server. Être tooremember vraiment hello un mot de passe que vous fournissez, car vous en aurez besoin ultérieurement.
+6. Parcourez reste hello d’installation de hello Assistant toocomplete hello.
 
 ### <a name="enable-tcpip"></a>Activation de TCP/IP
-Pour activer TCP/IP, vous allez utiliser le Gestionnaire de configuration SQL Server, qui a été installé en même temps que SQL Server Express. Suivez la procédure décrite à la page [Activation du protocole réseau TCP/IP pour SQL Server](http://technet.microsoft.com/library/hh231672%28v=sql.110%29.aspx) avant de continuer.
+tooenable TCP/IP, vous allez utiliser le Gestionnaire de Configuration SQL Server, qui a été installée lors de l’installation de SQL Server Express. Suivez les étapes de hello dans [activer le protocole réseau TCP/IP pour SQL Server](http://technet.microsoft.com/library/hh231672%28v=sql.110%29.aspx) avant de continuer.
 
 <a name="CreateSQLDB"></a>
 
 ### <a name="create-a-sql-server-database-on-premises"></a>Création d'une base de données SQL Server en local
-Votre application Visual Studio nécessite une base de données d'appartenance à laquelle Azure puisse accéder. Il doit s'agir d'une base de données SQL Server ou SQL Server Express (et non de la base de données LocalDB utilisée par défaut par le modèle MVC). Vous allez donc créer ensuite la base de données d'appartenance.
+Votre application Visual Studio nécessite une base de données d'appartenance à laquelle Azure puisse accéder. Cela nécessite une base de données SQL Server ou SQL Server Express (pas hello LocalDB base de données hello utilise du modèle MVC par défaut), donc vous allez ensuite créer de base de données d’appartenance de hello.
 
-1. Dans SQL Server Management Studio, connectez-vous à l'instance SQL Server que vous venez d'installer. (Si la boîte de dialogue **Se connecter au serveur** ne s’affiche pas automatiquement, accédez à **l’Explorateur d’objets** dans le volet gauche, cliquez sur **Se connecter**, puis sur **Moteur de base de données**.)  ![Se connecter au serveur][SSMSConnectToServer]
+1. Dans SQL Server Management Studio, connectez-vous toohello SQL Server, vous venez d’installer. (Si hello **connecter tooServer** boîte de dialogue n’apparaît pas automatiquement, accédez trop**l’Explorateur d’objets** dans le volet gauche de hello, cliquez sur **connexion**, puis cliquez sur **Du moteur de base de données**.) ![Se connecter tooServer][SSMSConnectToServer]
    
-    Dans la zone **Type de serveur**, choisissez **Moteur de base de données**. Dans la zone **Nom du serveur**, vous pouvez utiliser **localhost** ou le nom de l'ordinateur dont vous servez. Choisissez **Authentification SQL Server**, puis ouvrez une session avec le nom d'utilisateur sa et le mot de passe que vous avez créé précédemment.
-2. Pour créer une base de données avec SQL Server Management Studio, cliquez avec le bouton droit sur **Bases de données** dans l'Explorateur d'objets, puis cliquez sur **Nouvelle base de données**.
+    Dans la zone **Type de serveur**, choisissez **Moteur de base de données**. Pour **nom du serveur**, vous pouvez utiliser **localhost** hello nom ou de hello ordinateur que vous utilisez. Choisissez **l’authentification SQL Server**, puis ouvrez une session avec le nom d’utilisateur hello et le mot de passe hello que vous avez créé précédemment.
+2. toocreate une base de données à l’aide de SQL Server Management Studio, cliquez sur **bases de données** dans l’Explorateur d’objets, puis cliquez sur **nouvelle base de données**.
    
     ![Create new database][SSMScreateNewDB]
-3. Dans la boîte de dialogue **Nouvelle base de données**, entrez MembershipDB comme nom de base de données, puis cliquez sur **OK**.
+3. Bonjour **nouvelle base de données** boîte de dialogue, entrez MembershipDB pour le nom de base de données hello, puis cliquez sur **OK**.
    
     ![Provide database name][SSMSprovideDBname]
    
-    Notez qu'à ce stade, vous n'apportez aucune modification à la base de données. Les informations d'appartenance seront ajoutées automatiquement plus tard par votre application web, lorsque vous l'exécuterez.
-4. Dans l'Explorateur d'objets, si vous développez **Bases de données**, vous pouvez constater que la base de données d'appartenance a été créée.
+    Notez que vous n’apportez pas de toute base de données de toohello de modifications à ce stade. les informations d’appartenance Hello seront ajoutées automatiquement ultérieurement par votre application web lors de son exécution.
+4. Dans l’Explorateur d’objets, si vous développez **bases de données**, vous verrez cette base de données d’appartenance hello a été créé.
    
     ![MembershipDB created][SSMSMembershipDBCreated]
 
 <a name="CreateSite"></a>
 
-## <a name="b-create-a-web-app-in-the-azure-portal"></a>B. Créer une application web dans le portail Azure
+## <a name="b-create-a-web-app-in-hello-azure-portal"></a>B. Créer une application web Bonjour portail Azure
 > [!NOTE]
-> Si vous avez déjà créé dans le portail Azure une application Web que vous voulez utiliser pour ce didacticiel, passez directement à la section [Création d’une connexion hybride et d’un service BizTalk](#CreateHC) .
+> Si vous avez déjà créé une application web dans hello portail Azure que vous souhaitez toouse pour ce didacticiel, vous pouvez passer trop[créer une connexion hybride et un BizTalk Service](#CreateHC) et continuer à partir de là.
 > 
 > 
 
-1. Dans le [Portail Azure](https://portal.azure.com), cliquez sur **Nouveau** > **Web + mobile** > **Application web**.
+1. Bonjour [Azure Portal](https://portal.azure.com), cliquez sur **nouveau** > **Web + Mobile** > **application Web**.
    
     ![Bouton Nouveau][New]
 2. Configurez votre application web, puis cliquez sur **Créer**.
    
     ![Website name][WebsiteCreationBlade]
-3. Après quelques instants, l’application web est créée et son panneau apparaît. Le panneau est un tableau de bord à défilement vertical, qui vous permet de gérer votre application web.
+3. Après quelques instants, l’application hello web est créée et son panneau de l’application web s’affiche. Panneau de Hello est un tableau de bord permettant le défilement vertical qui vous permet de gérer votre application web.
    
     ![Website running][WebSiteRunningBlade]
    
-    Pour vérifier que l’application est active, cliquez sur l’icône **Parcourir** afin d’afficher la page par défaut.
+    l’application web tooverify hello est dynamique, vous pouvez cliquer sur hello **Parcourir** page par défaut d’icône toodisplay hello.
 
-Vous allez ensuite créer une connexion hybride et un service BizTalk pour l’application web.
+Ensuite, vous allez créer une connexion hybride et un service BizTalk pour l’application web de hello.
 
 <a name="CreateHC"></a>
 
 ## <a name="c-create-a-hybrid-connection-and-a-biztalk-service"></a>C. Création d’une connexion hybride et d’un service BizTalk
-1. De retour dans le portail, accédez aux paramètres et cliquez sur **Mise en réseau** > **Configurer les points de terminaison de connexion hybride**.
+1. Précédent dans hello portail, accédez à toosettings et cliquez sur **réseau** > **configurer vos points de terminaison de connexion hybride**.
    
     ![Connexions hybrides][CreateHCHCIcon]
-2. Dans le panneau Connexions hybrides, cliquez sur **Ajouter** > **Nouvelle connexion hybride**.
-3. Dans le panneau **Créer une connexion hybride** :
+2. Dans le panneau de connexions hybrides hello, cliquez sur **ajouter** > **connexion hybride**.
+3. Sur hello **créer la connexion hybride** panneau :
    
-   * Sous **Nom**, entrez un nom pour la connexion.
-   * Sous **Nom d'hôte**, entrez le nom de votre ordinateur hôte SQL Server.
-   * Sous **Port**, entrez 1433 (le port par défaut pour SQL Server).
-   * Cliquez sur **Service BizTalk** > **Nouveau service BizTalk** et entrez un nom pour le service BizTalk.
+   * Pour **nom**, fournissez un nom pour la connexion de hello.
+   * Pour **nom d’hôte**, entrez le nom de l’ordinateur hello de votre ordinateur hôte de SQL Server.
+   * Pour **Port**, entrez 1433 (hello port par défaut pour SQL Server).
+   * Cliquez sur **BizTalk Service** > **nouveau BizTalk Service** et entrez un nom pour hello service BizTalk.
      
      ![Create a hybrid connection][TwinCreateHCBlades]
 4. Cliquez sur **OK** deux fois.
    
-    Lorsque le processus est terminé, la zone **Notifications** affiche la mention **SUCCÈS** en vert clignotant et le panneau **Connexion hybride** affiche la nouvelle connexion hybride dans l’état **Non connecté**.
+    Lorsque les processus hello est terminée, hello **Notifications** un vert clignote en zone **réussite** et hello **connexion hybride** panneau affichera hello connexion hybride avec Hello état en tant que **non connecté**.
    
     ![One hybrid connection created][CreateHCOneConnectionCreated]
 
-À ce stade, vous avez terminé une partie importante de l'infrastructure de connexion hybride cloud. Vous allez ensuite créer un élément local.
+À ce stade, vous avez terminé une partie importante de l’infrastructure de connexion hello cloud hybride. Vous allez ensuite créer un élément local.
 
 <a name="InstallHCM"></a>
 
-## <a name="d-install-the-on-premises-hybrid-connection-manager-to-complete-the-connection"></a>D. Installation du Gestionnaire de connexions hybrides local pour terminer la connexion
+## <a name="d-install-hello-on-premises-hybrid-connection-manager-toocomplete-hello-connection"></a>D. Installer la fonctionnalité connexion hello toocomplete hello local gestionnaire de connexions hybrides
 [!INCLUDE [app-service-hybrid-connections-manager-install](../../includes/app-service-hybrid-connections-manager-install.md)]
 
-Maintenant que l’infrastructure de connexion hybride est terminée, vous pouvez créer une application web qui l’utilise.
+Cette infrastructure de connexion hybride hello est terminée, vous allez créer une application web qui l’utilise.
 
 <a name="CreateASPNET"></a>
 
-## <a name="e-create-a-basic-aspnet-web-project-edit-the-database-connection-string-and-run-the-project-locally"></a>E. Création d’un projet web ASP.NET de base, modification de la chaîne de connexion à la base de données et exécution locale du projet
+## <a name="e-create-a-basic-aspnet-web-project-edit-hello-database-connection-string-and-run-hello-project-locally"></a>E. Créer un projet web de base ASP.NET, modifier la chaîne de connexion de base de données hello et exécuter le projet de hello localement
 ### <a name="create-a-basic-aspnet-project"></a>Création d'un projet ASP.NET de base
-1. À partir du menu **Fichier** de Visual Studio, créez un nouveau projet :
+1. Dans Visual Studio, sur hello **fichier** menu, créez un nouveau projet :
    
     ![New Visual Studio project][HCVSNewProject]
-2. Dans la section **Modèles** de la boîte de dialogue **Nouveau projet**, sélectionnez **Web** et choisissez **Application Web ASP.NET**, puis cliquez sur **OK**.
+2. Bonjour **modèles** section Hello **nouveau projet** boîte de dialogue, sélectionnez **Web** et choisissez **Application Web ASP.NET**, puis cliquez sur  **OK**.
    
     ![Choose ASP.NET Web Application][HCVSChooseASPNET]
-3. Dans la boîte de dialogue **Nouveau projet ASP.NET**, choisissez **MVC**, puis cliquez sur **OK**.
+3. Bonjour **nouveau projet ASP.NET** boîte de dialogue, choisissez **MVC**, puis cliquez sur **OK**.
    
     ![Choose MVC][HCVSChooseMVC]
-4. Lorsque le projet a été créé, la page lisezmoi (readme) de l'application s'affiche. N'exécutez pas le projet web immédiatement.
+4. Lorsque le projet de hello a été créé, la page du fichier Lisez-moi application hello s’affiche. N’exécutez pas encore projet web de hello.
    
     ![Readme page][HCVSReadmePage]
 
-### <a name="edit-the-database-connection-string-for-the-application"></a>Modification de la chaîne de connexion à la base de données pour l'application
-Au cours de cette étape, vous allez modifier la chaîne de connexion qui indique à votre application où se trouve votre base de données SQL Server Express locale. La chaîne de connexion se trouve dans le fichier Web.config de l'application, qui contient les informations de configuration pour l'application.
+### <a name="edit-hello-database-connection-string-for-hello-application"></a>Modifier la chaîne de connexion de base de données hello pour une application hello
+Dans cette étape, vous modifiez la chaîne de connexion hello qui indique à votre application où toofind de votre serveur local SQL Server Express base de données. chaîne de connexion Hello est dans le fichier Web.config de l’application hello, qui contient les informations de configuration de l’application hello.
 
 > [!NOTE]
-> Pour vous assurer que votre application utilise la base de données que vous avez créée dans SQL Server Express, et non la base de données LocalDB par défaut de Visual Studio, il est important d'effectuer cette opération avant d'exécuter votre projet.
+> tooensure que votre application utilise une base de données hello que vous avez créé dans SQL Server Express et non la hello une dans la valeur par défaut de Visual Studio base de données locale, il est important d’effectuer cette étape avant d’exécuter votre projet.
 > 
 > 
 
-1. Dans l'Explorateur de solutions, double-cliquez sur le fichier Web.config.
+1. Dans l’Explorateur de solutions, double-cliquez sur le fichier Web.config de hello.
    
     ![Web.config][HCVSChooseWebConfig]
-2. Modifiez la section **connectionStrings** pour pointer vers la base de données SQL Server sur votre ordinateur local, en utilisant la syntaxe de l'exemple suivant :
+2. Modifier hello **connectionStrings** section toopoint toohello base de données SQL sur votre ordinateur local, la syntaxe hello Bonjour l’exemple suivant :
    
     ![Chaîne de connexion][HCVSConnectionString]
    
-    Lors de la composition de la chaîne de connexion, gardez à l'esprit ce qui suit :
+    Pour composer la chaîne hello, gardez suivante de hello l’esprit :
    
-   * Si vous vous connectez à une instance nommée plutôt qu'à une instance par défaut (par exemple, VotreServeur\SQLEXPRESS), vous devez configurer votre instance SQL Server de manière à ce qu'elle utilise des ports statiques. Pour des informations sur la configuration des ports statiques, consultez la page [Configuration de SQL Server pour qu'il écoute sur un port spécifique](http://support.microsoft.com/kb/823938). Par défaut, les instances nommées utilisent UDP et des ports dynamiques, qui ne sont pas pris en charge par Connexions hybrides.
-   * Il est recommandé de spécifier le port (1433 par défaut, comme indiqué dans l'exemple) dans la chaîne de connexion pour pouvoir être sûr que TCP est activé sur votre instance SQL Server locale et que cette dernière utilise le port correct.
-   * Pensez à utiliser Authentification SQL Server pour la connexion, en indiquant l'ID utilisateur et le mot de passe dans votre chaîne de connexion.
-3. Cliquez sur **Enregistrer** dans Visual Studio pour enregistrer le fichier Web.config.
+   * Si vous vous connectez tooa nommé instance au lieu d’une instance par défaut (par exemple, YourServer\SQLEXPRESS), vous devez configurer les ports statiques toouse de SQL Server. Pour plus d’informations sur la configuration des ports statiques, consultez [comment tooconfigure les toolisten de SQL Server sur un port spécifique](http://support.microsoft.com/kb/823938). Par défaut, les instances nommées utilisent UDP et des ports dynamiques, qui ne sont pas pris en charge par Connexions hybrides.
+   * Il est recommandé de spécifier hello port (1433 par défaut, comme indiqué dans l’exemple de hello) de chaîne de connexion hello afin que vous pouvez être certain que votre serveur SQL Server local a TCP activé et qu’il utilise le port correct de hello.
+   * N’oubliez pas de tooconnect de l’authentification SQL Server toouse, en spécifiant hello ID d’utilisateur et mot de passe dans votre chaîne de connexion.
+3. Cliquez sur **enregistrer** dans le fichier Web.config de Visual Studio toosave hello.
 
-### <a name="run-the-project-locally-and-register-a-new-user"></a>Exécution du projet localement et inscription d'un nouvel utilisateur
-1. Exécutez maintenant votre nouveau projet web localement en cliquant sur le bouton Parcourir sous Débogage. Cet exemple utilise Internet Explorer.
+### <a name="run-hello-project-locally-and-register-a-new-user"></a>Exécutez le projet de hello localement et inscrire un nouvel utilisateur
+1. Maintenant, exécutez localement votre projet web en cliquant sur Parcourir hello sous le débogage. Cet exemple utilise Internet Explorer.
    
     ![Run project][HCVSRunProject]
-2. En haut à droite de la page web par défaut, choisissez **Inscription** pour enregistrer un nouveau compte :
+2. Hello supérieur à droite de la page web de hello par défaut, choisissez **inscrire** tooregister un nouveau compte :
    
     ![Register a new account][HCVSRegisterLocally]
 3. Entrez un nom d'utilisateur et un mot de passe :
    
     ![Enter user name and password][HCVSCreateNewAccount]
    
-    Ceci crée automatiquement sur votre instance SQL Server locale une base de données qui contient les informations d'appartenance pour votre application. L’une des tables (**dbo.AspNetUsers**) contient les informations d’identification des utilisateurs de l’application web, comme celles que vous venez d’entrer. Cette table sera abordée plus loin dans le didacticiel.
-4. Fermez la fenêtre de navigateur de la page web par défaut. L'application est alors arrêtée dans Visual Studio.
+    Cela crée automatiquement une base de données sur votre serveur SQL local qui contient les informations d’appartenance hello pour votre application. Une des tables de hello (**dbo. AspNetUsers**) contient web application informations d’identification que celles que vous venez d’entrer hello. Vous verrez cette table plus loin dans le didacticiel de hello.
+4. Fermez la fenêtre du navigateur hello de page web de hello par défaut. Cela arrête application hello dans Visual Studio.
 
-Vous êtes prêt à passer à l'étape suivante, qui consiste à publier l'application sur Azure et à la tester.
+Vous êtes maintenant prêt pour l’étape suivante de hello, qui est toopublish hello application tooAzure et le tester.
 
 <a name="PubNTest"></a>
 
-## <a name="f-publish-the-web-application-to-azure-and-test-it"></a>F. Publication de l’application web dans Azure et test de l’application
-Vous allez maintenant publier votre application dans votre application web App Service, puis la tester pour voir comment la connexion hybride configurée précédemment connecte votre application web à la base de données sur votre ordinateur local.
+## <a name="f-publish-hello-web-application-tooazure-and-test-it"></a>F. Hello web application tooAzure de publier et de le tester
+Maintenant, vous allez publier votre application web App Service de tooyour application et testez-le toosee comment vous avez configuré précédemment la connexion hybride hello est en cours tooconnect utilisé votre base de données web application toohello sur votre ordinateur local.
 
-### <a name="publish-the-web-application"></a>Publication de l'application web
-1. Vous pouvez télécharger votre profil de publication de l’application web App Service dans le portail Azure. Dans le panneau de votre application web, cliquez sur **Obtenir le profil de publication**, puis enregistrez le fichier sur votre ordinateur.
+### <a name="publish-hello-web-application"></a>Publier l’application web de hello
+1. Vous pouvez télécharger votre profil de publication pour hello application Service web d’application Bonjour portail Azure. Dans le panneau de hello pour votre application web, cliquez sur **obtenir le profil de publication**, puis enregistrez ordinateur tooyour de fichiers hello.
    
     ![Télécharger le profil de publication][PortalDownloadPublishProfile]
    
     Vous allez ensuite importer ce fichier dans votre application web Visual Studio.
-2. Dans Visual Studio, cliquez avec le bouton droit sur le nom du projet dans l'Explorateur de solutions et sélectionnez **Publier**.
+2. Dans Visual Studio, cliquez sur le nom de projet hello dans l’Explorateur de solutions et sélectionnez **publier**.
    
     ![Select publish][HCVSRightClickProjectSelectPublish]
-3. Dans la boîte de dialogue **Publier le site Web**, sous l'onglet **Profil**, choisissez **Importer**.
+3. Bonjour **publier le site Web** boîte de dialogue hello **profil** , onglet choisir **importation**.
    
     ![Importer][HCVSPublishWebDialogImport]
-4. Recherchez votre profil de publication téléchargé, sélectionnez-le, puis cliquez sur **OK**.
+4. Parcourir tooyour téléchargé le profil de publication, sélectionnez-le, puis cliquez sur **OK**.
    
-    ![Browse to profile][HCVSBrowseToImportPubProfile]
-5. Vos informations de publication sont importées et s'affichent sous l'onglet **Connexion** de la boîte de dialogue.
+    ![Parcourir tooprofile][HCVSBrowseToImportPubProfile]
+5. Vos informations de publication est importées et affiche sur hello **connexion** onglet de boîte de dialogue hello.
    
     ![Cliquer sur Publier][HCVSClickPublish]
    
     Cliquez sur **Publier**.
    
-    Lorsque la publication est terminée, votre navigateur démarre et affiche votre application ASP.NET qui est maintenant active dans le cloud Azure !
+    Lorsque la publication est terminée, votre navigateur lancera et afficher votre application ASP.NET maintenant familiarisée--, sauf qu’il est maintenant en ligne Bonjour Azure cloud !
 
-Vous allez ensuite utiliser votre application web active pour voir sa connexion hybride en action.
+Ensuite, vous allez utiliser votre toosee d’application web dynamique sa connexion hybride en action.
 
-### <a name="test-the-completed-web-application-on-azure"></a>Test de l'application web terminée sur Azure
-1. En haut à droite de votre page web sur Azure, choisissez **Ouvrir une session**.
+### <a name="test-hello-completed-web-application-on-azure"></a>Hello du test terminé l’application web sur Azure
+1. En haut de hello à droite de votre page web sur Azure, choisissez **connecter**.
    
     ![Test log in][HCTestLogIn]
-2. Votre application web App Service est maintenant connectée à la base de données des membres de votre application web sur votre ordinateur local. Pour le vérifier, ouvrez une session avec les mêmes informations d'identification que celles entrées préalablement dans la base de données locale.
+2. Votre Service d’application web application est maintenant connecté de base de données d’appartenance de l’application tooyour web sur votre ordinateur local. tooverify, connectez-vous avec hello mêmes informations d’identification que vous avez entré dans hello local de base de données précédemment.
    
     ![Hello greeting][HCTestHelloContoso]
-3. Pour tester davantage votre nouvelle connexion hybride, déconnectez-vous de votre application web Azure et inscrivez-vous avec d'autres informations d'identification. Fournissez un nouveau nom d'utilisateur et un nouveau mot de passe, puis cliquez sur **Inscription**.
+3. toofurther tester votre connexion hybride, déconnectez-vous de votre application web Azure et inscrire en tant qu’un autre utilisateur. Fournissez un nouveau nom d'utilisateur et un nouveau mot de passe, puis cliquez sur **Inscription**.
    
     ![Test register another user][HCTestRegisterRelecloud]
-4. Pour vérifier que les informations d'identification du nouvel utilisateur ont été stockées dans votre base de données locale par l'intermédiaire de votre connexion hybride, ouvrez SQL Management Studio sur votre ordinateur local. Dans l'Explorateur d'objets, développez la base de données **MembershipDB**, puis développez **Tables**. Cliquez avec le bouton droit sur la table d'appartenance **dbo.AspNetUsers** et choisissez **Sélectionner les 1 000 premières lignes** pour afficher les résultats.
+4. tooverify que les informations d’identification hello du nouvel utilisateur ont été stockées dans votre base de données locale via une connexion hybride, ouvrez SQL Management Studio sur votre ordinateur local. Dans l’Explorateur d’objets, développez hello **MembershipDB** de base de données, puis développez **Tables**. Avec le bouton hello **dbo. AspNetUsers** l’appartenance de table et choisissez **sélectionnez 1000 lignes du haut** des résultats tooview hello.
    
-    ![View the results][HCTestSSMSTree]
-5. Votre table d'appartenance locale indique à présent les deux comptes : celui que vous avez créé localement et celui que vous avez créé dans le cloud Azure. Celui que vous avez créé dans le cloud a été enregistré dans votre base de données locale par le biais de la fonctionnalité Connexions hybrides d'Azure.
+    ![Afficher les résultats de hello][HCTestSSMSTree]
+5. Votre table des appartenances local affiche maintenant les deux comptes - hello créé localement et hello créé Bonjour cloud Azure. Hello une que vous avez créé dans le cloud de hello a été enregistré tooyour de la base de données locale via la fonctionnalité de connexion hybride d’Azure.
    
     ![Registered users in on-premises database][HCTestShowMemberDb]
 
-Vous venez de créer et déployer une application web ASP.NET qui utilise une connexion hybride entre une application web dans le cloud Azure et une base de données SQL Server locale. Félicitations !
+Vous avez maintenant créé et déployé une application web ASP.NET qui utilise une connexion hybride entre une application web Bonjour Azure cloud et une base de données SQL Server locale. Félicitations !
 
 ## <a name="see-also"></a>Voir aussi
 [Aperçu des connexions hybrides](http://go.microsoft.com/fwlink/p/?LinkID=397274)

@@ -1,6 +1,6 @@
 ---
-title: "Gérer des partages StorSimple Virtual Array | Microsoft Docs"
-description: "Décrit le service StorSimple Device Manager et vous explique comment l’utiliser pour gérer des partages sur votre instance StorSimple Virtual Array."
+title: partage de StorSimple Virtual Array aaaManage | Documents Microsoft
+description: "Décrit les hello StorSimple le Gestionnaire de périphériques et explique comment toouse il partages toomanage sur votre tableau virtuel StorSimple."
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: e5c62689de36baa175001f5f4f70d87568876ef0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b57d7ec7c0b7de5a22e1b816daa8852d0f32a48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-manage-shares-on-the-storsimple-virtual-array"></a>Utiliser le service StorSimple Device Manager pour gérer des partages sur l’instance StorSimple Virtual Array
+# <a name="use-hello-storsimple-device-manager-service-toomanage-shares-on-hello-storsimple-virtual-array"></a>Utiliser des partages toomanage du service de gestionnaire de périphériques StorSimple hello sur hello StorSimple Virtual Array
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Ce didacticiel explique comment utiliser le service StorSimple Device Manager pour créer et gérer des partages sur votre instance StorSimple Virtual Array.
+Ce didacticiel explique comment toouse hello toocreate du service Gestionnaire de périphériques StorSimple et gérer les partages sur votre tableau virtuel StorSimple.
 
-Le service StorSimple Device Manager est une extension dans le portail Azure qui vous permet de gérer votre solution StorSimple à partir d’une seule interface web. Outre la gestion des partages et des volumes, le service StorSimple Device Manager prend en charge l’affichage et la gestion des appareils, l’affichage des alertes, la gestion des stratégies de sauvegardes et la gestion du catalogue de sauvegarde.
+Hello service du Gestionnaire de périphériques StorSimple est une extension Bonjour portail Azure qui vous permet de gérer votre solution StorSimple à partir d’une seule interface web. Dans Ajout toomanaging partages et les volumes, vous pouvez utiliser hello le Gestionnaire de périphériques StorSimple service tooview gérer les appareils, afficher les alertes, gérer les stratégies de sauvegarde et gérer le catalogue de sauvegarde hello.
 
 ## <a name="share-types"></a>Types de partages
 
 Les partages StorSimple peuvent être les suivants :
 
-* **Attaché localement** : les données de ces partages demeurent à tout moment sur le tableau ; elles ne débordent pas sur le cloud.
-* **Hiérarchisé** : les données de ces partages peuvent déborder sur le cloud. Lorsque vous créez un partage à plusieurs niveaux, environ 10 % de l’espace est configuré au niveau local et 90 % dans le cloud. Par exemple, si vous avez configuré un partage de 1 To, 100 Go résident dans l’espace local et 900 Go sont utilisés dans le cloud lorsque les données sont stockées en niveaux. Cela implique que si vous n’avez plus d’espace local sur l’appareil, vous ne pouvez pas configurer un partage à plusieurs niveaux (car les 10 % requis sur l’espace local ne seront pas disponibles).
+* **Attaché localement**: les données dans ces partages reste sur le tableau de hello en permanence et ne pas déborder toohello cloud.
+* **Niveaux**: les données dans ces partages peuvent déborder toohello cloud. Lorsque vous créez un partage hiérarchisé, environ 10 % d’espace de hello est approvisionné sur le niveau de local hello et 90 % d’espace de hello est configuré dans le cloud de hello. Par exemple, si vous avez configuré un partage de 1 To, 100 Go peut résider dans un espace local hello et 900 Go sera utilisée dans le cloud de hello hello lorsque des niveaux de données. À son tour, cela implique que si vous manquez tout l’espace local hello sur l’appareil de hello, vous ne pouvez pas configurer un partage hiérarchisé (car hello 10 % requis sur hello local niveau ne sera pas disponible).
 
 ### <a name="provisioned-capacity"></a>Capacité allouée
 
-Reportez-vous au tableau suivant pour connaître la capacité maximale allouée pour chaque type de partage.
+Consultez toohello tableau pour une capacité déployée maximale pour chaque type de partage suivant.
 
 | **Identificateur de la limite** | **Limite** |
 | --- | --- |
@@ -46,25 +46,25 @@ Reportez-vous au tableau suivant pour connaître la capacité maximale allouée 
 | Taille minimale d'un partage épinglé localement |50 Go |
 | Taille maximale d'un partage épinglé localement |2 To |
 
-## <a name="the-shares-blade"></a>Le panneau Partages
+## <a name="hello-shares-blade"></a>Panneau de partages Hello
 
-Sur le panneau de synthèse du service StorSimple, le menu **Partages** affiche la liste des partages de stockage sur un tableau StorSimple considéré et vous donne les moyens de les gérer.
+Hello **partages** menu sur votre Panneau de résumé du service StorSimple affiche la liste hello des partages de stockage sur un tableau de StorSimple donné et vous permet de toomanage les.
 
 ![Panneau Partages](./media/storsimple-virtual-array-manage-shares/shares-blade.png)
 
 Un partage est constitué d’une série d’attributs :
 
-* **Nom du partage** : nom descriptif qui doit être unique et vous aide à identifier le partage.
-* **État** : peut être en ligne ou hors connexion. Si un partage est hors connexion, ses utilisateurs ne seront pas en mesure d’y accéder.
-* **Type** : indique si le partage est **Hiérarchisé** (valeur par défaut) ou **Attaché localement**.
-* **Capacité** : spécifie la quantité de données utilisées par rapport au volume total des données pouvant être stockées sur le partage.
-* **Description** : un paramètre facultatif décrivant le partage.
-* **Autorisations** : les autorisations NTFS d’accès au partage pouvant être gérées via l’Explorateur Windows.
-* **Sauvegarde** : dans le cas d’une instance StorSimple Virtual Array, l’ensemble des partages sont automatiquement activés pour la sauvegarde.
+* **Nom de partage** : un nom descriptif qui doit être uniques et permet d’identifier le partage de hello.
+* **État** : peut être en ligne ou hors connexion. Si un partage est hors connexion, utilisateurs du partage de hello ne seront pas en mesure de tooaccess il.
+* **Type** – indique si le partage de hello est **à plusieurs niveaux** (hello par défaut) ou **attaché localement**.
+* **Capacité** – spécifie la quantité hello de données utilisées comme comparés toohello la quantité totale de données qui peuvent être stockées sur le partage de hello.
+* **Description** – un paramètre facultatif qui permet de décrire le partage de hello.
+* **Autorisations** -hello autorisations toohello partage NTFS qui peut être géré via l’Explorateur Windows.
+* **Sauvegarde** : en cas de hello StorSimple Virtual Array, tous les partages sont automatiquement activés pour sauvegarde.
 
 ![Détails des partages](./media/storsimple-virtual-array-manage-shares/share-details.png)
 
-Suivez les instructions de ce didacticiel pour effectuer les tâches suivantes :
+Suivez les instructions de hello dans cette hello didacticiel tooperform tâches suivantes :
 
 * Ajouter un partage
 * Modifier un partage
@@ -73,56 +73,56 @@ Suivez les instructions de ce didacticiel pour effectuer les tâches suivantes 
 
 ## <a name="add-a-share"></a>Ajouter un partage
 
-1. À partir du panneau de synthèse du service StorSimple, cliquez sur **+ Ajouter un partage** dans la barre de commandes. Le panneau **Ajouter un partage** s’ouvre.
+1. Dans le volet Résumé du service de StorSimple hello, cliquez sur **+ ajouter partage** à partir de la barre de commandes hello. Cela ouvre hello **ajouter partage** panneau.
 
     ![Ajouter un partage](./media/storsimple-virtual-array-manage-shares/add-share.png)
 
-2. Dans le panneau **Ajouter un partage**, procédez comme suit :
+2. Bonjour **ajouter partage** panneau, hello suivant :
    
-    1. Dans le champ **Nom du partage**, entrez un nom unique pour votre partage. Le nom doit être une chaîne contenant entre 3 et 127 caractères.
+    1. Bonjour **nom de partage** , entrez un nom unique pour le partage. nom de Hello doit être une chaîne qui contient des caractères too127 3.
 
-    2. Une **Description** facultative pour le partage. La description permet d'identifier les propriétaires du partage.
+    2. Facultatif **Description** pour partage de hello. description de Hello aidera à identifier les propriétaires de partage hello.
 
-    3. Dans la liste déroulante **Type**, spécifiez si vous souhaitez créer un partage **Hiérarchisé** ou **Attaché localement**. Pour les charges de travail qui nécessitent des garanties locales, une faible latence et les meilleures performances possibles, sélectionnez un **Partage attaché localement**. Pour toutes les autres données, sélectionnez un partage **Hiérarchisé**.
+    3. Bonjour **Type** déroulante liste, spécifiez si toocreate un **à plusieurs niveaux** ou **attaché localement** partager. Pour les charges de travail qui nécessitent des garanties locales, une faible latence et les meilleures performances possibles, sélectionnez un **Partage attaché localement**. Pour toutes les autres données, sélectionnez un partage **Hiérarchisé**.
 
-    4. Dans le champ **Capacité**, spécifiez la taille du partage. Un partage hiérarchisé doit être compris entre 500 Go et 20 To, tandis qu’un partage attaché doit être compris entre 50 Go et 2 To.
+    4. Bonjour **capacité** Indiquez la taille de hello du partage de hello. Un partage hiérarchisé doit être compris entre 500 Go et 20 To, tandis qu’un partage attaché doit être compris entre 50 Go et 2 To.
 
-    5. Dans le champ **Affecter une autorisation d’accès total par défaut**, attribuez les autorisations à l’utilisateur ou au groupe qui doivent accéder à ce partage. Spécifiez le nom de l’utilisateur ou du groupe d’utilisateurs au format _john@contoso.com_. Nous vous recommandons d'utiliser un groupe d'utilisateurs (plutôt qu'un seul utilisateur) lorsque vous accordez des privilèges d'administrateur pour accéder à ces partages. Après avoir attribué les autorisations à cet emplacement, vous pouvez utiliser l’Explorateur de fichiers par la suite pour modifier ces autorisations.
-3. Lorsque vous avez terminé de configurer votre partage, cliquez sur **Créer**. Un partage est créé avec les paramètres spécifiés ; une notification s’affiche. Par défaut, la sauvegarde est activée pour le partage.
-4. Pour vérifier que le partage a été créé, accédez au panneau **Partages**. Le partage devrait y apparaître.
+    5. Bonjour **valeur par défaut toutes les autorisations** champ, affecter hello autorisations toohello utilisateur ou groupe hello qui accède à ce partage. Spécifier le nom hello de hello utilisateur ou un groupe d’utilisateurs hello  _john@contoso.com_  format. Nous vous recommandons d’utiliser un tooaccess des privilèges d’administrateur utilisateur groupe (au lieu d’un seul utilisateur) tooallow ces partages. Une fois que vous avez affecté des autorisations hello ici, vous pouvez ensuite utiliser l’Explorateur de fichiers toomodify ces autorisations.
+3. Lorsque vous avez terminé de configurer votre partage, cliquez sur **Créer**. Un partage sera créé avec hello spécifié les paramètres et que vous voyez une notification. Par défaut, la sauvegarde sera être activée pour le partage de hello.
+4. tooconfirm qui hello partage a été a été créé correctement, accédez toohello **partages** panneau. Vous devez voir hello partager répertoriées.
    
     ![Le partage stimule la réussite.](./media/storsimple-virtual-array-manage-shares/share-success.png)
 
 ## <a name="modify-a-share"></a>Modifier un partage
 
-Modifiez un partage lorsque vous devez modifier sa description. Une fois le partage créé, aucune autre propriété de partage ne peut être modifiée.
+Modifier un partage lorsque vous avez besoin de description de hello toochange du partage de hello. Aucun autres propriétés de partage ne peuvent être modifiées une fois que le partage de hello est créé.
 
-#### <a name="to-modify-a-share"></a>Pour modifier un partage
+#### <a name="toomodify-a-share"></a>toomodify un partage
 
-1. À partir du paramètre **Partages** du panneau de synthèse du service StorSimple, sélectionnez le tableau virtuel sur lequel est hébergé le partage à modifier.
-2. **Sélectionnez** le partage pour afficher la description actuelle et le modifier.
-3. Pour enregistrer les modifications, cliquez sur la barre de commandes **Enregistrer**. Vos paramètres spécifiés sont appliqués ; une notification s’affiche.
+1. À partir de hello **partages** définissant panneau Résumé du service StorSimple hello, sélectionnez hello tableau virtuel sur le hello partage que vous souhaitez vous toomodify réside.
+2. **Sélectionnez** hello description actuelle de partage tooview hello et le modifier.
+3. Enregistrez vos modifications en cliquant sur hello **enregistrer** barre de commandes. Vos paramètres spécifiés sont appliqués ; une notification s’affiche.
    
     ![ Modifier un partage](./media/storsimple-virtual-array-manage-shares/share-edit.png)
 
 ## <a name="take-a-share-offline"></a>Mettre un partage hors connexion
 
-Si vous envisagez de modifier ou de supprimer un partage, il vous faudra éventuellement le déplacer hors connexion. Lorsqu’un partage est hors connexion, il n’est pas disponible pour l’accès en lecture-écriture. Ce déplacement hors connexion s’effectue sur l’hôte et sur l’appareil.
+Vous devrez peut-être tootake un partage hors connexion lors de la planification toomodify ou supprimer il. Lorsqu’un partage est hors connexion, il n’est pas disponible pour l’accès en lecture-écriture. Vous devez tootake hello partage hors connexion sur l’ordinateur hôte de hello, ainsi que sur les appareils hello.
 
-#### <a name="to-take-a-share-offline"></a>Pour déplacer un partage hors connexion
+#### <a name="tootake-a-share-offline"></a>tootake un partage hors connexion
 
-1. Assurez-vous que le partage en question n’est pas utilisé avant de le mettre hors connexion.
-2. Pour déplacer le partage sur le tableau hors connexion, procédez comme suit :
+1. Assurez-vous que ce partage hello en question n’est pas en cours d’utilisation avant sa mise hors connexion.
+2. Prendre hello partage tableau hello hors connexion en effectuant hello comme suit :
    
-    1. À partir du paramètre **Partages** du panneau de synthèse du service StorSimple, sélectionnez le panneau virtuel sur lequel est hébergé le partage que vous souhaitez déplacer hors connexion.
+    1. À partir de hello **partages** définissant panneau Résumé du service StorSimple hello, sélectionnez hello tableau virtuel sur le hello partage que vous souhaitez vous tootake hors connexion réside.
 
-    2. **Sélectionnez** le partage, puis cliquez sur **...** (sinon cliquez avec le bouton droit sur cette ligne), puis dans le menu contextuel, sélectionnez **Mettre hors connexion**.
+    2. **Sélectionnez** du partage de hello et cliquez sur **...**  (vous pouvez également cliquer avec le bouton droit dans cette ligne) et dans le menu contextuel de hello, sélectionnez **mettre hors connexion**.
      
         ![Partage hors connexion](./media/storsimple-virtual-array-manage-shares/shares-offline.png)
 
-    3. Passez en revue les informations du panneau **Mettre hors connexion**, puis confirmez votre acceptation de l’opération. Cliquez sur **Mettre hors connexion** pour déplacer le partage. Une notification de l’opération en cours s’affiche.
+    3. Passez en revue les informations de hello Bonjour **mettre hors connexion** panneau et confirmez que vous acceptez d’opération de hello. Cliquez sur **mettre hors connexion** partage de hello tootake hors connexion. Vous voyez une notification d’opération hello en cours d’exécution.
 
-    4. Pour vérifier que le partage a été mis hors connexion, accédez au panneau **Partages**. Le partage doit apparaître comme élément hors connexion.
+    4. tooconfirm qui hello partage a été effectuée correctement hors connexion, accédez toohello **partages** panneau. Vous devez voir l’état hello du partage hello comme étant hors connexion.
 
 ## <a name="delete-a-share"></a>Supprimer un partage
 
@@ -130,17 +130,17 @@ Si vous envisagez de modifier ou de supprimer un partage, il vous faudra éventu
 > Un partage peut être supprimé uniquement s’il est hors connexion.
 
 
-Pour supprimer un partage, procédez comme suit.
+Hello complet suivant les étapes toodelete un partage.
 
-#### <a name="to-delete-a-share"></a>Pour supprimer un partage
+#### <a name="toodelete-a-share"></a>toodelete un partage
 
-1. À partir du paramètre **Partages** du panneau de synthèse du service StorSimple, sélectionnez le tableau virtuel sur lequel est hébergé le partage à supprimer.
-2. **Sélectionnez** le partage, puis cliquez sur **...** (sinon cliquez avec le bouton droit sur cette ligne), puis dans le menu contextuel, sélectionnez **Supprimer**.
+1. À partir de hello **partages** définissant panneau Résumé du service StorSimple hello, sélectionnez hello tableau virtuel sur le partage hello vous souhaitez toodelete réside.
+2. **Sélectionnez** du partage de hello et cliquez sur **...**  (vous pouvez également cliquer avec le bouton droit dans cette ligne) et dans le menu contextuel de hello, sélectionnez **supprimer**.
    
     ![Supprimer un partage](./media/storsimple-virtual-array-manage-shares/share-delete.png)
-3. Vérifiez l’état du partage à supprimer. Si le partage que vous souhaitez supprimer n’est pas hors connexion, déplacez-le dans un premier temps. Suivez les étapes de [Mettre un partage hors connexion](#take-a-share-offline).
-4. Lorsque vous êtes invité à confirmer l’opération dans le panneau **Supprimer**, validez la confirmation, puis cliquez sur **Supprimer**. Le partage est mis à jour, et le panneau **Partages** représente la liste mise à jour des partages dans le tableau virtuel.
+3. Vérifier l’état de hello du partage de hello souhaité toodelete. Si le partage hello toodelete n’est pas hors connexion, mettre hors connexion tout d’abord. Suivez les étapes de hello dans [hors connexion un partage](#take-a-share-offline).
+4. Lorsque vous êtes invité à confirmer l’opération Bonjour **supprimer** panneau, acceptez la confirmation de hello et cliquez sur **supprimer**. partage de Hello va être supprimée et hello **partages** panneau affiche la liste de hello mis à jour d’actions au sein de l’unité de stockage virtuelle hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Découvrez comment [cloner un partage StorSimple](storsimple-virtual-array-clone.md).
+Découvrez comment trop[cloner un partage de StorSimple](storsimple-virtual-array-clone.md).
 

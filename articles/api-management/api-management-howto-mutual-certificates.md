@@ -1,6 +1,6 @@
 ---
-title: "Sécuriser les services principaux à l’aide d’une authentification de certificat client dans Gestion des API Azure | Microsoft Docs"
-description: "Découvrez comment sécuriser des services principaux à l'aide d'une authentification par certificat client dans la Gestion des API Azure"
+title: "les services de back-end aaaSecure à l’aide de l’authentification par certificat client - Gestion des API Azure | Documents Microsoft"
+description: "Découvrez comment toosecure services de back-end à l’aide du client de certificat d’authentification dans la gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,101 +14,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 2ebe71c96fd9076a48f689041634dbd23d3d8414
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 565bb61044fed1158944202c36e8abe30edf5729
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-secure-back-end-services-using-client-certificate-authentication-in-azure-api-management"></a>Comment sécuriser les services principaux à l'aide d'une authentification par certificat client dans la Gestion des API Azure
-La Gestion des API permet de sécuriser l'accès au service principal d'une API en utilisant des certificats client. Ce guide explique comment gérer les certificats dans le portail des éditeurs de l’API et comment configurer une API pour utiliser un certificat et accéder à son service principal.
+# <a name="how-toosecure-back-end-services-using-client-certificate-authentication-in-azure-api-management"></a>Comment toosecure services de back-end à l’aide du client de certificat d’authentification dans la gestion des API Azure
+Gestion des API fournit hello capacité toosecure toohello principal service d’accès d’une API à l’aide de certificats clients. Ce guide montre comment les certificats dans le portail de publication hello API toomanage et une API de tooconfigure toouse un tooaccess certificat son service principal.
 
-Pour en savoir plus sur la gestion des certificats à l’aide de l’API REST de gestion des API, consultez [Entité de certificat API REST de gestion des API Azure][Azure API Management REST API Certificate entity].
+Pour plus d’informations sur la gestion des certificats à l’aide de hello API REST de gestion des API, consultez [entité de certificat de API REST de gestion Azure API][Azure API Management REST API Certificate entity].
 
-## <a name="prerequisites"> </a>Configuration requise
-Ce guide explique comment configurer votre instance de service de gestion des API afin d'utiliser l'authentification par certificat pour accéder au service principal d'une API. Avant de suivre la procédure présentée dans cette rubrique, vous devez configurer votre service principal pour l’authentification avec certificat client ([pour configurer l’authentification avec certificat dans Sites Web Azure, consultez cet article ][to configure certificate authentication in Azure WebSites refer to this article]) et avoir accès au certificat et au mot de passe associés afin de les charger dans le portail de publication de la gestion des API.
+## <a name="prerequisites"></a>Configuration requise
+Ce guide vous explique comment tooconfigure votre tooaccess l’authentification de gestion des API service instance toouse client certificat hello service principal pour une API. Avant de hello suivant les étapes dans cette rubrique, vous devez avoir votre service principal configuré pour l’authentification par certificat client ([certificat tooconfigure l’authentification dans les sites Web Azure font référence à l’article de toothis] [ tooconfigure certificate authentication in Azure WebSites refer toothis article]), et ont accès toohello certificat hello mot de passe et certificat hello pour le téléchargement dans le portail de publication de gestion des API hello.
 
-## <a name="step1"> </a>Chargement d’un certificat client
-Pour commencer, cliquez sur **Portail des éditeurs** dans le portail Azure de votre service Gestion des API. Vous accédez au portail des éditeurs Gestion des API.
+## <a name="step1"></a>Chargement d’un certificat client
+tooget démarré, cliquez sur **portail de publication** Bonjour portail Azure pour votre service de gestion des API. Cela vous prend un portail de publication de gestion des API toohello.
 
 ![Portail des éditeurs d’API][api-management-management-console]
 
-> Si vous n’avez pas encore créé une instance de service Gestion des API, consultez la page de [création d’une instance de service Gestion des API][Create an API Management service instance] dans le didacticiel de [prise en main de Gestion des API Azure][Get started with Azure API Management].
+> Si vous n’avez pas encore créé une instance de service de gestion des API, consultez [de créer une instance de service de gestion des API] [ Create an API Management service instance] Bonjour [prise en main Azure API Management] [ Get started with Azure API Management] didacticiel.
 > 
 > 
 
-Cliquez sur **Sécurité** dans le menu **Gestion des API** de gauche, puis sur **Certificats clients**.
+Cliquez sur **sécurité** de hello **gestion des API** menu hello gauche, puis cliquez sur **les certificats clients**.
 
 ![Certificats clients][api-management-security-client-certificates]
 
-Pour charger un nouveau certificat, cliquez sur **Charger un certificat**.
+tooupload un nouveau certificat, cliquez sur **télécharger le certificat**.
 
-![Charger un certificat][api-management-upload-certificate]
+![Téléchargement d’un certificat][api-management-upload-certificate]
 
-Accédez à votre certificat, puis entrez le mot de passe pour le certificat.
+Parcourir tooyour certificat, puis entrez un mot de passe hello hello certificat.
 
-> Le certificat doit être au format **.pfx** . Les certificats auto-signés sont autorisés.
+> Hello certificat doit être dans **.pfx** format. Les certificats auto-signés sont autorisés.
 > 
 > 
 
-![Charger un certificat][api-management-upload-certificate-form]
+![Téléchargement d’un certificat][api-management-upload-certificate-form]
 
-Cliquez sur **Charger** pour charger le certificat.
+Cliquez sur **télécharger** certificat de hello tooupload.
 
-> Le mot de passe du certificat est validé à ce moment. S'il est incorrect, un message d'erreur s'affiche.
+> mot de passe du certificat Hello est validé pour l’instant. S'il est incorrect, un message d'erreur s'affiche.
 > 
 > 
 
 ![Certificat chargé][api-management-certificate-uploaded]
 
-Lorsque le certificat est chargé, il s'affiche dans l'onglet **Certificats clients** . Si vous avez plusieurs certificats, faites une note indiquant les quatre derniers caractères de l’empreinte numérique, qui sont utilisés pour sélectionner le certificat lors de la configuration d’une API pour l’utilisation de certificats, tel qu’indiqué dans la section suivante [Configuration d’une API afin d’utiliser un certificat pour l’authentification de passerelle][Configure an API to use a client certificate for gateway authentication].
+Une fois que le certificat de hello est téléchargé, il s’affiche sur hello **les certificats clients** onglet. Si vous avez plusieurs certificats, prenez note de l’objet de hello ou hello les quatre derniers caractères de l’empreinte numérique de hello, qui sont des certificats de hello tooselect utilisé lors de la configuration d’une API toouse les certificats, comme indiqué dans les éléments suivants de hello [configurer un API toouse un certificat client pour l’authentification de la passerelle] [ Configure an API toouse a client certificate for gateway authentication] section.
 
-> Pour désactiver la validation des chaînes de certificat lorsque vous utilisez, par exemple, un certificat auto-signé, suivez les étapes décrites dans cet [élément](api-management-faq.md#can-i-use-a-self-signed-ssl-certificate-for-a-back-end) de FAQ.
+> tooturn désactiver la validation de chaîne de certificat lorsque vous utilisez, par exemple, un certificat auto-signé, suivez les étapes de hello décrites dans ce forum aux questions [élément](api-management-faq.md#can-i-use-a-self-signed-ssl-certificate-for-a-back-end).
 > 
 > 
 
-## <a name="step1a"> </a>Suppression d’un certificat client
-Pour supprimer un certificat, cliquez sur **Supprimer** à côté du certificat en question.
+## <a name="step1a"></a>Suppression d’un certificat client
+toodelete un certificat, cliquez sur **supprimer** en regard de certificat voulu de hello.
 
 ![Suppression d'un certificat][api-management-certificate-delete]
 
-Cliquez sur **Oui, le supprimer** pour confirmer la suppression.
+Cliquez sur **Oui, supprimez-le** tooconfirm.
 
 ![Confirmation de suppression][api-management-confirm-delete]
 
-Si le certificat est en cours d'utilisation par une API, un écran d'avertissement s'affiche. Pour supprimer le certificat, vous devez d'abord le supprimer de toutes les API configurées pour l'utiliser.
+Si le certificat de hello est en cours d’utilisation par une API, un écran d’avertissement s’affiche. certificat de hello toodelete vous devez d’abord supprimer hello de certificats à partir des API toouse configuré il.
 
 ![Confirmation de suppression][api-management-confirm-delete-policy]
 
-## <a name="step2"> </a>Configuration d'une API afin d'utiliser un certificat pour l'authentification de passerelle
-Cliquez sur **API** dans le menu **Gestion des API** de gauche, cliquez sur le nom de l’API désirée, puis cliquez sur l’onglet **Sécurité**.
+## <a name="step2"></a>Configurer un toouse API un certificat client pour l’authentification de la passerelle
+Cliquez sur **API** de hello **gestion des API** hello menu gauche, cliquez sur nom hello de l’API de hello souhaité, puis hello **sécurité** onglet.
 
 ![Sécurité API][api-management-api-security]
 
-Sélectionnez **Certificats client** dans la liste déroulante **Avec informations d’identification**.
+Sélectionnez **les certificats clients** de hello **avec les informations d’identification** liste déroulante.
 
 ![Certificats clients][api-management-mutual-certificates]
 
-Sélectionnez le certificat désiré dans la liste déroulante **Certificat client** . Si plusieurs certificats s'affichent, vous pouvez consulter le sujet ou les quatre derniers caractères de l'empreinte numérique (notés dans la section précédente) afin d'identifier le certificat correct.
+Sélectionnez hello certificat voulu dans hello **certificat Client** liste déroulante. S’il existe plusieurs certificats, vous pouvez examiner le sujet de hello ou hello les quatre derniers caractères de l’empreinte numérique hello comme indiqué dans le certificat correct hello précédente section toodetermine hello.
 
 ![Sélection de certificat][api-management-select-certificate]
 
-Cliquez sur **Enregistrer** pour enregistrer la modification de configuration de l'API.
+Cliquez sur **enregistrer** toosave hello configuration modification toohello API.
 
-> Cette modification s'applique immédiatement, et les appels d'opérations de cette API utiliseront désormais ce certificat pour s'authentifier sur le serveur principal.
+> Cette modification prend effet immédiatement, et les appels toooperations de cette API utilisera hello tooauthenticate de certificat sur le serveur principal de hello.
 > 
 > 
 
 ![Enregistrement des modifications d'API][api-management-save-api]
 
-> Lorsqu’un certificat est spécifié pour l’authentification passerelle d’un service principal d’une API, il est intégré à la stratégie de cette API et peut être affiché dans l’éditeur de stratégies.
+> Lorsqu’un certificat est spécifié pour l’authentification de passerelle pour le service principal de hello d’une API, il devient la partie de la stratégie de hello pour cette API et peut être affiché dans l’éditeur de stratégie hello.
 > 
 > 
 
 ![Stratégie de certificat][api-management-certificate-policy]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d'informations sur les autres méthodes de sécurisation de votre service principal, telles que l’authentification HTTP de base ou partagée, regardez la vidéo suivante
+Pour plus d’informations sur les autres façons de toosecure votre service principal, tels que HTTP base ou partagée secret principal d’authentification, consultez hello suivant vidéo.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Last-mile-Security/player]
 > 
@@ -130,10 +130,10 @@ Pour plus d'informations sur les autres méthodes de sécurisation de votre serv
 
 
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: ../api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -142,13 +142,13 @@ Pour plus d'informations sur les autres méthodes de sécurisation de votre serv
 
 [Azure API Management REST API Certificate entity]: http://msdn.microsoft.com/library/azure/dn783483.aspx
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[to configure certificate authentication in Azure WebSites refer to this article]: https://azure.microsoft.com/en-us/documentation/articles/app-service-web-configure-tls-mutual-auth/
+[tooconfigure certificate authentication in Azure WebSites refer toothis article]: https://azure.microsoft.com/en-us/documentation/articles/app-service-web-configure-tls-mutual-auth/
 
 [Prerequisites]: #prerequisites
 [Upload a client certificate]: #step1
 [Delete a client certificate]: #step1a
-[Configure an API to use a client certificate for gateway authentication]: #step2
-[Test the configuration by calling an operation in the Developer Portal]: #step3
+[Configure an API toouse a client certificate for gateway authentication]: #step2
+[Test hello configuration by calling an operation in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 
 

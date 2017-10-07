@@ -1,6 +1,6 @@
 ---
-title: Guide de mise en route Node.js | Microsoft Docs
-description: "Apprenez à créer une application web Node.js simple et à la déployer vers un service cloud Azure."
+title: aaaNode.js Getting Started Guide | Documents Microsoft
+description: "Découvrez comment toocreate un Node.js simple application web et service de cloud Azure tooan le déployer."
 services: cloud-services
 documentationcenter: nodejs
 author: TomArcher
@@ -14,65 +14,65 @@ ms.devlang: nodejs
 ms.topic: hero-article
 ms.date: 08/17/2017
 ms.author: tarcher
-ms.openlocfilehash: 980643f35c78bbae7b1b12336331ca15ad4fb89b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 22945bfcc1b0e5da2a2d37dc5cc86be013cc0b5c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="build-and-deploy-a-nodejs-application-to-an-azure-cloud-service"></a>Création et déploiement d'une application Node.js dans Azure Cloud Services
+# <a name="build-and-deploy-a-nodejs-application-tooan-azure-cloud-service"></a>Créer et déployer un tooan d’application Node.js Azure Cloud Service
 
-Ce didacticiel explique comment créer une application Node.js simple s’exécutant dans Azure Cloud Services. Les services Cloud Services sont des composantes des applications cloud extensibles dans Azure. Ils permettent de séparer, de gérer et d'étendre de façon indépendante le composant frontal et le composant principal de votre application.  Cloud Services héberge de façon fiable chaque rôle sur une machine virtuelle dédiée.
+Ce didacticiel montre comment toocreate un Node.js simple application qui s’exécute dans un Service Cloud Azure. Services de cloud computing sont les blocs de construction de hello d’applications cloud évolutives dans Azure. Elles permettent de séparation de hello et gestion indépendante et montée en puissance parallèle de serveurs frontaux et principaux composants de votre application.  Cloud Services héberge de façon fiable chaque rôle sur une machine virtuelle dédiée.
 
-Pour plus d'informations sur les services cloud et pour connaître les différences avec les sites Web Azure et les machines virtuelles, consultez la page [Comparaison des sites Web Azure, des services cloud et des machines virtuelles].
+Pour plus d’informations sur les Services de cloud computing et leurs particularités tooAzure sites Web et les machines virtuelles, consultez [comparaison de sites Web Azure, Services de cloud computing et Machines virtuelles].
 
 > [!TIP]
-> Vous voulez créer un simple site Web ? Si votre scénario ne comporte qu’un simple composant frontal web, envisagez d’[utiliser une application web légère]. Vous pouvez facilement mettre à niveau vers un service cloud en fonction du développement de votre application et de vos besoins.
+> Recherchez toobuild un site Web simple ? Si votre scénario ne comporte qu’un simple composant frontal web, envisagez d’[utiliser une application web légère]. Vous pouvez facilement mettre à niveau tooa Service de cloud computing que votre application web se développe et l’évolution de vos besoins.
 
-Dans ce didacticiel, vous allez créer une application Web simple, hébergée dans un rôle Web. Vous utiliserez l’émulateur de calcul pour tester votre application localement, puis déploierez cette dernière à l’aide d’outils en ligne de commande PowerShell.
+Dans ce didacticiel, vous allez créer une application Web simple, hébergée dans un rôle Web. Vous serez utiliser, hello calcul émulateur tootest votre application localement, puis déployez-la à l’aide des outils de ligne de commande PowerShell.
 
-Il s’agit d’une application « hello world » simple :
+application Hello est une application « hello world » simple :
 
-![Navigateur Web avec la page Web Hello World][A web browser displaying the Hello World web page]
+![Un navigateur web affichage page web de Hello World hello][A web browser displaying hello Hello World web page]
 
 ## <a name="prerequisites"></a>Composants requis
 > [!NOTE]
 > Ce didacticiel utilise Azure PowerShell, qui nécessite Windows.
 
 * Installez et configurez [Azure PowerShell].
-* Téléchargez et installez le [Kit de développement logiciel (SDK) Azure pour .NET 2.7]. Dans le programme d'installation, sélectionnez :
+* Téléchargez et installez hello [Azure SDK pour .NET 2.7]. Bonjour, installer le programme d’installation, sélectionnez :
   * MicrosoftAzureAuthoringTools
   * MicrosoftAzureComputeEmulator
 
 ## <a name="create-an-azure-cloud-service-project"></a>Créer un projet Azure Cloud Services
-Effectuez les tâches suivantes pour créer un projet Azure Cloud Services, avec la structure Node.js de base :
+Effectuez hello suivant de tâches toocreate un nouveau projet de Service Cloud Azure, ainsi que la structure de Node.js base :
 
-1. Exécutez **Windows PowerShell** en tant qu’administrateur ; à partir du **menu Démarrer** ou de l’**écran d’accueil**, recherchez **Windows PowerShell**.
-2. [Connectez PowerShell] à votre abonnement.
-3. Entrez l’applet de commande PowerShell suivante pour créer le projet :
+1. Exécutez **Windows PowerShell** en tant qu’administrateur ; à partir de hello **Menu Démarrer** ou **écran d’accueil de**, recherchez **Windows PowerShell**.
+2. [Se connecter à PowerShell] tooyour abonnement.
+3. Entrez hello suivant le projet hello toocreate PowerShell applet de commande toocreate :
 
         New-AzureServiceProject helloworld
 
-    ![Le résultat de la nouvelle commande helloworld New-AzureService][The result of the New-AzureService helloworld command]
+    ![résultat de Hello de commande de helloworld hello New-AzureService][hello result of hello New-AzureService helloworld command]
 
-    La cmdlet **New-AzureServiceProject** génère une structure de base pour publier une application Node.js dans un service cloud. Elle contient les fichiers de configuration nécessaires à la publication sur Azure. La cmdlet change aussi votre répertoire de travail et le remplace par le répertoire du service.
+    Hello **New-AzureServiceProject** applet de commande génère une structure de base pour la publication d’un tooa d’application Node.js Service Cloud. Il contient les fichiers de configuration nécessaires à la publication tooAzure. applet de commande Hello change également votre répertoire toohello répertoire de travail hello service.
 
-    L’applet de commande crée les fichiers suivants :
+    applet de commande Hello crée hello fichiers suivants :
 
    * **ServiceConfiguration.Cloud.cscfg**, **ServiceConfiguration.Local.cscfg** et **ServiceDefinition.csdef** sont des fichiers propres à Azure, nécessaires à la publication de votre application. Pour plus d'informations, consultez la page [Présentation de la création d'un service hébergé pour Azure].
-   * **deploymentSettings.json**stocke les paramètres locaux utilisés par les cmdlets de déploiement Azure PowerShell.
-4. Entrez la commande suivante pour ajouter un nouveau rôle Web :
+   * **deploymentSettings.json**: stocke les paramètres locaux qui sont utilisés par hello applets de commande de déploiement Azure PowerShell.
+4. Entrez hello suivant commande tooadd un nouveau rôle web :
 
        Add-AzureNodeWebRole
 
-   ![Résultat de la commande Add-AzureNodeWebRole][The output of the Add-AzureNodeWebRole command]
+   ![sortie Hello Hello Add-AzureNodeWebRole commande][hello output of hello Add-AzureNodeWebRole command]
 
-   La cmdlet **Add-AzureNodeWebRole** crée une application Node.js de base. Elle modifie également les fichiers **.csfg** et **.csdef** afin d’ajouter des entrées de configuration pour le nouveau rôle.
+   Hello **Add-AzureNodeWebRole** applet de commande crée une application Node.js base. Il modifie également hello **.csfg** et **.csdef** fichiers tooadd les entrées de configuration pour le nouveau rôle de hello.
 
    > [!NOTE]
-   > Si vous ne spécifiez pas de nom de rôle, un nom par défaut est utilisé. Vous pouvez indiquer un nom comme premier paramètre de la cmdlet : `Add-AzureNodeWebRole MyRole`
+   > Si vous ne spécifiez pas de nom de rôle, un nom par défaut est utilisé. Vous pouvez fournir un nom en tant que paramètre d’applet de commande premier hello :`Add-AzureNodeWebRole MyRole`
 
-L’application Node.js est définie dans le fichier **server.js**, situé dans le répertoire du rôle web (**WebRole1** par défaut). Voici le code :
+application de Node.js Hello est définie dans le fichier de hello **server.js**, situé dans le répertoire hello pour le rôle web de hello (**WebRole1** par défaut). Voici le code de hello :
 
     var http = require('http');
     var port = process.env.port || 1337;
@@ -81,103 +81,103 @@ L’application Node.js est définie dans le fichier **server.js**, situé dans 
         res.end('Hello World\n');
     }).listen(port);
 
-Ce code est essentiellement identique à l’exemple « Hello World » sur le site web [nodejs.org] , sauf qu’il utilise le numéro de port attribué par l’environnement de cloud.
+Ce code est essentiellement les hello identique hello « Hello World » exemple sur hello [nodejs.org] site Web, sauf qu’elle utilise le numéro de port hello affecté par l’environnement de cloud hello.
 
-## <a name="deploy-the-application-to-azure"></a>Déploiement de l'application dans Azure
+## <a name="deploy-hello-application-tooazure"></a>Déployer hello application tooAzure
 
 > [!NOTE]
-> Pour suivre ce didacticiel, vous avez besoin d'un compte Azure. Vous pouvez [activer les avantages de votre abonnement MSDN](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A85619ABF) ou [vous inscrire pour un compte gratuit](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A85619ABF).
+> toocomplete ce didacticiel, vous avez besoin d’un compte Azure. Vous pouvez [activer les avantages de votre abonnement MSDN](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A85619ABF) ou [vous inscrire pour un compte gratuit](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A85619ABF).
 
-### <a name="download-the-azure-publishing-settings"></a>Télécharger les paramètres de publication Azure
-Pour déployer votre application sur Azure, vous devez télécharger les paramètres de publication de votre abonnement Azure.
+### <a name="download-hello-azure-publishing-settings"></a>Télécharger hello Azure paramètres de publication
+toodeploy tooAzure de votre application, vous devez d’abord télécharger hello pour votre abonnement Azure, les paramètres de publication.
 
-1. Exécutez l’applet de commande Azure PowerShell suivante :
+1. Exécutez hello suivant l’applet de commande PowerShell de Azure :
 
        Get-AzurePublishSettingsFile
 
-   Ceci utilise votre navigateur pour accéder à la page de téléchargement des paramètres de publication. Il est possible que vous soyez invité à vous connecter avec un compte Microsoft. Si c’est le cas, utilisez le compte associé à votre abonnement Azure.
+   Ce processus utilisera votre navigateur toonavigate toohello page de téléchargement des paramètres de publication. Vous pouvez être invité à toolog avec un Account Microsoft. Dans ce cas, utilisez le compte hello associé à votre abonnement Azure.
 
-   Enregistrez le profil téléchargé dans un emplacement auquel vous pouvez accéder facilement.
-2. Exécutez l’applet de commande suivante pour importer le profil de publication que vous avez téléchargé :
+   Vous pouvez accéder facilement à hello téléchargé profil tooa fichier emplacement d’enregistrement.
+2. Exécutez suivante hello de tooimport d’applet de commande profil que vous avez téléchargé de publication :
 
-       Import-AzurePublishSettingsFile [path to file]
+       Import-AzurePublishSettingsFile [path toofile]
 
     > [!NOTE]
-    > Après l’importation des paramètres de publication, pensez à supprimer le fichier .publishSettings téléchargé, car il contient des informations qui pourraient permettre à d’autres personnes d’accéder à votre compte.
+    > Après l’importation hello paramètres de publication, envisagez de suppression hello de télécharger le fichier .publishSettings, car il contient des informations qui pourrait permettre à une personne tooaccess votre compte.
 
-### <a name="publish-the-application"></a>Publication de l'application
-Pour publier, exécutez les commande suivantes :
+### <a name="publish-hello-application"></a>Publier l’application hello
+toopublish, exécutez hello suivant de commandes :
 
       $ServiceName = "NodeHelloWorld" + $(Get-Date -Format ('ddhhmm'))
     Publish-AzureServiceProject -ServiceName $ServiceName  -Location "East US" -Launch
 
-* **-ServiceName** indique le nom du déploiement. Ce nom doit être unique, sans quoi le processus de publication échouera. La commande **Get-Date** s'attache à une chaîne de date et d'heure qui doit rendre le nom unique.
-* **-Emplacement** indique le centre de données dans lequel l'application sera hébergée. Pour afficher une liste des centres de données disponibles, utilisez la cmdlet **Get-AzureLocation** .
-* **-Launch** ouvre une fenêtre de navigateur et accède au service hébergé une fois le déploiement terminé.
+* **-ServiceName** Spécifie le nom hello pour le déploiement de hello. Cela doit être un nom unique, sinon hello publier le processus échoue. Hello **Get-Date** commande s’attache à une chaîne de date/heure qui doit rendre le nom de hello unique.
+* **-Location** spécifie hello de centre de données qui sera hébergée dans application hello. toosee une liste des centres de données disponibles, utilisez hello **Get-AzureLocation** applet de commande.
+* **-Lancer** ouvre une fenêtre de navigateur et navigue toohello hébergé service après le déploiement est terminé.
 
-Une fois la publication effectuée, vous devez obtenir une réponse semblable à celle-ci :
+Une fois la publication effectuée, vous découvrez une réponse similaire toohello :
 
-![Résultat de la commande Publish-AzureService][The output of the Publish-AzureService command]
+![sortie Hello Hello Publish-AzureService commande][hello output of hello Publish-AzureService command]
 
 > [!NOTE]
-> Il peut s’écouler plusieurs minutes avant que l’application soit déployée et disponible lors de la première publication.
+> Il peut prendre plusieurs minutes pour hello application toodeploy et sont disponible lors de la première publication.
 
-Une fois le déploiement terminé, une fenêtre de navigateur s'ouvre et accède au service cloud.
+Une fois le déploiement de hello est terminée, une fenêtre de navigateur vous ouvrez et accédez toohello le service cloud.
 
-![Fenêtre de navigateur affichant la page Hello World ; l’URL indique que la page est hébergée sur Azure.][A browser window displaying the hello world page; the URL indicates the page is hosted on Azure.]
+![Une fenêtre de navigateur affichant hello hello world page ; URL de Hello indique la page de hello est hébergé sur Azure.][A browser window displaying hello hello world page; hello URL indicates hello page is hosted on Azure.]
 
 Votre application s'exécute maintenant sur Azure.
 
-La cmdlet **Publish-AzureServiceProject** effectue les opérations suivantes :
+Hello **AzureServiceProject de publication** applet de commande effectue hello comme suit :
 
-1. Elle crée un package à déployer. Ce package contient tous les fichiers de votre dossier d’application.
-2. Elle crée un **compte de stockage** , si celui-ci n'existe pas. Le compte de stockage Azure permet de stocker le package de l'application au cours du déploiement. Vous pouvez supprimer en toute sécurité le compte de stockage une fois le déploiement terminé.
-3. Elle crée un **service cloud** , si celui-ci n'existe pas. Le **service cloud** est le conteneur dans lequel votre application est hébergée lorsqu'elle est déployée sur Azure. Pour plus d'informations, consultez la page [Présentation de la création d'un service hébergé pour Azure].
-4. Elle publie le package de déploiement sur Azure.
+1. Crée un toodeploy du package. Hello contient tous les fichiers hello dans votre dossier d’application.
+2. Elle crée un **compte de stockage** , si celui-ci n'existe pas. Hello compte de stockage Azure est un package d’application hello toostore utilisés pendant le déploiement. Vous pouvez supprimer en toute sécurité de compte de stockage hello après le déploiement.
+3. Elle crée un **service cloud** , si celui-ci n'existe pas. A **service de cloud computing** est conteneur hello dans lequel votre application est hébergée lorsqu’il est déployé tooAzure. Pour plus d'informations, consultez la page [Présentation de la création d'un service hébergé pour Azure].
+4. Publie tooAzure de package de déploiement hello.
 
 ## <a name="stopping-and-deleting-your-application"></a>Arrêt et suppression de votre application
-Après avoir déployé votre application, vous pouvez la désactiver afin de vous éviter des coûts supplémentaires. Azure facture les instances de rôle Web par heure de serveur consommée. Une fois votre application déployée, elle consomme du temps de serveur, même si les instances ne sont pas exécutées et sont arrêtées.
+Après avoir déployé votre application, vous souhaiterez peut-être toodisable il afin d’éviter des coûts supplémentaires. Azure facture les instances de rôle Web par heure de serveur consommée. Heure du serveur est utilisée une fois que votre application est déployée, même si les instances de hello ne sont pas en cours d’exécution et état de hello s’est arrêté.
 
-1. Dans la fenêtre Windows PowerShell, arrêtez le déploiement du service créé dans la section précédente à l'aide de la cmdlet suivante :
+1. Dans la fenêtre Windows PowerShell de hello, arrêter le déploiement de service hello créé dans la section précédente de hello avec hello suivant l’applet de commande :
 
        Stop-AzureService
 
-   L'arrêt du service peut prendre plusieurs minutes. Une fois le service arrêté, vous recevez un message confirmant l'arrêt du service.
+   L’arrêt du service de hello peut prendre plusieurs minutes. Lors de l’arrêt du service de hello, vous recevez un message indiquant qu’il s’est arrêtée.
 
-   ![État de la commande Stop-AzureService.][The status of the Stop-AzureService command]
-2. Pour supprimer le service, utilisez la cmdlet suivante :
+   ![état Hello de commande hello Stop-AzureService][hello status of hello Stop-AzureService command]
+2. service de hello toodelete, hello appel suivant l’applet de commande :
 
        Remove-AzureService
 
-   Lorsque vous y êtes invité, entrez **Y** pour supprimer le service.
+   Lorsque vous y êtes invité, entrez **Y** service de hello toodelete.
 
-   La suppression du service peut prendre plusieurs minutes. Une fois le service supprimé, vous recevez un message confirmant la suppression du service.
+   Suppression du service de hello peut prendre plusieurs minutes. Une fois que le service de hello a été supprimé, vous recevez un message indiquant que le service de hello a été supprimée.
 
-   ![État de la commande Remove-AzureService][The status of the Remove-AzureService command]
+   ![état Hello de commande Remove-AzureService de hello][hello status of hello Remove-AzureService command]
 
    > [!NOTE]
-   > La suppression du service ne supprime pas le compte de stockage qui a été créé lors de la publication initiale du service. Le stockage utilisé continuera à vous être facturé. Si aucun autre élément n’utilise le stockage, il peut être préférable de le supprimer.
+   > Suppression du service de hello ne supprime pas le compte de stockage hello qui a été créé lorsque hello service a été initialement publié, et vous continuerez toobe facturé en fonction de stockage utilisé. Si rien d’autre utilise le stockage de hello, vous souhaiterez peut-être toodelete il.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations, consultez le [Centre pour développeurs Node.js].
+Pour plus d’informations, consultez hello [centre de développement Node.js].
 
 <!-- URL List -->
 
-[Comparaison des sites Web Azure, des services cloud et des machines virtuelles]: ../app-service-web/choose-web-site-cloud-service-vm.md
+[comparaison de sites Web Azure, Services de cloud computing et Machines virtuelles]: ../app-service-web/choose-web-site-cloud-service-vm.md
 [utiliser une application web légère]: ../app-service-web/app-service-web-get-started-nodejs.md
 [Azure PowerShell]: /powershell/azureps-cmdlets-docs
-[Kit de développement logiciel (SDK) Azure pour .NET 2.7]: http://www.microsoft.com/en-us/download/details.aspx?id=48178
-[Connectez PowerShell]: /powershell/azureps-cmdlets-docs#step-3-connect
+[Azure SDK pour .NET 2.7]: http://www.microsoft.com/en-us/download/details.aspx?id=48178
+[Se connecter à PowerShell]: /powershell/azureps-cmdlets-docs#step-3-connect
 [nodejs.org]: http://nodejs.org/
 [Présentation de la création d'un service hébergé pour Azure]: https://azure.microsoft.com/documentation/services/cloud-services/
-[Centre pour développeurs Node.js]: https://azure.microsoft.com/develop/nodejs/
+[centre de développement Node.js]: https://azure.microsoft.com/develop/nodejs/
 
 <!-- IMG List -->
 
-[The result of the New-AzureService helloworld command]: ./media/cloud-services-nodejs-develop-deploy-app/node9.png
-[The output of the Add-AzureNodeWebRole command]: ./media/cloud-services-nodejs-develop-deploy-app/node11.png
-[A web browser displaying the Hello World web page]: ./media/cloud-services-nodejs-develop-deploy-app/node14.png
-[The output of the Publish-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node19.png
-[A browser window displaying the hello world page; the URL indicates the page is hosted on Azure.]: ./media/cloud-services-nodejs-develop-deploy-app/node21.png
-[The status of the Stop-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node48.png
-[The status of the Remove-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node49.png
+[hello result of hello New-AzureService helloworld command]: ./media/cloud-services-nodejs-develop-deploy-app/node9.png
+[hello output of hello Add-AzureNodeWebRole command]: ./media/cloud-services-nodejs-develop-deploy-app/node11.png
+[A web browser displaying hello Hello World web page]: ./media/cloud-services-nodejs-develop-deploy-app/node14.png
+[hello output of hello Publish-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node19.png
+[A browser window displaying hello hello world page; hello URL indicates hello page is hosted on Azure.]: ./media/cloud-services-nodejs-develop-deploy-app/node21.png
+[hello status of hello Stop-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node48.png
+[hello status of hello Remove-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node49.png

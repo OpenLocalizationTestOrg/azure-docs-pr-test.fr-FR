@@ -1,6 +1,6 @@
 ---
-title: "Présentation de la messagerie de cloud-à-appareil Azure IoT Hub | Microsoft Docs"
-description: "Guide du développeur : comment utiliser la messagerie de cloud-à-appareil avec IoT Hub. Inclut des informations sur le cycle de vie des messages et les options de configuration."
+title: "aaaUnderstand Azure IoT Hub cloud-à-appareil messagerie | Documents Microsoft"
+description: "Guide du développeur - comment toouse cloud-à-appareil messagerie avec IoT Hub. Inclut des informations sur le cycle de vie des messages hello et options de configuration."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -13,85 +13,85 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: dobett
-ms.openlocfilehash: 04ac46498c912b0503036f70b7f3d0e28e5a82b8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5c747b50163873d823556a8baa769c4b8f7f8c44
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="send-cloud-to-device-messages-from-iot-hub"></a>Envoyer des messages cloud-à-appareil à partir d’IoT Hub
 
-Pour envoyer des notifications unidirectionnelles à l’application pour appareil à partir du back-end de votre solution, envoyez des messages cloud-à-appareil depuis votre hub IoT vers votre appareil. Pour une description des autres options cloud-à-appareil prises en charge par IoT Hub, consultez [Conseils pour les communications cloud-à-appareil][lnk-c2d-guidance].
+application pour appareil toohello toosend des notifications à sens unique à partir de votre solution back-end, envoyer des messages de cloud aux appareils à partir de votre appareil tooyour de hub IoT. Pour une description des autres options cloud-à-appareil prises en charge par IoT Hub, consultez [Conseils pour les communications cloud-à-appareil][lnk-c2d-guidance].
 
-Vous envoyez les messages cloud-à-appareil via un point de terminaison côté service (**/messages/devicebound**). Un appareil reçoit ensuite les messages via un point de terminaison spécifique de l’appareil (**/devices/{IdAppareil}/messages/devicebound**).
+Vous envoyez les messages cloud-à-appareil via un point de terminaison côté service (**/messages/devicebound**). Un appareil reçoit ensuite les messages de type hello via un point de terminaison spécifique à l’appareil (**/devices/ {deviceId} / messages/devicebound**).
 
-Chaque message cloud-à-appareil cible un seul appareil en définissant la propriété **to** sur **/devices/{deviceId}/messages/devicebound**.
+Chaque message cloud-à-appareil ciblée vers un seul périphérique en définissant un hello **à** propriété trop**/devices/ {deviceId} / messages/devicebound**.
 
-Chaque file d’attente d’appareil peut contenir jusqu’à 50 messages cloud-à-appareil. Les tentatives d’envoi d’un nombre supérieur de messages au même appareil entraînent une erreur.
+Chaque file d’attente d’appareil peut contenir jusqu’à 50 messages cloud-à-appareil. La tentative de toosend plusieurs messages toohello même appareil génère une erreur.
 
-## <a name="the-cloud-to-device-message-lifecycle"></a>Cycle de vie des messages cloud-à-appareil
+## <a name="hello-cloud-to-device-message-lifecycle"></a>cycle de vie des cloud-à-appareil message Hello
 
-Pour garantir une remise des messages au moins une fois, IoT Hub conserve les messages cloud-à-appareil dans des files d’attente par appareil. Les appareils doivent explicitement confirmer l’ *achèvement* afin que IoT Hub supprime les messages de la file d’attente. Cette approche garantit la résilience contre les échecs de connectivité et d’appareils.
+tooguarantee au moins une remise de messages IoT Hub persiste messages cloud-à-appareil dans les files d’attente par périphérique. Les appareils doivent accepter explicitement *achèvement* pour IoT Hub tooremove de hello file d’attente. Cette approche garantit la résilience contre les échecs de connectivité et d’appareils.
 
-L’illustration suivante présente le graphe d’état du cycle de vie d’un message cloud-à-appareil dans IoT Hub.
+Hello diagramme suivant montre graphique d’état hello du cycle de vie d’un message cloud-à-appareil dans IoT Hub.
 
 ![Cycle de vie des messages cloud-à-appareil][img-lifecycle]
 
-Quand le service IoT Hub envoie un message à un appareil, il définit l’état du message sur **Enqueued** (En file attente). Quand un appareil veut *recevoir* un message, IoT Hub *verrouille* le message (en définissant son état sur **Invisible**), autorisant ainsi d’autres threads sur l’appareil à commencer à recevoir d’autres messages. Quand un thread d’appareil a fini de traiter un message, il notifie IoT Hub en *terminant* le message. Ensuite, IoT Hub définit l’état sur **Completed** (Terminé).
+Lorsque hello IoT Hub service envoie un dispositif de tooa de message, le service de hello définit un état de message hello trop**empilés**. Lorsqu’un appareil veut trop*réception* un message, IoT Hub *verrous* message de type hello (en plaçant hello trop**Invisible**), ce qui autorise les autres threads sur hello appareil toostart recevoir d’autres messages. Un thread de l’appareil après traitement hello d’un message, il avertit IoT Hub par *fin* message de type hello. IoT Hub attribue ensuite à hello état trop**terminé**.
 
 Un appareil peut également choisir de :
 
-* *rejeter* le message, ce qui amène IoT Hub à lui attribuer l’état **Deadlettered** (Lettre morte). Les appareils qui se connectent via le protocole MQTT ne peuvent pas rejeter les messages cloud-à-appareil.
-* d’*abandonner* le message, ce qui amène IoT Hub à replacer le message dans la file d’attente avec l’état **Enqueued**(En file attente).
+* *Rejeter* message de type hello, ce qui entraîne l’IoT Hub tooset il toohello **inactivé** état. Appareils qui se connectent via le protocole MQTT de hello ne peut pas refuser des messages cloud-à-appareil.
+* *Abandonner* message de type hello, ce qui entraîne des message de type hello tooput IoT Hub en file d’attente de hello, avec l’état hello défini trop**empilés**.
 
-Il est possible qu’un thread ne parvienne pas à traiter un message sans en avertir IoT Hub. Dans ce cas, les messages passent automatiquement de l’état **Invisible** à l’état **Enqueued** (En file d’attente) après un *délai d’attente de visibilité (ou de verrouillage)*. La valeur par défaut de ce délai est d’une minute.
+Un thread peut échouer tooprocess un message sans en avertir l’IoT Hub. Dans ce cas, automatiquement des messages transition de hello **Invisible** toohello retour d’état **empilés** état après un *délai d’attente de visibilité (ou un verrou)*. Hello par défaut de ce délai d’attente est une minute.
 
-Un message peut passer de l’état **Enqueued** (En file d’attente) à l’état **Invisible** et inversement, au maximum le nombre de fois spécifié dans la propriété **Nombre maximal de remises** sur IoT Hub. Une fois ce nombre de transitions atteint, IoT Hub attribue au message l’état **Deadlettered**(Lettre morte). De même, IoT Hub attribue à un message l’état **Deadlettered** (Lettre morte) à l’issue de son délai d’expiration (consultez [Durée de vie][lnk-ttl]).
+Un message peut effectuer la transition entre hello **empilés** et **Invisible** États, hello au maximum, le nombre de fois spécifié dans hello **max de diffusions** propriété IoT Hub. Une fois ce nombre de transitions, IoT Hub définit état hello de message de type hello trop**inactivé**. De même, IoT Hub définit état hello d’un message trop**inactivé** après son heure d’expiration (voir [temps toolive][lnk-ttl]).
 
-La page [How to send cloud-to-device messages with IoT Hub][lnk-c2d-tutorial] (Guide pratique pour envoyer des messages cloud-à-appareil avec IoT Hub) explique comment envoyer des messages cloud-à-appareil depuis le cloud et comment les recevoir sur un appareil.
+Hello [comment les messages toosend cloud-à-appareil avec IoT Hub] [ lnk-c2d-tutorial] vous montre comment les messages cloud-à-appareil toosend de hello de cloud computing et les recevoir sur un appareil.
 
-Généralement, un appareil achève un message cloud-à-appareil quand la perte du message n’affecte pas la logique d’application. C’est par exemple le cas quand l’appareil a rendu persistant le contenu du message localement ou qu’il a exécuté une opération correctement. Le message peut également transporter des informations temporaires, dont la perte n’aurait aucun impact sur les fonctionnalités de l’application. Parfois, pour les tâches longues, vous pouvez terminer le message cloud-à-appareil après la conservation de la description de la tâche dans le stockage local. Vous pouvez ensuite notifier le serveur principal de la solution à l’aide d’un ou de plusieurs messages appareil-à-cloud à différents stades de la progression de la tâche.
+En règle générale, un périphérique termine un message cloud-à-appareil lors de la perte de hello de message de type hello n’affecte pas la logique d’application hello. Par exemple, lorsque hello périphérique a rendu persistant contenu du message hello localement ou a exécuté avec succès d’une opération. message de type Hello pourrait exécuter également des informations temporaires, dont la perte n’aurait aucun impact sur les fonctionnalités de hello d’application hello. Dans certains cas, pour les tâches longues, vous pouvez terminer message cloud-à-appareil de type hello après la persistance hello description de la tâche dans le stockage local. Ensuite, vous pouvez notifier hello solution principal avec un ou plusieurs messages appareil-à-cloud à différents niveaux de progression de la tâche hello.
 
-## <a name="message-expiration-time-to-live"></a>Expiration du message (durée de vie)
+## <a name="message-expiration-time-toolive"></a>Expiration du message (heure toolive)
 
-Chaque message cloud-à-appareil est doté d’un délai d’expiration. Cette durée est définie soit par le service (dans la propriété **ExpiryTimeUtc** ), soit par IoT Hub avec la *durée de vie* par défaut spécifiée en tant que propriété IoT Hub. Consultez [Options de configuration cloud-à-appareil][lnk-c2d-configuration].
+Chaque message cloud-à-appareil est doté d’un délai d’expiration. Cette heure est définie par le service de hello (Bonjour **ExpiryTimeUtc** propriété), ou par IoT Hub à l’aide de la valeur par défaut hello *temps toolive* spécifié comme propriété IoT Hub. Consultez [Options de configuration cloud-à-appareil][lnk-c2d-configuration].
 
-Un moyen courant de tirer parti de l’expiration du message et d’éviter l’envoi de messages à des appareils déconnectés consiste à définir des valeurs de durée de vie courtes. Cette approche produit le même résultat que la gestion de l’état de connexion de l’appareil, tout en étant plus efficace. Lorsque vous demandez des accusés de réception des messages, IoT Hub vous informe sur les appareils en mesure de recevoir des messages et ceux qui ne sont pas en ligne ou qui sont en état d’échec.
+Un avantage tootake moyen commun d’expiration du message et éviter d’envoyer des messages toodisconnected périphériques, est tooset valeurs toolive d’heure courte. Cette approche permet d’obtenir hello même résultat que la gestion de l’état de connexion de périphérique hello, tout en étant plus efficace. Lorsque vous demandez les accusés de réception de message, IoT Hub vous signale les appareils qui sont en mesure de tooreceive messages, et les appareils qui ne sont pas en ligne ou ont échoué.
 
 ## <a name="message-feedback"></a>Commentaires de messages
 
-Lorsque vous envoyez un message cloud-à-appareil, le service peut demander la remise d’un commentaire de message concernant l’état final de ce message.
+Lorsque vous envoyez un message cloud-à-appareil, service de hello peut demander la remise de hello de commentaires par message concernant l’état final de hello de ce message.
 
 | Propriété Ack | Comportement |
 | ------------ | -------- |
-| **positive** | IoT Hub génère un message de commentaire si et seulement si le message cloud-à-appareil est à l’état **Completed** (Terminé). |
-| **negative** | IoT Hub génère un message de commentaire si et seulement si le message cloud-à-appareil est à l’état **Deadlettered** (Lettre morte). |
+| **positive** | IoT Hub génère un message de commentaires si et uniquement si message cloud-à-appareil de type hello atteint hello **terminé** état. |
+| **negative** | IoT Hub génère un message de commentaires si et seulement si, message cloud-à-appareil de type hello atteint hello **inactivé** état. |
 | **full**     | IoT Hub génère un message de commentaires dans les deux cas. |
 
-Si la propriété **Ack** est définie sur **full** et que vous ne recevez pas de message de commentaire, cela signifie que le message de commentaire a expiré. Le service ne peut pas savoir ce qui est arrivé au message d’origine. Dans la pratique, un service doit s'assurer qu'il peut traiter les commentaires avant leur expiration. Le délai d'expiration maximal est de deux jours, ce qui vous laisse suffisamment de temps pour rendre le service opérationnel en cas de défaillance.
+Si **l’accusé de réception** est **complète**et vous ne recevez pas un message d’évaluation, cela signifie que hello commentaires est arrivé à expiration. Bonjour service ne peut pas savoir quel message d’origine toohello s’est produit. Dans la pratique, un service doit s’assurer qu’il peut traiter les commentaires de hello avant son expiration. délai d’expiration maximal de Hello est de deux jours, ce qui permet de beaucoup de temps tooget hello service en cours d’exécution à nouveau si une défaillance se produit.
 
-Comme l’explique la section [Points de terminaison][lnk-endpoints], IoT Hub fournit des commentaires sous la forme de messages par le biais d’un point de terminaison accessible au service (**/messages/servicebound/feedback**). La sémantique de réception des commentaires est identique à celle des messages cloud-à-appareil, et présente le même [cycle de vie des messages][lnk-lifecycle]. Chaque fois que c’est possible, des commentaires de messages sont mis en lot dans un seul message, au format suivant :
+Comme l’explique la section [Points de terminaison][lnk-endpoints], IoT Hub fournit des commentaires sous la forme de messages par le biais d’un point de terminaison accessible au service (**/messages/servicebound/feedback**). Hello sémantique pour recevoir des commentaires sont hello même que pour les messages cloud-à-appareil et avoir hello même [cycle de vie du Message][lnk-lifecycle]. Dès que possible, des commentaires de message sont groupés dans un seul message, avec hello suivant le format :
 
 | Propriété     | Description |
 | ------------ | ----------- |
-| EnqueuedTime | Horodatage indiquant la date et l’heure de création du message. |
+| EnqueuedTime | Horodatage indiquant quand le message de type hello a été créé. |
 | UserId       | `{iot hub name}` |
 | ContentType  | `application/vnd.microsoft.iothub.feedback.json` |
 
-Le corps est un tableau sérialisé JSON des enregistrements, chacun disposant des propriétés suivantes :
+corps de Hello est un tableau sérialisé en JSON d’enregistrements, chacun avec hello propriétés suivantes :
 
 | Propriété           | Description |
 | ------------------ | ----------- |
-| EnqueuedTimeUtc    | Horodatage indiquant la date et l’heure du résultat du message. Par exemple, l’achèvement de l’appareil ou l’expiration du message. |
-| OriginalMessageId  | **MessageId** du message cloud-à-appareil auquel se rapportent ces informations de commentaires. |
+| EnqueuedTimeUtc    | Horodatage indiquant quand le résultat hello de message de type hello s’est produite. Par exemple, hello périphérique s’est terminée ou hello est arrivé à expiration. |
+| OriginalMessageId  | **MessageId** de hello cloud-à-appareil message toowhich ces informations de commentaires est lié. |
 | StatusCode         | Chaîne obligatoire. Utilisé dans les messages de commentaires générés par IoT Hub. <br/> « Succès » <br/> « Expiré » <br/> « DeliveryCountExceeded »  <br/> « Rejeté » <br/> « Vidé » |
 | Description        | Valeurs de chaîne pour **StatusCode**. |
-| deviceId           | **DeviceId** de l’appareil cible du message cloud-à-appareil auquel se rapporte ce commentaire. |
-| DeviceGenerationId | **DeviceGenerationId** de l’appareil cible du message cloud-à-appareil auquel se rapporte ce commentaire. |
+| deviceId           | **DeviceId** du périphérique cible hello hello cloud-à-appareil message toowhich cet élément de commentaires est lié. |
+| DeviceGenerationId | **DeviceGenerationId** du périphérique cible hello hello cloud-à-appareil message toowhich cet élément de commentaires est lié. |
 
-Le service doit spécifier un **MessageId** pour le message cloud-à-appareil afin de pouvoir mettre en corrélation ses commentaires avec le message d’origine.
+service de Hello doit spécifier un **MessageId** pour hello cloud-à-appareil message toocorrelate en mesure de toobe ses commentaires avec le message d’appel d’origine.
 
-L’exemple suivant montre le corps d’un message de commentaire.
+Hello suivant montre les corps de hello d’un message de commentaires.
 
 ```json
 [
@@ -112,22 +112,22 @@ L’exemple suivant montre le corps d’un message de commentaire.
 
 ## <a name="cloud-to-device-configuration-options"></a>Options de configuration cloud-à-appareil
 
-Chaque hub IoT expose les options de configuration suivantes pour la messagerie cloud-à-appareil :
+Chaque hub IoT expose hello des options de configuration pour la messagerie cloud-à-appareil suivantes :
 
 | Propriété                  | Description | Plage et valeur par défaut |
 | ------------------------- | ----------- | ----------------- |
-| defaultTtlAsIso8601       | Durée de vie par défaut pour les messages cloud-à-appareil. | Intervalle ISO_8601 jusqu’à 2D (minimum 1 minute). Par défaut : 1 heure. |
-| maxDeliveryCount          | Nombre de remises maximal pour les files d’attente par appareil cloud-à-appareil | 1 à 100. Par défaut : 10. |
-| feedback.ttlAsIso8601     | Rétention des messages de commentaires liés au service. | Intervalle ISO_8601 jusqu’à 2D (minimum 1 minute). Par défaut : 1 heure. |
-| feedback.maxDeliveryCount |Nombre de remises maximal pour la file d’attente de commentaires. | 1 à 100. Par défaut : 100. |
+| defaultTtlAsIso8601       | Durée de vie par défaut pour les messages cloud-à-appareil. | Intervalle de ISO_8601 des too2D (au minimum 1 minute). Par défaut : 1 heure. |
+| maxDeliveryCount          | Nombre de remises maximal pour les files d’attente par appareil cloud-à-appareil | 1 too100. Par défaut : 10. |
+| feedback.ttlAsIso8601     | Rétention des messages de commentaires liés au service. | Intervalle de ISO_8601 des too2D (au minimum 1 minute). Par défaut : 1 heure. |
+| feedback.maxDeliveryCount |Nombre de remises maximal pour la file d’attente de commentaires. | 1 too100. Par défaut : 100. |
 
-Pour plus d’informations sur la définition de ces options de configuration, consultez [Create IoT hubs][lnk-portal] (Créer des hubs IoT).
+Pour plus d’informations sur comment tooset ces options de configuration, consultez [créer des IoT hubs][lnk-portal].
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur les SDK que vous pouvez utiliser pour recevoir des messages cloud-à-appareil, consultez [Kits de développement logiciel (SDK) Azure IoT][lnk-sdks].
+Pour plus d’informations sur les kits de développement logiciel hello, vous pouvez utiliser les messages cloud-à-appareil tooreceive, consultez [kits de développement logiciel Azure IoT][lnk-sdks].
 
-Pour essayer de recevoir des messages cloud-à-appareil, consultez le didacticiel [Send cloud-to-device][lnk-c2d-tutorial] (Envoyer des messages cloud-à-appareil).
+tootry à recevoir des messages de cloud sur l’appareil, consultez hello [envoyer cloud-à-appareil] [ lnk-c2d-tutorial] didacticiel.
 
 [img-lifecycle]: ./media/iot-hub-devguide-messages-c2d/lifecycle.png
 

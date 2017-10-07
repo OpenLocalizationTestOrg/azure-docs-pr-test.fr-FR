@@ -1,6 +1,6 @@
 ---
-title: "Reformer un service web prédictif | Microsoft Docs"
-description: "Apprenez à reformer un modèle et à mettre à jour le service web pour utiliser le modèle reformé dans Azure Machine Learning."
+title: "aaaRetrain existant prédictive de service web | Documents Microsoft"
+description: "Découvrez comment tooretrain un modèle et mise à jour hello web service toouse hello qui vient d’être formé dans Azure Machine Learning."
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,100 +14,100 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/11/2017
 ms.author: v-donglo
-ms.openlocfilehash: bdc994daf441d397157f8e6cbcf84d72584927f0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fb0760d0a2adc34fc5f3df1ae41bdac075f91bf4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="retrain-an-existing-predictive-web-service"></a>Reformer un service web prédictif existant
-Ce document décrit le processus de reformation pour le scénario suivant :
+Ce document décrit hello recyclage de processus pour hello scénario :
 
 * Vous avez une expérience de formation et une expérience de prévision que vous avez déployées en tant que service web mis en œuvre.
-* Vous disposez de nouvelles données et souhaitez que votre service web prédictif les utilise pour produire des scores.
+* Vous avez des nouvelles données que vous souhaitez votre tooperform toouse du service web prédictif son calcul de score.
 
 > [!NOTE] 
-> Pour déployer un nouveau service web, vous devez disposer d’autorisations suffisantes dans l’abonnement dans lequel déployer le service web. Pour en savoir plus, consultez la rubrique [Gérer un service web à l’aide du portail des services web Azure Machine Learning](machine-learning-manage-new-webservice.md). 
+> toodeploy un nouveau service web, vous devez disposer des autorisations suffisantes dans hello abonnement toowhich vous déployez le service web de hello. Pour plus d’informations, consultez [gérer un service Web à l’aide du portail de Services Web de Azure Machine Learning hello](machine-learning-manage-new-webservice.md). 
 
-En partant de vos expériences et de votre service web existants, vous devez procédez comme suit :
+À partir de votre service web existant et les expériences, vous devez toofollow comme suit :
 
-1. Mettez le modèle à niveau.
-   1. Modifiez votre expérience de formation de façon à autoriser les entrées et sorties du service web.
-   2. Déployez l’expérience de formation en tant que service web de reformation.
-   3. Utilisez le Service d’exécution de lots (BES, Batch Execution Service) de l’expérience de formation pour reformer le modèle.
-2. Utilisez les applets de commande PowerShell d’Azure Machine Learning pour mettre à jour l’expérience prédictive.
-   1. Connectez-vous à votre compte Azure Resource Manager.
-   2. Obtenez la définition du service web.
-   3. Exportez la définition du service web en tant que JSON.
-   4. Mettez à jour la référence sur l’objet blob ilearner dans le JSON.
-   5. Importez le JSON dans une définition de service web.
-   6. Mettez à jour le service web avec la nouvelle définition de service web.
+1. Modèle de mise à jour hello.
+   1. Modifiez votre tooallow d’expérience d’apprentissage pour web service entrées et sorties.
+   2. Déployer l’expérience de formation hello comme un service web reconversion.
+   3. Utilisez modèle de hello tooretrain d’expérience de formation hello Service de l’exécution de lot (BES).
+2. Utilisez expérience prédictive hello du tooupdate applets de commande hello Azure Machine Learning PowerShell.
+   1. Connectez-vous tooyour compte de gestionnaire de ressources Azure.
+   2. Obtenir la définition du service web hello.
+   3. Exporter la définition du service web hello au format JSON.
+   4. Mise à jour hello toohello ilearner objet blob de référence Bonjour JSON.
+   5. Importer hello JSON dans une définition de service web.
+   6. Mettre à jour le service web de hello avec une nouvelle définition de service web.
 
-## <a name="deploy-the-training-experiment"></a>Déployer l’expérience de formation
-Pour déployer l’expérience de formation en tant que service web de reformation, vous devez ajouter les entrées et sorties du service web au modèle. En connectant un module de *Sortie du service web* au module *[Former le modèle][train-model]* de l’expérience, vous permettez à l’expérience de formation de générer un nouveau modèle formé que vous pouvez utiliser dans votre expérience prédictive. Si vous avez un module *Évaluer le modèle*, vous pouvez également attacher la sortie du service web pour obtenir les résultats d’évaluation en tant que sortie.
+## <a name="deploy-hello-training-experiment"></a>Déployer l’expérience de formation hello
+toodeploy hello l’expérience d’apprentissage comme un service web reconversion, vous devez ajouter des entrées et sorties toohello modèle de service web. En connectant un *sortie du Service Web* d’expérience module toohello  *[Train Model] [ train-model]*  module, vous activez hello expérience d’apprentissage tooproduce un nouveau modèle formé que vous pouvez utiliser dans votre expérience prédictive. Si vous avez un *modèle Evaluate* module, vous pouvez également attacher des résultats de l’évaluation web service sortie tooget hello en tant que sortie.
 
-Pour mettre à jour votre expérience de formation :
+tooupdate votre expérience d’apprentissage :
 
-1. Connectez un module d’*Entrée du service web* à votre entrée de données (par exemple, un module *Nettoyer les données manquantes*). En règle générale, vous souhaitez vous assurer que vos données d’entrée sont traitées de la même manière que vos données de formation d’origine.
-2. Connectez un module de *Sortie du service web* à la sortie de votre module *Former le modèle*.
-3. Si vous avez un module *Évaluer le modèle* et souhaitez sortir les résultats d’évaluation, connectez un module de *Sortie du service web* à la sortie de votre module *Évaluer le modèle*.
+1. Connecter un *Web Service d’entrée* données tooyour du module d’entrée (par exemple, un *Clean Missing Data* module). En règle générale, vous souhaitez tooensure vos données d’entrée sont traitées dans hello la même façon que vos données d’apprentissage d’origine.
+2. Connecter un *sortie du Service Web* sortie toohello de module de votre *Train Model* module.
+3. Si vous avez un *modèle Evaluate* module et que vous souhaitez obtenir des résultats d’évaluation toooutput hello, connectez-vous une *sortie du Service Web* sortie toohello de module de votre *modèle Evaluate* module.
 
 Exécutez votre expérience.
 
-Ensuite, vous devez déployer l’expérience de formation en tant que service web qui produit un modèle formé et les résultats d’évaluation du modèle.  
+Ensuite, vous devez déployer l’expérience de formation hello comme un service web qui génère un modèle et les résultats d’évaluation du modèle.  
 
-En bas du canevas de l’expérience, cliquez sur **Configurer le service web**, puis sélectionnez **Déployer le service web [nouveau]**. Le portail des services web Azure Machine Learning s’ouvre sur la page **Déployer le service web**. Tapez un nom pour votre service web, choisissez un plan de paiement, puis cliquez sur **Déployer**. Vous pouvez utiliser la méthode Exécution par lot uniquement pour créer des modèles formés.
+Au bas de hello du canevas de l’expérience hello, cliquez sur **configurer le Service Web**, puis sélectionnez **déployer le Service Web [nouveau]**. portail de Services Web de Azure Machine Learning Hello ouvre toohello **déployer le Service Web** page. Tapez un nom pour votre service web, choisissez un plan de paiement, puis cliquez sur **Déployer**. Vous pouvez uniquement utiliser la méthode de l’exécution par lots de hello pour la création de modèles formés.
 
-## <a name="retrain-the-model-with-new-data-by-using-bes"></a>Reformer le modèle avec les nouvelles données en utilisant le BES
-Pour cet exemple, nous utilisons le langage C# pour créer l’application de reformation. Pour accomplir cette tâche, vous pouvez également utiliser un code Python ou R.
+## <a name="retrain-hello-model-with-new-data-by-using-bes"></a>Recycler un modèle hello avec de nouvelles données à l’aide de BES
+Pour cet exemple, nous utilisons hello toocreate c# recyclage d’application. Vous pouvez également utiliser Python ou R tooaccomplish de code d’exemple à cette tâche.
 
-Pour appeler les API de reformation :
+hello toocall réapprentissage API :
 
 1. Créez une application console en C# dans Visual Studio : **Nouveau** > **Projet** > **Visual C#** > **Bureau classique Windows** > **Application console (.NET Framework)**.
-2. Connectez-vous au portail des services web Azure Machine Learning.
-3. Cliquez sur le service web que vous utilisez.
+2. Se connecter toohello portail de Services Web de Machine Learning.
+3. Cliquez sur hello web service avec lequel vous travaillez.
 4. Cliquez sur **Consommer**.
-5. En bas de la page **Utiliser**, dans la section **Exemple de code**, cliquez sur **Lot**.
-6. Copiez l’exemple de code C# pour l’exécution par lot et collez-le dans le fichier Program.cs. Assurez-vous que l’espace de noms reste intact.
+5. En bas de hello Hello **consommer** page hello **exemple de Code** , cliquez sur **lot**.
+6. Copier le code c# exemple hello pour l’exécution du lot et collez-le dans le fichier Program.cs de hello. Assurez-vous que cet espace de noms hello reste intacte.
 
-Ajoutez le package NuGet Microsoft.AspNet.WebApi.Client comme indiqué dans les commentaires. Pour ajouter la référence à Microsoft.WindowsAzure.Storage.dll, il se peut que vous deviez au préalable installer la [bibliothèque cliente pour les services de Stockage Azure](https://www.nuget.org/packages/WindowsAzure.Storage).
+Ajouter le package de NuGet hello Microsoft.AspNet.WebApi.Client, comme indiqué dans les commentaires de hello. tooadd hello référence tooMicrosoft.WindowsAzure.Storage.dll, vous devrez peut-être tout d’abord tooinstall hello [bibliothèque cliente pour les services de stockage Azure](https://www.nuget.org/packages/WindowsAzure.Storage).
 
-La capture d’écran suivante montre la page **Consommer** du portail des services web Azure Machine Learning.
+capture d’écran suivante Hello affiche hello **consommer** page du portail de Services Web de Azure Machine Learning hello.
 
 ![Page Consommer][1]
 
-### <a name="update-the-apikey-declaration"></a>Mettre à jour la déclaration apiKey
-Localisez la déclaration **apikey**:
+### <a name="update-hello-apikey-declaration"></a>Mise à jour hello apikey déclaration
+Recherchez hello **apikey** déclaration :
 
-    const string apiKey = "abc123"; // Replace this with the API key for the web service
+    const string apiKey = "abc123"; // Replace this with hello API key for hello web service
 
-Dans la section des **informations de base sur la consommation** de la page **Utiliser**, recherchez la clé primaire et copiez-la dans la déclaration **apiKey**.
+Bonjour **les informations de base de la consommation** section Hello **consommer** page, recherchez la clé primaire de hello et copiez-le toohello **apikey** déclaration.
 
-### <a name="update-the-azure-storage-information"></a>Mettre à jour les informations Azure Storage
-L’exemple de code BES charge un fichier à partir d’un lecteur local (par exemple, « C:\temp\CensusInput.csv ») vers le Stockage Azure, le traite, réécrit les résultats dans le Stockage Azure.  
+### <a name="update-hello-azure-storage-information"></a>Mettre à jour les informations de stockage Azure hello
+Hello, exemple de code BES télécharge un fichier à partir d’un stockage de tooAzure disque local (par exemple, « C:\temp\CensusIpnput.csv »), la traite et écrit hello résultats tooAzure arrière stockage.  
 
-Pour mettre à jour les informations du Stockage Azure, vous devez récupérer les informations de nom, de clé et de conteneur pour votre compte de stockage à partir du portail Azure Classic, puis mettre à jour les valeurs correspondantes dans le code. Après exécution de votre expérience, le flux de travail obtenu doit être similaire à ce qui suit :
+informations de stockage Azure tooupdate hello, vous devez récupérer un compte de stockage hello nom, clé et un conteneur des informations de votre compte de stockage à partir de hello portail Azure classic, puis correspondi hello de mise à jour après l’exécution de votre expérience, hello résultant flux de travail sont similaires toohello suivants :
 
-![Flux de travail obtenu après l’exécution][4]valeurs ng dans le code 
+![Flux de travail obtenu après l’exécution][4]valeurs NG dans le code hello.
 
-1. Connectez-vous à la version classique du portail Azure.
-2. Dans la colonne de navigation de gauche, cliquez sur **Stockage**.
-3. Dans la liste des comptes de stockage, sélectionnez-en un pour stocker le modèle reformé.
-4. En bas de la page, cliquez sur **Gérer les clés d’accès**.
-5. Copiez et enregistrez la **clé d’accès primaire** , puis fermez la boîte de dialogue.
-6. En haut de la page, cliquez sur **Conteneurs**.
-7. Sélectionnez un conteneur existant ou créez-en un et enregistrez le nom.
+1. Se connecter toohello portail Azure classic.
+2. Dans la colonne du volet de navigation gauche hello, cliquez sur **stockage**.
+3. À partir de la liste de hello des comptes de stockage, sélectionnez un toostore hello reformés modèle.
+4. Au bas de hello de page de hello, cliquez sur **gérer les clés d’accès**.
+5. Copiez et enregistrez hello **clé d’accès primaire** et hello fermer la boîte de dialogue.
+6. En hello haut hello, cliquez sur **conteneurs**.
+7. Sélectionnez un conteneur existant, ou créez-en un nouveau et enregistrer le nom de hello.
 
-Localisez les déclarations *StorageAccountName*, *StorageAccountKey* et *StorageContainerName*, puis mettez à jour les valeurs que vous avez enregistrées à partir du portail Azure Classic.
+Recherchez hello *StorageAccountName*, *StorageAccountKey*, et *StorageContainerName* déclarations et les valeurs hello mise à jour que vous avez enregistré à partir du portail classique de hello .
 
     const string StorageAccountName = "mystorageacct"; // Replace this with your Azure storage account name
     const string StorageAccountKey = "a_storage_account_key"; // Replace this with your Azure Storage key
     const string StorageContainerName = "mycontainer"; // Replace this with your Azure Storage container name
 
-Vous devez également vous assurer que le fichier d’entrée est disponible à l’emplacement spécifié dans le code.
+Vous devez également vérifier que ce fichier d’entrée hello est disponible à l’emplacement de hello que vous spécifiez dans le code hello.
 
-### <a name="specify-the-output-location"></a>Spécifier l’emplacement de sortie
-Lorsque vous spécifiez l’emplacement de sortie dans la Charge utile des demandes, l’extension du fichier spécifiée dans *RelativeLocation* doit être spécifiée en tant que valeur `ilearner`. Voir l’exemple suivant :
+### <a name="specify-hello-output-location"></a>Spécifiez l’emplacement de sortie hello
+Lorsque vous spécifiez l’emplacement de sortie hello Bonjour charge utile de demander, hello extension du fichier hello qui est spécifié dans *RelativeLocation* doit être spécifié en tant que `ilearner`. Consultez hello l’exemple suivant :
 
     Outputs = new Dictionary<string, AzureBlobDataReference>() {
         {
@@ -115,33 +115,33 @@ Lorsque vous spécifiez l’emplacement de sortie dans la Charge utile des deman
             new AzureBlobDataReference()
             {
                 ConnectionString = storageConnectionString,
-                RelativeLocation = string.Format("{0}/output1results.ilearner", StorageContainerName) /*Replace this with the location you want to use for your output file and a valid file extension (usually .csv for scoring results or .ilearner for trained models)*/
+                RelativeLocation = string.Format("{0}/output1results.ilearner", StorageContainerName) /*Replace this with hello location you want toouse for your output file and a valid file extension (usually .csv for scoring results or .ilearner for trained models)*/
             }
         },
 
-Voici un exemple de sortie de reformation : ![Sortie de reformation][6]
+Hello Voici un exemple de sortie de recyclage : ![réapprentissage de sortie][6]
 
-## <a name="evaluate-the-retraining-results"></a>Évaluer les résultats de la reformation
-Lorsque vous exécutez l’application, la sortie inclut l’URL et le jeton de signature d’accès partagé (SAP) nécessaires pour accéder aux résultats de l’évaluation.
+## <a name="evaluate-hello-retraining-results"></a>Évaluer hello réapprentissage des résultats
+Lorsque vous exécutez des application hello, sortie de hello inclut hello URL et le jeton de signatures d’accès partagé sont des résultats de l’évaluation hello tooaccess nécessaire.
 
-Vous pouvez consulter les résultats des performances du modèle reformé en combinant les éléments *BaseLocation*, *RelativeLocation* et *SasBlobToken* dans les résultats de sortie de *output2* (comme le montre l’image de sortie de reformation précédente), puis en collant l’URL complète dans la barre d’adresses du navigateur.  
+Vous pouvez voir les résultats des performances du modèle de hello reformé hello en combinant hello *BaseLocation*, *RelativeLocation*, et *SasBlobToken* à partir des résultats de sortie hello pour *output2* (comme indiqué dans hello précédent réapprentissage d’image de sortie) et de coller des URL complète de hello dans la barre d’adresse du navigateur hello.  
 
-Examinez les résultats pour déterminer si le modèle de nouveau entraîné est suffisamment performant pour remplacer le modèle existant.
+Examinez hello résultats toodetermine si qui vient d’être formé hello effectue également assez hello tooreplace existant à un.
 
-Copiez les éléments *BaseLocation*, *RelativeLocation* et *SasBlobToken* des résultats de sortie.
+Hello de copie *BaseLocation*, *RelativeLocation*, et *SasBlobToken* à partir des résultats de sortie hello.
 
-## <a name="retrain-the-web-service"></a>Reformer le service web
-Lorsque vous reformez un nouveau service web, vous mettez à jour la définition de service web prédictif pour référencer le nouveau modèle formé. La définition du service web est une représentation interne du modèle formé du service web, qui n’est pas directement modifiable. Vérifiez que vous récupérez la définition du service web pour votre expérience prédictive et non pour votre expérience de formation.
+## <a name="retrain-hello-web-service"></a>Recycler le service web de hello
+Lorsque vous recycler un nouveau service web, vous mettez à jour hello web prédictif service définition tooreference hello nouveau modèle formé. définition du service web Hello est une représentation interne du modèle formé de hello du service web de hello et n’est pas directement modifiable. Assurez-vous que la récupération de définition du service web hello pour votre expérience prédictive et pas votre expérience d’apprentissage.
 
-## <a name="sign-in-to-azure-resource-manager"></a>Se connecter à Azure Resource Manager
-Vous devez tout d’abord vous connecter à votre compte Azure à partir de l’environnement PowerShell à l’aide de l’applet de commande [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx).
+## <a name="sign-in-tooazure-resource-manager"></a>Connectez-vous à tooAzure le Gestionnaire de ressources
+Vous devez vous connecter tooyour compte Azure à partir de dans un environnement de hello PowerShell à l’aide de hello [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) applet de commande.
 
-## <a name="get-the-web-service-definition-object"></a>Obtenir l’objet Définition du service web
-Ensuite, obtenez l’objet Définition du service web en appelant l’applet de commande [Get-AzureRmMlWebService](https://msdn.microsoft.com/library/mt619267.aspx).
+## <a name="get-hello-web-service-definition-object"></a>Obtenir l’objet de définition de Service Web hello
+Ensuite, obtenez objet de définition de Service Web hello en appelant hello [Get-AzureRmMlWebService](https://msdn.microsoft.com/library/mt619267.aspx) applet de commande.
 
     $wsd = Get-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'
 
-Pour déterminer le nom du groupe de ressources d’un service web existant, exécutez l’applet de commande Get-AzureRmMlWebService sans paramètres pour afficher les services web dans votre abonnement. Recherchez le service web et examinez son ID de service web. Le nom du groupe de ressources est le quatrième élément de l’ID, juste après l’élément *resourceGroups* . Dans l’exemple suivant, le nom du groupe de ressources est Default-MachineLearning-SouthCentralUS.
+nom de groupe ressource toodetermine hello d’un service web existant, exécutez hello applet de commande Get-AzureRmMlWebService sans aucun service web de paramètres toodisplay hello dans votre abonnement. Recherchez le service web de hello et observez son ID de service web. nom Hello hello du groupe de ressources est hello quatrième élément de hello ID, juste après hello *resourceGroups* élément. Dans l’exemple suivant de hello, nom de groupe de ressources hello est par défaut-MachineLearning-SouthCentralUS.
 
     Properties : Microsoft.Azure.Management.MachineLearning.WebServices.Models.WebServicePropertiesForGraph
     Id : /subscriptions/<subscription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
@@ -150,18 +150,18 @@ Pour déterminer le nom du groupe de ressources d’un service web existant, ex�
     Type : Microsoft.MachineLearning/webServices
     Tags : {}
 
-Pour déterminer le nom du groupe de ressources d’un service web existant, vous pouvez également vous connecter au portail des services web Azure Machine Learning. Sélectionnez le service web. Le nom de groupe de ressources est le cinquième élément de l’URL du service web, juste après l’élément *resourceGroups* . Dans l’exemple suivant, le nom du groupe de ressources est Default-MachineLearning-SouthCentralUS.
+Vous pouvez également toodetermine hello nom groupe de ressources d’un service web, connectez-vous au portail de Services Web de Azure Machine Learning toohello. Sélectionnez le service web de hello. nom de groupe de ressources Hello est hello cinquième élément de hello les URL du service web de hello, juste après hello *resourceGroups* élément. Dans l’exemple suivant de hello, nom de groupe de ressources hello est par défaut-MachineLearning-SouthCentralUS.
 
     https://services.azureml.net/subscriptions/<subcription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
 
 
-## <a name="export-the-web-service-definition-object-as-json"></a>Exporter l’objet Définition du service web en tant que JSON
-Pour modifier la définition du modèle formé de manière à utiliser le modèle nouvellement formé, vous devez d’abord utiliser l’applet de commande [Export-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767935.aspx) pour l’exporter vers un fichier au format JSON.
+## <a name="export-hello-web-service-definition-object-as-json"></a>Exporter l’objet de définition de Service Web hello au format JSON
+définition de hello toomodify Hello de toouse hello formé formé qui vient d’être le modèle, vous devez d’abord utiliser hello [Export-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767935.aspx) tooexport de l’applet de commande qu’il les fichier tooa au format JSON.
 
     Export-AzureRmMlWebService -WebService $wsd -OutputFile "C:\temp\mlservice_export.json"
 
-## <a name="update-the-reference-to-the-ilearner-blob"></a>Mettre à jour la référence à l’objet blob ilearner
-Dans les ressources, recherchez le [modèle formé], mettez à jour la valeur *uri* dans le nœud *locationInfo* avec l’URI de l’objet blob ilearner. L’URI est générée en combinant les valeurs *BaseLocation* et *RelativeLocation* de la sortie de l’appel de reformation BES.
+## <a name="update-hello-reference-toohello-ilearner-blob"></a>Objet blob de mise à jour hello référence toohello ilearner
+Dans les ressources hello, recherchez hello [modèle formé], mise à jour hello *uri* valeur Bonjour *locationInfo* nœud avec hello URI d’objet blob de hello ilearner. URI Hello est généré en combinant hello *BaseLocation* et hello *RelativeLocation* à partir de la sortie hello Hello appel de reconversion BES.
 
      "asset3": {
         "name": "Retrain Sample [trained model]",
@@ -176,14 +176,14 @@ Dans les ressources, recherchez le [modèle formé], mettez à jour la valeur *u
         }
       },
 
-## <a name="import-the-json-into-a-web-service-definition-object"></a>Importer le JSON dans un objet Définition du service web
-Vous devez utiliser l’applet de commande [Import-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) pour convertir le fichier JSON modifié en un objet Définition du service web que vous pouvez utiliser pour mettre à jour l’expérience prédictive.
+## <a name="import-hello-json-into-a-web-service-definition-object"></a>Importez des hello JSON dans un objet de définition de Service Web
+Vous devez utiliser hello [Import-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) applet de commande tooconvert hello modifié le fichier JSON dans un objet de définition de Service Web que vous pouvez utiliser expérience de predicative tooupdate hello.
 
     $wsd = Import-AzureRmMlWebService -InputFile "C:\temp\mlservice_export.json"
 
 
-## <a name="update-the-web-service"></a>Mise à jour du service web
-Enfin, utilisez l’applet de commande [Update-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) pour mettre à jour l’expérience prédictive.
+## <a name="update-hello-web-service"></a>Mettre à jour hello web service
+Enfin, utilisez hello [AzureRmMlWebService de mise à jour](https://msdn.microsoft.com/library/azure/mt767922.aspx) tooupdate de l’applet de commande hello expérience prédictive.
 
     Update-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'
 

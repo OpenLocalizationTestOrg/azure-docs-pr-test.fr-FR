@@ -1,6 +1,6 @@
 ---
-title: "Gérer des volumes sur StorSimple Virtual Array | Microsoft Docs"
-description: "Décrit le service StorSimple Device Manager et vous explique comment l’utiliser pour gérer des volumes sur votre instance StorSimple Virtual Array."
+title: volumes StorSimple Virtual Array aaaManage | Documents Microsoft
+description: "Décrit les hello StorSimple le Gestionnaire de périphériques et explique comment toouse il toomanage des volumes sur votre tableau virtuel StorSimple."
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: a507bf1866952cb79fa6334fed80c88cd207cd0a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 46aa6d7508b3e62f75a3b78ed73302b88320a0f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-storsimple-device-manager-service-to-manage-volumes-on-the-storsimple-virtual-array"></a>Utiliser le service StorSimple Device Manager pour gérer les volumes sur l’instance StorSimple Virtual Array
+# <a name="use-storsimple-device-manager-service-toomanage-volumes-on-hello-storsimple-virtual-array"></a>Utilisez le Gestionnaire de périphériques StorSimple volumes de toomanage service sur hello StorSimple Virtual Array
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Ce didacticiel explique comment utiliser le service StorSimple Device Manager pour créer et gérer des volumes sur votre instance StorSimple Virtual Array.
+Ce didacticiel explique comment toouse hello toocreate du service Gestionnaire de périphériques StorSimple et gestion des volumes sur votre tableau virtuel StorSimple.
 
-Le service StorSimple Device Manager est une extension dans le portail Azure qui vous permet de gérer votre solution StorSimple à partir d’une seule interface web. Outre la gestion des partages et des volumes, le service StorSimple Device Manager prend en charge l’affichage et la gestion des appareils, l’affichage des alertes,l’affichage et la gestion des stratégies de sauvegardes et du catalogue de sauvegarde.
+Hello service du Gestionnaire de périphériques StorSimple est une extension Bonjour portail Azure qui vous permet de gérer votre solution StorSimple à partir d’une seule interface web. Dans Ajout toomanaging partages et les volumes, vous pouvez utiliser tooview de service de gestionnaire de périphériques StorSimple hello et gérer les appareils, afficher les alertes et afficher et gérer les stratégies de sauvegarde et de catalogue de sauvegarde hello.
 
 ## <a name="volume-types"></a>Types de volume
 
 Les volumes StorSimple peuvent être les suivants :
 
-* **Attaché localement** : les données de ces volumes demeurent à tout moment sur le tableau ; elles ne se dispersent pas dans le cloud.
-* **Hiérarchisé**: les données de ces volumes peuvent se disperser dans le cloud. Lorsque vous créez un volume à plusieurs niveaux, environ 10 % de l’espace est configuré au niveau local et 90 % dans le cloud. Par exemple, si vous avez configuré un volume de 1 To, 100 Go résident dans l'espace local et 900 Go sont utilisés dans le cloud lorsque les données sont stockées en niveaux. Cela implique que si vous n’avez plus d’espace local sur l’appareil, vous ne pouvez pas configurer un volume à plusieurs niveaux (car les 10 % requis sur l’espace local ne seront pas disponibles).
+* **Attaché localement**: données de ces volumes reste sur le tableau de hello en permanence et ne pas déborder toohello cloud.
+* **Niveaux**: données de ces volumes peuvent déborder toohello cloud. Lorsque vous créez un volume hiérarchisé, environ 10 % d’espace de hello est approvisionné sur le niveau de local hello et 90 % d’espace de hello est configuré dans le cloud de hello. Par exemple, si vous avez configuré un volume de 1 To, 100 Go peut résider dans un espace local hello et 900 Go sera utilisée dans le cloud de hello hello lorsque des niveaux de données. À son tour, cela implique que si vous manquez tout l’espace local hello sur l’appareil de hello, vous ne pouvez pas configurer un volume hiérarchisé (car hello 10 % requis sur hello local niveau ne sera pas disponible).
 
 ### <a name="provisioned-capacity"></a>Capacité allouée
-Reportez-vous au tableau suivant pour connaître la capacité maximale allouée pour chaque type de volume.
+Consultez toohello tableau pour une capacité déployée maximale pour chaque type de volume.
 
 | **Identificateur de la limite**                                       | **Limite**     |
 |------------------------------------------------------------|---------------|
@@ -45,23 +45,23 @@ Reportez-vous au tableau suivant pour connaître la capacité maximale allouée 
 | Taille minimale d'un volume épinglé localement                    | 50 Go         |
 | Taille maximale d'un volume épinglé localement                    | 500 Go        |
 
-## <a name="the-volumes-blade"></a>Le panneau Volumes
-Sur le panneau de synthèse du service StorSimple, le menu **Volumes** affiche la liste des volumes de stockage sur un tableau StorSimple considéré et vous donne les moyens de les gérer.
+## <a name="hello-volumes-blade"></a>Panneau de Volumes Hello
+Hello **Volumes** menu sur votre Panneau de résumé du service StorSimple affiche la liste hello des volumes de stockage sur un tableau de StorSimple donné et vous permet de toomanage les.
 
 ![Panneau Volumes](./media/storsimple-virtual-array-manage-volumes/volumes-blade.png)
 
 Un volume est constitué d’une série d’attributs :
 
-* **Nom du volume** : nom descriptif qui doit être unique et vous aide à identifier le volume.
-* **État** : peut être en ligne ou hors connexion. Si un volume est hors connexion, il n’est pas visible pour les initiateurs (serveurs) qui sont autorisés à l’utiliser.
-* **Type** : indique si le volume est **Hiérarchisé** (par défaut) ou **Épinglé localement**.
-* **Capacité** : spécifie la quantité de données utilisées par rapport au volume total des données pouvant être stockées par l’initiateur (serveur).
-* **Sauvegarde** : dans le cas d’une instance StorSimple Virtual Array, l’ensemble des volumes sont automatiquement activés pour la sauvegarde.
-* **Hôtes connectés** : indique les initiateurs (serveurs) autorisés à accéder à ce volume.
+* **Nom de volume** – un nom descriptif qui doit être uniques et permet d’identifier le volume de hello.
+* **État** : peut être en ligne ou hors connexion. Si un volume est hors connexion, il n’est pas visible tooinitiators (serveurs) autorisés accès toouse hello volume.
+* **Type** – indique si le volume de hello est **à plusieurs niveaux** (hello par défaut) ou **attaché localement**.
+* **Capacité** – spécifie la quantité hello de données utilisées comme comparés toohello la quantité totale de données qui peuvent être stockées à l’initiateur hello (serveur).
+* **Sauvegarde** : en cas de hello StorSimple Virtual Array, tous les volumes sont automatiquement activés pour sauvegarde.
+* **Connecté des ordinateurs hôtes** – spécifie les initiateurs hello (serveurs) autorisés accès toothis volume.
 
 ![Détails de volumes](./media/storsimple-virtual-array-manage-volumes/volume-details.png)
 
-Suivez les instructions de ce didacticiel pour effectuer les tâches suivantes :
+Suivez les instructions de hello dans cette hello didacticiel tooperform tâches suivantes :
 
 * Ajout d’un volume
 * Modification d’un volume
@@ -70,51 +70,51 @@ Suivez les instructions de ce didacticiel pour effectuer les tâches suivantes 
 
 ## <a name="add-a-volume"></a>Ajout d’un volume
 
-1. À partir du panneau de synthèse du service StorSimple, cliquez sur **+ Ajouter un volume** dans la barre de commandes. Le panneau **Ajouter un volume** s’ouvre.
+1. Dans le volet Résumé du service de StorSimple hello, cliquez sur **+ ajouter un volume** à partir de la barre de commandes hello. Cela ouvre hello **Ajout du volume** panneau.
    
     ![Ajouter un volume](./media/storsimple-virtual-array-manage-volumes/add-volume.png)
-2. Dans le panneau **Ajouter un volume**, procédez comme suit :
+2. Bonjour **Ajout du volume** panneau, hello suivant :
    
-   * Dans le champ **Nom du volume**, saisissez un nom unique pour votre volume. Le nom doit être une chaîne contenant entre 3 et 127 caractères.
-   * Dans la liste déroulante **Type**, spécifiez si vous souhaitez créer un volume **Hiérarchisé** ou **Attaché localement**. Pour les charges de travail qui nécessitent des garanties locales, une faible latence et les meilleures performances possibles, sélectionnez **Volume attaché localement**. Pour toutes les autres données, sélectionnez le volume **hiérarchisé**.
-   * Dans le champ **Capacité**, spécifiez la taille du volume. Un volume hiérarchisé doit être compris entre 500 Go et 5 To, tandis qu’un volume attaché doit être compris entre 50 Go et 500 Go.
-   * * Cliquez sur **Hôtes connectés**, sélectionnez un enregistrement de contrôle d’accès correspondant à l’initiateur iSCSI que vous souhaitez connecter à ce volume, puis cliquez sur **Sélectionner**.
-3. Pour ajouter un hôte connecté, cliquez sur **Ajouter nouveau**, saisissez un nom pour l’hôte et son nom complet iSCSI, puis cliquez sur **Ajouter**.
+   * Bonjour **nom de Volume** , entrez un nom unique pour votre volume. nom de Hello doit être une chaîne qui contient des caractères too127 3.
+   * Bonjour **Type** déroulante liste, spécifiez si toocreate un **à plusieurs niveaux** ou **attaché localement** volume. Pour les charges de travail qui nécessitent des garanties locales, une faible latence et les meilleures performances possibles, sélectionnez **Volume attaché localement**. Pour toutes les autres données, sélectionnez le volume **hiérarchisé**.
+   * Bonjour **capacité** Indiquez la taille de hello du volume de hello. Un volume hiérarchisé doit être compris entre 500 Go et 5 To, tandis qu’un volume attaché doit être compris entre 50 Go et 500 Go.
+   * * Cliquez sur **connecté des ordinateurs hôtes**, sélectionnez un accès contrôle enregistrement (ACR) correspondante toohello initiateur iSCSI que vous souhaitez tooconnect toothis volume, puis cliquez sur **sélectionnez**.
+3. tooadd un nouvel hôte connecté, cliquez sur **ajouter un nouveau**, entrez un nom pour l’hôte de hello et son iSCSI nom qualifié (IQN), puis cliquez sur **ajouter**.
    
     ![Ajouter un volume](./media/storsimple-virtual-array-manage-volumes/volume-add-acr.png)
-4. Lorsque vous avez terminé de configurer votre volume, cliquez sur **Créer**. Un volume est créé avec les paramètres spécifiés ; une notification s’affiche en cas de création similaire. Par défaut, la sauvegarde est activée pour le volume.
-5. Pour vérifier que le volume a été créé, accédez au panneau **Volumes**. Le volume devrait y apparaître.
+4. Lorsque vous avez terminé de configurer votre volume, cliquez sur **Créer**. Un volume est créé par hello spécifié settings et une notification s’affiche sur la création réussie du hello hello identiques. Par défaut, la sauvegarde sera être activée pour le volume de hello.
+5. tooconfirm qui hello volume a été a été créé correctement, accédez toohello **Volumes** panneau. Vous devez voir volume hello répertorié.
    
     ![Le volume stimule la réussite](./media/storsimple-virtual-array-manage-volumes/volume-success.png)
 
 ## <a name="modify-a-volume"></a>Modification d’un volume
 
-Modifiez un volume lorsque vous avez besoin de modifier les hôtes qui y accèdent. Une fois le volume créé, il est impossible de modifier les autres attributs d’un volume.
+Modifier un volume lorsque vous avez besoin d’hôtes hello toochange qui accèdent aux volumes de hello. Hello autres attributs d’un volume ne peut pas être modifiées une fois que le volume de hello a été créé.
 
-#### <a name="to-modify-a-volume"></a>Pour modifier un volume
+#### <a name="toomodify-a-volume"></a>toomodify un volume
 
-1. À partir du paramètre **Volumes** du panneau de synthèse du service StorSimple, sélectionnez le tableau virtuel sur lequel est hébergé le volume à modifier.
-2. **Sélectionnez** le volume, puis cliquez sur **Hôtes connectés** afin d’afficher l’hôte actuellement connecté et de l’affecter à un serveur différent.
+1. À partir de hello **Volumes** définissant panneau Résumé du service StorSimple hello, sélectionnez hello tableau virtuel sur le hello volume que vous souhaitez vous toomodify réside.
+2. **Sélectionnez** hello volume et cliquez sur **connecté des ordinateurs hôtes** tooview hello hôte actuellement connecté et modifiez-le tooa un autre serveur.
    
     ![Modifier le volume](./media/storsimple-virtual-array-manage-volumes/volume-edit-acr.png)
-3. Pour enregistrer les modifications, cliquez sur la barre de commandes **Enregistrer**. Vos paramètres spécifiés sont appliqués ; une notification s’affiche.
+3. Enregistrez vos modifications en cliquant sur hello **enregistrer** barre de commandes. Vos paramètres spécifiés sont appliqués ; une notification s’affiche.
 
 ## <a name="take-a-volume-offline"></a>Mise hors connexion d’un volume
 
-Vous devrez peut-être mettre un volume hors connexion si vous envisagez de le modifier ou de le supprimer. Lorsqu’un volume est hors connexion, il n’est pas disponible pour l’accès en lecture-écriture. Vous devrez mettre le volume hors connexion à la fois sur l’ordinateur hôte et sur l’appareil.
+Vous devrez peut-être tootake un volume hors connexion lors de la planification toomodify ou supprimer il. Lorsqu’un volume est hors connexion, il n’est pas disponible pour l’accès en lecture-écriture. Vous devez tootake hello volume hors connexion sur l’ordinateur hôte de hello, ainsi que sur les appareils hello.
 
-#### <a name="to-take-a-volume-offline"></a>Pour mettre un volume hors connexion
+#### <a name="tootake-a-volume-offline"></a>tootake un volume hors connexion
 
-1. Assurez-vous que le volume en question n’est pas utilisé avant de le mettre hors connexion.
-2. Mettez d’abord le volume hors connexion sur l’ordinateur hôte. Cela élimine tout risque d’endommagement des données sur le volume. Pour les instructions spécifiques, reportez-vous aux instructions du système d’exploitation de l’ordinateur hôte.
-3. Une fois le volume de l’hôte est hors connexion, mettez le volume du tableau hors connexion en procédant comme suit :
+1. Assurez-vous que le volume hello en question n’est pas utilisé avant de mettre hors connexion.
+2. Mettez d’abord volume hello hors connexion sur l’ordinateur hôte de hello. Cela élimine tout risque potentiel de corruption des données sur le volume de hello. Pour connaître la procédure, consultez instructions toohello de votre système d’exploitation hôte.
+3. Une fois le volume hello sur l’ordinateur hôte de hello est hors connexion, prendre les volume hello tableau hello hors connexion en effectuant hello comme suit :
    
-   * À partir du paramètre **Volumes** du panneau de synthèse du service StorSimple, sélectionnez le tableau virtuel sur lequel est hébergé le volume que vous souhaitez déplacer hors connexion.
-   * **Sélectionnez** le volume, puis cliquez sur **...** (sinon cliquez avec le bouton droit sur cette ligne), puis dans le menu contextuel, sélectionnez **Mettre hors connexion**.
+   * À partir de hello **Volumes** définissant panneau Résumé du service StorSimple hello, sélectionnez hello tableau virtuel sur le hello volume que vous souhaitez vous tootake hors connexion réside.
+   * **Sélectionnez** hello volume et cliquez sur **...**  (vous pouvez également cliquer avec le bouton droit dans cette ligne) et dans le menu contextuel de hello, sélectionnez **mettre hors connexion**.
      
         ![Volume hors connexion](./media/storsimple-virtual-array-manage-volumes/volume-offline.png)
-   * Passez en revue les informations du panneau **Mettre hors connexion**, puis confirmez votre acceptation de l’opération. Cliquez sur **Mettre hors connexion** afin de mettre le volume hors connexion. Une notification de l’opération en cours s’affiche.
-   * Pour vérifier que le volume a été mis hors connexion, accédez au panneau **Volumes**. Le volume doit apparaître comme élément hors connexion.
+   * Passez en revue les informations de hello Bonjour **mettre hors connexion** panneau et confirmez que vous acceptez d’opération de hello. Cliquez sur **mettre hors connexion** tootake le volume hello hors connexion. Vous voyez une notification d’opération hello en cours d’exécution.
+   * tooconfirm hello volume a été correctement mis hors connexion, accédez à toohello **Volumes** panneau. Vous devez normalement voir État hello du volume de hello hors connexion.
      
        ![Confirmation du volume hors connexion](./media/storsimple-virtual-array-manage-volumes/volume-offline-confirm.png)
 
@@ -125,18 +125,18 @@ Vous devrez peut-être mettre un volume hors connexion si vous envisagez de le m
 > 
 > 
 
-Pour supprimer un volume, procédez comme indiqué ci-dessous.
+Terminer hello suivant les étapes toodelete un volume.
 
-#### <a name="to-delete-a-volume"></a>Pour supprimer un volume
+#### <a name="toodelete-a-volume"></a>toodelete un volume
 
-1. À partir du paramètre **Volumes** du panneau de synthèse du service StorSimple, sélectionnez le tableau virtuel sur lequel est hébergé le volume à supprimer.
-2. **Sélectionnez** le volume, puis cliquez sur **...** (sinon cliquez avec le bouton droit sur cette ligne), puis dans le menu contextuel, sélectionnez **Supprimer**.
+1. À partir de hello **Volumes** définissant panneau Résumé du service StorSimple hello, sélectionnez hello tableau virtuel sur le hello volume que vous souhaitez vous toodelete réside.
+2. **Sélectionnez** hello volume et cliquez sur **...**  (vous pouvez également cliquer avec le bouton droit dans cette ligne) et dans le menu contextuel de hello, sélectionnez **supprimer**.
    
     ![Supprimer un volume](./media/storsimple-virtual-array-manage-volumes/volume-delete.png)
-3. Vérifiez l’état du volume à supprimer. Si le volume que vous souhaitez supprimer n’est pas hors connexion, mettez-le d’abord hors connexion, en suivant la procédure [Mise hors connexion d’un volume](#take-a-volume-offline).
-4. Lorsque vous êtes invité à confirmer l’opération dans le panneau **Supprimer**, validez la confirmation, puis cliquez sur **Supprimer**. Le volume est supprimé, et le panneau **Volumes** représente la liste mise à jour des volumes au sein du tableau virtuel.
+3. Vérifier l’état de hello du volume de hello souhaité toodelete. Si hello volume de toodelete n’est pas hors connexion, des étapes il hello hors connexion de tout d’abord, suivant [mettre un volume hors connexion](#take-a-volume-offline).
+4. Lorsque vous êtes invité à confirmer l’opération Bonjour **supprimer** panneau, acceptez la confirmation de hello et cliquez sur **supprimer**. volume de Hello va être supprimée et hello **Volumes** panneau affichera la liste hello mis à jour de volumes au sein de l’unité de stockage virtuelle hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Découvrez comment [cloner un volume StorSimple](storsimple-virtual-array-clone.md).
+Découvrez comment trop[cloner un volume StorSimple](storsimple-virtual-array-clone.md).
 

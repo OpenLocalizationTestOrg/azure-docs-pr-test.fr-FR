@@ -1,5 +1,5 @@
 ---
-title: "Limitations dans une base de données Azure pour MySQL | Microsoft Docs"
+title: "aaaLimitations dans la base de données Azure pour MySQL | Documents Microsoft"
 description: "Décrit les limitations de la préversion des bases de données Azure pour MySQL."
 services: mysql
 author: jasonh
@@ -9,19 +9,19 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: c61d70897b66c2ffee819ac98c38ab75000db907
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9c877c592bf640f62182d8761c9c51363882d706
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="limitations-in-azure-database-for-mysql-preview"></a>Limitations dans une base de données Azure pour MySQL (préversion)
-Le service de base de données Azure pour MySQL est en préversion publique. Les sections suivantes décrivent les limites fonctionnelles et les limites de capacités du service de base de données.
+Bonjour Azure de base de données pour le service MySQL est en version préliminaire publique. Hello sections suivantes décrivent la capacité et des limites fonctionnelles dans le service de base de données hello.
 
 ## <a name="service-tier-maximums"></a>Maximums de niveau de service
 La base de données Azure pour MySQL a plusieurs niveaux de service que vous pouvez choisir pour créer un serveur. Pour plus d’informations, consultez la page [Comprendre les éléments disponibles dans chaque niveau de service](concepts-service-tiers.md).  
 
-Chaque niveau de service comporte un nombre maximal de connexions, d’unités de calcul et de stockage dans la préversion du service : 
+Est un nombre maximal de connexions, les unités de calcul et de stockage dans chaque niveau de service préliminaire hello service, comme suit : 
 
 |                            |                   |
 | :------------------------- | :---------------- |
@@ -39,7 +39,7 @@ Chaque niveau de service comporte un nombre maximal de connexions, d’unités d
 | Niveau de service De base         | 1 To              |
 | Niveau de service Standard      | 1 To              |
 
-Au-delà du nombre maximal de connexions, vous risquez de recevoir l’erreur suivante :
+Lorsque de trop nombreuses connexions sont atteints, hello l’erreur suivante peut s’afficher :
 > ERROR 1040 (08004): Too many connections
 
 ## <a name="preview-functional-limitations"></a>Limitations fonctionnelles de la préversion :
@@ -55,7 +55,7 @@ Au-delà du nombre maximal de connexions, vous risquez de recevoir l’erreur su
 - Le déplacement dynamique de serveurs créés au préalable entre les groupes de ressources et d’abonnements n’est pas pris en charge pour le moment.
 
 ### <a name="point-in-time-restore"></a>Limite de restauration dans le temps :
-1.  La restauration à un autre niveau de service et/ou à une autre taille d’unités de calcul et de stockage n’est pas autorisée.
+1.  La restauration de niveau de service toodifferent et/ou la taille des unités de calcul et de stockage n’est pas autorisée.
 2.  La restauration d’un serveur supprimé n’est pas prise en charge.
 
 ## <a name="next-steps"></a>Étapes suivantes :

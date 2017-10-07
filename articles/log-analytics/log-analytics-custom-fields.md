@@ -1,6 +1,6 @@
 ---
-title: "Champs personnalisés dans Log Analytics | Microsoft Docs"
-description: "La fonction Champs personnalisés de Log Analytics vous permet de créer vos propres champs autorisant les recherches, à partir des données OMS qui s’ajoutent aux propriétés d’un enregistrement collecté.  Cet article décrit la création d’un champ personnalisé et fournit une procédure détaillée avec un exemple d’événement."
+title: champs aaaCustom dans le journal Analytique | Documents Microsoft
+description: "fonction de champs personnalisés Hello d’Analytique de journal vous permet de toocreate vos propres champs de recherche à partir des données OMS qui ajoute des propriétés toohello d’un enregistrement collectée.  Cet article décrit le processus de hello toocreate un champ personnalisé et fournit une description détaillée avec un exemple d’événement."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,75 +14,75 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/18/2016
 ms.author: bwren
-ms.openlocfilehash: 9e02094f155eaade9bc5fb49c4fbb798e546e989
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1aa0e497d5b1d7898b0da6a5ef40f568e63bc589
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="custom-fields-in-log-analytics"></a>Champs personnalisés dans Log Analytics
-La fonction **Champs personnalisés** de Log Analytics vous permet de compléter les enregistrements existants dans le référentiel OMS en leur ajoutant vos propres champs de recherche.  Les champs personnalisés sont renseignés automatiquement à partir des données extraites d’autres propriétés du même enregistrement.
+Hello **les champs personnalisés** fonctionnalité d’Analytique de journal vous permet de tooextend des enregistrements existants dans le référentiel d’OMS hello en ajoutant vos propres champs de recherche.  Les champs personnalisés sont remplis automatiquement à partir des données extraites d’autres propriétés hello même enregistrement.
 
 ![Vue d’ensemble des champs personnalisés](media/log-analytics-custom-fields/overview.png)
 
-Par exemple, l’enregistrement ci-dessous contient des données utiles dans la description de l’événement.  L’extraction de ces données dans des propriétés séparées les rend disponibles pour des opérations de tri et de filtrage.
+Par exemple, hello exemple d’enregistrement ci-dessous a des données utiles dans la description de l’événement hello.  L’extraction de ces données dans des propriétés séparées les rend disponibles pour des opérations de tri et de filtrage.
 
-![Bouton Recherche de journal](media/log-analytics-custom-fields/sample-extract.png)
+![Bouton Recherche dans les journaux](media/log-analytics-custom-fields/sample-extract.png)
 
 > [!NOTE]
-> Dans la version préliminaire, votre espace de travail est limité à 100 champs personnalisés.  Cette limite pourra être relevée lorsque cette fonction sera disponible dans le commerce.
+> Bonjour Preview, vous êtes limité too100 des champs personnalisés dans votre espace de travail.  Cette limite pourra être relevée lorsque cette fonction sera disponible dans le commerce.
 > 
 > 
 
 ## <a name="creating-a-custom-field"></a>Création d’un champ personnalisé
-Lorsque vous créez un champ personnalisé, Log Analytics doit savoir quelles données utiliser pour le renseigner.  Il fait donc appel à une technologie de Microsoft Research, appelée FlashExtract, afin d’identifier rapidement ces données.  Au lieu de vous obliger à fournir des instructions explicites, Log Analytics apprend à connaître les données à extraire des exemples que vous fournissez.
+Lorsque vous créez un champ personnalisé, Analytique de journal doit comprendre le toopopulate toouse de données sa valeur.  Elle utilise une technologie de Microsoft Research appelée FlashExtract tooquickly identifier ces données.  Au lieu de vous obliger tooprovide des instructions explicites, Analytique des journaux en apprend plus sur les données de salutation souhaité tooextract à partir d’exemples que vous fournissez.
 
-Les sections suivantes décrivent la procédure de création d’un champ personnalisé.  À la fin de cet article se trouve une procédure détaillée d’extraction.
+Hello les sections suivantes fournit la procédure de hello pour la création d’un champ personnalisé.  Fin de cet article est une procédure pas à pas d’une extraction de l’exemple hello.
 
 > [!NOTE]
-> Le champ personnalisé est renseigné lorsque des enregistrements correspondant aux critères spécifiés sont ajoutés au magasin de données OMS. Il ne s’affiche donc que sur les enregistrements collectés après la création du champ personnalisé.  Le champ personnalisé n’est pas ajouté aux enregistrements déjà présents dans le magasin de données lors de sa création.
+> champ personnalisé de Hello est rempli en tant que les enregistrements correspondant hello spécifiés sont ajoutés toohello magasin de données OMS, il s’affiche uniquement sur les enregistrements recueillis après la création du champ personnalisé hello.  champ personnalisé de Hello n’est pas ajouté toorecords qui sont déjà dans le magasin de données hello lors de sa création.
 > 
 > 
 
-### <a name="step-1--identify-records-that-will-have-the-custom-field"></a>Étape 1 : identifier les enregistrements qui contiendront le champ personnalisé
-La première étape consiste à identifier les enregistrements qui recevront le champ personnalisé.  Commencez par une [recherche de journal standard](log-analytics-log-searches.md) , puis sélectionnez l’enregistrement qui va servir de modèle à Log Analytics.  Lorsque vous indiquez que vous allez extraire des données pour les placer dans un champ personnalisé, l’ **Assistant Extraction de champs** s’ouvre et vous permet d’affiner et de valider les critères.
+### <a name="step-1--identify-records-that-will-have-hello-custom-field"></a>Étape 1 : identifier les enregistrements qui auront le champ personnalisé de hello
+première étape de Hello est enregistrements hello tooidentify qui obtiennent le champ personnalisé de hello.  Vous démarrez avec un [recherche de journal standard](log-analytics-log-searches.md) , puis sélectionnez un tooact d’enregistrement en tant que modèle de hello apprendra Analytique de journal.  Lorsque vous spécifiez que vous allez tooextract données dans un champ personnalisé, hello **Assistant Extraction de champs** est ouvert lorsque vous validez et affinez les critères de hello.
 
-1. Accédez à **Recherche de journal** et utilisez une [requête pour récupérer les enregistrements](log-analytics-log-searches.md) qui contiendront le champ personnalisé.
-2. Sélectionnez l’enregistrement que Log Analytics utilisera comme modèle pour extraire les données à afficher dans le champ personnalisé.  Vous allez identifier les données à extraire de cet enregistrement, données que Log Analytics va utiliser pour déterminer la logique permettant de renseigner le champ personnalisé de tous les enregistrements similaires.
-3. Cliquez sur le bouton à gauche d’une propriété textuelle de l’enregistrement, puis sélectionnez **Extraire les champs de**.
-4. L’**Assistant Extraction de champs s’ouvre** et l’enregistrement que vous avez sélectionné s’affiche dans la colonne **Exemple principal**.  Le champ personnalisé sera défini pour les enregistrements ayant les mêmes valeurs dans les propriétés sélectionnées.  
-5. Si la sélection ne correspond pas exactement à ce que vous souhaitez, sélectionnez d’autres champs pour affiner les critères.  Pour modifier les valeurs des critères, vous devez annuler l’opération et sélectionner un autre enregistrement correspondant aux critères souhaités.
+1. Accédez trop**recherche de journal** et utiliser un [interroger les enregistrements de hello tooretrieve](log-analytics-log-searches.md) qui auront le champ personnalisé de hello.
+2. Sélectionnez un enregistrement qu’Analytique de journal utilisera tooact en tant que modèle pour extraire des champs de données toopopulate hello personnalisés.  Vous allez identifier les données que vous souhaitez tooextract à partir de cet enregistrement et Analytique de journal utilisera cet information toodetermine hello logique toopopulate hello champ personnalisé pour tous les enregistrements similaires de salutation.
+3. Cliquez sur hello bouton toohello gauche de n’importe quelle propriété de texte Hello enregistrement et sélectionnez **extraire des champs de**.
+4. Hello **Assistant Extraction de champs est ouverte**, et enregistrement hello vous avez sélectionné s’affiche dans hello **exemple principal** colonne.  champ personnalisé de Hello sera défini pour les enregistrements ayant hello mêmes valeurs dans les propriétés de hello qui sont sélectionnées.  
+5. Si la sélection de hello n’est pas exactement ce que vous souhaitez, sélectionnez les critères de hello toonarrow des champs supplémentaires.  Commande toochange hello valeurs de champs pour les critères de hello, vous devez annuler et sélectionnez un autre enregistrement correspondant aux critères de hello souhaité.
 
 ### <a name="step-2---perform-initial-extract"></a>Étape 2 : effectuer l’extraction initiale.
-Après avoir identifié les enregistrements qui contiendront le champ personnalisé, vous identifiez les données à extraire.  Log Analytics utilisera ces informations pour identifier des données similaires dans des enregistrements similaires.  Dans l’étape suivante, vous allez valider les résultats et fournir d’autres informations que Log Analytics va exploiter dans son analyse.
+Une fois que vous avez identifié les enregistrements hello qui auront le champ personnalisé de hello, vous identifiez les données de salutation que vous souhaitez tooextract.  Analytique de journal utilise des modèles similaires cette tooidentify informations enregistrements similaires.  Dans l’étape suivante hello vous être en mesure de toovalidate les résultats hello et fournir davantage d’informations pour toouse Analytique de journal dans son analyse.
 
-1. Mettez en surbrillance le texte de l’enregistrement exemple dont vous souhaitez renseigner dans le champ personnalisé.  Dans la boîte de dialogue qui s’affiche, indiquez le nom du champ et effectuez l’extraction initiale.  Les caractères **\_CF** sont automatiquement ajoutés à la fin.
-2. Cliquez sur **Extraire** pour analyser les enregistrements collectés.  
-3. Les sections **Résumé** et **Résultats** de la recherche affichent les résultats de l’extraction pour que vous puissiez vérifier qu’ils sont corrects.  **Résumé** affiche les critères utilisés pour identifier les enregistrements et le nombre de chacune des valeurs de données identifiées.  **Résultats de la recherche** fournit une liste détaillée des enregistrements correspondant aux critères.
+1. Mettez en surbrillance de texte hello dans l’exemple d’enregistrement hello que vous souhaitez le champ personnalisé de toopopulate hello.  Vous obtiendrez avec un tooprovide de boîte de dialogue un nom pour l’extraction initiale hello champ et tooperform hello.  Hello caractères  **\_CF** sont ajoutés automatiquement.
+2. Cliquez sur **extraire** tooperform une analyse d’enregistrements collectés.  
+3. Hello **Résumé** et **résultats de la recherche** sections affichent les résultats de hello de hello extrait pour que vous puissiez vérifier sa précision.  **Résumé** affiche hello critères utilisés tooidentify enregistrements et le nombre de chacune des valeurs de données hello identifiés.  **Résultats de la recherche** fournit une liste détaillée des enregistrements correspondant aux critères de hello.
 
-### <a name="step-3--verify-accuracy-of-the-extract-and-create-custom-field"></a>Étape 3 : vérifier l’exactitude de l’extraction et créer le champ personnalisé
-Une fois l’extraction initiale effectuée, Log Analytics affiche ses résultats en fonction des données déjà collectées.  Si les résultats semblent exacts, vous pouvez créer le champ personnalisé sans aucune opération supplémentaire.  Si tel n’est pas le cas, vous pouvez affiner les résultats afin d’améliorer la logique de Log Analytics.
+### <a name="step-3--verify-accuracy-of-hello-extract-and-create-custom-field"></a>Étape 3 : vérifier l’exactitude de l’extrait de hello et créer le champ personnalisé
+Une fois que vous avez effectué l’extraction initiale de hello, Analytique des journaux affiche ses résultats en fonction des données qui ont déjà été recueillies.  Si hello résultats semblent corrects vous pouvez créer des champs personnalisés de hello sans aucune tâche supplémentaire.  Si ce n’est pas le cas, vous pouvez affiner les résultats hello pour qu’Analytique des journaux puisse améliorer sa logique.
 
-1. Si des valeurs de l’extraction initiale sont incorrectes, cliquez sur l’icône **Modifier** en regard d’un enregistrement inexact, puis sélectionnez **Modifier cette mise en surbrillance** afin de modifier la sélection.
-2. L’entrée est copiée dans la section **Exemples supplémentaires** sous **Exemple principal**.  Vous pouvez ajuster la mise en surbrillance pour aider Log Analytics à comprendre la sélection qu’il aurait dû faire.
-3. Cliquez sur **Extraire** pour utiliser ces nouvelles informations et évaluer tous les enregistrements existants.  Les résultats peuvent être modifiés pour les enregistrements autres que celui dont vous venez de modifier la logique.
-4. Continuez d’ajouter des corrections jusqu’à ce que tous les enregistrements de l’extraction identifient correctement les données à afficher dans le champ personnalisé.
-5. Cliquez sur **Enregistrer l’extraction** lorsque vous êtes satisfait des résultats.  Le champ personnalisé est maintenant défini, mais il n’est encore ajouté à aucun enregistrement.
-6. Attendez que des nouveaux enregistrements correspondant aux critères spécifiés soient collectés, puis relancez la recherche du journal. Les nouveaux enregistrements doivent contenir le champ personnalisé.
-7. Utilisez le champ personnalisé comme n’importe quelle autre propriété d’enregistrement.  Il peut vous servir à agréger et grouper les données, et même à produire d’autres connaissances.
+1. Si des valeurs de l’extraction initiale de hello ne sont pas correctes, puis cliquez sur hello **modifier** enregistrement inexactes icône suivant tooan et sélectionnez **modifier cette sélection** de sélection de commande toomodify hello.
+2. entrée Hello est copié toohello **des exemples supplémentaires** section sous hello **exemple principal**.  Vous pouvez ajuster la mise en surbrillance hello ici toohelp Analytique de journal comprendre sélection hello, il y a lieu.
+3. Cliquez sur **extraire** toouse ce tooevaluate informations nouvelle tous hello existant enregistre.  résultats de Hello peuvent être modifiés pour les enregistrements que vous venez de modifier à partir de nouvelles informations de hello.
+4. Continuer tooadd corrections jusqu'à ce que tous les enregistrements de hello extraire correctement identifient hello données toopopulate hello nouveau champ personnalisé.
+5. Cliquez sur **enregistrer l’extraction** lorsque vous êtes satisfait des résultats de hello.  Hello champ personnalisé est maintenant défini, mais il ne sera pas ajouté les enregistrements tooany encore.
+6. Attend de nouveaux enregistrements hello correspondant spécifié critères toobe collectées et puis relancez la recherche de journal hello. Nouveaux enregistrements doivent avoir le champ personnalisé de hello.
+7. Utiliser hello de champ personnalisé comme toute autre propriété d’enregistrement.  Vous pouvez l’utiliser tooaggregate et regrouper les données et même utiliser tooproduce nouvelles perspectives.
 
 ## <a name="viewing-custom-fields"></a>Affichage de champs personnalisés
-Vous pouvez afficher la liste de tous les champs personnalisés de votre groupe d’administration, dans la mosaïque **Paramètres** du tableau de bord OMS.  Sélectionnez **Données** puis **Champs personnalisés** pour obtenir la liste de tous les champs personnalisés dans votre espace de travail.  
+Vous pouvez afficher une liste de tous les champs personnalisés dans votre groupe d’administration hello **paramètres** vignette du tableau de bord OMS hello.  Sélectionnez **Données** puis **Champs personnalisés** pour obtenir la liste de tous les champs personnalisés dans votre espace de travail.  
 
 ![Champs personnalisés](media/log-analytics-custom-fields/list.png)
 
 ## <a name="removing-a-custom-field"></a>Suppression d’un champ personnalisé
-Il existe deux méthodes pour supprimer un champ personnalisé.  La première consiste à utiliser l’option **Supprimer** de chaque champ lorsque vous affichez la liste complète, comme indiqué ci-dessus.  L’autre consiste à extraire un enregistrement et à cliquer sur le bouton à gauche du champ.  Le menu affiche une option permettant de supprimer le champ personnalisé.
+Il existe deux façons tooremove un champ personnalisé.  Hello est tout d’abord hello **supprimer** option pour chaque champ lors de l’affichage de la liste complète hello comme décrit ci-dessus.  Bonjour autre méthode est tooretrieve qu'un toohello de bouton hello enregistrement, puis cliquez sur à gauche de champ de hello.  menu de Hello aura un champ personnalisé d’option tooremove hello.
 
-## <a name="sample-walkthrough"></a>Exemple de procédure
-La section suivante décrit la procédure complète de création d’un champ personnalisé.  Cet exemple extrait le nom du service dans les événements Windows indiquant un changement d’état de service.  Il s’appuie sur les événements créés par le Gestionnaire de contrôle des services dans le Journal système des ordinateurs Windows.  Si vous souhaitez suivre cet exemple, vous devez [collecter des événements d’information du journal système](log-analytics-data-sources-windows-events.md).
+## <a name="sample-walkthrough"></a>Exemple de procédure pas à pas
+Hello suivante section décrit un exemple complet de la création d’un champ personnalisé.  Cet exemple extrait le nom du service hello dans des événements Windows qui indiquent un changement d’état de service.  Il s’appuie sur des événements créés par le Gestionnaire de contrôle de Service dans le journal système de hello sur les ordinateurs Windows.  Si vous souhaitez toofollow cet exemple, vous devez être [collecte les événements d’informations pour le journal système hello](log-analytics-data-sources-windows-events.md).
 
-Nous spécifions la requête suivante pour renvoyer tous les événements du Gestionnaire de contrôle des services dont l’ID d’événement est 7036, c’est-à-dire l’événement indiquant le démarrage ou l’arrêt d’un service.
+Nous entrez hello suivant tooreturn de requête tous les événements du Gestionnaire de contrôle Service ayant un ID d’événement 7036 qui est l’événement hello qui indique le service démarre ou s’arrête.
 
 ![Interroger](media/log-analytics-custom-fields/query.png)
 
@@ -90,55 +90,55 @@ Ensuite, nous sélectionnons un enregistrement ayant l’ID d’événement 7036
 
 ![Enregistrement source](media/log-analytics-custom-fields/source-record.png)
 
-Nous voulons afficher le nom du service dans la propriété **RenderedDescription** , donc nous cliquons sur le bouton en regard de cette propriété.
+Nous voulons le nom du service hello qui s’affiche dans hello **RenderedDescription** propriétés et sélectionnez hello bouton suivant toothis.
 
 ![Extraire des champs](media/log-analytics-custom-fields/extract-fields.png)
 
-L’**Assistant Extraction de champs** s’ouvre. Les champs **EventLog** et **EventID** sont sélectionnés dans la colonne **Exemple principal**.  Cela indique que le champ personnalisé sera défini pour les événements du journal système ayant l’ID d’événement 7036.  Cela nous suffit, inutile de sélectionner d’autres champs.
+Hello **Assistant Extraction de champs** est ouvert et hello **EventLog** et **EventID** les champs sélectionnés dans hello **exemple principal** colonne.  Cela indique que ce champ personnalisé hello est défini pour les événements du journal système de hello avec un ID d’événement 7036.  Cela suffit superflue tooselect tous les autres champs.
 
 ![Exemple principal](media/log-analytics-custom-fields/main-example.png)
 
-Nous mettons en surbrillance le nom du service dans la propriété **RenderedDescription** et utilisons **Service** pour identifier le nom du service.  Le nom du champ personnalisé sera **Service_CF**.
+Nous mettre en surbrillance le nom hello du service hello Bonjour **RenderedDescription** propriété et utiliser **Service** nom du service tooidentify hello.  champ personnalisé de Hello sera appelé **Service_CF**.
 
 ![Titre du champ](media/log-analytics-custom-fields/field-title.png)
 
-Nous constatons que le nom du service est identifié correctement pour certains enregistrements, mais pas pour d’autres.   Les **Résultats de la recherche** montrent que cette partie du nom de **Carte de performance WMI** n’est pas sélectionnée.  La section **Résumé** montre que quatre enregistrements du service **DPRMA** comprenaient à tort un mot supplémentaire et que deux enregistrements identifiés **Programme d’installation pour les modules** au lieu de **Programme d’installation pour les modules Windows**.  
+Nous constatons que le nom service hello est identifié correctement pour certains enregistrements, mais pas pour d’autres.   Hello **résultats de la recherche** montrent qu’une partie du nom hello hello **carte de Performance WMI** n’a pas été sélectionné.  Hello **Résumé** montre quatre enregistrements avec **DPRMA** service inclus à tort un terme supplémentaire et deux enregistrements identifiés **programme d’installation de Modules** au lieu de **Le programme d’installation de Windows Modules**.  
 
 ![Résultats de la recherche](media/log-analytics-custom-fields/search-results-01.png)
 
-Commençons par l’enregistrement **Carte de performance WMI** .  Cliquez sur son icône de modification, puis sur **Modifier cette mise en surbrillance**.  
+Nous allons commencer par hello **carte de Performance WMI** enregistrement.  Cliquez sur son icône de modification, puis sur **Modifier cette mise en surbrillance**.  
 
 ![Modifier la mise en surbrillance](media/log-analytics-custom-fields/modify-highlight.png)
 
-Nous étendons la mise en surbrillance afin d’inclure le mot **WMI**, puis nous relançons l’extraction.  
+Nous augmentons mot hello de hello mise en surbrillance tooinclude **WMI** , puis réexécutez hello extrait.  
 
 ![Exemple supplémentaire](media/log-analytics-custom-fields/additional-example-01.png)
 
-Nous constatons que les entrées de **Carte de performance WMI** ont été corrigées, et que Log Analytics a utilisé ces informations pour corriger les enregistrements de **Programme d’installation pour les modules Windows**.  Cependant, dans la section **Résumé**, **DPMRA** n’est toujours pas identifié correctement.
+Nous pouvons voir que hello entrées pour **carte de Performance WMI** ont été corrigées et Analytique de journal utilisé également ce enregistrements hello toocorrect des informations de **le programme d’installation de Windows Module**.  Nous pouvons voir Bonjour **Résumé** section qui **DPMRA** est toujours pas identifié correctement.
 
 ![Résultats de la recherche](media/log-analytics-custom-fields/search-results-02.png)
 
-Nous faisons défiler l’affichage jusqu’à un enregistrement avec le service DPMRA et suivons le même processus pour corriger cet enregistrement.
+Nous faire défiler enregistrement tooa avec hello service DPMRA et que vous utilisez hello même processus toocorrect enregistrer.
 
 ![Exemple supplémentaire](media/log-analytics-custom-fields/additional-example-02.png)
 
- Lorsque nous relançons l’extraction, nous voyons que tous les résultats sont désormais exacts.
+ Si nous exécutons d’extraction de hello, nous pouvons voir que tous les résultats sont désormais corrects.
 
 ![Résultats de la recherche](media/log-analytics-custom-fields/search-results-03.png)
 
-Nous constatons que **Service_CF** est créé mais qu’il n’est encore ajouté à aucun enregistrement.
+Nous pouvons voir que **Service_CF** est créé mais n’est pas encore ajouté tooany enregistrements.
 
 ![Nombre initial](media/log-analytics-custom-fields/initial-count.png)
 
-Après la collecte de nouveaux événements, nous pouvons voir que le champ **Service_CF** est désormais ajouté aux enregistrements qui répondent à nos critères.
+Une fois que du temps écoulé new les événements sont collectés, nous pouvons voir que qui hello **Service_CF** champ est maintenant ajouté toorecords qui correspondent aux critères de notre.
 
 ![Résultats finaux](media/log-analytics-custom-fields/final-results.png)
 
-Nous pouvons maintenant utiliser le champ personnalisé comme n’importe quelle propriété d’enregistrement.  Pour illustrer ce propos, nous créons une requête qui classe les enregistrements par le nouveau champ **Service_CF** pour identifier les services les plus actifs.
+Nous pouvons à présent utiliser champ personnalisé de hello comme toute autre propriété de l’enregistrement.  tooillustrate, nous créons une requête qui regroupe par hello nouvelle **Service_CF** tooinspect champ les services qui sont hello plus actifs.
 
 ![Regrouper par requête](media/log-analytics-custom-fields/query-group.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* En savoir plus sur les [recherches de journaux](log-analytics-log-searches.md) pour générer des requêtes utilisant des champs personnalisés comme critères.
+* En savoir plus sur [recherche de journal](log-analytics-log-searches.md) toobuild les requêtes à l’aide des champs personnalisés pour les critères.
 * Surveillez les [fichiers journaux personnalisés](log-analytics-data-sources-custom-logs.md) que vous analysez à l’aide de champs personnalisés.
 

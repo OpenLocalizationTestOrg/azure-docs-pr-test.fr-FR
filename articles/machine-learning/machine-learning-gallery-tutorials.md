@@ -1,5 +1,5 @@
 ---
-title: Didacticiels de la galerie Cortana Intelligence | Microsoft Docs
+title: "didacticiels de la galerie d’Intelligence aaaCortana | Documents Microsoft"
 description: "Découvrez et partagez des didacticiels dans la galerie Cortana Intelligence."
 services: machine-learning
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 9ed2aadb67b5b911ef35a28879f349586baa5462
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9269b043e8330a936532edf33824acf5dcf548cf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="discover-and-share-tutorials-in-cortana-intelligence-gallery"></a>Découvrez et partagez des didacticiels dans la galerie Cortana Intelligence
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
@@ -27,26 +27,26 @@ ms.lasthandoff: 07/11/2017
 La galerie Cortana Intelligence offre plusieurs [didacticiels](https://gallery.cortanaintelligence.com/tutorials) qui peuvent vous aider à maîtriser les concepts et les technologies de Machine Learning. Les didacticiels peuvent également décrire des méthodes avancées pour résoudre les problèmes de Machine Learning.
 
 ## <a name="discover"></a>Découvrez
-Pour rechercher des didacticiels [dans la galerie](http://gallery.cortanaintelligence.com), sous **Plus**, sélectionnez **didacticiels**.
+les didacticiels toobrowse [Bonjour galerie](http://gallery.cortanaintelligence.com), sous **plus**, sélectionnez **didacticiels**.
 
-![Sélectionnez des didacticiels sur la page d’accueil de la galerie](media/machine-learning-gallery-tutorials/select-tutorials-in-gallery.png)
+![Sélectionnez des didacticiels sur la page d’accueil de la galerie de hello](media/machine-learning-gallery-tutorials/select-tutorials-in-gallery.png)
 
-La page **[Didacticiels](https://gallery.cortanaintelligence.com/tutorials)** affiche la liste des didacticiels récents et populaires. Pour afficher tous les didacticiels, sélectionnez le bouton **Afficher tout**. Pour rechercher un didacticiel spécifique, sélectionnez **Afficher tout** puis sélectionnez les critères de filtre. Vous pouvez également entrer des termes de recherche dans la zone **Recherche** située en haut de la page de la galerie.
+Hello  **[didacticiels](https://gallery.cortanaintelligence.com/tutorials)**  page affiche une liste de didacticiels récemment ajoutées et populaires. sélectionner de tous les didacticiels, toosee hello **afficher tous les** bouton. toosearch pour obtenir un didacticiel spécifique, sélectionnez **afficher tous les**et les critères de filtre puis sélectionnez. Vous pouvez également entrer des termes de recherche dans hello **recherche** zone en haut de hello de page de la galerie hello.
 
-La page de détails du didacticiel contient des informations détaillées sur ce dernier. Pour ouvrir la page de détails d’un didacticiel, sélectionnez le didacticiel. Dans la section **Commentaires** de la page de détails du didacticiel, vous pouvez commenter, donner un avis ou poser des questions sur le didacticiel. Vous pouvez même partager le didacticiel avec vos amis ou collègues sur Twitter ou LinkedIn. Vous pouvez également envoyer un lien par e-mail vers la page de détails du didacticiel afin d’inviter d’autres utilisateurs à consulter cette page.
+Vous pouvez obtenir plus d’informations sur un didacticiel sur la page de détails du didacticiel hello. tooopen une page de détails du didacticiel, didacticiel de hello select. Bonjour **commentaires** section sur une page de détails du didacticiel, vous pouvez mettre en commentaire, fournir des commentaires ou poser des questions sur didacticiel de hello. Vous pouvez même partager le didacticiel de hello avec vos amis ou vos collègues sur Twitter ou LinkedIn. Vous également pourrez envoyer une page de détails du didacticiel lien toohello, tooinvite autres page hello tooview des utilisateurs.
 
 ![Partager cet élément avec des amis](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Ajouter vos propres commentaires](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="contribute"></a>Participez
-Vous pouvez ajouter un didacticiel à la galerie pour aider d’autres utilisateurs à résoudre un problème ou à découvrir un concept.
+Vous pouvez ajouter un toohelp toohello galerie didacticiel résoudre un problème ou découvrez un concept d’autres utilisateurs.
 
 ### <a name="create-a-tutorial"></a>Créer un didacticiel
 
-1. Connectez-vous à la galerie à l’aide de votre compte Microsoft.
+1. Connectez-vous toohello galerie à l’aide de votre compte Microsoft.
 
-2. Sélectionnez votre image en haut de la page, puis sélectionnez votre nom.
+2. Sélectionnez votre image en hello haut hello, puis votre nom.
   
     ![Sélectionnez le nom de votre compte](media/machine-learning-gallery-tutorials/click-account-name.png)
 
@@ -54,17 +54,17 @@ Vous pouvez ajouter un didacticiel à la galerie pour aider d’autres utilisate
   
     ![Sélectionnez « Nouvel élément »](media/machine-learning-gallery-collections/click-new-item.png)
 
-4. Sur la page **Description**, pour **TYPE D’ÉLÉMENT**, sélectionnez **Didacticiel**. Entrez un nom pour votre didacticiel, un bref résumé, une description détaillée et toutes les balises susceptibles d’aider les autres utilisateurs à trouver votre didacticiel.
+4. Sur hello **Description** page, pour **TYPE d’élément**, sélectionnez **didacticiel**. Entrez un nom pour votre didacticiel, un bref résumé, une description détaillée et toutes les balises susceptibles d’aider les autres utilisateurs à trouver votre didacticiel.
   
-    ![Entrez les informations pour le nouveau didacticiel](media/machine-learning-gallery-tutorials/create-tutorial-page-1.png)
-5. Sur la page **Sélection de l’image**, sélectionnez une image qui est affichée avec la collection. Vous pouvez charger votre propre fichier image ou sélectionner une image de banque d’images. Choisissez une image qui peut aider les utilisateurs à identifier le contenu et l’objectif du didacticiel.
+    ![Entrez les informations pour le didacticiel de nouveau hello](media/machine-learning-gallery-tutorials/create-tutorial-page-1.png)
+5. Sur hello **sélection d’Image** , sélectionnez une image qui est affichée avec la collection de hello. Vous pouvez charger votre propre fichier image ou sélectionner une image de banque d’images. Choisissez une image qui peut aider les utilisateurs à identifier le contenu hello et l’objectif du didacticiel.
   
-    ![Entrez les informations pour le nouveau didacticiel](media/machine-learning-gallery-tutorials/create-tutorial-page-2.png)
+    ![Entrez les informations pour le didacticiel de nouveau hello](media/machine-learning-gallery-tutorials/create-tutorial-page-2.png)
 
-6. Sur la page **Paramètres**, pour le paramètre **Visibilité**, indiquez si le didacticiel est **Visible au public** (tout le monde peut consulter le didacticiel) ou **Non visible au public** (seules les personnes bénéficiant d’un lien direct vers le didacticiel peuvent le consulter).
+6. Sur hello **paramètres** page, pour **visibilité**, indiquez si la collection de hello est **Public** (tout le monde peut afficher les didacticiel hello) ou **non listé**(uniquement les personnes avec un didacticiel toohello de lien direct puissent l’afficher).
   
     > [!IMPORTANT]
-    > Une fois que vous avez défini un didacticiel sur **Visible au public** et avez sélectionné **Créer**, vous ne pouvez plus régler le didacticiel sur **Non visible au public**.
+    > Après avoir défini un didacticiel trop**Public** , puis sélectionnez **créer**, vous ne pouvez pas modifier ultérieurement didacticiel de hello trop**non listé**.
     > 
     > 
   
@@ -72,9 +72,9 @@ Vous pouvez ajouter un didacticiel à la galerie pour aider d’autres utilisate
 
 7. Sélectionnez **Créer**.
 
-Votre didacticiel figure désormais dans la galerie Cortana Intelligence. Vos didacticiels sont répertoriés sur la page de votre compte, dans l’onglet **Éléments**.
+Votre didacticiel figure désormais dans la galerie Cortana Intelligence. Votre didacticiels sont répertoriés sur la page de votre compte, sur hello **éléments** onglet.
 
-**[Accéder à la galerie](http://gallery.cortanaintelligence.com)**
+**[Accédez à toohello galerie](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

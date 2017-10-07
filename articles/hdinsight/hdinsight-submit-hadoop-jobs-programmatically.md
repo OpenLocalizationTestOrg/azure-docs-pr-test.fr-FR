@@ -1,6 +1,6 @@
 ---
-title: "Envoi de tâches Hadoop dans HDInsight | Microsoft Docs"
-description: "Apprenez à envoyer des tâches Hadoop à Azure HDInsight Hadoop."
+title: "travaux d’aaaSubmit Hadoop dans HDInsight | Documents Microsoft"
+description: "Découvrez comment toosubmit Hadoop travaux tooAzure HDInsight Hadoop."
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,11 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: 6829ff82afc7fcea9e027ad14ec7ed0c8015a5fe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6c3acde744e8e384088a6cd56e4273c001c0c9fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="submit-hadoop-jobs-in-hdinsight"></a>Envoi de tâches Hadoop dans HDInsight
 
@@ -30,7 +30,7 @@ Vous pouvez envoyer des travaux Hadoop à l’aide du Kit de développement logi
 
   - [Créer des applications .NET d’authentification non interactives](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
   - [Exécuter des requêtes Hive avec le Kit de développement logiciel (SDK) .NET HDInsight](hdinsight-hadoop-use-hive-dotnet-sdk.md)
-  - [Exécuter des travaux Pig à l’aide du Kit de développement logiciel (SDK) .NET pour Hadoop dans HDInsight](hdinsight-hadoop-use-pig-dotnet-sdk.md)
+  - [Exécuter des travaux Pig à l’aide de hello .NET SDK pour Hadoop dans HDInsight](hdinsight-hadoop-use-pig-dotnet-sdk.md)
   - [Exécuter des travaux Sqoop à l’aide du Kit de développement logiciel (SDK) .NET pour Hadoop dans HDInsight](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
   - [Exécuter des travaux MapReduce avec le Kit de développement logiciel (SDK) .NET HDInsight](hdinsight-hadoop-use-mapreduce-dotnet-sdk.md)
 

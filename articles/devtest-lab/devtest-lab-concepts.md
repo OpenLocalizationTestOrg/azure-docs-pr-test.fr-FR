@@ -1,6 +1,6 @@
 ---
-title: Concepts de DevTest Labs | Microsoft Docs
-description: "Découvrez les concepts de base de DevTest Labs et comment il peut faciliter la création, la gestion et la surveillance des machines virtuelles Azure"
+title: concepts de laboratoires aaaDevTest | Documents Microsoft
+description: "Découvrez les concepts de base hello de DevTest Labs et comment il peut rendre toocreate facile, gérer et surveiller des machines virtuelles"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/25/2016
 ms.author: tarcher
-ms.openlocfilehash: 1caea59e71126e934e2e52a1ad7f533ffa7d4b03
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d9f1d948002c4d3121e5bdd4e65eb8b54cd91f9c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="devtest-labs-concepts"></a>Concepts de DevTest Labs
 ## <a name="overview"></a>Vue d'ensemble
-La liste suivante présente les définitions et concepts principaux de DevTest Labs :
+Hello suivant liste contient les définitions et les principaux concepts DevTest Labs :
 
 ## <a name="labs"></a>Laboratoires
-Un laboratoire est l’infrastructure qui comprend un groupe de ressources, telles que des machines virtuelles, qui vous permet de mieux gérer ces ressources en spécifiant des limites et des quotas.
+Un laboratoire est infrastructure hello englobe un groupe de ressources, telles que les Machines virtuelles (VM), qui vous permet de mieux gérer ces ressources en spécifiant des limites et quotas.
 
 ## <a name="virtual-machine"></a>Machine virtuelle
-Une machine virtuelle Azure est l’un des différents types de [ressources informatiques évolutives et à la demande](https://docs.microsoft.com/azure/app-service-web/choose-web-site-cloud-service-vm) proposés par Azure. Les machines virtuelles Azure vous apportent la souplesse de la virtualisation sans vous obliger à acheter le matériel qui exécute la machine virtuelle, ni à en assurer la maintenance. Toutefois, vous devez toujours assurer la maintenance de la machine virtuelle en effectuant des tâches comme la configuration, la mise à jour corrective et l’installation des logiciels qui s’exécutent dessus.
+Une machine virtuelle Azure est l’un des différents types de [ressources informatiques évolutives et à la demande](https://docs.microsoft.com/azure/app-service-web/choose-web-site-cloud-service-vm) proposés par Azure. Donnez aux machines virtuelles Azure hello flexibilité de la virtualisation sans avoir toobuy et de mettre à jour de matériel physique hello qui s’exécute, mais vous devez toujours toomaintain hello machine virtuelle en effectuant certaines tâches, telles que la configuration, la mise à jour corrective et l’installation du logiciel de hello qui s’exécute sur celui-ci.
 
 L’article [Vue d’ensemble des machines virtuelles Windows dans Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-overview) vous informe sur les points à prendre en compte avant de créer une machine virtuelle, sur sa création et sur sa gestion.
 
 ## <a name="claimable-vm"></a>Machine virtuelle revendicable
-Une machine virtuelle Azure revendicable est une machine virtuelle qui peut être utilisée par n’importe quel utilisateur de laboratoire disposant d’autorisations. Un administrateur de laboratoire peut préparer des machines virtuelles avec des images de base et des artefacts spécifiques, et les enregistrer dans un pool partagé. Un utilisateur de laboratoire peut alors exiger une machine virtuelle fonctionnelle à partir du pool lorsqu’il a besoin d’une machine virtuelle avec cette configuration spécifique.
+Une machine virtuelle Azure revendicable est une machine virtuelle qui peut être utilisée par n’importe quel utilisateur de laboratoire disposant d’autorisations. Un administrateur de laboratoire peut préparer les ordinateurs virtuels avec les artefacts et les images de base spécifiques et enregistrez-les tooa partagé pool. Un laboratoire peut ensuite revendication utilisateur une travail de machine virtuelle à partir du pool de hello lorsqu’ils ont besoin de l’autre avec cette configuration.
 
-Une machine virtuelle revendicable n’est pas initialement affectée à un utilisateur spécifique, mais s’affiche dans la liste de tous les utilisateurs sous « Machines virtuelles revendicables ». Une fois qu’une machine virtuelle est revendiquée par un utilisateur, elle est placée dans la zone « Mes machines virtuelles » et n’est plus exigible par un autre utilisateur.
+Une machine virtuelle qui est qui peuvent être réclamée tooany utilisateur n’est pas initialement affectée, mais s’afficheront dans la liste de tous les utilisateurs sous « Virtuels qui peuvent être réclamés ». Une fois une machine virtuelle est revendiquée par un utilisateur, il est déplacé vers le haut tootheir zone de « Mes machines virtuelles » et n’est plus qui peuvent être réclamés par un autre utilisateur.
 
 ## <a name="environment"></a>Environnement
-Dans DevTest Labs, un environnement fait référence à une collection de ressources Azure dans un laboratoire. [Ce billet de blog](https://blogs.msdn.microsoft.com/devtestlab/2016/11/16/connect-2016-news-for-azure-devtest-labs-azure-resource-manager-template-based-environments-vm-auto-shutdown-and-more/) explique comment créer des environnements à plusieurs machines virtuelles à partir de vos modèles Azure Resource Manager.
+Dans DevTest Labs, un environnement fait référence collection tooa de ressources Azure dans un laboratoire. [Ce billet de blog](https://blogs.msdn.microsoft.com/devtestlab/2016/11/16/connect-2016-news-for-azure-devtest-labs-azure-resource-manager-template-based-environments-vm-auto-shutdown-and-more/) explique comment toocreate les environnements de multi-VM à partir de vos modèles Azure Resource Manager.
 
 ## <a name="base-images"></a>Images de base
-Les images de base sont des images de machine virtuelle dont tous les outils et paramètres sont préinstallés et configurés pour créer rapidement une machine virtuelle. Vous pouvez approvisionner une machine virtuelle en sélectionnant une base existante, puis en ajoutant un artefact pour installer l’agent de test. Vous pouvez ensuite enregistrer la machine virtuelle approvisionnée comme base. Il est donc possible d’utiliser la base sans avoir à réinstaller l’agent de test pour chaque approvisionnement de votre machine virtuelle.
+Les images de base sont des images de machine virtuelle avec tous les outils de hello et paramètres préinstallés et configuré tooquickly créer une machine virtuelle. Vous pouvez configurer une machine virtuelle en sélection d’une base existante et en ajoutant une tooinstall d’artefact de votre agent de test. Vous peuvent ensuite enregistrer hello configuré machine virtuelle comme une base afin que hello base peut être utilisée sans avoir un agent de test tooreinstall hello pour chaque configuration de hello machine virtuelle.
 
 ## <a name="artifacts"></a>Artefacts
-Les artefacts sont utilisés pour déployer et configurer votre application après l’approvisionnement d’une machine virtuelle. Les artefacts peuvent être :
+Artefacts sont toodeploy utilisé et configurer votre application après qu’une machine virtuelle est configurée. Les artefacts peuvent être :
 
-* des outils que vous voulez installer sur la machine virtuelle, tels que des agents, Fiddler, Visual Studio ;
-* des actions que vous souhaitez exécuter sur la machine virtuelle, telles que le clonage d’un dépôt ;
-* des applications que vous voulez tester.
+* Outils que vous souhaitez tooinstall sur hello VM - tels que les agents, Fiddler et Visual Studio.
+* Actions que vous souhaitez toorun sur hello VM - telles que le clonage d’un référentiel.
+* Applications que vous souhaitez tootest.
 
-Les artefacts sont des fichiers JSON [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) qui contiennent des instructions pour effectuer le déploiement et appliquer la configuration.
+Les artefacts sont [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) fichiers JSON qui contient des instructions tooperform déploiement et d’appliquent la configuration.
 
 ## <a name="artifact-repositories"></a>Référentiels d’artefact
-Les référentiels d’artefact sont des dépôts Git dans lesquels les artefacts sont archivés. Vous pouvez ajouter des référentiels d’artefacts à plusieurs laboratoires de votre organisation pour les réutiliser et les partager.
+Les référentiels d’artefact sont des dépôts Git dans lesquels les artefacts sont archivés. Référentiels d’artefact peuvent être ajoutés toomultiple labs dans votre organisation, l’activation de réutilisation et de partage.
 
 ## <a name="formulas"></a>Formules
-Par rapport aux images de base, les formules offrent en plus un mécanisme pour l’approvisionnement rapide de machines virtuelles. Dans DevTest Labs, une formule est une liste de valeurs de propriétés par défaut utilisée pour créer une machine virtuelle de laboratoire.
-Avec les formules, les machines virtuelles ayant le même ensemble de propriétés, comme l’image de base, la taille de machine virtuelle, le réseau virtuel et les artefacts, peuvent être créées sans avoir à spécifier ces propriétés à chaque fois. Quand vous créez une machine virtuelle à partir d’une formule, les valeurs par défaut peuvent être utilisées telles quelles ou modifiées.
+Les formules dans les images de toobase addition, fournissent un mécanisme pour l’approvisionnement rapide d’ordinateurs virtuels. Une formule dans DevTest Labs est une liste de toocreate utilisés des valeurs de propriété par défaut un laboratoire de machine virtuelle.
+Avec des formules, machines virtuelles avec le même jeu de propriétés, telles que l’image de base, la taille, réseau virtuel et artefacts - VM de hello peuvent être créés sans avoir besoin de toospecify ces propriétés chaque fois. Lorsque vous créez une machine virtuelle à partir d’une formule, les valeurs par défaut de hello utilisable comme-est ou modifiée.
 
 ## <a name="policies"></a>Stratégies
-Les stratégies vous aident à contrôler les coûts dans votre laboratoire. Par exemple, vous pouvez créer une stratégie pour arrêter automatiquement les machines virtuelles selon une planification définie.
+Les stratégies vous aident à contrôler les coûts dans votre laboratoire. Par exemple, vous pouvez créer un tooautomatically stratégie arrêter les ordinateurs virtuels selon une planification définie.
 
 ## <a name="caps"></a>Limites
-Les plafonds constituent un mécanisme permettant de réduire le gaspillage dans votre laboratoire. Par exemple, vous pouvez définir un plafond pour limiter le nombre de machines virtuelles qui peuvent être créées par un utilisateur ou dans un laboratoire.
+Majuscules est un gaspillage de toominimize mécanisme dans votre laboratoire. Par exemple, vous pouvez définir un nombre de hello toorestrict cap de machines virtuelles qui peuvent être créés par l’utilisateur, ou dans un laboratoire.
 
 ## <a name="security-levels"></a>Niveaux de sécurité
-L’accès à la sécurité est déterminé par le contrôle d’accès en fonction du rôle (RBAC) d’Azure. Pour comprendre comment l’accès est déterminé, vous devez saisir les différences entre une autorisation, un rôle et une étendue, comme défini par RBAC.
+L’accès à la sécurité est déterminé par le contrôle d’accès en fonction du rôle (RBAC) d’Azure. toounderstand comment accéder aux fonctionne, il vous permet de toounderstand hello différences entre une autorisation, un rôle et une étendue définie par RBAC.
 
-* Autorisation - Une autorisation est un accès défini pour une action spécifique (p. ex. accès en lecture à toutes les machines virtuelles).
-* Rôle - un rôle est un jeu d’autorisations qui peuvent être regroupées et attribuées à un utilisateur. Par exemple, le rôle *propriétaire de l’abonnement* a accès à toutes les ressources au sein d’un abonnement.
-* Étendue - Une étendue est un niveau dans la hiérarchie d’une ressource Azure, comme un groupe de ressources, un simple laboratoire ou l’ensemble de l’abonnement.
+* Autorisation - une autorisation est une action spécifique de la tooa accès définie (par exemple, accès en lecture tooall virtuels).
+* Rôle - un rôle est un jeu d’autorisations qui peuvent être regroupées et tooa utilisateur attribué. Par exemple, hello *propriétaire de l’abonnement* rôle dispose des ressources de tooall d’accès au sein d’un abonnement.
+* Étendue : une étendue est un niveau de hiérarchie hello d’une ressource Azure, tel qu’un groupe de ressources, d’un même laboratoire ou de tout abonnement de hello.
 
-Dans l’étendue de DevTest Labs, il existe deux types de rôles pour définir des autorisations utilisateur : propriétaire de laboratoire et utilisateur de laboratoire.
+Relevant de hello DevTest Labs, il existe deux types d’autorisations de rôles toodefine utilisateur : propriétaire du lab et l’utilisateur de laboratoire.
 
-* Propriétaire de laboratoire - un propriétaire de laboratoire a accès à toutes les ressources du laboratoire. Ainsi, le propriétaire d’un laboratoire peut modifier les stratégies, lire et écrire sur toutes les machines virtuelles, modifier le réseau virtuel et ainsi de suite.
+* Propriétaire du lab - propriétaire d’un laboratoire a accès tooany ressources lab de hello. Par conséquent, le propriétaire d’un laboratoire peut modifier des stratégies, lire et écrire les machines virtuelles, modifier le réseau virtuel de hello et ainsi de suite.
 * Utilisateur de laboratoire : un utilisateur de laboratoire peut afficher toutes les ressources de laboratoire, telles que les machines virtuelles, les stratégies et les réseaux virtuels, mais il ne peut pas modifier les stratégies ou les machines virtuelles créées par d’autres utilisateurs.
 
-Pour découvrir comment créer des rôles personnalisés dans DevTest Labs, consultez l’article [Accorder des autorisations à des utilisateurs sur des stratégies de laboratoire spécifiques](devtest-lab-grant-user-permissions-to-specific-lab-policies.md).
+toosee comment toocreate des rôles personnalisés dans DevTest Labs, consultez l’article toohello, [accorder des autorisations utilisateur stratégies de laboratoire toospecific](devtest-lab-grant-user-permissions-to-specific-lab-policies.md).
 
-Étant donné que les étendues sont hiérarchiques, lorsqu’un utilisateur dispose d’autorisations pour une certaine étendue, il reçoit automatiquement ces autorisations pour chaque niveau d’étendue inférieur englobé. Par exemple, si un utilisateur est affecté au rôle de propriétaire d’abonnement, il a accès à toutes les ressources dans un abonnement, notamment à toutes les machines virtuelles, tous les réseaux virtuels et tous les laboratoires. Ainsi, un propriétaire d’abonnement hérite automatiquement du rôle de propriétaire de laboratoire. Toutefois, l’inverse n’est pas vrai. Un propriétaire de laboratoire a accès à un laboratoire, qui est une étendue inférieure au niveau d’abonnement. Par conséquent, un propriétaire de laboratoire ne sera pas en mesure de voir les machines virtuelles ou réseaux virtuels ou toutes les ressources qui sont en dehors du laboratoire.
+Étant donné que les étendues sont hiérarchiques, lorsqu’un utilisateur dispose d’autorisations pour une certaine étendue, il reçoit automatiquement ces autorisations pour chaque niveau d’étendue inférieur englobé. Par exemple, si un utilisateur est attribué le rôle toohello de propriétaire de l’abonnement, ils ont les ressources tooall accès dans un abonnement, notamment toutes les machines virtuelles, tous les réseaux virtuels et tous les ateliers pratiques. Par conséquent, un propriétaire d’abonnement hérite automatiquement de rôle hello du propriétaire de laboratoire. Toutefois, hello inverse n’est pas vrai. Propriétaire d’un laboratoire a lab accès tooa, qui est une étendue inférieure à un niveau d’abonnement hello. Par conséquent, un propriétaire du lab ne seront pas en mesure de toosee virtuels ou réseaux virtuels ou toutes les ressources qui sont en dehors de l’atelier de hello.
 
 ## <a name="azure-resource-manager-templates"></a>Modèles Microsoft Azure Resource Manager
-Tous les concepts abordés dans cet article peuvent être configurés à l’aide de modèles Azure Resource Manager, qui vous permettent de définir l’infrastructure/la configuration de votre solution Windows Azure et de la déployer de façon répétée dans un état cohérent.
+Tous les hello concepts abordés dans cet article peuvent être configurés à l’aide de modèles Azure Resource Manager, qui vous permettent de définissent hello/configuration de l’infrastructure de votre solution Windows Azure et le déployer à plusieurs reprises dans un état cohérent.
 
-[Comprendre la structure et la syntaxe des modèles Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates#template-format) décrit la structure d’un modèle Azure Resource Manager et les propriétés disponibles dans les différentes sections d’un modèle.
+[Comprendre la structure de hello et syntaxe des modèles Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates#template-format) décrit la structure de hello d’un gestionnaire de ressources Azure modèle et hello des propriétés qui sont disponibles dans hello différentes sections d’un modèle.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 

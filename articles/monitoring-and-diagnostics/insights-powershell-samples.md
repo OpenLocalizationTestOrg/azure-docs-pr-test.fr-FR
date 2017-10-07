@@ -1,6 +1,6 @@
 ---
-title: "Exemples de démarrage rapide Azure Monitor PowerShell. | Microsoft Docs"
-description: "Utilisez PowerShell pour accéder aux fonctionnalités d’Azure Monitor telles que la mise à l’échelle, les alertes, les webhooks et la recherche dans les journaux d’activité."
+title: "exemples de démarrage rapide de PowerShell d’analyse aaaAzure. | Microsoft Docs"
+description: "Utilisez PowerShell tooaccess les fonctionnalités de moniteur de Windows Azure telles que la mise à l’échelle, les alertes, webhooks et recherche les journaux d’activité."
 author: kamathashwin
 manager: orenr
 editor: 
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: ashwink
-ms.openlocfilehash: 48f064884c2a6d0a55cc58a44169ed03c62de46d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6eece0b0227e0bbf08225bd330d0601169911f55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-monitor-powershell-quick-start-samples"></a>Exemples de démarrage rapide Azure Monitor PowerShell
-Cet article vous présente des exemples de commandes PowerShell qui vous aideront à accéder rapidement aux fonctions de surveillance Azure Insights. Azure Monitor permet une mise à l'échelle automatique des services cloud, des machines virtuelles et des applications web, et d’envoyer des notifications d'alerte ou d’appeler des URL web basées sur des valeurs de données de télémétrie configurées.
+Cet article explique les exemples de toohelp de commandes PowerShell vous accéder aux fonctionnalités du moniteur de Windows Azure. Moniteur de Azure vous permet de tooAutoScale Services de cloud computing, Machines virtuelles et les applications Web et toosend des notifications d’alerte ou des URL web appel en fonction des valeurs de données de télémétrie configuré.
 
 > [!NOTE]
-> Azure Monitor est le nouveau nom de ce qui était appelé « Azure Insights » jusqu’au 25 septembre 2016. Toutefois, les espaces de noms et, par conséquent, les commandes suivantes contiennent toujours « insights ».
+> Moniteur de Azure est hello nouveau nom pour ce qui a été appelé « Azure Insights » jusqu'à 25 septembre 2016. Toutefois, les espaces de noms hello et par conséquent hello suit toujours les commandes contient insights » l’hello ».
 > 
 > 
 
 ## <a name="set-up-powershell"></a>Configurer PowerShell
-Si vous ne l’avez déjà fait, configurez PowerShell pour s’exécuter sur votre ordinateur. Pour plus d’informations, consultez l’article [Guide pratique pour installer et configurer PowerShell](/powershell/azure/overview).
+Si vous n’avez pas encore, définir toorun PowerShell sur votre ordinateur. Pour plus d’informations, consultez [comment tooInstall et configurer les PowerShell](/powershell/azure/overview).
 
 ## <a name="examples-in-this-article"></a>Exemples de cet article
-Les exemples de cet article montrent comment utiliser les applets de commande Azure Monitor. Vous pouvez également consulter la liste complète des applets de commande PowerShell Azure Monitor dans la rubrique [Applets de commande Azure Monitor (Insights)](https://msdn.microsoft.com/library/azure/mt282452#40v=azure.200#41.aspx).
+exemples de Hello dans l’article de hello illustrent comment vous pouvez utiliser les applets de commande de moniteur de Windows Azure. Vous pouvez également examiner hello intégralité de la liste des applets de commande PowerShell d’analyse Azure à [applets de commande Azure moniteur (Insights)](https://msdn.microsoft.com/library/azure/mt282452#40v=azure.200#41.aspx).
 
 ## <a name="sign-in-and-use-subscriptions"></a>Se connecter et utiliser des abonnements
-Tout d’abord, connectez-vous à votre abonnement Azure.
+Tout d’abord, ouvrez une session dans tooyour abonnement Azure.
 
 ```PowerShell
 Login-AzureRmAccount
 ```
 
-Vous devez vous identifier. Vos informations de compte, d’ID de locataire et d’ID d’abonnement par défaut s’affichent alors. Toutes les applets de commande Azure fonctionnent dans le cadre de votre abonnement par défaut. Pour afficher la liste des abonnements auxquels vous avez accès, utilisez la commande suivante.
+Cela vous toosign dans. Vos informations de compte, d’ID de locataire et d’ID d’abonnement par défaut s’affichent alors. Tous les hello des applets de commande Azure fonctionnent dans le contexte de hello de votre abonnement par défaut. liste de hello tooview des abonnements que vous avez accès à, utilisez hello commande suivante.
 
 ```PowerShell
 Get-AzureRmSubscription
 ```
 
-Pour remplacer votre contexte de travail par un autre abonnement, utilisez la commande suivante.
+toochange votre travail contexte tooa autre abonnement, hello utilisez commande suivante.
 
 ```PowerShell
 Set-AzureRmContext -SubscriptionId <subscriptionid>
@@ -55,9 +55,9 @@ Set-AzureRmContext -SubscriptionId <subscriptionid>
 
 
 ## <a name="retrieve-activity-log-for-a-subscription"></a>Récupérer le journal d’activité d’un abonnement
-Utilisez l’applet de commande `Get-AzureRmLog` .  Voici quelques exemples courants.
+Hello d’utilisation `Get-AzureRmLog` applet de commande.  Hello Voici des exemples courants.
 
-Obtenir les entrées de journal à partir de cette date/heure :
+Obtenir les entrées de journal à partir de cette toopresent date/heure :
 
 ```PowerShell
 Get-AzureRmLog -StartTime 2016-03-01T10:30
@@ -87,38 +87,38 @@ Obtenir toutes les entrées de journal avec un appelant spécifique :
 Get-AzureRmLog -Caller 'myname@company.com'
 ```
 
-La commande suivante récupère les 1000 derniers événements du journal d'activité :
+Hello récupère hello 1000 derniers événements hello journal d’activité de commande suivante :
 
 ```PowerShell
 Get-AzureRmLog -MaxEvents 1000
 ```
 
-`Get-AzureRmLog` prend en charge de nombreux autres paramètres. Pour plus d'informations, consultez `Get-AzureRmLog` .
+`Get-AzureRmLog` prend en charge de nombreux autres paramètres. Consultez hello `Get-AzureRmLog` référence pour plus d’informations.
 
 > [!NOTE]
-> `Get-AzureRmLog` fournit uniquement 15 jours d'historique. Le paramètre **-MaxEvents** vous permet d'interroger les N derniers événements, au-delà de 15 jours. Pour accéder aux événements antérieurs à 15 jours, utilisez l'API REST ou le Kit SDK (exemple de code C# à l'aide du SDK). Si vous n'incluez pas **StartTime**, la valeur par défaut est **EndTime** moins une heure. Si vous n'incluez pas **EndTime**, la valeur par défaut est l'heure actuelle. Toutes les heures sont exprimées en heure UTC.
+> `Get-AzureRmLog` fournit uniquement 15 jours d'historique. À l’aide de hello **- MaxEvents** paramètre vous permet de tooquery hello dernière N événements, au-delà de 15 jours. événements tooaccess plus de 15 jours, utilisez hello API REST ou le Kit de développement logiciel (exemple c# à l’aide du Kit de développement logiciel de hello). Si vous n’incluez pas **StartTime**, la valeur par défaut hello **EndTime** moins d’une heure. Si vous n’incluez pas **EndTime**, valeur par défaut de hello est l’heure actuelle. Toutes les heures sont exprimées en heure UTC.
 > 
 > 
 
 ## <a name="retrieve-alerts-history"></a>Récupérer l'historique des alertes
-Pour afficher tous les événements d'alerte, vous pouvez interroger les journaux Azure Resource Manager en utilisant les exemples suivants.
+tooview tous les événements d’alerte, vous pouvez interroger hello journaux Azure Resource Manager à l’aide de hello exemple suivant.
 
 ```PowerShell
 Get-AzureRmLog -Caller "Microsoft.Insights/alertRules" -DetailedOutput -StartTime 2015-03-01
 ```
 
-Pour afficher l'historique d'une règle d'alerte spécifique, vous pouvez utiliser l’applet de commande `Get-AzureRmAlertHistory` , en passant l'ID de ressource de la règle d'alerte.
+règle de l’historique de hello tooview pour une alerte spécifique, vous pouvez utiliser hello `Get-AzureRmAlertHistory` applet de commande, en passant un ID de ressource hello de règle d’alerte hello.
 
 ```PowerShell
 Get-AzureRmAlertHistory -ResourceId /subscriptions/s1/resourceGroups/rg1/providers/microsoft.insights/alertrules/myalert -StartTime 2016-03-1 -Status Activated
 ```
 
-L’applet de commande `Get-AzureRmAlertHistory` prend en charge différents paramètres. Plus d'informations, consultez [Get-AlertHistory](https://msdn.microsoft.com/library/mt282453.aspx).
+Hello `Get-AzureRmAlertHistory` applet de commande prend en charge les différents paramètres. Plus d'informations, consultez [Get-AlertHistory](https://msdn.microsoft.com/library/mt282453.aspx).
 
 ## <a name="retrieve-information-on-alert-rules"></a>Récupérer des informations sur les règles d'alerte
-Toutes les commandes suivantes s’appliquent à un groupe de ressources nommé « montest ».
+Tous les hello suivant les commandes agissent sur un groupe de ressources nommé « montest ».
 
-Afficher toutes les propriétés de la règle d'alerte :
+Afficher toutes les propriétés de hello de règle d’alerte hello :
 
 ```PowerShell
 Get-AzureRmAlertRule -Name simpletestCPU -ResourceGroup montest -DetailedOutput
@@ -139,11 +139,11 @@ Get-AzureRmAlertRule -ResourceGroup montest -TargetResourceId /subscriptions/s1/
 `Get-AzureRmAlertRule` prend en charge d'autres paramètres. Consultez [Get-AlertRule](https://msdn.microsoft.com/library/mt282459.aspx) pour plus d'informations.
 
 ## <a name="create-metric-alerts"></a>Créer des alertes de métriques
-Vous pouvez utiliser l’applet de commande `Add-AlertRule` pour créer, mettre à jour ou désactiver une règle d'alerte.
+Vous pouvez utiliser hello `Add-AlertRule` toocreate de l’applet de commande, mettre à jour ou désactiver une règle d’alerte.
 
-Vous pouvez créer des propriétés de messagerie et webhook à l'aide de `New-AzureRmAlertRuleEmail` et `New-AzureRmAlertRuleWebhook`, respectivement. Dans l'applet de commande de la règle d'alerte, affectez ces éléments comme des actions à la propriété **Actions** de la règle d'alerte.
+Vous pouvez créer des propriétés de messagerie et webhook à l'aide de `New-AzureRmAlertRuleEmail` et `New-AzureRmAlertRuleWebhook`, respectivement. Dans l’applet de commande de règle d’alerte hello attribuer en tant qu’actions toohello **Actions** propriété Hello règle d’alerte.
 
-Le tableau suivant décrit les paramètres et les valeurs utilisés pour créer une alerte à l'aide d'une mesure.
+Hello tableau suivant décrit les paramètres hello et valeurs utilisé toocreate une alerte à l’aide d’une métrique.
 
 | paramètre | value |
 | --- | --- |
@@ -151,13 +151,13 @@ Le tableau suivant décrit les paramètres et les valeurs utilisés pour créer 
 | Emplacement de cette règle d'alerte |Est des États-Unis |
 | ResourceGroup |montest |
 | TargetResourceId |/subscriptions/s1/resourceGroups/montest/providers/Microsoft.Compute/virtualMachines/testconfig |
-| MetricName de l'alerte créée |\PhysicalDisk \Disk écritures par seconde. Consultez le `Get-MetricDefinitions` applet de commande sur la façon de récupérer les noms exacts des mesures |
+| MetricName d’alerte de hello est créé |\PhysicalDisk \Disk écritures par seconde. Consultez hello `Get-MetricDefinitions` applet de commande sur comment tooretrieve hello des noms de métrique exactes |
 | operator |GreaterThan |
 | Valeur de seuil (nombre/s pour cette métrique) |1 |
 | WindowSize (format hh:mm:ss) |00:05:00 |
-| agrégation (statistique de la métrique, qui utilise la valeur Average dans ce cas) |Moyenne |
+| agrégation (statistique de mesure hello, qui utilise le nombre moyen de, dans ce cas) |Moyenne |
 | courriers électroniques personnalisés (tableau de chaînes) |'foo@example.com','bar@example.com' |
-| envoyer un courrier électronique aux propriétaires, contributeurs et lecteurs |-SendToServiceOwners |
+| envoyer par courrier électronique tooowners, les collaborateurs et les lecteurs |-SendToServiceOwners |
 
 Créer un courrier électronique
 
@@ -171,28 +171,28 @@ Créer une action Webhook
 $actionWebhook = New-AzureRmAlertRuleWebhook -ServiceUri https://example.com?token=mytoken
 ```
 
-Créer la règle d'alerte sur la mesure CPU% sur une machine virtuelle classique
+Créer une règle d’alerte hello sur métrique de % processeur hello sur une machine virtuelle classique
 
 ```PowerShell
 Add-AzureRmMetricAlertRule -Name vmcpu_gt_1 -Location "East US" -ResourceGroup myrg1 -TargetResourceId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.ClassicCompute/virtualMachines/my_vm1 -MetricName "Percentage CPU" -Operator GreaterThan -Threshold 1 -WindowSize 00:05:00 -TimeAggregationOperator Average -Actions $actionEmail, $actionWebhook -Description "alert on CPU > 1%"
 ```
 
-Récupérer la règle d'alerte
+Récupérer la règle d’alerte hello
 
 ```PowerShell
 Get-AzureRmAlertRule -Name vmcpu_gt_1 -ResourceGroup myrg1 -DetailedOutput
 ```
 
-L'applet de commande Add alert met également à jour la règle, s'il existe une règle d'alerte pour les propriétés spécifiées. Pour désactiver une règle d’alerte, incluez le paramètre **-DisableRule**.
+applet de commande alerte Hello ajouter met également à jour les règles de hello si une règle d’alerte existe déjà pour hello propriété. toodisable une règle d’alerte, incluez le paramètre hello **- DisableRule**.
 
 ## <a name="get-a-list-of-available-metrics-for-alerts"></a>Obtenir la liste des mesures disponibles pour les alertes
-Vous pouvez utiliser l’applet de commande `Get-AzureRmMetricDefinition` pour afficher la liste de toutes les métriques pour une ressource spécifique.
+Vous pouvez utiliser hello `Get-AzureRmMetricDefinition` applet de commande tooview hello parmi toutes les métriques pour une ressource spécifique.
 
 ```PowerShell
 Get-AzureRmMetricDefinition -ResourceId <resource_id>
 ```
 
-L'exemple suivant génère une table avec le nom de la mesure et son unité.
+Hello exemple suivant génère une table avec mesure de hello nom et le hello unité pour celle-ci.
 
 ```PowerShell
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
@@ -202,30 +202,30 @@ Une liste complète des options disponibles pour `Get-AzureRmMetricDefinition` e
 
 ## <a name="create-and-manage-autoscale-settings"></a>Créer et gérer les paramètres de mise à l'échelle automatique
 Une ressource, par exemple une application web, une machine virtuelle, un service cloud ou un groupe de machines virtuelles identiques, ne peut avoir qu’un seul paramètre de mise à l’échelle automatique configuré.
-Cependant, chaque paramètre de mise à l'échelle automatique peut avoir plusieurs profils. Par exemple, un pour un profil de mise à l’échelle en fonction des performances et un autre pour un profil basé sur une planification. Chaque profil peut avoir plusieurs règles configurées. Pour plus d’informations sur la mise à l’échelle automatique, voir [Mise à l’échelle automatique d’une application](../cloud-services/cloud-services-how-to-scale.md).
+Cependant, chaque paramètre de mise à l'échelle automatique peut avoir plusieurs profils. Par exemple, un pour un profil de mise à l’échelle en fonction des performances et un autre pour un profil basé sur une planification. Chaque profil peut avoir plusieurs règles configurées. Pour plus d’informations sur l’échelle automatique, consultez [comment tooAutoscale une Application](../cloud-services/cloud-services-how-to-scale.md).
 
-Voici la procédure que nous allons suivre :
+Voici les étapes hello que nous allons utiliser :
 
 1. Créez une ou plusieurs règles.
-2. Créez un ou plusieurs profils correspondant aux règles que vous avez créées précédemment pour les profils.
+2. Créer des profils hello du mappage des règles que vous avez créé précédemment toohello profils.
 3. Facultatif : créez des notifications de mise à l'échelle automatique en configurant les propriétés de courrier électronique et webhook.
-4. Créez un paramètre de mise à l'échelle automatique avec un nom pour la ressource cible en mappant les profils et les notifications que vous avez créés aux étapes précédentes.
+4. Créez un paramètre de mise à l’échelle avec un nom de la ressource cible de hello en mappant les profils hello et les notifications que vous avez créé dans les étapes précédentes hello.
 
-Les exemples suivants montrent comment créer un paramètre de mise à l’échelle automatique pour un groupe de machines virtuelles identiques sur un système d’exploitation Windows à l’aide de la métrique d’utilisation du processeur.
+Hello exemples suivants montrent comment vous pouvez créer un paramètre d’échelle automatique pour un ensemble d’échelle de Machine virtuelle pour un système d’exploitation de Windows basé l’aide de métriques d’utilisation du processeur de hello.
 
-Tout d’abord, créez une règle de montée en charge, avec augmentation du nombre d’instances.
+Tout d’abord, créez une règle tooscale à la sortie, avec une augmentation de nombre d’instance.
 
 ```PowerShell
 $rule1 = New-AzureRmAutoscaleRule -MetricName "Percentage CPU" -MetricResourceId /subscriptions/s1/resourceGroups/big2/providers/Microsoft.Compute/virtualMachineScaleSets/big2 -Operator GreaterThan -MetricStatistic Average -Threshold 60 -TimeGrain 00:01:00 -TimeWindow 00:10:00 -ScaleActionCooldown 00:10:00 -ScaleActionDirection Increase -ScaleActionValue 1
 ```        
 
-Créez ensuite une règle de baisse de charge, avec une diminution du nombre d’instances.
+Ensuite, créez une règle tooscale dans, avec une diminution du nombre instance.
 
 ```PowerShell
 $rule2 = New-AzureRmAutoscaleRule -MetricName "Percentage CPU" -MetricResourceId /subscriptions/s1/resourceGroups/big2/providers/Microsoft.Compute/virtualMachineScaleSets/big2 -Operator GreaterThan -MetricStatistic Average -Threshold 30 -TimeGrain 00:01:00 -TimeWindow 00:10:00 -ScaleActionCooldown 00:10:00 -ScaleActionDirection Decrease -ScaleActionValue 1
 ```
 
-Puis créez un profil pour les règles.
+Ensuite, créez un profil pour les règles de hello.
 
 ```PowerShell
 $profile1 = New-AzureRmAutoscaleProfile -DefaultCapacity 2 -MaximumCapacity 10 -MinimumCapacity 2 -Rules $rule1,$rule2 -Name "My_Profile"
@@ -237,13 +237,13 @@ Créez une propriété webhook
 $webhook_scale = New-AzureRmAutoscaleWebhook -ServiceUri "https://example.com?mytoken=mytokenvalue"
 ```
 
-Créez la propriété de notification pour le paramètre de mise à l'échelle automatique, y compris les propriétés de courrier électronique et webhook que vous avez créées précédemment.
+Créer une propriété de notification de hello pour le paramètre de mise à l’échelle hello, notamment le courrier électronique et hello webhook que vous avez créé précédemment.
 
 ```PowerShell
 $notification1= New-AzureRmAutoscaleNotification -CustomEmails ashwink@microsoft.com -SendEmailToSubscriptionAdministrators SendEmailToSubscriptionCoAdministrators -Webhooks $webhook_scale
 ```
 
-Enfin, créez le paramètre de mise à l'échelle automatique pour ajouter le profil que vous avez créé précédemment.
+Enfin, créez hello échelle tooadd hello profil de paramètre que vous avez créé précédemment.
 
 ```PowerShell
 Add-AzureRmAutoscaleSetting -Location "East US" -Name "MyScaleVMSSSetting" -ResourceGroup big2 -TargetResourceId /subscriptions/s1/resourceGroups/big2/providers/Microsoft.Compute/virtualMachineScaleSets/big2 -AutoscaleProfiles $profile1 -Notifications $notification1
@@ -252,13 +252,13 @@ Add-AzureRmAutoscaleSetting -Location "East US" -Name "MyScaleVMSSSetting" -Reso
 Pour plus d’informations sur la gestion des paramètres de mise à l’échelle automatique, voir [Get-AutoscaleSetting](https://msdn.microsoft.com/library/mt282461.aspx).
 
 ## <a name="autoscale-history"></a>Historique de la mise à l'échelle automatique
-L'exemple suivant vous montre comment consulter les dernières mises à l'échelle automatiques et les derniers événements d'alerte. Utilisez la recherche du journal d’activité pour afficher l'historique de mise à l'échelle automatique.
+Hello exemple suivant vous montre comment vous pouvez afficher les événements de mise à l’échelle et alerte récents. Utilisez hello journal recherche tooview hello échelle historique de l’activité.
 
 ```PowerShell
 Get-AzureRmLog -Caller "Microsoft.Insights/autoscaleSettings" -DetailedOutput -StartTime 2015-03-01
 ```
 
-Vous pouvez utiliser l’applet de commande `Get-AzureRmAutoScaleHistory` pour récupérer l’historique de mise à l’échelle automatique.
+Vous pouvez utiliser hello `Get-AzureRmAutoScaleHistory` tooretrieve de l’applet de commande l’historique de mise à l’échelle.
 
 ```PowerShell
 Get-AzureRmAutoScaleHistory -ResourceId /subscriptions/s1/resourceGroups/myrg1/providers/microsoft.insights/autoscalesettings/myScaleSetting -StartTime 2016-03-15 -DetailedOutput
@@ -267,32 +267,32 @@ Get-AzureRmAutoScaleHistory -ResourceId /subscriptions/s1/resourceGroups/myrg1/p
 Pour plus d’informations, voir [Get-AutoscaleHistory](https://msdn.microsoft.com/library/mt282464.aspx).
 
 ### <a name="view-details-for-an-autoscale-setting"></a>Afficher les détails d'un paramètre de mise à l'échelle automatique
-Vous pouvez utiliser l’applet de commande `Get-Autoscalesetting` pour récupérer des informations supplémentaires sur le paramètre de mise à l’échelle automatique.
+Vous pouvez utiliser hello `Get-Autoscalesetting` tooretrieve de l’applet de commande plus d’informations sur la configuration de mise à l’échelle hello.
 
-L'exemple suivant affiche des détails concernant tous les paramètres de mise à l'échelle automatique dans le groupe de ressources ’myrg1’.
+Hello exemple suivant donne des détails sur tous les paramètres de mise à l’échelle dans le groupe de ressources hello 'myrg1'.
 
 ```PowerShell
 Get-AzureRmAutoscalesetting -ResourceGroup myrg1 -DetailedOutput
 ```
 
-L'exemple suivant affiche des détails concernant tous les paramètres de mise à l'échelle automatique dans le groupe de ressources ’myrg1’, et en particulier le paramètre de mise à l'échelle automatique nommé ’MyScaleVMSSSetting’.
+Bonjour exemple suivant affiche les détails de tous les paramètres de mise à l’échelle dans le groupe de ressources hello 'myrg1' et spécifiquement hello nommé 'MyScaleVMSSSetting' de paramètre de mise à l’échelle.
 
 ```PowerShell
 Get-AzureRmAutoscalesetting -ResourceGroup myrg1 -Name MyScaleVMSSSetting -DetailedOutput
 ```
 
 ### <a name="remove-an-autoscale-setting"></a>Supprimer un paramètre de mise à l'échelle automatique
-Vous pouvez utiliser l’applet de commande `Remove-Autoscalesetting` pour supprimer un paramètre de mise à l’échelle automatique.
+Vous pouvez utiliser hello `Remove-Autoscalesetting` toodelete de l’applet de commande un paramètre de mise à l’échelle.
 
 ```PowerShell
 Remove-AzureRmAutoscalesetting -ResourceGroup myrg1 -Name MyScaleVMSSSetting
 ```
 
 ## <a name="manage-log-profiles-for-activity-log"></a>Gérer les profils de journal pour le journal d’activité
-Vous pouvez créer un *profil de journal* et exporter des données de votre journal d’activité vers un compte de stockage, puis configurer la rétention de données pour celui-ci. Si vous le souhaitez, vous pouvez aussi transmettre en continu les données vers votre hub d'événements. Notez que cette fonctionnalité est actuellement en version préliminaire et vous ne pouvez créer qu'un seul profil de journal par abonnement. Vous pouvez utiliser les applets de commande suivantes avec votre abonnement actuel pour créer et gérer des profils de journal. Vous pouvez également choisir un abonnement spécifique. Bien que PowerShell utilise par défaut l’abonnement actif, vous pouvez toujours modifier ce paramètre avec `Set-AzureRmContext`. Vous pouvez configurer le journal d’activité afin d’acheminer les données vers n'importe quel compte de stockage ou un hub d'événements au sein de cet abonnement. Les données sont écrites en tant que fichiers blob au format JSON.
+Vous pouvez créer un *connecter profil* et exporter des données à partir de votre compte de stockage tooa journal des activités et vous peuvent configurer la rétention des données pour qu’il. Si vous le souhaitez, vous pouvez également transmettre en continu hello données tooyour concentrateur d’événements. Notez que cette fonctionnalité est actuellement en version préliminaire et vous ne pouvez créer qu'un seul profil de journal par abonnement. Vous pouvez utiliser hello suivant d’applets de commande avec votre toocreate d’abonnement en cours et gérer les profils de journal. Vous pouvez également choisir un abonnement spécifique. Bien que PowerShell par défaut toohello abonnement, vous pouvez toujours modifier que l’utilisation `Set-AzureRmContext`. Vous pouvez configurer le compte de stockage d’activité journal tooroute données tooany ou concentrateur d’événements au sein de cet abonnement. Les données sont écrites en tant que fichiers blob au format JSON.
 
 ### <a name="get-a-log-profile"></a>Obtenir un profil de journal
-Pour extraire vos profils de journal existants, utilisez l’applet de commande `Get-AzureRmLogProfile` .
+toofetch vos profils journal existant, utilisez hello `Get-AzureRmLogProfile` applet de commande.
 
 ### <a name="add-a-log-profile-without-data-retention"></a>Ajouter un profil de journal sans conservation des données
 ```PowerShell
@@ -305,21 +305,21 @@ Remove-AzureRmLogProfile -name my_log_profile_s1
 ```
 
 ### <a name="add-a-log-profile-with-data-retention"></a>Ajouter un profil de journal avec conservation des données
-Vous pouvez spécifier la propriété **-RetentionInDays** en indiquant le nombre de jours (sous la forme d’un entier positif) durant lequel les données seront conservées.
+Vous pouvez spécifier hello **- RetentionInDays** propriété hello nombre de jours, comme un entier positif, où les données de salutation sont conservées.
 
 ```PowerShell
 Add-AzureRmLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Locations global,westus,eastus,northeurope,westeurope,eastasia,southeastasia,japaneast,japanwest,northcentralus,southcentralus,eastus2,centralus,australiaeast,australiasoutheast,brazilsouth,centralindia,southindia,westindia -RetentionInDays 90
 ```
 
 ### <a name="add-log-profile-with-retention-and-eventhub"></a>Ajouter un profil de journal avec conservation des données et hub d'événements
-En plus du routage de vos données vers un compte de stockage, vous pouvez également transmettre en continu ces données vers un hub d'événements. Notez que dans cette version préliminaire, la configuration du compte de stockage est obligatoire mais la configuration du hub d'événements est facultative.
+Dans Ajout toorouting votre compte toostorage de données, vous pouvez également diffuser en continu tooan concentrateur d’événements. Notez que dans cette version préliminaire release et hello configuration de compte de stockage est obligatoire mais configuration du Hub d’événements est facultative.
 
 ```PowerShell
 Add-AzureRmLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey -Locations global,westus,eastus,northeurope,westeurope,eastasia,southeastasia,japaneast,japanwest,northcentralus,southcentralus,eastus2,centralus,australiaeast,australiasoutheast,brazilsouth,centralindia,southindia,westindia -RetentionInDays 90
 ```
 
 ## <a name="configure-diagnostics-logs"></a>Configuration des journaux de diagnostic
-De nombreux services Azure fournissent des journaux et des télémétries supplémentaires qui peuvent être configurés pour enregistrer des données dans votre compte de stockage Azure, les envoyer à Event Hubs et/ou les envoyer à un espace de travail Log Analytics OMS. Cette opération ne peut être effectuée qu’au niveau d’une ressource, et le compte de stockage ou l’Event Hub doit être présent dans la même région que la ressource cible où les paramètres de diagnostic sont configurés.
+Plusieurs services Azure fournissent des journaux supplémentaires et télémétrie qui peut être des données toosave configuré dans votre compte Azure Storage, envoyer tooEvent concentrateurs et/ou envoyés d’espace de travail Analytique des journaux OMS tooan. Cette opération ne peut être effectuée qu’à un niveau de la ressource et le concentrateur de compte ou l’événement de stockage hello doit être présent dans hello même région en tant que ressource de hello cible où hello diagnostics est défini.
 
 ### <a name="get-diagnostic-setting"></a>Obtenir le paramètre de diagnostic
 ```PowerShell

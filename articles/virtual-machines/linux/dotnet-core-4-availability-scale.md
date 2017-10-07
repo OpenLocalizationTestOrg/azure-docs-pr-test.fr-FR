@@ -1,5 +1,5 @@
 ---
-title: "Disponibilité et scalabilité dans les modèles Azure Resource Manager | Microsoft Docs"
+title: "aaaAvailability et l’échelle dans les modèles Azure Resource Manager | Documents Microsoft"
 description: Didacticiel sur DotNet Core pour les machines virtuelles Azure
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,22 +16,22 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 0c0250b8152ed31b9a5d8b42ae139c9b38da0984
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6f830ca0a64e6b65859312bdf31dc0af59e2b978
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="availability-and-scale-in-azure-resource-manager-templates-for-linux-vms"></a>Disponibilité et scalabilité dans les modèles Azure Resource Manager pour les machines virtuelles Linux
 
-La disponibilité et la scalabilité font référence au temps de fonctionnement et à la capacité de répondre à la demande. Si une application doit être opérationnelle pendant jusqu’à 99,9 % du temps, elle doit présenter une architecture permettant l’utilisation de plusieurs ressources de calcul simultanées. Par exemple, au lieu d’avoir un seul site web, une configuration avec un niveau supérieur de disponibilité comprend plusieurs instances du même site, avec une technologie d’équilibrage placée devant celles-ci. Dans cette configuration, une instance de l’application peut être retirée à des fins de maintenance, tandis que les autres continuent de fonctionner. Par ailleurs, la scalabilité fait référence à la capacité d’une application à répondre à la demande. Avec une application dont la charge est équilibrée, l’ajout ou la suppression d’instances du pool permet la scalabilité d’une application pour répondre à la demande.
+Disponibilité et l’échelle, reportez-vous à la demande toomeet de capacité toouptime et hello. Si une application doit être de 99,9 % du temps de hello, il doit toohave une architecture qui permet à plusieurs ressources de calcul simultanées. Par exemple, au lieu d’avoir un seul site Web, une configuration avec un niveau plus élevé de disponibilité inclut plusieurs instances du hello même site, avec l’équilibrage de la technologie de face d’eux. Dans cette configuration, une seule instance de l’application hello peut être récupérée pour une maintenance, hello restant interrompre toofunction. Mise à l’échelle sur hello autre part fait référence à la demande de tooan applications capacité tooserve. Avec une charge application à charge équilibrée, ajouter ou supprimer des instances de pool de hello permet à une demande de toomeet tooscale application.
 
-Ce document décrit en détail comment l’exemple de déploiement du Store musique est configuré pour la disponibilité et la scalabilité. Toutes les dépendances et configurations uniques sont en surbrillance. Pour optimiser l’expérience, prédéployez une instance de la solution sur votre abonnement Azure et travaillez avec le modèle Azure Resource Manager. Pour le modèle complet, consultez [Déploiement du Store musique sur Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux).
+Ce document décrit en détail comment hello exemple de déploiement de magasin de musique est configuré pour la disponibilité et l’échelle. Toutes les dépendances et configurations uniques sont en surbrillance. Pour une expérience optimale de hello, préalable déployer une instance de hello solution tooyour abonnement Azure et de travail en même temps que le modèle de gestionnaire de ressources Azure hello. modèle complète de Hello se trouve ici : [déploiement du magasin de musique sur Ubuntu](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux).
 
 ## <a name="availability-set"></a>Groupe à haute disponibilité
-Un groupe à haute disponibilité étend logiquement des machines virtuelles Azure sur des hôtes physiques et d’autres composants infrastructurels, tels que l’alimentation électrique et le matériel réseau physique. Des groupes à haute disponibilité garantissent que, pendant la maintenance, en cas de panne d’appareil ou lors d’autres temps d’arrêt, les machines virtuelles ne sont pas toutes affectées. Il est possible d’ajouter un groupe à haute disponibilité à un modèle Azure Resource Manager à l’aide de l’Assistant Ajouter une nouvelle ressource de Visual Studio, ou d’insérer un JSON valide dans un modèle.
+Un groupe à haute disponibilité étend logiquement des machines virtuelles Azure sur des hôtes physiques et d’autres composants infrastructurels, tels que l’alimentation électrique et le matériel réseau physique. Des groupes à haute disponibilité garantissent que, pendant la maintenance, en cas de panne d’appareil ou lors d’autres temps d’arrêt, les machines virtuelles ne sont pas toutes affectées. Un ensemble de disponibilité peuvent être ajouté tooan modèle d’Azure Resource Manager à l’aide de Visual Studio ajouter Assistant Nouvelle ressource de hello ou en insérant un JSON valide dans un modèle.
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Groupe à haute disponibilité](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L387).
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [à haute disponibilité](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L387).
 
 ```json
 {
@@ -52,7 +52,7 @@ Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [
 
 Un groupe à haute disponibilité est déclaré en tant que propriété d’une ressource de machine virtuelle. 
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Association d’un groupe à haute disponibilité avec une machine virtuelle](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L313).
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [association de groupe à haute disponibilité avec l’ordinateur virtuel](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L313).
 
 ```json
 "properties": {
@@ -60,16 +60,16 @@ Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [
     "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySetName'))]"
   }
 ```
-Groupe à haute disponibilité dans le portail Azure. Chaque machine virtuelle est décrite ici avec des détails sur sa configuration.
+Hello groupe à haute disponibilité comme hello portail Azure. Chaque ordinateur virtuel et les informations sur la configuration de hello sont décrits ici.
 
 ![Groupe à haute disponibilité](./media/dotnet-core-4-availability-scale/aset.png)
 
 Pour des informations détaillées sur les groupes à haute disponibilité, consultez [Gérer la disponibilité des machines virtuelles](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). 
 
 ## <a name="network-load-balancer"></a>Équilibreur de charge réseau
-Si un groupe à haute disponibilité offre à une application une tolérance de panne, un équilibreur de charge rend plusieurs instances de l’application disponibles sur une adresse réseau unique. Plusieurs instances d’une application peuvent être hébergées sur un grand nombre de machines virtuelles, chacune étant connectée à un équilibreur de charge. Lors de l’accès à l’application, l’équilibreur de charge route la demande entrante vers les membres attachés. Il est possible d’ajouter un équilibreur de charge à l’aide de l’Assistant Ajouter une nouvelle ressource de Visual Studio, ou en insérant une ressource JSON correctement mise en forme dans le modèle Azure Resource Manager.
+Tandis que la haute disponibilité fournit la tolérance de panne d’application, un équilibrage de charge rend nombre d’instances de l’application hello disponibles sur une adresse réseau unique. Plusieurs instances d’une application peuvent être hébergés sur le nombre d’ordinateurs virtuels, chacun d’eux connecté équilibrage de charge tooa. Comme l’application hello est accessible, itinéraires de programme d’équilibrage de charge hello hello demande entrante entre les membres de hello attaché. Un équilibreur de charge peuvent être ajouté à l’aide de Visual Studio ajouter Assistant Nouvelle ressource de hello, ou en insérant correctement la mise en forme de ressources JSON dans le modèle du Gestionnaire de ressources Azure hello.
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Équilibreur de charge réseau](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L208).
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [équilibrage de charge réseau](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L208).
 
 ```json
 {
@@ -84,9 +84,9 @@ Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [
 }
 ```
 
-Étant donné que l’exemple d’application est exposé à Internet avec une adresse IP publique, celle-ci est associée à l’équilibreur de charge. 
+Exemple d’application hello étant exposée toohello internet avec une adresse IP publique, cette adresse est associée à équilibrage de charge hello. 
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Association d’équilibreur de charge réseau avec une adresse IP publique](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L221).
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [association d’équilibrage de charge réseau avec adresse IP publique](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L221).
 
 ```json
 "frontendIPConfigurations": [
@@ -101,14 +101,14 @@ Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [
 ]
 ```
 
-Dans le portail Azure, la vue d’ensemble de l’équilibreur de charge réseau présente l’association avec l’adresse IP publique.
+À partir de hello portail Azure, hello vue d’ensemble de programme d’équilibrage de charge réseau affiche hello association avec l’adresse IP publique de hello.
 
 ![Équilibreur de charge réseau](./media/dotnet-core-4-availability-scale/nlb.png)
 
 ## <a name="load-balancer-rule"></a>Règle d’équilibrage de charge
-Lorsque vous utilisez un équilibreur de charge, des règles sont configurées. Elles contrôlent la manière dont le trafic est équilibré entre les ressources souhaitées. Avec l’exemple d’application du Store musique, le trafic arrive sur le port 80 de l’adresse IP publique, puis il est distribué au port 80 de toutes les machines virtuelles. 
+Lorsque vous utilisez un équilibrage de charge, les règles sont configurées qui contrôlent comment le trafic est équilibré entre les ressources hello prévu. Application de magasin de musique exemple hello, le trafic arrive sur le port 80 de l’adresse IP publique de hello et est distribué sur le port 80 de tous les ordinateurs virtuels. 
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Règle d’équilibreur de charge](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L270).
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [règle d’équilibrage de charge](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L270).
 
 ```json
 "loadBalancingRules": [
@@ -134,14 +134,14 @@ Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [
 ]
 ```
 
-Affichage de la règle d’équilibreur de charge réseau dans le portail.
+Une vue du réseau de hello de charger la règle d’équilibrage à partir du portail de hello.
 
 ![Règle d’équilibreur de charge réseau](./media/dotnet-core-4-availability-scale/lbrule.png)
 
 ## <a name="load-balancer-probe"></a>Sonde d’équilibreur de charge
-L’équilibreur de charge doit également surveiller chaque machine virtuelle afin que les demandes soient servies uniquement aux systèmes en cours d’exécution. Cette surveillance s’effectue par sondage constant d’un port prédéfini. Le déploiement du Store musique est configuré pour sonder le port 80 de toutes les machines virtuelles incluses. 
+équilibrage de charge Hello doit également toomonitor chaque ordinateur virtuel afin que les demandes sont pris en charge uniquement les systèmes toorunning. Cette surveillance s’effectue par sondage constant d’un port prédéfini. déploiement du magasin de musique Hello est tooprobe configuré le port 80 sur tous les inclus virtuels. 
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Sonde d’équilibreur de charge](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L257).
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [sonde d’équilibrage de charge](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L257).
 
 ```json
 "probes": [
@@ -157,16 +157,16 @@ Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [
 ]
 ```
 
-Sonde d’équilibreur de charge dans le portail Azure.
+Sonde d’équilibrage de charge Hello consulté à partir de hello portail Azure.
 
 ![Sonde d’équilibreur de charge réseau](./media/dotnet-core-4-availability-scale/lbprobe.png)
 
 ## <a name="inbound-nat-rules"></a>Règles NAT de trafic entrant
-Lorsque vous utilisez un équilibreur de charge, des règles doivent être mises en place pour offrir un accès sans équilibrage de charge à chaque machine virtuelle. Par exemple, lors de la création d’une connexion SSH avec chaque machine virtuelle, ce trafic ne doit pas faire l’objet d’un équilibrage de charge. Au lieu de cela, un chemin d’accès prédéterminé doit être configuré. Des chemins d’accès prédéterminés sont configurés à l’aide d’une ressource de règle NAT de trafic entrant. Cette ressource permet de mapper les communications entrantes à des machines virtuelles individuelles. 
+Lorsque vous utilisez un équilibrage de charge, vous devez toobe règles mis en place qui fournissent l’accès à charge équilibrée de charge non tooeach Machine virtuelle. Par exemple, lors de la création d’une connexion SSH avec chaque machine virtuelle, ce trafic ne doit pas faire l’objet d’un équilibrage de charge. Au lieu de cela, un chemin d’accès prédéterminé doit être configuré. Des chemins d’accès prédéterminés sont configurés à l’aide d’une ressource de règle NAT de trafic entrant. À l’aide de cette ressource, les communications entrantes peuvent être mappé tooindividual Machines virtuelles. 
 
-Avec l’application Store musique, un port commençant à 5000 est mappé au port 22 de chaque machine virtuelle pour l’accès SSH. La fonction `copyindex()` est utilisée pour incrémenter le port entrant, de façon à ce que la deuxième machine virtuelle reçoive le port entrant 5001, la troisième le port entrant 5002, et ainsi de suite. 
+Un port en commençant à 5000 hello application de magasin de musique, est mappé tooport 22 sur chaque ordinateur virtuel pour l’accès SSH. Hello `copyindex()` fonction est utilisée tooincrement hello port entrant, par exemple hello deuxième Machine virtuelle reçoit un port entrant de 5001, hello 5002 troisième et ainsi de suite. 
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Règles NAT de trafic entrant](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L270). 
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [règles NAT de trafic entrant](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L270). 
 
 ```json
 {
@@ -196,16 +196,16 @@ Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [
 }
 ```
 
-Exemple de règle NAT de trafic entrant dans le portail Azure. Une règle NAT SSH est créée pour chaque machine virtuelle dans le déploiement.
+Par exemple règle NAT de trafic entrant comme hello dans portail Azure. Une règle NAT SSH est créée pour chaque ordinateur virtuel dans un déploiement de hello.
 
 ![Règle NAT de trafic entrant](./media/dotnet-core-4-availability-scale/natrule.png)
 
-Pour des informations détaillées sur l’équilibreur de charge réseau Azure, consultez [Équilibrage de charge pour les services d’infrastructure Azure](../virtual-machines-linux-load-balance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Pour obtenir des informations détaillées sur hello équilibrage de charge réseau Azure, consultez [équilibrage de charge pour les services d’infrastructure Azure](../virtual-machines-linux-load-balance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="deploy-multiple-vms"></a>Déployer plusieurs machines virtuelles
-Enfin, pour qu’un groupe à haute disponibilité ou un équilibreur de charge fonctionnent effectivement, plusieurs machines virtuelles sont nécessaires. Plusieurs machines virtuelles peuvent être déployées à l’aide de la fonction de copie du modèle Azure Resource Manager. En utilisant la fonction de copie, il n’est pas nécessaire de définir un nombre fini de machines virtuelles. Au lieu de cela, cette valeur peut être fournie de façon dynamique au moment du déploiement. La fonction de copie utilise le nombre d’instances créées. Elle gère le déploiement du nombre approprié de machines virtuelles et de ressources associées.
+Enfin, pour une fonction de tooeffectively à haute disponibilité ou d’équilibrage de charge, plusieurs ordinateurs virtuels sont requis. Plusieurs machines virtuelles peuvent être déployés à l’aide de la fonction de copie de modèle Azure Resource Manager hello. À l’aide de la fonction de copie hello, il n’est pas nécessaire toodefine un nombre fini de Machines virtuelles, plutôt cette valeur permettre être fournie de manière dynamique au moment de hello du déploiement. copier la fonction Hello consomme nombre hello de toocreated d’instances et les descripteurs de déploiement hello le nombre approprié d’ordinateurs virtuels et les ressources associées.
 
-Dans l’exemple de modèle de Store musique, un paramètre est défini, qui prend un nombre d’instances. Ce nombre est utilisé dans le modèle lors de la création des machines virtuelles et des ressources associées.
+Dans le modèle d’exemple de magasin de musique hello, un paramètre est défini dans un nombre d’instances. Ce numéro est utilisé dans l’ensemble du modèle de hello lors de la création d’ordinateurs virtuels et les ressources associées.
 
 ```json
 "numberOfInstances": {
@@ -213,14 +213,14 @@ Dans l’exemple de modèle de Store musique, un paramètre est défini, qui pre
   "minValue": 1,
   "defaultValue": 1,
   "metadata": {
-    "description": "Number of VM instances to be created behind load balancer."
+    "description": "Number of VM instances toobe created behind load balancer."
   }
 }
 ```
 
-Sur la ressource de machine virtuelle, la boucle de copie reçoit un nom et le paramètre de nombre d’instances utilisé pour contrôler le nombre de copies obtenues.
+Hello ressource d’ordinateur virtuel, un nom est attribué à la boucle de copie hello et nombre hello du paramètre d’instances utilisé toocontrol un nombre hello de copies qui en résulte.
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Fonction de copie de machine virtuelle](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L300). 
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [fonction de copie de Machine virtuelle](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L300). 
 
 ```json
 "apiVersion": "2015-06-15",
@@ -233,9 +233,9 @@ Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [
 }
 ```
 
-L’itération actuelle de la fonction de copie est accessible à l’aide de la fonction `copyIndex()` . La valeur de la fonction de copie d’index peut être utilisée pour nommer les machines virtuelles et autres ressources. Par exemple, si deux instances d’une machine virtuelle sont déployées, elles doivent porter des noms différents. La fonction `copyIndex()` peut être utilisée en tant que partie du nom de machine virtuelle pour créer un nom unique. Un exemple d’utilisation de la fonction `copyindex()` pour nommer est visible dans la ressource de machine virtuelle. Ici, le nom de la machine est une concaténation du paramètre `vmName` et de la fonction `copyIndex()`. 
+itération actuelle de Hello de copier la fonction hello est accessible par hello `copyIndex()` (fonction). valeur de Hello de fonction d’index hello copie peut être utilisé tooname virtuels et autres ressources. Par exemple, si deux instances d’une machine virtuelle sont déployées, elles doivent porter des noms différents. Hello `copyIndex()` fonction peut être utilisée comme nom de partie de la machine virtuelle de hello toocreate un nom unique. Un exemple de hello `copyindex()` fonction utilisée pour des raisons d’affectation de noms peut être consultée dans hello ressource d’ordinateur virtuel. Ici, le nom de l’ordinateur hello est une concaténation de hello `vmName` paramètre et hello `copyIndex()` (fonction). 
 
-Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [Fonction de copie d’index](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L319). 
+Suivez ce lien toosee hello JSON exemple dans le modèle de gestionnaire de ressources hello – [copier la fonction Index](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L319). 
 
 ```json
 "osProfile": {
@@ -255,9 +255,9 @@ Pour voir l’exemple JSON dans le modèle Resource Manager, suivez ce lien : [
 }
 ```
 
-La fonction `copyIndex` est utilisée plusieurs fois dans l’exemple de modèle du Store musique. Les ressources et fonctions utilisant `copyIndex` contiennent tous les éléments spécifiques d’une instance unique de la machine virtuelle, tels que l’interface réseau, les règles d’équilibreur de charge et les fonctions de dépendance. 
+Hello `copyIndex` fonction est utilisée plusieurs fois dans l’exemple de modèle de magasin de musique hello. Utilisation de fonctions et ressources `copyIndex` incluent tooa spécifique n’est pas défini une seule instance de machine virtuelle de hello comme interface de réseau, les règles d’équilibrage de charge, et les dépend des fonctions. 
 
-Pour plus d’informations sur l’utilisation de la fonction de copie, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](../../resource-group-create-multiple.md).
+Pour plus d’informations sur la fonction de copie hello, consultez [créer plusieurs instances de ressources dans Azure Resource Manager](../../resource-group-create-multiple.md).
 
 ## <a name="next-step"></a>Étape suivante
 <hr>

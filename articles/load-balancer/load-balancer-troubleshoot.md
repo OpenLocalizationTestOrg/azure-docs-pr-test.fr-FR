@@ -1,5 +1,5 @@
 ---
-title: "Résoudre les problèmes liés à Azure Load Balancer | Microsoft Docs"
+title: "aaaTroubleshoot équilibrage de charge Azure | Documents Microsoft"
 description: "Résoudre les problèmes connus liés à Azure Load Balancer"
 services: load-balancer
 documentationcenter: na
@@ -14,122 +14,122 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/10/2017
 ms.author: kumud
-ms.openlocfilehash: df5c836abbf09889f4859170359c0ee6c1b03378
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 56b73fcbf0bbf18cedfd113a280cfafa2a3dc9f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-azure-load-balancer"></a>Résoudre les problèmes liés à Azure Load Balancer
 
-Cette page contient des informations de résolution des problèmes liés aux questions courantes relatives à Azure Load Balancer. Lorsque la connectivité de l’équilibreur de charge n’est pas disponible, les symptômes les plus courants sont les suivants : 
-- Les machines virtuelles situées derrière l’équilibreur de charge ne répondent pas aux sondes d’intégrité 
-- Les machines virtuelles situées derrière l’équilibreur de charge ne répondent pas au trafic sur le port configuré
+Cette page contient des informations de résolution des problèmes liés aux questions courantes relatives à Azure Load Balancer. Lors de la connectivité d’équilibrage de charge de hello n’est pas disponible, les symptômes les plus courants hello sont les suivantes : 
+- Machines virtuelles derrière un équilibreur de charge ne répondent pas toohealth sondes de hello 
+- Machines virtuelles derrière un équilibreur de charge de hello ne répondent pas toohello du trafic sur le port hello configuré
 
-## <a name="symptom-vms-behind-the-load-balancer-are-not-responding-to-health-probes"></a>Symptôme : les machines virtuelles situées derrière l’équilibreur de charge ne répondent pas aux sondes d’intégrité
-Pour que les serveurs principaux participent au jeu d’équilibrage de charge, ils doivent réussir la vérification de la sonde. Pour plus d’informations sur les sondes d’intégrité, consultez la page [Comprendre les sondes de l’équilibrage de charge](load-balancer-custom-probe-overview.md). 
+## <a name="symptom-vms-behind-hello-load-balancer-are-not-responding-toohealth-probes"></a>Symptôme : les machines virtuelles derrière un équilibreur de charge de hello ne répondent pas toohealth sondes
+Pour hello tooparticipate de serveurs principaux dans le jeu d’équilibrage de charge de hello, ils doivent passer hello sonde vérification. Pour plus d’informations sur les sondes d’intégrité, consultez la page [Comprendre les sondes de l’équilibrage de charge](load-balancer-custom-probe-overview.md). 
 
-Les machines virtuelles du pool principal de l’équilibreur de charge peuvent ne pas répondre aux sondes en raison des raisons suivantes : 
+pool principal d’équilibreur de charge Hello machines virtuelles ne répond pas toohello sondes tooany échéance Hello suivant raisons : 
 - Une machine virtuelle du pool principal de l’équilibreur de charge est défectueuse 
-- Une machine virtuelle du pool principal de l’équilibreur de charge n’écoute pas sur le port de la sonde 
-- Un pare-feu ou un groupe de sécurité réseau bloque le port sur les machines virtuelles du pool principal de l’équilibreur de charge 
+- Machine virtuelle n’écoute pas sur le port de la sonde hello pool principal d’équilibreurs de charge 
+- Un pare-feu ou un groupe de sécurité réseau bloque port hello hello pool principal d’équilibreur de charge machines virtuelles 
 - Autres erreurs de configuration de l’équilibreur de charge
 
 ### <a name="cause-1-load-balancer-backend-pool-vm-is-unhealthy"></a>Cause 1 : une machine virtuelle du pool principal de l’équilibreur de charge est défectueuse 
 
 **Validation et résolution**
 
-Pour résoudre ce problème, connectez-vous aux machines virtuelles participant et vérifiez si l’état de la machine virtuelle est sain et si elle peut répondre à la commande **PsPing** ou **TCPing** d’une autre machine virtuelle du pool. Si la machine virtuelle est défectueuse ou si elle ne peut pas répondre à la sonde, vous devez corriger le problème et rétablir la machine virtuelle à un état sain pour qu’elle puisse faire partie de l’équilibrage de charge.
+tooresolve ce problème, connectez-vous à toohello participant à des machines virtuelles et vérifiez si hello état des ordinateurs virtuels est sain et peut répondre trop**PsPing** ou **TCPing** à partir d’une autre machine virtuelle dans le pool de hello. Si hello machine virtuelle est défectueux ou Impossible toorespond toohello sonde, vous devez résoudre le problème de hello et obtenir hello VM sauvegarder l’état intègre tooa avant de pouvoir faire partie de l’équilibrage de charge.
 
-### <a name="cause-2-load-balancer-backend-pool-vm-is-not-listening-on-the-probe-port"></a>Cause 2 : une machine virtuelle du pool principal de l’équilibreur de charge n’écoute pas sur le port de la sonde
-Si la machine virtuelle est saine, mais ne répond pas à la sonde, il se peut que le port de la sonde ne soit pas ouvert sur la machine virtuelle participant ou que la machine virtuelle n’écoute pas sur ce port.
+### <a name="cause-2-load-balancer-backend-pool-vm-is-not-listening-on-hello-probe-port"></a>Cause 2 : Le pool principal d’équilibreur de charge machine virtuelle n’écoute pas sur le port de la sonde hello
+Si hello machine virtuelle est intègre, mais ne répond pas toohello sonde, une des raisons peut-être que port de la sonde hello n’est pas ouvert sur hello participant à la machine virtuelle, ou hello VM n’est pas à l’écoute sur ce port.
 
 **Validation et résolution**
 
-1. Connectez-vous à la machine virtuelle principale. 
-2. Ouvrez une invite de commandes et exécutez la commande suivante pour vérifier qu’une application écoute sur le port de la sonde :   
+1. Le journal dans le back-end toohello machine virtuelle. 
+2. Ouvrez une invite de commandes et exécutez hello suivant toovalidate de commande est une application qui écoute sur le port de la sonde hello :   
             netstat -an
-3. Si l’état du port indiqué n’est pas **ÉCOUTE**, configurez le port approprié. 
+3. Si l’état du port hello n’est pas répertorié comme **écoute**, configurer le port approprié de hello. 
 4. Vous pouvez également sélectionner un autre port, qui indique **ÉCOUTE**, et mettre à jour en conséquence la configuration de l’équilibreur de charge.              
 
-###<a name="cause-3-firewall-or-a-network-security-group-is-blocking-the-port-on-the-load-balancer-backend-pool-vms"></a>Cause 3 : un pare-feu ou un groupe de sécurité réseau bloque le port sur les machines virtuelles du pool principal de l’équilibreur de charge  
-Si le pare-feu sur la machine virtuelle bloque le port de la sonde, ou un ou plusieurs groupes de sécurité réseau configurés sur le sous-réseau ou sur la machine virtuelle, ou n’autorise pas la sonde à atteindre le port, la machine virtuelle est incapable de répondre à la sonde d’intégrité.          
+###<a name="cause-3-firewall-or-a-network-security-group-is-blocking-hello-port-on-hello-load-balancer-backend-pool-vms"></a>Cause 3 : Un pare-feu ou un groupe de sécurité réseau bloque port hello sur le pool principal équilibreurs de charge hello machines virtuelles  
+Si le pare-feu hello sur hello que VM bloque port de la sonde hello ou un ou plusieurs groupes de sécurité réseau configurés sur le sous-réseau de hello ou hello machine virtuelle, n’autorise pas de port de hello sonde tooreach hello, hello machine virtuelle est sonde de contrôle d’intégrité toohello toorespond impossible.          
 
 **Validation et résolution**
 
-* Si le pare-feu est activé, vérifiez s’il est configuré pour autoriser le port de la sonde. Si tel n’est pas le cas, configurez le pare-feu pour autoriser le trafic sur le port de la sonde, puis procédez à un nouveau test. 
-* Dans la liste des groupes de sécurité réseau, vérifiez si le trafic entrant ou sortant sur le port de la sonde subit des interférences. 
-* Vérifiez également si une règle **Refuser tout** des groupes de sécurité réseau sur la carte d’interface réseau de la machine virtuelle ou du sous-réseau a une priorité supérieure à celle de la règle par défaut qui autorise les sondes et le trafic de l’équilibreur de charge (les groupes de sécurité réseau doivent autoriser l’adresse IP 168.63.129.16 de l’équilibreur de charge). 
-* Si l’une de ces règles bloque le trafic de la sonde, supprimez et reconfigurez les règles pour autoriser le trafic de la sonde.  
-* Vérifiez si la machine virtuelle répond à présent aux sondes d’intégrité. 
+* Si le pare-feu hello est activé, vérifiez s’il est configuré port de la sonde tooallow hello. Si ce n’est pas le cas, configurez le trafic de hello pare-feu tooallow sur le port de la sonde hello et testez à nouveau. 
+* À partir de la liste de hello des groupes de sécurité réseau, vérifiez si le trafic entrant ou sortant hello sur le port de la sonde hello interférence. 
+* En outre, vérifiez si un **Deny All** groupes de sécurité réseau de règle sur hello NIC de machine virtuelle de hello ou hello sous-réseau qui a une priorité plus élevée que la règle par défaut hello qui permet à trafic et des sondes d’équilibrage de charge (groupes de sécurité réseau doivent autoriser IP d’équilibrage de charge de 168.63.129.16). 
+* Si une de ces règles bloquent le trafic de sonde hello, supprimer et reconfigurer le trafic de sondes hello règles tooallow hello.  
+* Testez si hello machine virtuelle a démarré maintenant répondre le contrôle d’intégrité toohello sondes. 
 
 ### <a name="cause-4-other-misconfigurations-in-load-balancer"></a>Cause 4 : autres erreurs de configuration de l’équilibreur de charge
-Si toutes les causes précédentes semblent vérifiées et résolues et si la machine virtuelle principale ne répond toujours pas à la sonde d’intégrité, testez manuellement la connectivité, puis collectez des traces pour comprendre la connectivité.
+Si tous les hello causes précédents semblent toobe validé et résolus correctement et le serveur principal de hello VM toujours ne pas répondre toohello sonde de contrôle d’intégrité, puis manuellement tester la connectivité et collecter une connectivité de hello toounderstand traces.
 
 **Validation et résolution**
 
-* Utilisez **Psping** à partir d’une des autres machines virtuelles dans le réseau virtuel pour tester la réponse du port de la sonde (exemple : .\psping.exe -t 10.0.0.4:3389) et enregistrez les résultats. 
-* Utilisez **TCPing** à partir d’une des autres machines virtuelles dans le réseau virtuel pour tester la réponse du port de la sonde (exemple : .\tcping.exe 10.0.0.4 3389) et enregistrez les résultats. 
+* Utilisez **Psping** parmi hello autres machines virtuelles dans hello réponse de port de réseau virtuel tootest hello sonde (exemple :.\psping.exe -t 10.0.0.4:3389) et enregistrez les résultats. 
+* Utilisez **TCPing** parmi hello autres machines virtuelles dans hello réponse de port de réseau virtuel tootest hello sonde (exemple :.\tcping.exe 10.0.0.4 3389) et enregistrez les résultats. 
 * Si aucune réponse n’est reçue dans ces tests ping,
-    - exécutez une trace Netsh simultanée sur la machine virtuelle du pool principal cible et une autre machine virtuelle de test à partir du même réseau virtuel. À présent, exécutez un test PsPing pendant un certain temps, collectez des traces réseau, puis arrêtez le test. 
-    - Analysez la capture du réseau et vérifiez que des paquets entrants et sortants sont associés à la requête ping. 
-        - Si aucun paquet entrant n’est observé sur la machine virtuelle du pool principal, il se peut qu’une erreur de configuration des groupes de sécurité réseau ou UDR bloque le trafic. 
-        - Si aucun paquet sortant n’est observé sur la machine virtuelle du pool principal, celle-ci doit être vérifiée pour y rechercher les problèmes non liés (par exemple, application bloquant le port de la sonde). 
-    - Vérifiez si les paquets de la sonde sont contraints d’atteindre une autre destination (probablement via les paramètres UDR) avant l’équilibreur de charge. Ce faisant, le trafic peut ne jamais atteindre la machine virtuelle principale. 
-* Modifiez le type de sonde (par exemple, remplacez HTTP par TCP) et configurez le port correspondant dans les listes de contrôle d’accès (ACL) des groupes de sécurité réseau et le pare-feu pour vérifier si le problème est lié à la configuration de la réponse de la sonde. Pour plus d’informations sur la configuration de la sonde d’intégrité, consultez la page [Endpoint Load Balancing health probe configuration (Configuration d’une sonde d’intégrité pour l’équilibrage de charge des points de terminaison)](https://blogs.msdn.microsoft.com/mast/2016/01/26/endpoint-load-balancing-heath-probe-configuration-details/).
+    - Exécuter un simultanées Netsh trace sur le pool principal de cible hello machine virtuelle et une autre machine virtuelle de test à partir de hello même réseau virtuel. Maintenant, exécutez un test PsPing pendant un certain temps, collecter des traces réseau, puis arrêter le test de hello. 
+    - Analyser la capture de réseau hello et s’il existe deux requête ping de toohello connexes paquets entrants et sortants. 
+        - Si aucun les paquets entrants ne sont observées sur le pool principal d’hello machine virtuelle, il est potentiellement un groupe de sécurité réseau ou UDR mauvaise configuration bloquer hello le trafic. 
+        - Si aucun les paquets sortants ne sont observées sur le pool principal d’hello VM, hello machine virtuelle doit toobe activée pour tous les problèmes non liées (par eample, port de la sonde Application blocage hello). 
+    - Vérifier si les paquets hello sonde sont destination tooanother forcé (probablement via les paramètres de UDR) avant d’atteindre l’équilibrage de charge hello. Cela peut entraîner hello trafic toonever portée hello principal machine virtuelle. 
+* Modifier le type de sonde hello (par exemple, HTTP tooTCP) et configurer le port correspondant de hello dans les listes ACL des groupes de sécurité réseau et pare-feu toovalidate si hello problème avec la configuration de hello de réponse de sonde. Pour plus d’informations sur la configuration de la sonde d’intégrité, consultez la page [Endpoint Load Balancing health probe configuration (Configuration d’une sonde d’intégrité pour l’équilibrage de charge des points de terminaison)](https://blogs.msdn.microsoft.com/mast/2016/01/26/endpoint-load-balancing-heath-probe-configuration-details/).
 
-## <a name="symptom-vms-behind-load-balancer-are-not-responding-to-traffic-on-the-configured-data-port"></a>Symptôme : les machines virtuelles situées derrière l’équilibreur de charge ne répondent pas au trafic sur le port de données configuré
+## <a name="symptom-vms-behind-load-balancer-are-not-responding-tootraffic-on-hello-configured-data-port"></a>Symptôme : les machines virtuelles derrière un équilibreur de charge ne répondent pas tootraffic sur le port de données hello configuré
 
-Si une machine virtuelle d’un pool principal est répertoriée comme saine et répond aux sondes d’intégrité, mais ne participe toujours pas à l’équilibrage de charge ou ne répond pas au trafic de données, ce peut être dû à l’une des raisons suivantes : 
-* Une machine virtuelle du pool principal de l’équilibreur de charge n’écoute pas sur le port de données 
-* Un groupe de sécurité réseau bloque le port sur la machine virtuelle du pool principal de l’équilibreur de charge  
-* Accès à l’équilibreur de charge à partir des mêmes machine virtuelle et carte d’interface réseau 
-* Accès à l’adresse IP virtuelle de l’équilibreur de charge Internet à partir de la machine virtuelle du pool principal de l’équilibreur de charge 
+Si un pool principal d’ordinateur virtuel est répertorié comme sain et répond toohello les sondes d’intégrité, mais ne participe pas toujours à l’équilibrage de charge de hello ou ne répond pas toohello le trafic des données, il peut être dû tooany Hello suivant raisons : 
+* Pool principal d’équilibrage de la que machine virtuelle n’est pas à l’écoute sur le port de données hello de charge 
+* Groupe de sécurité réseau bloque le port hello hello pool principal d’équilibreur de charge machine virtuelle  
+* Équilibrage de charge à partir de l’accès à hello hello même machine virtuelle et la carte réseau 
+* L’accès à hello Internet VIP d’équilibrage de charge à partir de hello participant à la machine virtuelle pool principal d’équilibreur de charge 
 
-### <a name="cause-1-load-balancer-backend-pool-vm-is-not-listening-on-the-data-port"></a>Cause 1 : une machine virtuelle du pool principal de l’équilibreur de charge n’écoute pas sur le port de données 
-Si une machine virtuelle ne répond pas au trafic de données, il se peut que le port cible ne soit pas ouvert sur la machine virtuelle participant ou que la machine virtuelle n’écoute pas sur ce port. 
+### <a name="cause-1-load-balancer-backend-pool-vm-is-not-listening-on-hello-data-port"></a>Cause 1 : Le pool principal d’équilibreur de charge VM n’écoute pas sur le port de données hello 
+Si une machine virtuelle ne répond pas toohello le trafic des données, il est peut-être parce que port cible de hello n’est pas ouvert sur hello participant à la machine virtuelle ou hello VM n’est pas à l’écoute sur ce port. 
 
 **Validation et résolution**
 
-1. Connectez-vous à la machine virtuelle principale. 
-2. Ouvrez une invite de commandes et exécutez la commande suivante pour vérifier qu’une application écoute sur le port de données :  
+1. Le journal dans le back-end toohello machine virtuelle. 
+2. Ouvrez une invite de commandes et exécutez hello suivant toovalidate de commande est une application qui écoute sur le port de données hello :  
             netstat -an 
-3. Si l’état du port indiqué n’est pas « ÉCOUTE », configurez le port d’écoute approprié. 
-4. Si l’état du port est Écoute, recherchez dans l’application cible sur ce port des problèmes possibles. 
+3. Si le port de hello n’est pas répertorié avec l’état « Écoute », de configurer le port d’écoute approprié de hello 
+4. Si le port de hello est marqué comme à l’écoute, puis vérifiez application cible de hello sur ce port pour les problèmes possibles. 
 
-### <a name="cause-2-network-security-group-is-blocking-the-port-on-the-load-balancer-backend-pool-vm"></a>Cause 2 : un groupe de sécurité réseau bloque le port sur la machine virtuelle du pool principal de l’équilibreur de charge  
+### <a name="cause-2-network-security-group-is-blocking-hello-port-on-hello-load-balancer-backend-pool-vm"></a>Cause 2 : Groupe de sécurité réseau bloque port hello hello pool principal d’équilibreur de charge machine virtuelle  
 
-Si un ou plusieurs groupes de sécurité réseau configurés sur le sous-réseau ou sur la machine virtuelle bloquent l’adresse IP source ou le port, alors la machine virtuelle ne peut pas répondre.
+Si un ou plusieurs groupes de sécurité configurés sur le sous-réseau de hello ou hello machine virtuelle du réseau, bloque hello l’adresse IP source ou le port, puis hello machine virtuelle est toorespond impossible.
 
-* Répertoriez les groupes de sécurité réseau configurés sur la machine virtuelle du pool principal. Pour plus d'informations, consultez les pages suivantes :
-    -  [Gérer les groupes de sécurité réseau à l’aide du portail Azure](../virtual-network/virtual-network-manage-nsg-arm-portal.md)
+* Liste des groupes de sécurité réseau hello configurés sur le back-end hello machine virtuelle. Pour plus d'informations, consultez les pages suivantes :
+    -  [Gérer les groupes de sécurité réseau à l’aide de hello portail](../virtual-network/virtual-network-manage-nsg-arm-portal.md)
     -  [Gérer des groupes de sécurité réseau à l’aide de PowerShell](../virtual-network/virtual-network-manage-nsg-arm-ps.md)
-* Dans la liste des groupes de sécurité réseau, vérifiez si :
-    - le trafic entrant ou sortant sur le port de données subit des interférences ; 
-    - une règle **Refuser tout** des groupes de sécurité réseau sur la carte d’interface réseau de la machine virtuelle ou du sous-réseau a une priorité supérieure à celle de la règle par défaut qui autorise les sondes et le trafic de l’équilibreur de charge (les groupes de sécurité réseau doivent autoriser l’adresse IP 168.63.129.16 de l’équilibreur de charge qui correspond au port de la sonde). 
-* Si l’une des règles bloque le trafic, supprimez et reconfigurez ces règles pour autoriser le trafic de données.  
-* Vérifiez si la machine virtuelle répond à présent aux sondes d’intégrité.
+* À partir de la liste de hello des groupes de sécurité réseau, vérifiez si :
+    - le trafic entrant ou sortant Hello sur le port de données hello a interférence. 
+    - un **Deny All** règle de groupe de sécurité réseau sur hello carte réseau du sous-réseau de machine virtuelle ou hello hello qui a une priorité plus élevée à cette règle par défaut hello qui permet des sondes d’équilibrage de charge et le trafic (groupes de sécurité réseau doivent autoriser IP d’équilibrage de charge de 168.63.129.16, qui est le port de la sonde) 
+* Si une des règles de hello bloquent le trafic de hello, supprimer et reconfigurer ces le trafic de données règles tooallow hello.  
+* Testez si hello machine virtuelle a démarré maintenant les sondes d’intégrité de toohello toorespond.
 
-### <a name="cause-3-accessing-the-load-balancer-from-the-same-vm-and-network-interface"></a>Cause 3 : accès à l’équilibreur de charge à partir des mêmes machine virtuelle et interface réseau 
+### <a name="cause-3-accessing-hello-load-balancer-from-hello-same-vm-and-network-interface"></a>Cause 3 : L’accès à hello équilibrage de charge à partir de hello même interface de machine virtuelle et réseau 
 
-Si l’application hébergée sur la machine virtuelle principale d’un équilibreur de charge essaie d’accéder à une autre application hébergée dans la même machine virtuelle principale via la même interface réseau, ce scénario n’est pas pris en charge et échoue. 
+Si votre application hébergée dans le service principal hello machine virtuelle d’un équilibreur de charge essaie tooaccess une autre application hébergée dans hello principal même machine virtuelle sur hello même Interface réseau, il correspond à un scénario non pris en charge et échouera. 
 
-**Résolution** : vous pouvez résoudre ce problème via l’une des méthodes suivantes :
+**Résolution** vous pouvez résoudre ce problème via l’une des méthodes suivantes de hello :
 * Configurez des machines virtuelles du pool principal distinctes par application. 
-* Configurez l’application dans les machines virtuelles à double carte d’interface réseau afin que chaque application utilise sa propre interface réseau et adresse IP. 
+* Configurer application hello dans les deux machines virtuelles de carte réseau pour chaque application a été à l’aide de sa propre interface réseau et l’adresse IP. 
 
-### <a name="cause-4-accessing-the-internal-load-balancer-vip-from-the-participating-load-balancer-backend-pool-vm"></a>Cause 4 : accès à l’adresse IP virtuelle de l’équilibreur de charge interne à partir de la machine virtuelle participante du pool principal de l’équilibreur de charge
+### <a name="cause-4-accessing-hello-internal-load-balancer-vip-from-hello-participating-load-balancer-backend-pool-vm"></a>Cause 4 : Accédez à hello VIP d’équilibrage de charge interne depuis hello participant à la machine virtuelle pool principal d’équilibreur de charge
 
-Si une adresse IP virtuelle de l’équilibreur de charge interne est configurée dans un réseau virtuel et que l’une des machines virtuelles principales participantes essaie d’y accéder, cela entraîne une défaillance. Ce scénario n’est pas pris en charge.
-**Résolution** : évaluez Application Gateway ou d’autres proxys (par exemple, nginx ou haproxy) pour prendre en charge ce type de scénario. Pour plus d’informations sur Application Gateway, consultez la page [Vue d’ensemble de la passerelle Application Gateway](../application-gateway/application-gateway-introduction.md).
+Si une adresse IP virtuelle d’équilibrage de charge interne est configuré à l’intérieur d’un réseau virtuel, et tente d’un des principaux de participant hello machines virtuelles tooaccess hello interne VIP d’équilibrage de charge, qui entraîne l’échec. Ce scénario n’est pas pris en charge.
+**Résolution** évaluer la passerelle d’Application ou d’autres toosupport proxy (par exemple, nginx ou haproxy) ce type de scénario. Pour plus d’informations sur Application Gateway, consultez la page [Vue d’ensemble de la passerelle Application Gateway](../application-gateway/application-gateway-introduction.md).
 
 ## <a name="additional-network-captures"></a>Captures de réseau supplémentaires
-Si vous décidez d’ouvrir un dossier de support, collectez les informations suivantes pour accélérer la résolution du problème. Choisissez une machine virtuelle principale unique pour effectuer les tests suivants :
-- Utilisez Psping à partir d’une des machines virtuelles principales dans le réseau virtuel pour tester la réponse du port de la sonde (exemple : psping 10.0.0.4:3389) et enregistrez les résultats. 
-- Utilisez TCPing à partir d’une des machines virtuelles principales dans le réseau virtuel pour tester la réponse du port de la sonde (exemple : tcping 10.0.0.4:3389) et enregistrez les résultats.
-- Si aucune réponse n’est reçue dans ces tests Ping, exécutez une trace Netsh simultanée sur la machine virtuelle principale et la machine virtuelle de test du réseau virtuel tout en exécutant PsPing, puis arrêtez la trace Netsh. 
+Si vous décidez de tooopen un cas de support, collecter hello suivant des informations pour une résolution plus rapide. Choisissez un Bonjour tooperform de machine virtuelle unique principal suite de tests :
+- Utiliser Psping à partir d’un des principaux hello machines virtuelles au sein de la réponse de port de réseau virtuel tootest hello sonde de hello (exemple : psping 10.0.0.4:3389) et enregistrez les résultats. 
+- Utilisez TCPing à partir d’un des principaux hello machines virtuelles au sein de la réponse de port de réseau virtuel tootest hello sonde de hello (exemple : psping 10.0.0.4:3389) et enregistrez les résultats.
+- Si aucune réponse n’est reçu dans ces tests ping, exécuter une trace Netsh simultanée sur hello principal VM et hello machine virtuelle de test de réseau virtuel alors que vous exécutez PsPing puis arrêtez hello Netsh trace. 
   
 ## <a name="next-steps"></a>Étapes suivantes
 
-Si les étapes précédentes ne vous permettent pas de résoudre le problème, ouvrez un [ticket d’incident](https://azure.microsoft.com/support/options/).
+Si hello étapes précédentes ne résolvent pas hello problème, ouvrez un [ticket de support](https://azure.microsoft.com/support/options/).
 

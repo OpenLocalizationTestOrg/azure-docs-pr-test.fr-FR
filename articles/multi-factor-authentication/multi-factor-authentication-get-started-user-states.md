@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Azure Multi-Factor Authentication - État utilisateur"
+title: "aaaMicrosoft États d’utilisateur Azure multi-Factor Authentication"
 description: "En savoir plus sur l’état utilisateur dans Azure MFA."
 services: multi-factor-authentication
 documentationcenter: 
@@ -15,78 +15,78 @@ ms.date: 06/26/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: it-pro
-ms.openlocfilehash: 1869b7a4ef42536a3cd909ba2983ae0fe97185a9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: cf5b977b09d09330b7b3bc668abd79e602d62015
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-require-two-step-verification-for-a-user-or-group"></a>Comment exiger la vérification en deux étapes pour un utilisateur ou un groupe
+# <a name="how-toorequire-two-step-verification-for-a-user-or-group"></a>La vérification en deux étapes de toorequire pour un utilisateur ou un groupe
 
-Il existe deux approches pour exiger une vérification en deux étapes. La première option consiste à activer l’authentification Azure Multi-Factor Authentication (MFA) pour chaque utilisateur. En activant chaque utilisateur individuellement, celui-ci effectue toujours la vérification en deux étapes (à quelques exceptions près, comme lorsqu’ils se connectent à partir d’adresses IP approuvées ou si la fonctionnalité de mémorisation des appareils est activée). La seconde option consiste à définir une stratégie d’accès conditionnel qui requiert une vérification en deux étapes sous certaines conditions.
+Il existe deux approches pour exiger une vérification en deux étapes. Hello première option est tooenable chaque utilisateur pour Azure multi-Factor Authentication (MFA). Lorsque les utilisateurs sont activées individuellement, ils effectuent toujours la vérification en deux étapes (à quelques exceptions près, comme lorsqu’ils se connectent à partir d’adresses IP autorisées si hello mémorisés fonctionnalité de périphériques est mis sous tension). deuxième option de Hello est tooset une stratégie d’accès conditionnel qui requiert une vérification en deux étapes sous certaines conditions.
 
 >[!TIP] 
->Choisissez une de ces deux méthodes pour exiger la vérification en deux étapes, mais pas les deux. L’activation d’un utilisateur pour l’authentification multifacteur Azure remplace toutes les stratégies d’accès conditionnel.
+>Choisissez une de ces méthodes toorequire en deux étapes la vérification, pas les deux. L’activation d’un utilisateur pour l’authentification multifacteur Azure remplace toutes les stratégies d’accès conditionnel.
 
 ## <a name="which-option-is-right-for-you"></a>Choisir l’option qui vous convient
 
-**L’activation de l’authentification multifacteur Azure en modifiant les états des utilisateurs** est l’approche traditionnelle pour exiger une vérification en deux étapes. Elle fonctionne à la fois pour l’authentification Azure MFA dans le cloud et le serveur Azure MFA. Tous les utilisateurs que vous activez bénéficient de la même expérience, qui consiste à lancer la vérification en deux étapes chaque fois qu’ils se connectent. L’activation d’un utilisateur remplace toutes les stratégies d’accès conditionnel appliquées à cet utilisateur. 
+**L’activation de l’authentification Multifacteur Azure en modifiant des États utilisateur** est l’approche traditionnelle de hello pour exiger une vérification en deux étapes. Elle fonctionne pour les deux Azure MFA dans le cloud de hello et le serveur Azure MFA. Tous les utilisateurs de hello que vous activez ont hello même expérience, qui est une vérification en deux étapes tooperform chaque fois qu’ils se connectent. L’activation d’un utilisateur remplace toutes les stratégies d’accès conditionnel appliquées à cet utilisateur. 
 
-**L’activation de l’authentification multifacteur Azure avec une stratégie d’accès conditionnel** est une approche plus souple pour exiger une vérification en deux étapes. Cependant, elle fonctionne uniquement pour l’authentification multifacteur Azure dans le cloud, et l’accès conditionnel est une [fonctionnalité payante d’Azure Active Directory](https://www.microsoft.com/cloud-platform/azure-active-directory-features). Vous pouvez créer des stratégies d’accès conditionnel qui s’appliquent à des groupes et à des utilisateurs individuels. Vous pouvez appliquer davantage de restrictions aux groupes à haut risque par rapport aux groupes à faible risque, ou exiger la vérification en deux étapes uniquement pour les applications cloud à haut risque tout en ignorant celles à faible risque. 
+**L’activation de l’authentification multifacteur Azure avec une stratégie d’accès conditionnel** est une approche plus souple pour exiger une vérification en deux étapes. Il fonctionne toutefois, pour l’authentification Multifacteur Azure dans le cloud de hello, et l’accès conditionnel est un [payé la fonctionnalité d’Azure Active Directory](https://www.microsoft.com/cloud-platform/azure-active-directory-features). Vous pouvez créer des stratégies d’accès conditionnel qui s’appliquent toogroups, ainsi que des utilisateurs individuels. Vous pouvez appliquer davantage de restrictions aux groupes à haut risque par rapport aux groupes à faible risque, ou exiger la vérification en deux étapes uniquement pour les applications cloud à haut risque tout en ignorant celles à faible risque. 
 
-Ces deux options invitent les utilisateurs à s’inscrire à l’authentification multifacteur Azure la première fois qu’ils se connectent après l’activation de cette fonctionnalité. Elles fonctionnent également avec les paramètres configurables [Azure multi-Factor Authentication](multi-factor-authentication-whats-next.md)
+Ces deux options invite tooregister utilisateurs pourquoi de l’authentification multifacteur Azure première fois qu’ils se connectent après que les spécifications hello allumé. Les deux options fonctionnent également avec hello configurable [paramètres Azure multi-Factor Authentication](multi-factor-authentication-whats-next.md)
 
 ## <a name="enable-azure-mfa-by-changing-user-status"></a>Activer Azure MFA en modifiant l’état de l’utilisateur
 
-Les comptes d'utilisateur dans Azure Multi-Factor Authentication peuvent présenter les trois états suivants :
+Comptes d’utilisateur dans Azure multi-Factor Authentication ont hello suivant trois états distincts :
 
 | État | Description | Applications affectées (autres que des navigateurs) |
 |:---:|:---:|:---:|
-| Désactivé |État par défaut d’un nouvel utilisateur non inscrit dans l’authentification multifacteur Azure. |Non |
-| Activé |L’utilisateur a été inscrit dans l’authentification multifacteur Azure, mais n’a pas été enregistré. Il sera invité à s’inscrire la prochaine fois qu’il se connectera. |Non.  Ils continuent de fonctionner jusqu’à ce que le processus d’inscription soit terminé. |
-| Appliquée |L’utilisateur a été inscrit et a terminé le processus d’inscription pour utiliser l’authentification multifacteur Azure. |Oui.  Les applications requièrent des mots de passe d'application. |
+| Désactivé |état par défaut de Hello pour un nouvel utilisateur n'inscrit pas Azure multi-Factor Authentication (MFA). |Non |
+| Activé |utilisateur de Hello a été inscrit dans Azure MFA, mais n’a pas été inscrit. Elles seront demandées tooregister hello leur prochaine dans que connexion. |Non.  Ils continuent toowork jusqu'à ce que le processus d’inscription de hello est terminée. |
+| Appliquée |utilisateur de Hello a été inscrit et terminée le processus d’inscription de hello pour Azure MFA. |Oui.  Les applications requièrent des mots de passe d'application. |
 
-L’état d’un utilisateur indique si un administrateur l’a inscrit dans l’authentification multifacteur Azure et s’il a terminé le processus d’inscription.
+État de l’utilisateur reflète si un administrateur a les inscrit dans Azure MFA, et si elles s’est terminée de processus d’inscription de hello.
 
-Tous les utilisateurs commencent avec l’état *désactivé*. Lorsque vous inscrivez des utilisateurs dans l’authentification multifacteur Azure, leur état devient *activé*. Lorsque les utilisateurs activés se connectent et terminent le processus d’inscription, leur état passe à *appliquée*.  
+Tous les utilisateurs commencent avec l’état *désactivé*. Lorsque vous inscrivez des utilisateurs dans l’authentification multifacteur Azure, leur état devient *activé*. Lorsque les utilisateurs activés se connectent et terminer le processus d’inscription de hello, leur état change également*appliquée*.  
 
-### <a name="view-the-status-for-a-user"></a>Afficher l’état d’un utilisateur
+### <a name="view-hello-status-for-a-user"></a>Afficher l’état hello pour un utilisateur
 
-Pour accéder à la page où vous pouvez afficher et gérer les états des utilisateurs, procédez comme suit :
+Hello utilisation suivant étapes tooaccess hello page où vous pouvez afficher et gérer des États utilisateur :
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com) en tant qu’administrateur.
-2. Accédez à **Azure Active Directory** > **Utilisateurs et groupes** > **Tous les utilisateurs**.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) en tant qu’administrateur.
+2. Accédez trop**Azure Active Directory** > **utilisateurs et groupes** > **tous les utilisateurs**.
 3. Sélectionnez **Multi-Factor Authentication**.
    ![Sélectionnez Multi-Factor Authentication](./media/multi-factor-authentication-get-started-user-states/selectmfa.png)
-4. Une nouvelle page, qui affiche les états de l’utilisateur, s’ouvre.
+4. Une nouvelle page qui affiche les États utilisateur hello, s’ouvre.
    ![État utilisateur pour l’authentification multifacteur - capture d’écran](./media/multi-factor-authentication-get-started-user-states/userstate1.png)
 
-### <a name="change-the-status-for-a-user"></a>Modifier l’état d’un utilisateur
+### <a name="change-hello-status-for-a-user"></a>Modifier l’état hello pour un utilisateur
 
-1. Utilisez les étapes précédentes pour accéder à la page des utilisateurs de l’authentification multifacteur.
-2. Recherchez l’utilisateur que vous souhaitez activer pour l’authentification multifacteur Azure. Vous devrez peut-être modifier l'affichage en haut de la page. 
+1. Utilisez hello précédant la page users d’étapes tooget toohello l’authentification multifacteur.
+2. Rechercher un utilisateur hello que vous souhaitez tooenable pour Azure MFA. Vous devrez peut-être toochange hello vue haut hello. 
    ![Rechercher un utilisateur - capture d’écran](./media/multi-factor-authentication-get-started-cloud/enable1.png)
-3. Cochez la case en regard du nom de l’utilisateur.
-4. À droite, sous les étapes rapides, cliquez sur **Activer** ou **Désactiver**.
+3. Vérifiez le nom de tootheir suivant hello boîte.
+4. Sur la droite, sous étapes rapides de hello, choisissez **activer** ou **désactiver**.
    ![Activer l’utilisateur sélectionné - capture d’écran](./media/multi-factor-authentication-get-started-cloud/user1.png)
 
    >[!TIP]
-   >Les utilisateurs *activés* basculent automatiquement vers l’état *Appliquée* quand ils s’inscrivent à Azure MFA. Vous ne devez pas définir manuellement l’état de l’utilisateur sur Appliquée. 
+   >*Activé* les utilisateurs basculent automatiquement trop*appliquée* quand ils s’inscrivent pour Azure MFA. Vous ne devez pas modifier manuellement hello utilisateur état tooenforced. 
 
-5. Confirmez votre sélection dans la fenêtre contextuelle qui s’ouvre. 
+5. Confirmez votre sélection dans la fenêtre contextuelle hello qui s’ouvre. 
 
-Après avoir activé des utilisateurs, vous devez les en avertir par e-mail. Informez-les qu’ils seront invités à s’inscrire la prochaine fois qu’ils se connectent. En outre, si votre organisation utilise des applications sans navigateur qui ne prennent pas en charge l’authentification moderne, vos utilisateurs devront créer des mots de passe d’application. Vous pouvez également inclure un lien vers notre [guide de l’utilisateur final sur l’authentification multifacteur Azure](./end-user/multi-factor-authentication-end-user.md) pour les aider à commencer.
+Après avoir activé des utilisateurs, vous devez les en avertir par e-mail. Indiquez-leur qu’ils sont demandées tooregister hello leur prochaine dans que connexion. En outre, si votre organisation utilise des applications non-Web qui ne prennent pas en charge l’authentification moderne, ils devez toocreate mots de passe d’application. Vous pouvez également inclure un lien de tooour [guide de l’utilisateur final de l’authentification Multifacteur Azure](./end-user/multi-factor-authentication-end-user.md) toohelp leur prise en main.
 
 ### <a name="use-powershell"></a>Utiliser PowerShell
-Pour modifier l’état d’état utilisateur avec [Azure AD PowerShell](/powershell/azure/overview), modifiez `$st.State`. Il existe trois états possibles :
+utilisation de l’état de toochange hello utilisateur état [PowerShell Azure AD](/powershell/azure/overview), modifier `$st.State`. Il existe trois états possibles :
 
 * Activé
 * Appliquée
 * Désactivé  
 
-Ne basculez pas les utilisateurs directement vers l’état *Appliquée*. Les applications sans navigateur cesseront de fonctionner, car l’utilisateur n’a pas effectué l’enregistrement MFA et obtenu un [mot de passe d’application](multi-factor-authentication-whats-next.md#app-passwords). 
+Ne déplacez pas les utilisateurs directement toohello *appliqué* état. Applications sans navigateur cessera de fonctionner, car l’utilisateur de hello n'a pas fait l’objet d’inscription de l’authentification Multifacteur et obtenu une [mot de passe](multi-factor-authentication-whats-next.md#app-passwords). 
 
-PowerShell est une bonne option si vous devez activer de nombreux utilisateurs à la fois. Créez un script PowerShell qui effectue une itération sur une liste d’utilisateurs et active ces utilisateurs :
+À l’aide de PowerShell d’est une bonne option lorsque vous avez besoin toobulk permettant aux utilisateurs. Créez un script PowerShell qui effectue une itération sur une liste d’utilisateurs et active ces utilisateurs :
 
         $st = New-Object -TypeName Microsoft.Online.Administration.StrongAuthenticationRequirement
         $st.RelyingParty = "*"
@@ -108,20 +108,20 @@ Voici un exemple :
 
 ## <a name="enable-azure-mfa-with-a-conditional-access-policy"></a>Activer Azure MFA avec une stratégie d’accès conditionnel
 
-L’accès conditionnel est une fonctionnalité payante d’Azure Active Directory qui offre de nombreuses options de configuration. Ces étapes expliquent comment créer une stratégie. Pour plus d’informations, consultez [Accès conditionnel dans Azure Active Directory](../active-directory/active-directory-conditional-access-azure-portal.md).
+L’accès conditionnel est une fonctionnalité payante d’Azure Active Directory qui offre de nombreuses options de configuration. Ces étapes guident monodirectionnelle toocreate une stratégie. Pour plus d’informations, consultez [Accès conditionnel dans Azure Active Directory](../active-directory/active-directory-conditional-access-azure-portal.md).
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com) en tant qu’administrateur.
-2. Accédez à **Azure Active Directory** > **Accès conditionnel**.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) en tant qu’administrateur.
+2. Accédez trop**Azure Active Directory** > **accès conditionnel**.
 3. Sélectionnez **Nouvelle stratégie**.
-4. Sous **Affectations**, sélectionnez **Utilisateurs et groupes**. Utilisez les onglets **Include** et **Exclure** pour choisir les utilisateurs et groupes qui seront gérés par la stratégie.
-5. Sous **Affectations**, sélectionnez **Applications cloud**. Choisissez d’inclure **Toutes les applications cloud**.
+4. Sous **Affectations**, sélectionnez **Utilisateurs et groupes**. Hello d’utilisation **Include** et **exclure** onglets toospecify quels utilisateurs et groupes qui est géré par la stratégie de hello.
+5. Sous **Affectations**, sélectionnez **Applications cloud**. Choisissez tooinclude **toutes les applications de cloud**.
 6. Sous **Contrôles d’accès**, sélectionnez **Accorder**. Choisissez **Exiger une authentification multifacteur**.
-7. Définissez l’option **Activer la stratégie** sur **On** (activée) puis sélectionnez **Enregistrer**.
+7. Activer **activer la stratégie** trop**sur** , puis sélectionnez **enregistrer**.
 
-Les autres options de la stratégie d’accès conditionnel vous permettent de spécifier exactement le moment où la vérification en deux étapes doit être requise. Par exemple, vous pouvez créer la stratégie suivante : lorsque des prestataires essaient d’accéder à notre app d’approvisionnement à partir de réseaux non approuvés et à l’aide d’appareils non joints à un domaine, exiger la vérification en deux étapes. 
+Hello autres options dans la stratégie d’accès conditionnel hello permettent toospecify exactement lors de la vérification en deux étapes doit être requise. Par exemple, vous pouvez apporter une stratégie qui stipule : lors de sous-traitants tooaccess notre application d’approvisionnement des réseaux non approuvés sur les appareils qui ne sont pas joints au domaine, nécessitent la vérification en deux étapes. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Obtenir des conseils sur les [meilleures pratiques en matière d’accès conditionnel](../active-directory/active-directory-conditional-access-best-practices.md)
+- Obtenir des conseils sur hello [meilleures pratiques pour l’accès conditionnel](../active-directory/active-directory-conditional-access-best-practices.md)
 
 - Gérer les paramètres de l’authentification multifacteur pour [vos utilisateurs et leurs appareils](multi-factor-authentication-manage-users-and-devices.md)

@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory v2.0 : limites et restrictions du point de terminaison | Microsoft Docs"
-description: "Une liste des limitations et restrictions associées au point de terminaison v2.0 Azure AD."
+title: aaaAzure Active Directory v2.0 point de terminaison limitations et restrictions | Documents Microsoft
+description: Une liste des limitations et restrictions pour le point de terminaison v2.0 hello Azure AD.
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,102 +15,102 @@ ms.topic: article
 ms.date: 05/01/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 00a6749d00c6e66a957b0a89c6658511a1bafe4d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bcbb7239f1d117002d16ac23dca8f1feb13a9161
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="should-i-use-the-v20-endpoint"></a>Dois-je utiliser le point de terminaison v2.0 ?
-Quand vous créez des applications qui s’intègrent dans Azure Active Directory, vous devez déterminer si les protocoles d’authentification et le point de terminaison v2.0 répondent à vos besoins. Le point de terminaison d’origine d’Azure Active Directory est toujours intégralement pris en charge. À certains égards, il est plus riche en fonctionnalités que le point de terminaison v2.0. Toutefois, le point de terminaison v2.0 [présente des avantages significatifs](active-directory-v2-compare.md) pour les développeurs.
+# <a name="should-i-use-hello-v20-endpoint"></a>Point de terminaison hello v2.0 dois-je utiliser ?
+Lorsque vous générez des applications qui s’intègrent à Azure Active Directory, vous devez toodecide si les protocoles d’authentification et le point de terminaison v2.0 hello répondent à vos besoins. Le point de terminaison d’origine d’Azure Active Directory est toujours intégralement pris en charge. À certains égards, il est plus riche en fonctionnalités que le point de terminaison v2.0. Toutefois, hello v2.0 le point de terminaison [présente des avantages significatifs](active-directory-v2-compare.md) pour les développeurs.
 
 Voici notre recommandation simplifiée pour les développeurs à ce stade :
 
-* Si vous devez prendre en charge des comptes personnels Microsoft dans votre application, utilisez le point de terminaison v2.0. Mais avant cela, tenez compte des limitations abordées dans cet article.
-* Si votre application ne doit prendre en charge que des comptes professionnels et scolaires Microsoft, n’utilisez pas le point de terminaison v2.0. Dans ce cas, consultez notre [guide de développement Azure AD](active-directory-developers-guide.md).
+* Si vous devez prendre en charge les comptes Microsoft personnels dans votre application, utilisez le point de terminaison hello v2.0. Mais avant de procéder, assurez-vous que vous comprenez les limitations hello que nous avons abordées dans cet article.
+* Si votre application doit uniquement toosupport travail de Microsoft et comptes d’établissement scolaire, n’utilisez pas de point de terminaison hello v2.0. Au lieu de cela, consultez tooour [guide du développeur Azure AD](active-directory-developers-guide.md).
 
-Au fil du temps, le point de terminaison v2.0 se développera et les restrictions répertoriées ici seront éliminées. Ainsi, vous n’aurez qu’à utiliser le point de terminaison v2.0. En attendant, cet article vous aide à déterminer si le point de terminaison v2.0 répond à vos besoins. Nous continuerons à mettre à jour cet article pour refléter l’état actuel du point de terminaison v2.0. Consultez-le régulièrement pour réévaluer vos besoins par rapport aux fonctionnalités de la version 2.0.
+Au fil du temps, point de terminaison hello v2.0 augmente les restrictions de hello tooeliminate répertoriées ici, afin que vous devez toujours point de terminaison toouse hello v2.0. Bonjour attendant, cet article est prévue toohelp vous déterminez si le point de terminaison de hello v2.0 vous convient. Nous continuerons à tooupdate cet état article tooreflect hello actuel du point de terminaison hello v2.0. Vérifiez à nouveau un tooreevaluate vos besoins par rapport aux fonctionnalités de la version 2.0.
 
-Si vous disposez d’une application associée à Azure AD qui ne recourt pas au point de terminaison v2.0, il n’est pas nécessaire de repartir de zéro. À l’avenir, nous vous fournirons un moyen d’utiliser vos applications Azure AD existantes avec le point de terminaison v2.0.
+Si vous avez une application Azure AD existante qui n’utilise pas de point de terminaison hello v2.0, il n’existe aucun toostart besoin à partir de zéro. Bonjour future, nous proposons un moyen vous toouse vos applications Azure AD existantes avec un point de terminaison hello v2.0.
 
 ## <a name="restrictions-on-app-types"></a>Restrictions concernant les types d’applications
-Actuellement, les types d’applications suivants ne sont pas pris en charge par le point de terminaison v2.0. Pour obtenir une description des types d’applications pris en charge, consultez [Types d’applications pour le point de terminaison Azure Active Directory v2.0](active-directory-v2-flows.md).
+Actuellement, hello types d’applications suivants ne sont pas pris en charge par le point de terminaison hello v2.0. Pour obtenir une description des types d’application pris en charge, consultez [types d’application pour le point de terminaison v2.0 hello Azure Active Directory](active-directory-v2-flows.md).
 
 ### <a name="standalone-web-apis"></a>API Web autonome
-Vous pouvez utiliser le point de terminaison v2.0 pour [générer une API web sécurisée avec OAuth 2.0](active-directory-v2-flows.md#web-apis). Toutefois, cette API web peut recevoir uniquement les jetons d’une application ayant le même ID d’application. Vous ne pouvez pas accéder à une API web à partir d’un client qui a un ID d’application différent. Ce client ne pourra pas demander ou obtenir d’autorisation d’accès à votre API web.
+Vous pouvez utiliser le point de terminaison de hello v2.0 trop[générer une API Web sécurisé avec OAuth 2.0](active-directory-v2-flows.md#web-apis). Toutefois, cette API Web peut recevoir des jetons uniquement à partir d’une application qui a hello même ID d’Application. Vous ne pouvez pas accéder à une API web à partir d’un client qui a un ID d’application différent. client de Hello ne seront pas être en mesure de toorequest ou obtenir des autorisations tooyour API Web.
 
-Pour voir comment créer une API web qui accepte des jetons d’un client ayant un ID d’application identique, consultez les exemples d’API web de point de terminaison v2.0 de la section [Prise en main](active-directory-appmodel-v2-overview.md#getting-started).
+toosee toobuild une API Web qui accepte les jetons à partir d’un client qui a hello même ID d’Application, voir hello exemples d’API Web de point de terminaison v2.0 dans notre [mise en route](active-directory-appmodel-v2-overview.md#getting-started) section.
 
 ## <a name="restrictions-on-app-registrations"></a>Restrictions sur les inscriptions d’application
-À l’heure actuelle, pour chaque application que vous souhaitez intégrer au point de terminaison v2.0, vous devez créer une inscription d’application dans le nouveau [portail d’inscription des applications Microsoft](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList). Les applications de compte Microsoft ou Azure AD existantes ne sont pas compatibles avec le point de terminaison v2.0. Les applications qui sont inscrites dans un portail autre que le portail d’inscription des applications ne sont pas compatibles avec le point de terminaison v2.0. À l’avenir, nous prévoyons de fournir un moyen d’utiliser des applications existantes en tant qu’applications v2.0. Cependant, il n’existe actuellement aucun chemin de migration permettant à une application existante de fonctionner avec le point de terminaison v2.0.
+Actuellement, pour chaque application que vous souhaitez toointegrate avec point de terminaison hello v2.0, vous devez créer un enregistrement d’application Bonjour [portail de l’enregistrement d’Application Microsoft](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList). AD Azure existant ou applications de compte Microsoft ne sont pas compatibles avec le point de terminaison hello v2.0. Les applications qui sont inscrits dans n’importe quel portail autre que hello portail de l’enregistrement d’Application ne sont pas compatibles avec le point de terminaison hello v2.0. Bonjour future, nous prévoyons de tooprovide un toouse de façon une application existante comme une application de la version 2.0. Actuellement, cependant, il n’est aucun chemin de migration pour un toowork d’application existant avec un point de terminaison hello v2.0.
 
-De plus, les inscriptions d’applications que vous créez dans le [portail d’inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) ont les caractéristiques suivantes :
+En outre, les inscriptions d’application que vous créez dans hello [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) ont hello suivant mises en garde :
 
 * Seuls deux secrets d’application sont autorisés par ID d’application.
-* Une application inscrite par un utilisateur dans un compte Microsoft personnel ne peut être affichée et gérée que par un compte de développeur. Elle ne peut pas être partagée entre plusieurs développeurs.  Si vous souhaitez partager votre inscription d’application avec plusieurs développeurs, vous pouvez créer l’application en vous connectant au portail d’inscription avec un compte Azure AD.
-* Il existe plusieurs restrictions quant au format de l’URI de redirection autorisé. Pour plus d’informations sur les URI de redirection, consultez la section suivante.
+* Une application inscrite par un utilisateur dans un compte Microsoft personnel ne peut être affichée et gérée que par un compte de développeur. Elle ne peut pas être partagée entre plusieurs développeurs.  Si vous souhaitez que tooshare votre inscription d’une application dans la liste de plusieurs développeurs, vous pouvez créer l’application hello en vous connectant au portail d’inscription hello avec un compte Azure AD.
+* Il existe plusieurs restrictions sur le format de hello de redirection de hello URI qui est autorisé. Pour plus d’informations sur l’URI de redirection, consultez la section suivante de hello.
 
 ## <a name="restrictions-on-redirect-uris"></a>Restrictions concernant les URI de redirection
-Actuellement, les applications inscrites dans le portail d’inscription des applications sont limitées à un jeu restreint de valeurs d’URI de redirection. L’URI de redirection pour les services et applications web doit commencer par le schéma `https`, et toutes les valeurs d’URI de redirection doivent partager un seul domaine DNS. Par exemple, vous ne pouvez pas inscrire une application web contenant l’un de ces URI de redirection :
+Actuellement, les applications qui sont inscrits dans hello portail de l’enregistrement d’Application sont ensemble restreint tooa limité de valeurs d’URI de redirection. Hello redirection URI pour les services et applications web doit commencer par le schéma de hello `https`, et toutes les valeurs d’URI de redirection doivent partager un seul domaine DNS. Par exemple, vous ne pouvez pas inscrire une application web contenant l’un de ces URI de redirection :
 
 `https://login-east.contoso.com`  
 `https://login-west.contoso.com`
 
-Le système d’inscription compare le nom DNS complet de l’URI de redirection existante au nom DNS de l’URI de redirection que vous ajoutez. La demande d’ajout du nom DNS échoue si l’une des conditions suivantes est remplie :  
+système d’enregistrement de Hello compare hello ensemble nom DNS de hello redirection URI toohello DNS nom existant de l’URI que vous ajoutez de la redirection hello. le nom DNS hello Hello demande tooadd échoue si une de hello conditions suivantes est vraie :  
 
-* Le nom DNS complet de la nouvelle URI de redirection ne correspond pas au nom DNS de l’URI de redirection existante.
-* Le nom DNS complet de la nouvelle URI de redirection n’est pas un sous-domaine de l’URI de redirection existante.
+* Hello ensemble nom DNS de l’URI de redirection de nouveau hello ne correspond pas nom DNS de hello de l’URI de redirection hello existant.
+* Hello ensemble nom DNS de l’URI de redirection de nouveau hello n’est pas un sous-domaine de l’URI de redirection hello existant.
 
-Par exemple, si l’application a cet URI de redirection :
+Par exemple, si l’application hello a cet URI de redirection :
 
 `https://login.contoso.com`
 
-Vous pouvez la compléter comme suit :
+Vous pouvez ajouter tooit, comme suit :
 
 `https://login.contoso.com/new`
 
-Dans ce cas, le nom DNS correspond exactement. Vous pouvez aussi définir l’URI suivant :
+Dans ce cas, le nom DNS de hello correspond exactement. Vous pouvez aussi définir l’URI suivant :
 
 `https://new.login.contoso.com`
 
-Dans ce cas, vous faites référence à un sous-domaine DNS de login.contoso.com. Si vous souhaitez disposer d’une application avec login-east.contoso.com et login-west.contoso.com en tant qu’URI de redirection, vous devez ajouter ces URI de redirection dans l’ordre suivant :
+Dans ce cas, vous faites référence sous-domaine DNS de tooa de login.contoso.com. Si vous souhaitez toohave une application ayant east.contoso.com de connexion et de connexion-west.contoso.com comme URI de redirection, vous devez ajouter que les URI de redirection dans cet ordre :
 
 `https://contoso.com`  
 `https://login-east.contoso.com`  
 `https://login-west.contoso.com`  
 
-Vous pouvez ajouter les deux derniers car il s’agit de sous-domaines du premier URI de redirection, contoso.com. Cette limitation sera supprimée dans une version ultérieure.
+Vous pouvez ajouter hello dernier deux car elles sont des sous-domaines de hello tout d’abord URI de redirection, contoso.com. Cette limitation sera supprimée dans une version ultérieure.
 
-Pour savoir comment inscrire une application dans le portail d’inscription des applications, consultez [Inscription d’une application avec le point de terminaison v2.0](active-directory-v2-app-registration.md).
+toolearn tooregister application Bonjour portail de l’enregistrement d’Application, voir [comment tooregister une application avec un point de terminaison hello v2.0](active-directory-v2-app-registration.md).
 
 ## <a name="restrictions-on-services-and-apis"></a>Restrictions concernant les services et API
-Actuellement, le point de terminaison v2.0 prend en charge la connexion de toute application inscrite dans le portail d’inscription des applications et figurant dans la liste des [flux d’authentification pris en charge](active-directory-v2-flows.md). Toutefois, ces applications peuvent obtenir des jetons d’accès OAuth 2.0 pour un ensemble très limité de ressources. Le point de terminaison v2.0 délivre des jetons d’accès uniquement pour :
+Actuellement, point de terminaison hello v2.0 prend en charge la connexion pour n’importe quelle application qui est inscrite dans hello portail de l’enregistrement d’Application, et qui se trouve dans la liste des hello [prise en charge des flux d’authentification](active-directory-v2-flows.md). Toutefois, ces applications peuvent obtenir des jetons d’accès OAuth 2.0 pour un ensemble très limité de ressources. problèmes de point de terminaison Hello v2.0 accéder uniquement pour les jetons :
 
-* L’application qui a demandé le jeton. Une application peut obtenir un jeton d’accès pour son propre compte, si l’application logique est composée de plusieurs composants ou niveaux. Pour voir ce scénario en action, consultez nos didacticiels [Prise en main](active-directory-appmodel-v2-overview.md#getting-started) .
-* La messagerie Outlook, le calendrier et les API REST de Contacts, qui se trouvent à l’adresse https://outlook.office.com. Pour savoir comment écrire une application qui accède à ces API, consultez les didacticiels de [Prise en main d’Office](https://www.msdn.com/office/office365/howto/authenticate-Office-365-APIs-using-v2).
-* Les API Microsoft Graph. Vous pouvez en savoir plus sur [Microsoft Graph](https://graph.microsoft.io) et les données qui vous sont accessibles.
+* application Hello qui a demandé le jeton de hello. Une application peut acquérir un jeton d’accès pour lui-même, si l’application logique hello est composée de plusieurs composants différents ou deux niveaux. toosee ce scénario en action, consultez notre [mise en route](active-directory-appmodel-v2-overview.md#getting-started) didacticiels.
+* Hello Outlook courrier, calendrier et API REST de Contacts, qui se trouvent dans https://outlook.office.com. toolearn toowrite une application qui accède à ces API, voir hello [Office prise en main](https://www.msdn.com/office/office365/howto/authenticate-Office-365-APIs-using-v2) didacticiels.
+* Les API Microsoft Graph. Vous pouvez en savoir plus sur [Microsoft Graph](https://graph.microsoft.io) et données hello tooyou disponible.
 
-Aucun autre service n’est actuellement pris en charge. Davantage de services Microsoft Online seront ajoutés prochainement, en plus de la prise en charge de vos propres services et API web personnalisés.
+Aucun autre service n’est actuellement pris en charge. Plusieurs services Microsoft Online Services sera ajoutées dans hello future, en outre toosupport pour votre propre les API Web et les services.
 
 ## <a name="restrictions-on-libraries-and-sdks"></a>Restrictions concernant les bibliothèques et les SDK
-Actuellement, la prise en charge des bibliothèques pour le point de terminaison v2.0 est limitée. Si vous souhaitez utiliser le point de terminaison v2.0 dans une application de production, vous disposez des options suivantes :
+Actuellement, la prise en charge de la bibliothèque de point de terminaison hello v2.0 est limité. Si vous souhaitez toouse hello v2.0 point de terminaison dans une application de production, vous disposez des options suivantes :
 
-* Si vous générez une application web, vous pouvez en toute sécurité utiliser le middleware Microsoft mis à la disposition générale côté serveur pour vous connecter et procéder à la validation des jetons. Vous recourrez notamment au middleware OWIN Open ID Connect pour ASP.NET et au plug-in Node.js Passport. Pour obtenir des exemples de code qui utilisent le middleware Microsoft, consultez la section [Prise en main](active-directory-appmodel-v2-overview.md#getting-started).
-* Si vous créez une application de bureau ou mobile, vous pouvez utiliser l’une de nos bibliothèques d’authentification Microsoft (MSAL).  Bien qu’il s’agisse de versions préliminaires, ces bibliothèques sont utilisables dans des applications de production. Pour en savoir plus sur les versions préliminaires et les bibliothèques disponibles, consultez notre [référence des bibliothèques d’authentification](active-directory-v2-libraries.md).
-* Vous pouvez intégrer les plateformes non couvertes par les bibliothèques Microsoft, dans le point de terminaison v2.0 en envoyant et en recevant directement des messages de protocole dans le code de votre application. Les protocoles v2.0 OpenID Connect et OAuth [sont explicitement documentés](active-directory-v2-protocols.md) pour vous aider à effectuer une telle intégration.
-* Pour finir, vous pouvez utiliser les bibliothèques open source Open ID Connect et OAuth pour procéder à l’intégration avec le point de terminaison v2.0. Le protocole v2.0 devrait être compatible avec de nombreuses bibliothèques de protocole open source sans modification majeure. La disponibilité de ces types de bibliothèques varie en fonction de la langue et de la plateforme. Les sites web [Open ID Connect](http://openid.net/connect/) et [OAuth 2.0](http://oauth.net/2/) contiennent une liste à jour des implémentations les plus courantes. Pour plus d’informations, consultez [Azure Active Directory v2.0 et bibliothèques d’authentification](active-directory-v2-libraries.md), ainsi que la liste des bibliothèques clientes open source et des exemples qui ont été testés avec le point de terminaison v2.0.
+* Si vous générez une application web, vous pouvez utiliser en toute sécurité Microsoft généralement disponible intergiciel (middleware) côté serveur tooperform connectez-vous et jeton de validation. Notamment intergiciel (middleware) OWIN Open ID connecter hello pour ASP.NET et hello Node.js Passport plug-in. Pour obtenir des exemples de code qui utilisent le middleware Microsoft, consultez la section [Prise en main](active-directory-appmodel-v2-overview.md#getting-started).
+* Si vous créez une application de bureau ou mobile, vous pouvez utiliser l’une de nos bibliothèques d’authentification Microsoft (MSAL).  Ces bibliothèques sont dans une version préliminaire prise en charge de production, afin qu’il soit sécurisé toouse dans les applications de production. Vous pouvez lire plus d’informations sur les conditions de hello Hello afficher un aperçu et hello bibliothèques disponibles dans notre [référence des bibliothèques d’authentification](active-directory-v2-libraries.md).
+* Pour les plateformes non couvertes par des bibliothèques de Microsoft, vous pouvez intégrer avec le point de terminaison hello v2.0 par envoi et la réception des messages de protocole dans votre code d’application directement. Hello les protocoles OpenID Connect et OAuth v2.0 [sont expliquées dans](active-directory-v2-protocols.md) toohelp effectuer une intégration de ce type.
+* Enfin, vous pouvez utiliser open source ouvrir les ID de connexion et toointegrate de bibliothèques OAuth avec le point de terminaison hello v2.0. protocole de v2.0 Hello doit être compatible avec de nombreuses bibliothèques open source protocole sans modifications majeures. disponibilité Hello de ces types de bibliothèques varie selon le langage et la plateforme. Hello [connecter à Open ID](http://openid.net/connect/) et [OAuth 2.0](http://oauth.net/2/) sites Web maintenir une liste des implémentations courantes. Pour plus d’informations, consultez [bibliothèques v2.0 et l’authentification d’Azure Active Directory](active-directory-v2-libraries.md)et liste hello de bibliothèques open source client et des exemples qui ont été testés avec un point de terminaison hello v2.0.
 
 ## <a name="restrictions-on-protocols"></a>Restrictions sur les protocoles
-Le point de terminaison 2.0 ne prend pas en charge SAML ou WS-Federation, mais uniquement Open ID Connect et OAuth 2.0.  Certaines fonctionnalités des protocoles OAuth n’ont pas été intégrées dans le point de terminaison v2.0. Ces fonctionnalités ne sont *pas disponibles* actuellement dans le point de terminaison v2.0 :
+point de terminaison Hello v2.0 ne prend pas en charge SAML ou WS-Federation ; Il prend uniquement en charge les connecter à Open ID et OAuth 2.0.  Pas toutes les fonctionnalités et capacités de protocoles d’OAuth ont été incorporées dans le point de terminaison hello v2.0. Ces fonctionnalités de protocole et les fonctionnalités sont actuellement *non disponible* dans le point de terminaison hello v2.0 :
 
-* Les jetons d’ID délivrés par le point de terminaison v2.0 ne contiennent pas de revendication `email` pour l’utilisateur, même si vous obtenez l’autorisation de l’utilisateur de consulter sa messagerie.
-* Le point de terminaison OpenID Connect UserInfo n’est pas implémenté sur le point de terminaison v2.0. Toutefois, toutes les données de profil utilisateur que vous êtes susceptible de recevoir sur ce point de terminaison sont disponibles sur le point de terminaison Microsoft Graph `/me` .
-* Le point de terminaison v2.0 ne prend pas en charge l’émission de revendications de rôle ou de groupe dans les jetons d’ID.
-* Le point de terminaison v2.0 ne prend pas en charge l’[octroi des informations de mot de passe du propriétaire de la ressource OAuth 2.0](https://tools.ietf.org/html/rfc6749#section-4.3).
+* ID les jetons émis par le point de terminaison hello v2.0 ne contiennent pas une `email` de revendication pour l’utilisateur de hello, même si vous acquérez une autorisation à partir de hello utilisateur tooview leur courrier électronique.
+* point de terminaison UserInfo de connexion OpenID Hello n’est pas implémentée sur le point de terminaison hello v2.0. Toutefois, toutes les données de profil utilisateur que si vous potentiellement à ce point de terminaison est disponible à partir de hello Microsoft Graph `/me` point de terminaison.
+* point de terminaison Hello v2.0 ne prend pas en charge émettrices revendications de rôle ou un groupe dans les jetons de l’ID.
+* Hello [OAuth 2.0 ressource propriétaire d’informations d’identification de mot de passe Grant](https://tools.ietf.org/html/rfc6749#section-4.3) n’est pas pris en charge par le point de terminaison hello v2.0.
 
-De plus, il ne prend en charge aucun protocole SAML ou WS-Federation.
+En outre, point de terminaison hello v2.0 ne prend pas en charge toutes les formes de hello SAML ou les protocoles WS-Federation.
 
-Pour mieux comprendre l’étendue de la fonctionnalité de protocole prise en charge dans le point de terminaison v2.0, consultez notre page de [référence sur les protocoles OAuth 2.0 et OpenID Connect](active-directory-v2-protocols.md).
+toobetter comprendre étendue hello de fonctionnalités d’un protocole pris en charge dans le point de terminaison hello v2.0, lisez notre [référence de protocole OpenID Connect et OAuth 2.0](active-directory-v2-protocols.md).
 
 ## <a name="restrictions-for-work-and-school-accounts"></a>Restrictions concernant les comptes professionnels et scolaires
-Si vous avez utilisé la bibliothèque ADAL (Active Directory Authentication Library) dans des applications Windows, vous avez peut-être tiré parti de l’authentification intégrée Windows, qui utilise l’octroi d’assertions SAML (Security Assertion Markup Language). Avec cet octroi, les utilisateurs de locataires Azure AD fédérés peuvent s’authentifier en mode silencieux auprès de leur instance d’Active Directory locale sans entrer leurs informations d’identification. À l’heure actuelle, l’octroi d’assertion SAML n’est pas pris en charge sur le point de terminaison v2.0.
+Si vous avez utilisé la bibliothèque d’authentification Active Directory (ADAL) dans les applications Windows, vous pouvez avoir dirigé parti de l’authentification intégrée Windows, qui utilise l’octroi d’assertion hello Security Assertion Markup Language (SAML). Avec cet octroi, les utilisateurs de locataires Azure AD fédérés peuvent s’authentifier en mode silencieux auprès de leur instance d’Active Directory locale sans entrer leurs informations d’identification. Actuellement, hello SAML assertion grant n’est pas pris en charge sur le point de terminaison hello v2.0.

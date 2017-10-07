@@ -1,6 +1,6 @@
 ---
 title: "C# : Prise en main d’Azure SQL Database | Microsoft Docs"
-description: "Essayez la base de données SQL pour développer des applications SQL et C# et créez une base de données SQL Azure avec C# à l’aide de la bibliothèque de base de données SQL pour .NET."
+description: "Essayez de base de données SQL pour le développement d’applications SQL et c# et créer une base de données SQL Azure avec c# à l’aide de la bibliothèque de base de données SQL de hello pour .NET."
 keywords: essayer sql, sql c#
 services: sql-database
 documentationcenter: 
@@ -16,53 +16,53 @@ ms.tgt_pltfrm: csharp
 ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
-ms.openlocfilehash: c8a2703da1ee3687f8d134e768dd8d31dc4f316b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e880ebabd53546bea37a13186b0f1a13db35b684
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-c-to-create-a-sql-database-with-the-sql-database-library-for-net"></a>Utiliser C# pour créer une Base de données SQL avec la bibliothèque de base de données SQL pour .NET
+# <a name="use-c-toocreate-a-sql-database-with-hello-sql-database-library-for-net"></a>Utilisez c# toocreate une base de données SQL avec hello bibliothèque de base de données SQL pour .NET
 
-Découvrez comment utiliser C# pour créer une base de données SQL Azure avec la [bibliothèque de base de données SQL Azure pour .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql). Cet article décrit comment créer une base de données unique avec SQL et C#. Pour créer des pools élastiques, consultez l’article [Créer un pool élastique](sql-database-elastic-pool-manage-csharp.md).
+Découvrez comment toouse c# toocreate SQL Azure de base de données avec hello [bibliothèque de gestion SQL Microsoft Azure pour .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql). Cet article décrit comment toocreate une seule base de données SQL et c#. les pools élastiques toocreate, consultez [créer un pool élastique](sql-database-elastic-pool-manage-csharp.md).
 
-La bibliothèque de gestion de base de données SQL Azure pour .NET fournit une API basée sur [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) qui encapsule l’[API REST de base de données SQL basée sur Resource Manager](https://docs.microsoft.com/rest/api/sql/).
-
-> [!NOTE]
-> Nombre des nouvelles fonctionnalités de SQL Database ne sont prises en charge que si vous utilisez le [modèle de déploiement Azure Resource Manager](../azure-resource-manager/resource-group-overview.md), c’est pourquoi vous devez toujours utiliser la toute dernière **bibliothèque de base de données SQL Azure pour .NET ([docs](https://docs.microsoft.com/dotnet/api/overview/azure/sql?view=azure-dotnet) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql))**. Les anciennes [bibliothèques basées sur des modèles de déploiement classique](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql) sont prises en charge pour la compatibilité ascendante uniquement, donc nous vous recommandons d’utiliser les bibliothèques Resource Manager plus récentes.
-> 
-> 
-
-Pour effectuer les étapes de cet article, vous avez besoin des éléments suivants :
-
-* Un abonnement Azure. Si vous avez besoin d’un abonnement Azure, cliquez simplement sur **COMPTE GRATUIT** en haut de cette page, puis continuez la lecture de cet article.
-* Visual Studio. Pour obtenir une copie gratuite de Visual Studio, consultez la page [Téléchargements Visual Studio](https://www.visualstudio.com/downloads/download-visual-studio-vs) .
+Hello bibliothèque de gestion de base de données SQL Azure pour .NET fournit un [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)-en fonction des API qui encapsule hello [API REST de base de données SQL de gestionnaire de ressources](https://docs.microsoft.com/rest/api/sql/).
 
 > [!NOTE]
-> Cet article permet de créer une base de données SQL vide. Modifiez la méthode *CreateOrUpdateDatabase(...)* dans l’exemple suivant pour copier des bases de données, les mettre à l’échelle, créer une base de données dans un pool, etc.  
+> Plusieurs nouvelles fonctionnalités de base de données SQL seulement sont pris en charge que lorsque vous utilisez hello [modèle de déploiement Azure Resource Manager](../azure-resource-manager/resource-group-overview.md), donc vous devez toujours utiliser hello dernières **bibliothèque de gestion de base de données SQL Azure pour .NET ([documents](https://docs.microsoft.com/dotnet/api/overview/azure/sql?view=azure-dotnet) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql))**. Hello plus anciens [bibliothèques basés sur des modèles de déploiement classique](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql) sont pris en charge pour la compatibilité ascendante, donc nous vous recommandons d’utiliser les bibliothèques en fonction de gestionnaire de ressources plus récentes hello.
+> 
 > 
 
-## <a name="create-a-console-app-and-install-the-required-libraries"></a>Créer une application de console et installer les bibliothèques requises
+toocomplete hello étapes décrites dans cet article, hello éléments suivants sont nécessaires :
+
+* Un abonnement Azure. Si vous avez simplement besoin d’abonnement Azure cliquez sur **compte gratuit** en haut hello de cette page, puis revenir toofinish cet article.
+* Visual Studio. Pour obtenir une copie gratuite de Visual Studio, consultez hello [téléchargements Visual Studio](https://www.visualstudio.com/downloads/download-visual-studio-vs) page.
+
+> [!NOTE]
+> Cet article permet de créer une base de données SQL vide. Modifier hello *CreateOrUpdateDatabase(...)*  méthode Bonjour suivant toocopy bases de données, l’échelle de bases de données, créer une base de données dans un pool.  
+> 
+
+## <a name="create-a-console-app-and-install-hello-required-libraries"></a>Créer une application console et installer les bibliothèques hello requis
 1. Démarrez Visual Studio.
 2. Cliquez sur **Fichier** > **Nouveau** > **Projet**.
 3. Créez une **application de console** C# et nommez-la *SqlDbConsoleApp*
 
-Pour créer une base de données SQL avec C#, chargez les bibliothèques de gestion nécessaires (à l’aide de la [console du gestionnaire de package](http://docs.nuget.org/Consume/Package-Manager-Console)) :
+toocreate une base de données SQL avec c#, charge hello requise des bibliothèques de gestion (à l’aide de hello [console du Gestionnaire de package](http://docs.nuget.org/Consume/Package-Manager-Console)) :
 
 1. Cliquez sur **Outils** > **Gestionnaire de package NuGet** > **Console du gestionnaire de package**.
-2. Saisissez `Install-Package Microsoft.Azure.Management.Sql -Pre` pour installer la toute dernière [bibliothèque Microsoft Azure SQL Management](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql).
-3. Saisissez `Install-Package Microsoft.Azure.Management.ResourceManager -Pre` pour installer la [bibliothèque Microsoft Azure Resource Manager](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager).
-4. Saisissez `Install-Package Microsoft.Azure.Common.Authentication -Pre` pour installer la [bibliothèque Microsoft Azure Common Authentication](https://www.nuget.org/packages/Microsoft.Azure.Common.Authentication). 
+2. Type `Install-Package Microsoft.Azure.Management.Sql -Pre` hello tooinstall dernière [bibliothèque de gestion Microsoft Azure SQL](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql).
+3. Type `Install-Package Microsoft.Azure.Management.ResourceManager -Pre` tooinstall hello [bibliothèque du Gestionnaire de ressources Microsoft Azure](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager).
+4. Type `Install-Package Microsoft.Azure.Common.Authentication -Pre` tooinstall hello [bibliothèque d’authentification commune Microsoft Azure](https://www.nuget.org/packages/Microsoft.Azure.Common.Authentication). 
 
 > [!NOTE]
-> Les exemples de cet article utilisent une forme synchrone de chaque bloc et demande d’API jusqu’à la fin de l’appel REST sur le service sous-jacent. Des méthodes asynchrones sont disponibles.
+> Hello exemples dans cet article utilisent une forme synchrone de chaque demande d’API et un bloc jusqu'à la fin de l’appel REST hello sur hello service sous-jacent. Des méthodes asynchrones sont disponibles.
 > 
 > 
 
 ## <a name="create-a-sql-database-server-firewall-rule-and-sql-database---c-example"></a>Créer un serveur SQL Database, une règle de pare-feu et une base de données SQL : exemple de code C#
-L’exemple suivant crée un groupe de ressources, un serveur, les règles de pare-feu et une base de données SQL. Consultez la section [Créer un principal du service pour accéder aux ressources](#create-a-service-principal-to-access-resources) pour obtenir les variables `_subscriptionId, _tenantId, _applicationId, and _applicationSecret`.
+Hello suivant l’exemple crée un groupe de ressources, de serveur, de règle de pare-feu et d’une base de données SQL. Consultez, [créer un tooaccess de principal du service des ressources](#create-a-service-principal-to-access-resources) tooget hello `_subscriptionId, _tenantId, _applicationId, and _applicationSecret` variables.
 
-Remplacez le contenu du fichier **Program.cs** par les éléments suivants et mettez à jour l’élément `{variables}` en indiquant les valeurs de votre application (sans inclure `{}`).
+Remplacer le contenu hello de **Program.cs** avec hello suivant et mise à jour hello `{variables}` avec des valeurs de votre application (n’incluez pas hello `{}`).
 
     using Microsoft.Azure;
     using Microsoft.Azure.Management.ResourceManager;
@@ -83,7 +83,7 @@ Remplacez le contenu du fichier **Program.cs** par les éléments suivants et me
         static string _applicationId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}";
         static string _applicationSecret = "{your-password}";
 
-        // Create management clients for the Azure resources your app needs to work with.
+        // Create management clients for hello Azure resources your app needs toowork with.
         // This app works with Resource Groups, and Azure SQL Database.
         static ResourceManagementClient _resourceMgmtClient;
         static SqlManagementClient _sqlMgmtClient;
@@ -137,7 +137,7 @@ Remplacez le contenu du fichier **Program.cs** par les éléments suivants et me
             Console.WriteLine("Database: " + dbr.Id);
 
 
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("Press any key toocontinue...");
             Console.ReadKey();
         }
 
@@ -178,7 +178,7 @@ Remplacez le contenu du fichier **Program.cs** par les éléments suivants et me
 
         static Database CreateOrUpdateDatabase(SqlManagementClient sqlMgmtClient, string resourceGroupName, string serverName, string databaseName, string databaseEdition, string databasePerfLevel)
         {
-            // Retrieve the server that will host this database
+            // Retrieve hello server that will host this database
             Server currentServer = sqlMgmtClient.Servers.Get(resourceGroupName, serverName);
 
             // Create a database: configure create or update parameters and properties explicitly
@@ -209,19 +209,19 @@ Remplacez le contenu du fichier **Program.cs** par les éléments suivants et me
 
 
 
-## <a name="create-a-service-principal-to-access-resources"></a>Créer un principal du service pour accéder aux ressources
-Le script PowerShell suivant crée l’application Active Directory (AD) et le principal du service dont nous avons besoin pour authentifier notre application C#. Le script génère les valeurs dont nous avons besoin pour l’exemple C# précédent. Pour plus de détails, consultez la page [Créer un principal du service pour accéder aux ressources à l’aide d’Azure PowerShell](../azure-resource-manager/resource-group-authenticate-service-principal.md).
+## <a name="create-a-service-principal-tooaccess-resources"></a>Créer un tooaccess de principal du service des ressources
+Hello script PowerShell suivant crée application d’Active Directory (AD) hello et service de hello principal que nous devons tooauthenticate notre application c#. script de Hello génère des valeurs, que nous devons pour hello précédant c# les exemples. Pour plus d’informations, consultez [utiliser Azure PowerShell toocreate un principal de service tooaccess ressources](../azure-resource-manager/resource-group-authenticate-service-principal.md).
 
-    # Sign in to Azure.
+    # Sign in tooAzure.
     Add-AzureRmAccount
 
-    # If you have multiple subscriptions, uncomment and set to the subscription you want to work with.
+    # If you have multiple subscriptions, uncomment and set toohello subscription you want toowork with.
     #$subscriptionId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"
     #Set-AzureRmContext -SubscriptionId $subscriptionId
 
     # Provide these values for your new AAD app.
-    # $appName is the display name for your app, must be unique in your directory.
-    # $uri does not need to be a real uri.
+    # $appName is hello display name for your app, must be unique in your directory.
+    # $uri does not need toobe a real uri.
     # $secret is a password you create.
 
     $appName = "{app-name}"
@@ -231,19 +231,19 @@ Le script PowerShell suivant crée l’application Active Directory (AD) et le p
     # Create a AAD app
     $azureAdApplication = New-AzureRmADApplication -DisplayName $appName -HomePage $Uri -IdentifierUris $Uri -Password $secret
 
-    # Create a Service Principal for the app
+    # Create a Service Principal for hello app
     $svcprincipal = New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
 
-    # To avoid a PrincipalNotFound error, I pause here for 15 seconds.
+    # tooavoid a PrincipalNotFound error, I pause here for 15 seconds.
     Start-Sleep -s 15
 
-    # If you still get a PrincipalNotFound error, then rerun the following until successful. 
+    # If you still get a PrincipalNotFound error, then rerun hello following until successful. 
     $roleassignment = New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
 
 
-    # Output the values we need for our C# application to successfully authenticate
+    # Output hello values we need for our C# application toosuccessfully authenticate
 
-    Write-Output "Copy these values into the C# sample app"
+    Write-Output "Copy these values into hello C# sample app"
 
     Write-Output "_subscriptionId:" (Get-AzureRmContext).Subscription.SubscriptionId
     Write-Output "_tenantId:" (Get-AzureRmContext).Tenant.TenantId
@@ -253,9 +253,9 @@ Le script PowerShell suivant crée l’application Active Directory (AD) et le p
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez essayé la base de données SQL et configuré une base de données avec C#, vous êtes prêt pour les articles suivants :
+Maintenant que vous avez essayé de base de données SQL et configurer une base de données avec c#, vous êtes prêt pour hello suivant des articles :
 
-* [Se connecter à la base de données SQL avec SQL Server Management Studio et exécuter un exemple de requête T-SQL](sql-database-connect-query-ssms.md)
+* [Se connecter tooSQL de base de données avec SQL Server Management Studio et exécuter un exemple de requête T-SQL](sql-database-connect-query-ssms.md)
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 * [Base de données SQL](https://azure.microsoft.com/documentation/services/sql-database/)

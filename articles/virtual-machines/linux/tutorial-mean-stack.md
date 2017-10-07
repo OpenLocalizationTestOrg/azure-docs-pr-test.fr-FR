@@ -1,6 +1,6 @@
 ---
-title: "Créer une pile MEAN sur une machine virtuelle Linux dans Azure | Microsoft Docs"
-description: "Découvrez comment créer une pile MongoDB, Express, AngularJS et Node.js (MEAN) sur une machine virtuelle Linux dans Azure."
+title: "aaaCreate moyenne d’une pile sur un VM Linux dans Azure | Documents Microsoft"
+description: "Découvrez comment toocreate un MongoDB, Express, AngularJS et Node.js (moyenne) de la pile sur une VM Linux dans Azure."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: davidmu1
@@ -16,34 +16,34 @@ ms.workload: infrastructure
 ms.date: 08/08/2017
 ms.author: davidmu
 ms.custom: mvc
-ms.openlocfilehash: 892d3481b4ec70fb8434cb25013c5cfd8ab85051
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 82a8e34e60d2bb6e6670ee007faa1113ea78b716
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-mongodb-express-angularjs-and-nodejs-mean-stack-on-a-linux-vm-in-azure"></a>Créer une pile MongoDB, Express, AngularJS et Node.js (MEAN) sur une machine virtuelle Linux dans Azure
 
-Ce didacticiel montre comment implémenter une pile MongoDB, Express, AngularJS et Node.js (MEAN) sur une machine virtuelle Linux dans Azure. La pile MEAN que vous créez permet l’ajout, la suppression et le référencement de livres dans une base de données. Vous allez apprendre à effectuer les actions suivantes :
+Ce didacticiel vous montre comment tooimplement un MongoDB, Express, AngularJS et Node.js (moyenne) de la pile sur une VM Linux dans Azure. pile moyenne Hello que vous créez permet l’ajout, la suppression et la liste des livres dans une base de données. Vous allez apprendre à effectuer les actions suivantes :
 
 > [!div class="checklist"]
 > * Créer une machine virtuelle Linux
 > * Installer Node.js
-> * Installer MongoDB et configurer le serveur
-> * Installer Express et définir les itinéraires au serveur
-> * Accéder aux itinéraires avec AngularJS
-> * Exécution de l'application
+> * Installer MongoDB et configurer le serveur de hello
+> * Installer Express et configurer des itinéraires toohello serveur
+> * Voies d’accès hello avec AngularJS
+> * Exécutez l’application hello
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0.4 ou une version ultérieure pour poursuivre la procédure décrite dans ce didacticiel. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, ce didacticiel nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).
 
 
 ## <a name="create-a-linux-vm"></a>Créer une machine virtuelle Linux
 
-Créez un groupe de ressources avec la commande [az group create](https://docs.microsoft.com/cli/azure/group#create), puis créez une machine virtuelle Linux avec la commande [az vm create](https://docs.microsoft.com/cli/azure/vm#create). Un groupe de ressources Azure est un conteneur logique dans lequel les ressources Azure sont déployées et gérées.
+Créer un groupe de ressources avec hello [création de groupe de az](https://docs.microsoft.com/cli/azure/group#create) de commandes et créer un VM Linux avec hello [az vm créer](https://docs.microsoft.com/cli/azure/vm#create) commande. Un groupe de ressources Azure est un conteneur logique dans lequel les ressources Azure sont déployées et gérées.
 
-L’exemple suivant utilise Azure CLI pour créer un groupe de ressources nommé *myResourceGroupMEAN* à l’emplacement *eastus*. Une machine virtuelle nommée *myVM* est créée à l’aide de clés SSH si elles n’existent pas déjà à un emplacement de clé par défaut. Pour utiliser un ensemble spécifique de clés, utilisez l’option --ssh-key-value.
+exemple Hello utilise hello CLI d’Azure toocreate est un groupe de ressources nommé *myResourceGroupMEAN* Bonjour *eastus* emplacement. Une machine virtuelle nommée *myVM* est créée à l’aide de clés SSH si elles n’existent pas déjà à un emplacement de clé par défaut. toouse un ensemble spécifique de clés, utilisez hello--ssh-clé-valeur option.
 
 ```azurecli-interactive
 az group create --name myResourceGroupMEAN --location eastus
@@ -57,7 +57,7 @@ az vm create \
 az vm open-port --port 3300 --resource-group myResourceGroupMEAN --name myVM
 ```
 
-Lorsque la machine virtuelle est créée, l’interface de ligne de commande Azure affiche des informations similaires à l’exemple suivant : 
+Lorsque hello machine virtuelle a été créé, hello CLI d’Azure affiche des informations similaires toohello est l’exemple suivant : 
 
 ```azurecli-interactive
 {
@@ -71,9 +71,9 @@ Lorsque la machine virtuelle est créée, l’interface de ligne de commande Azu
   "resourceGroup": "myResourceGroupMEAN"
 }
 ```
-Notez la valeur de `publicIpAddress`. Cette adresse est utilisée pour accéder à la machine virtuelle.
+Prenez note de hello `publicIpAddress`. Cette adresse est utilisée tooaccess hello machine virtuelle.
 
-Utilisez la commande suivante pour créer une session SSH avec la machine virtuelle. Veillez à utiliser l’adresse IP publique correcte. Dans l’exemple ci-dessus, notre adresse IP était 13.72.77.9.
+La commande suivante de hello utilisation toocreate une session SSH avec hello machine virtuelle. Assurez-vous que toouse hello une adresse IP publique correcte. Dans l’exemple ci-dessus, notre adresse IP était 13.72.77.9.
 
 ```bash
 ssh azureuser@13.72.77.9
@@ -81,25 +81,25 @@ ssh azureuser@13.72.77.9
 
 ## <a name="install-nodejs"></a>Installer Node.js
 
-[Node.js](https://nodejs.org/en/) est un runtime JavaScript reposant sur le moteur JavaScript V8 de Chrome. Node.js est utilisé dans ce didacticiel pour configurer les itinéraires Express et les contrôleurs AngularJS.
+[Node.js](https://nodejs.org/en/) est un runtime JavaScript reposant sur le moteur JavaScript V8 de Chrome. Node.js est utilisé dans ce didacticiel tooset hello Qu'express route des contrôleurs de AngularJS.
 
-Sur la machine virtuelle, installez Node.js à l’aide de l’interpréteur de commandes Bash que vous avez ouvert avec SSH.
+Sur hello machine virtuelle, à l’aide de commandes bash hello que vous avez ouvert avec SSH, installez Node.js.
 
 ```bash
 sudo apt-get install -y nodejs
 ```
 
-## <a name="install-mongodb-and-set-up-the-server"></a>Installer MongoDB et configurer le serveur
-[MongoDB](http://www.mongodb.com) stocke les données dans des documents flexibles, similaires à JSON. Les champs d’une base de données peuvent varier d’un document à l’autre, et la structure des données peut changer au fil du temps. Pour notre exemple d’application, nous ajoutons à MongoDB des enregistrements de livre qui contiennent le nom du livre, le numéro isbn, l’auteur et le nombre de pages. 
+## <a name="install-mongodb-and-set-up-hello-server"></a>Installer MongoDB et configurer le serveur de hello
+[MongoDB](http://www.mongodb.com) stocke les données dans des documents flexibles, similaires à JSON. Les champs dans une base de données peuvent varier de document toodocument et structure de données peut être modifiée au fil du temps. Pour notre exemple d’application, nous ajoutons tooMongoDB enregistrements livre qui contiennent le nom de l’annuaire, numéro isbn, auteur et nombre de pages. 
 
-1. Sur la machine virtuelle, définissez la clé MongoDB à l’aide de l’interpréteur de commandes Bash que vous avez ouvert avec SSH.
+1. Machine virtuelle, à l’aide de commandes bash hello que vous avez ouvert avec SSH, définissez la clé de MongoDB de hello sur hello.
 
     ```bash
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
     echo "deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
     ```
 
-2. Mettez à jour le Gestionnaire de package avec la clé.
+2. Mettre à jour le Gestionnaire de package hello avec la clé de hello.
   
     ```bash
     sudo apt-get update
@@ -111,27 +111,27 @@ sudo apt-get install -y nodejs
     sudo apt-get install -y mongodb
     ```
 
-4. Démarrez le serveur.
+4. Démarrez le serveur de hello.
 
     ```bash
     sudo service mongodb start
     ```
 
-5. Nous devons également installer le package [body-parser](https://www.npmjs.com/package/body-parser-json) afin de pouvoir traiter les requêtes passées JSON sur le serveur.
+5. Nous devons également tooinstall hello [corps-analyseur](https://www.npmjs.com/package/body-parser-json) package toohelp nous traiter hello JSON passé dans server toohello de requêtes.
 
-    Installez le Gestionnaire de package npm.
+    Installer le Gestionnaire de package npm hello.
 
     ```bash
     sudo apt-get install npm
     ```
 
-    Installez le package body-parser.
+    Installez le package hello du corps de l’analyseur.
     
     ```bash
     sudo npm install body-parser
     ```
 
-6. Créez un dossier du nom de *Books* et ajoutez-y un fichier nommé *server.js* qui contient la configuration du serveur web.
+6. Créez un dossier nommé *la documentation* et ajoutez un tooit fichier nommé *server.js* qui contient la configuration de hello pour le serveur web de hello.
 
     ```node.js
     var express = require('express');
@@ -146,9 +146,9 @@ sudo apt-get install -y nodejs
     });
     ```
 
-## <a name="install-express-and-set-up-routes-to-the-server"></a>Installer Express et définir les itinéraires au serveur
+## <a name="install-express-and-set-up-routes-toohello-server"></a>Installer Express et configurer des itinéraires toohello serveur
 
-[Express](https://expressjs.com) est un framework d’applications web Node.js flexible et minimal qui fournit des fonctionnalités aux applications web et mobiles. Express est utilisé dans ce didacticiel pour transmettre des informations de livre en provenance ou à destination de notre base de données MongoDB. [Mongoose](http://mongoosejs.com) offre une solution simple, reposant sur un schéma, pour modéliser les données de vos applications. Dans ce didacticiel, Mongoose sert à fournir un schéma de livre pour la base de données.
+[Express](https://expressjs.com) est un framework d’applications web Node.js flexible et minimal qui fournit des fonctionnalités aux applications web et mobiles. Express est utilisé dans cette tooand d’informations book toopass didacticiel à partir de notre base de données MongoDB. [Mongoose](http://mongoosejs.com) fournit une solution simple, basée sur un schéma de toomodel vos données d’application. Mongoose est utilisé dans ce didacticiel tooprovide un schéma de base de données hello.
 
 1. Installez Express et Mongoose.
 
@@ -156,7 +156,7 @@ sudo apt-get install -y nodejs
     sudo npm install express mongoose
     ```
 
-2. Dans le dossier *Books*, créez un dossier appelé *apps* et ajoutez un fichier nommé *routes.js* avec les itinéraires Express définis.
+2. Bonjour *la documentation* dossier, créez un dossier nommé *applications* et ajoutez un fichier nommé *routes.js* avec hello express itinéraires définis.
 
     ```node.js
     var Book = require('./models/book');
@@ -186,7 +186,7 @@ sudo apt-get install -y nodejs
         Book.findOneAndRemove(req.query, function(err, result) {
           if ( err ) throw err;
           res.json( {
-            message: "Successfully deleted the book",
+            message: "Successfully deleted hello book",
             book: result
           });
         });
@@ -198,7 +198,7 @@ sudo apt-get install -y nodejs
     };
     ```
 
-3. Dans le dossier *apps*, créez un dossier appelé *models* et ajoutez un fichier nommé *book.js* avec la configuration de modèle de livre définie.  
+3. Bonjour *applications* dossier, créez un dossier nommé *modèles* et ajoutez un fichier nommé *book.js* avec configuration de modèle de livre hello définie.  
 
     ```node.js
     var mongoose = require('mongoose');
@@ -216,11 +216,11 @@ sudo apt-get install -y nodejs
     module.exports = mongoose.model('Book', bookSchema); 
     ```
 
-## <a name="access-the-routes-with-angularjs"></a>Accéder aux itinéraires avec AngularJS
+## <a name="access-hello-routes-with-angularjs"></a>Voies d’accès hello avec AngularJS
 
-[AngularJS](https://angularjs.org) fournit un framework web permettant de créer des vues dynamiques dans vos applications web. Dans ce didacticiel, nous utilisons AngularJS pour connecter notre page web à Express et effectuer des actions sur notre base de données de livres.
+[AngularJS](https://angularjs.org) fournit un framework web permettant de créer des vues dynamiques dans vos applications web. Dans ce didacticiel, nous utiliser AngularJS tooconnect notre page web avec Express et effectuer des actions sur notre base de données de.
 
-1. Changez le répertoire de sauvegarde pour *Books* (`cd ../..`), puis créez un dossier du nom de *public* et ajoutez un fichier nommé *script.js* avec la configuration de contrôleur définie.
+1. Basculez hello sauvegarder trop*la documentation* (`cd ../..`), puis créez un dossier nommé *public* et ajoutez un fichier nommé *script.js* avec le contrôleur de hello configuration définie.
 
     ```node.js
     var app = angular.module('myApp', []);
@@ -262,7 +262,7 @@ sudo apt-get install -y nodejs
     });
     ```
     
-2. Dans le dossier *public*, créez un fichier du nom de *index.html* avec la page web définie.
+2. Bonjour *public* dossier, créez un fichier nommé *index.html* avec la page web de hello définie.
 
     ```html
     <!doctype html>
@@ -315,27 +315,27 @@ sudo apt-get install -y nodejs
     </html>
     ```
 
-##  <a name="run-the-application"></a>Exécution de l'application
+##  <a name="run-hello-application"></a>Exécutez l’application hello
 
-1. Changez le répertoire de sauvegarde pour *Books* (`cd ..`) et démarrez le serveur en exécutant la commande suivante :
+1. Basculez hello sauvegarder trop*la documentation* (`cd ..`) et démarrer le serveur de hello en exécutant cette commande :
 
     ```bash
     nodejs server.js
     ```
 
-2. Ouvrez un navigateur web à l’adresse que vous avez enregistrée pour la machine virtuelle. Par exemple, *http://13.72.77.9:3300*. Un résultat similaire à cette page doit s’afficher :
+2. Ouvrez une adresse toohello du navigateur web que vous avez enregistrée pour hello machine virtuelle. Par exemple, *http://13.72.77.9:3300*. Vous devez voir quelque chose comme hello suivant page :
 
     ![Enregistrement de livre](media/tutorial-mean/meanstack-init.png)
 
-3. Renseignez les zones de texte et cliquez sur **Ajouter**. Par exemple :
+3. Entrer des données dans les zones de texte hello et cliquez sur **ajouter**. Par exemple :
 
     ![Ajout d’un enregistrement de livre](media/tutorial-mean/meanstack-add.png)
 
-4. Après avoir actualisé la page, vous devez afficher un résultat ressemblant à cette page :
+4. Après avoir actualisé la page de hello, vous devez voir quelque chose comme cette page :
 
     ![Liste des enregistrements de livre](media/tutorial-mean/meanstack-list.png)
 
-5. Vous pouvez cliquer sur **Supprimer** et supprimer l’enregistrement de livre à partir de la base de données.
+5. Vous pouvez cliquer sur **supprimer** et supprimer l’enregistrement de livre hello à partir de la base de données hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
@@ -344,12 +344,12 @@ Dans ce didacticiel, vous avez créé une application web qui effectue le suivi 
 > [!div class="checklist"]
 > * Créer une machine virtuelle Linux
 > * Installer Node.js
-> * Installer MongoDB et configurer le serveur
-> * Installer Express et définir les itinéraires au serveur
-> * Accéder aux itinéraires avec AngularJS
-> * Exécution de l'application
+> * Installer MongoDB et configurer le serveur de hello
+> * Installer Express et configurer des itinéraires toohello serveur
+> * Voies d’accès hello avec AngularJS
+> * Exécutez l’application hello
 
-Passez au didacticiel suivant pour savoir comment mieux protéger les serveurs SSL à l’aide des certificats SSL.
+Avancer toolearn de didacticiel suivant toohello comment toosecure les serveurs web avec les certificats SSL.
 
 > [!div class="nextstepaction"]
 > [Sécuriser un serveur web avec SSL](tutorial-secure-web-server.md)

@@ -1,6 +1,6 @@
 ---
-title: "Déployer LEMP sur une machine virtuelle Linux dans Azure | Microsoft Docs"
-description: Didacticiel - Installer la pile LEMP sur une machine virtuelle Linux dans Azure
+title: aaaDeploy LEMP sur un ordinateur virtuel de Linux dans Azure | Documents Microsoft
+description: Didacticiel - pile LEMP installation hello un VM Linux dans Azure
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: dlepow
@@ -15,38 +15,38 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: danlep
-ms.openlocfilehash: 653af144eb12cacf955f96a5442efd73add38e88
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d8f9d84c5e9c0df4e9e985c10fe10f63a2f88214
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-a-lemp-web-server-on-an-azure-vm"></a>Installer un serveur web LEMP sur une machine virtuelle Azure
-Cet article vous guide à travers le déploiement d’un serveur web NGINX, de celui de MySQL et de PHP (la pile LEMP) sur une machine virtuelle Ubuntu dans Azure. Pouvant également être installée dans Azure, la pile LEMP est une alternative à la très répandue [pile LAMP](tutorial-lamp-stack.md). Pour voir le serveur LEMP fonctionner, vous pouvez éventuellement installer et configurer un site WordPress. Ce didacticiel vous explique comment effectuer les opérations suivantes :
+Cet article vous guide tout au long de comment toodeploy un NGINX web server, MySQL et PHP (hello LEMP de pile) sur un VM Ubuntu dans Azure. pile LEMP Hello est un autre toohello populaires [pile LAMP](tutorial-lamp-stack.md), que vous pouvez également installer dans Azure. serveur LEMP toosee hello dans action, vous pouvez éventuellement installer et configurer un site WordPress. Ce didacticiel vous explique comment effectuer les opérations suivantes :
 
 > [!div class="checklist"]
-> * Créer une machine virtuelle Ubuntu (la lettre « L » dans la pile LEMP)
+> * Créer une VM Ubuntu (hello « L » dans la pile LEMP hello)
 > * Ouvrez le port 80 pour le trafic web
 > * Installer NGINX, MySQL et PHP
 > * Vérifier l’installation et la configuration
-> * Installer WordPress sur le serveur LEMP
+> * Installation de WordPress sur le serveur LEMP hello
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0.4 ou une version ultérieure pour poursuivre la procédure décrite dans ce didacticiel. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, ce didacticiel nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 [!INCLUDE [virtual-machines-linux-tutorial-stack-intro.md](../../../includes/virtual-machines-linux-tutorial-stack-intro.md)]
 
 ## <a name="install-nginx-mysql-and-php"></a>Installer NGINX, MySQL et PHP
 
-Exécutez la commande suivante pour mettre à jour les sources de package Ubuntu et installer NGINX, MySQL et PHP. 
+Exécutez hello commande tooupdate Ubuntu package sources suivantes et installer NGINX, MySQL et PHP. 
 
 ```bash
 sudo apt update && sudo apt install nginx mysql-server php-mysql php php-fpm
 ```
 
-Vous êtes invité à installer les packages et les autres dépendances. Lorsque vous y êtes invité, définissez un mot de passe racine pour MySQL, puis [Entrée] pour continuer. Suivez les invites restantes. Ce processus installe les extensions PHP minimales requises pour utiliser PHP avec MySQL. 
+Vous êtes invité à tooinstall hello packages et autres dépendances. Lorsque vous y êtes invité, définissez un mot de passe racine MySQL, puis sur [Entrée] toocontinue. Suivez hello restant d’invites. Ce processus installe hello minimale requise PHP les extensions nécessitées toouse PHP avec MySQL. 
 
 ![Page de mot de passe racine MySQL][1]
 
@@ -55,49 +55,49 @@ Vous êtes invité à installer les packages et les autres dépendances. Lorsque
 
 ### <a name="nginx"></a>NGINX
 
-Vérifiez la version de NGINX à l’aide de la commande suivante :
+Vérifier la version de hello de NGINX avec hello de commande suivante :
 ```bash
 nginx -v
 ```
 
-Avec NGINX installé et le port 80 ouvert sur votre machine virtuelle, le serveur web est désormais accessible à partir d’internet. Pour afficher la page d’accueil de NGINX, ouvrez un navigateur web et entrez l’adresse IP publique de la machine virtuelle. Utilisez l’adresse IP publique dont vous vous êtes servi pour vous connecter par SSH à la machine virtuelle :
+Avec NGINX installés et le port 80 ouvrez tooyour machine virtuelle, de serveur web de hello désormais accessibles à partir de hello internet. tooview hello NGINX page d’accueil, ouvrez un navigateur web et entrez les adresse IP publique hello Hello machine virtuelle. Utilisez l’adresse IP publique de hello, vous avez utilisé tooSSH toohello machine virtuelle :
 
 ![Page par défaut de NGINX][3]
 
 
 ### <a name="mysql"></a>MySQL
 
-Vérifiez la version de MySQL avec la commande suivante (remarquez le paramètre `V` avec une majuscule) :
+Vérifiez la version hello de MySQL avec hello commande suivante (Notez majuscules de hello `V` paramètre) :
 
 ```bash
 msql -V
 ```
 
-Nous vous recommandons d’exécuter le script suivant pour vous aider à sécuriser l’installation de MySQL :
+Nous vous recommandons d’exécuter hello après l’installation de hello sécurisé toohelp script de MySQL :
 
 ```bash
 mysql_secure_installation
 ```
 
-Entrez votre mot de passe racine MySQL et configurez les paramètres de sécurité pour votre environnement.
+Entrez votre mot de passe racine MySQL et configurer les paramètres de sécurité hello pour votre environnement.
 
-Si vous souhaitez créer une base de données MySQL, ajoutez des utilisateurs ou changez les paramètres de configuration, puis connectez-vous à MySQL :
+Si vous souhaitez toocreate une base de données MySQL, ajouter des utilisateurs, ou modifier les paramètres de configuration, tooMySQL de connexion :
 
 ```bash
 mysql -u root -p
 ```
 
-Lorsque vous avez terminé, quittez l’invite de mysql en tapant `\q`.
+Lorsque vous avez terminé, quittez hello mysql invite en tapant `\q`.
 
 ### <a name="php"></a>PHP
 
-Vérifiez la version de PHP avec la commande suivante :
+Vérifier la version de hello de PHP avec hello de commande suivante :
 
 ```bash
 php -v
 ```
 
-Configurez NGINX pour utiliser l’interface PHP-FPM (PHP FastCGI Process Manager). Exécutez les commandes suivantes pour sauvegarder le fichier de configuration du bloc serveur NGINX d’origine et modifier ensuite le fichier original dans l’éditeur de votre choix :
+Configurer hello de toouse NGINX Gestionnaire de processus FastCGI PHP (PHP-pouces). Exécutez hello suivant les commandes tooback serveur NGINX d’origine de hello bloquer le fichier de configuration et puis modifiez le fichier d’origine de hello dans un éditeur de votre choix :
 
 ```bash
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default_backup
@@ -105,7 +105,7 @@ sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default_ba
 sudo sensible-editor /etc/nginx/sites-available/default
 ```
 
-Dans l’éditeur, remplacez le contenu de `/etc/nginx/sites-available/default` par ce qui suit. Consultez les commentaires pour lire une explication sur les paramètres. Remplacez l’adresse IP publique de votre machine virtuelle par *yourPublicIPAddress* (votre adresse IP publique) et conservez les autres paramètres. Puis enregistrez le fichier.
+Dans l’éditeur de hello, remplacez le contenu de hello de `/etc/nginx/sites-available/default` avec les éléments suivants de hello. Consultez les commentaires hello pour une explication des paramètres de hello. Remplacez hello adresse IP publique de votre machine virtuelle pour *yourPublicIPAddress*et laisser hello restant de paramètres. Puis enregistrez le fichier de hello.
 
 ```
 server {
@@ -130,19 +130,19 @@ server {
 }
 ```
 
-Vérifiez la configuration de NGINX à la recherche d’erreurs de syntaxe :
+Vérifier la configuration de NGINX hello pour les erreurs de syntaxe :
 
 ```bash
 sudo nginx -t
 ```
 
-Si la syntaxe est correcte, redémarrez NGINX avec la commande suivante :
+Si la syntaxe de hello est correcte, redémarrez NGINX avec hello commande suivante :
 
 ```bash
 sudo service nginx restart
 ```
 
-Si vous voulez poursuivre le test, créez une page d’informations PHP rapide pour l’afficher dans un navigateur. La commande suivante crée la page d’informations PHP :
+Si vous souhaitez davantage de tootest, créez un tooview de page PHP info rapide dans un navigateur. Hello commande suivante crée la page des informations hello PHP :
 
 ```bash
 sudo sh -c 'echo "<?php phpinfo(); ?>" > /var/www/html/info.php'
@@ -150,7 +150,7 @@ sudo sh -c 'echo "<?php phpinfo(); ?>" > /var/www/html/info.php'
 
 
 
-À présent, vous pouvez vérifier la page d’informations PHP que vous avez créée. Ouvrez un navigateur web et accédez à `http://yourPublicIPAddress/info.php`. Remplacez l’adresse IP publique de votre machine virtuelle. Elle doit ressembler à cette image.
+Vous pouvez maintenant vérifier page des informations de PHP hello que vous avez créé. Ouvrez un navigateur et allez trop`http://yourPublicIPAddress/info.php`. Remplacez hello adresse IP publique de votre machine virtuelle. Il doit se présenter une image toothis similaire.
 
 ![Page d’informations PHP][2]
 
@@ -166,9 +166,9 @@ Dans ce didacticiel, vous avez déployé un serveur LEMP dans Azure. Vous avez a
 > * Ouvrez le port 80 pour le trafic web
 > * Installer NGINX, MySQL et PHP
 > * Vérifier l’installation et la configuration
-> * Installer WordPress sur la pile LEMP
+> * Installation de WordPress sur la pile LEMP hello
 
-Passez au didacticiel suivant pour savoir comment mieux protéger les serveurs SSL à l’aide des certificats SSL.
+Avancer toolearn de didacticiel suivant toohello comment toosecure les serveurs web avec les certificats SSL.
 
 > [!div class="nextstepaction"]
 > [Sécuriser un serveur web avec SSL](tutorial-secure-web-server.md)

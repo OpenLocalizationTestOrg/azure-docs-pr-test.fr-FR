@@ -1,6 +1,6 @@
 ---
-title: "Options appareil-à-cloud d’Azure IoT Hub | Microsoft Docs"
-description: "Guide du développeur - Recommandations sur les périodes d’utilisation des messages appareil-à-cloud, des propriétés signalées et du chargement des fichiers pour les communications cloud-à-appareil."
+title: "options d’aaaAzure IoT Hub appareil-à-cloud | Documents Microsoft"
+description: "Guide du développeur - obtenir des conseils sur lorsque les messages appareil-à-cloud toouse, les propriétés déclarées ou fichier Téléchargez pour les communications du cloud sur l’appareil."
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: elioda
-ms.openlocfilehash: a36283053939ccd53856a394cd9efb66285271ae
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2caefc4f59e16ad28b0d8cf4b3bb627b4cba803b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="device-to-cloud-communications-guidance"></a>Recommandations sur les communications appareil-à-cloud
-Lors de l’envoi d’informations de l’application d’appareil au serveur principal de solution, IoT Hub expose trois options :
+Lors de l’envoi des informations à partir de hello appareil application toohello solution back-end, IoT Hub expose trois options :
 
 * Les [messages appareil-à-cloud][lnk-d2c], pour la télémétrie et les alertes de série chronologique.
-* Les [propriétés signalées][lnk-twins], pour la consignation des informations sur l’état de l’appareil, telles que les fonctionnalités disponibles, les conditions ou l’état des flux de travail de longue durée. Par exemple, les mises à jour de configuration et de logiciels.
-* Le [chargement des fichiers][lnk-fileupload], pour les contenus multimédias et les gros traitements télémétriques par lots chargés par des appareils connectés par intermittence ou compressés pour économiser de la bande passante.
+* [Signalé propriétés] [ lnk-twins] pour les rapports des informations d’état de périphérique tels que les fonctionnalités disponibles, conditions ou d’état hello de flux de travail de longue. Par exemple, les mises à jour de configuration et de logiciels.
+* [Téléchargements de fichiers] [ lnk-fileupload] support de fichiers et les lots de télémétrie volumineux téléchargés par les appareils connectés par intermittence ou compressés toosave de bande passante.
 
-Voici une comparaison détaillée des différentes options de communication appareil-à-cloud.
+Voici une comparaison détaillée de hello diverses options de communication de l’appareil-à-cloud.
 
 |  | Messages appareil-à-cloud | Propriétés signalées | Chargements de fichiers |
 | ---- | ------- | ---------- | ---- |
-| Scénario | Télémétrie et alertes de série chronologique. Par exemple, les lots de données de capteur de 256 Ko envoyés toutes les 5 minutes. | Capacités et conditions disponibles. Par exemple, le mode de connectivité d’appareil actuel, tel que réseau mobile ou Wi-Fi. Synchronisation des workflows de longue durée, comme les mises à jour logicielles et de la configuration. | Fichiers multimédias. Lots de télémétrie volumineux (généralement compressés). |
-| Stockage et récupération | Stockage temporaire par IoT Hub, jusqu’à 7 jours. Lecture uniquement séquentielle. | Stockage par IoT Hub dans le jumeau d’appareil. Récupérables à l’aide du [langage de requête IoT Hub][lnk-query]. | Stockées dans le compte de stockage Azure fourni par l’utilisateur. |
-| Taille | Messages d’une taille maximale de 256 Ko. | La taille maximale des propriétés signalées est de 8 Ko. | Taille maximale de fichier prise en charge par le stockage Blob Azure. |
+| Scénario | Télémétrie et alertes de série chronologique. Par exemple, les lots de données de capteur de 256 Ko envoyés toutes les 5 minutes. | Capacités et conditions disponibles. Par exemple, hello actuel appareil mode de connectivité telles que cellulaire ou Wi-Fi. Synchronisation des workflows de longue durée, comme les mises à jour logicielles et de la configuration. | Fichiers multimédias. Lots de télémétrie volumineux (généralement compressés). |
+| Stockage et récupération | Temporairement stockées par IoT Hub, too7 jours. Lecture uniquement séquentielle. | Stockées par IoT Hub en double d’appareil hello. Récupérables à l’aide de hello [langage de requête IoT Hub][lnk-query]. | Stockées dans le compte de stockage Azure fourni par l’utilisateur. |
+| Taille | Les messages de too256 Ko. | La taille maximale des propriétés signalées est de 8 Ko. | Taille maximale de fichier prise en charge par le stockage Blob Azure. |
 | Fréquence | Élevée. Pour plus d’informations, consultez les [limites d’IoT Hub][lnk-quotas]. | Moyenne. Pour plus d’informations, consultez les [limites d’IoT Hub][lnk-quotas]. | Faible. Pour plus d’informations, consultez les [limites d’IoT Hub][lnk-quotas]. |
-| Protocole | Disponible sur tous les protocoles. | Disponible actuellement uniquement lorsque vous utilisez MQTT. | Disponible sur tous les protocoles, mais nécessite HTTP sur l’appareil. |
+| Protocole | Disponible sur tous les protocoles. | Disponible actuellement uniquement lorsque vous utilisez MQTT. | Disponible lorsque vous utilisez n’importe quel protocole, mais nécessite HTTP sur le périphérique de hello. |
 
-Il est possible qu’une application nécessite l’envoi d’informations en tant que série chronologique de télémétrie ou alerte, et sa mise à disposition sur le jumeau d’appareil. Dans ce scénario, vous pouvez choisir l’une des options suivantes :
+Il est possible qu’une application requiert des informations d’envoi de tooboth comme une série chronologique de télémétrie ou alerte et également toomake accessibles dans le double de périphérique hello. Dans ce scénario, vous pouvez choisir l’une des options suivantes de hello :
 
-* L’application pour appareil envoie un message appareil-à-cloud et signale une modification de propriété.
-* Le serveur principal de la solution peut stocker les informations dans les étiquettes du jumeau d’appareil quand il reçoit le message.
+* application Hello envoie un message de l’appareil-à-cloud et signale une modification de propriété.
+* Hello solution back-end peut stocker des informations de hello dans les balises du double hello appareil lorsqu’il reçoit le message de type hello.
 
-Dans la mesure où les messages appareil-à-cloud prennent en charge un débit bien plus important que les mises à jour de jumeaux d’appareil, il est parfois souhaitable d’éviter de mettre à jour le jumeau d’appareil lors de chaque message appareil-à-cloud.
+Étant donné que les messages appareil-à-cloud activer un quantité débit plus élevé que les mises à jour de périphériques double, il est parfois souhaitable de tooavoid double périphérique hello mise à jour pour tous les messages appareil-à-cloud.
 
 
 [lnk-twins]: iot-hub-devguide-device-twins.md

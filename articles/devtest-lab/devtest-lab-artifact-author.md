@@ -1,6 +1,6 @@
 ---
-title: "Créer des artefacts personnalisés pour votre machine virtuelle DevTest Labs | Microsoft Docs"
-description: "Découvrez comment créer vos propres artefacts pour les utiliser avec DevTest Labs"
+title: "aaaCreate des artefacts personnalisés pour votre machine de virtuelle DevTest Labs | Documents Microsoft"
+description: "Découvrez comment tooauthor vos propres artefacts pour utilisent avec DevTest Labs"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/16/2017
 ms.author: tarcher
-ms.openlocfilehash: 2412033daa1d97860dd9f380178622b1ddc590c0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2bd603bc1241ca6b669a3a276a677729514f0df2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-custom-artifacts-for-your-devtest-labs-vm"></a>Créer des artefacts personnalisés pour vos machines virtuelles DevTest Labs
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/how-to-author-custom-artifacts/player]
@@ -26,10 +26,10 @@ ms.lasthandoff: 08/29/2017
 > 
 
 ## <a name="overview"></a>Vue d'ensemble
-**artefacts** sont utilisés pour déployer et configurer votre application après l’approvisionnement d’une machine virtuelle. Un artefact se compose d'un fichier de définition d'artefact et autres fichiers de script qui sont stockés dans un dossier de dépôt git. Les fichiers de définition d'artefact se composent de JSON et d'expressions que vous pouvez utiliser pour spécifier ce que vous voulez installer sur une machine virtuelle. Par exemple, vous pouvez définir le nom d’un artefact, une commande à exécuter et des paramètres disponibles lorsque la commande est exécutée. Vous pouvez faire référence à d'autres fichiers de script dans le fichier de définition d'artefact par nom.
+**Artefacts** sont toodeploy utilisé et de configurer votre application après la configuration d’une machine virtuelle. Un artefact se compose d'un fichier de définition d'artefact et autres fichiers de script qui sont stockés dans un dossier de dépôt git. Fichiers de définition d’artefact se composent de JSON et les expressions que vous pouvez utiliser toospecify ce que vous voulez tooinstall sur une machine virtuelle. Par exemple, vous pouvez définir nom hello d’un artefact, toorun de commande et les paramètres qui sont rendues disponibles lors de l’exécution de commande hello. Vous pouvez faire référence à des fichiers de script tooother dans le fichier de définition d’artefact hello par nom.
 
 ## <a name="artifact-definition-file-format"></a>Format de fichier de définition d'artefact
-L'exemple suivant indique les sections qui composent la structure de base d'un fichier de définition :
+Hello suivant montre les sections hello qui composent la structure de base de hello d’un fichier de définition :
 
     {
       "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2016-11-28/dtlArtifacts.json",
@@ -51,18 +51,18 @@ L'exemple suivant indique les sections qui composent la structure de base d'un f
 
 | Nom de l'élément | Requis ? | Description |
 | --- | --- | --- |
-| $schema |Non |Emplacement du fichier de schéma JSON qui permet de tester la validité du fichier de définition. |
-| title |Oui |Nom de l'artefact affiché dans le laboratoire. |
-| Description |Oui |Description de l'artefact affiché dans le laboratoire. |
-| iconUri |Non |URI de l'icône affichée dans le laboratoire. |
-| targetOsType |Oui |Système d'exploitation de la machine virtuelle où l'artefact sera installé. Les options prises en charge sont : Windows et Linux. |
+| $schema |Non |Emplacement du fichier de schéma JSON hello qui vous aide à tester la validité hello hello du fichier de définition. |
+| title |Oui |Nom de l’artefact de hello affiché dans le laboratoire de hello. |
+| description |Oui |Description de l’artefact de hello affiché dans le laboratoire de hello. |
+| iconUri |Non |URI de l’icône de hello affichée dans le laboratoire de hello. |
+| targetOsType |Oui |Système d’exploitation de hello où artefact est installée. Les options prises en charge sont : Windows et Linux. |
 | parameters |Non |Les valeurs fournies lorsque la commande d'installation d'artefact est exécutée sur une machine. Cela permet de personnaliser votre artefact. |
 | runCommand |Oui |Commande d'installation d'artefact qui est exécutée sur une machine virtuelle. |
 
 ### <a name="artifact-parameters"></a>Paramètres d'artefact
-Dans la section des paramètres du fichier de définition, vous spécifiez les valeurs qu'un utilisateur peut entrer lors de l'installation d'un artefact. Vous pouvez faire référence à ces valeurs dans la commande d'installation d'artefact.
+Dans la section Paramètres de hello hello du fichier de définition, vous spécifiez les valeurs d’un utilisateur peut entrer lors de l’installation d’un artefact. Vous pouvez consulter les valeurs de toothese dans la commande d’installation artefact hello.
 
-Vous définissez des paramètres avec la structure suivante :
+Vous définissez des paramètres par hello suivant structure :
 
     "parameters": {
         "<parameterName>": {
@@ -74,11 +74,11 @@ Vous définissez des paramètres avec la structure suivante :
 
 | Nom de l'élément | Requis ? | Description |
 | --- | --- | --- |
-| type |Oui |Type de la valeur du paramètre. Consultez la liste suivante des types autorisés : |
-| displayName |Oui |Nom du paramètre qui est affiché à un utilisateur dans le laboratoire. | |
-| Description |Oui |Description du paramètre qui est affiché dans le laboratoire. |
+| type |Oui |Type de la valeur du paramètre. Consultez hello suivant liste pour hello types autorisé : |
+| displayName |Oui |Nom du paramètre hello utilisateur tooa affichées dans le laboratoire de hello. | |
+| description |Oui |Description du paramètre hello qui s’affiche dans le laboratoire de hello. |
 
-Les types autorisés sont :
+Hello types autorisés sont :
 
 * string : n'importe quelle chaîne JSON valide
 * int : n'importe quel entier JSON valide
@@ -86,16 +86,16 @@ Les types autorisés sont :
 * array : n'importe quel tableau JSON valide
 
 ## <a name="artifact-expressions-and-functions"></a>Expressions et fonctions d'artefact
-Vous pouvez utiliser une expression et des fonctions pour construire la commande d'installation d'artefact.
-Les expressions sont placées entre crochets ([ et ]) et sont évaluées au moment où l'artefact est installé. Les expressions peuvent apparaître n'importe où dans une valeur de chaîne JSON et retournent toujours une autre valeur JSON. Si vous avez besoin d'utiliser une chaîne littérale qui commence par un crochet [, vous devez utiliser deux crochets [[.
-En général, vous utilisez des expressions avec des fonctions pour construire une valeur. Exactement comme dans JavaScript, les appels de fonctions sont mis en forme selon functionName(arg1,arg2,arg3).
+Vous pouvez utiliser expression et d’artefact de fonctions tooconstruct hello la commande d’installation.
+Les expressions sont placées entre crochets ([et]) et sont évaluées lors de l’artefact de hello est installé. Les expressions peuvent apparaître n'importe où dans une valeur de chaîne JSON et retournent toujours une autre valeur JSON. Si vous avez besoin d’une chaîne littérale qui commence par un crochet de toouse [, vous devez utiliser deux crochets [[.
+En règle générale, vous utilisez des expressions avec les fonctions tooconstruct une valeur. Exactement comme dans JavaScript, les appels de fonctions sont mis en forme selon functionName(arg1,arg2,arg3).
 
-La liste suivante indique les fonctions courantes :
+Hello liste suivante présente les fonctions courantes :
 
-* parameters(parameterName) : renvoie une valeur de paramètre fournie lors de l'exécution de la commande de l'artefact.
+* Parameters(parameterName) - renvoie une valeur de paramètre qui est fournie lors de l’exécution de commande d’artefact hello.
 * concat(arg1,arg2,arg3,...) : combine plusieurs valeurs de chaîne. Cette fonction peut prendre n'importe quel nombre d'arguments.
 
-L'exemple suivant indique comment utiliser les fonctions et l'expression pour construire une valeur :
+Hello suivant montre l’exemple de comment toouse expression et fonctions tooconstruct une valeur :
 
     runCommand": {
          "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./startChocolatey.ps1'
@@ -107,26 +107,26 @@ L'exemple suivant indique comment utiliser les fonctions et l'expression pour co
 ## <a name="create-a-custom-artifact"></a>Création d'un artefact personnalisé
 Créez votre artefact personnalisé en suivant les étapes ci-dessous :
 
-1. Installer un éditeur JSON : vous avez besoin d'un éditeur JSON pour utiliser les fichiers de définition d'artefact. Nous vous recommandons d'utiliser [Visual Studio Code](https://code.visualstudio.com/), qui est disponible pour Windows, Linux et OS X.
-2. Obtenir un exemple d'artifactfile.json : découvrez les artefacts créés par l'équipe Azure DevTest Labs dans notre [référentiel GitHub](https://github.com/Azure/azure-devtestlab) où nous avons créé une bibliothèque d'artefacts riche qui vous permet de créer vos propres artefacts. Téléchargez un fichier de définition d'artefact et modifiez-le pour créer vos propres artefacts.
-3. Utiliser IntelliSense : utilisez IntelliSense pour voir des éléments valides qui peuvent être utilisés pour construire un fichier de définition d'artefact. Vous pouvez également voir les différentes options pour les valeurs d'un élément. Par exemple, IntelliSense vous montre les deux options de Windows ou Linux lorsque vous modifiez l'élément **targetOsType** .
-4. Stockez l'artefact dans un [référentiel git](devtest-lab-add-artifact-repo.md).
+1. Installer un éditeur JSON, vous avez besoin d’un toowork de l’éditeur JSON avec les fichiers de définition d’artefact. Nous vous recommandons d'utiliser [Visual Studio Code](https://code.visualstudio.com/), qui est disponible pour Windows, Linux et OS X.
+2. Get un artifactfile.json exemple : extraction des artefacts de hello créé par l’équipe Azure DevTest Labs notre [référentiel GitHub](https://github.com/Azure/azure-devtestlab), où nous avons créé une bibliothèque riche d’artefacts qui vous aident à créent vos propres artefacts. Télécharger un fichier de définition d’artefact et apporter des modifications tooit toocreate vos propres artefacts.
+3. Assurez-vous d’utiliser IntelliSense - éléments valides IntelliSense de tirer parti de la toosee qui peuvent être tooconstruct utilisé un fichier de définition d’artefact. Vous pouvez également voir hello différentes options pour les valeurs d’un élément. Par exemple, les afficher IntelliSense vous hello deux choix de Windows ou Linux lors de la modification hello **targetOsType** élément.
+4. Artefact de hello magasin dans un [référentiel git](devtest-lab-add-artifact-repo.md).
    
-   1. Créez un répertoire distinct pour chaque artefact où le nom du répertoire est le même que le nom de l'artefact.
-   2. Stockez le fichier de définition d'artefact (artifactfile.json) dans le répertoire que vous avez créé.
-   3. Stockez les scripts qui sont référencés à partir de la commande d'installation d'artefact.
+   1. Créer un répertoire différent pour chaque artefact où nom de répertoire hello est même hello en tant que nom d’artefact hello.
+   2. Stocker le fichier de définition d’artefact hello (artifactfile.json) dans le répertoire hello que vous avez créé.
+   3. Commande d’installation scripts hello magasin qui sont référencés à partir de l’artefact de hello.
       
       Voici un exemple de dossier d'artefact :
       
       ![Exemple de dépôt git d'artefacts](./media/devtest-lab-artifact-author/git-repo.png)
-5. Ajoutez le référentiel d’artefacts au laboratoire : reportez-vous à l’article [Ajouter un référentiel Git d’artefacts et de modèles](devtest-lab-add-artifact-repo.md).
+5. Ajouter un laboratoire de hello artefacts référentiel toohello - consultez l’article toohello, [ajouter un référentiel Git des artefacts et des modèles](devtest-lab-add-artifact-repo.md).
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## <a name="related-articles"></a>Articles connexes
-* [Guide pratique pour diagnostiquer les échecs d’artefact dans DevTest Labs](devtest-lab-troubleshoot-artifact-failure.md)
-* [Joindre une machine virtuelle à un domaine AD existant à l’aide d’un modèle Resource Manager dans Azure DevTest Labs](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
+* [Comment les échecs d’artefact toodiagnose dans DevTest Labs](devtest-lab-troubleshoot-artifact-failure.md)
+* [Joindre un domaine Active Directory à l’aide d’un modèle de gestionnaire de ressources dans Azure DevTest Labs de tooexisting machine virtuelle](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment [ajouter un dépôt d’artefacts Git à un laboratoire](devtest-lab-add-artifact-repo.md).
+* Découvrez comment trop[ajouter un laboratoire de tooa référentiel Git artefact](devtest-lab-add-artifact-repo.md).
 

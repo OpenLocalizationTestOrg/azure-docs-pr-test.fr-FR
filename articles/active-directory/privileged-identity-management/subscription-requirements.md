@@ -1,6 +1,6 @@
 ---
-title: Abonnements Privileged Identity Management - Azure| Microsoft Docs
-description: "Décrit les exigences en matières d’abonnement et de licences pour gérer utiliser Azure AD Privileged Identity Management dans votre locataire"
+title: "abonnements de la gestion des identités aaaPrivileged - Azure | Documents Microsoft"
+description: "Explique les abonnement hello et en matière de gestion et à l’aide d’Azure AD Privileged Identity Management dans votre client de licence"
 services: active-directory
 documentationcenter: 
 author: barclayn
@@ -15,32 +15,32 @@ ms.topic: article
 ms.date: 06/01/2017
 ms.author: barclayn
 ms.custom: pim
-ms.openlocfilehash: 62d8f80fa1bec3a1b75e316f0b0ee7be8cbefbff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2639d13c250a582fdcf0b277c9bab37fdfcabcb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-privileged-identity-management-subscription-requirements"></a>Exigences en matière d’abonnement d’Azure AD Privileged Identity Management
 
-Azure AD Privileged Identity Management est disponible avec l’édition Premium P2 d’Azure AD. Pour plus d’informations sur les autres fonctionnalités de P2 et le comparer à Premium P1, consultez [Éditions d’Azure Active Directory](../active-directory-editions.md).
+Azure AD Privileged Identity Management est disponible dans le cadre de l’édition hello Premium P2 d’Azure AD. Pour plus d’informations sur hello autres fonctionnalités de P2 et le compare tooPremium P1, consultez [éditions Azure Active Directory](../active-directory-editions.md).
 
 >[!NOTE]
-Dans la version préliminaire d’Azure Active Directory (Azure AD) Privileged Identity Management, aucune vérification de la licence ne permettait à un locataire de tester le service.  Maintenant qu’Azure AD Privileged Identity Management est disponible de manière générale, le locataire doit disposer d’un abonnement d’évaluation ou payant pour continuer à utiliser Privileged Identity Management après décembre 2016.
+Lorsque Azure Active Directory (Azure AD) Privileged Identity Management a été dans l’aperçu, ne comportaient aucune vérification de la licence pour un service de hello tootry client.  Maintenant que Azure AD Privileged Identity Management a atteint la disponibilité générale, un abonnement d’évaluation ou payant doit être présent pour hello toocontinue de client à l’aide de Privileged Identity Management après décembre 2016.
   
 
 ## <a name="confirm-your-trial-or-paid-subscription"></a>Confirmer votre abonnement d’évaluation ou payant
 
-Si vous ne savez pas si votre organisation dispose d’un abonnement d’évaluation ou payant, vous pouvez vérifier s’il existe un abonnement dans votre locataire à l’aide des commandes incluses dans le module Azure Active Directory pour Windows PowerShell V1. 
+Si vous ne savez pas si votre organisation dispose d’une version d’évaluation ou l’abonnement, vous pouvez vérifier s’il existe un abonnement de votre client à l’aide des commandes hello inclus dans Azure Active Directory Module pour Windows PowerShell V1. 
 1. Ouvrez une fenêtre PowerShell.
-2. Entrez `Connect-MsolService` pour vous authentifier en tant qu’utilisateur de votre locataire.
+2. Entrez `Connect-MsolService` tooauthenticate en tant qu’utilisateur dans votre client.
 3. Entrez `Get-MsolSubscription | ft SkuPartNumber,IsTrial,Status`.
 
-Cette commande récupère la liste des abonnements dans votre locataire. Si aucune ligne n’est renvoyée, vous devez obtenir une version d’évaluation d’Azure AD Premium P2, acheter un abonnement Azure AD Premium P2 ou un abonnement ESM E5 pour pouvoir utiliser Azure AD Privileged Identity Management.  Pour obtenir une version d’évaluation et commencer à utiliser Azure AD Privileged Identity Management, lisez [Prise en main d’Azure AD Privileged Identity Management](../active-directory-privileged-identity-management-getting-started.md).
+Cette commande récupère une liste d’abonnements hello dans votre client. S’il y a qu'aucuns lignes ne retourné, que vous devez la version d’évaluation tooobtain un P2 Azure AD Premium, achetez un abonnement de Azure AD Premium P2 ou d’un abonnement de EMS E5 toouse Azure AD Privileged Identity Management.  tooget une version d’évaluation et démarrer à l’aide d’Azure AD Privileged Identity Management, lecture [prise en main Azure AD Privileged Identity Management](../active-directory-privileged-identity-management-getting-started.md).
 
-Si cette commande renvoie une ligne dans laquelle le SkuPartNumber est « AAD_PREMIUM_P2 » ou « EMSPREMIUM » et IsTrial est « True », cela signifie qu’une version d’évaluation d’Azure AD Premium P2 est présente dans le locataire.  Si l’état de l’abonnement n’est pas activé et si vous n’avez pas acheté d’abonnement Azure AD Premium P2 ou EMS E5, vous devez acheter un abonnement Azure AD Premium P2 ou EMS E5 pour continuer à utiliser Azure AD Privileged Identity Management.
+Si cette commande renvoie une ligne dans le SkuPartNumber est « AAD_PREMIUM_P2 » ou « EMSPREMIUM » et IsTrial est « True », cela indique que la période d’évaluation d’Azure AD Premium P2 est présent dans le locataire de hello.  Si l’état de l’abonnement hello n’est pas activé, et vous ne disposez pas d’un abonnement Azure AD Premium P2 ou EMS E5, vous devez acheter un abonnement de Azure AD Premium P2 ou d’un toocontinue d’abonnement EMS E5 à l’aide d’Azure AD Privileged Identity Management.
 
-Azure AD Premium P2 est disponible via un [Contrat Entreprise Microsoft](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx), le [programme de licence en volume Open](https://www.microsoft.com/en-us/licensing/licensing-programs/open-license.aspx) et le programme [Cloud Solution Provider](https://partner.microsoft.com/en-US/cloud-solution-provider). Les abonnés Azure et Office 365 peuvent également acheter Azure AD Premium P2 en ligne.  Vous trouverez plus d’informations sur la tarification d’Azure AD Premium et comment commander en ligne dans [Tarification Azure Active Directory](https://azure.microsoft.com/en-us/pricing/details/active-directory/).
+Azure AD Premium P2 est disponible via un [Microsoft Enterprise Agreement](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx), hello [programme de licence en Volume Open](https://www.microsoft.com/en-us/licensing/licensing-programs/open-license.aspx)et hello [programme de fournisseurs de solutions de Cloud](https://partner.microsoft.com/en-US/cloud-solution-provider). Les abonnés Azure et Office 365 peuvent également acheter Azure AD Premium P2 en ligne.  Plus d’informations sur la tarification d’Azure AD Premium et comment tooorder en ligne, consultez [Azure Active Directory tarification](https://azure.microsoft.com/en-us/pricing/details/active-directory/).
 
 ## <a name="azure-ad-privileged-identity-management-is-not-available-in-tenant"></a>Azure AD Privileged Identity Management n’est pas disponible dans le locataire
 
@@ -51,9 +51,9 @@ Azure AD Privileged Identity Management ne sera plus disponible dans votre locat
 
 Lorsqu’un abonnement Azure AD Premium P2 ou EMS E5 arrive à expiration, ou qu’une organisation qui utilisait la version préliminaire d’Azure AD Privileged Identity Management n’achète pas d’abonnement Azure AD Premium P2 ou EMS E5 :
 
-- Les affectations de rôle permanentes à des rôles Azure AD sont annulées.
-- L’extension Azure AD Privileged Identity Management dans le portail Azure, ainsi que les applets de commande API Graph et les interfaces PowerShell d’Azure AD Privileged Identity Management, ne sont plus disponibles pour les utilisateurs afin d’activer des rôles privilégiés, de gérer l’accès privilégié ou de procéder à des vérifications d’accès des rôles privilégiés.
-- Les affectations de rôle éligibles de rôles Azure AD sont supprimées, car les utilisateurs ne sont plus en mesure d’activer des rôles privilégiés.
+- Rôles de tooAzure AD affectations de rôle permanente ne sont pas affectés.
+- Hello extension Azure AD Privileged Identity Management Bonjour portail Azure, ainsi que les applets de commande de l’API Graph hello et interfaces PowerShell d’Azure AD Privileged Identity Management, seront ne sont plus disponibles pour les utilisateurs des rôles de tooactivate privilégié, gérer un accès privilégié, ou effectuer des révisions d’accès des rôles privilégiés.
+- Éligibles attributions de rôles Azure AD sont supprimées, car les utilisateurs ne seront plus en mesure de tooactivate privilégié rôles.
 - Les vérifications d’accès en cours de rôles sont terminées, et les paramètres de configuration d’Azure AD Privileged Identity Management sont supprimés.
 - Azure AD Privileged Identity Management n’envoie plus de messages électroniques sur les modifications apportées aux affectations de rôle.
 

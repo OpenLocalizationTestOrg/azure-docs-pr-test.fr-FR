@@ -1,6 +1,6 @@
 ---
-title: "Déploiement et gestion des sauvegardes de machines virtuelles déployées avec le modèle Resource Manager à l’aide de PowerShell | Microsoft Docs"
-description: "Utilisation de PowerShell pour déployer et gérer des sauvegardes dans Azure pour les machines virtuelles déployées avec le modèle Resource Manager"
+title: "aaaDeploy et gérer des sauvegardes pour les machines virtuelles déployées par le Gestionnaire de ressources à l’aide de PowerShell | Documents Microsoft"
+description: "Utilisez PowerShell toodeploy et gérer des sauvegardes dans Azure pour les machines virtuelles déployées par le Gestionnaire de ressources"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,42 +15,42 @@ ms.workload: storage-backup-recovery
 ms.date: 08/28/2017
 ms.author: markgal;trinadhk
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 861346a50df6641abb9e454644228146e14b4078
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 486fb3ae1902403fe6bf303df57244b76677ab17
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azurermrecoveryservicesbackup-cmdlets-to-back-up-virtual-machines"></a>Utilisez les applets de commande AzureRM.RecoveryServices.Backup pour sauvegarder des machines virtuelles
+# <a name="use-azurermrecoveryservicesbackup-cmdlets-tooback-up-virtual-machines"></a>Utilisez tooback d’applets de commande AzureRM.RecoveryServices.Backup des machines virtuelles
 > [!div class="op_single_selector"]
 > * [Gestionnaire de ressources](backup-azure-vms-automation.md)
 > * [Classique](backup-azure-vms-classic-automation.md)
 >
 >
 
-Cet article vous montre comment utiliser des applets de commande Azure PowerShell pour sauvegarder et restaurer une machine virtuelle Azure à partir d’un coffre Recovery Services. Un coffre Recovery Services est une ressource Azure Resource Manager utilisée pour protéger les données et les actifs dans Azure Backup et Azure Site Recovery Services. Vous pouvez utiliser un coffre Recovery Services pour protéger des machines virtuelles déployées avec Azure Service Manager, ainsi que des machines virtuelles déployées avec le modèle Azure Resource Manager.
+Cet article explique comment tooback d’applets de commande de Azure PowerShell toouse haut et récupérer une machine virtuelle (VM) Azure à partir des Services de récupération de coffre. Un coffre Recovery Services est une ressource Azure Resource Manager et les données de tooprotect utilisés et des ressources dans Azure Backup et Azure Site Recovery services. Vous pouvez utiliser un tooprotect de coffre Recovery Services déployés au Gestionnaire des services Azure de machines virtuelles et les machines virtuelles de déploiement d’Azure Resource Manager.
 
 > [!NOTE]
-> Azure dispose de deux modèles de déploiement pour créer et utiliser des ressources : [Azure Resource Manager et Azure Classic](../azure-resource-manager/resource-manager-deployment-model.md). Cet article concerne l’utilisation avec des machines virtuelles créées à l’aide du modèle Resource Manager.
+> Azure dispose de deux modèles de déploiement pour créer et utiliser des ressources : [Azure Resource Manager et Azure Classic](../azure-resource-manager/resource-manager-deployment-model.md). Cet article est pour une utilisation avec des machines virtuelles créées à l’aide du modèle de gestionnaire de ressources hello.
 >
 >
 
-Cet article vous guide tout au long de l’utilisation de PowerShell pour protéger une machine virtuelle et la restauration de données à partir d’un point de récupération.
+Cet article vous guide à l’aide de PowerShell tooprotect une machine virtuelle et restaurer des données à partir d’un point de récupération.
 
 ## <a name="concepts"></a>Concepts
-Si vous n’êtes pas familiarisé avec le service de sauvegarde Azure, consultez [Qu’est-ce que la Sauvegarde Azure ?](backup-introduction-to-azure-backup.md) pour obtenir une vue d’ensemble du service. Avant de commencer, assurez-vous de connaître les conditions préalables de base nécessaires pour travailler avec Azure Backup et les limitations de la solution actuelle de sauvegarde de la machines virtuelles.
+Si vous n’êtes pas familiarisé avec hello service Azure Backup, pour une vue d’ensemble du service de hello, extraire [Nouveautés d’Azure Backup ?](backup-introduction-to-azure-backup.md) Avant de commencer, assurez-vous que vous couvrent essentials hello sur toowork de conditions préalables nécessaires hello avec Azure Backup et hello limitations de la solution de sauvegarde de machine virtuelle en cours hello.
 
-Pour pouvoir utiliser efficacement PowerShell, il est nécessaire de comprendre la hiérarchie des objets et par où commencer.
+toouse PowerShell efficacement, il est nécessaire toounderstand hello hiérarchie d’objets à partir de laquelle toostart.
 
 ![Hiérarchie des objets dans Recovery Services](./media/backup-azure-vms-arm-automation/recovery-services-object-hierarchy.png)
 
-Pour voir les informations de référence sur l’applet de commande PowerShell AzureRmRecoveryServicesBackup, consultez [Sauvegarde Azure - Applets de commande de Recovery Services](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup) dans la bibliothèque Azure.
+tooview hello référence d’applet de commande PowerShell de AzureRm.RecoveryServices.Backup, consultez hello [Azure Backup - applets de commande de Services de récupération](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup) Bonjour bibliothèque Azure.
 
 ## <a name="setup-and-registration"></a>Installation et inscription
-Pour commencer :
+toobegin :
 
-1. [Téléchargez la dernière version de PowerShell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps) (version minimale requise : 1.4.0)
-2. Rechercher les applets de commande PowerShell Azure Backup disponibles en tapant la commande suivante :
+1. [Télécharger la version la plus récente de PowerShell hello](https://docs.microsoft.com/powershell/azure/install-azurerm-ps) (hello version minimale requise est : 1.4.0)
+2. Trouver hello Azure sauvegarde applets de commande PowerShell disponibles en tapant hello de commande suivante :
 
 ```
 PS C:\> Get-Command *azurermrecoveryservices*
@@ -87,7 +87,7 @@ Cmdlet          Wait-AzureRmRecoveryServicesBackupJob              1.4.0      Az
 ```
 
 
-Les tâches ci-après peuvent être automatisées avec PowerShell :
+Bonjour tâches suivantes peut être automatisée avec PowerShell :
 
 * Créer un coffre Recovery Services
 * Sauvegarder des machines virtuelles Azure
@@ -96,24 +96,24 @@ Les tâches ci-après peuvent être automatisées avec PowerShell :
 * Restauration d’une machine virtuelle Azure
 
 ## <a name="create-a-recovery-services-vault"></a>Créer un coffre Recovery Services
-Les étapes suivantes vous montrent comment créer un coffre Recovery Services. Un coffre Recovery Services diffère d’un coffre Backup.
+Hello suit vous guide lors de la création d’un coffre Recovery Services. Un coffre Recovery Services diffère d’un coffre de sauvegarde.
 
-1. Si vous utilisez Sauvegarde Azure pour la première fois, vous devez utiliser l’applet de commande **[Register-AzureRMResourceProvider](http://docs.microsoft.com/powershell/module/azurerm.resources/register-azurermresourceprovider)** pour inscrire le fournisseur Azure Recovery Service auprès de votre abonnement.
+1. Si vous utilisez Azure Backup pour hello première fois, vous devez utiliser hello  **[Register-AzureRmResourceProvider](http://docs.microsoft.com/powershell/module/azurerm.resources/register-azurermresourceprovider)**  fournisseur de Service de récupération Azure hello applet de commande tooregister avec votre abonnement.
 
     ```
     PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
     ```
-2. Le coffre Recovery Services étant une ressource Resource Manager, vous devez le placer dans un groupe de ressources. Si vous ne disposez pas d’un groupe de ressources, créez-en un avec la cmdlet **[New-AzureRmResourceGroup](https://docs.microsoft.com/powershell/module/azurerm.resources/new-azurermresourcegroup)**. Quand vous créez un groupe de ressources, spécifiez son nom et son emplacement.  
+2. Hello coffre Recovery Services est une ressource de gestionnaire de ressources, vous devez donc tooplace dans un groupe de ressources. Vous pouvez utiliser un groupe de ressources existant ou créer un groupe de ressources avec hello  **[New-AzureRmResourceGroup](https://docs.microsoft.com/powershell/module/azurerm.resources/new-azurermresourcegroup)**  applet de commande. Lorsque vous créez un groupe de ressources, spécifiez le nom de hello et un emplacement pour le groupe de ressources hello.  
 
     ```
     PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "West US"
     ```
-3. Utilisez l’applet de commande **[New-AzureRmRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/new-azurermrecoveryservicesvault)** pour créer un coffre Recovery Services. Spécifiez pour le coffre le même emplacement que pour le groupe de ressources.
+3. Hello d’utilisation  **[New-AzureRmRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/new-azurermrecoveryservicesvault)**  hello de toocreate d’applet de commande de coffre Recovery Services. Veillez à toospecify hello même emplacement pour le coffre hello que celui utilisé pour le groupe de ressources hello.
 
     ```
     PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "West US"
     ```
-4. Spécifiez le type de redondance de stockage à utiliser : [Stockage localement redondant (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) ou [Stockage géo-redondant (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage). L’exemple suivant montre que l’option -BackupStorageRedundancy pour testvault est définie sur GeoRedundant.
+4. Spécifiez le type hello de toouse de redondance de stockage ; Vous pouvez utiliser [stockage localement redondant (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) ou [stockage redondant de géo-réplication (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage). Hello suivant montre testvault hello BackupStorageRedundancy - option est la valeur tooGeoRedundant.
 
     ```
     PS C:\> $vault1 = Get-AzureRmRecoveryServicesVault –Name "testvault"
@@ -121,14 +121,14 @@ Les étapes suivantes vous montrent comment créer un coffre Recovery Services. 
     ```
 
    > [!TIP]
-   > De nombreuses applets de commande Azure Backup nécessitent l’objet coffre Recovery Services en tant qu’entrée. Pour cette raison, il est pratique de stocker l’objet coffre Backup Recovery Services dans une variable.
+   > Nombreuses applets de commande Azure Backup nécessitent l’objet de coffre Recovery Services hello en tant qu’entrée. Pour cette raison, il est pratique toostore hello Services de récupération de sauvegarde coffre objet dans une variable.
    >
    >
 
-## <a name="view-the-vaults-in-a-subscription"></a>Afficher les coffres dans un abonnement
-Utilisez **[Get-AzureRmRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/get-azurermrecoveryservicesvault)** pour afficher la liste de tous les coffres dans l’abonnement actuel. Vous pouvez utiliser cette commande pour vérifier qu’un coffre a été créé ou pour voir les coffres disponibles dans l’abonnement.
+## <a name="view-hello-vaults-in-a-subscription"></a>Affichage des coffres de hello dans un abonnement
+Utilisez  **[Get-AzureRmRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/get-azurermrecoveryservicesvault)**  liste de hello tooview de tous les coffres dans l’abonnement actif de hello. Vous pouvez utiliser cette toocheck commande qu’un nouvel archivage a été créé ou toosee hello coffres disponibles dans l’abonnement de hello.
 
-Exécutez la commande Get-AzureRmRecoveryServicesVault pour afficher tous les coffres de l’abonnement. L’exemple suivant montre les informations affichées pour chaque coffre.
+Exécutez la commande hello, Get-AzureRmRecoveryServicesVault, tooview tous les coffres dans l’abonnement de hello. Hello suivant montre les informations de hello affichées pour chaque archivage.
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesVault
@@ -143,19 +143,19 @@ Properties        : Microsoft.Azure.Commands.RecoveryServices.ARSVaultProperties
 
 
 ## <a name="back-up-azure-vms"></a>Sauvegarder des machines virtuelles Azure
-Utilisez un coffre Recovery Services pour protéger vos machines virtuelles. Avant d’appliquer la protection, définissez le contexte du coffre (le type de données qu’il protège) et vérifiez la stratégie de protection. La stratégie de protection consiste à planifier l’exécution du travail de sauvegarde et la durée de conservation de chaque instantané de sauvegarde.
+Utilisez un tooprotect de coffre Recovery Services vos machines virtuelles. Avant d’appliquer une protection hello, définir le contexte du coffre hello (type hello des données protégées dans le coffre hello) et vérifiez la stratégie de protection hello. stratégie de protection Hello est planification hello lors de l’exécution de travaux de sauvegarde hello et la durée de conservation de chaque instantané de sauvegarde.
 
 ### <a name="set-vault-context"></a>Définir le contexte du coffre
-Avant d’activer la protection sur une machine virtuelle, utilisez  **[Set-AzureRmRecoveryServicesVaultContext](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)**  pour définir le contexte du coffre. Une fois le contexte du coffre défini, il s’applique à toutes les applets de commande suivantes. L’exemple suivant définit le contexte du coffre pour le coffre *testvault*.
+Avant d’activer la protection sur un ordinateur virtuel, utilisez  **[Set-AzureRmRecoveryServicesVaultContext](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)**  contexte de coffre tooset hello. Une fois que le contexte de coffre hello est définie, elle s’applique tooall applets de commande suivantes. exemple Hello définit contexte de coffre hello pour le coffre hello, *testvault*.
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesVault -Name "testvault" | Set-AzureRmRecoveryServicesVaultContext
 ```
 
 ### <a name="create-a-protection-policy"></a>Création d’une stratégie de protection
-Quand vous créez un coffre Recovery Services, il est fourni avec des stratégies de protection et de conservation par défaut. La stratégie de protection par défaut déclenche une tâche de sauvegarde chaque jour à une heure spécifiée. La stratégie de conservation par défaut conserve le point de récupération quotidien pendant 30 jours. Vous pouvez utiliser la stratégie par défaut pour protéger rapidement votre machine virtuelle et modifier la stratégie ultérieurement avec différents détails.
+Quand vous créez un coffre Recovery Services, il est fourni avec des stratégies de protection et de conservation par défaut. stratégie de protection par défaut Hello déclenche une opération de sauvegarde chaque jour à une heure spécifiée. stratégie de rétention par défaut Hello conserve le point de récupération quotidien hello pendant 30 jours. Vous pouvez utiliser la valeur par défaut hello stratégie tooquickly protéger votre machine virtuelle et la stratégie hello ultérieurement avec les détails de l’autres.
 
-Utilisez **[Get-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupprotectionpolicy)** pour afficher les stratégies de protection du coffre. Vous pouvez utiliser cette applet de commande pour obtenir une stratégie spécifique ou pour afficher les stratégies associées à un type de charge de travail. L’exemple suivant obtient les stratégies pour le type de charge de travail AzureVM.
+Utilisez  **[Get-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupprotectionpolicy)**  tooview des stratégies de protection hello dans le coffre hello. Vous pouvez utiliser cette applet de commande tooget une stratégie spécifique, ou les stratégies de hello tooview associées à un type de charge de travail. Bonjour à l’exemple suivant obtient les stratégies pour le type de charge de travail, AzureVM.
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesBackupProtectionPolicy -WorkloadType "AzureVM"
@@ -165,11 +165,11 @@ DefaultPolicy        AzureVM            AzureVM              4/14/2016 5:00:00 P
 ```
 
 > [!NOTE]
-> Le fuseau horaire du champ BackupTime dans PowerShell est UTC. Toutefois, lorsque l’heure de sauvegarde s’affiche dans le portail Azure, elle est alignée sur votre fuseau horaire.
+> fuseau horaire de Hello du champ de BackupTime hello dans PowerShell est UTC. Toutefois, lorsque les temps de sauvegarde hello sont affiché dans hello portail Azure, les temps de hello sont fuseau horaire local de tooyour ajustée.
 >
 >
 
-Une stratégie de protection de la sauvegarde est associée à au moins une stratégie de rétention. La stratégie de conservation définit la durée de conservation d’un point de restauration avant sa suppression. Utilisez **[Get-AzureRmRecoveryServicesBackupRetentionPolicyObject](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupretentionpolicyobject)** pour afficher la stratégie de conservation par défaut.  De même, vous pouvez utiliser **[Get-AzureRmRecoveryServicesBackupSchedulePolicyObject](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupschedulepolicyobject)** pour obtenir la stratégie de planification par défaut. L’applet de commande **[New-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy)** crée un objet PowerShell contenant des informations sur la stratégie de sauvegarde. Les objets de la stratégie de planification et de conservation sont utilisés comme entrées pour l’applet de commande **[New-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy)**. L’exemple suivant stocke la stratégie de planification et la stratégie de conservation dans des variables. L’exemple utilise ces variables pour définir les paramètres lors de la création d’une stratégie de protection, *NewPolicy*.
+Une stratégie de protection de la sauvegarde est associée à au moins une stratégie de rétention. La stratégie de conservation définit la durée de conservation d’un point de restauration avant sa suppression. Utilisez  **[Get-AzureRmRecoveryServicesBackupRetentionPolicyObject](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupretentionpolicyobject)**  stratégie de rétention par défaut tooview hello.  De même, vous pouvez utiliser  **[Get-AzureRmRecoveryServicesBackupSchedulePolicyObject](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupschedulepolicyobject)**  stratégie de planification par défaut tooobtain hello. Hello  **[New-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy)**  applet de commande crée un objet PowerShell qui contient des informations de stratégie de sauvegarde. Hello objets de stratégie de planification et de rétention sont utilisés comme entrées toohello  **[New-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy)**  applet de commande. Hello exemple suivant stocke hello planification hello politique de rétention et de variables. exemple de Hello utilise ces variables de paramètres de hello toodefine lors de la création d’une stratégie de protection, *NewPolicy*.
 
 ```
 PS C:\> $schPol = Get-AzureRmRecoveryServicesBackupSchedulePolicyObject -WorkloadType "AzureVM"
@@ -182,16 +182,16 @@ NewPolicy           AzureVM            AzureVM              4/24/2016 1:30:00 AM
 
 
 ### <a name="enable-protection"></a>Activer la protection
-Une fois que vous avez défini la stratégie de protection de la sauvegarde, vous devez encore activer la stratégie pour un élément. Utilisez  **[Enable-AzureRmRecoveryServicesBackupProtection](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/enable-azurermrecoveryservicesbackupprotection)**  pour activer la protection. L’activation de la protection nécessite deux objets : l’élément et la stratégie. Une fois que la stratégie a été associée au coffre, le flux de travail de la sauvegarde est déclenché à l’heure planifiée dans la planification de la stratégie.
+Une fois que vous avez défini la stratégie de protection des sauvegardes hello, vous devez toujours activer stratégie hello pour un élément. Utilisez  **[Enable-AzureRmRecoveryServicesBackupProtection](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/enable-azurermrecoveryservicesbackupprotection)**  tooenable protection. Activation de la protection nécessite deux objets - élément de hello et stratégie de hello. Une fois que la stratégie de hello a été associé au coffre de hello, flux de travail sauvegarde hello est déclenchée au moment de hello définie dans la planification de la stratégie hello.
 
-L’exemple suivant active la protection pour l’élément V2VM avec la stratégie NewPolicy. Pour activer la protection sur des machines virtuelles Resource Manager non chiffrées
+Hello suivant l’exemple permet de protection pour l’élément hello, V2VM, à l’aide de la stratégie de hello, NewPolicy. protection de hello tooenable sur des machines virtuelles Resource Manager non chiffré
 
 ```
 PS C:\> $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "NewPolicy"
 PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V2VM" -ResourceGroupName "RGName1"
 ```
 
-Pour activer la protection sur des machines virtuelles chiffrées (à l’aide de clés BEK et KEK), vous devez accorder au service Sauvegarde Azure l’autorisation de lire les clés et les secrets dans le coffre de clés.
+protection de hello tooenable sur chiffré (chiffrées à l’aide de BEK et KEK) de machines virtuelles, vous devez clés tooread autorisation du service Azure Backup toogive hello et les secrets à partir du coffre de clés.
 
 ```
 PS C:\> Set-AzureRmKeyVaultAccessPolicy -VaultName "KeyVaultName" -ResourceGroupName "RGNameOfKeyVault" -PermissionsToKeys backup,get,list -PermissionsToSecrets get,list -ServicePrincipalName 262044b1-e2ce-469f-a196-69ab7ada62d3
@@ -199,7 +199,7 @@ PS C:\> $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "NewPolicy"
 PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V2VM" -ResourceGroupName "RGName1"
 ```
 
-Pour activer la protection sur les machines virtuelles chiffrées (à l’aide de clés BEK uniquement), vous devez accorder au service Sauvegarde Azure l’autorisation de lire les secrets dans le coffre de clés.
+protection de hello tooenable sur chiffré machines virtuelles (chiffrés à l’aide de BEK uniquement), vous devez toogive hello Azure Backup service autorisation tooread des secrets à partir du coffre de clés.
 
 ```
 PS C:\> Set-AzureRmKeyVaultAccessPolicy -VaultName "KeyVaultName" -ResourceGroupName "RGNameOfKeyVault" -PermissionsToSecrets backup,get,list -ServicePrincipalName 262044b1-e2ce-469f-a196-69ab7ada62d3
@@ -208,7 +208,7 @@ PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V2VM"
 ```
 
 > [!NOTE]
-> Si vous êtes sur le cloud Azure Government, utilisez la valeur ff281ffe-705c-4f53-9f37-a40e6f2c68f3 pour le paramètre **- ServicePrincipalName** dans l’applet de commande [Set-AzureRmKeyVaultAccessPolicy](https://docs.microsoft.com/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy).
+> Si vous utilisez un cloud d’Azure Government hello, utilisez hello valeur ff281ffe-705c-4f53-9f37-a40e6f2c68f3 pour le paramètre hello **- ServicePrincipalName** dans [Set-AzureRmKeyVaultAccessPolicy](https://docs.microsoft.com/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy) applet de commande .
 >
 >
 
@@ -220,9 +220,9 @@ PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V1VM"
 ```
 
 ### <a name="modify-a-protection-policy"></a>Modifier une stratégie de protection
-Pour modifier la stratégie de protection, utilisez [Set-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/set-azurermrecoveryservicesbackupprotectionpolicy) pour modifier les objets SchedulePolicy ou RetentionPolicy.
+stratégie de protection toomodify hello, utilisez [Set-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/set-azurermrecoveryservicesbackupprotectionpolicy) toomodify hello SchedulePolicy ou RetentionPolicy objets.
 
-L’exemple suivant change la conservation des points de récupération en 365 jours.
+Hello exemple suivant change hello recovery point rétention too365 jours.
 
 ```
 PS C:\> $retPol = Get-AzureRmRecoveryServicesBackupRetentionPolicyObject -WorkloadType "AzureVM"
@@ -232,7 +232,7 @@ PS C:\> Set-AzureRmRecoveryServicesBackupProtectionPolicy -Policy $pol  -Retenti
 ```
 
 ## <a name="trigger-a-backup"></a>Déclencher une sauvegarde
-Vous pouvez utiliser  **[Backup-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/backup-azurermrecoveryservicesbackupitem)** pour déclencher une tâche de sauvegarde. S’il s’agit de la sauvegarde initiale, c’est une sauvegarde complète. Les sauvegardes suivantes prennent une copie incrémentielle. Veillez à utiliser  **[Set-AzureRmRecoveryServicesVaultContext](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)**  pour définir le contexte du coffre avant de déclencher la tâche de sauvegarde. L’exemple suivant suppose que la valeur du contexte du coffre a été définie.
+Vous pouvez utiliser  **[sauvegarde-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/backup-azurermrecoveryservicesbackupitem)**  tootrigger un travail de sauvegarde. S’il s’agit de sauvegarde initiale de hello, il est une sauvegarde complète. Les sauvegardes suivantes prennent une copie incrémentielle. Être vraiment toouse  **[Set-AzureRmRecoveryServicesVaultContext](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)**  tooset contexte de coffre hello avant de déclencher l’opération de sauvegarde hello. Bonjour à l’exemple suivant suppose coffre contexte a été défini.
 
 ```
 PS C:\> $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -FriendlyName "V2VM"
@@ -244,12 +244,12 @@ V2VM              Backup               InProgress            4/23/2016 5:00:30 P
 ```
 
 > [!NOTE]
-> Le fuseau horaire des champs StartTime et EndTime affichés dans PowerShell est UTC. Toutefois, lorsque l’heure s’affiche dans le portail Azure, elle est alignée sur votre fuseau horaire.
+> fuseau horaire de Hello de champs de StartTime et EndTime hello dans PowerShell est UTC. Toutefois, lorsque l’heure de hello est affichée dans hello portail Azure, les temps de hello sont fuseau horaire local de tooyour ajustée.
 >
 >
 
 ## <a name="monitoring-a-backup-job"></a>Surveillance d’une tâche de sauvegarde
-Vous pouvez surveiller les opérations à exécution longue, comme les tâches de sauvegarde, sans utiliser le portail Azure. Pour obtenir l’état d’une tâche en cours d’exécution, utilisez l’applet de commande **[Get-AzureRmRecoveryservicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupjob)**. Cette applet de commande obtient les tâches de sauvegarde pour un coffre spécifique, et ce coffre est spécifié dans le contexte du coffre. L’exemple suivant obtient l’état d’une tâche en cours d’exécution sous forme de tableau et stocke l’état dans la variable $joblist.
+Vous pouvez surveiller les opérations longues, telles que les travaux de sauvegarde, sans utiliser de hello portail Azure. état de hello tooget d’une tâche en cours d’exécution, utilisez hello  **[Get-AzureRmRecoveryservicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupjob)**  applet de commande. Cette applet de commande Obtient les travaux de sauvegarde hello pour un archivage spécifique, et ce coffre est spécifié dans le contexte de coffre hello. Bonjour exemple suivant obtient l’état de hello d’un travail en cours d’exécution sous forme de tableau et stocke l’état de hello dans la variable de hello $joblist.
 
 ```
 PS C:\> $joblist = Get-AzureRmRecoveryservicesBackupJob –Status "InProgress"
@@ -259,35 +259,35 @@ WorkloadName     Operation            Status               StartTime            
 V2VM             Backup               InProgress            4/23/2016 5:00:30 PM           cf4b3ef5-2fac-4c8e-a215-d2eba4124f27
 ```
 
-Au lieu d’interroger ces travaux pour connaître leur état d’avancement, ce qui implique du code supplémentaire inutile, utilisez l’applet de commande **[Wait-AzureRmRecoveryServicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/wait-azurermrecoveryservicesbackupjob)**. Cette applet de commande suspend l’exécution jusqu’à la fin de la tâche ou jusqu’à ce que la valeur spécifiée pour l’expiration du délai soit atteinte.
+Au lieu de l’interrogation de ces travaux pour la saisie semi-automatique, qui est un code superflu supplémentaire - utilisez hello  **[Wait-AzureRmRecoveryServicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/wait-azurermrecoveryservicesbackupjob)**  applet de commande. Cette applet de commande suspend l’exécution de hello qu’hello tâche se termine ou hello spécifié la valeur de délai d’attente est atteinte.
 
 ```
 PS C:\> Wait-AzureRmRecoveryServicesBackupJob -Job $joblist[0] -Timeout 43200
 ```
 
 ## <a name="restore-an-azure-vm"></a>Restauration d’une machine virtuelle Azure
-Il existe une différence clé entre la restauration d’une machine virtuelle à l’aide du portail Azure et la restauration d’une machine virtuelle à l’aide de PowerShell. Avec PowerShell, l’opération de restauration est terminée dès que sont créés les disques et les informations de configuration à partir d’un point de restauration.
+Il existe une différence fondamentale entre hello restauration d’une machine virtuelle à l’aide de hello portail Azure et la restauration d’une machine virtuelle à l’aide de PowerShell. Avec PowerShell, hello restauration est terminée une fois que les disques hello et les informations de configuration de point de récupération hello sont créés.
 
 > [!NOTE]
-> L’opération de restauration ne crée pas de machine virtuelle.
+> opération de restauration Hello ne crée pas d’un ordinateur virtuel.
 >
 >
 
-Pour créer une machine virtuelle à partir d’un disque, consultez la section [Créer la machine virtuelle à partir de disques stockés](backup-azure-vms-automation.md#create-a-vm-from-stored-disks). Les étapes de base pour restaurer une machine virtuelle Azure sont :
+toocreate un ordinateur virtuel à partir du disque, consultez la section hello [hello créer machine virtuelle à partir de disques stockées](backup-azure-vms-automation.md#create-a-vm-from-stored-disks). étapes de base de Hello toorestore une machine virtuelle Azure sont les suivantes :
 
-* Sélection de la machine virtuelle
+* Sélectionnez hello machine virtuelle
 * Choisir un point de récupération
-* Restaurer les disques
-* Créer la machine virtuelle à partir des disques stockés
+* Restaurer des disques de hello
+* Créer hello machine virtuelle à partir de disques stockées
 
-L’illustration suivante montre la hiérarchie d’objets à partir de RecoveryServicesVault jusqu’à BackupRecoveryPoint.
+Hello graphique suivant illustre hello objet hiérarchie hello RecoveryServicesVault toohello BackupRecoveryPoint vers le bas.
 
 ![Hiérarchie d’objets Recovery Services montrant BackupContainer](./media/backup-azure-vms-arm-automation/backuprecoverypoint-only.png)
 
-Pour restaurer les données de sauvegarde, identifiez l’élément sauvegardé et le point de récupération contenant les données ponctuelles. Utilisez l’applet de commande **[Restore-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/restore-azurermrecoveryservicesbackupitem)** pour restaurer les données à partir du coffre vers le compte du client.
+toorestore les données de sauvegarde, identifier l’élément de sauvegarde hello hello point de récupération et qui conserve les données de point-à-temps hello. Hello d’utilisation  **[restauration-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/restore-azurermrecoveryservicesbackupitem)**  données toorestore applet de commande hello coffre toohello du compte client.
 
-### <a name="select-the-vm"></a>Sélection de la machine virtuelle
-Pour obtenir l’objet PowerShell permettant d’identifier l’élément à restaurer, vous devez commencer au niveau du conteneur dans le coffre et descendre dans la hiérarchie d’objets. Pour sélectionner le conteneur qui représente la machine virtuelle, utilisez l’applet de commande **[Get-AzureRmRecoveryServicesBackupContainer](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupcontainer)** et dirigez-la vers l’applet de commande **[Get-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupitem)**.
+### <a name="select-hello-vm"></a>Sélectionnez hello machine virtuelle
+tooget hello PowerShell objet qui identifie hello droite sauvegarder élément démarrer à partir du conteneur hello dans le coffre hello et dont la hiérarchie d’objets hello. conteneur hello tooselect représentant hello machine virtuelle, utilisez hello  **[Get-AzureRmRecoveryServicesBackupContainer](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupcontainer)**  applet de commande et redirigez cette toohello  **[ Get-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupitem)**  applet de commande.
 
 ```
 PS C:\> $namedContainer = Get-AzureRmRecoveryServicesBackupContainer  -ContainerType "AzureVM" –Status "Registered" -FriendlyName "V2VM"
@@ -295,9 +295,9 @@ PS C:\> $backupitem = Get-AzureRmRecoveryServicesBackupItem –Container $namedC
 ```
 
 ### <a name="choose-a-recovery-point"></a>Choisir un point de récupération
-Utilisez l’applet de commande **[Get-AzureRmRecoveryServicesBackupRecoveryPoint](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackuprecoverypoint)** pour répertorier tous les points de récupération pour l’élément de sauvegarde. Ensuite, choisissez le point de récupération à restaurer. Si vous ne savez pas quel point de récupération utiliser, nous vous conseillons de choisir le point RecoveryPointType = AppConsistent le plus récent dans la liste.
+Hello d’utilisation  **[Get-AzureRmRecoveryServicesBackupRecoveryPoint](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackuprecoverypoint)**  toolist d’applet de commande points de récupération de tous les pour sauvegarder l’élément hello. Choisissez ensuite toorestore de point de récupération hello. Si vous ne savez pas quel toouse de point de récupération, il est une bonne approche en matière toochoose hello plus récente RecoveryPointType = point AppConsistent dans la liste de hello.
 
-Dans le script suivant, la variable **$rp**est un tableau de points de récupération des 7 derniers jours pour l’élément de sauvegarde sélectionné. Le tableau est trié dans l’ordre chronologique inverse, le point de récupération le plus récent détenant l’index 0. Utilisez l'indexation de tableau PowerShell standard pour sélectionner le point de récupération. Dans l’exemple, $rp[0] sélectionne le dernier point de récupération.
+Bonjour le script suivant, hello variable, **$rp**, est un tableau de points de récupération pour hello sélectionné sauvegarder l’élément, à partir de hello sept derniers jours. tableau de Hello est trié dans l’ordre inverse de temps avec le dernier point de récupération hello à l’index 0. Utiliser le tableau PowerShell standard, l’indexation de point de récupération toopick hello. Dans l’exemple de hello, $rp [0] sélectionne le dernier point de récupération hello.
 
 ```
 PS C:\> $startDate = (Get-Date).AddDays(-7)
@@ -319,10 +319,10 @@ BackupManagementType        : AzureVM
 
 
 
-### <a name="restore-the-disks"></a>Restaurer les disques
-Utilisez l’applet de commande **[Restore-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/restore-azurermrecoveryservicesbackupitem)** pour restaurer les données et la configuration d’un élément de sauvegarde à un point de récupération. Lorsque vous avez identifié un point de récupération, utilisez-le comme valeur du paramètre **-RecoveryPoint** . Dans l’exemple de code précédent, **$rp[0]** était le point de récupération à utiliser. Dans l’exemple de code suivant, **$rp [0]** est le point de récupération à utiliser pour restaurer le disque.
+### <a name="restore-hello-disks"></a>Restaurer des disques de hello
+Hello d’utilisation  **[restauration-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/restore-azurermrecoveryservicesbackupitem)**  toorestore de l’applet de commande les données d’un élément de sauvegarde et configuration tooa point de récupération. Une fois que vous avez identifié un point de récupération, utilisez-le comme valeur de hello pour hello **- RecoveryPoint** paramètre. Hello précédent exemple de code, **$rp [0]** a été toouse de point de récupération hello. Bonjour suivant l’exemple de code, **$rp [0]** est hello toouse de point de récupération pour la restauration du disque de hello.
 
-Pour restaurer les disques et les informations de configuration :
+les disques toorestore hello et les informations de configuration :
 
 ```
 PS C:\> $restorejob = Restore-AzureRmRecoveryServicesBackupItem -RecoveryPoint $rp[0] -StorageAccountName "DestAccount" -StorageAccountResourceGroupName "DestRG"
@@ -332,30 +332,30 @@ WorkloadName     Operation          Status               StartTime              
 V2VM              Restore           InProgress           4/23/2016 5:00:30 PM                        cf4b3ef5-2fac-4c8e-a215-d2eba4124f27
 ```
 
-Utilisez l’applet de commande **[Wait-AzureRmRecoveryServicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/wait-azurermrecoveryservicesbackupjob)** pour attendre que la tâche de restauration soit terminée.
+Hello d’utilisation  **[Wait-AzureRmRecoveryServicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/wait-azurermrecoveryservicesbackupjob)**  toowait d’applet de commande pour toocomplete de travail de restauration hello.
 
 ```
 PS C:\> Wait-AzureRmRecoveryServicesBackupJob -Job $restorejob -Timeout 43200
 ```
 
-Une fois le travail de restauration terminé, utilisez l’applet de commande **[Get-AzureRmRecoveryServicesBackupJobDetails](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupjobdetails)** pour obtenir les détails du travail de restauration. La propriété JobDetails contient les informations nécessaires pour régénérer la machine virtuelle.
+Une fois le travail de restauration hello est terminé, utilisez hello  **[Get-AzureRmRecoveryServicesBackupJobDetails](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupjobdetails)**  détails hello tooget Hello l’opération de restauration. Hello JobDetails propriété a toorebuild nécessaires hello VM de hello plus d’informations.
 
 ```
 PS C:\> $restorejob = Get-AzureRmRecoveryServicesBackupJob -Job $restorejob
 PS C:\> $details = Get-AzureRmRecoveryServicesBackupJobDetails -Job $restorejob
 ```
 
-Une fois que vous avez restauré les disques, accédez à la section suivante pour créer la machine virtuelle.
+Une fois que vous restaurez les disques hello, accédez hello toohello suivant section toocreate machine virtuelle.
 
 ## <a name="create-a-vm-from-restored-disks"></a>Créer une machine virtuelle à partir de disques restaurés
-Après avoir restauré les disques, exécutez les étapes ci-après pour créer et configurer la machine virtuelle à partir du disque.
+Après avoir restauré les disques hello, utilisez ces étapes toocreate et configurer l’ordinateur virtuel de hello à partir du disque.
 
 > [!NOTE]
-> Pour créer des machines virtuelles chiffrées à partir de disques restaurés, votre rôle Azure doit avoir l’autorisation d’effectuer l’action **Microsoft.KeyVault/vaults/deploy/action**. Si votre rôle ne dispose pas de cette autorisation, créez un rôle personnalisé avec cette action. Pour plus d’informations, consultez [Rôles personnalisés dans le contrôle d’accès en fonction du rôle (RBAC) Azure](../active-directory/role-based-access-control-custom-roles.md).
+> toocreate chiffré des machines virtuelles à partir de disques restaurés, votre rôle Azure doit avoir l’action de hello autorisation tooperform, **Microsoft.KeyVault/vaults/deploy/action**. Si votre rôle ne dispose pas de cette autorisation, créez un rôle personnalisé avec cette action. Pour plus d’informations, consultez [Rôles personnalisés dans le contrôle d’accès en fonction du rôle (RBAC) Azure](../active-directory/role-based-access-control-custom-roles.md).
 >
 >
 
-1. Interrogez les propriétés des disques restaurés pour obtenir les détails du travail.
+1. Hello de requête restauré les propriétés du disque pour les détails de la tâche hello.
 
   ```
   PS C:\> $properties = $details.properties
@@ -364,7 +364,7 @@ Après avoir restauré les disques, exécutez les étapes ci-après pour créer 
   PS C:\> $blobName = $properties["Config Blob Name"]
   ```
 
-2. Définissez le contexte de stockage Azure et restaurez le fichier de configuration JSON.
+2. Définir le contexte du stockage Azure hello et restaurez le fichier de configuration JSON hello.
 
     ```
     PS C:\> Set-AzureRmCurrentStorageAccount -Name $storageaccountname -ResourceGroupName "testvault"
@@ -373,13 +373,13 @@ Après avoir restauré les disques, exécutez les étapes ci-après pour créer 
     PS C:\> $obj = ((Get-Content -Path $destination_path -Raw -Encoding Unicode)).TrimEnd([char]0x00) | ConvertFrom-Json
     ```
 
-3. Utilisez le fichier de configuration JSON pour créer la configuration de la machine virtuelle.
+3. Utilisez configuration d’ordinateur virtuel hello JSON configuration fichier toocreate hello.
 
     ```
    PS C:\> $vm = New-AzureRmVMConfig -VMSize $obj.'properties.hardwareProfile'.vmSize -VMName "testrestore"
     ```
 
-4. Attachez le disque du système d’exploitation et les disques de données. Selon la configuration de vos machines virtuelles, cliquez sur le lien approprié pour afficher les applets de commande respectifs : 
+4. Attachez le disque du système d’exploitation hello et des disques de données. Selon la configuration de hello de vos machines virtuelles, cliquez sur hello lien pertinent tooview applets de commande respectifs : 
     - [Machines virtuelles non gérés, non chiffré](#non-managed-non-encrypted-vms)
     - [Machines virtuelles non gérés, chiffrés (BEK uniquement)](#non-managed-encrypted-vms-bek-only)
     - [Machines virtuelles non gérés, chiffrés (BEK et KEK)](#non-managed-encrypted-vms-bek-and-kek)
@@ -388,7 +388,7 @@ Après avoir restauré les disques, exécutez les étapes ci-après pour créer 
     
     #### <a name="non-managed-non-encrypted-vms"></a>Machines virtuelles non gérées et non chiffrées
 
-    Utilisez l’exemple suivant pour une machine virtuelle non gérée et non chiffrée.
+    Utilisez hello suivant l’exemple pour les ordinateurs virtuels non géré, non chiffré.
 
     ```
     PS C:\> Set-AzureRmVMOSDisk -VM $vm -Name "osdisk" -VhdUri $obj.'properties.StorageProfile'.osDisk.vhd.Uri -CreateOption "Attach"
@@ -401,7 +401,7 @@ Après avoir restauré les disques, exécutez les étapes ci-après pour créer 
 
     #### <a name="non-managed-encrypted-vms-bek-only"></a>Machines virtuelles non managées et chiffrées (BEK uniquement)
 
-    Pour les machines virtuelles non managées et chiffrées (à l’aide de BEK uniquement), vous devez restaurer le secret dans le coffre de clés avant d’attacher des disques. Pour plus d’informations, consultez l’article [Restaurer une machine virtuelle chiffrée à partir d’un point de récupération Sauvegarde Azure](backup-azure-restore-key-secret.md). L’exemple suivant montre comment attacher des disques de système d’exploitation et de données pour les machines virtuelles chiffrées.
+    Pour chiffrés, non géré des ordinateurs virtuels (chiffrés à l’aide de BEK uniquement), vous avez besoin de coffre de clés secrètes toohello hello toorestore avant que vous pouvez attacher des disques. Pour plus d’informations, consultez l’article hello, [restaurer un ordinateur virtuel chiffré à partir d’un point de récupération Azure Backup](backup-azure-restore-key-secret.md). Hello suivant l’exemple montre le mode de chiffrement de tooattach du système d’exploitation et des disques de données pour les machines virtuelles.
 
     ```
     PS C:\> $dekUrl = "https://ContosoKeyVault.vault.azure.net:443/secrets/ContosoSecret007/xx000000xx0849999f3xx30000003163"
@@ -416,7 +416,7 @@ Après avoir restauré les disques, exécutez les étapes ci-après pour créer 
 
     #### <a name="non-managed-encrypted-vms-bek-and-kek"></a>Machines virtuelles non managées et chiffrées (BEK et KEK)
 
-    Pour les machines virtuelles non managées et chiffrées (à l’aide de BEK et de KEK), vous devez restaurer la clé et le secret dans le coffre de clés avant d’attacher des disques. Pour plus d’informations, consultez l’article [Restaurer une machine virtuelle chiffrée à partir d’un point de récupération Sauvegarde Azure](backup-azure-restore-key-secret.md). L’exemple suivant montre comment attacher des disques de système d’exploitation et de données pour les machines virtuelles chiffrées.
+    Non gérés, chiffrés machines virtuelles (chiffrées à l’aide de BEK et KEK), vous devez clé de hello toorestore et coffre de clés secrètes toohello avant que vous pouvez attacher des disques. Pour plus d’informations, consultez l’article hello, [restaurer un ordinateur virtuel chiffré à partir d’un point de récupération Azure Backup](backup-azure-restore-key-secret.md). Hello suivant l’exemple montre le mode de chiffrement de tooattach du système d’exploitation et des disques de données pour les machines virtuelles.
 
     ```
     PS C:\> $dekUrl = "https://ContosoKeyVault.vault.azure.net:443/secrets/ContosoSecret007/xx000000xx0849999f3xx30000003163"
@@ -432,7 +432,7 @@ Après avoir restauré les disques, exécutez les étapes ci-après pour créer 
 
     #### <a name="managed-non-encrypted-vms"></a>Machines virtuelles gérées et non chiffrées
 
-    Pour les machines virtuelles gérées et non chiffrées, vous devez créer des disques managés à partir de Stockage Blob, puis attacher les disques. Pour plus d’informations, consultez l’article [Attacher un disque de données à une machine virtuelle Windows à l’aide de PowerShell](../virtual-machines/windows/attach-disk-ps.md). L’exemple de code suivant montre comment attacher les disques de données pour des machines virtuelles non chiffrées et gérées.
+    Non chiffrées machines virtuelles gérées, vous allez peut-être disques toocreate géré depuis le stockage blob et puis attachez les disques hello. Pour plus d’informations, consultez l’article hello, [attacher un tooa de disque de données machine virtuelle Windows à l’aide de PowerShell](../virtual-machines/windows/attach-disk-ps.md). Hello suivant l’exemple de code montre comment tooattach hello des disques de données pour les machines virtuelles gérées non chiffré.
 
     ```
     PS C:\> $storageType = "StandardLRS"
@@ -453,7 +453,7 @@ Après avoir restauré les disques, exécutez les étapes ci-après pour créer 
 
     #### <a name="managed-encrypted-vms-bek-and-kek"></a>Machines virtuelles managées et chiffrées (BEK et KEK)
 
-    Pour les machines virtuelles managées et chiffrées (à l’aide de BEK et de KEK), vous devez créer des disques managés depuis Stockage Blob, puis attacher les disques. Pour plus d’informations, consultez l’article [Attacher un disque de données à une machine virtuelle Windows à l’aide de PowerShell](../virtual-machines/windows/attach-disk-ps.md). L’exemple de code suivant montre comment attacher les disques de données pour des machines virtuelles chiffrées et gérées.
+    Chiffrées machines virtuelles gérées (chiffrées à l’aide de BEK et KEK), vous allez peut-être disques toocreate géré depuis le stockage blob et puis attachez les disques hello. Pour plus d’informations, consultez l’article hello, [attacher un tooa de disque de données machine virtuelle Windows à l’aide de PowerShell](../virtual-machines/windows/attach-disk-ps.md). Hello exemple de code suivant montre comment tooattach hello des disques de données pour les machines virtuelles chiffrées gérées.
 
      ```
     PS C:\> $dekUrl = "https://ContosoKeyVault.vault.azure.net:443/secrets/ContosoSecret007/xx000000xx0849999f3xx30000003163"
@@ -475,7 +475,7 @@ Après avoir restauré les disques, exécutez les étapes ci-après pour créer 
      }
     ```
 
-5. Définissez les paramètres réseau.
+5. Définir des paramètres de réseau hello.
 
     ```
     PS C:\> $nicName="p1234"
@@ -484,11 +484,11 @@ Après avoir restauré les disques, exécutez les étapes ci-après pour créer 
     PS C:\> $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName "test" -Location "WestUS" -SubnetId $vnet.Subnets[$subnetindex].Id -PublicIpAddressId $pip.Id
     PS C:\> $vm=Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
     ```
-6. Créez la machine virtuelle.
+6. Créer un ordinateur virtuel de hello.
 
     ```    
     PS C:\> New-AzureRmVM -ResourceGroupName "test" -Location "WestUS" -VM $vm
     ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Si vous préférez utiliser PowerShell pour gérer vos ressources Azure, consultez l’article PowerShell [Déployer et gérer une sauvegarde pour Windows Server](backup-client-automation.md). Si vous gérez des sauvegardes DPM, consultez l’article [Déployer et gérer la sauvegarde pour DPM](backup-dpm-automation.md). Ces deux articles ont une version concernant les déploiements avec le modèle Resource Manager et le modèle Classic.  
+Si vous préférez toouse PowerShell tooengage avec vos ressources Azure, consultez l’article de PowerShell hello, [déployer et gérer Backup pour Windows Server](backup-client-automation.md). Si vous gérez les sauvegardes DPM, consultez l’article hello, [déployer et gérer la sauvegarde de DPM](backup-dpm-automation.md). Ces deux articles ont une version concernant les déploiements avec le modèle Resource Manager et le modèle Classic.  

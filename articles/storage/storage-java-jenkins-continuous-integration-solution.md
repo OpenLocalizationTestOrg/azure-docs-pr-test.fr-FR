@@ -1,6 +1,6 @@
 ---
-title: "Utilisation d’Azure Storage avec une solution d’intégration continue Jenkins | Microsoft Docs"
-description: "Ce didacticiel décrit l’utilisation du service BLOB Azure comme référentiel d’artefacts de build créés par une solution d’intégration continue Jenkins."
+title: "aaaUsing le stockage Azure avec une Solution d’intégration continue Jenkins | Documents Microsoft"
+description: "Ce didacticiel montrent comment toouse hello Azure le service blob comme un référentiel pour générer des artefacts créés par une solution d’intégration continue Jenkins."
 services: storage
 documentationcenter: java
 author: seguler
@@ -14,25 +14,25 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 02/28/2017
 ms.author: seguler
-ms.openlocfilehash: 72cf98289102f64f82bbac6e43b48339db8681b4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a8a8c6f3b03cf61d7ad98f0b38e9421dd0b47bfd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-storage-with-a-jenkins-continuous-integration-solution"></a>Utilisation d’Azure Storage avec une solution d’intégration continue Jenkins
 ## <a name="overview"></a>Vue d'ensemble
-Les informations suivantes expliquent comment utiliser Blob Storage comme dépôt pour les artefacts de build créés par une solution d’intégration continue (CI) Jenkins ou comme source de fichiers téléchargeables dans un processus de génération. Cela peut s'avérer utile dans plusieurs scénarios, notamment lorsque vous codez dans un environnement de développement agile (avec Java ou d'autres langages), que les builds s'exécutent sur la base d'une intégration continue et que vous avez besoin d'un référentiel pour vos artefacts de build, de manière, par exemple, à pouvoir les partager avec d'autres membres de l'organisation, vos clients, ou conserver une archive. Il existe un autre scénario dans lequel votre tâche de build proprement dite requiert d'autres fichiers, comme des dépendances à télécharger dans le cadre de l'entrée de génération.
+Hello ci-après montre comment toouse stockage d’objets Blob en tant que référentiel d’artefacts de build créée par une solution d’intégration continue Jenkins (CI), ou en tant que source des fichiers téléchargeables toobe utilisée dans un processus de génération. Un des scénarios hello où cela serait utile est lorsque vous codez dans un environnement de développement agile (à l’aide de Java ou autres langages), builds sont en cours d’exécution en fonction de l’intégration continue, et vous avez besoin d’un référentiel pour les artefacts de votre build, afin que vous pouvez , par exemple, les partager avec d’autres membres de l’organisation, vos clients, ou conserver une archive. Un autre scénario est lorsque votre tâche de la build requiert des autres fichiers, par exemple, toodownload de dépendances dans le cadre de hello build entrée.
 
-Dans ce didacticiel, vous allez utiliser le plug-in Azure Storage pour Jenkins CI mis à disposition par Microsoft.
+Dans ce didacticiel vous utiliserez hello plug-in de stockage Azure pour Jenkins CI mises à disposition par Microsoft.
 
 ## <a name="overview-of-jenkins"></a>Présentation de Jenkins
-Jenkins rend possible l’intégration continue d’un projet de logiciel en permettant aux développeurs d’intégrer aisément les modifications de leur code, et de créer automatiquement et fréquemment des builds, d’où une productivité accrue. Les versions des builds sont gérées et les artefacts de build peuvent être téléchargés dans divers référentiels. Dans cette rubrique, vous allez apprendre à utiliser le stockage d'objets blob comme référentiel des artefacts de build. Vous allez également apprendre à télécharger des dépendances depuis le stockage d'objets blob Azure.
+Jenkins permet l’intégration continue d’un projet de logiciel en permettant aux développeurs tooeasily intégrer leurs modifications du code et avoir génère générées automatiquement et fréquemment, accroître la productivité des développeurs de hello hello des. Les versions sont gérées et les artefacts de build peuvent être téléchargé toovarious référentiels. Cette rubrique indique comment toouse Azure stockage d’objets blob en tant que référentiel hello des artefacts de build hello. Elle montre également comment les dépendances toodownload à partir d’Azure stockage d’objets blob.
 
 Pour plus d'informations sur Jenkins, consultez la page de [présentation de Jenkins](https://wiki.jenkins-ci.org/display/JENKINS/Meet+Jenkins).
 
-## <a name="benefits-of-using-the-blob-service"></a>Avantages de l’utilisation du service BLOB
-L'utilisation du service BLOB pour héberger vos artefacts de build dans un environnement agile présente les avantages suivants :
+## <a name="benefits-of-using-hello-blob-service"></a>Avantages de l’utilisation du service d’objets Blob hello
+Avantages de l’utilisation de hello Blob service toohost vos artefacts de build de développement agile :
 
 * Haute disponibilité de vos artefacts de build et/ou dépendances téléchargeables.
 * Performances lorsque votre solution Jenkins CI télécharge vos artefacts de build.
@@ -40,53 +40,53 @@ L'utilisation du service BLOB pour héberger vos artefacts de build dans un envi
 * Contrôle sur les stratégies d'accès utilisateur, avec choix entre accès anonyme, accès par signature d'accès partagé basé sur l'expiration, accès privé, etc.
 
 ## <a name="prerequisites"></a>Composants requis
-Pour utiliser le service BLOB avec votre solution Jenkins CI, vous avez besoin des éléments suivants :
+Vous serez peut-être hello suivant toouse hello service Blob avec votre solution Jenkins CI :
 
 * Une solution d'intégration continue Jenkins.
   
-    Si vous ne disposez pas d'une solution Jenkins CI, vous pouvez en exécuter une à l'aide de la technique suivante :
+    Si vous n’avez actuellement pas une solution Jenkins CI, vous pouvez exécuter une solution de Jenkins CI à l’aide de hello suivant technique :
   
   1. Sur un ordinateur compatible Java, téléchargez le fichier jenkins.war à l'adresse <http://jenkins-ci.org>.
-  2. Accédez au dossier contenant le fichier jenkins.war, ouvrez une invite de commandes et exécutez la commande suivante :
+  2. À une invite de commandes est le dossier toohello ouvert qui contient jenkins.war, exécutez :
      
       `java -jar jenkins.war`
 
-  3. Dans votre navigateur, ouvrez `http://localhost:8080/`. Le tableau de bord Jenkins s’ouvre ; vous allez vous en servir pour installer et configurer le plug-in Azure Storage.
+  3. Dans votre navigateur, ouvrez `http://localhost:8080/`. S’ouvre hello Jenkins tableau de bord, vous allez utiliser tooinstall et configurer le plug-in de hello le stockage Azure.
      
-      Une solution Jenkins CI type serait configurée pour s'exécuter en tant que service, mais l'exécution du fichier .war Jenkins depuis la ligne de commande est suffisante pour les besoins de ce didacticiel.
+      Lors d’une solution de Jenkins CI classique est configurée toorun en tant que service, la guerre de Jenkins hello en cours d’exécution à la ligne de commande hello sera suffisant pour ce didacticiel.
 * Un compte Azure. Pour créer un compte Azure, consultez la page <http://www.azure.com>.
-* Un compte de stockage Azure. Si vous ne disposez pas déjà d’un compte de stockage, vous pouvez en créer un en suivant la procédure décrite dans la section [Créer un compte de stockage](storage-create-storage-account.md#create-a-storage-account).
-* Une bonne connaissance de la solution Jenkins CI est recommandée, mais pas obligatoire, car le contenu suivant emploiera un exemple élémentaire pour décrire la procédure requise lorsque vous utilisez le service BLOB comme référentiel pour les artefacts de build Jenkins CI.
+* Un compte de stockage Azure. Si vous n’avez pas déjà un compte de stockage, vous pouvez en créer un à l’aide des étapes hello [créer un compte de stockage](storage-create-storage-account.md#create-a-storage-account).
+* Vous êtes familiarisé avec la solution de Jenkins CI hello est recommandé mais pas obligatoire, comme hello contenu suivant utilisera un tooshow de l’exemple de base vous hello étapes nécessaires lors de l’utilisation du service d’objets Blob hello en tant que référentiel pour Jenkins CI des artefacts de build.
 
-## <a name="how-to-use-the-blob-service-with-jenkins-ci"></a>Utilisation du service BLOB avec Jenkins CI
-Pour utiliser le service BLOB avec Jenkins, vous devez installer le plug-in Azure Storage, le configurer pour utiliser votre compte de stockage, puis créer une action post-build qui télécharge vos artefacts de build sur votre compte de stockage. Les étapes de cette procédure sont décrites dans les sections suivantes.
+## <a name="how-toouse-hello-blob-service-with-jenkins-ci"></a>Comment toouse hello service Blob avec Jenkins CI
+le service de Blob toouse hello avec Jenkins, vous devez tooinstall hello plug-in de stockage Azure, configurer hello plug-in toouse votre compte de stockage et ensuite créer une action post-build qui télécharge de votre compte de stockage tooyour build artefacts. Ces étapes sont décrites dans les sections suivantes de hello.
 
-## <a name="how-to-install-the-azure-storage-plugin"></a>Comment installer le plug-in de stockage Azure
-1. Dans le tableau de bord Jenkins, cliquez sur **Manage Jenkins**.
-2. Sur la page **Manage Jenkins**, cliquez sur **Manage Plugins**.
-3. Cliquez sur l'onglet **Available** .
-4. Dans la section **Téléchargeurs d'artefacts**, activez la case à cocher **Plug-in Microsoft Azure Storage**.
+## <a name="how-tooinstall-hello-azure-storage-plugin"></a>Comment tooinstall hello plug-in de stockage Azure
+1. Dans le tableau de bord hello Jenkins, cliquez sur **gérer les Jenkins**.
+2. Bonjour **gérer les Jenkins** , cliquez sur **gérer les plug-ins**.
+3. Cliquez sur hello **disponible** onglet.
+4. Bonjour **artefact télépartageurs** section, cocher **plug-in Microsoft Azure Storage**.
 5. Cliquez sur **Install without restart** ou sur **Download now and install after restart**.
 6. Redémarrez Jenkins.
 
-## <a name="how-to-configure-the-azure-storage-plugin-to-use-your-storage-account"></a>Comment configurer le plug-in de stockage Azure pour utiliser votre compte de stockage
-1. Dans le tableau de bord Jenkins, cliquez sur **Manage Jenkins**.
-2. Sur la page **Manage Jenkins**, cliquez sur **Configure System**.
-3. Dans la section **Configuration du compte Microsoft Azure Storage** :
-   1. Entrez le nom de votre compte de stockage, que vous pouvez obtenir à partir du [portail Azure](https://portal.azure.com).
-   2. Entrez la clé de votre compte de stockage, que vous pouvez obtenir à partir du [portail Azure](https://portal.azure.com).
-   3. Utilisez la valeur par défaut pour **Blob Service Endpoint URL** si vous vous servez du cloud public Azure. Si vous vous servez d’un autre cloud Azure, utilisez le point de terminaison spécifié dans le [portail Azure](https://portal.azure.com) pour votre compte de stockage. 
-   4. Cliquez sur **Valider les informations d'identification de stockage** pour valider votre compte de stockage. 
-   5. [Facultatif] Si vous avez d'autres comptes de stockage que vous souhaitez rendre disponibles pour votre solution Jenkins CI, cliquez sur **Add more Storage Accounts**.
-   6. Cliquez sur **Save** pour enregistrer vos paramètres.
+## <a name="how-tooconfigure-hello-azure-storage-plugin-toouse-your-storage-account"></a>Comment tooconfigure hello toouse plug-in de stockage Azure, votre compte de stockage
+1. Dans le tableau de bord hello Jenkins, cliquez sur **gérer les Jenkins**.
+2. Bonjour **gérer les Jenkins** , cliquez sur **configurer le système**.
+3. Bonjour **Configuration du compte de stockage Microsoft Azure** section :
+   1. Entrez votre nom de compte de stockage, vous pouvez obtenir à partir de hello [Azure Portal](https://portal.azure.com).
+   2. Entrez votre clé de compte de stockage, également peut être obtenu à partir de hello [Azure Portal](https://portal.azure.com).
+   3. Utilisez la valeur par défaut de hello **URL de point de terminaison du Service Blob** si vous utilisez le cloud public Azure de hello. Si vous utilisez un autre cloud Azure, utiliser le point de terminaison hello comme hello spécifié dans [portail Azure](https://portal.azure.com) pour votre compte de stockage. 
+   4. Cliquez sur **valider les informations d’identification de stockage** toovalidate votre compte de stockage. 
+   5. [Facultatif] Si vous avez des comptes de stockage supplémentaires que vous souhaitez tooyour disponible faite Jenkins CI, cliquez sur **ajouter plusieurs comptes de stockage**.
+   6. Cliquez sur **enregistrer** toosave vos paramètres.
 
-## <a name="how-to-create-a-post-build-action-that-uploads-your-build-artifacts-to-your-storage-account"></a>Création d'une action post-build qui télécharge les artefacts de votre build sur votre compte de stockage
-Pour les besoins de la formation, nous devons d’abord créer une tâche qui créera plusieurs fichiers, puis ajouter l’action post-build pour télécharger les fichiers sur votre compte de stockage.
+## <a name="how-toocreate-a-post-build-action-that-uploads-your-build-artifacts-tooyour-storage-account"></a>Comment toocreate une action post-build qui télécharge de votre compte de stockage build artefacts tooyour
+Tout d’abord à des fins d’instruction, nous aurons besoin toocreate une tâche qui crée plusieurs fichiers et puis ajoutez hello action post-build tooupload hello fichiers tooyour compte de stockage.
 
-1. Dans le tableau de bord Jenkins, cliquez sur **Nouvel élément**.
-2. Nommez la tâche **MyJob**, cliquez sur **Build a free-style software project**, puis sur **OK**.
-3. Dans la section **Build** (Générer) de la configuration de la tâche, cliquez sur **Add build step** (Ajouter une étape de génération) et choisissez **Execute Windows batch command** (Exécuter une commande batch Windows).
-4. Dans **Command**, utilisez les commandes suivantes :
+1. Dans le tableau de bord hello Jenkins, cliquez sur **un nouvel élément**.
+2. Nom du travail hello **MyJob**, cliquez sur **générer un projet de logiciel de forme libre**, puis cliquez sur **OK**.
+3. Bonjour **générer** section de configuration du travail hello, cliquez sur **étape de génération ajouter** et choisissez **commande de lot Windows d’exécuter**.
+4. Dans **commande**, utilisez hello suivant de commandes :
 
     ```   
     md text
@@ -96,54 +96,54 @@ Pour les besoins de la formation, nous devons d’abord créer une tâche qui cr
     time /t >> date.txt
     ```
 
-5. Dans la section **Post-build Actions** de la configuration de la tâche, cliquez sur **Add post-build action** et choisissez **Upload artifacts to Azure Blob storage**.
-6. Dans le champ **Nom du compte de stockage**, sélectionnez le compte de stockage à utiliser.
-7. Dans le champ **Nom du conteneur**, indiquez le nom du conteneur. Le conteneur est créé s’il n’existe pas déjà au téléchargement des artefacts de build. Vous pouvez utiliser des variables d’environnement. Dans cet exemple, entrez **${JOB_NAME}** comme nom de conteneur.
+5. Bonjour **post-build Actions** section de configuration du travail hello, cliquez sur **ajouter une action post-build** et choisissez **télécharger le stockage d’objets Blob artefacts tooAzure**.
+6. Pour **nom de compte de stockage**, sélectionnez hello toouse de compte de stockage.
+7. Pour **nom du conteneur**, spécifiez le nom du conteneur hello. (conteneur de hello sera créée si elle n’existe pas lors du téléchargement des artefacts de build hello.) Vous pouvez utiliser des variables d’environnement, par conséquent, pour cet exemple, entrez **${JOB_NAME}** comme nom du conteneur hello.
    
     **Conseil**
    
-    Sous la section **Command** où vous avez entré un script pour **Execute Windows batch command**, un lien permet d'accéder aux variables d'environnement reconnues par Jenkins. Cliquez sur ce lien pour découvrir les noms des variables d’environnement avec leurs descriptions. Notez que les variables d’environnement qui contiennent des caractères spéciaux, comme la variable d’environnement **BUILD_URL**, ne sont pas autorisées comme nom de conteneur ou chemin virtuel commun.
-8. Cliquez sur **Rendre le nouveau conteneur public par défaut** pour cet exemple. Si vous voulez utiliser un conteneur privé, vous devez créer une signature d'accès partagé pour autoriser l'accès. La procédure n'entre pas dans le cadre de cette rubrique. Pour en savoir plus sur les signatures d’accès partagé, consultez [Utilisation des signatures d’accès partagé (SAP)](storage-dotnet-shared-access-signature-part-1.md).)
-9. [Facultatif] Cliquez sur **Nettoyer le conteneur avant le téléchargement** si vous souhaitez que le contenu du conteneur soit effacé avant le téléchargement des artefacts de build (ne sélectionnez pas cette option si vous ne souhaitez pas effacer le contenu du conteneur).
-10. Dans **List of Artifacts to upload** (Liste des artefacts à télécharger), entrez **text/*.txt**.
+    Ci-dessous hello **commande** section où vous avez entré un script pour **Windows d’exécution de commande batch** est un lien de variables d’environnement toohello reconnus par Jenkins. Cliquez sur qui lient les noms de variables d’environnement toolearn hello et descriptions. Notez cet environnement variables qui contiennent des caractères spéciaux, tels que hello **BUILD_URL** variable d’environnement ne sont pas autorisés en tant que nom du conteneur ou chemin d’accès virtuel commun.
+8. Cliquez sur **Rendre le nouveau conteneur public par défaut** pour cet exemple. (Si vous voulez toouse un conteneur privé, vous devez toocreate un accès partagé signature tooallow l’accès. Qui n’est pas abordée hello de cette rubrique. Pour en savoir plus sur les signatures d’accès partagé, consultez [Utilisation des signatures d’accès partagé (SAP)](storage-dotnet-shared-access-signature-part-1.md).)
+9. [Facultatif] Cliquez sur **propre conteneur avant de le télécharger** si vous souhaitez hello conteneur toobe effacé du contenu avant que les artefacts de build sont téléchargées (laissez-la désactivée si vous ne souhaitez pas le contenu de hello tooclean du conteneur de hello).
+10. Pour **tooupload de la liste des artefacts**, entrez  **texte /*.txt**.
 11. Pour **Chemin virtuel commun pour les artefacts téléchargés**, dans le cadre de ce didacticiel, entrez **${BUILD\_ID}/${BUILD\_NUMBER}**.
-12. Cliquez sur **Save** pour enregistrer vos paramètres.
-13. Dans le tableau de bord Jenkins, cliquez sur **Build Now** pour exécuter **MyJob**. Examinez l'état dans la sortie de la console. Les messages d'état du stockage Azure sont inclus dans la sortie de la console lorsque l'action post-build commence à télécharger les artefacts de build.
-14. Une fois la tâche terminée correctement, vous pouvez examiner les artefacts de build en ouvrant l’objet blob public.
-    1. Connectez-vous au [portail Azure](https://portal.azure.com).
+12. Cliquez sur **enregistrer** toosave vos paramètres.
+13. Dans le tableau de bord hello Jenkins, cliquez sur **générer maintenant** toorun **MyJob**. Examinez la sortie de console hello pour l’état. Messages d’état pour le stockage Azure figureront dans la sortie de console hello lors de l’action de post-build hello démarre les artefacts de build tooupload.
+14. En cas de réussite du travail de hello, vous pouvez examiner les artefacts de build hello en ouvrant l’objet blob public de hello.
+    1. Connexion toohello [Azure Portal](https://portal.azure.com).
     2. Cliquez sur **Stockage**.
-    3. Cliquez sur le nom du compte de stockage que vous avez utilisé pour Jenkins.
+    3. Cliquez sur le nom de compte de stockage hello que celle utilisée pour Jenkins.
     4. Cliquez sur **Conteneurs**.
-    5. Cliquez sur le conteneur nommé **myjob**, qui correspond à la version en minuscules du nom de tâche attribué à la création de la tâche Jenkins. Les noms de conteneurs et les noms d’objets blob sont en minuscules (et sensibles à la casse) dans le stockage Azure. La liste d’objets blob du conteneur nommé **myjob** contient normalement **hello.txt** et **date.txt**. Copiez l’URL correspondant à l’un de ces éléments et ouvrez-la dans le navigateur. Le fichier texte qui a été téléchargé apparaît comme un artefact de build.
+    5. Cliquez sur le conteneur hello nommé **myjob**, qui est la version en minuscule de hello du nom de la tâche hello que vous avez attribué lors de la création du travail de Jenkins hello. Les noms de conteneurs et les noms d’objets blob sont en minuscules (et sensibles à la casse) dans le stockage Azure. Dans la liste d’objets BLOB pour le conteneur hello nommé hello **myjob** vous devez voir **hello.txt** et **date.txt**. Copier l’URL de hello pour chacun de ces éléments et ouvrez-le dans votre navigateur. Vous verrez un fichier texte hello qui a été chargé comme un artefact de build.
 
-Une seule action post-build qui télécharge les artefacts dans le stockage d'objet blob Azure peut être créée par tâche. Notez que l'action post-build permettant de télécharger des artefacts sur le stockage d'objets blob Azure peut spécifier différents fichiers (y compris des caractères génériques) et chemins d'accès aux fichiers dans **Liste des artefacts à télécharger** grâce à l'ajout d'un point-virgule comme séparateur. Par exemple, si votre build Jenkins produit des fichiers JAR et des fichiers TXT dans le dossier **build** de votre espace de travail et que vous souhaitez télécharger ces deux types de fichiers sur le stockage d’objets blob Azure, entrez ce qui suit dans le champ **Liste des artefacts à télécharger** : **build/\*.jar;build/\*.txt**. Vous pouvez aussi utiliser un double signe deux-points pour indiquer le chemin à utiliser dans le nom de l’objet blob. Par exemple, si vous souhaitez que les fichiers JAR soient téléchargés à l’aide de fichiers **binaires** dans le chemin d’accès des objets blob et que les fichiers TXT soient téléchargés à l’aide de **notices** dans le chemin d’accès des objets blob, renseignez **List of Artifacts to upload** (Liste des artefacts à télécharger) comme suit : **build/\*.jar::binaries;build/\*.txt::notices**.
+Une seule action post-build qui charge le stockage d’objets blob tooAzure artefacts peut être créée par travail. Notez que le stockage d’objets blob hello action post-build unique tooupload artefacts tooAzure pouvez spécifier différents fichiers (y compris les caractères génériques) et toofiles de chemins d’accès dans **tooupload de la liste des artefacts** à l’aide d’un point-virgule comme séparateur. Par exemple, si votre Jenkins build génère des fichiers TXT dans votre espace de travail et les fichiers JAR **générer** dossier et que vous souhaitez tooupload les deux tooAzure de stockage d’objets blob, utilisez suivants de hello pour hello **tooupload de liste d’artefacts** valeur : **générer /\*.jar ; génération /\*.txt**. Vous pouvez également utiliser la syntaxe de double deux-points toospecify un toouse de chemin d’accès dans le nom d’objet blob hello. Par exemple, si vous souhaitez hello JAR tooget est téléchargé à l’aide de **binaires** dans le chemin d’accès des blob hello et tooget de fichiers TXT hello téléchargé à l’aide de **avis** dans le chemin d’accès des blob hello, utilisez suivants de hello pour hello  **Liste des tooupload des artefacts** valeur : **générer /\*. jar::binaries ; génération /\*. txt::notices**.
 
-## <a name="how-to-create-a-build-step-that-downloads-from-azure-blob-storage"></a>Création d'une étape de génération pour télécharger des éléments depuis un stockage d'objets blob Azure
-La procédure suivante explique comment configurer une étape de génération pour télécharger des éléments depuis un stockage d'objets blob Azure. Ceci peut s'avérer utile si vous souhaitez inclure des éléments dans votre build, par exemple, des fichiers JAR à conserver dans votre stockage d'objets blob Azure.
+## <a name="how-toocreate-a-build-step-that-downloads-from-azure-blob-storage"></a>Comment toocreate une étape de génération qui télécharge à partir du stockage d’objets blob Azure
+Hello suit montrent comment tooconfigure une build étape des éléments toodownload depuis le stockage blob Azure. Cela peut être utile si vous souhaitez que les éléments tooinclude dans votre build, par exemple, les fichiers JAR que vous conservez dans Azure stockage d’objets blob.
 
-1. Dans la section **Build** (Générer) de la configuration de la tâche, cliquez sur **Add build step** (Ajouter une étape de génération) et choisissez **Download from Azure Blob storage** (Télécharger à partir du stockage d’objets blob Azure).
-2. Dans le champ **Nom du compte de stockage**, sélectionnez le compte de stockage à utiliser.
-3. Dans le champ **Nom du conteneur**, indiquez le nom du conteneur dans lequel se trouvent les objets blob que vous souhaitez télécharger. Vous pouvez utiliser des variables d'environnement.
-4. Dans le champ **Nom d'objet blob**, indiquez le nom de l'objet blob. Vous pouvez utiliser des variables d'environnement. Vous pouvez aussi utiliser un astérisque comme caractère générique après avoir indiqué la ou les premières lettres du nom de l’objet blob. Par exemple, **projet\*** désignera tous les objets blob dont le nom commence par **projet**.
-5. [Facultatif] Dans le champ **Chemin de téléchargement**, indiquez l'emplacement de l'ordinateur Jenkins où vous souhaitez télécharger les fichiers depuis le stockage d'objets blob Azure. Vous pouvez utiliser des variables d’environnement. Si vous n'entrez rien dans le champ **Chemin de téléchargement**, les fichiers du stockage d'objets blob Azure seront téléchargés dans l'espace de travail de la tâche.
+1. Bonjour **générer** section de configuration du travail hello, cliquez sur **étape de génération ajouter** et choisissez **télécharger à partir du stockage d’objets Blob Azure**.
+2. Pour **nom de compte de stockage**, sélectionnez hello toouse de compte de stockage.
+3. Pour **nom du conteneur**, spécifiez hello nom de hello conteneur qui comporte des objets BLOB de hello souhaité toodownload. Vous pouvez utiliser des variables d'environnement.
+4. Pour **nom d’objet Blob**, spécifiez le nom d’objet blob hello. Vous pouvez utiliser des variables d'environnement. En outre, vous pouvez utiliser un astérisque, comme un caractère générique après avoir spécifié les hello initiale ou les lettres du nom d’objet blob hello. Par exemple, **projet\*** désignera tous les objets blob dont le nom commence par **projet**.
+5. [Facultatif] Pour **chemin de téléchargement**, spécifier le chemin d’accès hello sur l’ordinateur de Jenkins hello où vous souhaitez toodownload les fichiers depuis le stockage blob Azure. Vous pouvez utiliser des variables d’environnement. (Si vous ne fournissez pas de valeur pour **chemin de téléchargement**, fichiers hello depuis le stockage blob Azure sera espace de travail de la tâche toohello téléchargé.)
 
-Si vous souhaitez télécharger d’autres éléments depuis le stockage d’objets blob Azure, vous pouvez créer des étapes de génération supplémentaires.
+Si vous avez d’autres éléments toodownload depuis le stockage blob Azure, vous pouvez créer des étapes de génération supplémentaires.
 
-Après avoir exécuté une build, vous pouvez vérifier la sortie de la console d’historique de build ou vérifier dans le dossier de téléchargement si les objets blob attendus ont bien été téléchargés.  
+Une fois que vous exécutez une build, vous pouvez vérifier hello générer la sortie de console de l’historique, ou examiner l’emplacement de téléchargement, toosee hello si BLOB prévu ont été téléchargés correctement.  
 
-## <a name="components-used-by-the-blob-service"></a>Composants utilisés par le service BLOB
-La section suivante présente les composants du service BLOB.
+## <a name="components-used-by-hello-blob-service"></a>Composants utilisés par hello service Blob
+suivant de Hello fournit une vue d’ensemble des composants de service Blob hello.
 
-* **Compte de stockage :**tout accès au stockage Azure s'effectue via un compte de stockage. Il s'agit du plus haut niveau d'espace de noms permettant d'accéder aux objets blob. Un compte peut contenir un nombre illimité de conteneurs, tant que sa taille totale ne dépasse pas 100 To.
+* **Compte de stockage**: tous les accès tooAzure stockage s’effectue via un compte de stockage. Il s’agit de niveau le plus élevé hello d’espace de noms hello pour accéder aux objets BLOB. Un compte peut contenir un nombre illimité de conteneurs, tant que sa taille totale ne dépasse pas 100 To.
 * **Conteneur**: conteneur regroupant un ensemble d’objets blob. Tous les objets blob doivent figurer dans un conteneur. Un compte peut contenir un nombre illimité de conteneurs. Un conteneur peut stocker un nombre illimité d’objets blob.
-* **Objet blob**: fichier de tout type et de toute taille. Il existe deux types d’objets blob qui peuvent être enregistrés dans un stockage Azure : les objets blob de blocs et les objets blob de pages. La plupart des fichiers sont des objets blob de blocs. Un seul objet blob de blocs peut avoir une taille maximale de 200 Go. Ce didacticiel utilise des objets blob de blocs. Les objets blob de pages, autre type d’objets blob, peuvent avoir une taille de 1 To et sont plus efficaces lorsque des plages d’octets dans un fichier sont modifiées fréquemment. Pour plus d’informations sur les objets blob, consultez [Présentation des objets blob de blocs, des objets blob d’ajout et des objets blob de pages](http://msdn.microsoft.com/library/azure/ee691964.aspx).
-* **Format d'URL**: les objets blob sont adressables à l'aide du format d'URL suivant :
+* **Objet blob**: fichier de tout type et de toute taille. Il existe deux types d’objets blob qui peuvent être enregistrés dans un stockage Azure : les objets blob de blocs et les objets blob de pages. La plupart des fichiers sont des objets blob de blocs. Objet blob de blocs unique peut être des too200GB taille. Ce didacticiel utilise des objets blob de blocs. Objets BLOB de pages, un autre type d’objet blob, peut être des too1TB par la taille et sont plus efficace lorsque les plages d’octets dans un fichier sont modifiées fréquemment. Pour plus d’informations sur les objets blob, consultez [Présentation des objets blob de blocs, des objets blob d’ajout et des objets blob de pages](http://msdn.microsoft.com/library/azure/ee691964.aspx).
+* **Format d’URL**: les objets BLOB sont adressables en utilisant hello suivant le format d’URL :
   
     `http://storageaccount.blob.core.windows.net/container_name/blob_name`
   
-    Le format ci-dessus s'applique au cloud public Azure. Si vous utilisez un autre cloud Azure, utilisez le point de terminaison dans le [portail Azure](https://portal.azure.com) pour déterminer votre URL de point de terminaison.
+    (format hello ci-dessus s’applique toohello des cloud public Azure. Si vous utilisez un autre cloud Azure, utilisez le point de terminaison de hello dans hello [Azure Portal](https://portal.azure.com) toodetermine votre point de terminaison d’URL.)
   
-    Dans le format ci-dessus, `storageaccount` représente le nom de votre compte de stockage, `container_name` représente le nom de votre conteneur et `blob_name` représente le nom de votre objet blob, respectivement. Le nom du conteneur contient plusieurs chemins d’accès, séparés par une barre oblique (**/**). Dans ce didacticiel, nous avons utilisé **MyJob** comme exemple de nom de conteneur et **${BUILD\_ID}/${BUILD\_NUMBER}** comme chemin virtuel commun. L’URL de l’objet blob a donc la forme suivante :
+    Dans le format hello ci-dessus, `storageaccount` représente hello nom de votre compte de stockage `container_name` représente hello nom de votre conteneur, et `blob_name` représente hello le nom de votre objet blob, respectivement. Dans nom du conteneur hello, vous pouvez avoir plusieurs chemins d’accès, séparés par une barre oblique,  **/** . nom du conteneur exemple Hello dans ce didacticiel a été **MyJob**, et **${générer\_ID} / ${générer\_nombre}** a été utilisé pour le chemin virtuel commun hello, résultant hello ayant pour objet blob un URL de hello suivant du formulaire :
   
     `http://example.blob.core.windows.net/myjob/2014-04-14_23-57-00/1/hello.txt`
 
@@ -152,6 +152,6 @@ La section suivante présente les composants du service BLOB.
 * [Kit de développement logiciel (SDK) Azure Storage pour Java](https://github.com/azure/azure-storage-java)
 * [Référence du Kit de développement logiciel (SDK) du client Azure Storage](http://dl.windowsazure.com/storage/javadoc/)
 * [API REST des services d’Azure Storage](https://msdn.microsoft.com/library/azure/dd179355.aspx)
-* [Blog de l'équipe Azure Storage](http://blogs.msdn.com/b/windowsazurestorage/)
+* [Blog de l’équipe Azure Storage](http://blogs.msdn.com/b/windowsazurestorage/)
 
-Pour plus d’informations, consultez également le [Centre pour développeurs Java](https://azure.microsoft.com/develop/java/).
+Pour plus d’informations, consultez également hello [centre de développement Java](https://azure.microsoft.com/develop/java/).

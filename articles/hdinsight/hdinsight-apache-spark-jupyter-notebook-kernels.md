@@ -1,6 +1,6 @@
 ---
-title: Noyaux pour bloc-notes Jupyter sur les clusters Spark dans Azure HDInsight | Documents Microsoft
-description: "Découvrez les noyaux PySpark, PySpark3 et Spark pour bloc-notes Jupyter qui sont disponibles avec les clusters Spark sur Azure HDInsight."
+title: les clusters aaaKernels pour bloc-notes jupyter sur Spark dans Azure HDInsight | Documents Microsoft
+description: "Découvrez les noyaux hello PySpark, PySpark3 et Spark pour bloc-notes jupyter disponible avec les clusters de Spark sur Azure HDInsight."
 keywords: bloc-notes jupyter sur spark,jupyter spark
 services: hdinsight
 documentationcenter: 
@@ -17,21 +17,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: nitinme
-ms.openlocfilehash: 6cfd1c1e7b22f5460b78687c815d149e6c6deac9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 560c944fe850c5753ac9fa90550b804f0c47d14c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="kernels-for-jupyter-notebook-on-spark-clusters-in-azure-hdinsight"></a>Noyaux pour bloc-notes Jupyter sur les clusters Spark dans Azure HDInsight 
 
-Les clusters Spark HDInsight fournissent des noyaux que vous pouvez utiliser avec le bloc-notes Jupyter sur Spark pour tester vos applications. Un noyau est un programme qui exécute et interprète votre code. Les trois noyaux sont les suivants :
+Les clusters HDInsight Spark fournissent des noyaux que vous pouvez utiliser avec hello bloc-notes jupyter sur Spark pour tester vos applications. Un noyau est un programme qui exécute et interprète votre code. les trois noyaux Hello sont les suivantes :
 
 - **PySpark** : pour les applications écrites en Python2
 - **PySpark3** : pour les applications écrites en Python3
 - **Spark** : pour les applications écrites en Scala
 
-Dans cet article, vous allez apprendre à utiliser ces noyaux et découvrir les avantages de leur utilisation.
+Dans cet article, vous apprendrez comment toouse ces avantages hello leur utilisation et noyaux.
 
 ## <a name="prerequisites"></a>Composants requis
 
@@ -39,126 +39,126 @@ Dans cet article, vous allez apprendre à utiliser ces noyaux et découvrir les 
 
 ## <a name="create-a-jupyter-notebook-on-spark-hdinsight"></a>Créer un bloc-notes Jupyter sur Spark HDInsight
 
-1. À partir du [portail Azure](https://portal.azure.com/), ouvrez votre cluster.  Pour obtenir des instructions, consultez la page [Énumération et affichage des clusters](hdinsight-administer-use-portal-linux.md#list-and-show-clusters). Le cluster est ouvert dans un nouveau panneau du portail.
+1. À partir de hello [portail Azure](https://portal.azure.com/), ouvrez votre cluster.  Consultez [liste et afficher les clusters](hdinsight-administer-use-portal-linux.md#list-and-show-clusters) pour obtenir des instructions hello. cluster de Hello est ouvert dans un nouveau panneau de portail.
 
-2. À partir de la section **Liens rapides** , cliquez sur **Tableaux de bord des clusters** pour ouvrir le panneau **Tableaux de bord des clusters**.  Si vous ne voyez pas **Liens rapides**, cliquez sur **Vue d’ensemble** dans le menu gauche du panneau.
+2. À partir de hello **liens rapides** , cliquez sur **tableaux de bord du Cluster** tooopen hello **tableaux de bord du Cluster** panneau.  Si vous ne voyez pas **liens rapides**, cliquez sur **vue d’ensemble** à partir du menu de gauche hello sur le panneau de hello.
 
     ![Bloc-notes Jupyter sur Spark](./media/hdinsight-apache-spark-jupyter-notebook-kernels/hdinsight-jupyter-notebook-on-spark.png "Bloc-notes Jupyter sur Spark") 
 
-3. Cliquez sur **Bloc-notes Jupyter**. Si vous y êtes invité, entrez les informations d’identification d’administrateur pour le cluster.
+3. Cliquez sur **Bloc-notes Jupyter**. Si vous y êtes invité, entrez les informations d’identification du admin de hello pour le cluster de hello.
    
    > [!NOTE]
-   > Vous pouvez également atteindre le bloc-notes Jupyter sur le cluster Spark en ouvrant l’URL suivante dans votre navigateur. Remplacez **CLUSTERNAME** par le nom de votre cluster.
+   > Vous pouvez également atteindre hello bloc-notes jupyter sur cluster Spark par hello ouverture suivante d’URL dans votre navigateur. Remplacez **CLUSTERNAME** avec nom hello de votre cluster :
    >
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
    > 
    > 
 
-3. Cliquez sur **Nouveau**, puis sur **Pyspark**, **PySpark3** ou **Spark** pour créer un bloc-notes. Utilisez le noyau Spark pour les applications Scala, le noyau PySpark pour les applications Python2 et le noyau PySpark3 pour les applications Python3.
+3. Cliquez sur **nouveau**, puis cliquez sur **Pyspark**, **PySpark3**, ou **Spark** toocreate un ordinateur portable. Utiliser le noyau de Spark hello pour les applications Scala, noyau PySpark pour les applications Python2 et PySpark3 noyau pour les applications Python3.
    
     ![Noyaux pour bloc-notes Jupyter sur Spark](./media/hdinsight-apache-spark-jupyter-notebook-kernels/kernel-jupyter-notebook-on-spark.png "Noyaux pour bloc-notes Jupyter sur Spark") 
 
-4. Un bloc-notes s’ouvre avec le noyau que vous avez sélectionné.
+4. Un bloc-notes s’ouvre avec le noyau hello que vous avez sélectionné.
 
-## <a name="benefits-of-using-the-kernels"></a>Avantages de l’utilisation des noyaux
+## <a name="benefits-of-using-hello-kernels"></a>Avantages de l’utilisation de noyaux de hello
 
-Voici quelques avantages liés à l’utilisation des nouveaux noyaux avec bloc-notes Jupyter sur des clusters Spark HDInsight.
+Voici quelques avantages de l’utilisation de noyaux hello avec bloc-notes jupyter sur les clusters HDInsight de Spark.
 
-- **Contextes prédéfinis**. Avec les noyaux **PySpark**, **PySpark3** ou **Spark**, vous n’avez pas besoin de définir les contextes Spark ou Hive explicitement avant de commencer à utiliser vos applications. Ils sont disponibles par défaut. Ces contextes sont les suivants :
+- **Contextes prédéfinis**. Avec **PySpark**, **PySpark3**, ou hello **Spark** noyaux, vous n’avez pas besoin tooset hello Spark ou ruche contextes explicitement avant de commencer à utiliser avec vos applications. Ils sont disponibles par défaut. Ces contextes sont les suivants :
    
    * **sc** : pour le contexte Spark
    * **sqlContext** : pour le contexte Hive
 
-    Par conséquent, vous n’avez pas à exécuter d’instructions telles que les suivantes pour définir les contextes :
+    Par conséquent, vous n’avez pas hello suivant des contextes de hello tooset toorun instructions :
 
         sc = SparkContext('yarn-client')    sqlContext = HiveContext(sc)
 
-    En revanche, vous pouvez utiliser directement les contextes prédéfinis dans votre application.
+    Au lieu de cela, vous pouvez utiliser directement hello présélection contextes dans votre application.
 
-- **Commandes magiques de cellule**. Le noyau PySpark fournit certaines « commandes magiques » prédéfinies, qui sont des commandes spéciales que vous pouvez appeler avec `%%` (par exemple, `%%MAGIC` <args>). La commande magique doit se trouver au tout début d’une cellule de code et autoriser plusieurs lignes de contenu. Le mot magic doit être le premier mot de la cellule. Ajouter quoi que ce soit avant la commande magique, même des commentaires, provoque une erreur.     Pour plus d’informations sur les commandes magiques, cliquez [ici](http://ipython.readthedocs.org/en/stable/interactive/magics.html).
+- **Commandes magiques de cellule**. Hello PySpark noyau fournit certaines prédéfinies « magics », qui sont des commandes spéciales que vous pouvez appeler avec `%%` (par exemple, `%%MAGIC` <args>). commande magic Hello doit être hello premier mot d’une cellule de code et de plusieurs lignes de contenu. word magique de Hello doit être hello premier mot de cellule de hello. Ajout de quoi que ce soit avant magic hello, même des commentaires, provoque une erreur.     Pour plus d’informations sur les commandes magiques, cliquez [ici](http://ipython.readthedocs.org/en/stable/interactive/magics.html).
    
-    Le tableau suivant répertorie les différentes commandes magiques disponibles par le biais des noyaux.
+    Hello tableau suivant répertorie les magics différents de hello disponibles via les noyaux hello.
 
    | Commande magique | Exemple | Description |
    | --- | --- | --- |
-   | help |`%%help` |Génère une table de toutes les commandes magiques disponibles, accompagnées d’un exemple et d’une description |
-   | info |`%%info` |Génère des informations de session pour le point de terminaison Livy actuel |
-   | CONFIGURER |`%%configure -f`<br>`{"executorMemory": "1000M"`<br>`"executorCores": 4`} |Configure les paramètres de création d’une session. L’indicateur de forçage (-f) est obligatoire si une session a déjà été créée, afin de garantir que la session est supprimée et recréée. Consultez la section [POST /sessions Request Body de Livy](https://github.com/cloudera/livy#request-body) pour obtenir la liste des paramètres valides. Les paramètres doivent être passés en tant que chaîne JSON et être spécifiés sur la ligne suivant la commande magique, comme indiqué dans l’exemple de colonne. |
-   | sql |`%%sql -o <variable name>`<br> `SHOW TABLES` |Exécute une requête Hive sur sqlContext. Si le paramètre `-o` est passé, le résultat de la requête est conservé dans le contexte Python %%local en tant que trame de données [Pandas](http://pandas.pydata.org/) . |
-   | local |`%%local`<br>`a=1` |Tout le code dans les lignes suivantes est exécuté localement. Le code doit être un code Python2 valide, même s’il ne correspond pas au noyau que vous utilisez. Donc, même si vous avez sélectionné les noyaux **PySpark3** ou **Spark** en créant le bloc-notes, si vous utilisez la commande magique `%%local` dans une cellule, cette cellule doit uniquement comporter un code Python2 valide. |
-   | journaux |`%%logs` |Génère les journaux de la session Livy en cours. |
-   | delete |`%%delete -f -s <session number>` |Supprime une session spécifique du point de terminaison Livy actuel. Notez que vous ne pouvez pas supprimer la session qui est lancée pour le noyau lui-même. |
-   | cleanup |`%%cleanup -f` |Supprime toutes les sessions pour le point de terminaison Livy actuel, y compris la session de ce bloc-notes. L’indicateur de forçage -f est obligatoire. |
+   | help |`%%help` |Génère une table de tous les magics disponibles hello avec exemple et la description |
+   | info |`%%info` |Génère des informations de session pour le point de terminaison Livy actuel hello |
+   | CONFIGURER |`%%configure -f`<br>`{"executorMemory": "1000M"`<br>`"executorCores": 4`} |Configure les paramètres hello pour la création d’une session. Hello indicateur force (-f) est obligatoire si une session a déjà été créée, ce qui garantit la session hello est supprimé et recréé. Consultez la section [POST /sessions Request Body de Livy](https://github.com/cloudera/livy#request-body) pour obtenir la liste des paramètres valides. Paramètres doivent être passées comme une chaîne JSON et doivent être sur la ligne suivante de hello après magique de hello, comme indiqué dans l’exemple, la colonne hello. |
+   | sql |`%%sql -o <variable name>`<br> `SHOW TABLES` |Exécute une requête Hive sur hello sqlContext. Si hello `-o` paramètre est passé, résultat hello de requête de hello est conservée dans hello %% contexte Python local en tant qu’un [Pandas](http://pandas.pydata.org/) trame de données. |
+   | local |`%%local`<br>`a=1` |Tout code hello dans les lignes suivantes est exécuté localement. Code doit être un code Python2 valide même indépendamment de noyau hello que vous utilisez. C’est le cas, même si vous avez sélectionné **PySpark3** ou **Spark** noyaux lors de la création d’ordinateur portable hello, si vous utilisez hello `%%local` magique dans une cellule, cette cellule doit seulement avoir un code Python2 valide... |
+   | journaux |`%%logs` |Sorties hello des journaux de session de Livy hello en cours. |
+   | delete |`%%delete -f -s <session number>` |Supprime une session spécifique de point de terminaison Livy actuel hello. Notez que vous ne peut pas supprimer la session de hello qui est initiée pour noyau hello lui-même. |
+   | cleanup |`%%cleanup -f` |Supprime toutes les sessions de hello pour hello Livy point de terminaison actuel, y compris la session de cet ordinateur portable. indicateur de force Hello -f est obligatoire. |
 
    > [!NOTE]
-   > Outre les commandes magiques ajoutées par le noyau PySpark, vous pouvez également utiliser les [commandes magiques IPython intégrées](https://ipython.org/ipython-doc/3/interactive/magics.html#cell-magics), notamment `%%sh`. Vous pouvez utiliser la commande magique `%%sh` pour exécuter des scripts et des blocs de code sur le nœud principal du cluster.
+   > En outre toohello magics ajouté par le noyau de PySpark hello, vous pouvez également utiliser hello [intégrés IPython magics](https://ipython.org/ipython-doc/3/interactive/magics.html#cell-magics), y compris `%%sh`. Vous pouvez utiliser hello `%%sh` magique toorun scripts et bloc de code sur le nœud principal du cluster hello.
    >
    >
-2. **Visualisation automatique**. Le noyau **Pyspark** visualise automatiquement la sortie des requêtes Hive et SQL. Vous pouvez choisir entre plusieurs types de visualisations, notamment tableau, secteurs, courbes, aires et barres.
+2. **Visualisation automatique**. Hello **Pyspark** noyau visualise automatiquement sortie hello de ruche et les requêtes SQL. Vous pouvez choisir entre plusieurs types de visualisations, notamment tableau, secteurs, courbes, aires et barres.
 
-## <a name="parameters-supported-with-the-sql-magic"></a>Paramètres pris en charge avec la commande magique %%sql
-La commande magique `%%sql` prend en charge différents paramètres qui vous permettent de contrôler le type de sortie que vous recevez quand vous exécutez des requêtes. Le tableau suivant répertorie les paramètres de sortie.
+## <a name="parameters-supported-with-hello-sql-magic"></a>Paramètres pris en charge par hello %% magique de sql
+Hello `%%sql` magique prend en charge des paramètres différents que vous pouvez utiliser le type de hello toocontrol de sortie que vous recevez lorsque vous exécutez des requêtes. Hello tableau suivant répertorie la sortie de hello.
 
 | Paramètre | Exemple | Description |
 | --- | --- | --- |
-| -o |`-o <VARIABLE NAME>` |Utilisez ce paramètre pour conserver le résultat de la requête dans le contexte Python %%local en tant que trame de données [Pandas](http://pandas.pydata.org/) . Le nom de la variable dataframe est le nom de variable que vous spécifiez. |
-| -q |`-q` |Utilisez ce paramètre pour désactiver les visualisations pour la cellule. Si vous ne voulez pas visualiser automatiquement le contenu d’une cellule et préférez simplement capturer le contenu comme une trame de données, utilisez `-q -o <VARIABLE>`. Si vous souhaitez désactiver les visualisations sans capturer les résultats (par exemple, pour exécuter une requête SQL, comme une instruction `CREATE TABLE`), utilisez `-q` sans spécifier d’argument `-o`. |
-| -m |`-m <METHOD>` |**METHOD** prend la valeur **take** ou **sample** (**take** est la valeur par défaut). Si la méthode est **take**, le noyau sélectionne des éléments à partir du haut du jeu de données de résultats spécifié par la valeur MAXROWS (décrite plus bas dans ce tableau). Si la méthode est **sample**, le noyau échantillonne de façon aléatoire les éléments du jeu de données en fonction du paramètre `-r` (décrit ci-après dans ce tableau). |
-| -r |`-r <FRACTION>` |Ici, **FRACTION** est un nombre à virgule flottante compris entre 0,0 et 1,0. Si l’exemple de méthode de la requête SQL est `sample`, le noyau échantillonne de façon aléatoire la fraction spécifiée des éléments du jeu de résultats. Par exemple, si vous exécutez une requête SQL avec les arguments `-m sample -r 0.01`, 1 % des lignes de résultat sont échantillonnées de façon aléatoire. |
-| -n |`-n <MAXROWS>` |**MAXROWS** est une valeur entière. Le noyau limite le nombre de lignes de la sortie au nombre défini par **MAXROWS**. Si **MAXROWS** est un nombre négatif comme **-1**, le nombre de lignes dans le jeu de résultats n’est pas limité. |
+| -o |`-o <VARIABLE NAME>` |Utilisez le paramètre toopersist hello le résultat de requête de hello, Bonjour %% contexte local de Python, comme un [Pandas](http://pandas.pydata.org/) trame de données. nom de Hello de variable de trame de données hello est nom de variable hello que vous spécifiez. |
+| -q |`-q` |Utilisez cette tooturn off visualisations pour la cellule de hello. Si vous ne souhaitez pas tooauto-visualiser le contenu d’une cellule hello et souhaitez toocapture sous la forme d’une trame de données, puis d’utiliser `-q -o <VARIABLE>`. Si vous souhaitez tooturn off visualisations sans capturer les résultats hello (par exemple, pour exécuter une requête SQL, comme un `CREATE TABLE` instruction), utilisez `-q` sans spécifier un `-o` argument. |
+| -m |`-m <METHOD>` |**METHOD** prend la valeur **take** ou **sample** (**take** est la valeur par défaut). Si la méthode hello est **prendre**, noyau de hello récupère les éléments de haut hello hello résultats du jeu de données spécifié par le nombre maximal de lignes (décrite plus loin dans ce tableau). Si la méthode hello est **exemple**, éléments hello du jeu de données en fonction de trop échantillonne de noyau de hello`-r` paramètre décrit ci-après dans cette table. |
+| -r |`-r <FRACTION>` |Ici, **FRACTION** est un nombre à virgule flottante compris entre 0,0 et 1,0. Si la méthode d’échantillonnage hello pour la requête SQL hello est `sample`, puis le noyau de hello échantillonne fraction spécifiée de hello d’éléments hello hello du jeu de résultats pour vous. Par exemple, si vous exécutez une requête SQL avec des arguments de hello `-m sample -r 0.01`, 1 % des lignes de résultat hello sont échantillonnées aléatoirement. |
+| -n |`-n <MAXROWS>` |**MAXROWS** est une valeur entière. noyau de Hello limite le nombre de hello de lignes de sortie trop**MAXROWS**. Si **MAXROWS** est un nombre négatif comme **-1**, nombre de hello de lignes dans le jeu de résultats hello n’est pas limité. |
 
 **Exemple :**
 
     %%sql -q -m sample -r 0.1 -n 500 -o query2
     SELECT * FROM hivesampletable
 
-L’instruction ci-dessus effectue les actions suivantes :
+instruction Hello ci-dessus hello suivant :
 
 * Elle sélectionne tous les enregistrements présents dans **hivesampletable**.
 * Comme nous utilisons le paramètre - q, elle désactive la visualisation automatique.
-* Comme nous utilisons `-m sample -r 0.1 -n 500` , elle échantillonne de façon aléatoire 10 % des lignes présentes dans hivesampletable et limite la taille du jeu de résultats à 500 lignes.
-* Enfin, comme nous avons utilisé `-o query2` , elle enregistre également la sortie dans une trame de données appelée **query2**.
+* Étant donné que nous utilisons `-m sample -r 0.1 -n 500` il échantillonne de 10 % des lignes hello dans hello hivesampletable et limites hello taille hello ensemble too500 de lignes de résultats.
+* Enfin, étant donné que nous avons utilisé `-o query2` il enregistre également une sortie de hello dans une trame de données appelée **requête2**.
 
-## <a name="considerations-while-using-the-new-kernels"></a>Points à prendre en compte lors de l'utilisation des nouveaux noyaux
+## <a name="considerations-while-using-hello-new-kernels"></a>Considérations lors de l’utilisation de noyaux hello
 
-Quel que soit le noyau que vous utilisez, laisser les blocs-notes s’exécuter consomme vos ressources de cluster.  Avec ces noyaux, les contextes étant prédéfinis, le simple fait de quitter les blocs-notes n’arrête pas le contexte. Par conséquent, les ressources du cluster restent en cours d’utilisation. Une bonne pratique consiste à utiliser l’option **Fermer et arrêter** à partir du menu **Fichier** du bloc-notes menu lorsque vous avez fini de l’utiliser, ce qui supprime le contexte puis ferme le bloc-notes.     
+Quelle que soit la noyau que vous utilisez, en laissant les blocs-notes hello en cours d’exécution consomme des ressources de cluster hello.  Ces noyaux, car les contextes de hello sont prédéfinis, simplement en cours de fermeture blocs-notes de hello ne pas tuer le contexte de hello et par conséquent, les ressources de cluster hello continueront toobe en cours d’utilisation. Il est conseillé de toouse hello **fermer et s’arrêter** option à partir de l’ordinateur portable hello **fichier** menu lorsque vous avez terminé d’utiliser le bloc-notes hello, qui supprime le contexte de hello et puis se ferme hello bloc-notes.     
 
 ## <a name="show-me-some-examples"></a>Voici quelques exemples :
 
-Lorsque vous ouvrez un bloc-notes Jupyter, deux dossiers sont disponibles au niveau racine.
+Lorsque vous ouvrez un bloc-notes jupyter, vous voyez deux dossiers disponibles au niveau racine de hello.
 
-* Le dossier **PySpark** contient des exemples de Notebooks qui utilisent le nouveau noyau **Python**.
-* Le dossier **Scala** comprend des exemples de blocs-notes qui utilisent le nouveau noyau **Spark**.
+* Hello **PySpark** dossier a blocs-notes de l’exemple hello de cette utilisation new **Python** noyau.
+* Hello **Scala** dossier a blocs-notes de l’exemple hello de cette utilisation new **Spark** noyau.
 
-Vous pouvez ouvrir le Notebook **00 - [READ ME FIRST] Spark Magic Kernel Features** à partir du dossier **PySpark** ou **Spark** pour en savoir plus sur les différentes commandes magiques disponibles. Vous pouvez également recourir aux autres exemples de blocs-notes disponibles sous les deux dossiers pour savoir comment utiliser concrètement des blocs-notes Jupyter avec des clusters HDInsight Spark.
+Vous pouvez ouvrir hello **00 - [lecture ME première] fonctionnalités de noyau Spark Magic** bloc-notes de hello **PySpark** ou **Spark** toolearn dossier sur magics différents de hello disponibles. Vous pouvez également utiliser hello autres blocs-notes exemple disponibles sous hello deux dossiers toolearn comment tooachieve différents scénarios à l’aide du bloc-notes portables avec les clusters HDInsight Spark.
 
-## <a name="where-are-the-notebooks-stored"></a>Où sont stockés les blocs-notes ?
+## <a name="where-are-hello-notebooks-stored"></a>Où sont stockées les blocs-notes de hello ?
 
-Les Notebooks Jupyter sont enregistrés dans le compte de stockage associé au cluster, dans le dossier **/HdiNotebooks** .  Les blocs-notes, les fichiers texte et les dossiers que vous créez dans Jupyter sont accessibles à partir du compte de stockage.  Par exemple, si vous utilisez Jupyter pour créer un dossier **myfolder** et un bloc-notes **myfolder/mynotebook.ipynb**, vous pouvez accéder à ce bloc-notes dans `/HdiNotebooks/myfolder/mynotebook.ipynb` au sein du compte de stockage.  L’inverse est également vrai : si vous chargez un bloc-notes directement dans votre compte de stockage dans `/HdiNotebooks/mynotebook1.ipynb`, le bloc-notes est également accessible à partir de Jupyter.  Les blocs-notes sont conservés dans le compte de stockage même après la suppression du cluster.
+Notebook portables sont enregistrés toohello compte de stockage associé au cluster hello sous hello **/HdiNotebooks** dossier.  Ordinateurs portables, des fichiers texte et des dossiers que vous créez à partir de Notebook sont accessibles à partir du compte de stockage hello.  Par exemple, si vous utilisez Notebook toocreate un dossier **MonDossier** et un ordinateur portable **myfolder/mynotebook.ipynb**, vous pouvez accéder à cet ordinateur portable à `/HdiNotebooks/myfolder/mynotebook.ipynb` dans le compte de stockage hello.  Hello inverse est également vrai, autrement dit, si vous téléchargez un bloc-notes directement du compte de stockage de tooyour à `/HdiNotebooks/mynotebook1.ipynb`, portable de hello est également visible dans le bloc-notes.  Ordinateurs portables restent dans le compte de stockage hello même après la suppression de cluster de hello.
 
-Les blocs-notes sont enregistrés dans le compte de stockage dans un mode compatible avec HDFS. Si vous utilisez SSH dans le cluster, vous pouvez donc exécuter des commandes de gestion des fichiers telles que celles de l’extrait de code suivant :
+méthode Hello portables sont enregistrées de compte de stockage toohello est compatible avec HDFS. Par conséquent, si vous SSH en cluster hello que vous pouvez utiliser fichier de commandes de gestion comme indiqué dans hello suivant extrait de code :
 
-    hdfs dfs -ls /HdiNotebooks                               # List everything at the root directory – everything in this directory is visible to Jupyter from the home page
-    hdfs dfs –copyToLocal /HdiNotebooks                    # Download the contents of the HdiNotebooks folder
-    hdfs dfs –copyFromLocal example.ipynb /HdiNotebooks   # Upload a notebook example.ipynb to the root folder so it’s visible from Jupyter
+    hdfs dfs -ls /HdiNotebooks                               # List everything at hello root directory – everything in this directory is visible tooJupyter from hello home page
+    hdfs dfs –copyToLocal /HdiNotebooks                    # Download hello contents of hello HdiNotebooks folder
+    hdfs dfs –copyFromLocal example.ipynb /HdiNotebooks   # Upload a notebook example.ipynb toohello root folder so it’s visible from Jupyter
 
 
-En cas de problèmes d’accès au compte de stockage pour le cluster, les Notebooks sont également enregistrés sur le nœud principal `/var/lib/jupyter`.
+En cas de problèmes d’accès du compte de stockage hello pour le cluster de hello, ordinateurs portables de hello sont également enregistrées sur le nœud principal de hello `/var/lib/jupyter`.
 
 ## <a name="supported-browser"></a>Navigateur pris en charge
 
 Les blocs-notes Jupyter sur clusters Spark HDInsight sont pris en charge uniquement sur Google Chrome.
 
 ## <a name="feedback"></a>Commentaires
-Les nouveaux noyaux sont en phase d’évolution et gagneront en maturité avec le temps. Les API pourront également être amenés à évoluer au fur et à mesure des évolutions des noyaux. Nous aimerions recevoir vos commentaires concernant l'utilisation de ces nouveaux noyaux. Cela nous est utile pour préparer la version finale de ces noyaux. Vous pouvez laisser vos commentaires/remarques sous la section **Commentaires** en dessous de cet article.
+noyaux Hello sont en pleine évolution étape et arrivent au fil du temps. Les API pourront également être amenés à évoluer au fur et à mesure des évolutions des noyaux. Nous aimerions recevoir vos commentaires concernant l'utilisation de ces nouveaux noyaux. Cela est utile dans la mise en forme de la version finale de hello de ces noyaux. Vous pouvez laisser vos commentaires/commentaires sous hello **commentaires** section bas hello de cet article.
 
 ## <a name="seealso"></a>Voir aussi
 * [Vue d’ensemble : Apache Spark sur Azure HDInsight](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>Scénarios
 * [Spark avec BI : effectuez une analyse interactive des données à l’aide de Spark dans HDInsight avec des outils BI](hdinsight-apache-spark-use-bi-tools.md)
-* [Spark avec Machine Learning : Utiliser Spark dans HDInsight pour l’analyse de la température de bâtiments à l’aide de données HVAC](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark avec Machine Learning : Utiliser Spark dans HDInsight pour prédire les résultats de l’inspection des aliments](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark avec Machine Learning : utilisez Spark dans HDInsight pour l’analyse de la température des bâtiments à l’aide des données des systèmes HVAC](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
+* [Spark avec Machine Learning : Spark utilisation dans résultats de l’inspection alimentaires toopredict HDInsight](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Streaming Spark : Utiliser Spark dans HDInsight pour créer des applications de diffusion en continu en temps réel](hdinsight-apache-spark-eventhub-streaming.md)
 * [Analyse des journaux de site web à l’aide de Spark dans HDInsight](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -167,12 +167,12 @@ Les nouveaux noyaux sont en phase d’évolution et gagneront en maturité avec 
 * [Exécuter des tâches à distance avec Livy sur un cluster Spark](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>Outils et extensions
-* [Utilisation du plugin d’outils HDInsight pour IntelliJ IDEA pour créer et soumettre des applications Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to debug Spark applications remotely) (Utiliser le plug-in Outils HDInsight pour IntelliJ IDEA pour déboguer des applications Spark à distance)](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Utiliser le plug-in des outils HDInsight pour IntelliJ idée toocreate et soumettre des applications de Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Utiliser des plug-in des outils HDInsight pour les applications de Spark toodebug IntelliJ idée à distance](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Utiliser des bloc-notes Zeppelin avec un cluster Spark sur HDInsight](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Utiliser des packages externes avec les blocs-notes Jupyter](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [Install Jupyter on your computer and connect to an HDInsight Spark cluster (Installer Jupyter sur un ordinateur et se connecter au cluster Spark sur HDInsight)](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Installer Notebook sur votre ordinateur et vous connecter tooan cluster HDInsight Spark](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>Gestion des ressources
-* [Gérer les ressources du cluster Apache Spark dans Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
-* [Suivi et débogage des tâches en cours d’exécution sur un cluster Apache Spark dans HDInsight](hdinsight-apache-spark-job-debugging.md)
+* [Gérer les ressources de cluster d’Apache Spark hello dans Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
+* [Track and debug jobs running on an Apache Spark cluster in HDInsight (Suivi et débogage des tâches en cours d’exécution sur un cluster Apache Spark dans HDInsight)](hdinsight-apache-spark-job-debugging.md)

@@ -1,6 +1,6 @@
 ---
-title: "Implémentation de la synchronisation de mot de passe avec Azure AD Connect Sync | Microsoft Docs"
-description: Fournit des informations sur le fonctionnement de la synchronisation de mot de passe et explique comment la configurer.
+title: synchronisation de mot de passe aaaImplement avec synchronisation Azure AD Connect | Documents Microsoft
+description: Fournit des informations sur comment fonctionne de la synchronisation de mot de passe et tooset des.
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: billmath
-ms.openlocfilehash: db9b1578a235be9018fc1985cc75a0a05ee47b3a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a0401640f2a4d914419ee4446f923bb3a972389d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="implement-password-synchronization-with-azure-ad-connect-sync"></a>Implémenter la synchronisation de mot de passe avec la synchronisation Azure AD Connect
-Cet article vous fournit les informations nécessaires pour synchroniser vos mots de passe utilisateur à partir d’une instance Active Directory (AD) locale vers une instance Azure Active Directory (Azure AD) dans le cloud.
+Cet article fournit des informations que vous avez besoin toosynchronize vos mots de passe utilisateur depuis une local Active instance tooa basée sur le cloud Azure Active Directory (Azure AD) instance de l’annuaire.
 
 ## <a name="what-is-password-synchronization"></a>Qu'est-ce que la synchronisation de mot de passe ?
-La probabilité que vous soyez bloqué dans votre travail en raison d’un mot de passe oublié est liée au nombre de mots de passe différents que vous devez vous rappeler. Plus vous avez de mots de passe à mémoriser, plus vous risquez d’en oublier. Les questions et les appels pour des réinitialisations de mot de passe et d’autres problèmes de mot de passe sont ceux qui demandent le plus de ressources au support technique.
+Hello la probabilité que vous êtes bloqué à partir de la réalisation de votre travail en raison d’un mot de passe oublié de tooa concerne toohello nombre de mots de passe différents, vous devez tooremember. Bonjour plusieurs mots de passe vous devez tooremember, hello supérieur hello probabilité tooforget une. Questions et des appels sur les réinitialisations de mot de passe et d’autres à la demande de problèmes liés au mot de passe hello la plupart des ressources de support technique.
 
-La synchronisation de mot de passe est une fonctionnalité permettant de synchroniser des mots de passe utilisateur à partir d’une instance Active Directory locale vers une instance Azure AD basée sur le cloud.
-Utilisez cette fonctionnalité pour vous connecter à des services Azure AD comme Office 365, Microsoft Intune, CRM Online et Azure Active Directory Domain Services (Azure AD DS). Vous vous connectez au service à l’aide du mot de passe que vous utilisez pour vous connecter à votre instance locale d’Active Directory.
+Synchronisation de mot de passe est qu'une fonctionnalité utilisée toosynchronize mots de passe utilisateur d’une instance de tooa basée sur le cloud Azure AD instance locale Active Directory.
+Utiliser cette fonctionnalité toosign dans les services de tooAzure AD comme Office 365, Microsoft Intune, CRM Online et les Services de domaine d’Active Directory Azure (Azure AD DS). Vous vous connectez toohello service à l’aide de hello même mot de passe toosign dans tooyour local instance Active Directory.
 
 ![Qu’est-ce qu’Azure AD Connect ?](./media/active-directory-aadconnectsync-implement-password-synchronization/arch1.png)
 
-En réduisant à un seul le nombre de mots de passe que vos utilisateurs doivent conserver. La synchronisation de mot de passe vous aide à :
+En réduisant le nombre de hello des mots de passe, vos utilisateurs doivent toojust toomaintain une. La synchronisation de mot de passe vous aide à :
 
-* Améliorer la productivité de vos utilisateurs.
+* Améliorer la productivité de hello de vos utilisateurs.
 * Réduire vos coûts de support technique.  
 
-De plus, si vous choisissez d’utiliser la [Fédération avec Active Directory Federation Services (AD FS)](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Configuring-AD-FS-for-user-sign-in-with-Azure-AD-Connect), vous pouvez éventuellement activer la synchronisation de mot de passe comme sauvegarde en cas de défaillance de votre infrastructure AD FS.
+En outre, si vous décidez de toouse [fédération avec Active Directory Federation Services (ADFS)](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Configuring-AD-FS-for-user-sign-in-with-Azure-AD-Connect), vous pouvez éventuellement définir la synchronisation de mot de passe de sauvegarde en cas d’échec de votre infrastructure AD FS.
 
-La synchronisation de mot de passe est une extension de la fonctionnalité de synchronisation d’annuaire implémentée par Azure AD Connect Sync. Pour utiliser la synchronisation de mot de passe dans votre environnement, vous devez :
+Synchronisation de mot de passe est une fonctionnalité de synchronisation directory extension toohello implémentée par la synchronisation Azure AD Connect. synchronisation de mot de passe toouse dans votre environnement, vous devez :
 
 * Installer Azure AD Connect.  
 * Configurez la synchronisation d’annuaire entre votre instance Active Directory locale et votre instance Azure Active Directory.
@@ -52,50 +52,50 @@ Pour plus d’informations, consultez [Intégration de vos identités locales av
 >
 
 ## <a name="how-password-synchronization-works"></a>Fonctionnement de la synchronisation de mot de passe
-Le service de domaine Active Directory stocke les mots de passe sous forme de valeur de hachage du mot de passe réel de l’utilisateur. Une valeur de hachage est le résultat d’une fonction mathématique unidirectionnelle (« *algorithme de hachage* »). Il n’existe aucune méthode pour retrouver la version en texte brut du mot de passe à partir du résultat d’une fonction unidirectionnelle. Vous ne pouvez pas utiliser un hachage de mot de passe pour vous connecter à votre réseau local.
+Hello service de domaine Active Directory stocke les mots de passe sous forme de hello d’une représentation sous forme de valeur de hachage de mot de passe de l’utilisateur réel hello. Une valeur de hachage est le résultat d’une fonction mathématique unidirectionnelle (hello *algorithme de hachage*). Il n’existe aucun résultat de hello méthode toorevert d’une version de texte brut toohello fonction à sens unique d’un mot de passe. Vous ne pouvez pas utiliser un toosign de hachage de mot de passe dans le réseau local de tooyour.
 
-Pour synchroniser votre mot de passe, Azure AD Connect Sync extrait le hachage de votre mot de passe à partir de l’instance Active Directory local. Un traitement de sécurité supplémentaire est appliqué au hachage du mot de passe avant sa synchronisation avec le service d’authentification Azure Active Directory. Les mots de passe sont synchronisés pour chaque utilisateur et par ordre chronologique.
+votre mot de passe, la synchronisation Azure AD Connect extrait le hachage de mot de passe à partir de toosynchronize hello instance d’Active Directory local. Traitement de sécurité supplémentaire est appliqué toohello hachage de mot de passe avant qu’il soit synchronisé le service d’authentification Azure Active Directory toohello. Les mots de passe sont synchronisés pour chaque utilisateur et par ordre chronologique.
 
-Le flux de données du processus de synchronisation de mot de passe est similaire à la synchronisation des données utilisateur telles que le nom d’affichage ou les adresses de messagerie. Cependant, les mots de passe sont synchronisés plus fréquemment que la fenêtre de synchronisation d’annuaire standard pour d’autres attributs. Le processus de synchronisation de mot de passe s’exécute toutes les deux minutes. Vous ne pouvez pas modifier la fréquence de ce processus. Quand vous synchronisez un mot de passe, il remplace le mot de passe cloud existant.
+flux de données réelles Hello du processus de synchronisation de mot de passe hello est similaire synchronisation toohello des données utilisateur telles que le nom d’affichage ou les adresses de messagerie. Toutefois, les mots de passe sont synchronisés plus fréquemment que la fenêtre de synchronisation d’annuaires standard hello pour d’autres attributs. processus de synchronisation de mot de passe Hello s’exécute toutes les 2 minutes. Vous ne pouvez pas modifier la fréquence hello de ce processus. Lorsque vous synchronisez un mot de passe, elle remplace le mot de passe de cloud computing existant hello.
 
-La première fois que vous activez la fonctionnalité de synchronisation de mot de passe, elle effectue une synchronisation initiale des mots de passe de tous les utilisateurs concernés. Vous ne pouvez pas définir explicitement un sous-ensemble de mots de passe utilisateur à synchroniser.
+Hello première fois que vous activez la fonctionnalité de synchronisation de mot de passe hello, il effectue une synchronisation initiale des mots de passe hello de tous les utilisateurs dans l’étendue. Vous ne peut pas définir explicitement un sous-ensemble des mots de passe utilisateur que vous souhaitez toosynchronize.
 
-Lorsque vous modifiez un mot de passe local, le mot de passe mis à jour est synchronisé, plus souvent en quelques minutes.
-La fonctionnalité de synchronisation de mot de passe tente automatiquement de réeffectuer les tentatives de synchronisation ayant échoué. Si une erreur se produit lors d’une tentative de synchronisation de mot de passe, une erreur est enregistrée dans l’Observateur d’événements.
+Lorsque vous modifiez un mot de passe local, hello mise à jour de mot de passe est synchronisé, plus souvent en quelques minutes.
+fonctionnalité de synchronisation de mot de passe Hello tente automatiquement de tentatives de synchronisation a échoué. Si une erreur produit pendant une tentative toosynchronize un mot de passe, une erreur est consignée dans l’Observateur d’événements.
 
-La synchronisation d’un mot de passe n’a aucun impact sur l’utilisateur actuellement connecté.
-Votre session de service cloud en cours n’est pas immédiatement affectée par une modification de mot de passe synchronisé effectuée lorsque vous êtes connecté à un service cloud. Toutefois, lorsque le service cloud vous oblige à vous authentifier à nouveau, vous devez fournir votre nouveau mot de passe.
+synchronisation Hello de mot de passe n’a aucun impact sur l’utilisateur hello qui est actuellement connecté.
+Votre session de service cloud en cours n’est pas immédiatement affectée par une modification de mot de passe synchronisé qui se produit quand vous êtes connecté dans le service cloud tooa. Toutefois, lorsque le service cloud hello requiert tooauthenticate à nouveau, vous devez tooprovide votre nouveau mot de passe.
 
-Un utilisateur doit entrer ses informations d’identification d’entreprise une deuxième fois pour s’authentifier auprès d’Azure AD, qu’il soit connecté à son réseau d’entreprise ou non. Ce modèle peut être réduit, cependant, si l’utilisateur coche la case « Maintenir la connexion » lors de la connexion. Cette sélection définit un cookie de session qui ignore l’authentification pendant une courte période. Le comportement KMSI peut être activé ou désactivé par l’administrateur Azure AD.
+Un utilisateur doit entrer leurs informations d’identification d’entreprise un tooAzure tooauthenticate de deuxième temps AD, quelle que soit la qu’elles sont signées tootheir réseau d’entreprise. Ces modèle peut être réduite, toutefois, si l’utilisateur de hello sélectionne les hello maintenir la connexion dans la case à cocher (KMSI) au niveau de la connexion. Cette sélection définit un cookie de session qui ignore l’authentification pendant une courte période. Comportement KMSI peut être activé ou désactivé par l’administrateur d’Azure AD hello.
 
 > [!NOTE]
-> La synchronisation de mot de passe est uniquement prise en charge pour l'utilisateur de type d'objet dans Active Directory. Elle n'est pas prise en charge pour le type d'objet iNetOrgPerson.
+> Synchronisation de mot de passe est uniquement pris en charge pour l’utilisateur de type hello objet dans Active Directory. Il n’est pas pris en charge pour le type d’objet iNetOrgPerson hello.
 
 ### <a name="detailed-description-of-how-password-synchronization-works"></a>Description détaillée du fonctionnement de la synchronisation des mots de passe
-Ce qui suit décrit en détail comment fonctionne la synchronisation de mots de passe entre Active Directory et Azure AD.
+suivant de Hello décrit en détail comment fonctionne la synchronisation de mot de passe entre Active Directory et Azure AD.
 
 ![Flux de travail détaillé des mots de passe](./media/active-directory-aadconnectsync-implement-password-synchronization/arch3.png)
 
 
-1. Toutes les deux minutes, l’agent de synchronisation sur le serveur AD Connect demande des hachages de mot de passe stockés (l’attribut unicodePwd) à partir d’un contrôleur de domaine via le protocole de réplication standard [MS-DRSR](https://msdn.microsoft.com/library/cc228086.aspx) pour synchroniser les données entre contrôleurs de domaine. Le compte de service doit disposer des autorisations Répliquer les changements d’annuaires et Répliquer les changements d’annuaire Tout d’Active Directory (accordées par défaut lors de l’installation) pour obtenir les hachages de mot de passe.
-2. Avant l’envoi, le contrôleur de domaine chiffre le hachage de mot de passe MD4 à l’aide d’une clé qui est un hachage [MD5](http://www.rfc-editor.org/rfc/rfc1321.txt) de la clé de session RPC et un salt. Il envoie ensuite le résultat à l’agent de synchronisation de mots de passe via RPC. Le contrôleur de domaine passe également le salt à l’agent de synchronisation à l’aide du protocole de réplication du contrôleur de domaine, pour que l’agent puisse déchiffrer l’enveloppe.
-3.  Une fois que l’agent de synchronisation de mots de passe dispose de l’enveloppe chiffrée, il utilise [MD5CryptoServiceProvider](https://msdn.microsoft.com/library/System.Security.Cryptography.MD5CryptoServiceProvider.aspx) et le salt pour générer une clé afin de déchiffrer les données reçues dans leur format MD4 d’origine. L’agent de synchronisation de mots de passe n’a accès à aucun moment au mot de passe en clair. L’utilisation de MD5 par l’agent de synchronisation de mots de passe est strictement destinée à assurer la compatibilité du protocole de réplication avec le contrôleur de domaine, et uniquement en local entre le contrôleur de domaine et l’agent de synchronisation de mots de passe.
-4.  L’agent de synchronisation de mots de passe étend le hachage de mot de passe binaire de 16 octets à 64 octets en convertissant d’abord le hachage en chaîne hexadécimale de 32 octets, puis en reconvertissant cette chaîne au format binaire avec l’encodage UTF-16.
-5.  L’agent de synchronisation de mots de passe ajoute un salt, composé d’un salt de 10 octets de long, au fichier binaire de 64 octets pour protéger davantage le hachage d’origine.
-6.  L’agent de synchronisation de mots de passe combine alors le hachage MD4 et le salt, puis place le tout dans la fonction [PBKDF2](https://www.ietf.org/rfc/rfc2898.txt). 1000 répétitions de l’algorithme de hachage à clé [HMAC-SHA256](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) sont utilisées. 
-7.  L’agent de synchronisation de mot de passe prend le hachage de 32 octets résultant, concatène le salt et le nombre d’itérations SHA256 (pour une utilisation par Azure AD), puis transmet la chaîne d’Azure AD Connect à Azure AD par SSL.</br> 
-8.  Lorsqu’un utilisateur tente de se connecter à Azure AD et entre son mot de passe, le mot de passe est traité par le même processus MD4+salt+PBKDF2+HMAC-SHA256. Si le hachage résultant correspond au hachage stocké dans Azure AD, l’utilisateur a entré le bon mot de passe et est authentifié. 
+1. Toutes les deux minutes, agent de synchronisation de mot de passe de hello sur le serveur de connexion hello AD demande des hachages de mot de passe stocké (l’attribut unicodePwd hello) à partir d’un contrôleur de domaine via hello standard [MS-DRSR](https://msdn.microsoft.com/library/cc228086.aspx) protocole de réplication utilisé toosynchronize données entre les contrôleurs de domaine. compte de service de Hello doit disposer de répliquer les modifications d’annuaire et les hachages de mot de passe répliquer Active toutes les modifications AD autorisations (par défaut sur l’installation) tooobtain hello.
+2. Avant d’envoyer, hello DC chiffre le hachage de mot de passe hello MD4 à l’aide d’une clé qui est un [MD5](http://www.rfc-editor.org/rfc/rfc1321.txt) hachage de clé de session RPC hello et d’un salt. Il envoie ensuite l’agent de synchronisation de mot de passe hello résultat toohello via RPC. Hello contrôleur de domaine passe également l’agent de synchronisation hello salt toohello en utilisant le protocole de réplication hello contrôleur de domaine, pour que l’agent de hello soient enveloppe de hello toodecrypt en mesure de.
+3.  Agent de synchronisation de mot de passe hello après l’enveloppe chiffrée de hello, il utilise [MD5CryptoServiceProvider](https://msdn.microsoft.com/library/System.Security.Cryptography.MD5CryptoServiceProvider.aspx) et hello salt toogenerate toodecrypt clé hello reçu tooits arrière d’origine MD4 format de données. À aucun moment l’agent de synchronisation du mot de passe hello a accès toohello mot de passe. Hello utilisation de l’agent de synchronisation de mot de passe de MD5 est strictement pour la compatibilité de protocole de réplication avec hello contrôleur de domaine, et il est utilisé uniquement en local entre hello contrôleur de domaine et l’agent de synchronisation de mot de passe hello.
+4.  agent de synchronisation de mot de passe Hello développe les octets de too64 de hachage de mot de passe binaire de 16 octets hello par la première conversion hello hachage tooa 32 octets chaîne hexadécimale, ensuite convertir cette chaîne dans le fichier binaire avec l’encodage UTF-16.
+5.  agent de synchronisation de mot de passe Hello ajoute un salt, composé d’un salt de 10 octets, toofurther binaire de 64 octets toohello protéger hachage d’origine de hello.
+6.  agent de synchronisation de mot de passe Hello puis combine le hachage de hello MD4 plus salt et les entrées qu’il en hello [PBKDF2](https://www.ietf.org/rfc/rfc2898.txt) (fonction). 1000 itérations Hello [HMAC-SHA256](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) algorithme de hachage à clé est utilisée. 
+7.  agent de synchronisation de mot de passe Hello prend la valeur de hachage de 32 octets obtenue hello, concatène deux sel de salutation hello nombre de tooit d’itérations SHA256 (pour une utilisation par Azure AD), puis transmet la chaîne hello à partir d’Azure AD Connect tooAzure AD via le protocole SSL.</br> 
+8.  Lorsqu’un utilisateur tente de toosign dans tooAzure AD et passe à leur mot de passe, le mot de passe hello sont exécutée via hello MD4 même + salt + PBKDF2 + HMAC-SHA256 processus. Si le hachage obtenu de hello correspond au hachage hello stocké dans Azure AD, hello a entré un mot de passe correct hello et est authentifié. 
 
 >[!Note] 
->Le hachage MD4 d’origine n’est pas transmis à Azure AD. Au lieu de cela, le hachage SHA256 du hachage MD4 d’origine est transmis. Par conséquent, si le hachage stocké dans Azure AD est obtenu, il ne peut pas être utilisé dans une attaque de type pass-the-hash locale.
+>hachage MD4 d’origine de Hello n’est pas transmis tooAzure AD. Au lieu de cela, hello hachage SHA256 de hachage MD4 d’origine de hello est transmis. Par conséquent, si hachage hello stocké dans Azure AD est obtenu, il ne peut pas être utilisé dans une attaque pass-the-hash de local.
 
 ### <a name="how-password-synchronization-works-with-azure-active-directory-domain-services"></a>Fonctionnement de la synchronisation de mot de passe avec Azure Active Directory Domain Services
-Vous pouvez également utiliser la fonctionnalité de synchronisation de mot de passe pour synchroniser vos mots de passe locaux avec les [Services de domaine Azure Active Directory](../../active-directory-domain-services/active-directory-ds-overview.md). Ce scénario permet à l’instance Azure Active Directory Domain Services d’authentifier vos utilisateurs dans le cloud avec toutes les méthodes disponibles dans votre instance Active Directory locale. L’expérience de ce scénario est similaire à l’utilisation de l’outil de migration Active Directory (ADMT) dans un environnement local.
+Vous pouvez également utiliser toosynchronize de fonctionnalité de synchronisation de mot de passe hello vos mots de passe local trop[Azure des Services de domaine Active Directory](../../active-directory-domain-services/active-directory-ds-overview.md). Dans ce scénario, instance d’Azure Active Directory Domain Services hello authentifie les utilisateurs dans le cloud de hello avec toutes les méthodes de hello disponibles dans votre instance d’Active Directory local. expérience de Hello de ce scénario est similaire toousing hello outil de Migration Active Directory (ADMT) dans un environnement sur site.
 
-### <a name="security-considerations"></a>Sécurité
-Lors de la synchronisation des mots de passe, la version en texte brut de votre mot de passe n’est exposée ni à la fonctionnalité de synchronisation de mot de passe, ni à Azure AD, ni à l’un des services associés.
+### <a name="security-considerations"></a>Considérations relatives à la sécurité
+Lors de la synchronisation des mots de passe, version de votre mot de passe en texte brut hello n’est pas fonctionnalité de synchronisation de mot de passe toohello exposé, tooAzure AD ou l’un des services de hello associé.
 
-L’authentification de l’utilisateur s’effectue par rapport à Azure AD plutôt que sur l’instance Active Directory de l’organisation. Si votre organisation a des inquiétudes à l’idée que des données de mot de passe puissent quitter les locaux sous une forme quelconque, n’oubliez pas que les données de mot de passe SHA256 stockées dans Azure AD (un hachage du hachage MD4 d’origine) sont nettement plus sécurisées que celles stockées dans Active Directory. En outre, étant donné que ce hachage SHA256 ne peut pas être déchiffré, il ne peut pas être réimporté dans l’environnement Active Directory de l’organisation et présenté sous la forme d’un mot de passe utilisateur valide dans une attaque de type pass-the-hash.
+Authentification de l’utilisateur a lieu auprès d’Azure AD, plutôt que par rapport à l’instance Active Directory de l’organisation hello. Si votre organisation a des problèmes sur les données de mot de passe dans un format en laissant hello local, considérez les faits hello que les données de mot de passe SHA256 stockées dans Azure AD--hello un hachage de hachage MD4 d’origine hello--est beaucoup plus sûre que ce qui est stocké dans Active Directory. En outre, étant donné que ce hachage SHA256 ne peut pas être déchiffré, il ne peut pas remettre en environnement Active Directory de l’organisation toohello et présenté sous la forme d’un mot de passe d’utilisateur valide dans une attaque pass-the-hash.
 
 
 
@@ -108,32 +108,32 @@ Deux types de stratégies de mot de passe sont affectés par l’activation de l
 * Stratégie d’expiration de mot de passe
 
 #### <a name="password-complexity-policy"></a>Stratégie de complexité de mot de passe  
-Quand vous activez la synchronisation de mot de passe, les stratégies de complexité de mot de passe dans votre instance Active Directory locale remplacent les stratégies de complexité dans le cloud pour les utilisateurs synchronisés. Vous pouvez utiliser tous les mots de passe valides de votre instance Active Directory locale pour accéder aux services Azure AD.
+Lorsque la synchronisation de mot de passe est activée, les stratégies de complexité de mot de passe hello dans votre instance d’Active Directory local remplacent la stratégie dans le cloud hello pour les utilisateurs synchronisés. Vous pouvez utiliser tous les mots de passe valides hello à partir de votre ordinateur local Active Directory instance tooaccess services Azure AD.
 
 > [!NOTE]
-> Les mots de passe des utilisateurs créés directement dans le cloud sont toujours soumis aux stratégies de mot de passe définies dans le cloud.
+> Les mots de passe pour les utilisateurs qui sont créés directement dans le cloud de hello existe toujours des stratégies de toopassword objet tel que défini dans le cloud de hello.
 
 #### <a name="password-expiration-policy"></a>Stratégie d’expiration de mot de passe  
-Si un utilisateur figure dans la portée de synchronisation de mot de passe, le mot de passe de compte cloud a pour valeur « *Ne jamais expirer* ».
+Si un utilisateur est dans la portée de hello de synchronisation de mot de passe, le mot de passe de compte hello cloud est défini trop*n’expirent jamais*.
 
-Vous pouvez continuer à vous connecter aux services cloud à l’aide d’un mot de passe synchronisé qui a expiré dans votre environnement local. Votre mot de passe cloud est mis à jour la prochaine fois que vous modifiez le mot de passe dans l’environnement local.
+Vous pouvez continuer toosign dans les services de cloud computing tooyour à l’aide d’un mot de passe synchronisé a expiré dans votre environnement local. La mise à jour de votre mot de passe cloud hello la prochaine fois que vous modifiez le mot de passe hello dans l’environnement local de hello.
 
 #### <a name="account-expiration"></a>Expiration du compte
-Si votre organisation utilise l’attribut accountExpires dans le cadre de la gestion des comptes utilisateur, n’oubliez pas que cet attribut n’est pas synchronisé avec Azure AD. Par conséquent, un compte Active Directory expiré dans un environnement configuré pour la synchronisation de mots de passe sera toujours actif dans Azure AD. Il est recommandé, si le compte a expiré, qu’une action de workflow doive déclencher un script PowerShell qui désactive le compte Azure AD de l’utilisateur. Inversement, lorsque le compte est activé, l’instance Azure AD doit être activée.
+Si votre organisation utilise un attribut d’accountExpires hello dans le cadre de la gestion des comptes utilisateur, sachez que cet attribut n’est pas synchronisé tooAzure AD. Par conséquent, un compte Active Directory expiré dans un environnement configuré pour la synchronisation de mots de passe sera toujours actif dans Azure AD. Il est recommandé que si le compte de hello a expiré, une action de workflow doit déclencher un script PowerShell qui désactive le compte Azure AD de l’utilisateur hello. Inversement, lorsque le compte de hello est activée, instance d’Azure AD hello doit être activé.
 
 ### <a name="overwrite-synchronized-passwords"></a>Remplacement des mots de passe synchronisés
 Un administrateur peut réinitialiser manuellement votre mot de passe à l’aide de Windows PowerShell.
 
-Dans ce cas, le nouveau mot de passe remplace votre mot de passe synchronisé et toutes les stratégies de mot de passe définies dans le cloud s’appliquent au nouveau mot de passe.
+Dans ce cas, votre mot de passe synchronisé substitue à nouveau mot de passe hello et toutes les stratégies de mot de passe définis dans le cloud de hello sont appliqués toohello le nouveau mot de passe.
 
-Si vous modifiez de nouveau votre mot de passe local, le nouveau mot de passe est synchronisé avec le cloud et il remplace le mot de passe mis à jour manuellement.
+Si vous modifiez à nouveau votre mot de passe local, hello le nouveau mot de passe est synchronisé toohello cloud, et il remplace le mot de passe hello mis à jour manuellement.
 
-La synchronisation d’un mot de passe n’a aucun impact sur l’utilisateur Azure connecté. Votre session de service cloud en cours n’est pas immédiatement affectée par une modification de mot de passe synchronisé effectuée lorsque vous êtes connecté à un service cloud. L’option Maintenir la connexion (KMSI) étend la durée de cette différence. Lorsque le service cloud vous oblige à vous authentifier à nouveau, vous devez fournir votre nouveau mot de passe.
+synchronisation Hello de mot de passe n’a aucun impact sur hello Azure utilisateur qui est connecté. Votre session de service cloud en cours n’est pas immédiatement affectée par une modification de mot de passe synchronisé qui se produit pendant que vous êtes connecté dans le service cloud tooa. KMSI étend la durée hello de cette différence. Hello cloud service exige que vous tooauthenticate à nouveau, vous devez tooprovide votre nouveau mot de passe.
 
 ### <a name="additional-advantages"></a>Autres avantages
 
-- En règle générale, la synchronisation de mots de passe est plus simple à implémenter qu’un service de fédération. Elle ne nécessite pas de serveurs supplémentaires et élimine la dépendance vis-à-vis d’un service de fédération hautement disponible pour authentifier les utilisateurs. 
-- La synchronisation de mot de passe peut également être activée en plus de la fédération. Vous pouvez l’utiliser comme solution de secours si votre service de fédération connaît une défaillance.
+- En règle générale, la synchronisation de mot de passe est tooimplement plus simple à un service de fédération. Il ne nécessite pas tous les serveurs supplémentaires et élimine la dépendance sur un tooauthenticate utilisateurs du service de fédération hautement disponible. 
+- Synchronisation de mot de passe peut également être activée dans toofederation d’addition. Vous pouvez l’utiliser comme solution de secours si votre service de fédération connaît une défaillance.
 
 
 
@@ -147,21 +147,21 @@ La synchronisation d’un mot de passe n’a aucun impact sur l’utilisateur Az
 
 
 ## <a name="enable-password-synchronization"></a>Activer la synchronisation de mot de passe
-La synchronisation de mot de passe est activée automatiquement si vous installez Azure AD Connect avec la **configuration rapide**. Pour plus d’informations, voir [Prise en main d’Azure AD Connect avec la configuration rapide](active-directory-aadconnect-get-started-express.md).
+Lorsque vous installez Azure AD Connect à l’aide de hello **paramètres Express** , synchronisation de mot de passe est automatiquement activée. Pour plus d’informations, voir [Prise en main d’Azure AD Connect avec la configuration rapide](active-directory-aadconnect-get-started-express.md).
 
-Si vous utilisez des paramètres personnalisés lors de l’installation d’Azure AD Connect, la synchronisation de mot de passe est disponible sur la page de connexion utilisateur. Pour plus d’informations, voir [Installation personnalisée d’Azure AD Connect](active-directory-aadconnect-get-started-custom.md).
+Si vous utilisez des paramètres personnalisés lorsque vous installez Azure AD Connect, la synchronisation de mot de passe est disponible sur hello utilisateur-page de connexion. Pour plus d’informations, voir [Installation personnalisée d’Azure AD Connect](active-directory-aadconnect-get-started-custom.md).
 
 ![Activation de la synchronisation de mot de passe](./media/active-directory-aadconnectsync-implement-password-synchronization/usersignin.png)
 
 ### <a name="password-synchronization-and-fips"></a>Synchronisation du mot de passe et FIPS
-Si votre serveur a été verrouillé selon la norme Federal Information Processing Standard (FIPS), MD5 est désactivé.
+Si votre serveur a été verrouillé en fonction de tooFederal traitement Standard FIPS (Information), MD5 est désactivée.
 
-**Pour activer MD5 pour la synchronisation de mot de passe, procédez comme suit :**
+**tooenable MD5 pour la synchronisation de mot de passe, effectuez hello comme suit :**
 
-1. Accédez à %programfiles%\Azure AD Sync\Bin.
+1. Accédez too%programfiles%\Azure AD Sync\Bin.
 2. Ouvrez miiserver.exe.config.
-3. Accédez au nœud configuration/runtime (à la fin du fichier).
-4. Ajoutez le nœud suivant : `<enforceFIPSPolicy enabled="false"/>`
+3. Atteindre le nœud de configuration/runtime toohello à fin hello du fichier de hello.
+4. Ajoutez hello suivant du nœud :`<enforceFIPSPolicy enabled="false"/>`
 5. Enregistrez vos modifications.
 
 Pour référence, cet extrait de code indique ce que vous devez obtenir :

@@ -1,6 +1,6 @@
 ---
-title: "Activation de l’audit et détection des menaces dans les bases de données SQL dans Azure Security Center | Microsoft Docs"
-description: "Ce document vous montre comment implémenter la recommandation Azure Security Center ** activer la détection de menace et de l’audit sur les bases de données SQL **."
+title: "détection de l’audit et de la menace aaaEnable sur SQL des bases de données dans le centre de sécurité Azure | Documents Microsoft"
+description: "Ce document vous montre comment tooimplement hello recommandation du centre de sécurité Azure ** activer la détection de menace et de l’audit sur les bases de données SQL **."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/30/2017
 ms.author: terrylan
-ms.openlocfilehash: 8f4febdaa4497fee0dc690b59cd6eaa415c5e5cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c94140acf37cabaca3e681ba5db79d6827e7b9db
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-auditing-and-threat-detection-on-sql-databases-in-azure-security-center"></a>Activation de l’audit et détection des menaces dans les bases de données SQL dans Azure Security Center
 Azure Security Center vous recommande d’activer l’audit et la détection des menaces sur toutes les bases de données SQL, si ce n’est déjà fait. L’audit et la détection des menaces peuvent vous aider à respecter une conformité réglementaire, à comprendre l’activité de la base de données et à découvrir des discordances et des anomalies susceptibles d’indiquer des problèmes pour l’entreprise ou des violations de la sécurité.
 
-Une fois que vous avez activé l’audit, vous pouvez configurer les paramètres Threat Detection et les adresses électroniques pour recevoir des alertes de sécurité. Threat Detection permet de détecter les activités base de données anormales indiquant la présence potentielle de menaces de sécurité pour la base de données. Cela vous permet de détecter et de répondre aux menaces potentielles à mesure qu’elles surviennent.
+Une fois que vous avez activé l’audit, vous pouvez configurer la détection des menaces paramètres et des messages électroniques tooreceive sécurité les alertes. La détection des menaces détecte des activités de base de données anormales indiquant de base de données des toohello des menaces de sécurité potentielles. Cela vous permet de toodetect et répond toopotential menaces qu’ils se produisent.
 
-Cette recommandation s’applique uniquement au service SQL Azure, elle ne concerne pas SQL en cours d’exécution sur vos machines virtuelles.
+Cette recommandation s’applique toohello service SQL Azure uniquement. Il n’inclut pas SQL en cours d’exécution sur vos ordinateurs virtuels.
 
 > [!NOTE]
-> Ce document présente le service à l’aide d’un exemple de déploiement.  Il ne s’agit pas d’un guide pas à pas.
+> Ce document présente le service de hello à l’aide d’un exemple de déploiement.  Il ne s’agit pas d’un guide pas à pas.
 >
 >
 
-## <a name="implement-the-recommendation"></a>Implémenter la recommandation
-1. Dans le panneau **Recommandations**, sélectionnez **Activer l’audit et la détection des menaces sur les bases de données SQL**.  Cette opération ouvre le panneau **Activer l’audit et la détection des menaces sur les bases de données SQL**.
+## <a name="implement-hello-recommendation"></a>Implémenter la recommandation de hello
+1. Bonjour **recommandations** panneau, sélectionnez **activer l’audit et menace pour la détection sur les bases de données SQL**.  Cette opération ouvre hello **activer l’audit et menace pour la détection sur les bases de données SQL** panneau.
 
    ![Activer l’audit sur les bases de données SQL][1]
-2. Sélectionnez une base de données SQL sur laquelle activer l’audit. Cette opération ouvre le panneau **Audit et détection des menaces**.
+2. Sélectionnez une base de données tooenable l’audit SQL sur. Cette opération ouvre hello **audit et la détection des menaces** panneau.
 
-3. Dans le panneau **Audit et détection des menaces**, sélectionnez **ON** sous **Audit**.
+3. Sur hello **audit et la détection des menaces** panneau, sélectionnez **ON** sous **audit**.
 
    ![Activer l’audit et la détection des menaces][2]
-4. Suivez les étapes de la rubrique [Détection de menaces pour les bases de données SQL dans le portail Azure](../sql-database/sql-database-threat-detection-portal.md) pour activer et configurer la détection des menaces (Threat Detection) et configurer la liste des adresses électroniques qui recevront les alertes de sécurité lors de la détection d’activités anormales.
+4. Suivez les étapes de hello dans [la détection des menaces de base de données SQL Bonjour Azure portal](../sql-database/sql-database-threat-detection-portal.md) tooturn sur et configurer la détection des menaces et la liste de hello tooconfigure d’adresses de messagerie qui recevront les alertes de sécurité lors de la détection des activités anormales sont.
 
 ## <a name="see-also"></a>Voir aussi
-Cet article vous a montré comment implémenter la recommandation de Security Center « Activer l’audit et la détection des menaces sur les bases de données SQL ». Pour en savoir plus sur la sécurisation de votre base de données SQL, consultez les rubriques suivantes :
+Cet article vous a montré comment tooimplement hello centre de sécurité recommandation « Enable Auditing & menace pour la détection sur les bases de données SQL. » toolearn savoir plus sur la sécurisation de votre base de données SQL, voir hello :
 
 * [Sécurisation de votre base de données SQL](../sql-database/sql-database-security-overview.md)
 
-Pour plus d’informations sur le Centre de sécurité, consultez les rubriques suivantes :
+toolearn en savoir plus sur le centre de sécurité, voir hello :
 
-* [Définition des stratégies de sécurité dans Azure Security Center](security-center-policies.md) : découvrez comment configurer des stratégies de sécurité pour vos groupes de ressources et abonnements Azure.
+* [Définition des stratégies de sécurité dans le centre de sécurité Azure](security-center-policies.md) --Découvrez comment tooconfigure des stratégies de sécurité pour vos abonnements Azure et les groupes de ressources.
 * [Gestion des recommandations de sécurité dans Azure Security Center](security-center-recommendations.md) : découvrez comment les recommandations peuvent vous aider à protéger vos ressources Azure.
-* [Surveillance de l’intégrité de la sécurité dans Azure Security Center](security-center-monitoring.md) : découvrez comment surveiller l’intégrité de vos ressources Azure.
-* [Gestion et résolution des alertes de sécurité dans Azure Security Center](security-center-managing-and-responding-alerts.md) : découvrez comment gérer et résoudre les alertes de sécurité.
-* [Surveillance des solutions partenaires avec Azure Security Center](security-center-partner-solutions.md) : découvrez comment surveiller l’état d’intégrité de vos solutions partenaires.
-* [FAQ sur Azure Security Center](security-center-faq.md) : forum aux questions concernant l’utilisation de ce service.
-* [Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : découvrez les dernières nouvelles et informations sur la sécurité Azure.
+* [Contrôle d’intégrité de la sécurité dans le centre de sécurité Azure](security-center-monitoring.md) --Découvrez comment toomonitor hello d’intégrité de vos ressources Azure.
+* [Toosecurity répond et de la gestion des alertes dans le centre de sécurité Azure](security-center-managing-and-responding-alerts.md) --Découvrez comment les alertes toosecurity toomanage et y répondre.
+* [Surveillance des solutions de partenaire avec Azure Security Center](security-center-partner-solutions.md) --Découvrez comment toomonitor hello état d’intégrité de vos solutions de partenaire.
+* [Forum aux questions sur Azure Security Center](security-center-faq.md) --rechercher Forum aux questions sur l’utilisation du service de hello.
+* [Blog de sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) --obtenir les dernières informations de sécurité Azure hello et informations.
 
 <!--Image references-->
 [1]: ./media/security-center-enable-auditing-on-sql-databases/enable-auditing-on-sql-databases.png

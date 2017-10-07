@@ -1,6 +1,6 @@
 ---
-title: "Présentation des connecteurs de proxy d’application Azure AD | Microsoft Docs"
-description: "Couvre les bases sur les connecteurs de proxy d’application Azure AD."
+title: "connecteurs de Proxy d’Application aaaUnderstand Azure AD | Documents Microsoft"
+description: "Traite des principes de base hello des connecteurs de Proxy d’Application Azure AD."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,130 +15,130 @@ ms.date: 08/03/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: c18d0a2bff654573e6e28a7cd7fad853b3a11346
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 294cb26803ef7cf8be9f3af0678d6d2e64f6cc14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-azure-ad-application-proxy-connectors"></a>Présentation des connecteurs de proxy d’application Azure AD
 
-Les connecteurs rendent possible le proxy d’application Azure AD. Ils sont très puissants, simples et faciles à déployer et maintenir. Cet article présente les connecteurs, leur fonctionnement et des suggestions pour optimiser le déploiement. 
+Les connecteurs rendent possible le proxy d’application Azure AD. Ils sont simple, facile toodeploy et mettre à jour et super puissant. Cet article explique les connecteurs sont, leur fonctionnement et certaines des suggestions pour toooptimize votre déploiement. 
 
 ## <a name="what-is-an-application-proxy-connector"></a>Qu’est-ce qu’un connecteur de proxy d’application ?
 
-Les connecteurs sont des agents légers présent en local et qui facilitent la connexion sortante vers le service de proxy d’application. Les connecteurs doivent être installés sur un serveur Windows Server qui a accès à l’application principale. Vous pouvez organiser des connecteurs dans les groupes de connecteurs, et chaque groupe gère le trafic vers des applications spécifiques. Les connecteurs équilibrent la charge automatiquement et peuvent aider à optimiser la structure du réseau. 
+Les connecteurs sont des agents légers qui se trouvent sur site et facilitent le service de Proxy d’Application toohello hello connexion sortante. Connecteurs doivent être installés sur un serveur Windows qui a accès le toohello application principale. Vous pouvez organiser des connecteurs dans les groupes de connecteurs à chaque groupe de gestion des applications de toospecific du trafic. Connecteurs équilibrer automatiquement et peut aider à toooptimize structure de votre réseau. 
 
 ## <a name="requirements-and-deployment"></a>Exigences et déploiement
 
-Pour déployer le proxy d’application avec succès, vous devez disposer d’au moins un connecteur, mais nous vous recommandons d’en utiliser deux ou plusieurs pour assurer une meilleure résilience. Installez le connecteur sur un serveur Windows Server 2012 R2 ou une machine 2016. Le connecteur doit être en mesure de communiquer avec le service Application Proxy, ainsi que les applications locales que vous publiez. 
+toodeploy Proxy d’Application avec succès, vous devez au moins un connecteur, mais nous vous recommandons de deux ou plusieurs pour assurer la résilience supérieure. Installer le connecteur de hello sur un ordinateur Windows Server 2012 R2 ou machine 2016. connecteur de Hello doit toocommunicate en mesure de toobe avec le service de Proxy d’Application hello, ainsi que des applications locales hello que vous publiez. 
 
-Pour plus d’informations sur la configuration réseau requise pour le serveur du connecteur, consultez [Prise en main du proxy d’application et de l’installation d’un connecteur](active-directory-application-proxy-enable.md).
+Pour plus d’informations sur la configuration requise pour le serveur de connecteur hello hello, consultez [prise en main le Proxy d’Application et l’installation d’un connecteur](active-directory-application-proxy-enable.md).
 
 ## <a name="maintenance"></a>Maintenance 
-Les connecteurs et le service se chargent de toutes les tâches de haut niveau de disponibilité. Vous pouvez les ajouter ou supprimer de manière dynamique. Chaque fois qu’une nouvelle requête arrive, elle est acheminée vers un des connecteurs actuellement disponibles. Si un connecteur est temporairement indisponible, il ne répond pas à ce trafic.
+Hello connecteurs et service de hello prenez soin de toutes les tâches de haute disponibilité hello. Vous pouvez les ajouter ou supprimer de manière dynamique. Chaque fois qu’une nouvelle demande arrive, il est routé tooone des connecteurs de hello qui est actuellement disponible. Si un connecteur n’est pas disponible temporairement, il ne répond pas le trafic de toothis.
 
-Les connecteurs sont sans état et ne disposent d’aucune donnée de configuration sur l’ordinateur. Les seules données qu’ils stockent sont les paramètres de connexion au service et le certificat d’authentification. Lorsqu’ils se connectent au service, ils extraient toutes les données de configuration requises et les actualisent toutes les deux minutes.
+les connecteurs Hello sont sans état et n’ont aucune donnée de configuration sur l’ordinateur de hello. Hello uniquement les données qu’ils contiennent sont hello paramètres pour la connexion de service de hello et son certificat d’authentification. Lorsqu’ils connectent toohello service, ils extraient toutes les données de configuration hello requis et actualiser toutes les deux minutes.
 
-Les connecteurs interrogent également le serveur pour déterminer s’il existe une version plus récente du connecteur. S’il en existe une, les connecteurs se mettent à jour.
+Connecteurs interrogent également toofind de serveur hello s’il existe une version plus récente du connecteur de hello. S’il existe, les connecteurs hello se mettent à jour.
 
-Vous pouvez surveiller vos connecteurs à partir de l’ordinateur sur lequel ils s’exécutent à l’aide du journal d’événements et des compteurs de performances. Ou vous pouvez afficher leur état à partir de la page du proxy d’application du portail Azure :
+Vous pouvez surveiller vos connecteurs à partir de l’ordinateur hello qu’ils sont en cours d’exécution, à l’aide du journal des événements hello et compteurs de performance. Ou vous pouvez afficher leur état à partir de la page de Proxy d’Application hello Hello portail Azure :
 
  ![Connecteurs de proxy d’application Azure AD](./media/application-proxy-understand-connectors/app-proxy-connectors.png)
 
-Vous n’êtes pas obligé de supprimer manuellement les connecteurs qui ne sont pas utilisés. Lorsqu’un connecteur est en cours d’exécution, il reste actif car il se connecte au service. Les connecteurs inutilisés sont marqués comme _inactifs_ et sont supprimés après 10 jours d’inactivité. Toutefois, si vous souhaitez réellement désinstaller un connecteur, désinstallez le service du connecteur et le service de mise à jour du serveur. Redémarrez votre ordinateur pour supprimer complètement le service.
+Vous n’avez pas toomanually supprimer les liens qui ne sont pas utilisés. Lorsqu’un connecteur est en cours d’exécution, il reste actif comme il connecte toohello service. Les connecteurs inutilisés sont marqués comme _inactifs_ et sont supprimés après 10 jours d’inactivité. Si vous voulez toouninstall un connecteur, cependant, désinstallez les services de connecteur hello et hello Updater hello serveur. Redémarrez votre ordinateur toofully supprimer hello service.
 
 ## <a name="automatic-updates"></a>Mises à jour automatiques
 
-Azure AD fournit les mises à jour automatiques pour tous les connecteurs que vous déployez. Tant que le service de mise à jour du connecteur de proxy d’application est en cours d’exécution, vos connecteurs se mettent automatiquement à jour. Si vous ne voyez pas le service de mise à jour du connecteur sur votre serveur, vous devez [réinstaller votre connecteur](active-directory-application-proxy-enable.md) afin d’obtenir les mises à jour. 
+Azure AD fournit les mises à jour automatiques pour tous les connecteurs hello que vous déployez. Tant que hello service de mise à jour du connecteur Application Proxy est en cours d’exécution, vos connecteurs de mettre à jour automatiquement. Si vous ne voyez pas hello du service de mise à jour du connecteur sur votre serveur, vous devez trop[réinstaller votre connecteur](active-directory-application-proxy-enable.md) tooget les mises à jour. 
 
-Si vous ne souhaitez pas attendre le chargement d’une mise à jour automatique sur votre connecteur, vous pouvez effectuer une mise à niveau manuelle. Accédez à la [page de téléchargement du connecteur](https://download.msappproxy.net/subscription/d3c8b69d-6bf7-42be-a529-3fe9c2e70c90/connector/download) sur le serveur où votre connecteur se trouve et sélectionnez **Télécharger**. Ce processus lance une mise à niveau du connecteur local. 
+Si vous ne souhaitez pas toowait d’un connecteur de tooyour toocome mise à jour automatique, vous pouvez effectuer une mise à niveau manuelle. Accédez toohello [page de téléchargement du connecteur](https://download.msappproxy.net/subscription/d3c8b69d-6bf7-42be-a529-3fe9c2e70c90/connector/download) sur serveur hello où votre connecteur est localisé et sélectionnez **télécharger**. Ce processus démarre, une mise à niveau pour le connecteur local de hello. 
 
-Pour les abonnés avec plusieurs connecteurs, les mises à jour automatiques ciblent un seul connecteur à la fois dans chaque groupe afin d’éviter les temps d’arrêt dans votre environnement. 
+Pour les clients avec plusieurs connecteurs, les mises à jour automatiques hello ciblent un connecteur à la fois dans chaque groupe tooprevent temps morts dans votre environnement. 
 
 Vous pouvez rencontrer des temps d’arrêt lors de la mise à jour de votre connecteur si :  
-- Vous n’avez qu’un seul connecteur. Pour éviter ce temps d’arrêt et optimiser la disponibilité, nous vous recommandons d’installer un second connecteur et de [créer un groupe de connecteurs](active-directory-application-proxy-connectors-azure-portal.md).  
-- Un connecteur se trouvait au milieu d’une transaction lorsque la mise à jour a commencé. Bien que la transaction d’origine soit perdue, votre navigateur devrait automatiquement relancer l’opération, ou vous pouvez actualiser votre page. Lorsque la demande est renvoyée, le trafic est acheminé vers un connecteur de secours.
+- Vous n’avez qu’un seul connecteur. tooavoid ce temps mort et améliorer la disponibilité, nous vous recommandons d’installer un second connecteur et [créer un groupe de connecteurs](active-directory-application-proxy-connectors-azure-portal.md).  
+- Un connecteur a été milieu hello d’une transaction au début de la mise à jour hello. Bien que la transaction d’origine hello est perdue, votre navigateur doit automatiquement retenter hello ou vous pouvez actualiser votre page. Lors de la demande de hello renvoyée, le trafic de hello est routé tooa connecteur de sauvegarde.
 
 ## <a name="creating-connector-groups"></a>Créer des groupe de connecteurs
 
-Les groupes de connecteurs vous permettent d’assigner des connecteurs spécifiques afin de servir des applications spécifiques. Vous pouvez regrouper plusieurs connecteurs, puis assigner chaque application à un groupe. 
+Groupes de connecteurs activer des applications spécifiques tooassign des connecteurs spécifiques tooserve. Vous pouvez regrouper un nombre de connecteurs et puis affecter à chaque groupe de tooa d’application. 
 
-Les groupes de connecteurs facilitent la gestion de déploiements à grande échelle. Ils améliorent aussi la latence pour les locataires dont les applications sont hébergées dans différentes régions, car vous pouvez créer des groupes de connecteurs basés sur un emplacement pour servir uniquement des applications locales. 
+Groupes de connecteurs rendent plus facile toomanage des déploiements. Ils améliorent également latence pour les clients qui ont des applications hébergées dans des régions différentes, car vous pouvez créer des groupes de basée sur l’emplacement des connecteurs tooserve des applications locales uniquement. 
 
-Pour en savoir plus sur les groupes de connecteurs, consultez [Publier des applications sur des réseaux et emplacements distincts à l’aide de groupes de connecteurs](active-directory-application-proxy-connectors-azure-portal.md).
+toolearn savoir plus sur les groupes de connecteurs, consultez [publier des applications sur des réseaux distincts et les emplacements à l’aide de groupes de connecteurs](active-directory-application-proxy-connectors-azure-portal.md).
 
 ## <a name="security-and-networking"></a>Sécurité et mise en réseau
 
-Les connecteurs peuvent être installés n’importe où sur le réseau pourvu qu’ils puissent envoyer des requêtes vers le service de proxy d’application. L’important est que l’ordinateur qui exécute le connecteur dispose également d’un accès à vos applications. Vous pouvez installer les connecteurs à l’intérieur de votre réseau d’entreprise ou sur une machine virtuelle qui s’exécute dans le cloud. Les connecteurs peuvent s’exécuter dans une zone démilitarisée (DMZ), mais ce n’est pas nécessaire car tout le trafic est sortant afin sécuriser votre réseau.
+Connecteurs peuvent être installés n’importe où sur le réseau hello qui leur permet de service de Proxy d’Application toohello toosend demandes. L’essentiel est qu’ordinateur hello exécutant le connecteur de hello également a accès tooyour applications. Vous pouvez installer les connecteurs à l’intérieur de votre réseau d’entreprise ou sur un ordinateur virtuel qui s’exécute dans le cloud de hello. Les connecteurs peuvent s’exécuter dans une zone démilitarisée (DMZ), mais ce n’est pas nécessaire car tout le trafic est sortant afin sécuriser votre réseau.
 
-Les connecteurs envoient uniquement des demandes sortantes. Le trafic sortant est envoyé au service de proxy d’application et aux applications publiées. Il n’est pas nécessaire pour ouvrir des ports d’entrée car le trafic passe dans les deux sens une fois qu’une session est établie. Il n’est pas nécessaire de configurer l’équilibrage de charge entre les connecteurs ou de configurer l’accès entrant à travers vos pare-feu. 
+Les connecteurs envoient uniquement des demandes sortantes. le trafic sortant de Hello est envoyé à service de Proxy d’Application toohello et toohello applications publiées. Vous n’avez pas tooopen ports d’entrée, car le trafic acheminé les deux sens, une fois qu’une session est établie. Vous n’avez tooset d’équilibrage de charge entre les connecteurs hello ou configurer l’accès entrant à travers votre pare-feu. 
 
 Pour plus d’informations sur la configuration des règles sortantes de pare-feu, consultez [Travailler avec des serveurs proxy locaux existants](application-proxy-working-with-proxy-servers.md).
 
-Utilisez [l’outil de test des ports du connecteur de proxy d’application Azure AD](https://aadap-portcheck.connectorporttest.msappproxy.net/) pour vous assurer que votre connecteur peut joindre le service de proxy d’application. Au minimum, assurez-vous d’avoir coché les États-Unis du Centre et les régions les plus proches de vous. En outre, un nombre plus élevé de coches vertes signifie une résilience accrue. 
+Hello d’utilisation [Azure AD Application Proxy Connector Ports Test outil](https://aadap-portcheck.connectorporttest.msappproxy.net/) tooverify que votre connecteur pouvez contacter le service de Proxy d’Application hello. Au minimum, assurez-vous que toutes les coches vertes la région du centre des États-Unis hello et tooyou le plus proche de la région de hello. En outre, un nombre plus élevé de coches vertes signifie une résilience accrue. 
 
 ## <a name="performance-and-scalability"></a>Performances et évolutivité
 
-La mise à l’échelle pour le proxy d’application est transparente, mais l’échelle est un facteur lorsqu’il s’agit de connecteurs. Vous devez disposer de suffisamment de connecteurs pour gérer les pics de trafic. Toutefois, il n’est pas nécessaire de configurer l’équilibrage des charges, car tous les connecteurs dans un groupe de connecteurs équilibrent automatiquement la charge.
+Échelle pour hello service Proxy d’Application est transparent, mais l’échelle est un facteur de connecteurs. Vous devez toohave suffisamment connecteurs toohandle pic de trafic. Toutefois, vous n’avez pas besoin tooconfigure équilibrage de charge, car tous les connecteurs dans un groupe de connecteurs automatiquement équilibrer la charge.
 
-Étant donné que les connecteurs sont sans état, ils ne sont pas affectés par le nombre d’utilisateurs ou de sessions. Ils varient plutôt selon le nombre de requêtes et leur taille de charge utile. Avec le trafic web standard, une machine moyenne peut gérer quelques milliers de requêtes par seconde. La capacité spécifique dépend des caractéristiques exactes de la machine. 
+Étant donné que les connecteurs sont sans état, ils ne sont pas affectés par un nombre d’utilisateurs ou des sessions hello. Au lieu de cela, ils répondent nombre toohello de demandes et de leur taille de charge utile. Avec le trafic web standard, une machine moyenne peut gérer quelques milliers de requêtes par seconde. capacité Hello dépend des caractéristiques de l’ordinateur exact hello. 
 
-Les performances du connecteur sont liées au processeur et à la mise en réseau. Les performances processeur sont nécessaires pour le chiffrement et le déchiffrement SSL, tandis que la mise en réseau est vitale pour obtenir une connectivité rapide aux applications et au service en ligne dans Azure.
+performances du connecteur Hello est lié par processeur et de mise en réseau. Performances de l’UC est nécessaire pour le chiffrement SSL et le déchiffrement, tandis que la mise en réseau est important tooget connectivité rapide toohello et applications hello en ligne dans Azure.
 
-En revanche, la mémoire est moins problématique pour les connecteurs. Le service en ligne s’occupe de la majeure partie du traitement et de tout le trafic non authentifié. Tout ce qui peut être effectué dans le cloud est réalisé dans le cloud. 
+En revanche, la mémoire est moins problématique pour les connecteurs. service en ligne de Hello effectue une grande partie du traitement de hello et tout le trafic non authentifié. Tout ce qui peut être effectué dans le cloud de hello est effectué dans le cloud de hello. 
 
-Un autre facteur affectant les performances est la qualité de la connexion réseau entre les connecteurs, y compris : 
+Un autre facteur affectant les performances est qualité hello de mise en réseau hello entre connecteurs hello, y compris : 
 
-* **Le service en ligne** : les connexions à latence faible ou élevée au service du proxy d’application d’Azure influence les performances du connecteur. Pour des performances optimales, connectez votre organisation à Azure avec Express Route. Sinon, assurez-vous que l’équipe réseau garantit que les connexions à Azure sont gérées de la façon la plus efficace. 
-* **Applications principales** : dans certains cas, il existe des proxys supplémentaires entre le connecteur et les applications principales capables de ralentir ou d’empêcher des connexions. Pour résoudre les problèmes de ce scénario, ouvrez un navigateur à partir du serveur du connecteur et essayez d’accéder à l’application. Si vous exécutez les connecteurs dans Azure alors que les applications sont locales, l’expérience peut ne pas être celle que vos utilisateurs attendent.
-* **Contrôleurs de domaine** : si les connecteurs effectuent l’authentification unique à l’aide de la délégation Kerberos contrainte (KCD), ils contactent les contrôleurs de domaine avant d’envoyer la requête au serveur principal. Les connecteurs ont un cache de tickets Kerberos, mais dans un environnement occupé, la réactivité des contrôleurs de domaine peut affecter les performances. Ce problème est plus courant pour les connecteurs qui s’exécutent dans Azure mais qui communiques avec les contrôleurs de domaine locaux. 
+* **Hello service en ligne**: connexions lentes ou à latence élevée toohello service de Proxy d’Application dans les performances du connecteur Azure influence hello. Pour de meilleures performances de hello, rejoignez Express Route tooAzure de votre organisation. Sinon, demandez à votre équipe de mise en réseau de vous assurer que tooAzure connexions sont gérées aussi efficacement que possible. 
+* **Hello applications principales**: dans certains cas, il existe des proxys supplémentaires entre les connecteur hello et les applications principales hello qui peuvent ralentir ou empêcher les connexions. tootroubleshoot ce scénario, ouvrez un navigateur à partir du serveur de connecteur hello et essayer tooaccess hello application. Si vous exécutez les connecteurs hello dans Azure, mais les applications hello sont locaux, expérience de hello peut-être pas ce que vos utilisateurs attendent.
+* **contrôleurs de domaine de Hello**: si les connecteurs hello effectuer l’authentification unique à l’aide de la délégation contrainte Kerberos, ils contacter les contrôleurs de domaine de hello avant l’envoi de hello demande toohello principal. les connecteurs Hello ont un cache des tickets Kerberos, mais dans un environnement occupé réactivité hello hello des contrôleurs de domaine peut affecter les performances. Ce problème est plus courant pour les connecteurs qui s’exécutent dans Azure mais qui communiques avec les contrôleurs de domaine locaux. 
 
 Pour plus d’informations sur l’optimisation de votre réseau, consultez [Considérations sur la topologie du réseau lors de l’utilisation du proxy d’application Azure Active Directory](application-proxy-network-topology-considerations.md).
 
 ## <a name="domain-joining"></a>Jonction de domaine
 
-Les connecteurs peuvent s’exécuter sur une machine qui n’est pas jointe à un domaine. Toutefois, si vous souhaitez utiliser l’authentification unique (SSO) pour les applications qui utilisent l’authentification Windows intégrée (IWA), vous avez besoin d’un ordinateur joint à un domaine. Dans ce cas, les ordinateurs du connecteur doivent être joints à un domaine qui peut effectuer la délégation [Kerberos](https://web.mit.edu/kerberos) contrainte pour le compte des utilisateurs pour les applications publiées.
+Les connecteurs peuvent s’exécuter sur une machine qui n’est pas jointe à un domaine. Toutefois, si vous souhaitez que seul sign-on (SSO) tooapplications qui utilisent l’authentification Windows (intégrée), vous devez un ordinateur joint au domaine. Dans ce cas, les ordinateurs de connecteur hello doivent être tooa joint à un domaine qui peut effectuer [Kerberos](https://web.mit.edu/kerberos) la délégation contrainte pour le compte utilisateurs hello pourquoi les applications publiées.
 
-Les connecteurs peuvent également être joints à des domaines ou forêts qui disposent d’une approbation partielle ou pour les contrôleurs de domaine en lecture seule.
+Les connecteurs peuvent également être jointes toodomains ou les forêts qui disposent d’une confiance partielle ou contrôleurs de domaine tooread uniquement.
 
 ## <a name="connector-deployments-on-hardened-environments"></a>Déploiements des connecteurs sur les environnements de sécurité renforcés
 
 Généralement, le déploiement de connecteurs est simple et ne nécessite aucune configuration spéciale. Mais certaines conditions uniques doivent être prises en compte :
 
-* Les organisations qui limitent le trafic sortant doivent [ouvrir les ports requis](active-directory-application-proxy-enable.md#open-your-ports).
-* Des machines conformes aux normes FIPS peuvent être requises pour modifier leur configuration afin d’autoriser les processus du connecteur à générer et stocker un certificat.
-* Les organisations qui verrouillent leur environnement sur la base des processus qui émettent des requêtes réseau doivent s’assurer que les deux services de connecteur sont activés pour accéder à tous les ports et adresses IP nécessaires.
-* Dans certains cas, les proxys de transfert sortants peuvent arrêter l’authentification de certificat bidirectionnelle et entraîner un échec de la communication.
+* Les organisations qui limitent le trafic sortant de hello doivent [ouvrir les ports requis](active-directory-application-proxy-enable.md#open-your-ports).
+* Les ordinateurs compatibles FIPS peuvent être requis toochange leur tooallow configuration hello connecteur processus toogenerate et stocker un certificat.
+* Les organisations qui verrouiller leur environnement en fonction des processus de hello que hello problème réseau des demandes ont toomake assurer que les deux services de connecteur sont les ports activé tooaccess tous requis et les adresses IP.
+* Dans certains cas, les proxys de transfert sortants peuvent interrompre l’authentification de certificat bidirectionnelle hello et provoquer hello communication toofail.
 
 ## <a name="connector-authentication"></a>Authentification du connecteur
 
-Afin de fournir un service sécurisé, les connecteurs doivent s’authentifier sur le service, et le service doit s’authentifier sur les connecteurs. L’authentification est effectuée à l’aide de certificats client et serveur lorsque les connecteurs établissent la connexion. De cette façon, le nom d’utilisateur et le mot de passe de l’administrateur ne sont pas stockés sur l’ordinateur du connecteur.
+tooprovide un service sécurisé, les connecteurs ont tooauthenticate vers le service de hello, et service de hello tooauthenticate vers le connecteur de hello. Cette authentification est effectuée à l’aide de certificats client et serveur lorsque les connecteurs hello initier la connexion de hello. Nom d’utilisateur et mot de passe de l’administrateur hello de cette façon ne sont pas stockées sur l’ordinateur de connecteur hello.
 
-Les certificats utilisés sont spécifiques au service de proxy d’application. Ils sont créés lors de l’inscription initiale et sont renouvelés automatiquement par les connecteurs tous les quelques mois. 
+les certificats de Hello utilisés sont service de Proxy d’Application toohello spécifique. Ils sont créés au cours de l’inscription initiale de hello et sont automatiquement renouvelés par les connecteurs de hello quelques mois. 
 
-Si un connecteur n’est pas connecté au service pendant plusieurs mois, ses certificats ont peut-être expiré. Dans ce cas, désinstallez et réinstallez le connecteur pour déclencher l’inscription. Vous pouvez exécuter les commandes PowerShell suivantes :
+Si un connecteur n’est pas connecté service toohello depuis plusieurs mois, ses certificats peut-être être obsolète. Dans ce cas, désinstallez et réinstallez l’inscription de hello connecteur tootrigger. Vous pouvez exécuter hello suivant de commandes PowerShell :
 
 ```
 Import-module AppProxyPSModule
 Register-AppProxyConnector
 ```
 
-## <a name="under-the-hood"></a>Sous le capot
+## <a name="under-hello-hood"></a>Dans les coulisses de hello
 
-Comme les connecteurs sont basés sur le proxy d’application web Windows Server, la plupart ont les mêmes outils de gestion, y compris les journaux d’événements Windows
+Connecteurs sont basées sur le Proxy d’Application Web Windows Server, afin qu’ils puissent la plupart des hello mêmes outils de gestion, y compris les journaux des événements Windows
 
- ![Gérez les journaux d’événements avec l’Observateur d’événements](./media/application-proxy-understand-connectors/event-view-window.png)
+ ![Gérer les journaux des événements hello Observateur d’événements](./media/application-proxy-understand-connectors/event-view-window.png)
 
 et les compteurs de performances Windows. 
 
- ![Ajouter des compteurs au connecteur avec l’Analyseur de performances](./media/application-proxy-understand-connectors/performance-monitor.png)
+ ![Ajouter le connecteur toohello de compteurs par hello Analyseur de performances](./media/application-proxy-understand-connectors/performance-monitor.png)
 
-Les connecteurs ont des journaux de session et admin. Les journaux admin incluent les événements principaux et leurs erreurs. Les journaux de session incluent toutes les transactions et les détails de traitement. 
+les connecteurs Hello ont admin et session journaux. les journaux d’administration Hello incluent leurs erreurs et les événements de touche. journaux de session de Hello incluent toutes les transactions hello ainsi que leurs informations de traitement. 
 
-Pour afficher les journaux, accédez l’Observateur d’événements, ouvrez le menu **Affichage**, puis activez **Afficher les journaux d’analyse et de débogage**. Ensuite, permettez-leur de lancer la collecte d’événements. Ces journaux n’apparaissent pas dans le proxy d’application web dans Windows Server 2012 R2, car les connecteurs sont basés sur une version plus récente.
+journaux de hello toosee, accédez à toohello Observateur d’événements, ouvrez hello **vue** menu et activer **afficher d’analyse et les journaux de débogage**. Ensuite, activez les toostart collecte d’événements. Ces journaux n’apparaissent pas dans le Proxy d’Application Web dans Windows Server 2012 R2, comme les connecteurs hello sont basées sur une version plus récente.
 
-Vous pouvez examiner l’état du service dans la fenêtre Services. Le connecteur compose de deux services Windows : le connecteur lui-même et l’outil de mise à jour. Tous deux doivent s’exécuter en permanence.
+Vous pouvez examiner l’état de hello du service hello dans la fenêtre Services hello. connecteur de Hello comprend deux Services Windows : connecteur réel de hello et hello updater. Les deux doivent exécuter hello tout le temps.
 
  ![AzureAD Services Local](./media/application-proxy-understand-connectors/aad-connector-services.png)
 
@@ -148,5 +148,5 @@ Vous pouvez examiner l’état du service dans la fenêtre Services. Le connecte
 * [Publier des applications sur des réseaux et emplacements distincts à l’aide de groupes de connecteurs](active-directory-application-proxy-connectors-azure-portal.md)
 * [Travailler avec des serveurs proxy locaux existants](application-proxy-working-with-proxy-servers.md)
 * [Résoudre les erreurs du proxy d’application et du connecteur](active-directory-application-proxy-troubleshoot.md)
-* [Comment installer silencieusement le connecteur du Proxy d'application Azure AD](active-directory-application-proxy-silent-installation.md)
+* [Comment toosilently installer hello connecteur Proxy d’Application Azure AD](active-directory-application-proxy-silent-installation.md)
 

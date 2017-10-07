@@ -1,6 +1,6 @@
 ---
-title: Azure Notification Hubs notifie les utilisateurs pour Android avec backend .NET
-description: "Découvrez comment envoyer des notifications Push aux utilisateurs dans Azure. Exemples de code écrits en Java pour Android"
+title: "aaaAzure concentrateurs de Notification d’avertir les utilisateurs pour Android avec le serveur principal .NET"
+description: "Découvrez comment toosend push notifications toousers dans Azure. Exemples de code écrits en Java pour Android"
 documentationcenter: android
 services: notification-hubs
 author: ysxu
@@ -14,17 +14,17 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 418a4b638dfaa3fee33a7a7242433699205c79f7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b042d2e6fb7f7c861c378526a8a0d59ab75beef9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-notification-hubs-notify-users-for-android-with-net-backend"></a>Azure Notification Hubs notifie les utilisateurs pour Android avec backend .NET
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-La prise en charge des notifications Push dans Azure vous permet d’accéder à une infrastructure Push conviviale, multi-plateforme et avec montée en charge qui simplifie fortement l’implémentation des notifications Push pour les applications consommateur et entreprise pour les plateformes mobiles. Ce didacticiel explique comment utiliser Azure Notification Hubs pour envoyer des notifications Push à un utilisateur particulier d'une application sur un appareil spécifique. Un code WebAPI principal ASP.NET est utilisé pour authentifier les clients et pour générer les notifications, comme le présente la rubrique d’aide [Inscription auprès du serveur principal de votre application](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend). Ce didacticiel s'appuie sur le hub de notification que vous avez créé dans le didacticiel intitulé [Prise en main de Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) .
+Prise en charge des notifications push dans Azure vous permet de tooaccess un facile à utiliser, multiplateforme et infrastructure par émission de données à grande échelle, ce qui simplifie considérablement l’implémentation hello de notifications push pour les applications consommateur et d’entreprise mobile plateformes. Ce didacticiel vous montre comment toouse Azure Notification Hubs toosend push utilisateur de notifications tooa application spécifique sur un périphérique spécifique. Un serveur principal ASP.NET WebAPI est utilisé tooauthenticate clients et les notifications de toogenerate, comme indiqué dans la rubrique d’aide hello [l’inscription à partir de votre serveur principal d’application](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend). Ce didacticiel s’appuie sur le concentrateur de notification hello que vous avez créé dans hello [mise en route avec Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) didacticiel.
 
 > [!NOTE]
 > Ce didacticiel part du principe que vous avez créé et configuré votre hub de notification, comme décrit dans [Prise en main de Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).
@@ -33,11 +33,11 @@ La prise en charge des notifications Push dans Azure vous permet d’accéder à
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
-## <a name="create-the-android-project"></a>Création du projet Android
-L'étape suivante consiste à créer l'application Android.
+## <a name="create-hello-android-project"></a>Créer hello projet Android
+étape suivante de Hello est l’application Android hello de toocreate.
 
-1. Suivez le didacticiel [Prise en main de Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) pour créer et configurer votre application afin de recevoir des notifications Push de GCM.
-2. Ouvrez votre fichier **res/layout/activity_main.xml** et remplacez le contenu par les définitions de contenu suivantes.
+1. Suivez hello [mise en route avec Notification Hubs (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md) toocreate didacticiel et configurer vos notifications push tooreceive application GCM.
+2. Ouvrez votre **res/layout/activity_main.xml** de fichiers, remplacez hello hello suivant des définitions de contenu.
    
     Cette opération ajoute de nouveaux contrôles EditText pour la connexion en tant qu'utilisateur. Un champ est également ajouté pour une balise de nom d'utilisateur qui fera partie des notifications que vous enverrez :
    
@@ -122,7 +122,7 @@ L'étape suivante consiste à créer l'application Android.
             android:layout_below="@+id/editTextNotificationMessage"
             android:layout_centerHorizontal="true" />
         </RelativeLayout>
-3. Ouvrez votre fichier **res/values/strings.xml** et remplacez la définition `send_button` par les lignes suivantes, qui redéfinissent la chaîne du `send_button` et ajoutent des chaînes pour les autres contrôles :
+3. Ouvrez votre **res/values/strings.xml** de fichier et remplacez hello `send_button` définition avec les éléments suivants de hello lignes cette chaîne de hello redefine pour hello `send_button` et ajouter d’autres contrôles des chaînes pour hello :
    
         <string name="usernameHint">Username</string>
         <string name="passwordHint">Password</string>
@@ -135,7 +135,7 @@ L'étape suivante consiste à créer l'application Android.
     La présentation graphique de votre fichier main_activity.xml doit ressembler à ceci :
    
     ![][A1]
-4. Créez une classe nommée **RegisterClient** dans le même package que votre classe `MainActivity`. Utilisez le code ci-dessous pour le nouveau fichier de classe.
+4. Créer une nouvelle classe nommée **RegisterClient** Bonjour du même package en tant que votre `MainActivity` classe. Utilisez le code hello ci-dessous pour le nouveau fichier de classe hello.
    
         import java.io.IOException;
         import java.io.UnsupportedEncodingException;
@@ -240,15 +240,15 @@ L'étape suivante consiste à créer l'application Android.
             }
         }
    
-    Ce composant met en œuvre les appels REST nécessaires pour contacter le service principal de l'application et inscrire cette dernière pour les notifications Push. Il enregistre également en local les informations *registrationIds* créées par le hub de notification, comme expliqué dans la rubrique [Inscription auprès du serveur principal de votre application](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend). Notez qu'il utilise un jeton d'autorisation qui se trouve dans le stockage local quand vous cliquez sur le bouton **Log in** .
-5. Dans votre classe `MainActivity`, supprimez ou commentez votre champ privé pour `NotificationHub`, puis ajoutez un champ pour la classe `RegisterClient` et une chaîne pour le point de terminaison de votre serveur principal ASP.NET. Remplacez bien `<Enter Your Backend Endpoint>` par le point de terminaison réel de votre serveur principal, obtenu précédemment. Par exemple, `http://mybackend.azurewebsites.net`.
+    Ce composant implémente hello REST appelle toocontact requis hello serveur principal d’application, dans tooregister d’ordre pour les notifications push. Il stocke également localement hello *registrationIds* créé par hello Hub de Notification comme détaillé dans [l’inscription à partir de votre serveur principal d’application](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend). Notez qu’il utilise un jeton d’autorisation stocké dans le stockage local lorsque vous cliquez sur hello **connecter** bouton.
+5. Dans votre `MainActivity` classe, supprimez ou commentez votre champ privé pour `NotificationHub`, et ajoutez un champ pour hello `RegisterClient` classe et une chaîne pour le point de terminaison de votre principal ASP.NET. Être vraiment tooreplace `<Enter Your Backend Endpoint>` avec hello votre point de terminaison principal réel obtenu précédemment. Par exemple, `http://mybackend.azurewebsites.net`.
 
         //private NotificationHub hub;
         private RegisterClient registerClient;
         private static final String BACKEND_ENDPOINT = "<Enter Your Backend Endpoint>";
 
 
-1. Dans votre classe `MainActivity`, dans la méthode `onCreate`, supprimez ou commentez l'initialisation du champ `hub` et l'appel à la méthode `registerWithNotificationHubs`. Ensuite, ajoutez du code pour initialiser une instance de la classe `RegisterClient` . La méthode doit contenir les lignes qui suivent :
+1. Dans votre `MainActivity` (classe), Bonjour `onCreate` (méthode), supprimez ou commentez l’initialisation de hello Hello `hub` champ et hello appellent toohello `registerWithNotificationHubs` (méthode). Ajoutez ensuite le code tooinitialize une instance de hello `RegisterClient` classe. méthode Hello doit contenir hello lignes suivantes :
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -265,8 +265,8 @@ L'étape suivante consiste à créer l'application Android.
    
             setContentView(R.layout.activity_main);
         }
-2. Dans votre classe `MainActivity`, supprimez ou commentez l'intégralité de la méthode `registerWithNotificationHubs`. Celle-ci n'est pas utilisée dans ce didacticiel.
-3. Ajoutez les instructions `import` suivantes à votre fichier **MainActivity.java** .
+2. Dans votre `MainActivity` classe, supprimez ou commentez hello entière `registerWithNotificationHubs` (méthode). Celle-ci n'est pas utilisée dans ce didacticiel.
+3. Ajoutez hello suivant `import` instructions tooyour **MainActivity.java** fichier.
    
         import android.widget.Button;
         import java.io.UnsupportedEncodingException;
@@ -276,7 +276,7 @@ L'étape suivante consiste à créer l'application Android.
         import org.apache.http.client.ClientProtocolException;
         import java.io.IOException;
         import org.apache.http.HttpStatus;
-4. Ensuite, ajoutez les méthodes suivantes pour gérer l'événement de clic sur le bouton **Log in** et l'envoi de notifications Push.
+4. Ensuite, ajoutez hello suivant hello toohandle de méthodes **connecter** click du bouton événements et envoyer des notifications push.
    
         @Override
         protected void onStart() {
@@ -296,7 +296,7 @@ L'étape suivante consiste à créer l'application Android.
                         String regid = gcm.register(SENDER_ID);
                         registerClient.register(regid, new HashSet<String>());
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to register", e.getMessage());
+                        DialogNotify("MainActivity - Failed tooregister", e.getMessage());
                         return e;
                     }
                     return null;
@@ -320,15 +320,15 @@ L'étape suivante consiste à créer l'application Android.
         }
    
         /**
-         * This method calls the ASP.NET WebAPI backend to send the notification message
-         * to the platform notification service based on the pns parameter.
+         * This method calls hello ASP.NET WebAPI backend toosend hello notification message
+         * toohello platform notification service based on hello pns parameter.
          *
-         * @param pns     The platform notification service to send the notification message to. Must
-         *                be one of the following ("wns", "gcm", "apns").
-         * @param userTag The tag for the user who will receive the notification message. This string
+         * @param pns     hello platform notification service toosend hello notification message to. Must
+         *                be one of hello following ("wns", "gcm", "apns").
+         * @param userTag hello tag for hello user who will receive hello notification message. This string
          *                must not contain spaces or special characters.
-         * @param message The notification message string. This string must include the double quotes
-         *                to be used as JSON content.
+         * @param message hello notification message string. This string must include hello double quotes
+         *                toobe used as JSON content.
          */
         public void sendPush(final String pns, final String userTag, final String message)
                 throws ClientProtocolException, IOException {
@@ -354,7 +354,7 @@ L'étape suivante consiste à créer l'application Android.
                             throw new RuntimeException("Error sending notification");
                         }
                     } catch (Exception e) {
-                        DialogNotify("MainActivity - Failed to send " + pns + " notification ", e.getMessage());
+                        DialogNotify("MainActivity - Failed toosend " + pns + " notification ", e.getMessage());
                         return e;
                     }
    
@@ -363,17 +363,17 @@ L'étape suivante consiste à créer l'application Android.
             }.execute(null, null, null);
         }
 
-    Le gestionnaire `login` pour le bouton **Log in** génère un jeton d’authentification de base, à partir du nom d’utilisateur et du mot de passe entrés (notez que cela représente n’importe quel jeton utilisé par votre système d’authentification), puis utilise `RegisterClient` pour appeler le serveur principal en vue de l’inscription.
+    Hello `login` gestionnaire pour hello **connecter** bouton génère une authentification de base jeton à l’aide sur le nom d’utilisateur d’entrée de hello et un mot de passe (Notez que cela représente n’importe quel jeton utilise de votre schéma d’authentification), puis il utilise `RegisterClient`principal de hello toocall pour l’inscription.
 
-    La méthode `sendPush` appelle le serveur principal pour déclencher une notification sécurisée pour l'utilisateur basée sur la balise d'utilisateur. Le service de notification de la plateforme ciblé par `sendPush` varie selon la chaîne `pns` passée.
+    Hello `sendPush` appels de méthode hello principal tootrigger un utilisateur de toohello notification sécurisée basé sur la balise d’utilisateur hello. Hello notification de plateforme de service qui `sendPush` cibles dépend hello `pns` chaîne passée.
 
-1. Dans votre classe `MainActivity`, mettez à jour la méthode `sendNotificationButtonOnClick` pour appeler la méthode `sendPush` avec les services de notification de plateforme sélectionnés par l'utilisateur, comme suit.
+1. Dans votre `MainActivity` (classe), mise à jour hello `sendNotificationButtonOnClick` hello toocall de méthode `sendPush` méthode avec l’utilisateur hello sélectionné les services de notification de plateforme comme suit.
    
        /**
-        * Send Notification button click handler. This method sends the push notification
-        * message to each platform selected.
+        * Send Notification button click handler. This method sends hello push notification
+        * message tooeach platform selected.
         *
-        * @param v The view
+        * @param v hello view
         */
        public void sendNotificationButtonOnClick(View v)
                throws ClientProtocolException, IOException {
@@ -400,16 +400,16 @@ L'étape suivante consiste à créer l'application Android.
            }
        }
 
-## <a name="run-the-application"></a>Exécution de l’application
-1. Exécutez l'application sur un appareil ou un émulateur à l'aide d'Android Studio.
-2. Dans l'application Android, entrez un nom d'utilisateur et un mot de passe. Ils doivent représenter la même valeur de chaîne et ne pas contenir d'espaces ou de caractères spéciaux.
-3. Dans l'application Android, cliquez sur **Log in**. Attendez que s'affiche un message indiquant **Logged in and registered**. Le bouton **Send Notification** est alors activé.
+## <a name="run-hello-application"></a>Exécutez hello Application
+1. Exécutez l’application hello sur un périphérique ou un émulateur à l’aide d’Android Studio.
+2. Dans l’application Android de hello, entrez un nom d’utilisateur et un mot de passe. Ils doivent tous deux être hello même valeur de chaîne et ne doit pas contenir des espaces ou des caractères spéciaux.
+3. Dans l’application Android de hello, cliquez sur **connecter**. Attendez que s'affiche un message indiquant **Logged in and registered**. Cette opération activera hello **envoyer une Notification** bouton.
    
     ![][A2]
-4. Cliquez sur les boutons bascule pour activer toutes les plateformes où vous avez exécuté l'application et inscrit un utilisateur.
-5. Entrez le nom de l'utilisateur qui recevra le message de notification. Cet utilisateur doit être inscrit pour les notifications sur les appareils cibles.
-6. Entrez le message que l'utilisateur recevra sous la forme d'un message de notification Push.
-7. Cliquez sur **Send Notification**.  Chaque appareil doté d'une inscription avec la balise de nom d'utilisateur correspondante reçoit la notification Push.
+4. Cliquez sur tooenable de boutons bascule hello toutes les plateformes où vous avez exécuté l’application hello et un utilisateur inscrit.
+5. Entrez le nom de l’utilisateur hello qui recevra le message de notification hello. Cet utilisateur doit être inscrit pour les notifications sur les appareils cibles hello.
+6. Entrez un message pour hello utilisateur tooreceive comme un message de notification push.
+7. Cliquez sur **Send Notification**.  Chaque périphérique qui est associé à une inscription avec la balise de nom d’utilisateur hello recevra de notifications push hello.
 
 [A1]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users.png
 [A2]: ./media/notification-hubs-aspnet-backend-android-notify-users/android-notify-users-enter-password.png

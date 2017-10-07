@@ -1,6 +1,6 @@
 ---
-title: "Guide de la création de rapports Azure Active Directory pour le portail Azure Classic | Microsoft Docs"
-description: "Guide contenant tous les articles sur la création de rapports Azure Active Directory pour le portail Azure Classic"
+title: aaaAzure guide Active Directory classique portail reporting | Documents Microsoft
+description: "Un guide qui contient tous les articles d’Azure Active Directory Reporting pour hello portail Azure classic"
 services: active-directory
 documentationcenter: 
 author: dhanyahk
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/16/2017
 ms.author: femila;markvi
-ms.openlocfilehash: aed80f667faad7eaa7fb9cb744e3061daa3ea61e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7efe79e0bf61ad055f5a1b302b0630250d1ab9da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-classic-portal-reporting-guide"></a>Guide de la création de rapports Azure Active Directory pour le portail Azure Classic
 > [!div class="op_single_selector"]

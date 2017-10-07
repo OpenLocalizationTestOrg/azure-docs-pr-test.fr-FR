@@ -1,5 +1,5 @@
 ---
-title: "Maintenance et mises à jour pour les machines virtuelles Linux dans Azure | Microsoft Docs"
+title: "aaaMaintenance et mises à jour pour les machines virtuelles Linux dans Azure | Documents Microsoft"
 description: "Vue d’ensemble de la maintenance et des mises à jour pour les machines virtuelles Linux s’exécutant dans Azure."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 08/14/2017
 ms.author: zivr
-ms.openlocfilehash: 6ead5f0b6a065710a70f1e44d9672c6d8cc4c1e2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b5fcf0211971a56ca04f4327a322dfc2e2c0941a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="planned-maintenance-for-linux-virtual-machines"></a>Maintenance planifiée pour les machines virtuelles Linux 
 
@@ -27,5 +27,5 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Le [service de métadonnées Azure](instance-metadata-service.md) vous permet d’obtenir des informations relatives à votre machine virtuelle hébergée dans Azure. 
+Hello [Service de métadonnées Azure](instance-metadata-service.md) vous permet de toodiscover d’informations sur votre Machine virtuelle hébergée dans Azure. 
 

@@ -1,6 +1,6 @@
 ---
-title: "Version préliminaire de Docker Compose dans Azure Service Fabric | Microsoft Docs"
-description: "Azure Service Fabric accepte le format Docker Compose pour vous permettre d’orchestrer facilement des conteneurs existants à l’aide de Service Fabric. Cette prise en charge est actuellement en mode préliminaire."
+title: aaaAzure Service Fabric Docker composer Preview | Documents Microsoft
+description: "Azure Service Fabric accepte toomake de format Docker Compose il conteneurs d’exsiting tooorchestrate plus faciles à l’aide de l’infrastructure de Service. Cette prise en charge est actuellement en mode préliminaire."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: b12ef95add6347621f7d4865fac46568f91a1e12
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 824044fd698f0ed94c4212722bc82187905315dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="specifying-volume-plugins-and-logging-drivers-for-your-container"></a>Spécification de plug-ins de volume et de pilotes de journalisation pour votre conteneur
 
-Service Fabric prend en charge la spécification de [plug-ins de volume Docker](https://docs.docker.com/engine/extend/plugins_volume/) et de [pilotes de journalisation de Docker](https://docs.docker.com/engine/admin/logging/overview/) pour votre service de conteneur. Les plug-ins sont spécifiés dans le manifeste de l’application, comme indiqué dans le manifeste suivant :
+Service Fabric prend en charge la spécification de [plug-ins de volume Docker](https://docs.docker.com/engine/extend/plugins_volume/) et de [pilotes de journalisation de Docker](https://docs.docker.com/engine/admin/logging/overview/) pour votre service de conteneur. plug-ins Hello sont spécifiés dans le manifeste de l’application hello comme indiqué dans hello suivant manifeste :
 
 
 ```xml
@@ -56,9 +56,9 @@ Service Fabric prend en charge la spécification de [plug-ins de volume Docker](
 </ApplicationManifest>
 ```
 
-Dans l’exemple précédent, l’étiquette `Source` pour le `Volume` fait référence au dossier source. Le dossier source peut être un dossier de la machine virtuelle qui héberge les conteneurs ou un magasin distant persistant. L’étiquette `Destination` correspond à l’emplacement auquel est mappé l’élément `Source` dans le conteneur en cours d’exécution. 
+Bonjour précédent exemple, hello `Source` balise pour hello `Volume` fait référence le dossier source du toohello. dossier source de Hello peut être un dossier Bonjour machine virtuelle qui héberge les conteneurs hello ou un magasin persistant de distant. Hello `Destination` balise est l’emplacement de hello hello `Source` toowithin mappé hello exécute conteneur. 
 
-Lorsque vous spécifiez un plug-in de volume, Service Fabric crée automatiquement le volume à l’aide des paramètres spécifiés. La balise `Source` est le nom du volume, et la balise `Driver` spécifie le plug-in de pilote de volume. Des options peuvent être spécifiées à l’aide de la balise `DriverOption`, comme indiqué dans l’extrait de code suivant :
+Lorsque vous spécifiez un plug-in de volume, Service Fabric crée automatiquement le volume hello à l’aide de paramètres hello spécifiés. Hello `Source` balise est nom hello du volume de hello et hello `Driver` balise spécifie le plug-in de pilote de volume hello. Options peuvent être spécifiées à l’aide de hello `DriverOption` comme indiqué dans hello suivant extrait de la balise :
 
 ```xml
 <Volume Source="myvolume1" Destination="c:\testmountlocation4" Driver="azurefile" IsReadOnly="true">
@@ -66,9 +66,9 @@ Lorsque vous spécifiez un plug-in de volume, Service Fabric crée automatiqueme
 </Volume>
 ```
 
-Si un pilote de journalisation Docker est spécifié, il est nécessaire de déployer des agents (ou conteneurs) pour gérer les journaux dans le cluster.  La balise `DriverOption` peut également être utilisée pour spécifier les options de pilote de journal.
+Si un pilote de journal Docker est spécifié, il est nécessaire toodeploy hello de toohandle agents (ou conteneurs) consigne dans le cluster de hello.  Hello `DriverOption` balise peut être des options de pilote journal toospecify utilisé ainsi.
 
-Consultez les articles suivants pour déployer des conteneurs dans un cluster Service Fabric :
+Consultez toohello suivant le cluster Service Fabric tooa articles toodeploy conteneurs :
 
 
 [Déployer un conteneur sur Service Fabric](service-fabric-deploy-container.md)

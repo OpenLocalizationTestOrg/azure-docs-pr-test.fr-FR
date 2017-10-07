@@ -1,6 +1,6 @@
 ---
-title: "Utilisation des outils et API Azure Batch pour développer des solutions de traitement parallèle à grande échelle | Microsoft Docs"
-description: "Découvrez les API et les outils disponibles pour développer des solutions avec le service Azure Batch."
+title: "aaaUse outils et API de traitement par lots Azure toodevelop à grande échelle le traitement parallèle solutions | Documents Microsoft"
+description: "Découvrez hello API et les outils disponibles pour développer des solutions avec le service de traitement par lots Azure hello."
 services: batch
 author: tamram
 manager: timlt
@@ -8,33 +8,33 @@ ms.service: batch
 ms.topic: get-started-article
 ms.date: 03/08/2017
 ms.author: tamram
-ms.openlocfilehash: c8c76944f4a95d3c8181454a7103ea0a3022189a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ca75a1a63b3e7e6b0805e79a63685bc49aaaca8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-batch-apis-and-tools"></a>Vue d’ensemble des outils et API Batch
 
-Le traitement des charges de travail parallèles avec Azure Batch est généralement effectué par programme en utilisant l’une des [API Batch](#batch-development-apis). Votre application cliente ou le service peut utiliser les API Batch pour communiquer avec le service Batch. Avec les API Batch, vous pouvez créer et gérer les pools de nœuds de calcul, des machines virtuelles ou services de cloud. Vous pouvez ensuite planifier des tâches à exécuter sur ces nœuds. 
+Le traitement des charges de travail parallèles dans Azure Batch est généralement effectué par programme en utilisant l’une des hello [API de lot](#batch-development-apis). Votre application cliente ou le service peut utiliser des hello API de lot toocommunicate avec hello service Batch. Avec hello API de lot, vous pouvez créer et gérer les pools de nœuds de calcul, machines virtuelles ou services de cloud computing. Vous pouvez ensuite planifier des travaux et des tâches toorun sur ces nœuds. 
 
-Vous pouvez efficacement traiter des charges de travail à grande échelle pour votre organisation, ou fournir un service frontal à vos clients afin qu’ils puissent exécuter des travaux et des tâches, à la demande ou selon un calendrier, sur un nœud, des centaines de nœuds, voire des milliers. Vous pouvez également utiliser Azure Batch dans le cadre d’un plus grand workflow géré par des outils comme [Azure Data Factory](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json).
+Vous pouvez efficacement traiter les charges de travail à grande échelle pour votre organisation, ou fournir un serveur frontal service tooyour clients afin qu’ils peuvent exécutés travaux et des tâches, à la demande ou selon une planification--sur un, des centaines ou milliers de nœuds. Vous pouvez également utiliser Azure Batch dans le cadre d’un plus grand workflow géré par des outils comme [Azure Data Factory](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json).
 
 > [!TIP]
-> Si vous souhaitez mieux comprendre les fonctionnalités offertes par l’API Batch, consultez la page [Vue d’ensemble des fonctionnalités d’Azure Batch](batch-api-basics.md).
+> Lorsque vous êtes prêt toodig dans toohello API de lot pour une compréhension plus approfondie de hello fonctionnalités qu’il fournit, consultez hello [vue d’ensemble de lot pour les développeurs](batch-api-basics.md).
 > 
 > 
 
 ## <a name="azure-accounts-for-batch-development"></a>Comptes Azure pour le développement de Batch
-Lorsque vous développez des solutions Batch, vous devrez utiliser les comptes suivants dans Microsoft Azure.
+Lorsque vous développez des solutions de lot, vous allez utiliser hello suivant des comptes dans Microsoft Azure.
 
 * **Compte et abonnement Azure** : si vous ne possédez pas encore d’abonnement Azure, vous pouvez activer les [avantages de votre abonnement MSDN][msdn_benefits] ou vous inscrire pour obtenir un [compte Azure gratuit][free_account]. Lorsque vous créez un compte, un abonnement par défaut est automatiquement créé.
-* **Compte Batch** : les ressources Azure Batch, notamment les pools, les nœuds de calcul, les travaux et les tâches, sont associées à un compte Azure Batch. Lorsque votre application effectue une requête auprès du service Batch, il authentifie la requête en utilisant le nom du compte Azure Batch, l’URL du compte et une clé d’accès. Vous pouvez [créer un compte Azure Batch](batch-account-create-portal.md) à l’aide du portail Azure.
-* **Compte de stockage** : Batch inclut la prise en charge intégrée de l’utilisation des fichiers dans [Azure Storage][azure_storage]. Presque tous les scénarios du service Batch font appel au stockage Blob Azure pour la préparation des programmes exécutés par vos tâches et les données qu’ils traitent ainsi que pour le stockage des données de sortie qu’elles génèrent. Pour créer un compte de stockage, consultez l’article [À propos des comptes de stockage Azure](../storage/common/storage-create-storage-account.md).
+* **Compte Batch** : les ressources Azure Batch, notamment les pools, les nœuds de calcul, les travaux et les tâches, sont associées à un compte Azure Batch. Lorsque votre application effectue une demande de hello service Batch, il authentifie la demande hello à l’aide du nom du compte Azure Batch hello, l’URL de hello du compte de hello et une clé d’accès. Vous pouvez [création du compte Batch](batch-account-create-portal.md) Bonjour portail Azure.
+* **Compte de stockage** : Batch inclut la prise en charge intégrée de l’utilisation des fichiers dans [Azure Storage][azure_storage]. Presque tous les scénarios de traitement par lots utilise le stockage Blob Azure pour la mise en lots programmes hello qui exécutent des tâches et qu’ils traitent les données de salutation et pour le stockage de données de sortie qu’ils génèrent hello. toocreate un compte de stockage, consultez [comptes de stockage sur Azure](../storage/common/storage-create-storage-account.md).
 
 ## <a name="batch-service-apis"></a>API du service Batch
 
-Vos applications et services peuvent émettre des appels directs de l’API REST ou utiliser une ou plusieurs des bibliothèques clientes suivantes pour exécuter et gérer vos charges de travail Azure Batch.
+Vos applications et services peuvent émettre des appels d’API REST directs ou utiliser une ou plusieurs des hello suivant toorun de bibliothèques de client et de gérer vos charges de travail de traitement par lots Azure.
 
 | API | Informations de référence sur l'API | Télécharger | Didacticiel | Exemples de code | En savoir plus |
 | --- | --- | --- | --- | --- | --- |
@@ -46,7 +46,7 @@ Vos applications et services peuvent émettre des appels directs de l’API REST
 
 ## <a name="batch-management-apis"></a>API de Batch Management
 
-Les API Azure Resource Manager pour le service Batch fournissent un accès par programme aux comptes Batch. À l’aide de ces API, vous pouvez gérer par programme les comptes Batch, les quotas et les packages d’applications.  
+Hello API du Gestionnaire de ressources Azure pour le traitement par lots fournissent un accès par programmation tooBatch comptes. À l’aide de ces API, vous pouvez gérer par programme les comptes Batch, les quotas et les packages d’applications.  
 
 | API | Informations de référence sur l'API | Télécharger | Didacticiel | Exemples de code |
 | --- | --- | --- | --- | --- |
@@ -55,30 +55,30 @@ Les API Azure Resource Manager pour le service Batch fournissent un accès par p
 
 ## <a name="batch-command-line-tools"></a>Outils en ligne de commande Batch
 
-Ces outils en ligne de commande fournissent les mêmes fonctionnalités que les API des services Batch et Batch Management : 
+Ces outils de ligne de commande fournissent hello même fonctionnalité que hello service Batch et API de gestion de lot : 
 
-* [Applets de commande PowerShell pour Batch][batch_ps] : les applets de commande Azure Batch contenues dans le module [Azure PowerShell](/powershell/azure/overview) vous permettent de gérer les ressources du service Batch avec PowerShell.
-* [Azure CLI](/cli/azure/overview) : l’interface de ligne de commande Azure est un ensemble d’outils multiplateforme qui fournit des commandes d’environnement permettant d’interagir avec de nombreux services Azure, y compris les services Batch et Batch Management. Consultez la page [Gérer les ressources Batch avec Azure CLI](batch-cli-get-started.md) pour plus d’informations sur l’utilisation d’Azure CLI avec Batch.
+* [Applets de commande PowerShell du lot][batch_ps]: hello applets de commande de traitement par lots Azure Bonjour [Azure PowerShell](/powershell/azure/overview) module vous activer toomanage des ressources de traitement par lots avec PowerShell.
+* [CLI Azure](/cli/azure/overview): hello Azure Interface de ligne (Azure) est un ensemble d’outils multiplateformes qui fournit des commandes shell pour interagir avec plusieurs services Azure, y compris le service de traitement par lots hello et le service de gestion par lots. Consultez [des ressources de traitement par lots de gérer avec CLI d’Azure](batch-cli-get-started.md) pour plus d’informations sur l’utilisation de hello CLI d’Azure avec le lot.
 
 ## <a name="other-tools-for-application-development"></a>Autres outils pour le développement d’applications
 
 Voici quelques outils supplémentaires qui peuvent être utiles pour générer et déboguer vos applications et services Batch :
 
-* [Portail Azure][portal] : vous pouvez créer, surveiller et supprimer des pools, des travaux et des tâches dans les panneaux Batch du portail Azure. Vous pouvez consulter les informations d’état de ces éléments et d’autres ressources pendant que vous exécutez vos travaux, et même télécharger des fichiers depuis les nœuds de calcul de vos pools. Par exemple, vous pouvez télécharger une tâche ayant échoué `stderr.txt` lors de la résolution des problèmes. Vous pouvez également télécharger des fichiers du Bureau à distance (RDP), à utiliser pour vous connecter aux nœuds de calcul.
-* [Azure Batch Explorer][batch_explorer] : Batch Explorer fournit une fonctionnalité de gestion des ressources Batch similaire à celle du portail Azure, mais dans une application cliente Windows Presentation Foundation (WPF) autonome. Il s’agit de l’un des exemples d’applications Batch .NET disponibles sur [GitHub][github_samples]. Vous pouvez le générer avec Visual Studio 2015 ou une version ultérieure et l’utiliser pour accéder aux ressources de votre compte Batch et les gérer pendant que vous développez et déboguez vos solutions Batch. Consultez les détails sur les travaux, les pools et les tâches, téléchargez des fichiers des nœuds de calcul et connectez-vous à distance aux nœuds à l’aide des fichiers du Bureau à distance (RDP) téléchargeables avec Batch Explorer.
-* [Microsoft Azure Storage Explorer][storage_explorer] : bien qu’il ne s’agisse pas à proprement parler d’un outil Azure Batch, l’Explorateur de stockage est l’un de vos meilleurs alliés pendant le développement et le débogage de vos solutions Batch.
+* [Portail Azure][portal]: vous pouvez créer, surveiller et supprimer les pools par lots, les travaux et les tâches Bonjour Azure panneaux de lot du portail. Vous pouvez afficher des informations d’état hello pour celles-ci et d’autres ressources pendant que vous exécutez vos tâches et même Téléchargez des fichiers à partir des nœuds de calcul hello dans les pools. Par exemple, vous pouvez télécharger une tâche ayant échoué `stderr.txt` lors de la résolution des problèmes. Vous pouvez également télécharger les fichiers Bureau à distance (RDP) que vous pouvez utiliser toolog dans toocompute nœuds.
+* [L’Explorateur de traitement par lots Azure][batch_explorer]: Explorateur de lot offre une fonctionnalité d’administration de ressource lot similaire hello portail Azure, mais dans une application cliente de Windows Presentation Foundation (WPF) autonome. Une des applications d’exemple hello Batch .NET disponibles sur [GitHub][github_samples], vous pouvez créer avec Visual Studio 2015 ou version ultérieure et toobrowse l’utiliser et gérer les ressources de hello dans votre compte de traitement par lots lors du développement et déboguer vos solutions de traitement par lots. Afficher le travail, le pool et détails de la tâche, téléchargent des fichiers à partir des nœuds de calcul et vous connecter toonodes à distance à l’aide de fichiers RDP (Remote Desktop) que vous pouvez télécharger avec l’Explorateur de lot.
+* [Microsoft Azure Storage Explorer][storage_explorer]: lors pas strictement d’un outil de traitement par lots Azure, hello Explorateur de stockage est un autre outil précieux toohave pendant que vous développez et débogage de solutions de votre lot.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-- Pour en savoir plus sur la journalisation des événements à partir de votre application Batch, consultez [Consigner des événements pour l’analyse et l’évaluation de diagnostic des solutions Batch](batch-diagnostics.md). Pour en savoir plus sur les événements déclenchés par le service Batch, voir [Batch Analytics](batch-analytics.md).
+- toolearn sur les événements de journalisation à partir de votre application de traitement par lots, consultez [journaliser les événements de diagnostic d’évaluation et la surveillance des solutions de lot](batch-diagnostics.md). Pour des informations sur les événements déclenchés par hello service Batch, consultez [lot Analytique](batch-analytics.md).
 - Pour plus d’informations sur les variables d’environnement des nœuds de calcul, consultez [Variables d’environnement de nœud de calcul Azure Batch](batch-compute-node-environment-variables.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Consultez la [Présentation des fonctionnalités du service Batch pour les développeurs](batch-api-basics.md). Elle contient des informations indispensables pour toute personne se préparant à l’utilisation de Batch. L’article contient des informations plus détaillées sur les ressources du service Batch telles que les pools, les nœuds, les travaux et les tâches, ainsi que sur les nombreuses fonctionnalités API que vous pouvez utiliser lors de la création de votre application Batch.
-* [Prise en main de la bibliothèque Azure Batch pour .NET](batch-dotnet-get-started.md) pour apprendre à utiliser C# et la bibliothèque .NET Batch pour exécuter une charge de travail simple à l’aide d’un flux de travail Batch courant. Cet article servira de référence essentielle dans la découverte de l’utilisation du service Batch. Il existe également une [version Python](batch-python-tutorial.md) du didacticiel.
-* Téléchargez les [exemples de code sur GitHub][github_samples] pour voir comment C# et Python peuvent interagir avec Batch pour planifier et traiter des exemples de charge de travail.
-* Consultez le [parcours d’apprentissage de Batch][learning_path] pour avoir une idée des ressources dont vous allez disposer dans votre découverte du service Batch.
+* Hello de lecture [vue d’ensemble de lot pour les développeurs](batch-api-basics.md), des informations essentielles pour toute personne préparation toouse lot. Hello contient des informations détaillées sur les ressources du service de traitement par lots comme pools, nœuds, travaux, tâches et des hello nombreuses fonctionnalités de l’API que vous pouvez utiliser lors de la génération de votre application de traitement par lots.
+* [Démarrer avec la bibliothèque de traitement par lots Azure hello pour .NET](batch-dotnet-get-started.md) toolearn comment toouse c# et hello Batch .NET bibliothèque tooexecute une charge de travail simple à l’aide d’un flux de travail courant de lot. Cet article doit être votre première arrête lorsque vous apprenez comment toouse hello service Batch. Il existe également un [version Python](batch-python-tutorial.md) du didacticiel de hello.
+* Télécharger hello [code des exemples sur GitHub] [ github_samples] toosee comment c# et Python pouvant communiquer avec le lot tooschedule et processus exemple les charges de travail.
+* Extraire hello [lot cursus] [ learning_path] tooget une idée de tooyou disponible de ressources hello en tant que vous découvrez toowork traitement par lots.
 
 
 [azure_storage]: https://azure.microsoft.com/services/storage/

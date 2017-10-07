@@ -1,6 +1,6 @@
 ---
-title: Prise en main de la fonction de test en production pour les applications web
-description: En savoir plus sur la fonction de test en production dans Azure App Service Web Apps.
+title: aaaGet en main de test en production pour les applications Web
+description: "Découvrez hello Test dans la fonctionnalité de Production (TiP) dans Azure App Service Web Apps."
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/13/2016
 ms.author: cephalin
-ms.openlocfilehash: 9f38b635140cacf0513c75385bce3c110a930969
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2ddbd532ffe2a4f3e07fd386d9741a3fde3639ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-test-in-production-for-web-apps"></a>Prise en main de la fonction de test en production pour les applications web
-Le test en production, ou test en direct de votre application web à l’aide du trafic client en direct, est une stratégie de test que les développeurs d’applications intègrent de plus en plus à leur méthodologie de [développement agile](https://en.wikipedia.org/wiki/Agile_software_development) . Cette fonction vous permet de tester la qualité de vos applications avec le trafic des utilisateurs en direct dans votre environnement de production, par opposition aux données synthétisées dans un environnement de test. En exposant votre nouvelle application auprès d’utilisateurs réels, vous pouvez recevoir des informations sur les problèmes réels qu’elle sera susceptible de rencontrer après son déploiement. Vous pouvez vérifier les fonctionnalités, les performances et la valeur de vos mises à jour de l’application par rapport au volume, à la vitesse et à la diversité du trafic utilisateur réel, ce qui est impossible dans un environnement de test.
+Le test en production, ou test en direct de votre application web à l’aide du trafic client en direct, est une stratégie de test que les développeurs d’applications intègrent de plus en plus à leur méthodologie de [développement agile](https://en.wikipedia.org/wiki/Agile_software_development) . Il vous permet de qualité de hello tootest de vos applications avec le trafic des utilisateurs en direct dans votre environnement de production, en tant que données toosynthesized exécutée dans un environnement de test. En exposant des nouveaux utilisateurs tooreal application, être informé sur les problèmes réels hello que votre application peut être confronté à une fois qu’il est déployé. Vous pouvez vérifier la valeur de vos mises à jour de l’application sur le volume de hello, de rapidité et diverses du trafic utilisateur réel que vous pouvez rapprocher jamais dans un environnement de test, les performances et les fonctionnalités de hello.
 
 ## <a name="traffic-routing-in-app-service-web-apps"></a>Routage du trafic dans App Service Web Apps
-Grâce à la fonctionnalité de routage du trafic dans [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714), vous pouvez diriger une partie du trafic utilisateur direct vers un ou plusieurs [emplacements de déploiement](web-sites-staged-publishing.md), puis analyser votre application avec [Azure Application Insights](/services/application-insights/), [Azure HDInsight](/services/hdinsight/) ou un outil tiers comme [New Relic](/marketplace/partners/newrelic/newrelic/) pour valider vos modifications. Par exemple, vous pouvez implémenter les scénarios suivants avec App Service :
+Avec le routage du trafic de hello fonctionnalité dans [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714), vous pouvez diriger une partie de tooone du trafic utilisateur dynamique ou de plusieurs [les emplacements de déploiement](web-sites-staged-publishing.md), puis d’analyser votre application avec [Application Azure Insights](/services/application-insights/) ou [Azure HDInsight](/services/hdinsight/), ou un outil tiers comme [New Relic](/marketplace/partners/newrelic/newrelic/) toovalidate votre modification. Par exemple, vous pouvez implémenter hello du Service d’applications dans les scénarios suivants :
 
-* Découvrir des bogues fonctionnels ou identifier les goulots d’étranglement de performances dans vos mises à jour avant le déploiement à l’échelle du site
-* Exécuter des « versions de test contrôlées » de vos modifications en mesurant la facilité d’utilisation sur l’application bêta
-* Développer progressivement une nouvelle mise à jour et revenir normalement à la version actuelle si une erreur se produit 
+* Découvrir les bogues fonctionnelles ou d’identifier les goulots d’étranglement de performances de votre déploiement de toosite à l’échelle préalable des mises à jour
+* Effectuer des « test contrôlé vols » de vos modifications en mesurant les métriques d’utilisation sur l’application de bêta hello
+* Progressivement rampe tooa nouvelle mise à jour et en douceur sauvegarder la version actuelle de toohello si une erreur se produit. 
 * Optimiser les résultats commerciaux de votre application en exécutant des [tests A/B](https://en.wikipedia.org/wiki/A/B_testing) ou des [tests multivariables](https://en.wikipedia.org/wiki/Multivariate_testing_in_marketing) dans plusieurs emplacements de déploiement
 
 ### <a name="requirements-for-using-traffic-routing-in-web-apps"></a>Configuration requise pour utiliser le routage du trafic dans Web Apps
 * Votre application web doit s’exécuter au niveau **Standard** ou **Premium**, requis pour les emplacements de déploiement multiples.
-* Pour fonctionner correctement, le routage du trafic requiert l’activation des cookies dans le navigateur des utilisateurs. Le routage du trafic utilise des cookies pour épingler un navigateur client à un emplacement de déploiement pendant la durée de la session de client.
+* Dans l’ordre toowork correctement, le routage du trafic nécessite toobe cookies activé dans le navigateur des utilisateurs hello. Routage de trafic utilise les cookies toopin un emplacement de déploiement de client navigateur tooa session du client hello vie hello.
 * Le routage du trafic prend en charge des scénarios avancés de test en production via les applets de commande Azure PowerShell.
 
-## <a name="route-traffic-segment-to-a-deployment-slot"></a>Routage d’un segment de trafic vers un emplacement de déploiement
-Au niveau de base, dans chaque scénario de test en production, vous acheminez un pourcentage prédéfini de votre trafic en direct vers un emplacement de déploiement hors production. Pour ce faire, procédez comme suit :
+## <a name="route-traffic-segment-tooa-deployment-slot"></a>Emplacement de déploiement de router le trafic segment tooa
+Au niveau de base hello dans chaque scénario d’info-bulle, vous acheminer un pourcentage prédéfini de votre emplacement de déploiement de production non tooa le trafic dynamique. toodo, suit hello suivantes :
 
 > [!NOTE]
-> Cette procédure suppose que vous disposez déjà d’un [emplacement de déploiement hors production](web-sites-staged-publishing.md) et que le contenu d’application web souhaité est déjà [déployé](web-sites-deploy.md) sur celui-ci.
+> Hello étapes ici suppose que vous avez déjà un [emplacement de déploiement de production non](web-sites-staged-publishing.md) et ce hello souhaité de contenu de l’application web est déjà [déployé](web-sites-deploy.md) tooit.
 > 
 > 
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com/).
+1. Ouvrez une session sur hello [Azure Portal](https://portal.azure.com/).
 2. Dans le panneau de votre application web, cliquez sur **Paramètres** > **Routage du trafic**.
    ![](./media/app-service-web-test-in-production/01-traffic-routing.png)
-3. Sélectionnez l’emplacement vers lequel vous souhaitez acheminer le trafic, ainsi que le pourcentage de trafic total souhaité, puis cliquez sur **Enregistrer**.
+3. Emplacement de hello SELECT que vous souhaitez tooroute trafic tooand hello pourcentage du trafic total de hello vous le souhaitez, puis cliquez sur **enregistrer**.
    
     ![](./media/app-service-web-test-in-production/02-select-slot.png)
-4. Accédez au panneau de l’emplacement de déploiement. Vous devriez maintenant voir le trafic en direct en cours de routage vers celui-ci.
+4. Accédez à panneau de l’emplacement de déploiement toohello. Vous devez maintenant voir le trafic dynamique qui est routé tooit.
    
     ![](./media/app-service-web-test-in-production/03-traffic-routed.png)
 
-Une fois le routage du trafic configuré, le pourcentage de clients spécifié sera routé de manière aléatoire vers votre emplacement hors production. Toutefois, il est important de noter qu’une fois qu’un client est automatiquement acheminé vers un emplacement spécifique, il est « épinglé » à cet emplacement pendant la durée de cette session de client. Cette opération est effectuée à l’aide d’un cookie pour épingler la session utilisateur. Si vous inspectez les demandes HTTP, vous trouverez un cookie `TipMix` dans chaque demande ultérieure.
+Une fois que le routage du trafic est configuré, hello spécifié, pourcentage de clients sera l’emplacement de production non tooyour routés de façon aléatoire. Toutefois, il est important toonote qu’une fois qu’un client est un emplacement spécifique de tooa routé automatiquement, elle sera emplacement toothat « épinglé » pour la durée de vie hello de cette session client. Cela est fait à l’aide d’une session utilisateur de cookie toopin hello. Si vous Inspectez les requêtes hello HTTP, vous trouverez une `TipMix` cookie dans toutes les requêtes suivantes.
 
 ![](./media/app-service-web-test-in-production/04-tip-cookie.png)
 
-## <a name="force-client-requests-to-a-specific-slot"></a>Forcer les demandes des clients vers un emplacement spécifique
-Outre le routage automatique du trafic, App Service peut acheminer les demandes vers un emplacement spécifique. Cela est utile lorsque vous souhaitez que vos utilisateurs puissent choisir d’accepter ou de refuser votre application bêta. Pour ce faire, vous utilisez le paramètre de requête `x-ms-routing-name` .
+## <a name="force-client-requests-tooa-specific-slot"></a>Forcer l’emplacement spécifique du tooa demandes client
+Dans le routage du trafic tooautomatic addition, du Service d’applications est emplacement spécifique du tooa tooroute en mesure de demandes. Cela est utile lorsque vous souhaitez que votre tooopt en mesure des utilisateurs toobe-dans ou annulations de votre application de la version bêta. toodo, vous utilisez hello `x-ms-routing-name` paramètre de requête.
 
-Pour rediriger les utilisateurs vers un emplacement spécifique à l’aide de `x-ms-routing-name`, vous devez vous assurer que l’emplacement est déjà ajouté à la liste de routage du trafic. Étant donné que vous souhaitez router vers un emplacement explicitement, le pourcentage de routage réel que vous définissez n’a pas d’importance. Si vous le souhaitez, vous pouvez créer un « lien bêta » sur lequel les utilisateurs peuvent cliquer pour accéder à l’application bêta.
+à l’aide de tooreroute utilisateurs tooa emplacement spécifique `x-ms-routing-name`, vous devez vous assurer que cet emplacement hello est déjà ajouté la liste de routage du trafic toohello. Étant donné que vous souhaitez explicitement tooroute tooa emplacement, peu importe pourcentage réel routage hello que vous définissez. Si vous le souhaitez, vous pouvez créer un lien de bêta » « que les utilisateurs peuvent cliquer tooaccess hello bêta application.
 
 ![](./media/app-service-web-test-in-production/06-enable-x-ms-routing-name.png)
 
 ### <a name="opt-users-out-of-beta-app"></a>Utilisateurs refusant l’application bêta
-Par exemple, pour permettre aux utilisateurs de refuser votre application bêta, vous pouvez placer ce lien sur votre page web :
+les utilisateurs toolet refuser de votre application de la version bêta, par exemple, vous pouvez placer ce lien dans votre page web :
 
-    <a href="<webappname>.azurewebsites.net/?x-ms-routing-name=self">Go back to production app</a>
+    <a href="<webappname>.azurewebsites.net/?x-ms-routing-name=self">Go back tooproduction app</a>
 
-La chaîne `x-ms-routing-name=self` spécifie l’emplacement de production. Une fois que le navigateur client accède au lien, non seulement il est redirigé vers l’emplacement de production, mais chaque demande ultérieure contiendra le cookie `x-ms-routing-name=self` qui épingle la session à l’emplacement de production.
+Hello chaîne `x-ms-routing-name=self` Spécifie l’emplacement de production hello. Une fois hello lien de hello accès client navigateur, non seulement il redirigé toohello l’emplacement de production, mais que chaque demande ultérieure contiendra hello `x-ms-routing-name=self` cookie qui épingle l’emplacement de production toohello hello session.
 
 ![](./media/app-service-web-test-in-production/05-access-production-slot.png)
 
-### <a name="opt-users-in-to-beta-app"></a>Utilisateurs acceptant l’application bêta
-Pour permettre aux utilisateurs d’accepter votre application bêta, définissez le même paramètre de requête pour le nom de l’emplacement hors production, par exemple :
+### <a name="opt-users-in-toobeta-app"></a>Choisir les utilisateurs de l’application de toobeta
+s’abonner aux utilisateurs de toolet tooyour bêta app, jeu hello même interroger toohello nom du paramètre d’emplacement de production non hello, par exemple :
 
         <webappname>.azurewebsites.net/?x-ms-routing-name=staging
 

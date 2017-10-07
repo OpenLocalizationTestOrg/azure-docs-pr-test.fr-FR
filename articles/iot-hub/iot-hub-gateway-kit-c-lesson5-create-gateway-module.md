@@ -1,6 +1,6 @@
 ---
-title: "Créer votre premier module de passerelle Azure IoT | Microsoft Docs"
-description: "Créez un module et ajoutez-le à un exemple d’application pour personnaliser les comportements du module."
+title: aaaCreate votre premier module Azure IoT passerelle | Documents Microsoft
+description: "Créez un module et ajouter des comportements de module toocustomize tooa exemple application."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,26 +17,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 5e28422158684c3aaf0ac3fdf5b19c80fbccfb02
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48996fc026c8b708e328b5629801465810e5b6a2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="lesson-5-create-your-first-azure-iot-gateway-module"></a>Leçon 5 : Créer votre premier module de passerelle Azure IoT
-Bien qu’Azure IoT Edge permette de développer des modules écrits en Java, .NET ou Node.js, ce didacticiel vous guide à travers les étapes de création d’un module en langage C.
+Azure IoT bord vous permet de modules toobuild écrits en Java, .NET ou Node.js, ce didacticiel vous guide à travers les étapes de hello pour la création d’un module en C.
 
 ## <a name="what-you-will-do"></a>Procédure à suivre
 
-- Compilez et exécutez l’exemple d’application hello_world sur l’Intel NUC.
+- Compilez et exécutez l’application d’exemple hello Bonjour_monde sur Intel NUC.
 - Créez un module et compilez-le sur l’Intel NUC.
-- Ajouter le nouveau module à l’exemple d’application hello_world, puis exécutez l’exemple sur l’Intel NUC. Le nouveau module affiche des messages « hello world » avec un horodatage.
+- Ajouter hello nouveau module toohello Bonjour_monde exemple d’application, puis exécutez exemple hello sur NUC d’Intel. nouveau module de Hello imprime les messages « Bonjour_monde » avec un horodatage.
 
 ## <a name="what-you-will-learn"></a>Contenu
 
-- Compilation et exécution d’un exemple d’application sur l’Intel NUC.
-- Création d’un module.
-- Ajout d’un module à un exemple d’application.
+- Comment toocompile et exécuter un exemple d’application sur NUC d’Intel.
+- Comment toocreate un module.
+- Comment tooadd module tooa exemple d’application.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 
@@ -44,20 +44,20 @@ Azure IoT Edge installé sur votre ordinateur hôte.
 
 ## <a name="folder-structure"></a>Structure de dossiers
 
-Dans le sous-dossier de la leçon 5 pour l’exemple de code que vous avez cloné dans la leçon 1, il y a un dossier `module` et un dossier `sample`.
+Dans le sous-dossier hello leçon 5 de l’exemple de code hello que vous avez cloné dans la leçon 1, il existe un `module` dossier et un `sample` dossier.
 
 ![my_module](media/iot-hub-gateway-kit-lessons/lesson5/my_module.png)
 
-- Le dossier `module/my_module` contient le code source et le script permettant de générer le module.
-- Le dossier `sample` contient le code source et le script permettant de générer l’exemple d’application.
+- Hello `module/my_module` dossier contient hello code et le script toobuild hello module de source.
+- Hello `sample` dossier contient hello source code et le script toobuild hello exemple d’application.
 
-## <a name="compile-and-run-the-helloworld-sample-app-on-intel-nuc"></a>Compiler et exécuter l’exemple d’application hello_world sur l’Intel NUC
+## <a name="compile-and-run-hello-helloworld-sample-app-on-intel-nuc"></a>Compiler et exécuter l’application d’exemple hello Bonjour_monde sur Intel NUC
 
-L’exemple `hello_world` crée une passerelle en fonction du fichier `hello_world.json` qui spécifie les deux modules prédéfinis associés à l’application. La passerelle consigne un message « hello world » dans un fichier toutes les 5 secondes. Dans cette section, vous compilez et exécutez l’application `hello_world` avec son module par défaut.
+Hello `hello_world` exemple crée une passerelle selon hello `hello_world.json` fichier qui spécifie les modules prédéfinis deux hello associés application hello. passerelle de Hello enregistre toutes les 5 secondes à un fichier de tooa de message « hello world ». Dans cette section, vous compilez et exécutez hello `hello_world` application avec son module par défaut.
 
-Pour compiler et exécuter l’application `hello_world`, procédez comme suit sur votre ordinateur hôte :
+hello toocompile et exécutez `hello_world` application, procédez comme suit sur votre ordinateur hôte :
 
-1. Initialisez les fichiers de configuration en exécutant les commandes suivantes :
+1. Initialiser les fichiers de configuration hello en hello suivant les commandes en cours d’exécution :
 
    ```bash
    cd iot-hub-c-intel-nuc-gateway-getting-started
@@ -66,9 +66,9 @@ Pour compiler et exécuter l’application `hello_world`, procédez comme suit s
    gulp init
    ```
 
-1. Mettez à jour le fichier de configuration de la passerelle avec l’adresse MAC de l’Intel NUC. Ignorez cette étape si vous avez suivi la leçon pour [configurer et exécuter un exemple d’application BLE][config_ble].
+1. Mettre à jour le fichier de configuration de passerelle hello avec hello adresse MAC d’Intel NUC. Ignorez cette étape si vous avez parcouru leçon de hello trop[configurer et exécuter un exemple d’application BLE][config_ble].
 
-   1. Ouvrez le fichier de configuration de la passerelle en exécutant la commande suivante :
+   1. Ouvrez le fichier de configuration de passerelle de hello en exécutant hello de commande suivante :
 
       ```bash
       # For Windows command prompt
@@ -78,31 +78,31 @@ Pour compiler et exécuter l’application `hello_world`, procédez comme suit s
       code ~/.iot-hub-getting-started/config-gateway.json
       ```
 
-   1. Mettez à jour l’adresse MAC de la passerelle lorsque vous [configurez l’Intel NUC en tant que passerelle IoT][setup_nuc], puis enregistrez le fichier.
+   1. D’adresses MAC de la passerelle de mise à jour hello lorsque vous [configurer NUC Intel comme passerelle IoT][setup_nuc], puis enregistrez le fichier de hello.
 
-1. Compilez l’exemple de code source en exécutant la commande suivante :
+1. Compilez les exemples de code source hello en exécutant hello de commande suivante :
 
    ```bash
    gulp compile
    ```
 
-   La commande transfère l’exemple de code source à l’Intel NUC et exécute `build.sh` pour le compiler.
+   transfère la source d’exemple hello tooIntel code NUC Hello commande et exécute `build.sh` toocompile il.
 
-1. Exécutez l’application `hello_world` sur l’Intel NUC à l’aide de la commande suivante :
+1. Exécutez hello `hello_world` application sur Intel NUC en exécutant hello de commande suivante :
 
    ```bash
    gulp run
    ```
 
-   Cette commande exécute le fichier `../Tools/run-hello-world.js` spécifié dans `config.json` pour démarrer l’exemple d’application sur l’Intel NUC.
+   Hello s’exécute la commande `../Tools/run-hello-world.js` qui est spécifié dans `config.json` toostart hello exemple d’application sur NUC d’Intel.
 
    ![run_sample](media/iot-hub-gateway-kit-lessons/lesson5/run_sample.png)
 
 ## <a name="create-a-new-module-and-compile-it-on-intel-nuc"></a>Créer un module et le compiler sur l’Intel NUC
 
-La procédure ci-dessous vous guide dans la création d’un module et sa compilation sur l’Intel NUC. Le module affiche des messages avec un horodatage au moment de leur réception. Vous allez créer votre premier module de passerelle personnalisé dans cette section.
+étapes Hello ci-dessous vous guident dans la création d’un nouveau module et le compiler sur NUC d’Intel. module de Hello imprime les messages avec un horodatage lors de leur réception. Vous allez créer votre premier module de passerelle personnalisé dans cette section.
 
-Tout module Azure IoT Edge doit implémenter les interfaces suivantes :
+N’importe quel module Azure IoT Edge doit implémenter hello suivant des interfaces :
 
    ```C
    pfModule_ParseConfigurationFromJson Module_ParseConfigurationFromJson
@@ -112,19 +112,19 @@ Tout module Azure IoT Edge doit implémenter les interfaces suivantes :
    pfModule_Receive Module_Receive
    ```
 
-Vous avez également la possibilité d’implémenter l’interface suivante :
+Vous pouvez implémenter hello suivant interface :
 
    ```C
    pfModule_Start Module_Start
    ```
 
-Le schéma suivant illustre les chemins d’état importants d’un module. Les rectangles représentent les méthodes que vous implémentez pour exécuter des opérations lorsque le module passe d’un état à un autre. Les ovales correspondent aux états principaux dans lesquels le module peut se trouver.
+Hello diagramme suivant montre chemins d’accès de hello état importants d’un module. les rectangles carré Hello représentent des méthodes que vous implémentez les opérations tooperform lorsque le module de hello se déplace entre les États. ovales de Hello sont les principaux États module de hello.
 
 ![state_path](media/iot-hub-gateway-kit-lessons/lesson5/state_path.png)
 
-Maintenant, nous allons créer un module basé sur le modèle :
+Maintenant nous allons créer un module basé sur le modèle de hello :
 
-1. Ouvrez le dossier du modèle en exécutant la commande suivante :
+1. Ouvrez le dossier de modèle de hello en exécutant hello de commande suivante :
 
    ```bash
    code module/my_module
@@ -132,16 +132,16 @@ Maintenant, nous allons créer un module basé sur le modèle :
 
    ![code_module](media/iot-hub-gateway-kit-lessons/lesson5/code_module.png)
 
-   - `src/my_module.c` joue un rôle de modèle qui facilite la création d’un module. Le modèle déclare les interfaces. Vous avez simplement besoin d’ajouter une logique à la fonction `MyModule_Receive`.
-   - `build.sh` est le script permettant de compiler le module sur l’Intel NUC.
-1. Ouvrez le fichier `src/my_module.c` et incluez deux fichiers d’en-tête :
+   - `src/my_module.c`sert de modèle qui facilite la création d’un module hello. modèle de Hello déclare les interfaces hello. Il vous suffit de toodo est tooadd logique toohello `MyModule_Receive` (fonction).
+   - `build.sh`est hello build script toocompile hello module NUC d’Intel.
+1. Ouvrez hello `src/my_module.c` de fichiers et d’inclure les deux fichiers d’en-tête :
 
    ```C
    #include <stdio.h>
    #include "azure_c_shared_utility/xlogging.h"
    ```
 
-1. Ajoutez le code suivant à la fonction `MyModule_Receive` :
+1. Ajouter hello suivant code toohello `MyModule_Receive` fonction :
 
    ```C
    if (message == NULL)
@@ -150,9 +150,9 @@ Maintenant, nous allons créer un module basé sur le modèle :
    }
    else
    {
-      // get the message content
+      // get hello message content
       const CONSTBUFFER * content = Message_GetContent(message);
-      // get the local time and format it
+      // get hello local time and format it
       time_t temp = time(NULL);
       if (temp == (time_t)-1)
       {
@@ -170,7 +170,7 @@ Maintenant, nous allons créer un module basé sur le modèle :
               char timetemp[80] = { 0 };
               if (strftime(timetemp, sizeof(timetemp) / sizeof(timetemp[0]), "%c", t) == 0)
               {
-                  LogError("unable to strftime");
+                  LogError("unable toostrftime");
               }
               else
               {
@@ -181,15 +181,15 @@ Maintenant, nous allons créer un module basé sur le modèle :
    }
    ```
 
-1. Mettez à jour le fichier `config.json` pour spécifier le dossier `workspace` sur votre ordinateur hôte et le chemin de déploiement sur l’Intel NUC. Pendant la compilation, les fichiers du dossier `workspace` sont transférés vers le chemin de déploiement.
+1. Hello de mise à jour `config.json` hello toospecify de fichier `workspace` dossier sur votre ordinateur et hello déploiement chemin vers l’hôte sur NUC d’Intel. Pendant la compilation, hello fichiers Bonjour `workspace` dossier seront transférées toohello le chemin de déploiement.
 
-   1. Ouvrez le fichier `config.json` en exécutant la commande suivante :
+   1. Ouvrez hello `config.json` fichier en exécutant hello de commande suivante :
 
       ```bash
       code config.json
       ```
 
-   1. Mettez à jour `config.json` avec la configuration suivante :
+   1. Mise à jour `config.json` avec hello configuration suivante :
 
       ```json
       "workspace": "./module/my_module",
@@ -198,41 +198,41 @@ Maintenant, nous allons créer un module basé sur le modèle :
 
       ![config_json](media/iot-hub-gateway-kit-lessons/lesson5/config_json.png)
 
-1. Compilez le module en exécutant la commande suivante :
+1. Compilez le module de hello en exécutant hello de commande suivante :
 
    ```bash
    gulp compile
    ```
 
-   La commande transfère le code source à l’Intel NUC et exécute `build.sh` pour le compiler.
+   transfère hello source code tooIntel NUC Hello commande et exécute `build.sh` module de hello toocompile.
 
-## <a name="add-the-module-to-the-helloworld-sample-app-and-run-the-app-on-intel-nuc"></a>Ajouter le module à l’exemple d’application hello_world et exécuter l’application sur l’Intel NUC
+## <a name="add-hello-module-toohello-helloworld-sample-app-and-run-hello-app-on-intel-nuc"></a>Ajouter hello module toohello Bonjour_monde exemple d’application et exécutez l’application hello sur Intel NUC
 
-Pour accomplir cette tâche, procédez comme suit :
+tooperform cette tâche, procédez comme suit :
 
-1. Répertoriez tous les fichiers binaires de module disponibles (fichiers .so) sur l’Intel NUC en exécutant la commande suivante :
+1. Répertorier tous les binaires de module disponible hello (fichiers .so) sur Intel NUC en exécutant hello de commande suivante :
 
    ```bash
    gulp modules --list
    ```
 
-   Le chemin binaire de `my_module` que vous avez compilé doit être répertorié comme suit :
+   Hello chemin d’accès binaire `my_module` que vous avez compilé doit être répertorié comme ci-dessous :
 
    ```path
    /root/gateway_sample/module/my_module/build/libmy_module.so
    ```
 
-   Si vous modifiez le nom d’utilisateur de connexion par défaut dans `config-gateway.json`, le chemin binaire commencera par `home/<your username>` au lieu de `root`.
+   Si vous modifiez le nom d’utilisateur du compte de connexion par défaut hello dans `config-gateway.json`, chemin d’accès binaire de hello démarrera avec `home/<your username>` au lieu de `root`.
 
-1. Ajoutez `my_module` à l’exemple d’application `hello_world`:
+1. Ajouter `my_module` toohello `hello_world` exemple d’application :
 
-   1. Ouvrez le fichier `hello_world.json` en exécutant la commande suivante :
+   1. Ouvrez hello `hello_world.json` fichier en exécutant hello de commande suivante :
 
       ```bash
       code sample/hello_world/src/hello_world.json
       ```
 
-   1. Ajoutez le code suivant à la section `modules` :
+   1. Ajouter hello suivant code toohello `modules` section :
 
       ```json
       {
@@ -247,8 +247,8 @@ Pour accomplir cette tâche, procédez comme suit :
       }
       ```
 
-      La valeur de `module.path` doit être `/root/gateway_sample/module/my_module/build/libmy_module.so`. Le code déclare l’association de `my_module` à la passerelle, ainsi que l’emplacement du fichier binaire de module spécifié dans `module.path`.
-   1. Ajoutez le code suivant à la section `links` :
+      Hello valeur `module.path` doit être `/root/gateway_sample/module/my_module/build/libmy_module.so`. code de Hello déclare `my_module` toobe associée passerelle de hello ainsi que d’emplacement hello du fichier binaire du module hello spécifié dans `module.path`.
+   1. Ajouter hello suivant code toohello `links` section :
 
       ```json
       {
@@ -257,25 +257,25 @@ Pour accomplir cette tâche, procédez comme suit :
       }
       ```
 
-      Ce code spécifie le transfert des messages du module `hello_world` à `my_module`.
+      Ce code spécifie que les messages sont transférés de hello `hello_world` module trop`my_module`.
 
       ![hello_world_json](media/iot-hub-gateway-kit-lessons/lesson5/hello_world_json.png)
 
-1. Exécutez l’exemple d’application `hello_world` avec la commande suivante :
+1. Exécutez hello `hello_world` exemple d’application en exécutant hello de commande suivante :
 
    ```bash
    gulp run --config sample/hello_world/src/hello_world.json
    ```
 
-   Le paramètre `--config` force le script `run-hello-world.js` à s’exécuter à l’aide du fichier `hello_world.json`.
+   Hello `--config` paramètre force hello `run-hello-world.js` toorun de script à l’aide de hello `hello_world.json` fichier.
 
    ![hello_world_new](media/iot-hub-gateway-kit-lessons/lesson5/hello_world_new.png)
 
-Félicitations ! Vous pouvez maintenant voir le comportement de ce nouveau module, qui affiche simplement des messages « hello world » avec un horodatage, résultat qui diffère de celui du module « hello_world » d’origine.
+Félicitations ! Vous pouvez maintenant voir le comportement de hello ce nouveau module, il imprime simplement les messages « hello world » avec un horodatage, un résultat différent d’un module hello d’origine « Bonjour_monde ».
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous avez créé un module, l’avez ajouté à l’exemple d’application hello_world et fait s’exécuter l’exemple d’application avec le nouveau module sur votre passerelle. Si vous souhaitez en savoir plus sur les modules de passerelle Azure IoT, vous trouverez d’autres exemples de modules ici : [https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules](https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules).
+Vous avez créé un nouveau module, ajouté toohello Bonjour_monde exemple et get hello exemple application toorun avec le nouveau module de hello sur votre passerelle. Si vous souhaitez toolearn plus d’informations sur les modules de passerelle Azure IoT, vous trouverez d’autres exemples de module ici : [https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules](https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules).
 
 <!-- Images and links -->
 

@@ -1,6 +1,6 @@
 ---
-title: "Prise en main d’Azure IoT Edge (Linux) | Microsoft Docs"
-description: "Comment créer une passerelle sur une machine Linux et en savoir plus sur les concepts clés dans Azure IoT Edge, comme les modules et les fichiers de configuration JSON."
+title: aaaGet en main Azure IoT Edge (Linux) | Documents Microsoft
+description: "Comment toobuild une passerelle sur une Linux de l’ordinateur et en savoir plus sur les concepts clés dans Azure IoT Edge tels que les modules et les fichiers de configuration JSON."
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -15,11 +15,11 @@ ms.workload: na
 ms.date: 06/07/2017
 ms.author: andbuc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b02d79fcd9cd2a2ef0041aac4e85528263c8d58a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 40aa9c8ddca6a974c361cbb0b453c7d0ddc71b8d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-azure-iot-edge-architecture-on-linux"></a>Explorer l’architecture de Azure IoT Edge sur Linux
 
@@ -27,16 +27,16 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [iot-hub-iot-edge-install-build-linux](../../includes/iot-hub-iot-edge-install-build-linux.md)]
 
-## <a name="how-to-run-the-sample"></a>Comment exécuter l’exemple
+## <a name="how-toorun-hello-sample"></a>Comment toorun hello exemple
 
-Le script **build.sh** génère sa sortie dans le dossier **build** de votre copie locale du référentiel **iot-edge**. Cette sortie inclut les deux modules IoT Edge utilisés dans cet exemple.
+Hello **build.sh** script génère sa sortie dans hello **générer** dossier dans votre copie locale de hello **iot-bord** référentiel. Cette sortie inclut deux modules de IoT bord hello utilisés dans cet exemple.
 
-Le script place **liblogger.so** dans le dossier **build/modules/logger/** et **libhello\_world.so** dans le dossier **build/modules/hello_world/**. Utilisez ces chemins d’accès pour les valeurs **module path** comme indiqué dans le fichier d’exemple de paramètres JSON suivant.
+Hello endroits du script build **liblogger.so** Bonjour **/modules/journal de build/** dossier et **libhello\_world.so** Bonjour **générer / modules/Bonjour_monde/** dossier. Utilisez ces chemins d’accès pour hello **chemin du module** valeurs comme indiqué dans hello suivant l’exemple de fichier de paramètres JSON.
 
-Le processus hello\_world\_sample utilise le chemin d’accès à un fichier de configuration JSON en tant qu’argument de ligne de commande. Le fichier d’exemple JSON suivant est fourni dans le référentiel du Kit de développement logiciel (SDK) à **samples/hello\_world/src/hello\_world\_lin.json**. Ce fichier de configuration fonctionne comme tel, sauf si vous modifiez le script build pour placer des modules IoT Edge ou des exécutables de l’exemple dans des emplacements autres que ceux par défaut.
+Bonjour Bonjour\_world\_exemple dure fichier de configuration JSON hello chemin tooa un argument de ligne de commande. exemple de fichier JSON suivant Hello est fourni dans le référentiel du Kit de développement logiciel hello à **exemples/hello\_world/src/hello\_world\_lin.json**. Ce fonctionne de fichier de configuration en l’état, sauf si vous modifiez hello construire des modules hello tooplace de script IoT bord ou un échantillon exécutables dans les emplacements par défaut.
 
 > [!NOTE]
-> Les chemins d’accès du module sont relatifs au répertoire de travail actuel à partir duquel l’exécutable hello\_world\_sample est lancé, et non au répertoire où se trouve l’exécutable. L’exemple de fichier de configuration JSON écrit par défaut « log.txt » dans votre répertoire de travail actuel.
+> répertoire de travail actuel relatif toohello à partir de laquelle sont Hello chemins d’accès du module Bonjour Bonjour\_world\_exécutable de l’exemple est lancé, pas hello répertoire où se trouve hello exécutable. exemple Hello JSON configuration fichier par défaut toowriting 'log.txt » dans votre répertoire de travail actuel.
 
 ```json
 {
@@ -73,9 +73,9 @@ Le processus hello\_world\_sample utilise le chemin d’accès à un fichier de 
 }
 ```
 
-1. Accédez au dossier **build** à la racine de votre copie locale du référentiel **iot-edge**.
+1. Accédez toohello **générer** dossier racine hello de votre copie locale de hello **iot-bord** référentiel.
 
-1. Exécutez la commande suivante :
+1. Exécutez hello de commande suivante :
 
     ```sh
     ./samples/hello_world/hello_world_sample ../samples/hello_world/src/hello_world_lin.json`

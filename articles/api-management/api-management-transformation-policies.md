@@ -1,6 +1,6 @@
 ---
-title: "Stratégies de transformation de la Gestion des API Azure | Microsoft Docs"
-description: "Découvrez les stratégies de transformation disponibles dans la Gestion des API Azure."
+title: "stratégies de transformation de gestion des API aaaAzure | Documents Microsoft"
+description: "En savoir plus sur les stratégies de transformation hello disponibles pour une utilisation dans la gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: c2bed904b82c569b28a6e00d0cc9b49107c148dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2891cc52d0017b717b3c12a98bc4941b5fd7ea78
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-transformation-policies"></a>Stratégies de transformation de la Gestion des API
-Cette rubrique est une ressource de référence au sujet des stratégies Gestion des API suivantes. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
+Cette rubrique fournit une référence pour hello suivant des stratégies de gestion des API. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="TransformationPolicies"></a> Stratégies de transformation  
   
--   [Convert JSON to XML](api-management-transformation-policies.md#ConvertJSONtoXML) : convertit le corps de la demande ou de la réponse de JSON en XML.  
+-   [Convertir en JSON tooXML](api-management-transformation-policies.md#ConvertJSONtoXML) - convertit demande ou le corps de la réponse de JSON tooXML.  
   
--   [Convert XML to JSON](api-management-transformation-policies.md#ConvertXMLtoJSON) :convertit le corps de la demande ou de la réponse de XML en JSON.  
+-   [Convertir XML tooJSON](api-management-transformation-policies.md#ConvertXMLtoJSON) - convertit demande ou le corps de la réponse à partir de XML tooJSON.  
   
 -   [Find and replace string in body](api-management-transformation-policies.md#Findandreplacestringinbody) : recherche une sous-chaîne de demande ou de réponse et la remplace par une autre sous-chaîne.  
   
--   [Mask URLs in content](api-management-transformation-policies.md#MaskURLSContent) : réécrit (masque) les liens dans le corps de la réponse afin qu’ils pointent vers un lien équivalent via la passerelle.  
+-   [Masquer des URL dans le contenu](api-management-transformation-policies.md#MaskURLSContent) -réécrit (masque) des liens dans la réponse de hello corps afin qu’ils pointent toohello le lien équivalent via une passerelle de hello.  
   
--   [Set backend service](api-management-transformation-policies.md#SetBackendService) : modifie le service principal pour une demande entrante.  
+-   [Définir le service principal](api-management-transformation-policies.md#SetBackendService) -modifie le service principal de hello pour une demande entrante.  
   
--   [Set body](api-management-transformation-policies.md#SetBody) : définit le corps du message pour les demandes entrantes et sortantes.  
+-   [Définir le corps](api-management-transformation-policies.md#SetBody) -définit le corps du message hello pour les demandes entrantes et sortantes.  
   
--   [Set HTTP header](api-management-transformation-policies.md#SetHTTPheader) : affecte une valeur à un en-tête de réponse et/ou de demande existant ou bien ajoute un nouvel en-tête de réponse et/ou de demande.  
+-   [En-tête HTTP](api-management-transformation-policies.md#SetHTTPheader) - assigne une réponse existante de valeur tooan et/ou d’un en-tête de demande ou ajoute un nouvel en-tête de réponse et/ou de demande.  
   
 -   [Set query string parameter](api-management-transformation-policies.md#SetQueryStringParameter) : ajoute, supprime un paramètre de chaîne de requête de la demande ou le remplace par une autre valeur.  
   
--   [URL de réécriture](api-management-transformation-policies.md#RewriteURL) : convertit une URL de demande de sa forme publique en une forme attendue par le service web.  
+-   [Réécriture d’URL](api-management-transformation-policies.md#RewriteURL) -convertit une URL de demande à partir de sa forme toohello de formulaire public attendu par le service web hello.  
   
--   [Transform XML using an XSLT](api-management-transformation-policies.md#XSLTransform) : applique une transformation de XSL en XML dans le corps de la réponse ou de la demande.  
+-   [Transformer du code XML à l’aide d’une transformation XSLT](api-management-transformation-policies.md#XSLTransform) -applique un tooXML de la transformation XSL dans le corps de demande ou réponse hello.  
   
-##  <a name="ConvertJSONtoXML"></a> Convert JSON to XML  
- La stratégie `json-to-xml` convertit le corps de la demande ou de la réponse de JSON en XML.  
+##  <a name="ConvertJSONtoXML"></a>Convertir en JSON tooXML  
+ Hello `json-to-xml` stratégie convertit un corps de demande ou de réponse de JSON tooXML.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -78,18 +78,18 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|apply|L’attribut doit avoir l’une des valeurs suivantes.<br /><br /> -   always : toujours appliquer la conversion.<br />-   content-type-json : ne convertir que si l’en-tête de réponse Content-Type indique la présence de JSON.|Oui|N/A|  
-|consider-accept-header|L’attribut doit avoir l’une des valeurs suivantes.<br /><br /> -   true : appliquer la conversion si le format JSON est demandé dans l’en-tête d’acceptation de la demande.<br />-   false : toujours appliquer la conversion.|Non|true|  
+|apply|attribut de Hello doit être définie tooone Hello valeurs suivantes.<br /><br /> -   always : toujours appliquer la conversion.<br />-   content-type-json : ne convertir que si l’en-tête de réponse Content-Type indique la présence de JSON.|Oui|N/A|  
+|consider-accept-header|attribut de Hello doit être définie tooone Hello valeurs suivantes.<br /><br /> -   true : appliquer la conversion si le format JSON est demandé dans l’en-tête d’acceptation de la demande.<br />-   false : toujours appliquer la conversion.|Non|true|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, on-error  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
-##  <a name="ConvertXMLtoJSON"></a> Convert XML to JSON  
- La stratégie `xml-to-json` convertit le corps de la demande ou de la réponse de XML en JSON. Cette stratégie peut être utilisée pour moderniser les API basées sur des services web exclusivement en XML.  
+##  <a name="ConvertXMLtoJSON"></a>Convertir XML tooJSON  
+ Hello `xml-to-json` stratégie convertit un corps de demande ou de réponse XML tooJSON. Cette stratégie peut être utilisé toomodernize API basé sur les services web principaux uniquement XML.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -121,24 +121,24 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|kind|L’attribut doit avoir l’une des valeurs suivantes.<br /><br /> -   javascript-friendly : le JSON converti présente un format familier aux développeurs JavaScript.<br />-   direct : le JSON converti reflète la structure d’origine du document XML.|Oui|N/A|  
-|apply|L’attribut doit avoir l’une des valeurs suivantes.<br /><br /> -   always : toujours convertir.<br />-   content-type-xml : ne convertir que si l’en-tête de réponse Content-Type indique la présence de XML.|Oui|N/A|  
-|consider-accept-header|L’attribut doit avoir l’une des valeurs suivantes.<br /><br /> -   true : appliquer la conversion si le format XML est demandé dans l’en-tête d’acceptation de la demande.<br />-   false : toujours appliquer la conversion.|Non|true|  
+|kind|attribut de Hello doit être définie tooone Hello valeurs suivantes.<br /><br /> -javascript friendly : hello converti JSON a un tooJavaScript convivial aux développeurs.<br />-direct - hello JSON converti reflète la structure de hello XML document d’origine.|Oui|N/A|  
+|apply|attribut de Hello doit être définie tooone Hello valeurs suivantes.<br /><br /> -   always : toujours convertir.<br />-   content-type-xml : ne convertir que si l’en-tête de réponse Content-Type indique la présence de XML.|Oui|N/A|  
+|consider-accept-header|attribut de Hello doit être définie tooone Hello valeurs suivantes.<br /><br /> -   true : appliquer la conversion si le format XML est demandé dans l’en-tête d’acceptation de la demande.<br />-   false : toujours appliquer la conversion.|Non|true|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, on-error  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="Findandreplacestringinbody"></a> Find and replace string in body  
- La stratégie `find-and-replace` recherche une sous-chaîne de demande ou de réponse et la remplace par une autre sous-chaîne.  
+ Hello `find-and-replace` stratégie recherche une sous-chaîne de demande ou de réponse et le remplace par une autre sous-chaîne.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
 ```xml  
-<find-and-replace from="what to replace" to="replacement" />  
+<find-and-replace from="what tooreplace" to="replacement" />  
 ```  
   
 ### <a name="example"></a>Exemple  
@@ -157,21 +157,21 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|from|Chaîne à rechercher.|Oui|N/A|  
-|to|Chaîne de remplacement. Spécifiez une chaîne de remplacement nulle pour supprimer la chaîne de recherche.|Oui|N/A|  
+|from|toosearch de chaîne Hello pour.|Oui|N/A|  
+|to|chaîne de remplacement Hello. Spécifiez une remplacement chaîne tooremove hello recherche chaîne de longueur zéro.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="MaskURLSContent"></a> Mask URLs in content  
- La stratégie `redirect-content-urls` réécrit (masque) les liens dans le corps de la réponse afin qu’ils pointent vers un lien équivalent par l’intermédiaire de la passerelle. À utiliser dans la section outbound pour réécrire les liens du corps de réponse afin qu’ils pointent vers la passerelle. À utiliser dans la section inbound pour obtenir l’effet opposé.  
+ Hello `redirect-content-urls` stratégie réécrit (masque) des liens dans le corps de la réponse hello afin qu’ils pointent toohello le lien équivalent via une passerelle de hello. Utilisez-les dans toomake des liens des corps de réponse hello section sortante toore-écriture toohello de point de passerelle. Utilisation de hello entrants de section d’un effet opposé.  
   
 > [!NOTE]
->  Cette stratégie ne change pas les valeurs d’en-têtes, notamment des en-têtes `Location`. Pour modifier les valeurs d’en-têtes, utilisez la stratégie [set-header](api-management-transformation-policies.md#SetHTTPheader).  
+>  Cette stratégie ne change pas les valeurs d’en-têtes, notamment des en-têtes `Location`. les valeurs d’en-tête toochange, utilisez hello [-en-tête](api-management-transformation-policies.md#SetHTTPheader) stratégie.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -192,19 +192,19 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 |redirect-content-urls|Élément racine.|Oui|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="SetBackendService"></a> Set backend service  
- Utilisez la stratégie `set-backend-service` pour rediriger une demande entrante vers un service principal autre que celui qui est spécifié dans les paramètres d’API de cette opération. Cette stratégie remplace l’URL de base du service principal de la demande entrante par celle qui est spécifiée dans la stratégie.  
+ Hello d’utilisation `set-backend-service` stratégie tooredirect un entrant demande principal différent de tooa que celui spécifié dans les paramètres de hello API pour cette opération hello. Cette stratégie modifie hello URL du service principal de toohello demande entrants hello celui spécifié dans la stratégie de hello.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
 ```xml  
-<set-backend-service base-url="base URL of the backend service" />  
+<set-backend-service base-url="base URL of hello backend service" />  
 ```  
   
 ### <a name="example"></a>Exemple  
@@ -227,13 +227,13 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
     </outbound>  
 </policies>  
 ```  
-Dans cet exemple, la stratégie du service principal définie achemine les demandes en fonction de la valeur de version transmise dans la chaîne de requête à un service principal autre que celui qui est spécifié dans l’API.
+Bonjour de cet exemple stratégie de service principal définie achemine les demandes en fonction de la valeur de la version hello passé hello requête chaîne tooa service principal différent hello hello spécifié dans une API.
   
-À l’origine, l’URL de base du service principal est dérivée des paramètres d’API. Par conséquent, l’URL de la demande `https://contoso.azure-api.net/api/partners/15?version=2013-05&subscription-key=abcdef` devient `http://contoso.com/api/10.4/partners/15?version=2013-05&subscription-key=abcdef`, où `http://contoso.com/api/10.4/` est l’URL du service principal spécifiée dans les paramètres d’API.  
+Initialement hello URL du service principal est dérivée de paramètres de l’API hello. Hello par conséquent, les URL de demande `https://contoso.azure-api.net/api/partners/15?version=2013-05&subscription-key=abcdef` devient `http://contoso.com/api/10.4/partners/15?version=2013-05&subscription-key=abcdef` où `http://contoso.com/api/10.4/` est l’URL du service principal hello spécifié dans les paramètres de l’API de hello.  
   
-Lorsque la déclaration de stratégie [<choose\>](api-management-advanced-policies.md#choose) est appliquée, l’URL de base du service principal être de nouveau remplacée par `http://contoso.com/api/8.2` ou `http://contoso.com/api/9.1`, selon la valeur du paramètre de requête de la demande de version. Par exemple, si la valeur est `"2013-15"`, l’URL de demande finale devient `http://contoso.com/api/8.2/partners/15?version=2013-05&subscription-key=abcdef`.  
+Hello lorsque [< choisissez\> ](api-management-advanced-policies.md#choose) l’instruction de stratégie est appliquée hello URL du service principal peut changer à nouveau trop`http://contoso.com/api/8.2` ou `http://contoso.com/api/9.1`, selon la valeur hello hello version demande du paramètre de requête. Par exemple, si hello valeur est `"2013-15"` hello dernière demande URL devient `http://contoso.com/api/8.2/partners/15?version=2013-05&subscription-key=abcdef`.  
   
-Pour effectuer davantage de transformations de la demande, il est possible d’utiliser d’autres [Stratégies de transformation](api-management-transformation-policies.md#TransformationPolicies). Par exemple, pour supprimer le paramètre de requête de la version maintenant que la demande est acheminée vers un service principal propre à la version, la stratégie [Set query string parameter](api-management-transformation-policies.md#SetQueryStringParameter) peut être utilisée afin de supprimer l’attribut de version désormais superflu.  
+Si davantage la transformation de requête de hello est souhaitée, d’autres [stratégies de Transformation](api-management-transformation-policies.md#TransformationPolicies) peut être utilisé. Par exemple, tooremove hello version requête routé maintenant que hello demande est en cours de paramètre hello tooa version principales, [définir le paramètre de chaîne de requête](api-management-transformation-policies.md#SetQueryStringParameter) stratégie peut être l’attribut de version désormais redondant hello tooremove utilisé.  
   
 ### <a name="example"></a>Exemple  
   
@@ -247,7 +247,7 @@ Pour effectuer davantage de transformations de la demande, il est possible d’u
     </outbound>  
 </policies>  
 ```  
-Dans cet exemple, la stratégie permet d’acheminer la requête vers un serveur principal Service Fabric, à l’aide de la chaîne de requêtes userid en tant que clé de partition et à l’aide du réplica primaire de la partition.  
+Dans cet exemple hello stratégie itinéraires hello demande tooa service fabric service principal, à l’aide de la chaîne de requête userId hello en tant que clé de partition hello et à l’aide de hello réplica principal de la partition de hello.  
 
 ### <a name="elements"></a>Éléments  
   
@@ -260,33 +260,33 @@ Dans cet exemple, la stratégie permet d’acheminer la requête vers un serveur
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
 |base-url|Nouvelle URL de base du service principal.|Non|N/A|  
-|id de principal|Identificateur du serveur principal pour l’acheminement.|Non|N/A|  
-|clé de partition SF|Applicable uniquement lorsque le serveur principal est un service Service Fabric et qu’il est spécifié à l’aide de « id principal ». Utilisé pour résoudre une partition spécifique à partir du service de résolution des noms.|Non|N/A|  
-|type de réplica SF|Applicable uniquement lorsque le serveur principal est un service Service Fabric et qu’il est spécifié à l’aide de « id principal ». Contrôle si la requête doit atteindre le réplica principal ou secondaire d’une partition. |Non|N/A|    
-|condition de résolution SF|Applicable uniquement lorsque le serveur principal est un service Service Fabric. Condition identifiant si l’appel au serveur principal Service Fabric doit être répété avec une nouvelle résolution.|Non|N/A|    
-|nom d’instance de service DF|Applicable uniquement lorsque le serveur principal est un service Service Fabric. Permet de modifier les instances de service lors de l’exécution. |Non|N/A |    
+|id de principal|Identificateur de tooroute de back-end hello pour.|Non|N/A|  
+|clé de partition SF|S’applique seulement lorsque hello principal est un service Service Fabric et qu’il est spécifié à l’aide de 'id principal'. Utilisé tooresolve une partition spécifique à partir du service de résolution de noms hello.|Non|N/A|  
+|type de réplica SF|S’applique seulement lorsque hello principal est un service Service Fabric et qu’il est spécifié à l’aide de 'id principal'. Contrôle si la demande de hello doit devenir toohello un réplica principal ou secondaire d’une partition. |Non|N/A|    
+|condition de résolution SF|Applicable uniquement lorsque hello principal est un service Service Fabric. Identifiant de condition Si hello appelez principal de l’ensemble fibre optique tooService a toobe répété avec la nouvelle résolution.|Non|N/A|    
+|nom d’instance de service DF|Applicable uniquement lorsque hello principal est un service Service Fabric. Permet des instances de service toochange lors de l’exécution. |Non|N/A |    
 
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, backend  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="SetBody"></a> Set body  
- Utilisez la stratégie `set-body` pour définir le corps du message pour les demandes entrantes et sortantes. Pour accéder au corps du message, vous pouvez utiliser la propriété `context.Request.Body` ou `context.Response.Body`, selon que la stratégie se trouve dans la section inbound ou outbound.  
+ Hello d’utilisation `set-body` corps du message stratégie tooset hello pour les demandes entrantes et sortantes. tooaccess hello corps de message que vous pouvez utiliser hello `context.Request.Body` propriété ou hello `context.Response.Body`, selon que la stratégie de hello est Bonjour section entrante ou sortante.  
   
 > [!IMPORTANT]
->  Notez que, par défaut, lorsque vous accédez au corps du message avec `context.Request.Body` ou `context.Response.Body`, le corps du message d’origine est perdu et doit être défini en renvoyant le corps dans l’expression. Pour conserver le contenu du corps, donnez la valeur `true` au paramètre `preserveContent` lorsque vous accédez au message. Si `preserveContent` a la valeur `true` et qu’un autre corps est renvoyé par l’expression, le corps renvoyé est utilisé.  
+>  Notez que, par défaut lorsque vous accédez à hello du corps du message à l’aide `context.Request.Body` ou `context.Response.Body`, message d’origine de type hello corps est perdu et doit être défini en renvoyant le corps de hello dans expression de hello. corps de hello toopreserve contenu, définissez hello `preserveContent` paramètre trop`true` lors de l’accès de message de type hello. Si `preserveContent` est défini trop`true` et un corps différent est renvoyé par l’expression de hello, hello corps est utilisé.  
 >   
->  Notez les points suivants lorsque vous utilisez la stratégie `set-body`.  
+>  Veuillez noter hello suivant Considérations lors de l’utilisation de hello `set-body` stratégie.  
 >   
->  -   Si vous utilisez la stratégie `set-body` pour renvoyer un nouveau corps ou un corps mis à jour, vous n’avez pas besoin de donner la valeur `true` à `preserveContent` parce que vous fournissez explicitement le nouveau contenu du corps.  
-> -   Conserver le contenu d’une réponse dans le pipeline inbound n’est pas judicieux, car il n’existe encore aucune réponse.  
-> -   Conserver le contenu d’une demande dans le pipeline de sortie n’est pas judicieux, car la demande a déjà été envoyée au service principal à ce stade.  
+>  -   Si vous utilisez hello `set-body` stratégie tooreturn un corps de nouveau ou mis à jour que vous n’avez pas besoin de tooset `preserveContent` trop`true` parce que vous fournissez explicitement contenu du corps de la nouvelle hello.  
+> -   En conservant le contenu d’une réponse hello dans pipeline entrant de hello n’a aucune signification, car il n’existe encore aucune réponse.  
+> -   En conservant le contenu d’une demande de hello dans le pipeline de sortie hello n’a aucune signification car hello demande a déjà été envoyée toohello principal à ce stade.  
 > -   Si cette stratégie est utilisée en l’absence de corps de message, par exemple dans une requête GET inbound, une exception est levée.  
   
- Pour plus d’informations, consultez les sections `context.Request.Body`, `context.Response.Body` et `IMessage` dans le tableau [Variable contextuelle](api-management-policy-expressions.md#ContextVariables).  
+ Pour plus d’informations, consultez hello `context.Request.Body`, `context.Response.Body`et hello `IMessage` sections Bonjour [variable contextuelle](api-management-policy-expressions.md#ContextVariables) table.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -302,7 +302,7 @@ Dans cet exemple, la stratégie permet d’acheminer la requête vers un serveur
 <set-body>Hello world!</set-body>  
 ```  
   
-#### <a name="example-accessing-the-body-as-a-string-note-that-we-are-preserving-the-original-request-body-so-that-we-can-access-it-later-in-the-pipeline"></a>Exemple d’accès au corps sous forme de chaîne. Notez que nous conservons le corps de la demande d’origine et que nous pouvons ainsi y accéder plus tard dans le pipeline.
+#### <a name="example-accessing-hello-body-as-a-string-note-that-we-are-preserving-hello-original-request-body-so-that-we-can-access-it-later-in-hello-pipeline"></a>Exemple d’accès au corps hello sous forme de chaîne. Notez que nous allons conserver les corps de la demande d’origine hello afin que nous pouvons accéder à plus tard dans le pipeline de hello.
   
 ```xml  
 <set-body>  
@@ -316,7 +316,7 @@ Dans cet exemple, la stratégie permet d’acheminer la requête vers un serveur
 </set-body>  
 ```  
   
-#### <a name="example-accessing-the-body-as-a-jobject-note-that-since-we-are-not-reserving-the-original-request-body-accesing-it-later-in-the-pipeline-will-result-in-an-exception"></a>Exemple d’accès au corps sous forme de JObject. Notez que puisque nous ne conservons pas le corps de la demande d’origine, une tentative pour y accéder ultérieurement dans le pipeline entraîne une exception.  
+#### <a name="example-accessing-hello-body-as-a-jobject-note-that-since-we-are-not-reserving-hello-original-request-body-accesing-it-later-in-hello-pipeline-will-result-in-an-exception"></a>Exemple d’accès au corps hello en tant que JObject. Notez qu’étant donné que nous ne sommes pas réservation hello d’origine corps de la demande, accès plus loin dans le pipeline de hello entraîne une exception.  
   
 ```xml  
 <set-body>   
@@ -332,10 +332,10 @@ Dans cet exemple, la stratégie permet d’acheminer la requête vers un serveur
 ```  
   
 #### <a name="filter-response-based-on-product"></a>Filtrer la réponse en fonction du produit  
- Cet exemple montre comment effectuer un filtrage du contenu en supprimant des éléments de données de la réponse reçue du service principal en cas d’utilisation du produit `Starter`. Pour une démonstration de la configuration et de l’utilisation de cette stratégie, consultez la page [Cloud Cover Episode 177: More API Management Features with Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) (Cloud Cover, épisode 177 : Plus de fonctionnalités de la Gestion des API avec Vlad Vinogradsky) et rendez-vous directement à 34 min 30 s. Commencez à 31 min 50 s pour voir une présentation de [l’API The Dark Sky Forecast](https://developer.forecast.io/) utilisée pour cette démonstration.  
+ Cet exemple montre comment tooperform le filtrage de contenu en supprimant des éléments de données à partir de la réponse de hello reçu hello principal service lors de l’utilisation de hello `Starter` produit. Pour une démonstration de la configuration et l’utilisation de cette stratégie, consultez [Cloud couvrent épisode 177 : plus les fonctionnalités de gestion des API avec Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) et avançons too34:30. Démarrer à 31:50 toosee une vue d’ensemble de [hello API de prévision ciel foncé](https://developer.forecast.io/) utilisée pour cette démonstration.  
   
 ```xml  
-<!-- Copy this snippet into the outbound section to remove a number of data elements from the response received from the backend service based on the name of the api product -->  
+<!-- Copy this snippet into hello outbound section tooremove a number of data elements from hello response received from hello backend service based on hello name of hello api product -->  
 <choose>  
   <when condition="@(context.Response.StatusCode == 200 && context.Product.Name.Equals("Starter"))">  
     <set-body>@{  
@@ -351,17 +351,17 @@ Dans cet exemple, la stratégie permet d’acheminer la requête vers un serveur
 ```  
 
 ### <a name="using-liquid-templates-with-set-body"></a>Utilisation de modèles Liquid avec Set body 
-La stratégie `set-body` peut être configurée pour utiliser le langage de modèle [Liquid](https://shopify.github.io/liquid/basics/introduction/) pour transformer le corps d’une requête ou réponse. Cela peut être très efficace si vous avez besoin de modifier complètement le format de votre message.
+Hello `set-body` stratégie peut être configurée toouse hello [liquide](https://shopify.github.io/liquid/basics/introduction/) corps de création de modèles language tootransfom hello d’une demande ou réponse. Cela peut être très efficace si vous avez besoin de format de hello toocompletely la mise en forme du message.
 
 > [!IMPORTANT]
-> L’implémentation Liquid utilisée dans la stratégie `set-body` est configurée en mode « C# ». Cela est particulièrement important lors d’opérations telles que le filtrage. Par exemple, l’utilisation d’un filtre de date nécessite l’emploi de la casse Pascal et de la mise en forme de date de C#, par exemple :
+> Hello d’implémentation de liquide utilisé Bonjour `set-body` stratégie est configurée en « mode C# ». Cela est particulièrement important lors d’opérations telles que le filtrage. Par exemple, à l’aide d’un filtre de date nécessite l’utilisation de hello de Pascal casse et C# date mise en forme, par exemple :
 >
 > {{body.foo.startDateTime| Date:"yyyyMMddTHH:mm:ddZ"}}
 
 > [!IMPORTANT]
-> Pour établir correctement une liaison avec un corps XML à l’aide du modèle Liquid, utilisez une stratégie `set-header` pour définir Content-Type pour application/xml, text/xml (ou n’importe quel type se terminant par +xml). Pour un corps JSON, la valeur doit être application/json, text/json (ou n’importe quel type se terminant par +json).
+> Dans l’ordre toocorrectly bind tooan corps de XML à l’aide du modèle de liquide hello, utilisez un `set-header` stratégie tooset Content-Type tooeither application/xml, texte/xml (ou n’importe quel type se terminant par + xml) ; pour un corps JSON, il doit être application/json, texte/json (ou fin de n’importe quel type avec + json).
 
-#### <a name="convert-json-to-soap-using-a-liquid-template"></a>Conversion de JSON en SOAP à l’aide d’un modèle Liquid
+#### <a name="convert-json-toosoap-using-a-liquid-template"></a>Convertir tooSOAP JSON à l’aide d’un modèle liquide
 ```xml
 <set-body template="liquid">
     <soap:Envelope xmlns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
@@ -388,15 +388,15 @@ La stratégie `set-body` peut être configurée pour utiliser le langage de mod�
   
 |Nom|Description|Requis|  
 |----------|-----------------|--------------|  
-|set-body|Élément racine. Contient le corps du texte ou une expression qui renvoie un corps.|Oui|  
+|set-body|Élément racine. Contient hello corps du texte ou une expression qui renvoie un corps.|Oui|  
 
 ### <a name="properties"></a>Propriétés  
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|template|Permet de modifier le mode de création du modèle dans lequel la stratégie Set body sera exécutée. Actuellement, la seule valeur possible est :<br /><br />- liquid - la stratégie Set body utilisera le moteur de création de modèle Liquid |Non|liquid|  
+|template|Mode de création de modèles toochange utilisé hello hello ensemble corps de la stratégie s’exécutera dans. Valeur de hello uniquement pris en charge actuellement est :<br /><br />hello - liquide - définir une stratégie corps utilisera le moteur de création de modèles liquide hello |Non|liquid|  
 
-Pour accéder aux informations sur la requête et la réponse, le modèle Liquid peut lier à un objet de contexte aux propriétés suivantes : <br />
+Pour accéder aux informations sur la demande de hello et de réponse, hello liquide peut liez par modèle objet de contexte tooa avec hello propriétés suivantes : <br />
 <pre>context.
     Request.
         Url
@@ -437,22 +437,22 @@ OriginalUrl.
 
 
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="SetHTTPheader"></a> Set HTTP header  
- La stratégie `set-header` affecte une valeur à un en-tête de réponse et/ou de demande existant ou bien ajoute un nouvel en-tête de réponse et/ou de demande.  
+ Hello `set-header` stratégie affecte une réponse existante de valeur tooan et/ou d’un en-tête de demande ou ajoute un nouvel en-tête de réponse et/ou de demande.  
   
- Insère une liste d'en-têtes HTTP dans un message HTTP. Lorsqu'elle est placée dans un pipeline entrant, cette stratégie définit les en-têtes HTTP pour la demande transmise au service cible. Lorsqu’elle est placée dans un pipeline outbound, cette stratégie définit les en-têtes HTTP pour la réponse envoyée au client de la passerelle.  
+ Insère une liste d'en-têtes HTTP dans un message HTTP. Lorsqu’elle est placée dans un pipeline entrant, cette stratégie définit les en-têtes HTTP hello pour demande hello transmise service cible de toohello. Lorsqu’elle est placée dans un pipeline sortant, cette stratégie définit les en-têtes HTTP hello pour réponse hello envoyée client de la passerelle toohello.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
 ```xml  
 <set-header name="header name" exists-action="override | skip | append | delete">  
-    <value>value</value> <!--for multiple headers with the same name add additional value elements-->  
+    <value>value</value> <!--for multiple headers with hello same name add additional value elements-->  
 </set-header>  
 ```  
   
@@ -466,11 +466,11 @@ OriginalUrl.
 </set-header>  
 ```  
   
-#### <a name="forward-context-information-to-the-backend-service"></a>Transférer des informations de contexte au service principal  
- Cet exemple montre comment appliquer la stratégie au niveau de l’API pour fournir des informations de contexte au service principal. Pour une démonstration de la configuration et de l’utilisation de cette stratégie, consultez la page [Cloud Cover Episode 177: More API Management Features with Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) (Cloud Cover, épisode 177 : Plus de fonctionnalités de la Gestion des API avec Vlad Vinogradsky) et rendez-vous directement à 10 min 30 s. À 12 min 10 s, une démonstration de l’appel d’une opération dans le portail des développeurs montre la stratégie à l’œuvre.  
+#### <a name="forward-context-information-toohello-backend-service"></a>Transférer le service principal de contexte informations toohello  
+ Cet exemple montre comment stratégie tooapply à hello API niveau le service principal toohello toosupply contexte plus d’informations. Pour une démonstration de la configuration et l’utilisation de cette stratégie, consultez [Cloud couvrent épisode 177 : plus les fonctionnalités de gestion des API avec Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) et avançons too10:30. À 12:10, il existe une démonstration de l’appel à une opération dans le portail des développeurs hello où vous pouvez consulter la stratégie hello au travail.  
   
 ```xml  
-<!-- Copy this snippet into the inbound element to forward some context information, user id and the region the gateway is hosted in, to the backend service for logging or evaluation -->  
+<!-- Copy this snippet into hello inbound element tooforward some context information, user id and hello region hello gateway is hosted in, toohello backend service for logging or evaluation -->  
 <set-header name="x-request-context-data" exists-action="override">  
   <value>@(context.User.Id)</value>  
   <value>@(context.Deployment.Region)</value>  
@@ -484,30 +484,30 @@ OriginalUrl.
 |Nom|Description|Requis|  
 |----------|-----------------|--------------|  
 |set-header|Élément racine.|Oui|  
-|value|Spécifie la valeur de l'en-tête à définir. Si plusieurs en-têtes portent le même nom, ajoutez d’autres éléments `value`.|Oui|  
+|value|Spécifie la valeur hello hello en-tête toobe ensemble. Pour plusieurs en-têtes hello avec le même nom, ajoutez des `value` éléments.|Oui|  
   
 ### <a name="properties"></a>Propriétés  
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|exists-action|Spécifie l’action à entreprendre lorsque l’en-tête est déjà spécifié. Cet attribut doit avoir une des valeurs suivantes.<br /><br /> - override : remplace la valeur de l’en-tête actuel.<br />- skip : ne remplace pas la valeur de l’en-tête actuel.<br />- append : ajoute la valeur à celle de l’en-tête actuel.<br />- delete : supprime l’en-tête de la demande.<br /><br /> S’il a la valeur `override`, l’inscription de plusieurs entrées portant le même nom fait que l’en-tête est défini selon toutes les entrées (qui figurent plusieurs fois) ; seules les valeurs listées seront définies dans le résultat.|Non|override|  
-|name|Spécifie le nom de l'en-tête à définir.|Oui|N/A|  
+|exists-action|Spécifie quelles tootake action lorsque hello en-tête est déjà spécifié. Cet attribut doit avoir une des valeurs suivantes de hello.<br /><br /> -remplacer - valeur de hello remplace d’en-tête existant de hello.<br />-ignorer - ne remplace pas la valeur d’en-tête hello existant.<br />-Ajouter - ajoute la valeur d’en-tête existant hello valeur toohello.<br />-Supprimer - supprime les en-tête de hello de demande de hello.<br /><br /> Lorsque la valeur trop`override` l’inscription de plusieurs entrées avec hello même nom que les résultats dans l’en-tête de hello en cours en fonction tooall entrées (qui apparaissent plusieurs fois) ; seules les valeurs inscrites seront définies dans le résultat de hello.|Non|override|  
+|name|Spécifie le nom du jeu de toobe en-tête hello.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="SetQueryStringParameter"></a> Set query string parameter  
- La stratégie `set-query-parameter` ajoute, supprime un paramètre de chaîne de requête de la demande ou le remplace par une autre valeur. Peut être utilisée pour transmettre les paramètres de requête attendus par le service principal qui sont facultatifs ou ne sont jamais présents dans la demande.  
+ Hello `set-query-parameter` ajoute de la stratégie, remplace la valeur, ou paramètre de chaîne de requête de demande de suppressions. Peut être utilisé toopass paramètres de requête attendus par le service principal hello, qui sont facultatifs ou toujours absents dans la demande de hello.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
 ```xml  
 <set-query-parameter name="param name" exists-action="override | skip | append | delete">  
-    <value>value</value> <!--for multiple parameters with the same name add additional value elements-->  
+    <value>value</value> <!--for multiple parameters with hello same name add additional value elements-->  
 </set-query-parameter>  
 ```  
   
@@ -521,16 +521,16 @@ OriginalUrl.
   <parameter name="api-key" exists-action="skip">  
     <value>12345678901</value>  
   </parameter>  
-  <!-- for multiple parameters with the same name add additional value elements -->  
+  <!-- for multiple parameters with hello same name add additional value elements -->  
 </set-query-parameter>  
   
 ```  
   
-#### <a name="forward-context-information-to-the-backend-service"></a>Transférer des informations de contexte au service principal  
- Cet exemple montre comment appliquer la stratégie au niveau de l’API pour fournir des informations de contexte au service principal. Pour une démonstration de la configuration et de l’utilisation de cette stratégie, consultez la page [Cloud Cover Episode 177: More API Management Features with Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) (Cloud Cover, épisode 177 : Plus de fonctionnalités de la Gestion des API avec Vlad Vinogradsky) et rendez-vous directement à 10 min 30 s. À 12 min 10 s, une démonstration de l’appel d’une opération dans le portail des développeurs montre la stratégie à l’œuvre.  
+#### <a name="forward-context-information-toohello-backend-service"></a>Transférer le service principal de contexte informations toohello  
+ Cet exemple montre comment stratégie tooapply à hello API niveau le service principal toohello toosupply contexte plus d’informations. Pour une démonstration de la configuration et l’utilisation de cette stratégie, consultez [Cloud couvrent épisode 177 : plus les fonctionnalités de gestion des API avec Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) et avançons too10:30. À 12:10, il existe une démonstration de l’appel à une opération dans le portail des développeurs hello où vous pouvez consulter la stratégie hello au travail.  
   
 ```xml  
-<!-- Copy this snippet into the inbound element to forward a piece of context, product name in this example, to the backend service for logging or evaluation -->  
+<!-- Copy this snippet into hello inbound element tooforward a piece of context, product name in this example, toohello backend service for logging or evaluation -->  
 <set-query-parameter name="x-product-name" exists-action="override">  
   <value>@(context.Product.Name)</value>  
 </set-query-parameter>  
@@ -544,33 +544,33 @@ OriginalUrl.
 |Nom|Description|Requis|  
 |----------|-----------------|--------------|  
 |set-query-parameter|Élément racine.|Oui|  
-|value|Fournissez une valeur au paramètre de requête à définir. Si plusieurs paramètres de requête portent le même nom, ajoutez d’autres éléments `value`.|Oui|  
+|value|Spécifie la valeur hello hello paramètre toobe du jeu de requête. Plusieurs paramètres de requête par hello même nom, ajoutez des `value` éléments.|Oui|  
   
 ### <a name="properties"></a>Propriétés  
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|exists-action|Spécifie l’action à entreprendre lorsque le paramètre de requête est déjà spécifié. Cet attribut doit avoir une des valeurs suivantes.<br /><br /> - override : remplace la valeur du paramètre actuel.<br />- skip : ne remplace pas la valeur du paramètre de requête actuel.<br />- append : ajoute la valeur à celle du paramètre de requête actuel.<br />- delete : supprime le paramètre de requête de la demande.<br /><br /> S’il a la valeur `override`, l’ajout de plusieurs entrées portant le même nom fait que le paramètre de requête est défini selon toutes les entrées (qui figurent plusieurs fois) ; seules les valeurs listées seront définies dans le résultat.|Non|override|  
-|name|Spécifie le nom du paramètre de requête à définir.|Oui|N/A|  
+|exists-action|Spécifie quelles tootake action lorsque le paramètre de requête hello est déjà spécifié. Cet attribut doit avoir une des valeurs suivantes de hello.<br /><br /> -remplacer - valeur hello remplace paramètre existant hello.<br />-ignorer - ne remplace pas la valeur de paramètre de requête existant hello.<br />-Ajouter - ajoute la valeur du paramètre requête existant hello valeur toohello.<br />-Supprimer - supprime le paramètre de requête hello à partir de la demande de hello.<br /><br /> Lorsque la valeur trop`override` l’inscription de plusieurs entrées avec hello même nom que les résultats dans le paramètre de requête hello en cours en fonction tooall entrées (qui apparaissent plusieurs fois) ; seules les valeurs inscrites seront définies dans le résultat de hello.|Non|override|  
+|name|Spécifie le nom du jeu de toobe de paramètre de requête hello.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, backend  
   
 -   **Étendues de la stratégie :** global, product, API, operation  
   
 ##  <a name="RewriteURL"></a> Rewrite URL  
- La stratégie `rewrite-uri` convertit une URL de demande de sa forme publique en une forme attendue par le service web, comme le montre l’exemple suivant.  
+ Hello `rewrite-uri` stratégie convertit une URL de demande à partir de sa forme toohello de formulaire public attendu par le service web hello, comme illustré dans hello l’exemple suivant.  
   
 -   URL publique : `http://api.example.com/storenumber/ordernumber`  
   
 -   URL de la demande : `http://api.example.com/v2/US/hardware/storenumber&ordernumber?City&State`  
   
- Cette stratégie peut être utilisée lorsqu’une URL compréhensible par un humain et/ou un navigateur doit être transformée au format d’URL attendu par le service web. Cette stratégie ne doit être appliquée qu’en cas d’exposition d’un autre format d’URL, comme les URL propres, les URL RESTful, les URL conviviales ou les URL adaptées au SEO qui sont des URL purement structurelles ne contenant pas de chaîne de requête et ne contenant que le chemin d’accès de la ressource (après le schéma et l’autorité). C'est souvent le cas pour des raisons d'esthétique, de simplicité d'utilisation ou bien pour l'optimisation des résultats de recherche (SEO).  
+ Cette stratégie peut être utilisée lorsqu’une URL de l’opérateur humaine et/ou le nom convivial de l’Explorateur doit être transformée en format d’URL hello attendu par le service web hello. Cette stratégie ne doit toobe appliqué lors de l’exposition d’un autre format d’URL, tels que les URL propre, URL RESTful, une URL conviviale ou les URL compatibles avec les moteurs de recherche qui sont des URL purement structurelles qui ne contient pas une chaîne de requête et à la place contenir uniquement hello chemin d’accès de hello ressources (après le schéma de hello et autorité de hello). C'est souvent le cas pour des raisons d'esthétique, de simplicité d'utilisation ou bien pour l'optimisation des résultats de recherche (SEO).  
   
 > [!NOTE]
->  Vous ne pouvez ajouter que des paramètres de chaîne de requête avec la stratégie. Vous ne pouvez pas ajouter de paramètres de chemin d’accès de modèle dans l’URL de réécriture.  
+>  Vous pouvez uniquement ajouter des paramètres de chaîne de requête à l’aide de la stratégie de hello. Vous ne pouvez pas ajouter de paramètres de chemin d’accès de modèle supplémentaire dans hello réécriture d’URL.  
 
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -592,7 +592,7 @@ OriginalUrl.
 </policies>  
 ```  
 ```xml
-<!-- Assuming incoming request is /get?a=b&c=d and operation template is set to /get?a={b} -->
+<!-- Assuming incoming request is /get?a=b&c=d and operation template is set too/get?a={b} -->
 <policies>  
     <inbound>  
         <base />  
@@ -605,7 +605,7 @@ OriginalUrl.
 <!-- Resulting URL will be /put?c=d -->
 ```  
 ```xml
-<!-- Assuming incoming request is /get?a=b&c=d and operation template is set to /get?a={b} -->
+<!-- Assuming incoming request is /get?a=b&c=d and operation template is set too/get?a={b} -->
 <policies>  
     <inbound>  
         <base />  
@@ -628,18 +628,18 @@ OriginalUrl.
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|-------------|  
-|template|URL de service web réelle avec les paramètres de chaîne de requête. Lorsque vous utilisez des expressions, la valeur entière doit être une expression.|Oui|N/A|  
-|copy-unmatched-params|Spécifie si les paramètres de requête dans la requête entrante non présents dans le modèle d’URL d’origine sont ajoutés à l’URL définie par le modèle de réécriture|Non|true|  
+|template|URL du service web réel Hello avec les paramètres de chaîne de requête. Lorsque vous utilisez des expressions, toute valeur de hello doit être une expression.|Oui|N/A|  
+|copy-unmatched-params|Spécifie si les paramètres de requête dans la demande entrante de hello ne figure pas dans le modèle d’URL d’origine hello sont ajoutés les URL toohello définie par hello rédigez à nouveau modèle|Non|true|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound  
   
 -   **Étendues de la stratégie :** product, API, operation  
   
 ##  <a name="XSLTransform"></a> Transform XML using an XSLT  
- La stratégie `Transform XML using an XSLT` applique une transformation de XSL en XML dans le corps de la réponse ou de la demande.  
+ Hello `Transform XML using an XSLT` stratégie s’applique à une tooXML de la transformation XSL dans le corps de demande ou réponse hello.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -692,11 +692,11 @@ OriginalUrl.
 |Nom|Description|Requis|  
 |----------|-----------------|--------------|  
 |xsl-transform|Élément racine.|Oui|  
-|paramètre|Permet de définir des variables utilisées dans la transformation|Non|  
-|xsl:stylesheet|Élément feuille de style racine. Tous les éléments et attributs définis à l’intérieur respectent la [Spécification XSLT](http://www.w3.org/TR/xslt) standard.|Oui|  
+|paramètre|Variables utilisées toodefine utilisées dans une transformation hello|Non|  
+|xsl:stylesheet|Élément feuille de style racine. Tous les éléments et attributs définis dans suivent standard de hello [spécification XSLT](http://www.w3.org/TR/xslt)|Oui|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound  
   

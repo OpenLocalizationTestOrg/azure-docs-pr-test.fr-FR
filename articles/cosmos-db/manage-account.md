@@ -1,6 +1,6 @@
 ---
-title: "Gestion d’un compte Azure Cosmos DB via le portail Azure | Microsoft Docs"
-description: "Apprenez à gérer votre compte Azure Cosmos DB via le portail Azure. Trouvez un guide vous expliquant comment utiliser le portail Azure pour afficher, copier, supprimer et accéder aux comptes."
+title: "aaaManage un compte de base de données Azure Cosmos via hello portail Azure | Documents Microsoft"
+description: "Découvrez comment toomanage votre base de données Azure Cosmos compte via hello portail Azure. Rechercher un guide sur l’utilisation de tooview du portail Azure hello, copier, supprimer et l’accès des comptes."
 keywords: Portail Azure, documentdb, azure, Microsoft azure
 services: cosmos-db
 documentationcenter: 
@@ -15,96 +15,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: kirillg
-ms.openlocfilehash: a0c6ec8d490e1adacc96758971ab91d8eaeab45c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 77ad953cf558a519674be08ad913a12202f69496
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-an-azure-cosmos-db-account"></a>Comment gérer un compte Azure Cosmos DB
-Découvrez comment définir la cohérence globale, utiliser les clés et supprimer un compte Azure Cosmos DB dans le portail Azure.
+# <a name="how-toomanage-an-azure-cosmos-db-account"></a>Comment toomanage un compte de base de données Azure Cosmos
+Découvrez comment la cohérence tooset, travailler avec les clés et supprimer un compte de base de données Azure Cosmos Bonjour portail Azure.
 
 ## <a id="consistency"></a>Gérer les paramètres de cohérence Azure Cosmos DB
-La sélection du niveau de cohérence adéquat dépend de la sémantique de votre application. Vous devez vous familiariser avec les niveaux de cohérence disponibles dans Azure Cosmos DB en lisant l’article relatif à [l’utilisation des niveaux de cohérence pour optimiser la disponibilité et les performances dans Azure Cosmos DB][consistency]. Azure Cosmos DB fournit les garanties de cohérence, de disponibilité et de performance, à tous les niveaux de cohérence disponibles pour votre compte de base de données. La configuration de votre compte de base de données avec un niveau de cohérence Fort nécessite que vos données se limitent à une seule région Azure et ne soient pas disponibles mondialement. En revanche, les niveaux de cohérence souples (Obsolescence limitée, Session ou Éventuel) vous permettent d’associer autant de régions Azure que vous le souhaitez à votre compte de base de données. Les étapes simples suivantes vous montrent comment sélectionner le niveau de cohérence par défaut pour votre compte de base de données. 
+En sélectionnant le niveau de cohérence droite hello dépend de la sémantique de hello de votre application. Vous devez vous familiariser avec les niveaux de cohérence disponible hello dans la base de données Azure Cosmos en lisant [à l’aide de la cohérence des niveaux de disponibilité de toomaximize et les performances dans la base de données Azure Cosmos][consistency]. Azure Cosmos DB fournit les garanties de cohérence, de disponibilité et de performance, à tous les niveaux de cohérence disponibles pour votre compte de base de données. Configuration de votre compte de base de données avec un niveau de cohérence de fort requiert que vos données sont confiné tooa une seule région Azure et non globalement disponible. On hello d’autre part, hello des niveaux de cohérence souple - obsolescence limitée, de session ou d’activer éventuelle vous tooassociate n’importe quel nombre de régions Azure avec votre compte de base de données. Hello suivant étapes simples vous montre comment tooselect hello le niveau de cohérence par défaut pour votre compte de base de données. 
 
-### <a name="to-specify-the-default-consistency-for-an-azure-cosmos-db-account"></a>Pour spécifier le niveau de cohérence par défaut d’un compte Azure Cosmos DB
-1. Dans le [portail Azure](https://portal.azure.com/), accédez à votre compte Azure Cosmos DB.
-2. Dans le panneau du compte, cliquez sur **Cohérence par défaut**.
-3. Dans le panneau **Cohérence par défaut**, sélectionnez le nouveau niveau de cohérence et cliquez sur **Enregistrer**.
+### <a name="toospecify-hello-default-consistency-for-an-azure-cosmos-db-account"></a>toospecify hello par défaut la cohérence pour un compte de base de données Azure Cosmos
+1. Bonjour [portail Azure](https://portal.azure.com/), accéder à votre compte de base de données Azure Cosmos.
+2. Dans le panneau de compte hello, cliquez sur **par défaut de la cohérence**.
+3. Bonjour **cohérence par défaut** panneau, niveau de cohérence hello sélectionnez Nouveau, cliquez sur **enregistrer**.
     ![Cohérence par défaut Session][5]
 
 ## <a id="keys"></a>Affichage, copie et régénération des clés d’accès
-Lorsque vous créez un compte Azure Cosmos DB, le service génère deux clés d’accès maître qui peuvent être utilisées pour l’authentification lors de l’accès au compte Azure Cosmos DB. En fournissant deux clés d'accès, Azure Cosmos DB vous permet de régénérer les clés sans interruption de votre compte Azure Cosmos DB. 
+Lorsque vous créez un compte de base de données Azure Cosmos, service de hello génère deux clés d’accès maître qui peuvent être utilisés pour l’authentification lors de l’accès hello compte de base de données Azure Cosmos. En fournissant deux clés d’accès, base de données Azure Cosmos vous permet de clés de hello tooregenerate avec aucune tooyour d’interruption du compte de base de données Azure Cosmos. 
 
-Dans le [portail Azure](https://portal.azure.com/), accédez au panneau **Clés** à partir du menu de ressources dans le panneau **Compte Azure Cosmos DB** pour afficher, copier et régénérer les clés d’accès à votre compte Azure Cosmos DB.
+Bonjour [portail Azure](https://portal.azure.com/), hello d’accès **clés** panneau à partir du menu ressources hello hello **compte de base de données Azure Cosmos** panneau tooview, copier et régénérer hello touches d’accès sont tooaccess utilisé votre compte de base de données Azure Cosmos.
 
 ![Capture d’écran du portail Azure, panneau Clés](./media/manage-account/keys.png)
 
 > [!NOTE]
-> Le panneau **Clés** inclut également des chaînes de connexion primaire et secondaire qui peuvent être utilisées pour la connexion à votre compte à partir de [l’outil de migration de données](import-data.md).
+> Hello **clés** panneau inclut également principal et de chaînes de connexion secondaire qui peuvent être utilisé tooconnect tooyour compte du hello [outil de Migration de données](import-data.md).
 > 
 > 
 
 Des clés en lecture seule sont également disponibles sur ce panneau. Les lectures et les demandes sont des opérations en lecture seule, contrairement aux opérations de création, de suppression et de remplacement.
 
-### <a name="copy-an-access-key-in-the-azure-portal"></a>Copie d’une touche d’accès rapide dans le portail Azure
-Dans le panneau **Clés**, cliquez sur le bouton **Copier** à droite de la clé que vous souhaitez copier.
+### <a name="copy-an-access-key-in-hello-azure-portal"></a>Copier une clé d’accès Bonjour portail Azure
+Sur hello **clés** panneau, cliquez sur hello **copie** toohello bouton à droite de la clé de hello que vous souhaitez toocopy.
 
-![Affichage et copie d’une touche d’accès rapide dans le portail Azure, panneau Clés](./media/manage-account/copykeys.png)
+![Afficher et copier une clé d’accès Bonjour Azure Portal, panneau de clés](./media/manage-account/copykeys.png)
 
 ### <a name="regenerate-access-keys"></a>Régénération de clés d'accès
-Vous devez modifier périodiquement les clés d'accès à votre compte Azure Cosmos DB pour garantir la sécurité des connexions. Deux clés d’accès vous sont affectées afin de vous permettre de conserver des connexions au compte Azure Cosmos DB à l’aide d’une clé d’accès lorsque vous régénérez l’autre clé.
+Vous devez modifier le compte de base de données Azure Cosmos tooyour hello accès clés périodiquement toohelp renforcer vos connexions. Deux clés d’accès sont affectés tooenable connexions toomaintain vous toohello compte de base de données Azure Cosmos à l’aide d’une clé d’accès pendant la régénération de hello autre clé d’accès.
 
 > [!WARNING]
-> La régénération de vos clés d'accès affecte toutes les applications qui dépendent de la clé actuelle. Tous les clients qui utilisent la clé d’accès pour accéder au compte Azure Cosmos DB doivent être mis à jour pour utiliser la nouvelle clé.
+> Régénérer vos clés d’accès affecte toutes les applications qui dépendent de la clé actuelle de hello. Tous les clients qui utilisent le compte de base de données Azure Cosmos hello accès tooaccess clé hello doivent être la nouvelle clé de hello toouse mis à jour.
 > 
 > 
 
-Si certains de vos services cloud ou applications utilisent le compte Azure Cosmos DB, vous perdrez les connexions en régénérant les clés, sauf si vous remplacez vos clés. Les étapes suivantes décrivent le processus de remplacement de vos clés.
+Si vous avez des applications ou services de cloud computing à l’aide du compte de base de données Azure Cosmos de hello, vous perdrez les connexions hello si vous régénérez des clés, sauf si vous régénérez vos clés. Hello étapes suivantes décrivent les processus hello de transfert de vos clés.
 
-1. Mettez à jour la clé d’accès dans le code de votre application afin de référencer la clé d’accès secondaire du compte Azure Cosmos DB.
-2. Régénérez la clé d’accès principale de votre compte Azure Cosmos DB. Dans le [portail Azure](https://portal.azure.com/), accédez à votre compte Azure Cosmos DB.
-3. Dans le panneau **Compte Azure Cosmos DB**, cliquez sur **Clés**.
-4. Dans le panneau **Clés**, cliquez sur le bouton Régénérer, puis sur **OK** pour confirmer que vous souhaitez générer une nouvelle clé.
+1. Mettre à jour la clé d’accès hello dans votre clé d’accès secondaire application code tooreference hello Hello compte de base de données Azure Cosmos.
+2. Régénérer la clé d’accès primaire hello pour votre compte de base de données Azure Cosmos. Bonjour [Azure Portal](https://portal.azure.com/), accéder à votre compte de base de données Azure Cosmos.
+3. Bonjour **compte de base de données Azure Cosmos** panneau, cliquez sur **clés**.
+4. Sur hello **clés** panneau, cliquez sur hello régénérer, puis cliquez sur **Ok** tooconfirm que vous souhaitez toogenerate une nouvelle clé.
     ![Régénération des clés d’accès](./media/manage-account/regenerate-keys.png)
-5. Une fois que vous avez vérifié que la nouvelle clé peut être utilisée(environ 5 minutes après la régénération), mettez à jour la clé d'accès dans le code de votre application afin de référencer la nouvelle clé d'accès primaire.
-6. Régénérez la clé d’accès secondaire.
+5. Une fois que vous avez vérifié de cette nouvelle clé de hello est disponible pour une utilisation (environ 5 minutes après la régénération), mettre à jour la clé d’accès hello dans votre application code tooreference hello nouvelle clé primaire.
+6. Régénérer la clé d’accès secondaire hello.
    
     ![Régénération de clés d'accès](./media/manage-account/regenerate-secondary-key.png)
 
 > [!NOTE]
-> Il faut parfois attendre plusieurs minutes avant de pouvoir utiliser une clé qui vient d’être générée pour accéder à votre compte Azure Cosmos DB.
+> Il peut prendre plusieurs minutes avant d’une clé qui vient d’être générée peut être tooaccess utilisé votre compte de base de données Azure Cosmos.
 > 
 > 
 
-## <a name="get-the--connection-string"></a>Obtention de la chaîne de connexion
-Procédez comme suit pour récupérer votre chaîne de connexion : 
+## <a name="get-hello--connection-string"></a>Obtenir la chaîne de connexion hello
+tooretrieve votre connexion de chaîne, hello suivant : 
 
-1. Dans le [portail Azure](https://portal.azure.com), accédez à votre compte Azure Cosmos DB.
-2. Dans le menu de ressources, cliquez sur **Clés**.
-3. Cliquez sur le bouton **Copier** situé en regard de la case **Chaîne de connexion principale** ou de la case **Chaîne de connexion secondaire**. 
+1. Bonjour [portail Azure](https://portal.azure.com), accéder à votre compte de base de données Azure Cosmos.
+2. Dans le menu de ressource hello, cliquez sur **clés**.
+3. Cliquez sur hello **copie** toohello suivant du bouton **chaîne de connexion principal** ou **chaîne de connexion secondaire** boîte. 
 
-Si vous utilisez la chaîne de connexion dans [l’outil de migration de base de données Azure Cosmos DB](import-data.md), ajoutez le nom de la base de données à la fin de la chaîne de connexion. `AccountEndpoint=< >;AccountKey=< >;Database=< >`.
+Si vous utilisez une chaîne de connexion hello Bonjour [outil de Migration de base de données Azure Cosmos DB](import-data.md), ajouter hello de base de données nom toohello end hello de chaîne de connexion. `AccountEndpoint=< >;AccountKey=< >;Database=< >`.
 
 ## <a id="delete"></a> Supprimer un compte Azure Cosmos DB
-Pour supprimer du portail Azure un compte Azure Cosmos DB dont vous ne vous servez plus, cliquez avec le bouton droit sur le nom du compte, puis cliquez sur **Supprimer le compte**.
+tooremove une base de données Azure Cosmos compte hello portail Azure que vous n’utilisez plus, nom du compte hello avec le bouton droit, puis cliquez sur **supprimer le compte**.
 
-![Comment supprimer un compte Azure Cosmos DB dans le portail Azure](./media/manage-account/deleteaccount.png)
+![Procédure toodelete une base de données Azure Cosmos compte dans hello portail Azure](./media/manage-account/deleteaccount.png)
 
-1. Dans le [portail Azure](https://portal.azure.com/), accédez au compte Azure Cosmos DB à supprimer.
-2. Dans le panneau **Compte Azure Cosmos DB**, cliquez avec le bouton droit sur le compte, puis cliquez sur **Supprimer le compte**. 
-3. Dans le volet de confirmation qui s'affiche, entrez le nom du compte Azure Cosmos DB pour confirmer que vous souhaitez le supprimer.
-4. Cliquez sur le bouton **Supprimer** .
+1. Bonjour [portail Azure](https://portal.azure.com/), accéder au compte de base de données Azure Cosmos hello toodelete vous le souhaitez.
+2. Sur hello **compte de base de données Azure Cosmos** panneau, cliquez sur le compte de hello, puis cliquez sur **supprimer un compte**. 
+3. Sur le panneau de confirmation qui en résulte hello, tapez tooconfirm de nom du compte de base de données Azure Cosmos hello toodelete hello compte.
+4. Cliquez sur hello **supprimer** bouton.
 
-![Comment supprimer un compte Azure Cosmos DB dans le portail Azure](./media/manage-account/delete-account-confirm.png)
+![Procédure toodelete une base de données Azure Cosmos compte dans hello portail Azure](./media/manage-account/delete-account-confirm.png)
 
 ## <a id="next"></a>Étapes suivantes
-Découvrez comment [prendre en main votre compte Azure Cosmos DB](http://go.microsoft.com/fwlink/p/?LinkId=402364).
+Découvrez comment trop[prise en main votre compte de base de données Azure Cosmos](http://go.microsoft.com/fwlink/p/?LinkId=402364).
 
 <!--Image references-->
 [5]: ./media/manage-account/documentdb_change_consistency-1.png
 
-<!--Reference style links - using these makes the source content way more readable than using inline links-->
+<!--Reference style links - using these makes hello source content way more readable than using inline links-->
 [bcdr]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
 [consistency]: consistency-levels.md
 [azureregions]: https://azure.microsoft.com/regions/#services

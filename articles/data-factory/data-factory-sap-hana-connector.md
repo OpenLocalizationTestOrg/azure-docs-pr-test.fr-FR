@@ -1,6 +1,6 @@
 ---
-title: "Déplacer des données depuis SAP HANA à l’aide d’Azure Data Factory | Microsoft Docs"
-description: "Découvrez comment déplacer des données depuis SAP HANA à l’aide d’Azure Data Factory."
+title: "aaaMove des données à partir de SAP HANA à l’aide d’Azure Data Factory | Documents Microsoft"
+description: "En savoir plus sur la façon de toomove les données à partir de SAP HANA à l’aide d’Azure Data Factory."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,76 +13,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/04/2017
 ms.author: jingwang
-ms.openlocfilehash: 2ab488d82d24999a6231e40cb719715463c51d64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5cefe4c8ed01ea4e86e02496b2f8a9083d0b949c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-sap-hana-using-azure-data-factory"></a>Déplacer des données depuis SAP HANA à l’aide d’Azure Data Factory
-Cet article explique comment utiliser l’activité de copie dans Azure Data Factory pour déplacer des données à partir d’une base de données SAP HANA locale. Il s’appuie sur l’article [Activités de déplacement des données](data-factory-data-movement-activities.md), qui présente une vue d’ensemble du déplacement de données avec l’activité de copie.
+Cet article explique comment toouse hello activité de copie de données de toomove Azure Data Factory à partir d’un ordinateur local SAP HANA. Il repose sur hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, qui présente une vue d’ensemble du déplacement des données avec l’activité de copie hello.
 
-Vous pouvez copier les données d’un magasin de données SAP HANA local dans tout magasin de données récepteur pris en charge. Pour obtenir la liste des magasins de données pris en charge en tant que récepteurs pour l’activité de copie, consultez le tableau [Magasins de données pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Actuellement, Data Factory prend uniquement en charge le déplacement de données de SAP HANA vers d’autres magasins de données, mais pas l’inverse.
+Vous pouvez copier les données d’une banque de données locale SAP HANA données magasin tooany pris en charge récepteur. Pour une liste de données pris en charge des magasins récepteurs par l’activité de copie hello, consultez hello [prise en charge des magasins de données](data-factory-data-movement-activities.md#supported-data-stores-and-formats) table. Fabrique de données prend actuellement en charge uniquement le déplacement de banques de données à partir d’un tooother de données SAP HANA, mais pas pour déplacer des données d’autres données de magasins tooan SAP HANA.
 
 ## <a name="supported-versions-and-installation"></a>Versions prises en charge et installation
 Ce connecteur prend en charge n’importe quelle version de base de données SAP HANA. Il prend en charge la copie de données à partir de modèles d’informations HANA (comme les vues Analyse et Calcul) et les tables Ligne/Colonne à l’aide de requêtes SQL.
 
-Pour activer la connectivité à l’instance SAP HANA, installez les composants suivants :
-- **Passerelle de gestion des données** : le service de fabrique de données prend en charge la connexion aux magasins de données locaux (y compris SAP HANA) à l’aide d’un composant appelé passerelle de gestion des données. Consultez l’article [Déplacement de données d’un magasin de données local vers un magasin de données cloud](data-factory-move-data-between-onprem-and-cloud.md) pour en savoir plus sur la passerelle de gestion des données et obtenir des instructions détaillées sur la configuration de la passerelle. Une passerelle est requise même si SAP HANA est hébergé sur une machine virtuelle Azure IaaS. Vous pouvez installer la passerelle sur la même machine virtuelle que le magasin de données, ou sur une autre machine virtuelle pourvu que la passerelle puisse se connecter à la base de données.
-- Le **pilote ODBC SAP HANA** sur la machine passerelle. Vous pouvez télécharger le pilote ODBC SAP HANA à partir du [Centre de téléchargement de logiciels SAP](https://support.sap.com/swdc). Faites une recherche avec le mot-clé **SAP HANA CLIENT for Windows**. 
+tooenable hello connectivité toohello instance de SAP HANA, installez hello suivant des composants :
+- **Passerelle de gestion des données**: service Data Factory prend en charge la connexion de données locales tooon magasins (y compris SAP HANA) à l’aide d’un composant appelé passerelle de gestion des données. toolearn sur la passerelle de gestion des données et des instructions détaillées pour configurer la passerelle de hello, consultez [magasin de données toocloud du magasin de données de déplacement entre des données locales](data-factory-move-data-between-onprem-and-cloud.md) l’article. Passerelle est requise même si hello SAP HANA est hébergé dans une machine virtuelle de Azure IaaS (VM). Vous pouvez installer la passerelle de hello sur hello même machine virtuelle en tant que données de hello stocker ou sur un ordinateur différent virtuel tant que passerelle de hello peuvent se connecter toohello de base de données.
+- **Pilote ODBC de HANA SAP** sur l’ordinateur de passerelle hello. Vous pouvez télécharger le pilote ODBC de HANA SAP de hello de hello [centre de téléchargement de logiciel SAP](https://support.sap.com/swdc). Recherche par mot clé de hello **SAP HANA CLIENT pour Windows**. 
 
 ## <a name="getting-started"></a>Prise en main
 Vous pouvez créer un pipeline avec une activité de copie qui déplace les données d’un magasin de données Cassandra local à l’aide de différents outils/API. 
 
-- Le moyen le plus simple de créer un pipeline consiste à utiliser **l’Assistant de copie**. Consultez la page [Didacticiel : Créer un pipeline avec l’activité de copie à l’aide de l’Assistant Data Factory Copy](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapide sur la création d’un pipeline à l’aide de l’Assistant Copier des données. 
-- Vous pouvez également utiliser les outils suivants pour créer un pipeline : le **portail Azure**, **Visual Studio**, **Azure PowerShell**, le **modèle Azure Resource Manager**, l’**API .NET** et l’**API REST**. Consultez le [Didacticiel de l’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions détaillées sur la création d’un pipeline avec une activité de copie. 
+- toocreate de façon plus simple Hello un pipeline est toouse hello **Assistant copie de**. Consultez [didacticiel : créer un pipeline à l’aide d’Assistant copie de](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapides sur la création d’un pipeline à l’aide d’Assistant de données de copie hello. 
+- Vous pouvez également utiliser hello suivant outils toocreate un pipeline : **portail Azure**, **Visual Studio**, **Azure PowerShell**, **modèle Azure Resource Manager** , **API .NET**, et **API REST**. Consultez [didacticiel d’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions toocreate un pipeline avec une activité de copie. 
 
-Que vous utilisiez des outils ou des API, la création d’un pipeline qui déplace les données d’un magasin de données source vers un magasin de données récepteur implique les étapes suivantes :
+Si vous utilisez hello ou une API, vous effectuez hello suivant les étapes toocreate un pipeline qui déplace la banque de données récepteur tooa du magasin de données à partir des données d’une source :
 
-1. Création de **services liés** pour lier les magasins de données d’entrée et de sortie à votre fabrique de données.
-2. Création de **jeux de données** pour représenter les données d’entrée et de sortie de l’opération de copie. 
+1. Créer **services liés** fabrique de données tooyour toolink les données d’entrée et de sortie magasins.
+2. Créer **datasets** toorepresent d’entrée et sortie l’opération de copie des données pour hello. 
 3. Création d’un **pipeline** avec une activité de copie qui utilise un jeu de données en tant qu’entrée et un jeu de données en tant que sortie. 
 
-Lorsque vous utilisez l’Assistant, les définitions JSON de ces entités Data Factory (services liés, jeux de données et pipeline) sont automatiquement créées pour vous. Lorsque vous utilisez des outils/API (à l’exception de l’API .NET), vous devez définir ces entités Data Factory au format JSON.  Pour consulter un exemple contenant des définitions JSON pour les entités Data Factory utilisées pour copier des données d’un magasin de données SAP HANA local, consultez la section [Exemple JSON : copier des données depuis une instance SAP HANA vers Azure Blob](#json-example-copy-data-from-sap-hana-to-azure-blob) de cet article. 
+Lorsque vous utilisez hello Assistant, les définitions de JSON pour ces entités de fabrique de données (services liés, des datasets et pipeline de hello) sont créées automatiquement pour vous. Lorsque vous utilisez/API des outils (à l’exception des API .NET), vous définissez ces entités de fabrique de données à l’aide du format JSON de hello.  Pour voir un exemple avec des définitions de JSON pour les entités de fabrique de données qui sont utilisées toocopy des données à partir d’un ordinateur local SAP HANA, [exemple de JSON : copier des données à partir de SAP HANA tooAzure Blob](#json-example-copy-data-from-sap-hana-to-azure-blob) section de cet article. 
 
-Les sections suivantes contiennent des informations détaillées sur les propriétés JSON utilisées pour définir les entités Data Factory propres à un magasin de données SAP HANA :
+Hello les sections suivantes fournit des détails sur les propriétés JSON qui sont le magasin de données SAP HANA utilisé toodefine Data Factory entités tooan spécifique :
 
 ## <a name="linked-service-properties"></a>Propriétés du service lié
-Le tableau suivant fournit la description des éléments JSON spécifiques au service lié SAP HANA.
+Hello tableau suivant fournit la description pour JSON éléments tooSAP spécifique HANA de service lié.
 
 Propriété | Description | Valeurs autorisées | Requis
 -------- | ----------- | -------------- | --------
-server | Le nom du serveur sur lequel réside l’instance SAP HANA. Si votre serveur utilise un port personnalisé, spécifiez `server:port`. | string | Oui
+server | Nom du serveur hello sur quel hello SAP HANA instance réside. Si votre serveur utilise un port personnalisé, spécifiez `server:port`. | string | Oui
 authenticationType | Type d'authentification. | chaîne. « Basic » ou « Windows » | Oui 
-username | Nom de l’utilisateur qui a accès au serveur SAP | string | Oui
-password | Mot de passe pour l’utilisateur. | string | Oui
-gatewayName | Nom de la passerelle que le service Data Factory doit utiliser pour se connecter à l’instance SAP HANA locale. | string | Oui
-Encryptedcredential | La chaîne d’informations d’identification chiffrée. | string | Non
+username | Nom d’utilisateur de hello qui a le serveur d’accès toohello SAP | string | Oui
+password | Mot de passe utilisateur de hello. | string | Oui
+gatewayName | Nom de passerelle hello hello service Data Factory doit utiliser l’instance de SAP HANA tooconnect toohello sur site. | string | Oui
+Encryptedcredential | chaîne d’identification de Hello chiffré. | string | Non
 
 ## <a name="dataset-properties"></a>Propriétés du jeu de données
-Pour obtenir une liste complète des sections et propriétés disponibles pour la définition de jeux de données, consultez l’article [Création de jeux de données](data-factory-create-datasets.md). Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
+Pour obtenir une liste complète des sections et les propriétés disponibles pour définir des jeux de données, consultez hello [création de datasets](data-factory-create-datasets.md) l’article. Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
 
-La section **typeProperties** est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement des données dans le magasin de données. Aucune propriété propre à un type n’est prise en charge pour le type de jeu de données SAP HANA **RelationalTable**. 
+Hello **typeProperties** section est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement de hello de données hello dans le magasin de données hello. Aucune propriété spécifique au type pris en charge pour le dataset de SAP HANA hello de type **RelationalTable**. 
 
 
 ## <a name="copy-activity-properties"></a>Propriétés de l’activité de copie
-Pour obtenir la liste complète des sections et des propriétés disponibles pour la définition des activités, consultez l’article [Création de pipelines](data-factory-create-pipelines.md). Les propriétés comme le nom, la description, les tables d'entrée et de sortie et les différentes stratégies sont disponibles pour tous les types d’activités.
+Pour obtenir une liste complète des sections et les propriétés disponibles pour la définition d’activités, consultez hello [création de Pipelines](data-factory-create-pipelines.md) l’article. Les propriétés comme le nom, la description, les tables d'entrée et de sortie et les différentes stratégies sont disponibles pour tous les types d’activités.
 
-En revanche, les propriétés disponibles dans la section **typeProperties** de l’activité varient pour chaque type d’activité. Pour l’activité de copie, elles dépendent des types de sources et récepteurs.
+Tandis que les propriétés disponibles dans hello **typeProperties** section d’activité hello varient selon chaque type d’activité. Pour l’activité de copie, ils varient selon les types de sources et récepteurs hello.
 
-Lorsque la source de l’activité de copie est de type **RelationalSource** (qui inclut SAP HANA), les propriétés suivantes sont disponibles dans la section typeProperties :
+Lorsque la source de l’activité de copie est de type **RelationalSource** (qui inclut SAP HANA), hello propriétés suivantes est disponible dans la section de typeProperties :
 
 | Propriété | Description | Valeurs autorisées | Requis |
 | --- | --- | --- | --- |
-| query | Spécifie la requête SQL pour lire les données de l’instance SAP HANA. | Requête SQL. | Oui |
+| query | Spécifie les hello requête tooread de données SQL à partir de l’instance de SAP HANA hello. | Requête SQL. | Oui |
 
-## <a name="json-example-copy-data-from-sap-hana-to-azure-blob"></a>Exemple JSON : copier des données à partir de SAP HANA vers Azure Blob
-L’exemple suivant présente des exemples de définitions de JSON que vous pouvez utiliser pour créer un pipeline à l’aide du [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), de [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [d’Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Cet exemple indique comment copier des données depuis SAP HANA vers un système Blob Storage Microsoft Azure. Toutefois, les données peuvent être copiées **directement** vers l’un des récepteurs répertoriés [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) , via l’activité de copie d’Azure Data Factory.  
+## <a name="json-example-copy-data-from-sap-hana-tooazure-blob"></a>Exemple de JSON : copier des données à partir de SAP HANA tooAzure Blob
+Hello exemple suivant fournit des exemples de définitions de JSON que vous pouvez utiliser toocreate un pipeline à l’aide de [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md) ou [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Cet exemple montre comment toocopy des données à partir d’un tooan de SAP HANA local stockage d’objets Blob Azure. Toutefois, les données peuvent être copiées **directement** tooany de récepteurs hello répertoriés [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) à l’aide de hello activité de copie dans Azure Data Factory.  
 
 > [!IMPORTANT]
-> Cet exemple fournit des extraits de code JSON. Il n’inclut pas d’instructions détaillées pour la création de la fabrique de données. Les instructions se trouvent dans l’article [Déplacement de données entre des emplacements locaux et le cloud](data-factory-move-data-between-onprem-and-cloud.md) .
+> Cet exemple fournit des extraits de code JSON. Il n’inclut pas d’instructions détaillées pour créer la fabrique de données hello. Les instructions se trouvent dans l’article [Déplacement de données entre des emplacements locaux et le cloud](data-factory-move-data-between-onprem-and-cloud.md) .
 
-L’exemple contient les entités de fabrique de données suivantes :
+exemple Hello a hello suivant des entités de fabrique de données :
 
 1. Un service lié de type [SapHana](#linked-service-properties).
 2. Un service lié de type [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -90,12 +90,12 @@ L’exemple contient les entités de fabrique de données suivantes :
 4. Un [jeu de données](data-factory-create-datasets.md) de sortie de type [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. Un [pipeline](data-factory-create-pipelines.md) avec une activité de copie qui utilise [RelationalSource](#copy-activity-properties) et [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-L’exemple copie les données d’une instance SAP HANA vers un objet blob Azure toutes les heures. Les propriétés JSON utilisées dans ces exemples sont décrites dans les sections suivant les exemples.
+exemple Hello copie toutes les heures des données à partir d’un tooan d’instance SAP HANA blob Azure. propriétés JSON Hello utilisées dans ces exemples sont décrits dans les sections suivantes des exemples de hello.
 
-Dans un premier temps, configurez la passerelle de gestion des données. Les instructions se trouvent dans l’article [Déplacement de données entre des emplacements locaux et le cloud](data-factory-move-data-between-onprem-and-cloud.md) .
+Dans un premier temps, le programme d’installation passerelle de gestion des données hello. instructions de Hello sont Bonjour [déplacement des données entre les emplacements locaux et cloud](data-factory-move-data-between-onprem-and-cloud.md) l’article.
 
 ### <a name="sap-hana-linked-service"></a>Service lié SAP HANA
-Ce service lié relie votre instance SAP HANA à la fabrique de données. La propriété type est définie sur **SapHana**. La section typeProperties fournit des informations de connexion pour l’instance SAP HANA.
+Cela liées à des liens de service votre fabrique de données SAP HANA instance toohello. propriété de type Hello est définie trop**SapHana**. section de typeProperties Hello fournit des informations de connexion pour l’instance de SAP HANA hello.
 
 ```json
 {
@@ -117,7 +117,7 @@ Ce service lié relie votre instance SAP HANA à la fabrique de données. La pro
 ```
 
 ### <a name="azure-storage-linked-service"></a>Service lié Azure Storage
-Le service lié relie votre compte de stockage Azure à la fabrique de données. La propriété de type est définie sur **AzureStorage**. La section typeProperties fournit des informations de connexion pour le compte Azure Storage.
+Cela lié à des liens de service votre fabrique de données toohello compte Azure Storage. propriété de type Hello est définie trop**AzureStorage**. section de typeProperties Hello fournit des informations de connexion pour hello compte de stockage Azure.
 
 ```json
 {
@@ -133,11 +133,11 @@ Le service lié relie votre compte de stockage Azure à la fabrique de données.
 
 ### <a name="sap-hana-input-dataset"></a>Jeu de données d’entrée SAP HANA
 
-Ce jeu de données définit le jeu de données SAP HANA. Vous définissez le type de données du jeu de données Data Factory sur **RelationalTable**. Actuellement, vous ne spécifiez pas de propriétés propres à un type pour un jeu de données SAP HANA. La requête dans la définition de l’activité de copie spécifie les données à lire à partir de l’instance SAP HANA. 
+Ce jeu de données définit un jeu de données SAP HANA hello. Vous définissez type hello du jeu de données de Data Factory hello trop**RelationalTable**. Actuellement, vous ne spécifiez pas de propriétés propres à un type pour un jeu de données SAP HANA. requête Hello dans la définition de l’activité de copie de hello spécifie quel tooread de données à partir de l’instance de SAP HANA hello. 
 
-La définition de la propriété external sur true informe le service Data Factory qu’il s’agit d’un jeu de données qui est externe à la Data Factory et non produit par une activité dans la Data Factory.
+Définition de propriété externe tootrue informe service Data Factory de hello cette table hello est la fabrique de données externe toohello n’est pas générée par une activité dans la fabrique de données hello.
 
-Les propriétés de fréquence et d’intervalle définissent la planification. Dans ce cas, les données sont lues à partir de l’instance SAP HANA toutes les heures. 
+Propriétés de la fréquence et l’intervalle définit la planification de hello. Dans ce cas, les données de salutation sont en lecture à partir de l’instance de SAP HANA hello toutes les heures. 
 
 ```json
 {
@@ -156,7 +156,7 @@ Les propriétés de fréquence et d’intervalle définissent la planification. 
 ```
 
 ### <a name="azure-blob-output-dataset"></a>Jeu de données de sortie d’objet Blob Azure
-Ce jeu de données définit le jeu de données d’objet blob Azure de sortie. La propriété type est définie sur AzureBlob. La section typeProperties indique l’endroit auquel les données copiées à partir de l’instance SAP HANA sont stockées. Les données sont écrites dans un nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). Le chemin d’accès du dossier pour l’objet blob est évalué dynamiquement en fonction de l’heure de début du segment en cours de traitement. Le chemin d’accès du dossier utilise l’année, le mois, le jour et l’heure de l’heure de début.
+Ce jeu de données définit un jeu de données objet Blob Azure hello sortie. propriété de type Hello est définie à tooAzureBlob. section de typeProperties Hello fournit où sont stockées les données hello copiées à partir de l’instance de SAP HANA hello. les données de salutation sont écrit tooa nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). chemin d’accès du dossier Hello pour l’objet blob de hello est évaluée dynamiquement en fonction de l’heure de début hello de tranche hello qui est en cours de traitement. chemin d’accès du dossier Hello utilise l’année, mois, jours et heures des parties de l’heure de début hello.
 
 ```json
 {
@@ -217,7 +217,7 @@ Ce jeu de données définit le jeu de données d’objet blob Azure de sortie. L
 
 ### <a name="pipeline-with-copy-activity"></a>Pipeline avec activité de copie
 
-Le pipeline contient une activité de copie qui est configurée pour utiliser les jeux de données d'entrée et de sortie, et qui est planifiée pour s'exécuter toutes les heures. Dans la définition du pipeline JSON, le type **source** est défini sur **RelationalSource** (pour la source SAP HANA) et le type **sink** est défini sur **BlobSink**. La requête SQL spécifiée pour la propriété **query** sélectionne les données de la dernière heure à copier.
+Hello pipeline contient une activité de copie qui est configuré toouse hello des jeux de données d’entrée et de sortie et est toorun planifiée toutes les heures. Dans la définition JSON du pipeline hello, hello **source** type est défini trop**RelationalSource** (pour une source de SAP HANA) et **récepteur** type est défini trop**BlobSink**. la requête SQL Hello spécifiée pour hello **requête** propriété sélectionne des données de hello Bonjour au-delà de toocopy d’heure.
 
 ```json
 {
@@ -267,12 +267,12 @@ Le pipeline contient une activité de copie qui est configurée pour utiliser le
 
 
 ### <a name="type-mapping-for-sap-hana"></a>Mappage de type pour SAP HANA
-Comme mentionné dans l’article consacré aux [activités de déplacement des données](data-factory-data-movement-activities.md) , l’activité de copie convertit automatiquement des types source en types récepteur à l’aide de l’approche en deux étapes suivante :
+Comme mentionné dans hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, l’activité de copie effectue les conversions de type automatique à partir de types de sources de toosink types avec hello suivant l’approche en deux étapes :
 
-1. Conversion de types natifs source en types .NET
-2. Conversion de types .NET en types récepteur natifs
+1. Convertir à partir de la source native types too.NET type
+2. Conversion de type de récepteur de toonative de type .NET
 
-Lors du déplacement des données à partir de SAP HANA, les mappages suivants sont réalisés des types SAP HANA vers les types .NET.
+Lors du déplacement des données à partir de SAP HANA, hello suivant les mappages est utilisé à partir de types de too.NET de types de SAP HANA.
 
 Type SAP HANA | Type basé sur .NET
 ------------- | ---------------
@@ -297,16 +297,16 @@ SECONDDATE | DateTime
 ## <a name="known-limitations"></a>Limites connues
 Il existe quelques limitations connues lors de la copie des données à partir de SAP HANA :
 
-- Les chaînes NVARCHAR sont tronquées à une longueur maximale de 4 000 caractères Unicode
+- Les chaînes NVARCHAR sont tronquées toomaximum la longueur de 4 000 caractères Unicode
 - SMALLDECIMAL n’est pas pris en charge
 - VARBINARY n’est pas pris en charge
 - Les dates valides sont celles comprises entre 1899/12/30 et 9999/12/31
 
-## <a name="map-source-to-sink-columns"></a>Mapper les colonnes source aux colonnes de récepteur
-Pour en savoir plus sur le mappage de colonnes du jeu de données source à des colonnes du jeu de données récepteur, voir [Mappage des colonnes d’un jeu de données dans Azure Data Factory](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>Mapper les colonnes de source toosink
+toolearn sur le mappage des colonnes dans toocolumns du jeu de données source dans le jeu de données récepteur, consultez [mappage des colonnes de jeu de données dans Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>Lecture renouvelée de sources relationnelles
-Lorsque vous copiez des données à partir de magasins de données relationnels, gardez à l’esprit la répétabilité de l’opération, afin d’éviter des résultats imprévus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est réexécutée d’une manière ou d’une autre, vous devez vous assurer que les mêmes données sont lues et ce, quel que soit le nombre d’exécutions de la tranche. Voir [Lecture renouvelée de sources relationnelles](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)
+Lors de la copie des données à partir de banques de données relationnelles, conserver la répétabilité dans l’esprit tooavoid des résultats inattendus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est exécuté à nouveau dans les deux cas, vous devez toomake vraiment qui hello des mêmes données n’est en lecture aucune question comment plusieurs fois une tranche est exécutée. Voir [Lecture renouvelée de sources relationnelles](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)
 
 ## <a name="performance-and-tuning"></a>Performances et réglage
-Consultez l’article [Guide sur les performances et le réglage de l’activité de copie](data-factory-copy-activity-performance.md) pour en savoir plus sur les facteurs clés affectant les performances de déplacement des données (activité de copie) dans Azure Data Factory et les différentes manières de les optimiser.
+Consultez [copie activité optimiser les performances et Guide d’optimisation](data-factory-copy-activity-performance.md) toolearn sur la clé de facteurs d’affecter les performances de transfert de données (activité de copie) dans Azure Data Factory et de différentes façons toooptimize il.

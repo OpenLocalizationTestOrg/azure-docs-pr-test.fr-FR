@@ -1,5 +1,5 @@
 ---
-title: "Résolution des problèmes de Microsoft Power BI Embedded Preview "
+title: "résolution des problèmes de Power BI incorporée aaaMicrosoft"
 description: "Résolution des problèmes de Microsoft Power BI Embedded Preview "
 services: power-bi-embedded
 documentationcenter: 
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 01/06/2017
 ms.author: asaxton
-ms.openlocfilehash: f406d23e578acc825514aa5bd9eabcbf160bf9ec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a0a25cd73977c0ea0bd6b7c82e215412245771bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-power-bi-embedded-preview-troubleshooting"></a>Résolution des problèmes de Microsoft Power BI Embedded Preview 
-Cet article apporte des réponses concernant la résolution des problèmes de **Power BI Embedded**.
+Cet article fournit des réponses sur la manière de tootroubleshoot **Power BI Embedded**.
 
 <a name="connection-string"/>
 
 ## <a name="setting-sql-server-connection-strings"></a>Définition des chaînes de connexion SQL Server
-Pour définir une chaîne de connexion SQL Server, vous devez suivre un format spécifique. Voici un exemple de chaîne de connexion pour SQL Server.
+tooset une chaîne de connexion SQL Server, vous devez toofollow un format spécifique. Voici un exemple de chaîne de connexion pour SQL Server.
 
 ```
 "Persist Security Info=False;Integrated Security=true;Initial Catalog=Northwind;server=(local)"
 ```
 
-Pour en savoir plus sur les chaînes de connexion SQL Server, consultez les articles suivants :
+toolearn savoir plus sur les chaînes de connexion SQL Server, consultez hello suivant des articles :
 
 * [Chaînes de connexion SQL Server](https://msdn.microsoft.com/library/jj653752.aspx)
 * [SqlConnection.ConnectionString](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnection.connectionstring.aspx)
@@ -41,7 +41,7 @@ Pour en savoir plus sur les chaînes de connexion SQL Server, consultez les arti
 <a name="credentials"/>
 
 ## <a name="setting-credentials"></a>Définition des informations d'identification
-Dans le cas où vous possédez des informations d'identification pour un environnement intermédiaire ou de développement, en particulier un nom d'utilisateur et un mot de passe, vous devrez peut-être mettre à jour les informations d'identification qui correspondent à une solution en production.
+Dans les cas de hello où vous disposez des informations d’identification pour un développement ou un environnement intermédiaire, telles que le nom d’utilisateur et mot de passe, vous devrez peut-être les informations d’identification tooupdate qui correspondent à une solution de production.
 
 ## <a name="see-also"></a>Voir aussi
 * [Prise en main de l’exemple](power-bi-embedded-get-started-sample.md)

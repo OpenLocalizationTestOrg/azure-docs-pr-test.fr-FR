@@ -1,6 +1,6 @@
 ---
-title: "(obsolète) Exemples de services web Machine Learning développés avec R - Azure | Microsoft Docs"
-description: "(obsolète) Recherchez un ensemble pratique d’exemples de services web créés avec du code R et Machine Learning et publié sur Azure Marketplace."
+title: "AAA(deprecated) Machine learning web services exemples générés avec R - Azure | Documents Microsoft"
+description: "(déconseillée) Rechercher un ensemble utile des exemples de services web créés avec le code R et l’apprentissage et publié toohello Azure Marketplace."
 keywords: csharp,code r,exemples de services web
 services: machine-learning
 documentationcenter: 
@@ -17,36 +17,36 @@ ms.date: 01/06/2017
 ms.author: jaymathe
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 9514025db6f812f9e7934ea2d1575e948d6585b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 20b074d38e65aed907d40549bb61f124cb5dfe1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deprecated-web-services-examples-using-r-code-on-azure-machine-learning-and-published-to-microsoft-azure-marketplace"></a>(obsolète) Des exemples de services web utilisant du code R sur Azure Machine Learning sont publiés sur Microsoft Azure Marketplace
+# <a name="deprecated-web-services-examples-using-r-code-on-azure-machine-learning-and-published-toomicrosoft-azure-marketplace"></a>(déconseillée) Exemples d’utilisation de code R dans Azure Machine Learning et publié tooMicrosoft Azure Marketplace de services Web
 
 > [!NOTE]
-> Microsoft DataMarket va être mis hors service, et ces API sont désormais obsolètes. 
+> Hello Microsoft DataMarket a été supprimée et ces API ont été déconseillées. 
 > 
-> Vous trouverez de nombreux exemples d’expériences et d’API dans la [galerie Cortana Intelligence](http://gallery.cortanaintelligence.com). Pour plus d’informations sur la galerie, consultez [Partager et découvrir des solutions dans la galerie Cortana Intelligence](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Vous trouverez plusieurs API et les expériences d’exemple utile Bonjour [Cortana Intelligence galerie](http://gallery.cortanaintelligence.com). Pour plus d’informations sur la galerie de hello, consultez [partager et découvrir des ressources Bonjour Cortana Intelligence galerie](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-Cet article contient des exemples de services web créés à l’aide d’Azure Machine Learning et publiés sur Azure Marketplace. Chaque exemple de service web est associé à un document complet intégrant des exemples de jeux de données pour tester les services et expliquant comment l’utilisateur peut lui-même créer un service similaire. 
+Dans cet article sont web d’exemple services ont été créés à l’aide d’Azure Machine Learning et publié toohello Azure Marketplace. Chaque exemple de service web a un document complet attaché, l’incorporation des jeux de données d’exemple pour le test des services de hello et expliquant comment hello utilisateur peut créer un service similaire eux-mêmes. 
 
-Dans Azure Machine Learning Studio, les utilisateurs peuvent écrire du code R et le publier en quelques clics sous la forme d’un service web afin que d’autres applications et périphériques l’utilisent dans le monde entier. 
+Dans Azure Machine Learning Studio, les utilisateurs peuvent écrire le code R et en quelques clics, publier sous la forme d’un service web pour les applications et les périphériques tooconsume monde hello. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-De la création de simples calculatrices qui fournissent des fonctionnalités de statistiques à la création d’un facteur personnalisé de prédiction d’analyse de sentiment dans l’exploration de textes, les utilisateurs R nouveaux et expérimentés peuvent bénéficier de la facilité avec laquelle les utilisateurs d’Azure Machine Learning exploitent le code R. Bien que ces services web puissent être utilisés par les utilisateurs, via une application mobile ou un site web, l’objectif de ces exemples de services web est également de vous indiquer comment Machine Learning peut exploiter les scripts R à des fins analytiques et peut être utilisé pour créer des services web sur le code R.
+À partir de la production calculatrices simples qui fournissent des fonctionnalités statistique toocreating PRÉDICTEUR sentiment analysis personnalisées d’exploration de données texte, les utilisateurs de R de nouveaux et expérimentés peuvent bénéficier de la facilité hello avec laquelle les utilisateurs d’Azure Machine Learning pour opérationnaliser les R code. Alors que ces services web pouvant être consommées par les utilisateurs, via une application mobile ou un site Web, le but de hello de ces services web exemples est tooshow comment apprentissage peut mettre R scripts à des fins analytiques et être des services web toocreate utilisé sur en haut du code R.
 
 Chaque exemple inclut un exemple C# de consommation du service web.
 
-![Diagramme du code R dans Azure Machine Learning : solutions R pour un usage propriétaire ou publiées sur Azure Marketplace.][1]
+![Diagramme du code R dans Azure Machine Learning : solutions R toohello publié Azure Marketplace ou propriétaires.][1]
 
-Examinez les scénarios suivants.
+Envisagez de hello les scénarios suivants.
 
 ## <a name="scenario-1-generic-model"></a>Scénario 1 : modèle générique
-Un utilisateur travaille avec un modèle générique qui peut être appliqué aux données d'un nouvel utilisateur, par exemple une prévision de données de série temporelles ou une méthode R personnalisée avec des analyses avancées. Cet utilisateur publie le modèle sous forme de service web afin que d'autres utilisent ses données.
+Un utilisateur travaille avec un modèle générique qui peut être des données tooa appliquée du nouvel utilisateur, par exemple une prévision de base de données de série chronologique ou d’une méthode personnalisée de R avec analytique avancée. Cet utilisateur publie hello de modèle comme un service web pour d’autres tooconsume avec leurs données.
 
 * [Classifieur binaire](machine-learning-r-csharp-binary-classifier.md)
 * [Modèle de cluster](machine-learning-r-csharp-cluster-model.md)
@@ -57,22 +57,22 @@ Un utilisateur travaille avec un modèle générique qui peut être appliqué au
 * [Analyse de survie](machine-learning-r-csharp-survival-analysis.md)
 
 ## <a name="scenario-2-trained-model--specific-data"></a>Scénario 2 : modèle formé : données spécifiques
-Un utilisateur dispose de données qui fournissent des prédictions utiles dans le code R. Par exemple : un échantillon volumineux de questionnaires de personnalité regroupés via un algorithme à k moyennes pour prédire le type de personnalité de l’utilisateur ou des données d’enquête de santé qui peuvent être utilisées pour prédire le risque qu’un individu contracte un cancer du poumon, à l’aide d’un package R d’analyse de survie. L'utilisateur publie les données via un service web qui prédit les résultats d'un nouvel utilisateur.
+Un utilisateur a des données qui fournissent des prédictions utiles via le code R, telle qu’un grand échantillon des questionnaires de personnalité en cluster à travers le type de personnalité k-means algorithme toopredict hello d’un utilisateur, ou l’intégrité enquête de données qui peuvent être utilisé toopredict d’un individu risque au cancer du poumon avec un package d’analyse R de survie. utilisateur de Hello publie des données de hello via un service web qui prédit les résultats d’un nouvel utilisateur.
 
 ## <a name="scenario-3-trained-model--generic-data"></a>Scénario 3 : modèle formé : données génériques
-Un utilisateur possède des données génériques (par exemple, un corpus de texte) qui permettent à un service web d’être développé et appliqué de manière générique dans différents types de scénarios et cas d’usage.
+Un utilisateur a des données génériques (par exemple, un corpus de texte) qui permet une toobe de service web créé et appliqué générique sur différents types de scénarios et cas d’usage.
 
 * [Analyse de sentiments basée sur un lexique](machine-learning-r-csharp-lexicon-based-sentiment-analysis.md)
 
 ## <a name="scenario-4-advanced-calculator"></a>Scénario 4 : calculatrice avancée
-Un utilisateur fournit des calculs complexes ou des simulations ne nécessitant aucun modèle formé ni ajustement d’un modèle pour les données de l’utilisateur.
+Un utilisateur fournit des calculs avancés ou simulations qui ne nécessitent pas l’ajustement des données d’un utilisateur toohello modèle ni modèle formé.
 
 * [Test de différence des proportions](machine-learning-r-csharp-difference-in-two-proportions.md)
 * [Normal Distribution Suite](machine-learning-r-csharp-normal-distribution.md)
 * [Suite de distribution binomiale](machine-learning-r-csharp-binomial-distribution.md)
 
 ## <a name="faq"></a>Forum Aux Questions
-Pour les Questions fréquemment posées relatives à l’utilisation du service web ou à la publication sur Marketplace, consultez [ce lien](machine-learning-marketplace-faq.md).
+Pour les questions fréquemment posées sur la consommation de service web de hello ou publication toohello Marketplace, consultez [ici](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-web-service-examples/machine-learning-r-code-options-for-using-and-sharing-cloud.png
 

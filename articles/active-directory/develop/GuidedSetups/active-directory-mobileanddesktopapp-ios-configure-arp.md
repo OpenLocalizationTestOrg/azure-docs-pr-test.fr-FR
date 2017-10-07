@@ -1,5 +1,5 @@
 ---
-title: "Prise en main d’Azure AD v2 iOS - Configuration (ARP)| Microsoft Docs"
+title: aaaAzure AD v2 iOS route - configurer ARP () | Documents Microsoft
 description: "Cet article explique comment les applications iOS (Swift) peuvent appeler une API qui nécessite des jetons d’accès à partir d’un point de terminaison Azure Active Directory v2."
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,27 +13,27 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
-ms.openlocfilehash: 50cb4a2803b6aebe8b39ec9fb02da2293c1065fa
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e5087e13160243d808b1d02771fa66fb332cfad6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-## <a name="add-the-applications-registration-information-to-your-app"></a>Ajouter les informations d’inscription de l’application à votre application
+## <a name="add-hello-applications-registration-information-tooyour-app"></a>Ajouter une application de l’application hello d’enregistrement d’informations tooyour
 
-Dans cette étape, vous devez ajouter l’ID d’application à votre projet :
+Dans cette étape, vous avez besoin d’un projet de tooyour tooadd hello Id d’Application :
 
-1.  Dans `ViewController.swift`, remplacez la ligne commençant par '`let kClientID`' par :
+1.  Dans `ViewController.swift`, remplacez la ligne hello commençant par '`let kClientID`' avec :
 ```swift
-let kClientID = "[Enter the application Id here]"
+let kClientID = "[Enter hello application Id here]"
 ```
 <!-- Workaround for Docs conversion bug -->
 <ol start="2">
 <li>
-Maintenez la touche Ctrl enfoncée et cliquez sur <code>Info.plist</code> pour faire apparaître le menu contextuel, puis cliquez sur : <code>Open As</code> > <code>Source Code</code>
+Touche CTRL enfoncée et cliquez sur <code>Info.plist</code> toobring haut du menu contextuel de hello, puis cliquez sur : <code>Open As</code>> <code>Source Code</code>
 </li>
 <li>
-Sous le nœud racine <code>dict</code>, ajoutez le code suivant :
+Sous hello <code>dict</code> nœud racine, ajoutez hello :
 </li>
 </ol>
 
@@ -47,7 +47,7 @@ Sous le nœud racine <code>dict</code>, ajoutez le code suivant :
         <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
         <key>CFBundleURLSchemes</key>
         <array>
-            <string>msal[Enter the application Id here]</string>
+            <string>msal[Enter hello application Id here]</string>
             <string>auth</string>
         </array>
     </dict>

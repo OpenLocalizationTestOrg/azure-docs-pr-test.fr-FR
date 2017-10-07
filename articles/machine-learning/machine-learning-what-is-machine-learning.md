@@ -1,6 +1,6 @@
 ---
-title: "Qu’est-ce que l’apprentissage automatique (Machine Learning) sur Azure ? | Microsoft Docs"
-description: "Explique les concepts de base de l’apprentissage automatique dans le cloud, décrit à quoi il sert, et en définit les principaux termes."
+title: "aaaWhat est Machine Learning dans Azure ? | Microsoft Docs"
+description: "Explique les concepts de base de l’apprentissage automatique dans le cloud de hello et décrit ce que vous pouvez l’utiliser pour définit des termes du contrat de machine learning."
 keywords: "qu’est-ce que l’apprentissage automatique,termes de l’apprentissage automatique,prédictive,qu’est-ce que l’analyse prédictive,termes de l’apprentissage automatique"
 services: machine-learning
 documentationcenter: 
@@ -15,49 +15,49 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/12/2017
 ms.author: cgronlun
-ms.openlocfilehash: 179a0d3696c6044ffb5b9e377effa30dda54ba7f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4cd9ad0a0fd9c573e78f28603bb9bf7b361d3faa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-machine-learning-in-the-azure-cloud"></a>Présentation de Machine Learning dans le cloud Azure
+# <a name="introduction-toomachine-learning-in-hello-azure-cloud"></a>Introduction tooMachine de formation Bonjour Azure cloud
 
 ## <a name="what-is-machine-learning"></a>L’apprentissage automatique - De quoi s’agit-il ?
-Machine Learning est une technique de science des données qui permet aux ordinateurs d’utiliser des données existantes afin de prévoir les tendances, les résultats et les comportements futurs. Grâce à Machine Learning, les ordinateurs apprennent sans être explicitement programmés. 
+Apprentissage est une technique de science des données qui permet des tendances, les résultats et les ordinateurs toouse existant tooforecast futurs comportements de données. Grâce à Machine Learning, les ordinateurs apprennent sans être explicitement programmés. 
 
-Le Machine Learning est considéré comme une sous-catégorie d’intelligence artificielle (IA). Les prévisions ou prédictions générées à partir de Machine Learning peuvent rendre les applications et les appareils plus intelligents. Lorsque vous faites vos achats en ligne, l’apprentissage automatique permet de recommander d’autres produits que vous êtes susceptible d’aimer, en fonction de ce que vous avez acheté. Lorsque vous utilisez votre carte de crédit, l’apprentissage automatique compare la transaction à une base de données de transactions et aide la banque à détecter des fraudes. Lorsque votre robot aspirateur nettoie une pièce, l’apprentissage automatique l’aide à déterminer si le travail est terminé.
+Le Machine Learning est considéré comme une sous-catégorie d’intelligence artificielle (IA). Les prévisions ou prédictions générées à partir de Machine Learning peuvent rendre les applications et les appareils plus intelligents. Lorsque vous faites vos achats en ligne, l’apprentissage automatique permet de recommander d’autres produits que vous êtes susceptible d’aimer, en fonction de ce que vous avez acheté. Lorsque votre carte de crédit est passée, apprentissage compare hello transaction tooa base de données de transactions, et vous aide à détecter une fraude. Lorsque votre robot aspirateur vacuums une salle, apprentissage il permet de décider si le travail de hello est effectuée.
 
-Pour une vue d’ensemble rapide, visionnez la série de vidéos [Science des données pour les débutants](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md). Sans utiliser de jargon ou de mathématiques, la série Science des données pour les débutants présente l’apprentissage automatique et décrit un modèle prédictif simple.
+Pour une vue d’ensemble, essayez de série de vidéos hello [Science des données pour les débutants](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md). Sans utiliser de jargon ou de mathématiques, la série Science des données pour les débutants présente l’apprentissage automatique et décrit un modèle prédictif simple.
 
-## <a name="what-is-machine-learning-in-the-microsoft-azure-cloud"></a>Présentation de l’apprentissage automatique dans le cloud Microsoft Azure
+## <a name="what-is-machine-learning-in-hello-microsoft-azure-cloud"></a>Quelle est la Machine Learning Bonjour cloud Microsoft Azure ?
 
-![L’apprentissage automatique - De quoi s’agit-il ? Flux de travail de base pour configurer l'analyse prédictive dans Azure Machine Learning.](./media/machine-learning-what-is-machine-learning/machine-learning-service-parts-and-workflow.png)
+![L’apprentissage automatique - De quoi s’agit-il ? Analytique de prédictive toooperationalize flux de travail sur Azure Machine Learning.](./media/machine-learning-what-is-machine-learning/machine-learning-service-parts-and-workflow.png)
 
-Azure Machine Learning est un service d’analyse prédictive sur le cloud qui permet de créer et de déployer rapidement des modèles prédictifs sous forme de solutions d’analyse.
+Azure Machine Learning est un service cloud prédictive analytique qui rend possible tooquickly créer et déployer des modèles prédictifs en tant que solutions d’analytique.
 
-Vous pouvez exploiter une bibliothèque d’algorithmes prêts à l’emploi, les utiliser pour créer des modèles sur un ordinateur connecté à Internet et déployer votre solution prédictive rapidement. Commencez avec des solutions et des exemples prêts à l’emploi dans la [galerie Cortana Intelligence](https://gallery.cortanaintelligence.com/).
+Vous pouvez travailler à partir d’une bibliothèque de prêt à l’emploi des algorithmes, utilisez-les toocreate modèles sur un ordinateur connecté à internet et déployer votre solution prédictive rapidement. Démarrer à partir des exemples de prêt à l’emploi et des solutions hello [Cortana Intelligence galerie](https://gallery.cortanaintelligence.com/).
 
-Azure Machine Learning fournit non seulement des outils pour modéliser des analyses prédictives, mais également un service entièrement pris en charge, que vous pouvez utiliser pour déployer vos modèles prédictifs sous la forme de services web prêts à l’emploi.
+Azure Machine Learning fournit non seulement des outils analytique prédictive de toomodel, mais il fournit également un service entièrement géré vous pouvez utiliser des modèles prédictifs toodeploy en tant que services web de prêt à consommer.
 
 ## <a name="what-is-predictive-analytics"></a>Qu’est-ce qu’une analyse prédictive ?
-L’analyse prédictive utilise des formules mathématiques, appelées algorithmes, qui analysent les données historiques ou actuelles afin d’identifier des schémas ou des tendances permettant de prévoir des événements futurs.
+Analytique prédictive utilise formules mathématiques appelés algorithmes qui analysent les historiques ou de modèles de tooidentify de données actuelle ou de tendances dans les événements de commande tooforecast futures.
 
-## <a name="tools-to-build-complete-machine-learning-solutions-in-the-cloud"></a>Outils de génération de solutions complètes d’apprentissage automatique sur le cloud
-Azure Machine Learning propose tout ce dont vous avez besoin pour créer des solutions d’analyse prédictive complètes dans le cloud : une bibliothèque d’algorithmes volumineuse, un environnement pour générer des modèles et un outil pour déployer facilement votre modèle sous la forme d’un service web. Créez, testez, rendez opérationnels et gérez rapidement des modèles prédictifs.
+## <a name="tools-toobuild-complete-machine-learning-solutions-in-hello-cloud"></a>Outils toobuild complète apprentissage solutions dans le cloud de hello
+Azure Machine Learning a tout ce que vous devez toocreate analytique prédictive complète des solutions dans le cloud de hello, à partir d’une bibliothèque d’algorithmes volumineux, studio tooa pour générer des modèles, tooan facilement toodeploy votre modèle en tant qu’un service web. Créez, testez, rendez opérationnels et gérez rapidement des modèles prédictifs.
 
 ### <a name="machine-learning-studio-create-predictive-models"></a>Machine Learning Studio : création de modèles prédictifs
 Dans [Machine Learning Studio](machine-learning-what-is-ml-studio.md), vous pouvez créer rapidement des modèles prédictifs, en déplaçant les modules et en les connectant les uns aux autres. Vous pouvez essayer différentes combinaisons et les [tester gratuitement](https://studio.azureml.net/?selectAccess=true&o=2).
 
-* Dans la [galerie Cortana Intelligence](machine-learning-gallery-how-to-use-contribute-publish.md), vous pouvez tester les solutions d’analyse créées par d’autres personnes ou créer la vôtre. Publiez vos questions ou commentaires sur vos expériences à l’intention de la communauté, ou partagez des liens vers des expériences via les réseaux sociaux tels que LinkedIn et Twitter.
+* Dans la [galerie Cortana Intelligence](machine-learning-gallery-how-to-use-contribute-publish.md), vous pouvez tester les solutions d’analyse créées par d’autres personnes ou créer la vôtre. Publier des questions ou des commentaires à propos de la Communauté de toohello expériences ou partager tooexperiments liens via des réseaux sociaux tels que LinkedIn et Twitter.
 
   ![Essayez des expériences prédictives ou proposez la vôtre dans la galerie Azure Cortana Intelligence](./media/machine-learning-what-is-machine-learning/machine-learning-cortana-intelligence-gallery.png)
-* Utilisez une volumineuse bibliothèque d' [algorithmes et de modules Machine Learning](https://msdn.microsoft.com/library/azure/f5c746fd-dcea-4929-ba50-2a79c4c067d7) dans Machine Learning Studio afin de lancer vos modèles prédictifs. Faites votre choix parmi les exemples d’expérience, les packages R et Python, ainsi que les meilleurs algorithmes Microsoft tels que Xbox et Bing. Développez les modules Studio avec vos propres scripts personnalisés [R](machine-learning-extend-your-experiment-with-r.md) et [Python](machine-learning-execute-python-scripts.md).
+* Utiliser une grande bibliothèque de [algorithmes d’apprentissage automatique et des modules](https://msdn.microsoft.com/library/azure/f5c746fd-dcea-4929-ba50-2a79c4c067d7) dans Machine Learning Studio toojump-démarrer vos modèles prédictifs. Faites votre choix parmi les exemples d’expérience, les packages R et Python, ainsi que les meilleurs algorithmes Microsoft tels que Xbox et Bing. Développez les modules Studio avec vos propres scripts personnalisés [R](machine-learning-extend-your-experiment-with-r.md) et [Python](machine-learning-execute-python-scripts.md).
 
   ![Qu’est-ce que l’analyse prédictive : exemple d’une expérience d’analyse prédictive dans Azure Machine Learning Studio](./media/machine-learning-what-is-machine-learning/azure-machine-learning-studio-predictive-score-experiment.png)
 
 ### <a name="operationalize-predictive-analytics-solutions-by-publishing-your-own"></a>Rendez des solutions d’analyse prédictive opérationnelles en publiant vos propres solutions
-Les didacticiels suivants vous montrent comment faire fonctionner vos modèles d’analyse prédictive :
+Hello didacticiels suivants vous montrent comment toooperationalize vos modèles prédictifs analytique :
 
  * [Déployez des services web](machine-learning-publish-a-machine-learning-web-service.md)
  * [Reformez des modèles via les API](machine-learning-retrain-models-programmatically.md)
@@ -66,51 +66,51 @@ Les didacticiels suivants vous montrent comment faire fonctionner vos modèles d
  * [Utilisez des services web](machine-learning-consume-web-services.md)
 
 ## <a name="key-machine-learning-terms-and-concepts"></a>Concepts clé et terminologie de l’apprentissage automatique
-Les termes de l’apprentissage automatique peuvent prêter à confusion. Vous trouverez ici la définition des termes clés pour vous aider. Utilisez les commentaires suivants pour nous indiquer ceux dont vous souhaiteriez lire la définition.
+Les termes de l’apprentissage automatique peuvent prêter à confusion. Voici les définitions des termes clés toohelp vous. Utilisez les commentaires suivant tootell nous sur n’importe quel autre terme que vous aimeriez défini.
 
 ### <a name="data-exploration-descriptive-analytics-and-predictive-analytics"></a>Exploration des données, analyse descriptive et analyse prédictive
 
-**exploration des données** désigne le processus de collecte des informations sur un jeu volumineux de données, souvent non structurées, afin d’y trouver des caractéristiques utiles pour une analyse ciblée.
+**Exploration de données** est hello les processus de collecte des informations sur un jeu de données volumineux et souvent non structurée dans les caractéristiques de toofind de commande pour l’analyse approfondie.
 
-**Data mining** fait référence à l'exploration automatisée des données.
+**Exploration de données** fait référence tooautomated l’exploration de données.
 
-**analyse descriptive** est le processus d'analyse d'un jeu de données afin de synthétiser ce qui s'est passé. La majeure partie des analyses commerciales, comme les rapports de ventes, les mesures du web et l’analyse de réseaux sociaux, est descriptive.
+**Analytique descriptif** consiste à hello analyse un jeu de données dans l’ordre toosummarize que s’est-il passé. Hello grande majorité des analytique d’entreprise - tels que les rapports de ventes, les métriques de web et analyse de réseaux sociaux - sont descriptifs.
 
-**analyse prédictive** est le processus de création de modèles à partir de données historiques ou actuelles afin de prévoir les futurs résultats.
+**Analytique prédictive** est hello les processus de création de modèles à partir des données historiques ou actuelles dans l’ordre tooforecast des résultats futurs.
 
 ### <a name="supervised-and-unsupervised-learning"></a>Apprentissage supervisé et non supervisé
- **apprentissage supervisé** sont formés avec des données étiquetées, c'est-à-dire des données composées d'exemples de réponses souhaitées. Par exemple, un modèle qui identifie l’utilisation frauduleuse d’une carte de crédit exploite un jeu de données qui contient des points de données indiquant des utilisations frauduleuses et valides connues. La plupart des apprentissages automatiques sont supervisés.
+ **Supervisé learning** algorithmes sont formés avec des données étiquetées : en d’autres termes, données comprenant des exemples de réponses hello souhaités. Par exemple, un modèle qui identifie l’utilisation frauduleuse d’une carte de crédit exploite un jeu de données qui contient des points de données indiquant des utilisations frauduleuses et valides connues. La plupart des apprentissages automatiques sont supervisés.
 
- L’**apprentissage non supervisé** est utilisé sur les données sans étiquette. L’objectif est alors de trouver des relations entre les données. Par exemple, vous voulez trouver des groupes de données démographiques de clients avec des habitudes d’achat similaires.
+ **Utiliser sans surveillance learning** est utilisée sur les données sans légendes, et hello vise toofind des relations dans les données de salutation. Par exemple, vous pourriez toofind les regroupements des données démographiques, avec ses habitudes d’achat similaires.
 
 ### <a name="model-training-and-evaluation"></a>Formation et évaluation du modèle
-Un modèle d’apprentissage automatique est une abstraction de la question à laquelle vous essayez de répondre ou le résultat que vous souhaitez prédire. Les modèles sont formés et évalués à partir de données existantes.
+Un modèle d’apprentissage est une abstraction de question hello vous essayez de tooanswer ou hello que vous vouliez toopredict. Les modèles sont formés et évalués à partir de données existantes.
 
 #### <a name="training-data"></a>Données de formation
-Lorsque vous formez un modèle, vous utilisez un jeu de données connu, puis vous adaptez le modèle en fonction des caractéristiques des données pour obtenir la réponse la plus précise. Dans Azure Machine Learning, un modèle est créé à partir d’un module d’algorithme qui traite les données d’apprentissage et à partir de modules fonctionnels, tels qu’un module d’évaluation.
+Lorsque vous l’apprentissage d’un modèle à partir des données, vous utilisez un jeu de données connu et réglages toohello modèle est basé sur hello données caractéristiques tooget hello plus précises la réponse. Dans Azure Machine Learning, un modèle est créé à partir d’un module d’algorithme qui traite les données d’apprentissage et à partir de modules fonctionnels, tels qu’un module d’évaluation.
 
-Dans le cadre d’un apprentissage supervisé, si vous formez un modèle de détection des fraudes, vous utilisez un ensemble de transactions étiquetées comme frauduleuses ou valides. Vous fractionnez votre jeu de données de manière aléatoire et vous en utilisez une partie pour former le modèle et l’autre pour tester ou évaluer le modèle.
+Dans le cadre d’un apprentissage supervisé, si vous formez un modèle de détection des fraudes, vous utilisez un ensemble de transactions étiquetées comme frauduleuses ou valides. Vous fractionner votre jeu de données de façon aléatoire et utilisez le modèle tootrain hello et partie tootest ou évaluez hello modèle.
 
 #### <a name="evaluation-data"></a>Données d’évaluation
-Une fois que votre modèle est formé, évaluez-le en utilisant les autres données de test. Vous utilisez des données dont vous connaissez déjà les résultats afin de pouvoir déterminer si votre modèle prédit correctement.
+Une fois que vous avez un modèle formé, évaluer le modèle hello à l’aide de hello restant des données de test. Utilisation des données que vous connaissez déjà les résultats hello, vous pouvez déterminer si votre modèle prédit correctement.
 
 ## <a name="other-common-machine-learning-terms"></a>Autres termes courants relatifs à l’apprentissage automatique
-* **Algorithme**: ensemble de règles utilisées pour résoudre les problèmes de traitement des données, de calcul mathématique ou de déduction automatisée.
+* **algorithme**: un ensemble de règles autonomes utilisé problèmes toosolve via le traitement des données, math ou raisonnement automatisée.
 * **Détection d’anomalies**: modèle qui signale les valeurs ou les événements hors normes et qui vous permet d’identifier les problèmes. Par exemple, la détection de fraudes à la carte de crédit consiste à rechercher les achats inhabituels.
 * **Données catégorielles**: données organisées en catégories et pouvant être divisées en groupes. Par exemple, un jeu de données catégorielles relatif à des véhicules peut spécifier l’année, la marque, le modèle et le prix.
 * **Classification**: modèle d'organisation des points de données en catégories basées sur un jeu de données dont les groupes de catégorie sont déjà connus.
-* **Conception de caractéristiques**: processus d'extraction ou de sélection des caractéristiques liées à un jeu de données afin d'améliorer ce dernier et les résultats. Par exemple, les données relatives aux prix des billets d’avion peuvent être améliorées par jour de la semaine et par période de vacance. Consultez la page [Ingénierie et sélection de caractéristiques dans Azure Machine Learning](machine-learning-feature-selection-and-engineering.md).
-* **Module**: élément fonctionnel d’un modèle Machine Learning Studio, comme le module Entrer des données, qui permet d’entrer et de modifier de petits jeux de données. Un algorithme est également un type de module dans Machine Learning Studio.
-* **Modèle**: dans le cadre d’un apprentissage supervisé, un modèle est le résultat d’une expérience d’apprentissage automatique, comprenant des données de formation, un module d’algorithme et des modules fonctionnels, comme un module d’évaluation.
-* **Données numériques**: données qui ont une signification sous forme de mesures (données continues) ou de compteurs (données discrètes). Également appelées *données quantitatives*.
-* **Partition**: méthode permettant de diviser les données en échantillons. Consultez la page [Partition et échantillon](https://msdn.microsoft.com/library/azure/dn905960.aspx) pour plus d'informations.
-* **Prédiction**: prévision d'une valeur ou de plusieurs valeurs, à partir d'un modèle d'apprentissage automatique. On rencontre parfois le terme « note prédite ». Toutefois, les notes prédites ne sont pas le résultat final d’un modèle. L’évaluation du modèle suit la note.
-* **Régression**: modèle permettant de prédire une valeur en fonction de variables indépendantes, comme la prédiction du prix d’une voiture en fonction de son année et de sa marque.
-* **Note**: valeur prédite générée à partir d'un modèle formé de régression ou de classification, à l'aide du module [Noter le modèle](https://msdn.microsoft.com/library/azure/dn905995.aspx) dans Machine Learning Studio. Les modèles de classification retournent également une note pour la probabilité de la valeur prédite. Une fois que vous avez généré les notes à partir d'un modèle, vous pouvez évaluer la précision du modèle à l'aide du module [Évaluer le modèle](https://msdn.microsoft.com/library/azure/dn905915.aspx).
-* **Échantillon**: partie d'un jeu de données destinée à être représentative de l'ensemble. Les échantillons peuvent être sélectionnés de manière aléatoire ou sur la base de fonctionnalités spécifiques du jeu de données.
+* **l’équipe d’ingénierie de fonctionnalité**: processus hello d’extraction ou de la sélection des fonctionnalités de données relatives aux tooa définies dans l’ordre tooenhance hello du jeu de données et améliorent les résultats. Par exemple, les données de billet d’avion pourrait être améliorées par jours de semaine de hello et jours fériés. Consultez la page [Ingénierie et sélection de caractéristiques dans Azure Machine Learning](machine-learning-feature-selection-and-engineering.md).
+* **module**: un composant fonctionnel dans un modèle de Machine Learning Studio, comme module d’entrer des données hello qui permet d’entrer et de modifier de petits jeux de données. Un algorithme est également un type de module dans Machine Learning Studio.
+* **modèle**: un modèle d’apprentissage supervisé est hello produit une expérience constitué de données d’apprentissage, un module d’algorithme et les modules fonctionnelles, comme un module de modèle de Score d’apprentissage.
+* **Données numériques**: données qui ont une signification sous forme de mesures (données continues) ou de compteurs (données discrètes). Également appelée tooas *données quantitatives*.
+* **partition**: hello méthode par laquelle vous divisez les données en exemples. Consultez la page [Partition et échantillon](https://msdn.microsoft.com/library/azure/dn905960.aspx) pour plus d'informations.
+* **Prédiction**: prévision d'une valeur ou de plusieurs valeurs, à partir d'un modèle d'apprentissage automatique. Vous pouvez également voir hello terme « score prédit. » Toutefois, les scores prédits ne sont pas finale de hello d’un modèle. Une évaluation du modèle de hello suit le score de hello.
+* **régression**: un modèle pour prédire une valeur basée sur des variables indépendantes, telles que la prédiction de prix hello d’une voiture en fonction de son année marque.
+* **score**: une valeur prédite générée à partir d’un modèle de classification ou de régression formé, à l’aide de hello [module Score Model](https://msdn.microsoft.com/library/azure/dn905995.aspx) dans Machine Learning Studio. Modèles de classification retournent également un score de probabilité hello Hello a prédit la valeur. Une fois que vous avez généré des scores à partir d’un modèle, vous pouvez évaluer la précision du modèle hello à l’aide de hello [module d’évaluer le modèle](https://msdn.microsoft.com/library/azure/dn905915.aspx).
+* **exemple**: une partie d’un jeu de données destinée toobe représentatif de hello ensemble. Exemples peuvent être sélectionnés de manière aléatoire ou basés sur les fonctionnalités spécifiques hello du jeu de données.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez apprendre les principes fondamentaux de l’analyse prédictive et de l’apprentissage automatique à l’aide d’un [didacticiel](machine-learning-create-experiment.md) et avec la [génération à partir d’exemples](machine-learning-sample-experiments.md).  
+Vous pouvez hello principes fondamentaux d’analytique prédictive et d’apprentissage à l’aide un [didacticiel pas à pas](machine-learning-create-experiment.md) et par [génération sur des échantillons](machine-learning-sample-experiments.md).  
 
 <!-- Module References -->
 [learning-with-counts]: https://msdn.microsoft.com/library/azure/81c457af-f5c0-4b2d-922c-fdef2274413c/

@@ -1,6 +1,6 @@
 ---
-title: "Installer MongoDB sur une machine virtuelle Linux à l’aide d’Azure CLI 1.0 | Microsoft Docs"
-description: "Découvrez comment installer et configurer MongoDB sur une machine virtuelle Linux dans Azure à l’aide du modèle de déploiement de Resource Manager."
+title: "aaaInstall MongoDB sur un VM Linux à l’aide de hello Azure CLI 1.0 | Documents Microsoft"
+description: "Découvrez comment tooinstall et configurer MongoDB sur un ordinateur virtuel de Linux dans Azure à l’aide du modèle de déploiement du Gestionnaire de ressources hello."
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: c97ade0a3d95824f723aad55776de861fe49441f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4ce21a2c63da7d00a4422e0a6766e2103e7f12d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-install-and-configure-mongodb-on-a-linux-vm-using-the-azure-cli-10"></a>Guide pratique d’installation et de configuration de MongoDB sur une machine virtuelle Linux avec Azure CLI 1.0
-[MongoDB](http://www.mongodb.org) est une base de données NoSQL open-source qui offre des performances élevées. Cet article vous montre comment installer et configurer MongoDB sur une machine virtuelle Linux dans Azure à l’aide du modèle de déploiement de Resource Manager. Présentations d’exemples détaillant comment :
+# <a name="how-tooinstall-and-configure-mongodb-on-a-linux-vm-using-hello-azure-cli-10"></a>Comment tooinstall et configurer MongoDB sur un VM Linux à l’aide de hello Azure CLI 1.0
+[MongoDB](http://www.mongodb.org) est une base de données NoSQL open-source qui offre des performances élevées. Cet article vous montre comment tooinstall et configurer MongoDB sur un VM Linux dans Azure à l’aide du modèle de déploiement du Gestionnaire de ressources hello. Présentations d’exemples détaillant comment :
 
 * [Installer et configurer une instance MongoDB de base manuellement](#manually-install-and-configure-mongodb-on-a-vm)
 * [Création d'une instance MongoDB de base à l'aide d'un modèle Resource Manager](#create-basic-mongodb-instance-on-centos-using-a-template)
 * [Créer un cluster partitionné MongoDB complexe avec jeux de réplicas à l’aide d’un modèle Resource Manager](#create-a-complex-mongodb-sharded-cluster-on-centos-using-a-template)
 
 
-## <a name="cli-versions-to-complete-the-task"></a>Versions de l’interface de ligne de commande permettant d’effectuer la tâche
-Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) :
+## <a name="cli-versions-toocomplete-hello-task"></a>Tâche de hello CLI versions toocomplete
+Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes :
 
-- Azure CLI 1.0 : notre interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager (cet article)
-- [Azure CLI 2.0](create-cli-complete-nodejs.md) : notre interface de ligne de commande nouvelle génération pour le modèle de déploiement Resource Manager
+- CLI Azure 1.0 – notre CLI pour hello classique et la ressource gestion des modèles de déploiement (cet article)
+- [Azure CLI 2.0](create-cli-complete-nodejs.md) -notre prochaine génération CLI pour le modèle de déploiement de gestion de ressources hello
 
 
 ## <a name="manually-install-and-configure-mongodb-on-a-vm"></a>Installer et configurer MongoDB manuellement sur une machine virtuelle
-MongoDB [propose des instructions d’installation](https://docs.mongodb.com/manual/administration/install-on-linux/) pour les distributions Linux, notamment Red Hat / CentOS, SUSE, Ubuntu et Debian. L’exemple suivant crée une machine virtuelle *CentOS* à l’aide d’une clé SSH stockée sur *~/.ssh/id_rsa.pub*. Répondez aux invites pour le nom de compte de stockage, le nom DNS et les informations d’identification d’administrateur :
+MongoDB [propose des instructions d’installation](https://docs.mongodb.com/manual/administration/install-on-linux/) pour les distributions Linux, notamment Red Hat / CentOS, SUSE, Ubuntu et Debian. Hello exemple suivant crée un *CentOS* machine virtuelle à l’aide d’une clé SSH stockée sur *~/.ssh/id_rsa.pub*. Hello de réponse vous invite à entrer de nom de compte de stockage, nom DNS et informations d’identification d’administrateur :
 
 ```azurecli
 azure vm quick-create \
@@ -44,19 +44,19 @@ azure vm quick-create \
     --ssh-publickey-file ~/.ssh/id_rsa.pub 
 ```
 
-Connectez-vous à la machine virtuelle à l’aide de l’adresse IP publique affichée à la fin de l’étape de création de machine virtuelle précédente :
+Session toohello machine virtuelle à l’aide d’adresse IP publique hello à fin hello Hello précédant l’étape de création de la machine virtuelle :
 
 ```bash
 ssh azureuser@40.78.23.145
 ```
 
-Pour ajouter les sources d’installation pour MongoDB, créez un fichier de référentiel **yum** comme suit :
+sources d’installation tooadd hello pour MongoDB, créer un **yum** fichier référentiel comme suit :
 
 ```bash
 sudo touch /etc/yum.repos.d/mongodb-org-3.4.repo
 ```
 
-Ouvrez le fichier de référentiel MongoDB à modifier. Ajoutez les lignes suivantes :
+Ouvrir le fichier de référentiel de MongoDB hello pour la modification. Ajoutez hello lignes suivantes :
 
 ```sh
 [mongodb-org-3.4]
@@ -73,26 +73,26 @@ Installez MongoDB à l’aide de **yum** comme suit :
 sudo yum install -y mongodb-org
 ```
 
-Par défaut, SELinux est appliqué sur les images CentOS, ce qui vous empêche d’accéder à MongoDB. Installez les outils de gestion de stratégie et configurez SELinux afin d’autoriser MongoDB fonctionner sur le port TCP 27017 par défaut, comme suit. 
+Par défaut, SELinux est appliqué sur les images CentOS, ce qui vous empêche d’accéder à MongoDB. Installer les outils de gestion de stratégie et configurez SELinux tooallow MongoDB toooperate sur son 27017 le port TCP par défaut comme suit. 
 
 ```bash
 sudo yum install -y policycoreutils-python
 sudo semanage port -a -t mongod_port_t -p tcp 27017
 ```
 
-Démarrez le service MongoDB comme suit :
+Démarrez le service de MongoDB hello comme suit :
 
 ```bash
 sudo service mongod start
 ```
 
-Vérifiez l’installation de MongoDB en vous connectant à l’aide du client `mongo` local :
+Vérifier l’installation de MongoDB hello en vous connectant à l’aide de hello local `mongo` client :
 
 ```bash
 mongo
 ```
 
-Testez maintenant l’instance MongoDB en ajoutant des données, puis en recherchant :
+Instance de MongoDB hello à présent tester en ajoutant des données et de recherche puis :
 
 ```sh
 > db
@@ -103,7 +103,7 @@ test
 > exit
 ```
 
-Si vous le souhaitez, configurez MongoDB pour démarrer automatiquement lors du redémarrage du système :
+Si vous le souhaitez, configurer automatiquement MongoDB toostart lors d’un redémarrage du système :
 
 ```bash
 sudo chkconfig mongod on
@@ -111,11 +111,11 @@ sudo chkconfig mongod on
 
 
 ## <a name="create-basic-mongodb-instance-on-centos-using-a-template"></a>Créeation d’une instance MongoDB de base sur CentOS à l’aide d’un modèle
-Vous pouvez créer une instance MongoDB de base sur une machine virtuelle CentOS unique en utilisant le modèle de démarrage rapide Azure suivant à partir de GitHub. Ce modèle utilise l’extension de script personnalisé pour Linux pour ajouter un référentiel `yum` à votre nouvelle machine virtuelle CentOS, puis installer MongoDB.
+Vous pouvez créer une instance de MongoDB base sur une machine virtuelle CentOS unique à l’aide de hello suivant le modèle de démarrage rapide Azure à partir de GitHub. Ce modèle utilise l’extension de Script personnalisé hello pour Linux tooadd un `yum` référentiel tooyour nouveau CentOS VM et installez-les MongoDB.
 
 * [Instance MongoDB de base sur CentOS](https://github.com/Azure/azure-quickstart-templates/tree/master/mongodb-on-centos) -https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-centos/azuredeploy.json
 
-L’exemple suivant crée un groupe de ressources nommé `myResourceGroup` dans la région `eastus`. Saisissez vos propres valeurs, comme suit :
+Hello exemple suivant crée un groupe de ressources avec le nom de hello `myResourceGroup` Bonjour `eastus` région. Saisissez vos propres valeurs, comme suit :
 
 ```azurecli
 azure group create \
@@ -125,27 +125,27 @@ azure group create \
 ```
 
 > [!NOTE]
-> L’interface de ligne de commande Azure vous renvoie à une invite quelques secondes après la création du déploiement, mais l’installation et la configuration prennent quelques minutes. Vérifiez l’état du déploiement avec `azure group deployment show myResourceGroup`, en saisissant le nom de votre groupe de ressources. Attendez que **ProvisioningState** (État d’approvisionnement) indique *Succeeded* (Opération réussie) avant d’essayer d’utiliser SSH pour la machine virtuelle.
+> Hello CLI d’Azure vous renvoie tooa invite quelques secondes de la création du déploiement de hello, mais les installation hello et configuration prend quelques minutes toocomplete. Vérifier l’état de hello de déploiement hello avec `azure group deployment show myResourceGroup`, entrez le nom hello de votre groupe de ressources en conséquence. Attendez que hello **ProvisioningState** montre *Succeeded* avant toohello tooSSH lors de la machine virtuelle.
 
-Une fois le déploiement terminé, connectez-vous par SSH à la machine virtuelle. Obtenez l’adresse IP de votre machine virtuelle à l’aide de la commande `azure vm show` comme dans l’exemple suivant :
+Une fois le déploiement de hello terminée, SSH toohello machine virtuelle. Obtenir une adresse IP de hello de votre machine virtuelle à l’aide de hello `azure vm show` commande comme hello l’exemple suivant :
 
 ```azurecli
 azure vm show --resource-group myResourceGroup --name myLinuxVM
 ```
 
-Vers la fin de la sortie, l’adresse IP publique s’affiche. Connectez-vous par SSH à votre machine virtuelle avec l’adresse IP de votre machine virtuelle :
+Près de fin hello de sortie de hello, adresse IP publique de hello s’affiche. SSH tooyour machine virtuelle avec l’adresse IP de hello de votre machine virtuelle :
 
 ```bash
 ssh azureuser@138.91.149.74
 ```
 
-Vérifiez l’installation de MongoDB en vous connectant à l’aide du client `mongo` local, comme suit :
+Vérifier l’installation de MongoDB hello en vous connectant à l’aide de hello local `mongo` client comme suit :
 
 ```bash
 mongo
 ```
 
-Testez maintenant l’instance en ajoutant des données, puis en recherchant comme suit :
+Maintenant hello instance de test en ajoutant des données et de recherche comme suit :
 
 ```sh
 > db
@@ -158,14 +158,14 @@ test
 
 
 ## <a name="create-a-complex-mongodb-sharded-cluster-on-centos-using-a-template"></a>Création d’un cluster partitionné MongoDB complexe sur CentOS à l’aide d’un modèle
-Vous pouvez créer une instance MongoDB complexe sur un cluster partitionné en utilisant le modèle de démarrage rapide Azure suivant à partir de GitHub. Ce modèle suit les [meilleures pratiques pour les clusters partitionnés MongoDB](https://docs.mongodb.com/manual/core/sharded-cluster-components/) pour fournir la redondance et la haute disponibilité. Le modèle crée deux partitions, avec trois nœuds dans chaque jeu de réplicas. Un jeu de réplicas de serveur de configuration avec trois nœuds est également créé, ainsi que deux serveurs de routeur **mongos** pour assurer la cohérence des applications au sein des partitions.
+Vous pouvez créer un cluster partitionné MongoDB complex à l’aide de hello suivant le modèle de démarrage rapide Azure à partir de GitHub. Ce modèle suit hello [meilleures pratiques de cluster partitionnée MongoDB](https://docs.mongodb.com/manual/core/sharded-cluster-components/) tooprovide redondance et haute disponibilité. modèle de Hello crée deux partitions, avec trois nœuds dans chaque jeu de réplicas. Un réplica de serveur de configuration définie avec trois nœuds est également créé, plus deux **mongos** routeur serveurs tooprovide cohérence tooapplications d’entre les partitions de hello.
 
 * [Cluster de partitionnement MongoDB sur CentOS](https://github.com/Azure/azure-quickstart-templates/tree/master/mongodb-sharding-centos) -https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-sharding-centos/azuredeploy.json
 
 > [!WARNING]
-> Le déploiement de ce cluster partitionné MongoDB complexe requiert plus de 20 cœurs, ce qui est généralement le nombre de cœurs par défaut par région pour un abonnement. Ouvrez une demande de support Azure pour augmenter votre nombre de cœurs.
+> Déploiement de ce cluster partitionné MongoDB complex nécessite plus de 20 cœurs, qui est généralement hello nombre de cœurs par défaut par région pour un abonnement. Ouvrez un tooincrease de demande de support Azure votre nombre de cœurs.
 
-L’exemple suivant crée un groupe de ressources nommé *myResourceGroup* dans la région *eastus*. Saisissez vos propres valeurs, comme suit :
+Hello exemple suivant crée un groupe de ressources avec le nom de hello *myResourceGroup* Bonjour *eastus* région. Saisissez vos propres valeurs, comme suit :
 
 ```azurecli
 azure group create \
@@ -175,13 +175,13 @@ azure group create \
 ```
 
 > [!NOTE]
-> L’interface de ligne de commande Azure vous renvoie à une invite quelques secondes après la création du déploiement, mais l’installation et la configuration peuvent prendre plus d’une heure. Vérifiez l’état du déploiement avec `azure group deployment show myResourceGroup`, en ajustant le nom de votre groupe de ressources. Attendez que **ProvisioningState** (État d’approvisionnement) indique *Succeeded* (Opération réussie) avant de vous connecter aux machines virtuelles.
+> Hello CLI d’Azure vous renvoie tooa invite quelques secondes de la création du déploiement de hello, mais hello installation et la configuration peuvent reprendre un toocomplete heure. Vérifier l’état de hello de déploiement hello avec `azure group deployment show myResourceGroup`, ajustant nom hello de votre groupe de ressources. Attendez que hello **ProvisioningState** montre *Succeeded* avant de connecter des machines virtuelles de toohello.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans ces exemples, vous vous connectez à l’instance MongoDB localement à partir de la machine virtuelle. Si vous souhaitez vous connecter à l’instance MongoDB à partir d’une autre machine virtuelle ou d’un autre réseau, vérifiez que les bonnes [règles de groupe de sécurité réseau sont créées](nsg-quickstart.md).
+Dans ces exemples, vous vous connectez toohello MongoDB instance localement à partir de la machine virtuelle de hello. Si vous souhaitez tooconnect toohello MongoDB instance à partir d’une autre machine virtuelle ou réseau, assurez-vous de hello approprié [règles du groupe de sécurité réseau sont créées](nsg-quickstart.md).
 
-Pour en savoir plus sur la création avec des modèles, voir [Présentation d’Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md).
+Pour plus d’informations sur la création de l’aide de modèles, consultez hello [vue d’ensemble du Gestionnaire de ressources Azure](../../azure-resource-manager/resource-group-overview.md).
 
-Les modèles Azure Resource Manager utilisent l’extension de script personnalisé pour télécharger et exécuter des scripts sur vos machines virtuelles. Pour plus d’informations, consultez [Utilisation de l’extension de script personnalisé Azure avec des machines virtuelles Linux](extensions-customscript.md).
+les modèles Azure Resource Manager Hello utilisent toodownload d’Extension de Script personnalisé hello et exécutent des scripts sur vos machines virtuelles. Pour plus d’informations, consultez [Using hello Extension de Script personnalisé Azure avec des Machines virtuelles Linux](extensions-customscript.md).
 

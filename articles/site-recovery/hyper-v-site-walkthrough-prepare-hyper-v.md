@@ -1,6 +1,6 @@
 ---
-title: "Préparation d’hôtes Hyper-V (sans System Center VMM) pour la réplication vers Azure | Microsoft Docs"
-description: "Décrit comment préparer des ordinateurs hôtes Hyper-V pour la réplication vers Azure à l’aide d’Azure Site Recovery"
+title: "aaaPrepare Hyper-V héberge (sans System Center VMM) pour la réplication tooAzure | Documents Microsoft"
+description: "Décrit comment tooprepare Hyper-V héberge pour tooAzure de réplication à l’aide d’Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/22/2017
 ms.author: raynew
-ms.openlocfilehash: f9bcaa8e55be6e8fddaf88ebc3f18f5dbb2811e4
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 714b229d5efbd66a9844bd09e36ac3f69919a6bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-6-prepare-hyper-v-hosts-for-replication-to-azure"></a>Étape 6 : préparer des ordinateurs hôtes Hyper-V pour la réplication vers Azure
+# <a name="step-6-prepare-hyper-v-hosts-for-replication-tooazure"></a>Étape 6 : Préparer les ordinateurs hôtes Hyper-V pour la réplication tooAzure
 
-Suivez les instructions de cet article pour préparer des hôtes Hyper-V locaux à interagir avec Azure Site Recovery.
+Suivez les instructions dans cette tooprepare article hello local toointeract d’ordinateurs hôtes Hyper-V avec Azure Site Recovery.
 
-Après avoir lu cet article, envoyez vos commentaires en bas ou posez vos questions techniques sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Après avoir lu cet article, validez les commentaires en bas de hello ou poser des questions techniques sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 ## <a name="prepare-hosts"></a>Préparer des ordinateurs hôtes
 
-- Assurez-vous que les hôtes Hyper-V respectent la [configuration requise](site-recovery-prereq.md#disaster-recovery-of-hyper-v-vms-to-azure-no-vmm).
-- Assurez-vous que les hôtes peuvent accéder aux URL requises :
+- Assurez-vous que les hôtes Hyper-V de hello respectent hello [conditions préalables](site-recovery-prereq.md#disaster-recovery-of-hyper-v-vms-to-azure-no-vmm).
+- Assurez-vous que les hôtes de hello peuvent accéder à des URL de hello requis :
 
     [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
     
-- Si vous avez des règles de pare-feu fondées sur l’adresse IP, vérifiez qu’elles autorisent la communication vers Azure.
-- Autorisez les [plages d’adresses IP de centres de données Azure](https://www.microsoft.com/download/confirmation.aspx?id=41653) et le port HTTPS (443).
-- Autorisez les plages d’adresses IP relatives à la région de votre abonnement Azure et à la région des États-Unis de l’Ouest (utilisées pour la gestion du contrôle d’accès et des identités).
+- Si vous avez des règles de pare-feu basé sur l’adresse IP, assurez-vous qu’ils autorisent un tooAzure de communication.
+- Autoriser hello [plages d’adresses IP Azure Datacenter](https://www.microsoft.com/download/confirmation.aspx?id=41653)et hello port HTTPS (443).
+- Autoriser les plages d’adresses IP pour hello région Azure de votre abonnement et ouest des États-Unis (utilisé pour la gestion d’identité et contrôle d’accès).
 
-Pendant le déploiement de Site Recovery, vous ajoutez des hôtes Hyper-V qui contiennent des machines virtuelles que vous souhaitez répliquer sur un site Hyper-V. Le fournisseur et l’agent Site Recovery sont installés sur chaque hôte. Le site Hyper-V est inscrit dans le coffre Recovery Services.
+Pendant le déploiement de la récupération de Site, vous ajoutez les hôtes Hyper-V qui contiennent des machines virtuelles que vous souhaitez tooreplicate tooa Hyper-V site. Bonjour fournisseur Site Recovery et l’agent Recovery Services sont installés sur chaque ordinateur hôte. site de Hello Hyper-V est enregistré dans hello de coffre Recovery Services.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Aller à l’[Étape 7 : créer un coffre](hyper-v-site-walkthrough-create-vault.md)
+Accédez trop[étape 7 : créer un coffre](hyper-v-site-walkthrough-create-vault.md)
 

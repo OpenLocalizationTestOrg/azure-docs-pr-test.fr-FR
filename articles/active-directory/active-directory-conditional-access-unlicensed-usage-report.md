@@ -1,6 +1,6 @@
 ---
-title: "Rapport d’utilisation sans licence | Microsoft Docs"
-description: "Le rapport d’utilisation sans licence vous aide à identifier les utilisateurs qui utilisent les fonctionnalités Azure AD payantes sans licence."
+title: "Rapport d’utilisation d’aaaUnlicensed | Documents Microsoft"
+description: "Bonjour rapport sans licence d’utilisation vous permet de de qu'identifier les utilisateurs sans licence qui sont à l’aide payer les fonctionnalités Azure AD."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -13,35 +13,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: c0b4f455f067e825362bdecc02ea62d7984f0d31
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c44d1756b4641d7ca88434017eedb6c5e2567cb0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="unlicensed-usage-report"></a>Rapport d’utilisation sans licence
-Le rapport d’utilisation sans licence vous aide à identifier les utilisateurs qui utilisent les fonctionnalités Azure AD payantes sans licence. Cela vous permet de tirer un meilleur profit des licences que vous avez achetées et vous aide à déterminer le bon moment pour faire l’acquisition de licences supplémentaires. 
+Bonjour rapport sans licence d’utilisation vous permet de de qu'identifier les utilisateurs sans licence qui sont à l’aide payer les fonctionnalités Azure AD. Cela vous permet de toomake améliore l’utilisation des licences que vous avez achetées et tooidentify vous savez que vous ayez besoin de licences supplémentaires. 
 
-Le rapport présente l’utilisation active des fonctionnalités payantes au cours des 30 derniers jours. 
+rapport de Hello montre active l’utilisation de hello fonctionnalités payée hello 30 derniers jours. 
 
 ## <a name="report-structure"></a>Structure du rapport
 | Nom de la colonne | Description |
 |:--- |:--- |
-| Utilisateur sans licence |Nom de l’utilisateur |
-| Fonctionnalité |Nom de la fonctionnalité. Par exemple : accès conditionnel |
-| Application utilisée |Le nom de l’application à laquelle l’utilisateur a accédé via la fonctionnalité utilisée. Par exemple : Office 365 SharePoint Online |
+| Utilisateur sans licence |Nom d’utilisateur de hello |
+| Fonctionnalité |nom de la fonction Hello. Par exemple : accès conditionnel |
+| Application utilisée |nom Hello d’application hello qui est accessible avec la fonctionnalité de hello. Par exemple : Office 365 SharePoint Online |
 
 > [!NOTE]
-> Si un compte d’utilisateur a été supprimé, un ID du type 1003000090D8B285 sera renseigné dans la colonne « Utilisateur sans licence »
+> Si un compte d’utilisateur a été supprimé hello 'Sans licence utilisateur' colonne sera remplie avec un ID, comme 1003000090D8B285
 > 
 > 
 
 ## <a name="conditional-access-feature"></a>Fonctionnalité d’accès conditionnel
 Les utilisateurs sans licence seront signalés lorsqu’ils accèdent à un service limité par une stratégie d’accès conditionnel s’ils ne disposent pas d’une licence Azure AD Premium. 
 
-Cela s’applique aux stratégies MFA / d’emplacement, ainsi qu’aux stratégies de périphériques utilisant Intune.
+Cela s’applique tooMFA / stratégies de l’emplacement ainsi que les appareils des stratégies qui utilisent Intune.
 
 ## <a name="see-also"></a>Voir aussi
 * [Utilisation de l’accès conditionnel avec Office 365 et les autres applications connectées à Azure Active Directory](active-directory-conditional-access.md)
-* [Prise en main de l’accès conditionnel à Azure AD](active-directory-conditional-access-azuread-connected-apps.md) 
+* [Prise en main de l’accès conditionnel tooAzure AD](active-directory-conditional-access-azuread-connected-apps.md) 
 

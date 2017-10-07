@@ -1,6 +1,6 @@
 ---
-title: "Créer un index (API .NET - Recherche Azure) | Microsoft Docs"
-description: "Créer un index dans le code à l’aide du kit de développement logiciel (SDK) .NET d’Azure Search."
+title: "AAA « créer un index (API .NET - Azure Search) | Documents Microsoft »"
+description: "Créer un index dans le code à l’aide de hello Azure Search .NET SDK."
 services: search
 documentationcenter: 
 author: brjohnstmsft
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 05/22/2017
 ms.author: brjohnst
-ms.openlocfilehash: fac41903c3e5731d17f832ff58145fe74dfa29f1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7fa4030b8c3565bc02b1d6bb4426331657cf3a5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-azure-search-index-using-the-net-sdk"></a>Création d’un index Azure Search à l’aide du Kit de développement logiciel (SDK) .NET
+# <a name="create-an-azure-search-index-using-hello-net-sdk"></a>Créer un index Azure Search à l’aide de hello .NET SDK
 > [!div class="op_single_selector"]
 > * [Vue d'ensemble](search-what-is-an-index.md)
 > * [Portail](search-create-index-portal.md)
@@ -30,34 +30,34 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-Cet article vous guidera dans la création d’un [index](https://docs.microsoft.com/rest/api/searchservice/Create-Index) Azure Search à l’aide du [kit de développement logiciel (SDK) .NET Azure Search](https://aka.ms/search-sdk).
+Cet article vous guide tout au long des processus de hello de création d’un indexeur Azure Search [index](https://docs.microsoft.com/rest/api/searchservice/Create-Index) à l’aide de hello [Azure Search .NET SDK](https://aka.ms/search-sdk).
 
 Avant de suivre ce guide et de passer à la création d’un index, vous devez avoir déjà [créé un service Azure Search](search-create-service-portal.md).
 
 > [!NOTE]
-> Tous les exemples de code figurant dans cet article sont écrits en C#. L’intégralité du code source est disponible [sur GitHub](http://aka.ms/search-dotnet-howto). Vous pouvez également consulter le [kit de développement logiciel (SDK) .NET Azure Search](search-howto-dotnet-sdk.md) pour une description plus détaillée de l’exemple de code.
+> Tous les exemples de code figurant dans cet article sont écrits en C#. Vous pouvez trouver le code source complet hello [sur GitHub](http://aka.ms/search-dotnet-howto). Vous pouvez également lire sur hello [Azure Search .NET SDK](search-howto-dotnet-sdk.md) pour une présentation plus détaillée de l’exemple de code hello.
 
 
 ## <a name="identify-your-azure-search-services-admin-api-key"></a>Identifier la clé API d’administration de votre service Azure Search
-Maintenant que vous avez configuré un service Azure Search, vous être presque prêt à émettre des requêtes sur le système d’extrémité de votre service à l’aide du kit de développement logiciel (SDK) .NET. Tout d'abord, vous devez obtenir l’une des clés API d'administration générées pour le service Search que vous avez configuré. Le kit de développement logiciel (SDK) .NET envoie la clé API à chaque demande à votre service. L’utilisation d’une clé valide permet d’établir, en fonction de chaque demande, une relation de confiance entre l’application qui envoie la demande et le service qui en assure le traitement.
+Maintenant que vous avez configuré un service Azure Search, vous êtes presque prêt tooissue demandes sur votre point de terminaison de service à l’aide de hello du SDK .NET. Vous devez tout d’abord, tooobtain d'entre hello api-clés d’administration qui a été généré pour le service de recherche hello que vous avez configuré. Hello .NET SDK envoie cette clé d’api sur chaque service tooyour de demande. Avoir une clé valide établit l’approbation, sur une base de chaque demande, entre la demande d’application de hello envoi hello et service hello qui prend en charge.
 
-1. Pour accéder aux clés API de votre service, connectez-vous au [portail Azure](https://portal.azure.com/)
-2. Accédez au panneau de votre service Azure Search
-3. Cliquez sur l’icône « Clés »
+1. toofind les clés de votre service api, connectez-vous toohello [portail Azure](https://portal.azure.com/)
+2. Panneau du service tooyour accédez Azure Search
+3. Cliquez sur hello icône « Clés »
 
 Votre service comporte à la fois des *clés d’administration* et des *clés de requête*.
 
-* Les *clés d’administration* principales et secondaires vous accordent des droits d’accès complets à toutes les opérations, avec notamment la possibilité de gérer le service ou de créer et supprimer des index, des indexeurs et des sources de données. Deux clés sont à votre disposition afin que vous puissiez continuer à utiliser la clé secondaire si vous décidez de régénérer la clé primaire et inversement.
-* Vos *clés de requête* vous accordent un accès en lecture seule aux index et documents ; elles sont généralement distribuées aux applications clientes qui émettent des demandes de recherche.
+* Vos sites principaux et secondaires *clés d’administration* accorder des droits d’accès complets tooall opérations, y compris hello capacité toomanage hello service, créer et supprimer des index, indexeurs et sources de données. Il existe deux clés afin que vous puissiez continuer clé secondaire du hello toouse si vous décidez de tooregenerate hello primary key et vice versa.
+* Votre *clés de requête* accorder l’accès en lecture seule tooindexes et des documents, et sont des applications distribuées généralement tooclient qui émettent des demandes de recherche.
 
-Dans le cadre de la création d’un index, vous pouvez utiliser votre clé d’administration principale ou secondaire.
+Pour des raisons de hello de création d’un index, vous pouvez utiliser votre clé d’administration principal ou secondaire.
 
 <a name="CreateSearchServiceClient"></a>
 
-## <a name="create-an-instance-of-the-searchserviceclient-class"></a>Création d’une instance de la classe SearchServiceClient
-Pour commencer à utiliser le Kit de développement logiciel (SDK) .NET Azure Search, vous devez créer une instance de la classe `SearchServiceClient` . Cette classe dispose de plusieurs constructeurs. Celle que vous cherchez utilise le nom de votre service de recherche et un objet `SearchCredentials` en tant paramètres. `SearchCredentials` encapsule votre clé API.
+## <a name="create-an-instance-of-hello-searchserviceclient-class"></a>Créez une instance de hello SearchServiceClient classe
+à l’aide de toostart hello Azure Search .NET SDK, vous devez toocreate une instance de hello `SearchServiceClient` classe. Cette classe dispose de plusieurs constructeurs. Hello celui que vous souhaitez prend le nom de votre service de recherche et un `SearchCredentials` objet en tant que paramètres. `SearchCredentials` encapsule votre clé API.
 
-Le code suivant crée un nouveau `SearchServiceClient` à l’aide de valeurs pour le nom du service de recherche et la clé API stockés dans le fichier de configuration de l’application (`appsettings.json` ou le cas de l’[exemple d’application](http://aka.ms/search-dotnet-howto)) :
+code Hello ci-dessous crée un nouveau `SearchServiceClient` à l’aide des valeurs pour le nom de service de recherche hello et clé d’api qui sont stockés dans le fichier de configuration de l’application hello (`appsettings.json` dans les cas de hello Hello [exemple d’application](http://aka.ms/search-dotnet-howto)) :
 
 ```csharp
 private static SearchServiceClient CreateSearchServiceClient(IConfigurationRoot configuration)
@@ -70,29 +70,29 @@ private static SearchServiceClient CreateSearchServiceClient(IConfigurationRoot 
 }
 ```
 
-`SearchServiceClient` a une propriété `Indexes`. Cette propriété fournit toutes les méthodes dont vous avez besoin pour créer, afficher, mettre à jour ou supprimer des index Azure Search.
+`SearchServiceClient` a une propriété `Indexes`. Cette propriété fournit toutes les méthodes hello toocreate, liste, mise à jour, ou que vous supprimez les index de recherche de Azure.
 
 > [!NOTE]
-> La classe `SearchServiceClient` gère les connexions à votre service de recherche. Pour éviter l'ouverture d'un trop grand nombre de connexions, essayez de partager une seule instance de `SearchServiceClient` dans votre application, si possible. Ses méthodes sont thread-safe pour activer le partage.
+> Hello `SearchServiceClient` classe gère le service de recherche de connexions tooyour. Dans tooavoid ordre ouverture trop grand nombre de connexions, vous devez essayer tooshare à une instance unique de `SearchServiceClient` dans votre application, si possible. Ses méthodes est thread-safe tooenable le partage.
 > 
 > 
 
 <a name="DefineIndex"></a>
 
 ## <a name="define-your-azure-search-index"></a>Définir votre index Recherche Azure
-Un seul appel à la méthode `Indexes.Create` crée votre index. Cette méthode prend comme paramètre un objet `Index` qui définit votre index Azure Search. Vous devez créer un objet `Index` et l'initialiser comme suit :
+Un seul appel toohello `Indexes.Create` méthode crée l’index. Cette méthode prend comme paramètre un objet `Index` qui définit votre index Azure Search. Vous devez toocreate une `Index` de l’objet et l’initialiser comme suit :
 
-1. Définissez la propriété `Name` de l’objet `Index` sur le nom de votre index.
-2. Définissez la propriété `Fields` de l’objet `Index` sur l’array d’objets `Field`. Le moyen le plus simple de créer les objets `Field` consiste à appeler la méthode `FieldBuilder.BuildForType` en transmettant une classe de modèle pour le paramètre de type. Une classe de modèle comporte des propriétés qui sont mappées sur les champs de votre index. Cela vous permet de lier des documents à partir de votre index de recherche à des instances de votre classe de modèle.
+1. Ensemble hello `Name` propriété Hello `Index` toohello nom de l’objet de l’index.
+2. Ensemble hello `Fields` propriété Hello `Index` tableau tooan de `Field` objets. hello toocreate moyen plus simple de Hello `Field` objets est en appelant hello `FieldBuilder.BuildForType` méthode, en passant une classe de modèle pour le paramètre de type hello. Une classe de modèle a des propriétés qui mappent toohello des champs de l’index. Cela vous permet de toobind des documents à partir de votre tooinstances d’index de recherche de votre classe de modèle.
 
 > [!NOTE]
-> Si vous n’envisagez pas d’utiliser une classe de modèle, vous pouvez toujours définir votre index en créant les objets `Field` directement. Vous pouvez fournir le nom du champ au constructeur, ainsi que le type de données (ou un analyseur pour les champs de chaîne). Vous pouvez également définir d'autres propriétés comme `IsSearchable`, `IsFilterable`, etc.
+> Si vous ne prévoyez pas toouse une classe de modèle, vous pouvez toujours définir votre index en créant `Field` directement des objets. Vous pouvez fournir le nom hello du constructeur de toohello champ hello, ainsi que le type de données hello (ou l’analyseur pour les champs de chaîne). Vous pouvez également définir d'autres propriétés comme `IsSearchable`, `IsFilterable`, etc.
 >
 >
 
-Il est important de ne perdre de vue ni votre expérience de recherche ni vos besoins métiers lorsque vous concevez votre index, étant donné que vous devez affecter les [propriétés appropriées](https://docs.microsoft.com/rest/api/searchservice/Create-Index) à chaque champ. Ces propriétés déterminent les fonctionnalités de recherche (filtrage, facettes, tri de recherche en texte intégral, etc.) qui s’appliqueront à chaque champ. Pour les propriétés que vous ne définissez pas explicitement, la classe `Field` désactive par défaut la fonctionnalité de recherche correspondante, sauf si vous l'activez de façon spécifique.
+Il est important de conserver votre recherche utilisateur expérience et des besoins à l’esprit lorsque vous concevez votre index en tant que chaque champ doit être attribuée hello [appropriées des propriétés](https://docs.microsoft.com/rest/api/searchservice/Create-Index). Contrôle de ces propriétés qui recherche les fonctionnalités (filtrage, des facettes, le tri de la recherche en texte intégral, etc.) s’appliquent toowhich champs. Pour toute propriété que vous ne définissez pas explicitement, hello `Field` classe par défaut est fonction de recherche correspondante toodisabling hello, sauf si vous activez en particulier.
 
-Dans notre exemple, nous avons nommé notre index « hotels » et nous avons défini nos champs à l’aide d’une classe de modèle. Chaque propriété de la classe de modèle comporte des attributs qui déterminent les comportements liés à la recherche du champ d’index correspondant. La classe de modèle est définie comme suit :
+Dans notre exemple, nous avons nommé notre index « hotels » et nous avons défini nos champs à l’aide d’une classe de modèle. Chaque propriété de classe de modèle hello possède des attributs qui déterminent les comportements associés à la recherche hello du champ correspondant de l’index hello. classe de modèle Hello est défini comme suit :
 
 ```csharp
 using System;
@@ -101,9 +101,9 @@ using Microsoft.Azure.Search.Models;
 using Microsoft.Spatial;
 using Newtonsoft.Json;
 
-// The SerializePropertyNamesAsCamelCase attribute is defined in the Azure Search .NET SDK.
-// It ensures that Pascal-case property names in the model class are mapped to camel-case
-// field names in the index.
+// hello SerializePropertyNamesAsCamelCase attribute is defined in hello Azure Search .NET SDK.
+// It ensures that Pascal-case property names in hello model class are mapped toocamel-case
+// field names in hello index.
 [SerializePropertyNamesAsCamelCase]
 public partial class Hotel
 {
@@ -148,14 +148,14 @@ public partial class Hotel
 }
 ```
 
-Nous avons soigneusement choisi les attributs de chaque propriété en fonction de la manière dont ils seront vraisemblablement utilisés dans une application. Par exemple, il est probable que les personnes recherchant des hôtels seront intéressées par les correspondances de mots-clés sur le champ `description`. Ainsi, nous activons la recherche en texte intégral pour ce champ en définissant l’attribut `IsSearchable` sur la propriété `Description`.
+Nous avons choisi avec soin les attributs hello pour chaque propriété basée sur la manière dont nous ils seront utilisés dans une application. Par exemple, il est probable que les personnes recherchant hôtels sera intéressés par les correspondances de mots-clés sur hello `description` champ, donc nous pas activer la recherche en texte intégral pour ce champ en ajoutant hello `IsSearchable` attribut toohello `Description` propriété.
 
-Notez que, dans votre index, vous ne devez désigner qu’un seul champ de type `string` en tant que champ *clé* en ajoutant l’attribut `Key` (voir `HotelId` dans l’exemple ci-dessus).
+Veuillez noter qu’exactement un champ dans l’index de type `string` doit être hello en hello *clé* champ en ajoutant hello `Key` attribut (voir `HotelId` Bonjour à l’exemple ci-dessus).
 
-La définition d’index ci-dessus utilise un analyseur de langue pour le champ `description_fr` dans la mesure où il est destiné à stocker du texte en français. Pour plus d’informations sur les analyseurs de langue, consultez [l’article relatif à la prise en charge linguistique](https://docs.microsoft.com/rest/api/searchservice/Language-support), ainsi que le [billet de blog](https://azure.microsoft.com/blog/language-support-in-azure-search/) correspondant.
+définition de l’index Hello ci-dessus utilise un analyseur de langage pour hello `description_fr` , car il s’agit de texte Français de toostore prévue. Consultez [rubrique prise en charge du langage hello](https://docs.microsoft.com/rest/api/searchservice/Language-support) , ainsi que de hello correspondant [billet de blog](https://azure.microsoft.com/blog/language-support-in-azure-search/) pour plus d’informations sur les analyseurs de langage.
 
 > [!NOTE]
-> Par défaut, le nom de chaque propriété de votre classe de modèle est utilisé comme nom du champ correspondant dans l’index. Si vous souhaitez mapper tous les noms de propriété sur les noms de champ en casse mixte, marquez la classe avec l’attribut `SerializePropertyNamesAsCamelCase`. Si vous souhaitez mapper les noms de propriété sur un nom différent, vous pouvez utiliser l’attribut `JsonProperty` comme la propriété `DescriptionFr` ci-dessus. L’attribut `JsonProperty` est prioritaire sur l’attribut `SerializePropertyNamesAsCamelCase`.
+> Par défaut, nom hello de chaque propriété dans votre classe de modèle est utilisé comme nom de hello du champ correspondant de hello dans les index hello. Si vous souhaitez toomap les noms de champs de cas toocamel de noms de propriété, marquez la classe hello avec hello `SerializePropertyNamesAsCamelCase` attribut. Si vous souhaitez toomap tooa autre nom, vous pouvez utiliser hello `JsonProperty` attribut comme hello `DescriptionFr` propriété ci-dessus. Hello `JsonProperty` attribut est prioritaire sur hello `SerializePropertyNamesAsCamelCase` attribut.
 > 
 > 
 
@@ -169,26 +169,26 @@ var definition = new Index()
 };
 ```
 
-## <a name="create-the-index"></a>Création de l'index
-Maintenant qu’un objet `Index` a été initialisé, vous pouvez créer l’index en appelant `Indexes.Create` sur votre objet `SearchServiceClient` :
+## <a name="create-hello-index"></a>Créer des index de hello
+Maintenant que vous avez initialisé `Index` de l’objet, vous pouvez créer des index de hello simplement en appelant `Indexes.Create` sur votre `SearchServiceClient` objet :
 
 ```csharp
 serviceClient.Indexes.Create(definition);
 ```
 
-Pour une requête réussie, la méthode effectuera un retour normalement. En cas de problème avec la requête, comme un paramètre non valide, la méthode lève `CloudException`.
+Pour une demande réussie, méthode hello retourne normalement. S’il existe un problème avec la demande hello comme un paramètre non valide, méthode hello lèvera `CloudException`.
 
-Pour supprimer un index, il vous suffit d’appeler la méthode `Indexes.Delete` sur votre `SearchServiceClient`. Voici, par exemple, la requête à utiliser pour supprimer l’index « hotels » :
+Lorsque vous avez terminé une toodelete index et que vous souhaitez qu’il, appelez uniquement hello `Indexes.Delete` méthode sur votre `SearchServiceClient`. Il s’agit par exemple, comment nous serait supprimer les index de « hôtels » hello :
 
 ```csharp
 serviceClient.Indexes.Delete("hotels");
 ```
 
 > [!NOTE]
-> L'exemple de code dans cet article utilise les méthodes synchrones du SDK .NET Azure Search pour plus de simplicité. Nous vous recommandons d'utiliser les méthodes asynchrones dans vos propres applications pour les rendre évolutives et réactives. Par exemple, dans les exemples ci-dessus, vous pouvez utiliser `CreateAsync` et `DeleteAsync` au lieu de `Create` et `Delete`.
+> exemple de code Hello dans cet article utilise des méthodes synchrones de hello Hello Azure Search .NET SDK pour plus de simplicité. Nous vous recommandons d’utiliser les méthodes asynchrones hello dans vos propres applications tookeep les évolutives et réactives. Par exemple, les exemples ci-dessus, vous pouvez utiliser Bonjour `CreateAsync` et `DeleteAsync` au lieu de `Create` et `Delete`.
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Après avoir créé un index Azure Search, vous pouvez commencer à [télécharger du contenu dans votre index](search-what-is-data-import.md) afin d’y lancer des recherches.
+Après avoir créé un index Azure Search, vous serez prêt trop[télécharger votre contenu dans les index hello](search-what-is-data-import.md) pour que vous puissiez rechercher vos données.
 

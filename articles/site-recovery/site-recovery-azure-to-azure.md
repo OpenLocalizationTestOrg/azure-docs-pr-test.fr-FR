@@ -1,6 +1,6 @@
 ---
-title: "Répliquer des machines virtuelles Azure entre des régions Azure à des fins de récupération d’urgence : Azure vers Azure | Microsoft Docs"
-description: "Résume les étapes nécessaires pour répliquer des machines virtuelles Azure entre des régions Azure (Azure vers Azure) avec le service Azure Site Recovery à des fins de récupération d’urgence."
+title: "Répliquer les machines virtuelles Azure entre les régions Azure pour la récupération d’urgence doit : tooAzure Azure | Documents Microsoft"
+description: "Résume les étapes hello vous avez besoin de machines virtuelles Azure de tooreplicate entre les régions Azure (Azure pour Azure) avec le service d’Azure Site Recovery hello pour les besoins de récupération d’urgence."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/10/2017
 ms.author: raynew
-ms.openlocfilehash: 9ca33057f6030fdcc233f6053fdc392d62f8f9f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c4c425af260a9bcc3dd4dcc13da26109e20f03bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="replicate-azure-vms-between-regions-with-azure-site-recovery"></a>Répliquer des machines virtuelles Azure entre des régions avec Azure Site Recovery
 
@@ -26,54 +26,54 @@ ms.lasthandoff: 07/11/2017
 >
 > La réplication Azure Site Recovery pour les machines virtuelles Azure est actuellement en préversion.
 
-Cet article explique comment répliquer des machines virtuelles Azure entre des régions Azure à l’aide du service [Site Recovery](site-recovery-overview.md) dans le portail Azure.
+Cet article décrit comment tooreplicate machines virtuelles Azure entre des régions Azure à l’aide de hello [Site Recovery](site-recovery-overview.md) service Bonjour portail Azure.
 
-Publiez des commentaires et des questions au bas de cet article ou sur le [forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Ajouter des commentaires et questions bas hello de cet article ou sur hello [forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="disaster-recovery-in-azure"></a>Récupération d’urgence dans Azure
 
-Les fonctionnalités d’infrastructure Azure intégrées permettent de mettre en place une stratégie de disponibilité solide et fiable pour les charges de travail qui s’exécutent sur des machines virtuelles Azure. Toutefois, il existe de nombreuses raisons pour lesquelles vous devez planifier vous-même la récupération d’urgence entre des régions Azure :
+Fonctionnalités et fonctions d’infrastructure Azure intégrée contribuent tooa stratégie de disponibilité solide et fiable pour les charges de travail qui s’exécutent sur des machines virtuelles Azure. Toutefois, il existe de nombreuses raisons pour lesquelles vous devez tooplan pour la récupération d’urgence entre les régions Azure vous-même :
 
-- Vous devez respecter les critères de conformité des applications et des charges de travail spécifiques qui nécessitent une stratégie de continuité des activités et de récupération d’urgence.
-- Vous souhaitez pouvoir protéger et récupérer des machines virtuelles Azure en fonction de vos décisions professionnelles, et pas uniquement en fonction des fonctionnalités Azure intégrées.
-- Vous devez tester le basculement et la récupération conformément à vos besoins professionnels et de conformité, sans aucun impact sur la production.
-- Vous devez basculer vers la région de récupération en cas de sinistre, puis rebasculer vers la région source d’origine sans interruption.
+- Vous avez besoin en matière de conformité toomeet pour des applications spécifiques et les charges de travail qui nécessitent une continuité des activités et la stratégie de récupération d’urgence.
+- Hello capacité tooprotect et de récupérer les machines virtuelles de Azure en fonction de vos décisions professionnelles et pas uniquement basée sur la fonctionnalité Azure intégrée.
+- Vous devez tootest basculement et récupération conformément à vos besoins commerciaux et de conformité, sans aucun impact sur la production.
+- Vous devez toofail de région de récupération toohello dans les cas de hello d’urgence et que vous échouer de région de la source d’origine toohello arrière en toute transparence.
 
-Utilisez Site Recovery pour la réplication des machines virtuelles Azure vers Azure pour vous aider à effectuer toutes ces tâches.
+Utilisez la récupération de Site pour la machine virtuelle Azure à Azure réplication toohelp vous effectuer toutes ces tâches.
 
 
 ## <a name="why-use-site-recovery"></a>Pourquoi utiliser Azure Site Recovery ?      
 
-Site Recovery fournit un moyen simple de répliquer des machines virtuelles Azure d’une région à une autre :
+Récupération de site fournit un moyen simple de tooreplicate machines virtuelles Azure entre les régions :
 
-- **Déploiement automatique**. Contrairement à un modèle de réplication actif-actif, aucune infrastructure coûteuse et complexe n’est nécessaire dans la région secondaire. Quand vous activez la réplication, Site Recovery crée automatiquement les ressources nécessaires dans la région cible en fonction des paramètres de la région source.
-- **Contrôle des régions**. Avec Site Recovery, vous pouvez répliquer de n’importe quelle région vers n’importe quelle région d’un même continent. Comparez ceci au stockage géoredondant avec accès en lecture, qui réplique uniquement de façon asynchrone entre des [régions jumelées](https://docs.microsoft.com/azure/best-practices-availability-paired-regions) standard. Le stockage géoredondant avec accès en lecture fournit un accès en lecture seule aux données de la région cible.
+- **Déploiement automatique**. Contrairement à un modèle de réplication d’actif-actif, il est inutile d’une infrastructure coûteuse et complexe dans la région secondaire hello. Lorsque vous activez la réplication, Site Recovery crée automatiquement les ressources de hello requis dans la région cible hello, selon les paramètres de région de code source.
+- **Contrôle des régions**. Site Recovery, vous pouvez répliquer à partir de n’importe quelle région tooany de région sur un continent. Comparez ceci au stockage géoredondant avec accès en lecture, qui réplique uniquement de façon asynchrone entre des [régions jumelées](https://docs.microsoft.com/azure/best-practices-availability-paired-regions) standard. Un stockage géo-redondant avec accès en lecture fournit des données de toohello d’accès en lecture seule dans la région cible hello.
 - **Réplication automatisée**. Site Recovery fournit une réplication continue automatisée. Le basculement et la restauration automatique peuvent être déclenchés en un seul clic.
-- **RTO et RPO**. Site Recovery tire parti de l’infrastructure réseau Azure qui connecte les régions pour maintenir les valeurs RTO (Objectif de délai de récupération) et RPO (Objectif de point de récupération) à un niveau très faible.
+- **RTO et RPO**. Récupération de site tire parti de l’infrastructure réseau Azure hello se connecte régions tookeep RTO et le RPO très faible.
 - **Test**. Vous pouvez exécuter des exercices de récupération d’urgence avec des tests de basculement à la demande en fonction de vos besoins, sans affecter vos charges de travail de production ou la réplication continue.
-- **Plans de récupération**. Vous pouvez utiliser des plans de récupération pour orchestrer le basculement et la restauration automatique de l’application en cours d’exécution sur plusieurs machines virtuelles. La fonctionnalité de plan de récupération offre une parfaite intégration avec les runbooks d’automation Azure.
+- **Plans de récupération**. Vous pouvez utiliser le basculement de tooorchestrate de plans de récupération et de restauration de hello ensemble de l’application en cours d’exécution sur plusieurs machines virtuelles. fonctionnalité de plan de récupération Hello a riche integration de première classe aux runbooks Azure automation.
 
 
 ## <a name="deployment-summary"></a>Résumé du déploiement
 
-Voici un résumé de ce que vous devez faire pour configurer la réplication des machines virtuelles entre des régions Azure :
+Voici un résumé de ce que vous devez tooset toodo la réplication des machines virtuelles entre les régions Azure :
 
-1. Créez un coffre Recovery Services. Le coffre contient les paramètres de configuration et orchestre la réplication.
-2. Activez la réplication des machines virtuelles Azure.
-3. Exécutez un test de basculement pour vérifier que tout fonctionne comme prévu.
-
->[!IMPORTANT]
->
-> Vous pouvez vérifier la [matrice de prise en charge pour la réplication de machines virtuelles Azure](./site-recovery-support-matrix-azure-to-azure.md).
+1. Créez un coffre Recovery Services. coffre de Hello contient les paramètres de configuration et orchestre la réplication.
+2. Activer la réplication pour hello machines virtuelles Azure.
+3. Exécutez toomake d’un basculement test assurer que tout fonctionne comme prévu.
 
 >[!IMPORTANT]
 >
-> Pour plus d’informations sur la façon de configurer la connectivité réseau sortante nécessaire pour les machines virtuelles Azure pour la réplication Site Recovery, consultez le [document d’aide à la mise en réseau](./site-recovery-azure-to-azure-networking-guidance.md).
+> Vous pouvez vérifier hello [matrice de prise en charge pour la réplication de la machine virtuelle Azure](./site-recovery-support-matrix-azure-to-azure.md).
+
+>[!IMPORTANT]
+>
+> Pour plus d’informations sur comment tooconfigure hello requis connectivité sortante du réseau de machines virtuelles Azure pour la réplication de Site Recovery, consultez hello [document du Guide de mise en réseau](./site-recovery-azure-to-azure-networking-guidance.md).
 
 ### <a name="before-you-start"></a>Avant de commencer
 
-* Pour pouvoir activer la réplication d’une machine virtuelle Azure, votre compte d’utilisateur Azure doit disposer de certaines [autorisations](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines).
-* Votre abonnement Azure doit être activé pour créer des machines virtuelles à l’emplacement cible que vous souhaitez utiliser en tant que région de récupération d’urgence. Contactez le support pour activer le quota requis.
+* Votre compte d’utilisateur Azure doit toohave certaines [autorisations](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) tooenable la réplication d’une machine virtuelle Azure.
+* Votre abonnement Azure doit être VMs toocreate activée dans l’emplacement cible de hello que vous souhaitez toouse comme région de récupération d’urgence hello. Contactez le support technique tooenable hello quota requis.
 
 ## <a name="create-a-recovery-services-vault"></a>Créer un coffre Recovery Services
 
@@ -81,67 +81,67 @@ Voici un résumé de ce que vous devez faire pour configurer la réplication des
 
 >[!NOTE]
 >
-> Nous vous recommandons de créer le coffre Recovery Services à l’emplacement où vous souhaitez répliquer vos machines virtuelles. Par exemple, si votre emplacement cible est la région États-Unis du Centre, créez le coffre dans **États-Unis du Centre**.
+> Nous vous recommandons de créer le coffre Recovery Services hello dans hello emplacement où votre tooreplicate de machines virtuelles. Par exemple, si votre emplacement cible est hello central US, créer dans le coffre hello **du centre des États-Unis**.
 
 ## <a name="enable-replication"></a>Activer la réplication
 
-Dans **Coffres Recovery Services**, cliquez sur le nom du coffre. Dans le coffre, cliquez sur le bouton **+Répliquer**.
+Dans **les coffres de Services de récupération**, cliquez sur le nom du coffre hello. Dans le coffre de hello, cliquez sur hello **+ répliquer** bouton.
 
-### <a name="step-1-configure-the-source"></a>Étape 1. Configurer la source
+### <a name="step-1-configure-hello-source"></a>Étape 1. Configurer la source de hello
 1. Dans **Source**, sélectionnez **Azure - PREVIEW**.
-2. Dans **Emplacement source**, sélectionnez la région Azure source où vos machines virtuelles s’exécutent actuellement.
-3. Sélectionnez le modèle de déploiement de vos machines virtuelles : **Resource Manager** ou **Classique**.
-4. Sélectionnez le **Groupe de ressources source** pour les machines virtuelles Resource Manager, ou **service cloud** pour les machines virtuelles classiques.
+2. Dans **emplacement Source**, sélectionnez la source de hello région Azure où vos machines virtuelles en cours d’exécution.
+3. Modèle de déploiement sélectionnez hello de vos machines virtuelles : **le Gestionnaire de ressources** ou **classique**.
+4. Sélectionnez hello **groupe de ressources Source** pour les machines virtuelles du Gestionnaire de ressources ou **service de cloud computing** pour les machines virtuelles classiques.
 
-    ![Configurer la source](./media/site-recovery-azure-to-azure/source.png)
+    ![Configurer la source de hello](./media/site-recovery-azure-to-azure/source.png)
 
 ### <a name="step-2-select-virtual-machines"></a>Étape 2. Sélectionner les machines virtuelles
 
-* Sélectionnez les machines virtuelles à répliquer, puis cliquez sur **OK**.
+* Sélectionnez les machines virtuelles de hello vous souhaitez tooreplicate, puis cliquez sur **OK**.
 
     ![Sélectionner les machines virtuelles](./media/site-recovery-azure-to-azure/vms.png)
 
 ### <a name="step-3-configure-settings"></a>Étape 3. Configurer les paramètres
 
-1. Pour remplacer les paramètres cibles par défaut et spécifier les paramètres de votre choix, cliquez sur **Personnaliser**. Pour plus d’informations, consultez [Personnaliser les ressources cibles](site-recovery-replicate-azure-to-azure.md##customize-target-resources).
+1. par défaut de toooverride hello cibler des paramètres et spécifiez les paramètres de hello de votre choix, cliquez sur **personnaliser**. Pour plus d’informations, consultez [Personnaliser les ressources cibles](site-recovery-replicate-azure-to-azure.md##customize-target-resources).
 
     ![Configurer les paramètres](./media/site-recovery-azure-to-azure/settings.png)
 
 
-2. Par défaut, Site Recovery crée une stratégie de réplication qui effectue des captures instantanées de cohérence des applications toutes les quatre heures et conserve les points de récupération pendant 24 heures. Pour créer une stratégie avec des paramètres différents, cliquez sur **Personnaliser** en regard de **Stratégie de réplication**.
+2. Par défaut, Site Recovery crée une stratégie de réplication qui effectue des captures instantanées de cohérence des applications toutes les quatre heures et conserve les points de récupération pendant 24 heures. toocreate une stratégie avec des paramètres différents, cliquez sur **personnaliser** suivant trop**stratégie de réplication**.
 
     ![Personnaliser la stratégie](./media/site-recovery-azure-to-azure/customize-policy.png)
 
-3. Pour commencer l’approvisionnement des ressources de cibles, cliquez sur **Créer des ressources cibles**. L’approvisionnement prend environ une minute. Ne fermez pas le panneau pendant l’approvisionnement, sinon vous devrez recommencer.
+3. toostart configurer hello cible les ressources, cliquez sur **créer des ressources de la cible**. L’approvisionnement prend environ une minute. Ne fermez pas les lames hello lors de la configuration, ou vous devez toostart sur.
 
-4. Pour déclencher la réplication de la machine virtuelle sélectionnée, cliquez sur **Activer la réplication**.
+4. réplication tootrigger Hello sélectionné la machine virtuelle, cliquez sur **activer la réplication**.
 
-5. Vous pouvez suivre la progression du travail **Activer la protection** dans **Paramètres** > **Travaux** > **Travaux Site Recovery**.
+5. Vous pouvez suivre la progression de hello **activer la protection** de la tâche dans **paramètres** > **travaux** > **tâches de récupération de Site**.
 
-6. Dans **Paramètres** > **Éléments répliqués**, vous pouvez afficher l’état des machines virtuelles et la progression de la réplication initiale. Cliquez sur la machine virtuelle pour explorer ses paramètres.
+6. Dans **paramètres** > **répliquées des éléments**, vous pouvez afficher l’état de hello de machines virtuelles et hello la progression de la réplication initiale. Cliquez sur hello VM toodrill vers le bas dans ses paramètres.
 
 ## <a name="run-a-test-failover"></a>Exécution d’un test de basculement
 
-Après avoir terminé la configuration, exécutez un test de basculement pour vérifier que tout fonctionne comme prévu :
+Une fois que vous avez tout configuré, exécutez un toomake de basculement de test que tout fonctionne comme prévu :
 
-1. Pour effectuer le basculement d’une seule machine, dans **Paramètres** > **Éléments répliqués**, cliquez sur la machine virtuelle, puis sur l’icône **+Tester le basculement**.
+1. toofail sur un seul ordinateur, dans **paramètres** > **répliquées des éléments**, cliquez sur la machine virtuelle de hello **+ Test de basculement** icône.
 
-2. Pour effectuer le basculement d’un plan de récupération, dans **Paramètres** > **Plans de récupération**, cliquez avec le bouton droit sur le plan et sélectionnez **Tester le basculement**. Pour créer un plan de récupération, suivez [ces instructions](site-recovery-create-recovery-plans.md). 
+2. toofail sur la récupération d’un plan, en **paramètres** > **les Plans de récupération**, plan de hello avec le bouton **Test de basculement**. toocreate un plan de récupération, [suivez ces instructions](site-recovery-create-recovery-plans.md). 
 
-3. Dans **Tester le basculement**, sélectionnez le réseau virtuel Azure cible auquel les machines virtuelles Azure sont connectées après le basculement.
+3. Dans **Test de basculement**, sélectionnez toowhich de réseau virtuel Azure cible hello machines virtuelles Azure sont connectés après basculement hello.
 
-4. Pour démarrer le basculement, cliquez sur **OK**. Pour suivre la progression, cliquez sur la machine virtuelle pour ouvrir ses propriétés. Vous pouvez également cliquer sur le travail **Test de basculement** dans le nom du coffre > **Paramètres** > **Travaux** > **Travaux Site Recovery**.
+4. toostart hello de basculement, cliquez sur **OK**. tootrack de progression, cliquez sur hello VM tooopen ses propriétés. Vous pouvez également cliquer sur hello **Test de basculement** travail dans le nom du coffre hello > **paramètres** > **travaux** > **les tâches de récupération de Site**.
 
-5. Une fois le basculement terminé, le réplica de machine Azure apparaît dans le portail Azure > **Machines virtuelles**. Assurez-vous que la machine virtuelle présente la taille appropriée, qu’elle est bien connectée au réseau approprié et qu’elle s’exécute.
+5. Après avoir hello basculement se termine, le réplica de hello machine Azure s’affiche dans hello portail Azure > **virtuels**. Assurez-vous que cette machine virtuelle hello est la taille appropriée de hello, que sa connexion réseau approprié de toohello, et qu’il s’exécute.
 
-6. Pour supprimer les machines virtuelles qui ont été créées pendant le test de basculement, cliquez sur **Nettoyer le test de basculement** sur l’élément répliqué ou le plan de récupération. Cliquez sur **Notes** pour consigner et enregistrer d’éventuelles observations sur le test de basculement. 
+6. toodelete hello machines virtuelles qui ont été créés pendant le basculement de test hello, cliquez sur **basculement de test de nettoyage** sur hello répliquées élément hello ou un plan de récupération. Dans **Notes**, enregistrer et enregistrer toutes les observations associées au basculement de test hello. 
 
 Pour plus d’informations sur les tests de basculement, cliquez [ici](site-recovery-test-failover-to-azure.md).
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Après avoir testé le déploiement :
+Après avoir tester le déploiement de hello :
 
-- [Apprenez-en davantage](site-recovery-failover.md) sur les différents types de basculement et leur mode exécution.
-- En savoir plus sur l’[utilisation des plans de récupération](site-recovery-create-recovery-plans.md) afin de réduire l’objectif de délai de récupération (RTO).
+- [En savoir plus](site-recovery-failover.md) sur différents types de basculement et la manière dont toorun les.
+- En savoir plus sur [à l’aide de plans de récupération](site-recovery-create-recovery-plans.md) tooreduce RTO.

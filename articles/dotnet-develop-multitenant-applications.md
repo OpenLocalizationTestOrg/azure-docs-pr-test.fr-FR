@@ -1,6 +1,6 @@
 ---
-title: "Modèle d'application web mutualisée | Microsoft Docs"
-description: "Trouvez des présentations et des modèles de conception architecturaux qui décrivent comment implémenter une application web mutualisée dans Azure."
+title: "Modèle d’Application Web locataire aaaMulti | Documents Microsoft"
+description: "Recherchez des présentations architecturales et des modèles de conception qui décrivent comment tooimplement mutualisée web d’application dans Azure."
 services: 
 documentationcenter: .net
 author: wadepickett
@@ -14,79 +14,79 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/05/2015
 ms.author: wpickett
-ms.openlocfilehash: 57ba0e46139bda2d74c9f7db0ffab2f2122b0df2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3b7822c8ca4aa50d295a174973ae4746c230ba66
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="multitenant-applications-in-azure"></a>Applications mutualisées dans Azure
-Une application mutualisée est une ressource partagée qui autorise des utilisateurs distincts, appelés « locataires », à afficher l'application comme s'il s'agissait de la leur. Un scénario typique qui se prête à une application mutualisée est celui dans lequel tous les utilisateurs de l'application peuvent personnaliser leur expérience utilisateur, tout en ayant les mêmes besoins professionnels de base. Exemples d'applications mutualisées : Office 365, Outlook.com et visualstudio.com.
+Une application multi-locataire est une ressource partagée qui permet les utilisateurs ou les « clients », tooview hello application distincte comme s’il s’agissait leur propres. Un scénario typique qui se prête à une application multi-locataire tooa est un dans lequel tous les utilisateurs de hello application peut-être souhaitez l’expérience utilisateur toocustomize hello mais sinon hello les mêmes exigences commerciales de base. Exemples d'applications mutualisées : Office 365, Outlook.com et visualstudio.com.
 
-Du point de vue du fournisseur d'application, les avantages d'une architecture mutualisée touchent principalement à l'efficacité opérationnelle et à la réduction des coûts. Une version de votre application peut répondre aux besoins de plusieurs locataires/clients, autorisant ainsi la consolidation des tâches d'administration système telles que la surveillance, le réglage des performances, les mises à jour logicielles et les sauvegardes de données.
+Du point de vue d’un fournisseur d’application, les avantages de hello de l’architecture mutualisée principalement liés toooperational et rentabilité. Une version de votre application peut répondre aux besoins de hello de nombreux clients/client, ce qui permet la consolidation du système des tâches d’administration telles que la surveillance, réglage des performances, une maintenance logicielle et les sauvegardes de données.
 
-Voici une liste des objectifs et exigences les plus significatifs du point de vue d'un fournisseur.
+suivant de Hello fournit une liste des objectifs plus significatifs de hello et les exigences du point de vue d’un fournisseur.
 
-* **Approvisionnement**: vous devez être en mesure approvisionner de nouveaux locataires de l’application.  Pour les applications mutualisées incluant un grand nombre de locataires, il est généralement nécessaire d'automatiser ce processus en activant l'approvisionnement libre-service.
-* **Maintenabilité**: vous devez pouvoir mettre à niveau l'application et effectuer d'autres tâches de maintenance pendant que plusieurs locataires sont en train de l'utiliser.
-* **Surveillance**: vous devez pouvoir surveiller l'application en toutes circonstances pour identifier et résoudre les éventuels problèmes. Cela inclut la surveillance de la façon dont chaque locataire utilise l'application.
+* **Approvisionnement**: vous devez être en mesure de tooprovision de nouveaux clients pour l’application hello.  Pour les applications multi-locataires avec un grand nombre de clients, il est généralement nécessaire tooautomate ce processus par activation de l’approvisionnement de libre-service.
+* **Facilité de maintenance**: vous devez être en mesure de tooupgrade hello application et effectuer d’autres tâches de maintenance lorsque plusieurs clients l’utilisent.
+* **Analyse**: vous doit être application hello toomonitor en mesure de toutes les heures tooidentify tous les problèmes et tootroubleshoot les. Cela inclut l’analyse comment chaque client est à l’aide d’application hello.
 
-Une application mutualisée correctement mise en œuvre offre les avantages suivants aux utilisateurs.
+Une application mutualisée correctement implémentée fournit suivant de hello avantages toousers.
 
-* **Isolement**: les activités de locataires individuels n'affectent pas l'utilisation de l'application par les autres locataires. Les locataires ne peuvent pas accéder aux données des uns et des autres. Le locataire a ainsi l’impression d’avoir une utilisation exclusive de l’application.
-* **Disponibilité**: les locataires individuels veulent que l'application soit constamment disponible, sans doute avec des garanties définies dans un contrat SLA. À nouveau, les activités des autres locataires ne doivent pas affecter la disponibilité de l'application.
-* **Extensibilité**: l'application peut être mise à l'échelle pour répondre aux exigences de locataires individuels. La présence et les actions des autres locataires ne doivent pas affecter les performances de l'application.
-* **Coûts**: les coûts sont inférieurs au coût de l'exécution d'une application dédiée à un seul locataire, car une architecture mutualisée permet de partager les ressources.
-* **Possibilités de personnalisation**. possibilité de personnaliser l'application d'un locataire individuel de diverses façons telles qu'en ajoutant ou en supprimant des fonctionnalités, en changeant les couleurs et les logos, ou même en ajoutant son propre code ou script.
+* **Isolation**: activités hello de clients individuels n’affectent pas les utiliser hello application hello par d’autres clients. Les locataires ne peuvent pas accéder aux données des uns et des autres. Il s’affiche toohello client comme s’ils ont une utilisation exclusive de l’application hello.
+* **Disponibilité**: les locataires individuels souhaitez toobe d’application hello constamment disponible, peut-être avec garanties définies dans un contrat SLA. Là encore, les activités hello d’autres locataires ne devraient pas affecter disponibilité hello de l’application hello.
+* **Évolutivité**: application hello s’adapte à la demande de hello toomeet de clients individuels. Hello présence et les actions d’autres locataires n’affecte pas les performances de hello d’application hello.
+* **Les coûts**: les coûts sont inférieurs à une application dédiée à locataire unique en cours d’exécution, car une architecture mutualisée permet hello partage des ressources.
+* **Possibilités de personnalisation**. application de hello toocustomize Hello possibilité pour un locataire de différentes manières, telles que l’ajout ou suppression de fonctionnalités, modification des couleurs et les logos ou même ajouter leur propre code ou un script.
 
-En résumé, bien que de nombreux aspects soient à prendre en compte pour fournir un service hautement évolutif, il y a également une série d'objectifs et d'exigences communs à de nombreuses applications mutualisées. Certains peuvent ne pas concerner des scénarios spécifiques, et l'importance d'objectifs et d'exigences individuels peut différer pour chaque scénario. En tant que fournisseur de l'application mutualisée, vous aurez également des objectifs et des exigences tels que la satisfaction des objectifs et des exigences des locataires, la rentabilité, la facturation, les niveaux de service multiples, l'approvisionnement, la surveillance de la maintenabilité et l'automatisation.
+En bref, lorsqu’il y a plusieurs considérations que vous devez prendre en compte tooprovide un service hautement évolutif, il existe également un nombre d’objectifs de hello et exigences des applications mutualisées réduire courantes. Certains ne soient pas pertinentes dans des scénarios spécifiques et l’importance de hello des objectifs individuels et spécifications varient dans chaque scénario. En tant que fournisseur d’application mutualisé hello, vous devez également des objectifs et exigences comme clients hello objectifs et exigences, rentabilité, facturation, plusieurs niveaux de service, l’approvisionnement, l’analyse de la facilité de maintenance et l’automatisation de la réunion.
 
 Pour plus d'informations sur les considérations supplémentaires d'une application mutualisée en matière de conception, consultez la page [Hébergement d'une application mutualisée dans Azure][Hosting a Multi-Tenant Application on Azure]. Pour plus d’informations sur les modèles d’architecture de données des applications de base de données de logiciels en tant que service (SaaS) mutualisés, consultez [Modèles de conception pour les applications SaaS mutualisées avec Base de données SQL Azure](sql-database/sql-database-design-patterns-multi-tenancy-saas-applications.md). 
 
-Azure offre de nombreuses fonctionnalités vous permettant de résoudre les problèmes clés rencontrés lors de la conception d'un système mutualisé.
+Azure fournit de nombreuses fonctionnalités qui vous permettent de tooaddress hello principaux problèmes rencontrés lors de la conception d’un système multi-locataire.
 
 **Isolement**
 
 * Segmentation des locataires de site web en fonction des en-têtes d'hôte avec ou sans communication SSL
 * Segmentation des locataires de site web en fonction des paramètres de requête
 * Services Web dans les rôles de travail
-  * Rôles de travail. traitant généralement les données sur la partie principale d'une application.
-  * Rôles Web faisant généralement office d'interface frontale pour les applications.
+  * Rôles de travail. en général, traitent les données back-end hello d’une application.
+  * Rôles Web qui agissent en tant que serveur frontal de hello pour les applications.
 
 **Stockage**
 
-Gestion des données telles que la Base de données SQL Azure ou les services Azure Storage tels que le service Table qui fournit des services pour le stockage de grandes quantités de données non structurées, et le service BLOB qui fournit des services pour le stockage de grandes quantités de texte non structuré ou de données binaires telles que de la vidéo, de l'audio et des images.
+Gestion des données telles que les services de base de données SQL Azure ou le stockage Azure telles que hello service qui fournit des services pour le stockage de grandes quantités de données non structurées de Table et hello service d’objets Blob qui fournit des services toostore grandes quantités de texte non structuré ou données binaires telles que la vidéo, audio et images.
 
 * Sécurisation de données mutualisées dans des connexions SQL Server par locataire appropriées de la base de données SQL.
-* Utilisation de tables Azure pour les ressources d'application : en spécifiant une stratégie d'accès de niveau conteneur, vous pouvez modifier les autorisations sans avoir à émettre de nouvelles URL pour les ressources protégées au moyen de signatures d'accès partagé.
-* Files d'attentes Azure pour les ressources d'application : les files d'attente Azure sont couramment utilisées pour effectuer le traitement pour le compte de locataires, mais elles peuvent également permettre de distribuer les tâches requises pour l'approvisionnement ou la gestion.
-* Files d'attente Service Bus pour les ressources d'application qui transfèrent les tâches vers un service partagé. Vous pouvez utiliser une file d'attente unique dans laquelle chaque expéditeur locataire dispose uniquement d'autorisations (telles que dérivées de revendications émises par ACS) de transfert vers cette file d'attente, tandis que seuls les destinataires de ce service sont autorisés à extraire à partir de la file d'attente les données provenant de plusieurs locataires.
+* À l’aide de Tables Azure pour l’Application de ressources en spécifiant une stratégie d’accès au niveau du conteneur, vous pouvez hello autorisations tooadjust de capacité sans avoir tooissue nouvelle URL pour les ressources hello protégées avec des signatures d’accès partagé.
+* Les files d’attente Azure pour les files d’attente de ressources d’applications Azure sont toodrive couramment utilisé pour le compte de locataires de traitement, mais peut-être également être utilisés toodistribute travail requis pour configuration et la gestion.
+* Un service partagé de files d’attente du Bus de service pour les ressources de l’Application qui tooa de travail push, vous pouvez utiliser une file d’attente unique où chaque locataire-émetteur dispose uniquement autorisations (dérivées des revendications publiées par ACS) toopush toothat file d’attente, tout en les récepteurs hello uniquement à partir du service de hello avoir toopull d’autorisation à partir des données de hello hello file d’attente en provenance de plusieurs clients.
 
 **Services de connexion et de sécurité**
 
-* Azure Service Bus, infrastructure de messagerie située entre des applications et autorisant celles-ci à échanger des messages de façon souple, offrant ainsi une mise à l'échelle et une résilience améliorées.
+* Azure Service Bus, une infrastructure de messagerie qui se situe entre les applications qui permet de les messages de tooexchange d’une manière faiblement couplée pour améliorer l’échelle et résilience.
 
 **Services de mise en réseau**
 
-Azure offre plusieurs services de mise en réseau prenant en charge l'authentification et améliorant la capacité de gestion de vos applications hébergées. Ces services sont les suivants :
+Azure offre plusieurs services de mise en réseau prenant en charge l'authentification et améliorant la capacité de gestion de vos applications hébergées. Ces services hello suivants :
 
 * Azure Virtual Network vous permet d'approvisionner et de gérer des réseaux privés virtuels (VPN) dans Azure, ainsi que de lier ceux-ci de façon sécurisée avec l'infrastructure informatique locale.
-* Virtual Network Traffic Manager vous permet de répartir le trafic entrant sur plusieurs services Azure hébergés, qu'ils s'exécutent sur le même centre de données ou sur différents centres de données à travers le monde.
-* Azure Active Directory (Azure AD) est un service moderne, basé sur le protocole REST, qui offre des capacités de contrôle d'accès et de gestion des identités pour vos applications dans le cloud. Utilisation d'Azure AD pour les ressources d'application : Azure AD offre une façon simple d'authentifier et d'autoriser les utilisateurs à accéder à vos applications et services Web tout en permettant de ne pas prendre en compte les fonctionnalités d'authentification et d'autorisation dans votre code.
-* Azure Service Bus offre des capacités de messagerie et de flux de données sécurisées pour les applications distribuées et hybrides, telles que les communications entre les applications hébergées sur Azure et les applications et services locaux, sans nécessiter d'infrastructures de sécurité et de pare-feu complexes. Utilisation de Service Bus Relay pour les ressources d'application : les services qui sont exposés en tant que points de terminaison peuvent appartenir au locataire (par exemple, être hébergés en dehors du système, en local), ou il peut s'agir de services approvisionnés spécifiquement pour le locataire (parce que des données critiques, spécifiques au locataire, transitent par ceux-ci).
+* Gestionnaire de trafic de réseau virtuel vous permet d’équilibrer tooload le trafic entrant sur Azure hébergé plusieurs services qu’ils s’exécutent dans hello même centre de données ou dans différents centres de données monde hello.
+* Azure Active Directory (Azure AD) est un service moderne, basé sur le protocole REST, qui offre des capacités de contrôle d'accès et de gestion des identités pour vos applications dans le cloud. À l’aide d’Azure AD pour les ressources d’Application Azure AD tooprovides un moyen facile d’authentifier et autoriser les utilisateurs toogain accès tooyour applications et services web tout en autorisant hello de toobe d’authentification et d’autorisation prises en charge de votre code.
+* Azure Service Bus offre des capacités de messagerie et de flux de données sécurisées pour les applications distribuées et hybrides, telles que les communications entre les applications hébergées sur Azure et les applications et services locaux, sans nécessiter d'infrastructures de sécurité et de pare-feu complexes. À l’aide de relais Service Bus pour toohello des ressources de l’Application de services qui sont exposées comme points de terminaison peuvent appartenir toohello locataire (par exemple, hébergé en dehors du système hello, tels que local), ou ils peuvent être des services fournis spécialement pour hello client ( Étant donné que les données sensibles, spécifique au locataire y transitent).
 
 **Approvisionnement de ressources**
 
-Azure offre une série de méthodes permettant d'approvisionner de nouveaux locataires pour l'application. Pour les applications mutualisées incluant un grand nombre de locataires, il est généralement nécessaire d'automatiser ce processus en activant l'approvisionnement libre-service.
+Azure fournit des nouveaux clients de configuration de plusieurs façons pour une application hello. Pour les applications multi-locataires avec un grand nombre de clients, il est généralement nécessaire tooautomate ce processus par activation de l’approvisionnement de libre-service.
 
-* Les rôles de travail vous permettent d'approvisionner ou d'annuler l'approvisionnement de ressources par locataire (comme lorsqu'un nouveau locataire s'inscrit ou annule), de recueillir des mesures et de gérer la mise à l'échelle sur la base d'une planification spécifique ou en réponse au dépassement des seuils d'indicateurs de performance clé. Ce même rôle peut également être utilisé pour transmettre des mises à jour et des mises à niveau vers la solution.
-* Les objets blob Azure peuvent être utilisés pour approvisionner des ressources de calcul ou de stockage pré-initialisées pour les nouveaux locataires tout en fournissant des stratégies d'accès de niveau conteneur visant à protéger les packages de service de calcul, les images de disque dur virtuel et d'autres ressources.
+* Rôles de travail vous tooprovision et configurer des ressources par locataire (par exemple, lorsqu’un nouveau client s’inscrit ou annule), collecter des mesures de contrôle utiliser et gérer la mise à l’échelle suivant une planification de certaine ou de dépassement de toohello de réponse des seuils de clé indicateurs de performance. Ce même rôle peut également être utilisé toopush solution de toohello mises à jour et mises à niveau.
+* Objets BLOB Windows Azure peut être utilisé tooprovision calcul ou des ressources de stockage préinitialisées pour les nouveaux clients tout en fournissant le calcul hello tooprotect conteneur accès au niveau des stratégies de Packages de service, les images de disque dur virtuel et d’autres ressources.
 * Options pour l'approvisionnement de ressources de la base de données SQL pour un locataire :
   
   * Langage DDL dans les scripts ou incorporé en tant que ressources au sein d'assemblys
   * Packages DAC SQL Server 2008 R2 déployés par programme
   * Copie à partir d'une base de données de référence principale
-  * Utilisation de l'importation et de l'exportation de base de données pour approvisionner de nouvelles bases de données à partir d'un fichier
+  * À l’aide de la base de données importation et exportation tooprovision nouvelles bases de données à partir d’un fichier.
 
 <!--links-->
 

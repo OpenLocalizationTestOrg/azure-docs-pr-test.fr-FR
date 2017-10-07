@@ -1,6 +1,6 @@
 ---
-title: "Obtenir l’approbation préalable via le programme de certification Microsoft Azure Certified | Microsoft Docs"
-description: "En savoir plus sur le programme de partenaire certifié Microsoft Azure et comment vendre votre image de machine virtuelle, modèle de solution, service de développement ou service de données sur Azure Marketplace"
+title: "aaaGet pré-approuvées via le programme de certification Microsoft Azure hello | Documents Microsoft"
+description: "En savoir plus sur les partenaires de Microsoft Azure Certified hello du programme et comment toosell tooget de service sur votre image de machine virtuelle, le modèle de solution, le service de développeur ou le données hello Azure Marketplace"
 services: marketplace-publishing
 documentationcenter: na
 author: HannibalSII
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/05/2016
 ms.author: hascipio
-ms.openlocfilehash: aadc695b1f07d04f1fcc7f2f2e3ff90fb7f54849
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b5741b59435a24125f6ecd55c3e7d934fd012961
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-pre-approved-via-the-microsoft-azure-certified-program"></a>Obtenir l'approbation préalable via le programme Microsoft Azure Certified
-Cet article fournit des instructions sur l'obtention de la certification Microsoft Azure Certified pour pouvoir publier votre solution sur Azure Marketplace et bénéficier d’avantages marketing. Pour une présentation détaillée du programme de certification Microsoft Azure Certified et de ses avantages, consultez [http://azure.com/certified](http://azure.com/certified).
+# <a name="get-pre-approved-via-hello-microsoft-azure-certified-program"></a>Obtenir l’approbation préalable via le programme de certification Microsoft Azure hello
+Cet article explique comment toobecome Microsoft Azure Certified afin que vous pouvez publier votre solution dans hello Azure Marketplace et bénéficier d’avantages commerciaux. Pour obtenir une présentation détaillée du programme de certification Microsoft Azure hello et ses avantages, visitez [http://azure.com/certified](http://azure.com/certified).
 
 > [!IMPORTANT]
-> La certification Azure s'applique uniquement si vous comptez créer une machine virtuelle ou un modèle de solution pour Azure Marketplace.
+> Hello certification Azure est applicable uniquement si vous vous apprêtez toocreate un ordinateur virtuel ou un modèle de solution pour hello Azure Marketplace.
 
 ## <a name="getting-started"></a>Prise en main
-1. La première étape pour obtenir votre certification et intégrer Azure Marketplace consiste à remplir le formulaire de demande sur la page Web [Microsoft Azure Certified](https://createopportunity.azurewebsites.net) .
-2. Si vous répondez aux critères d'éligibilité et que votre application est approuvée, nous travaillerons à vos côtés pour intégrer votre solution à Azure Marketplace.
-3. Si vous travaillez avec un responsable de compte partenaire ou un responsable partenaire DX, demandez-lui de vous recommander pour le programme de certification d'Azure Certified OU accédez à la page Web[Microsoft Azure Certified](http://createopportunity.azurewebsites.net), remplissez le formulaire d’application et entrez l'adresse e-mail de votre responsable de compte partenaire ou responsable partenaire DX dans le champ Microsoft Sponsor Contact.
+1. première étape de Hello sur toogetting de chemin d’accès hello certifié de votre solution et embarquées toohello Azure Marketplace est toofill formulaire de l’application hello sur hello [Microsoft Azure Certified](https://createopportunity.azurewebsites.net) page Web.
+2. Si vous répondre aux critères d’éligibilité hello et votre demande est approuvée, nous allons commencer tooonboard vous travaillez sur votre toohello solution Azure Marketplace.
+3. Si vous travaillez avec un responsable de compte ou un gestionnaire de serveur partenaire DX, demandez-lui de toonominate votre solution pour hello Azure Certified programme ou accédez toohello [Microsoft Azure Certified](http://createopportunity.azurewebsites.net) page Web, remplissez le formulaire d’application hello et entrez l’e-mail hello de votre responsable de compte ou le partenaire du Gestionnaire de DX dans le champ de Contact du partenaire Microsoft hello.
 
 > [!IMPORTANT]
-> **Pays à partir duquel vous vendez :** avant de pouvoir vendre vos services dans Microsoft Azure Marketplace, l’entité inscrite doit résider dans l’un des pays autorisés. Cette restriction s’applique pour des raisons de revenus et de taxes. Nous cherchons activement à étendre cette liste de pays dans un avenir proche, donc restez connecté. Pour obtenir la liste complète, consultez la Section 1b des [Politiques concernant la participation à Azure Marketplace](http://go.microsoft.com/fwlink/?LinkID=526833).
+> **« Donneur d’ordre de » pays** - dans vos services de toosell ordre sur hello Microsoft Azure Marketplace, votre entité inscrite doit toobe à partir d’un des pays hello approuvé « donneur d’ordre-de ». Cette restriction s’applique pour des raisons de revenus et de taxes. Nous sommes recherche activement tooexpand cette liste de pays Bonjour futur proche, donc tenez-vous informé. Pour la liste complète de hello, consultez 1 b de section de hello [stratégies de participation Azure Marketplace](http://go.microsoft.com/fwlink/?LinkID=526833).
 
 
 ## <a name="next-step"></a>Étape suivante
-Une fois que vous avez reçu l'approbation préalable du programme de certification Microsoft Azure, vous pouvez passer à la page [Inscription de votre compte Microsoft comme vendeur Microsoft](marketplace-publishing-accounts-creation-registration.md).
+Une fois que vous avez reçu une approbation préalable à partir du programme de certification Microsoft Azure hello, vous pouvez passer trop[inscrire votre compte Microsoft en tant que vendeur Microsoft](marketplace-publishing-accounts-creation-registration.md).
 
 ## <a name="see-also"></a>Voir aussi
-* [Mise en route : publication d’une offre dans Azure Marketplace](marketplace-publishing-getting-started.md)
+* [Mise en route : comment toopublish une toohello offre Azure Marketplace](marketplace-publishing-getting-started.md)

@@ -1,6 +1,6 @@
 ---
-title: Planification des travaux avec Azure IoT Hub (.NET/Node) | Microsoft Docs
-description: "Procédure de planification d’une tâche Azure IoT Hub pour appeler une méthode directe sur plusieurs appareils. Vous utilisez Azure IoT device SDK pour Node.js afin d’implémenter les applications d’appareil simulé et Azure IoT service SDK pour .NET afin d’implémenter une application de service qui exécute la tâche."
+title: "travaux aaaSchedule avec Azure IoT Hub (nœud/.NET) | Documents Microsoft"
+description: "Comment tooschedule un Azure IoT Hub travail tooinvoke une méthode directe sur plusieurs appareils. Vous utilisez du SDK de périphérique Azure IoT hello pour les applications pour appareil Node.js tooimplement hello simulée et hello Azure IoT service SDK pour .NET tooimplement un travail de service application toorun hello."
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/10/2017
 ms.author: juanpere
-ms.openlocfilehash: a8f4f34aa99c4a9966957cac213ec9170de80a46
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f6148b67129dde4580bfe9ccceafd6400fbc5976
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="schedule-and-broadcast-jobs-netnodejs"></a>Planifier et diffuser des travaux (.NET/Node.js)
 
 [!INCLUDE [iot-hub-selector-schedule-jobs](../../includes/iot-hub-selector-schedule-jobs.md)]
 
-Utilisez Azure IoT Hub pour planifier et suivre des travaux qui mettent à jour des millions d’appareils. Utilisez les travaux pour :
+Utilisez les Azure IoT Hub tooschedule et suivre les travaux qui mettent à jour des millions d’appareils. Utilisez les travaux pour :
 
 * Mettre à jour les propriétés souhaitées
 * Mettre à jour les balises
 * Appeler des méthodes directes
 
-Un travail encapsule l’une de ces actions et suit l’exécution sur un ensemble d’appareils, défini par une requête de jumeau d’appareil. Par exemple, une application principale peut utiliser un travail pour appeler une méthode directe sur 10 000 appareils, qui les redémarre. Vous spécifiez l’ensemble des appareils avec une requête de jumeau d’appareil et planifiez le travail à exécuter ultérieurement. Le travail suit la progression à mesure que chacun de ces appareils reçoit et exécute la méthode directe de redémarrage.
+Une tâche encapsule une de ces actions et pistes hello d’exécution par rapport à un ensemble d’appareils qui est défini par une requête de double de périphérique. Par exemple, une application back-end peut utiliser un tooinvoke de travail une méthode directe sur 10 000 appareils qui redémarre les appareils hello. Vous spécifiez ensemble hello d’appareils avec une requête de double de périphérique et que vous planifiez hello travail toorun à l’avenir. progression assure le suivi des travaux Hello en tant que chacun des périphériques de hello recevoir et exécuter la méthode directe de redémarrage hello.
 
-Pour plus d’informations sur chacune de ces fonctionnalités, consultez les pages :
+toolearn savoir plus sur chacune de ces fonctionnalités, consultez :
 
-* Représentation d’appareil et propriétés : [Prise en main des représentations d’appareil][lnk-get-started-twin] et [Tutorial: How to use device twin properties][lnk-twin-props] (Didacticiel : Utilisation des propriétés de représentation d’appareil)
+* Double de l’appareil et les propriétés : [prise en main jumeaux de périphérique] [ lnk-get-started-twin] et [didacticiel : comment toouse appareil à deux propriétés][lnk-twin-props]
 * Méthodes directes : [Guide du développeur IoT Hub - Méthodes directes][lnk-dev-methods] et [Tutorial: Use direct methods][lnk-c2d-methods] (Didacticiel : utilisation des méthodes directes)
 
 Ce didacticiel vous explique les procédures suivantes :
 
-* Créer une application pour appareils implémentant une méthode directe nommée **lockDoor**, qui peut être appelée par l’application principale. L’application pour appareils reçoit également les modifications de propriétés souhaitées envoyées par l’application principale.
-* Créer une application principale qui crée un travail pour appeler la méthode directe **lockDoor** sur plusieurs appareils. Un autre travail envoie les mises à jour de propriétés souhaitées à plusieurs appareils.
+* Créer une application de périphérique qui implémente une méthode directe appelée **lockDoor** qui peut être appelée par l’application back-end de hello. application d’appareil Hello reçoit également les modifications de propriété de votre choix à partir de l’application back-end de hello.
+* Créer une application de serveur principal qui crée un Bonjour toocall de travail **lockDoor** méthode directe sur plusieurs appareils. Une autre tâche envoie la propriété désirée toomultiple périphériques des mises à jour.
 
-À la fin de ce didacticiel, vous avez une application d’appareil de console Node.js et une application principale de console .NET (c#) :
+À la fin de hello de ce didacticiel, vous avez une application console Node.js et une principal d’application console .NET (c#) :
 
-**simDevice.js** qui se connecte au hub IoT, implémente la méthode directe **lockDoor** et gère les modifications de propriétés souhaitées.
+**simDevice.js** qui se connecte tooyour IoT hub, implémente hello **lockDoor** direct de méthode et les handles de modifications apportées aux propriétés souhaité.
 
-**ScheduleJob** qui utilise les travaux pour appeler la méthode directe **lockDoor** et mettre à jour les propriétés souhaitées du jumeau de plusieurs appareils.
+**ScheduleJob** qui utilise hello toocall de travaux **lockDoor** direct double périphérique hello (méthode) et mise à jour des propriétés de la sur plusieurs appareils souhaitée.
 
-Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez hello suivant :
 
 * Visual Studio 2015 ou Visual Studio 2017.
-* Node.js version 0.12.x ou version ultérieure. L’article [Préparer votre environnement de développement][lnk-dev-setup] décrit l’installation de Node.js pour ce didacticiel sur Windows ou sur Linux.
+* Node.js version 0.12.x ou version ultérieure. article de Hello [préparer votre environnement de développement] [ lnk-dev-setup] décrit comment tooinstall Node.js pour ce didacticiel sur Windows ou Linux.
 * Un compte Azure actif. Si vous ne possédez pas de compte, vous pouvez créer un [compte gratuit][lnk-free-trial] en quelques minutes.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
@@ -60,30 +60,30 @@ Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
 ## <a name="schedule-jobs-for-calling-a-direct-method-and-sending-device-twin-updates"></a>Planifier des travaux pour appeler une méthode directe et envoyer des mises à jour de jumeaux d’appareils
 
-Dans cette section, vous allez créer une application console .NET (en C#) qui utilise des travaux pour appeler la méthode directe **lockDoor** et envoyer les mises à jour des propriétés souhaitées à plusieurs appareils.
+Dans cette section, vous créez .NET application console (à l’aide de c#) utilise hello toocall de travaux **lockDoor** méthode directe et envoyer la propriété désirée toomultiple périphériques des mises à jour.
 
-1. Dans Visual Studio, ajoutez un projet Visual C# Bureau classique Windows à la solution actuelle en utilisant le modèle de projet **Application Console** . Nommez le projet **ScheduleJob**.
+1. Dans Visual Studio, ajoutez une solution d’actuel toohello de projet Visual c# bureau classique de Windows à l’aide de hello **Application Console** modèle de projet. Projet de hello nom **ScheduleJob**.
 
     ![Nouveau projet Visual C# Bureau classique Windows][img-createapp]
 
-1. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur le projet **ScheduleJob**, puis cliquez sur **Gérer les packages NuGet...**.
-1. Dans la fenêtre **Gestionnaire de package NuGet**, cliquez sur **Parcourir**, puis recherchez **microsoft.azure.devices**. Cliquez ensuite sur **Installer** pour installer le package **Microsoft.Azure.Devices**, puis acceptez les conditions d’utilisation. Cette étape lance le téléchargement et l’installation et ajoute une référence au [package Azure IoT Service SDK NuGet][lnk-nuget-service-sdk] et ses dépendances.
+1. Dans l’Explorateur de solutions, cliquez sur hello **ScheduleJob** de projet, puis cliquez sur **gérer les Packages NuGet...** .
+1. Bonjour **Gestionnaire de Package NuGet** fenêtre, sélectionnez **Parcourir**, recherchez **microsoft.azure.devices**, sélectionnez **installer** tooinstall Hello **Microsoft.Azure.Devices** empaqueter et accepter les conditions d’utilisation de hello. Cette étape télécharge, installe et ajoute une référence toohello [Azure IoT service SDK] [ lnk-nuget-service-sdk] NuGet package et ses dépendances.
 
     ![Fenêtre du gestionnaire de package NuGet][img-servicenuget]
-1. Ajoutez les instructions `using` suivantes en haut du fichier **Program.cs** :
+1. Ajoutez hello suivant `using` instructions haut hello hello **Program.cs** fichier :
     
     ```csharp
     using Microsoft.Azure.Devices;
     using Microsoft.Azure.Devices.Shared;
     ```
 
-1. Ajoutez l’instruction `using` suivante si elle ne figure pas déjà dans les instructions par défaut.
+1. Ajoutez hello suit `using` instruction si elle est déjà présent dans les instructions par défaut hello.
 
     ```csharp
     using System.Threading.Tasks;
     ```
 
-1. Ajoutez les champs suivants à la classe **Program** . Remplacez la valeur d’espace réservé par la chaîne de connexion IoT Hub pour le hub créé dans la section précédente.
+1. Ajouter hello suivant champs toohello **programme** classe. Remplacer l’espace réservé de hello avec hello chaîne de connexion de IoT Hub hub hello que vous avez créé dans la section précédente de hello de.
 
     ```csharp
     static string connString = "{iot hub connection string}";
@@ -91,7 +91,7 @@ Dans cette section, vous allez créer une application console .NET (en C#) qui u
     static JobClient jobClient;
     ```
 
-1. Ajoutez la méthode suivante à la classe **Program** :
+1. Ajouter hello suivant de méthode toohello **programme** classe :
 
     ```csharp
     public static async Task MonitorJob(string jobId)
@@ -106,7 +106,7 @@ Dans cette section, vous allez créer une application console .NET (en C#) qui u
     }
     ```
 
-1. Ajoutez la méthode suivante à la classe **Program** :
+1. Ajouter hello suivant de méthode toohello **programme** classe :
 
     ```csharp
     public static async Task StartMethodJob(string jobId)
@@ -123,7 +123,7 @@ Dans cette section, vous allez créer une application console .NET (en C#) qui u
     }
     ```
 
-1. Ajoutez la méthode suivante à la classe **Program** :
+1. Ajouter hello suivant de méthode toohello **programme** classe :
 
     ```csharp
     public static async Task StartTwinUpdateJob(string jobId)
@@ -143,7 +143,7 @@ Dans cette section, vous allez créer une application console .NET (en C#) qui u
     }
     ```
 
-1. Enfin, ajoutez les lignes suivantes à la méthode **Main** :
+1. Enfin, ajoutez hello suivant lignes toohello **Main** méthode :
 
     ```csharp
     jobClient = JobClient.CreateFromConnectionString(connString);
@@ -152,38 +152,38 @@ Dans cette section, vous allez créer une application console .NET (en C#) qui u
 
     StartMethodJob(methodJobId);
     MonitorJob(methodJobId).Wait();
-    Console.WriteLine("Press ENTER to run the next job.");
+    Console.WriteLine("Press ENTER toorun hello next job.");
     Console.ReadLine();
 
     string twinUpdateJobId = Guid.NewGuid().ToString();
 
     StartTwinUpdateJob(twinUpdateJobId);
     MonitorJob(twinUpdateJobId).Wait();
-    Console.WriteLine("Press ENTER to exit.");
+    Console.WriteLine("Press ENTER tooexit.");
     Console.ReadLine();
     ```
 
-1. Dans l’Explorateur de solutions, sélectionnez **Définir les projets de démarrage...** et vérifiez que l’**Action** définie pour le projet **ScheduleJob** est **Démarrer**. Générez la solution.
+1. Dans l’Explorateur de solutions de hello, ouvrez hello **projets de définir le démarrage...**  et assurez-vous que hello **Action** pour **ScheduleJob** projet est **Démarrer**. Générez la solution de hello.
 
 ## <a name="create-a-simulated-device-app"></a>Création d’une application de périphérique simulé
 
-Dans cette section, vous créez une application console Node.js qui répond à une méthode directe appelée par le cloud, qui déclenche un redémarrage de l’appareil simulé et utilise les propriétés signalées pour permettre aux requêtes de la représentation d’appareil d’identifier des appareils et de déterminer le moment de leur dernier redémarrage.
+Dans cette section, vous créez une application console Node.js qui répond tooa de méthode directe appelé par le cloud hello, qui déclenche un redémarrage de l’appareil simulé et utilise hello signalées propriétés tooenable double requêtes tooidentify périphériques et quand ils dernier redémarrage.
 
-1. Créez un dossier vide appelé **simDevice**.  Dans le dossier **simDevice** , créez un fichier package.json à l’aide de la commande ci-dessous, à l’invite de commandes.  Acceptez toutes les valeurs par défaut :
+1. Créez un dossier vide appelé **simDevice**.  Bonjour **simDevice** dossier, créez un fichier package.json à l’aide de hello, la commande suivante à l’invite suivante.  Acceptez les valeurs par défaut hello :
 
     ```cmd/sh
     npm init
     ```
 
-1. À l’invite de commandes, dans le dossier **simDevice**, exécutez la commande suivante pour installer les packages **azure-iot-device** et **azure-iot-device-mqtt** :
+1. Votre invite de commandes Bonjour **simDevice** dossier, exécutez hello suivant commande tooinstall hello **azure iot-appareil** et **azure-iot-périphérique-mqtt** packages :
 
     ```cmd/sh
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 
-1. Dans un éditeur de texte, créez un fichier **simDevice.js** dans le dossier **simDevice**.
+1. À l’aide d’un éditeur de texte, créez un nouveau **simDevice.js** fichier Bonjour **simDevice** dossier.
 
-1. Ajoutez les instructions ’require’ ci-dessous au début du fichier **simDevice.js** :
+1. Ajouter des instructions au début de hello Hello suivant de hello « exiger » **simDevice.js** fichier :
 
     ```nodejs
     'use strict';
@@ -192,24 +192,24 @@ Dans cette section, vous créez une application console Node.js qui répond à u
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
 
-1. Ajoutez une variable **connectionString** et utilisez-la pour créer une instance de **Client**. Veillez à remplacer les espaces réservés par des valeurs appropriées à votre installation.
+1. Ajouter un **connectionString** variable et l’utiliser toocreate un **Client** instance. Rendre des espaces réservés de hello tooreplace que le programme d’installation de valeurs tooyour approprié.
 
     ```nodejs
     var connectionString = 'HostName={youriothostname};DeviceId={yourdeviceid};SharedAccessKey={yourdevicekey}';
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
 
-1. Ajoutez la fonction suivante pour gérer la méthode **lockDoor**.
+1. Ajouter hello suivant hello toohandle de fonction **lockDoor** (méthode).
 
     ```nodejs
     var onLockDoor = function(request, response) {
    
-        // Respond the cloud app for the direct method
+        // Respond hello cloud app for hello direct method
         response.send(200, function(err) {
             if (!err) {
                 console.error('An error occured when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.');
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.');
             }
         });
    
@@ -217,47 +217,47 @@ Dans cette section, vous créez une application console Node.js qui répond à u
     };
     ```
 
-1. Ajoutez le code suivant pour inscrire le gestionnaire de la méthode **lockDoor**.
+1. Ajouter hello suivant du Gestionnaire de hello code tooregister pour hello **lockDoor** (méthode).
 
     ```nodejs
     client.open(function(err) {
         if (err) {
-            console.error('Could not connect to IotHub client.');
+            console.error('Could not connect tooIotHub client.');
         }  else {
-            console.log('Client connected to IoT Hub.  Waiting for lockDoor direct method.');
+            console.log('Client connected tooIoT Hub.  Waiting for lockDoor direct method.');
             client.onDeviceMethod('lockDoor', onLockDoor);
         }
     });
     ```
 
-1. Enregistrez et fermez le fichier **simDevice.js**.
+1. Enregistrez et fermez hello **simDevice.js** fichier.
 
 > [!NOTE]
-> Pour simplifier les choses, ce didacticiel n’implémente aucune stratégie de nouvelle tentative. Dans le code de production, vous devez mettre en œuvre des stratégies de nouvelle tentative (par exemple, une interruption exponentielle), comme indiqué dans l’article MSDN [Gestion des erreurs temporaires][lnk-transient-faults].
+> tookeep les choses simples, ce didacticiel n’implémente pas de toute stratégie de nouvelle tentative. Dans le code de production, vous devez implémenter des stratégies de nouvelle tentative (par exemple, une interruption exponentielle), comme indiqué dans l’article hello [gestion des pannes temporaires][lnk-transient-faults].
 
-## <a name="run-the-apps"></a>Exécuter les applications
+## <a name="run-hello-apps"></a>Exécuter des applications de hello
 
-Vous êtes maintenant prêt à exécuter les applications.
+Vous êtes maintenant prêt toorun hello applications.
 
-1. À l’invite de commandes, dans le dossier **simDevice**, exécutez la commande suivante pour commencer à écouter la méthode directe de redémarrage.
+1. Invite de commandes hello Bonjour **simDevice** dossier, exécutez hello suivant toobegin de commande à l’écoute de méthode directe de redémarrage hello.
 
     ```cmd/sh
     node simDevice.js
     ```
 
-1. Exécutez l’application console C# **ScheduleJob** en cliquant avec le bouton droit sur le projet **ScheduleJob**, puis en sélectionnant **Débogage** et **Démarrer une nouvelle instance**.
+1. Application de console hello exécution c# **ScheduleJob** en cliquant sur hello **ScheduleJob** projet, puis en sélectionnant **déboguer** et **démarrer une nouvelle instance**.
 
-1. La sortie de l’appareil et des applications principales s’affiche.
+1. Vous voyez la sortie hello à partir de périphériques et les applications de serveur principal.
 
-    ![Exécuter les applications pour planifier des tâches][img-schedulejobs]
+    ![Exécuter des applications de hello tooschedule travaux][img-schedulejobs]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez utilisé un travail pour planifier une méthode directe sur un appareil et la mise à jour des propriétés de représentation de l’appareil.
+Dans ce didacticiel, vous avez utilisé un travail tooschedule un appareil de tooa méthode directe et la mise à jour de hello des propriétés du double hello appareil.
 
-Pour approfondir la prise en main d’IoT Hub et des modèles de gestion d’appareils, comme la mise à jour du microprogramme à distance, consultez le [Didacticiel : Mettre à jour un microprogramme][lnk-fwupdate].
+toocontinue mise en route avec les modèles de gestion des IoT Hub et de périphérique tel que distant sur hello air microprogramme mise à jour, consultez [didacticiel : comment toodo un microprogramme mettre à jour][lnk-fwupdate].
 
-Afin d’approfondir l’apprentissage de IoT Hub, consultez [Getting started with IoT Edge][lnk-iot-edge] (Bien démarrer avec IoT Edge).
+toocontinue mise en route avec IoT Hub, consultez [mise en route avec IoT bord][lnk-iot-edge].
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-node-schedule-jobs/servicesdknuget.png

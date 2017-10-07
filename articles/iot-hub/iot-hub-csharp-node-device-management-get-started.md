@@ -1,6 +1,6 @@
 ---
-title: Prise en main de la gestion des appareils Azure IoT Hub (.NET/Node) | Microsoft Docs
-description: "Guide d’utilisation de la gestion des appareils Azure IoT Hub pour lancer un redémarrage d’appareil à distance. Vous utilisez Azure IoT device SDK pour Node.js afin d’implémenter une application d’appareil simulé qui inclut une méthode directe et Azure IoT service SDK pour .NET afin d’implémenter une application de service qui appelle la méthode directe."
+title: "aaaGet a démarré avec la gestion des appareils Azure IoT Hub (nœud/.NET) | Documents Microsoft"
+description: "Comment toouse Azure IoT Hub device management tooinitiate un appareil distant redémarrer. Vous utilisez du SDK de périphérique Azure IoT hello pour Node.js tooimplement une application d’appareil simulé qui inclut une méthode directe et la hello Azure IoT service SDK pour .NET tooimplement une application de service qui appelle la méthode directe hello."
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/17/2016
 ms.author: juanpere
-ms.openlocfilehash: d97fc5493570985f94c23032c870628d6a089dcd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ea6d50dfac1c222d7836e3bf5503c6c9b8c89dfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-management-netnode"></a>Prise en main de la gestion d’appareils (.NET/Node)
 
@@ -26,43 +26,43 @@ ms.lasthandoff: 08/18/2017
 
 Ce didacticiel vous explique les procédures suivantes :
 
-* Utiliser le portail Azure pour créer un IoT Hub et une identité d’appareil dans celui-ci.
-* Créer une application d’appareil simulé disposant d’une méthode directe permettant le redémarrage de cet appareil. Les méthodes directes sont appelées à partir du cloud.
-* Créer une application console .NET qui appelle une méthode directe de redémarrage sur l’application d’appareil simulé via votre IoT Hub.
+* Utilisez hello toocreate portail Azure un IoT Hub et créer une identité d’appareil dans votre hub IoT.
+* Créer une application d’appareil simulé disposant d’une méthode directe permettant le redémarrage de cet appareil. Méthodes directes sont appelés à partir du cloud de hello.
+* Créer une application console .NET qui appelle la méthode directe de redémarrage hello dans l’application d’appareil simulé hello via votre hub IoT.
 
-À la fin de ce didacticiel, vous avez une application d’appareil de console Node.js et une application principale de console .NET (c#) :
+À la fin de hello de ce didacticiel, vous avez une application console Node.js et une principal d’application console .NET (c#) :
 
-**dmpatterns_getstarted_device.js**, qui se connecte à votre IoT Hub avec l’identité d’appareil créée précédemment, reçoit une méthode directe de redémarrage, simule un redémarrage physique et indique l’heure du dernier redémarrage.
+**dmpatterns_getstarted_device.js**, qui connecte tooyour IoT hub avec l’identité de l’appareil hello créée précédemment, reçoit une méthode directe de redémarrage, simule un redémarrage physique et indique le temps de hello pour le dernier redémarrage de hello.
 
-**TriggerReboot**, qui appelle une méthode directe sur l’application d’appareil simulé, affiche la réponse et les propriétés signalées mises à jour.
+**TriggerReboot**, qui appelle une méthode directe dans l’application d’appareil simulé hello, affiche les réponse hello et hello affiche mis à jour a signalé des propriétés.
 
-Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez hello suivant :
 
 * Visual Studio 2015 ou Visual Studio 2017.
-* Node.js version 0.12.x ou version ultérieure. <br/>  L’article [Préparer votre environnement de développement][lnk-dev-setup] décrit l’installation de Node.js pour ce didacticiel sur Windows ou sur Linux.
+* Node.js version 0.12.x ou version ultérieure. <br/>  [Préparer votre environnement de développement] [ lnk-dev-setup] décrit comment tooinstall Node.js pour ce didacticiel sur Windows ou Linux.
 * Un compte Azure actif. (Si vous ne possédez pas de compte, vous pouvez créer un [compte gratuit][lnk-free-trial] en quelques minutes.)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>Déclencher un redémarrage à distance sur l’appareil à l’aide d’une méthode directe
-Dans cette section, vous créez une application console .NET (à l’aide de C#) qui lance un redémarrage à distance sur un appareil avec une méthode directe. L’application utilise des requêtes du jumeau d’appareil pour déterminer l’heure du dernier redémarrage de cet appareil.
+## <a name="trigger-a-remote-reboot-on-hello-device-using-a-direct-method"></a>Déclencher un arrêt à distance sur l’appareil hello à l’aide d’une méthode directe
+Dans cette section, vous créez une application console .NET (à l’aide de C#) qui lance un redémarrage à distance sur un appareil avec une méthode directe. application Hello utilise hello de toodiscover requêtes appareil double dernier redémarrage de cet appareil.
 
-1. Dans Visual Studio, ajoutez un projet Visual C# Bureau classique Windows à une nouvelle solution en utilisant le modèle de projet **Application console (.NET Framework)**. Assurez-vous que la version du .NET Framework est définie sur 4.5.1 ou supérieur. Nommez le projet **TriggerReboot**.
+1. Dans Visual Studio, ajoutez une solution de nouveau tooa de projet Visual c# bureau classique de Windows à l’aide de hello **l’application Console (.NET Framework)** modèle de projet. Assurez-vous que la version du .NET Framework hello est 4.5.1 ou version ultérieure. Projet de hello nom **TriggerReboot**.
 
     ![Nouveau projet Visual C# Bureau classique Windows][img-createapp]
 
-2. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur le projet **TriggerReboot**, puis cliquez sur **Gérer les packages NuGet**.
-3. Dans la fenêtre **Gestionnaire de package NuGet**, cliquez sur **Parcourir**, puis recherchez **microsoft.azure.devices**. Cliquez ensuite sur **Installer** pour installer le package **Microsoft.Azure.Devices**, puis acceptez les conditions d’utilisation. Cette procédure lance le téléchargement et l’installation et ajoute une référence au [package Azure IoT Service SDK NuGet][lnk-nuget-service-sdk] et ses dépendances.
+2. Dans l’Explorateur de solutions, cliquez sur hello **TriggerReboot** de projet, puis cliquez sur **gérer les Packages NuGet**.
+3. Bonjour **Gestionnaire de Package NuGet** fenêtre, sélectionnez **Parcourir**, recherchez **microsoft.azure.devices**, sélectionnez **installer** tooinstall Hello **Microsoft.Azure.Devices** empaqueter et accepter les conditions d’utilisation de hello. Cette procédure télécharge, installe et ajoute une référence toohello [Azure IoT service SDK] [ lnk-nuget-service-sdk] NuGet package et ses dépendances.
 
     ![Fenêtre du gestionnaire de package NuGet][img-servicenuget]
-4. Ajoutez les instructions `using` suivantes en haut du fichier **Program.cs** :
+4. Ajoutez hello suivant `using` instructions haut hello hello **Program.cs** fichier :
    
         using Microsoft.Azure.Devices;
         using Microsoft.Azure.Devices.Shared;
         
-5. Ajoutez les champs suivants à la classe **Program** . Remplacez la valeur d’espace réservé par la chaîne de connexion pour le IoT Hub créé dans la section précédente et l’appareil cible.
+5. Ajouter hello suivant champs toohello **programme** classe. Remplacer la valeur d’espace réservé hello avec hello chaîne de connexion de IoT Hub hub hello que vous avez créé dans la section précédente de hello et hello cible de.
    
         static RegistryManager registryManager;
         static string connString = "{iot hub connection string}";
@@ -70,7 +70,7 @@ Dans cette section, vous créez une application console .NET (à l’aide de C#)
         static JobClient jobClient;
         static string targetDevice = "{deviceIdForTargetDevice}";
         
-6. Ajoutez la méthode suivante à la classe **Program**.  Ce code obtient la représentation d’appareil pour le redémarrage de l’appareil et renvoie les propriétés signalées.
+6. Ajouter hello suivant de méthode toohello **programme** classe.  Cette double de périphérique code obtient hello pour hello hello de périphérique et les sorties de redémarrage a signalé des propriétés.
    
         public static async Task QueryTwinRebootReported()
         {
@@ -78,7 +78,7 @@ Dans cette section, vous créez une application console .NET (à l’aide de C#)
             Console.WriteLine(twin.Properties.Reported.ToJson());
         }
         
-7. Ajoutez la méthode suivante à la classe **Program**.  Ce code lance un redémarrage à distance sur l’appareil à l’aide d’une méthode directe.
+7. Ajouter hello suivant de méthode toohello **programme** classe.  Ce code initialise redémarrage hello sur périphérique hello à l’aide d’une méthode directe.
 
         public static async Task StartReboot()
         {
@@ -91,35 +91,35 @@ Dans cette section, vous créez une application console .NET (à l’aide de C#)
             Console.WriteLine("Invoked firmware update on device.");
         }
 
-7. Enfin, ajoutez les lignes suivantes à la méthode **Main** :
+7. Enfin, ajoutez hello suivant lignes toohello **Main** méthode :
    
         registryManager = RegistryManager.CreateFromConnectionString(connString);
         StartReboot().Wait();
         QueryTwinRebootReported().Wait();
-        Console.WriteLine("Press ENTER to exit.");
+        Console.WriteLine("Press ENTER tooexit.");
         Console.ReadLine();
         
-8. Générez la solution.
+8. Générez la solution de hello.
 
 ## <a name="create-a-simulated-device-app"></a>Création d’une application de périphérique simulé
 Dans cette section, vous allez :
 
-* Créer une application console Node.js qui répond à une méthode directe appelée par le cloud
+* Créer une application de console Node.js qui répond tooa de méthode directe appelé par le cloud de hello
 * Déclencher un redémarrage d’appareil simulé
-* Utiliser les propriétés signalées pour activer les requêtes sur la représentation d’appareil afin d’identifier les appareils et l’heure de leur dernier redémarrage
+* Hello d’utilisation signalées propriétés tooenable double requêtes tooidentify périphériques et quand ils dernier redémarrage
 
-1. Créez un dossier vide nommé **simulateddevice**.  Dans le dossier **simulateddevice**, créez un fichier package.json en utilisant la commande suivante à l’invite de commandes.  Acceptez toutes les valeurs par défaut :
+1. Créez un dossier vide nommé **simulateddevice**.  Bonjour **manageddevice** dossier, créez un fichier package.json à l’aide de hello, la commande suivante à l’invite suivante.  Acceptez les valeurs par défaut hello :
    
     ```
     npm init
     ```
-2. À l’invite de commandes, dans le dossier **manageddevice**, exécutez la commande suivante pour installer les packages Kit de développement logiciel (SDK) pour appareils **azure-iot-device** et **azure-iot-device-mqtt** :
+2. Votre invite de commandes Bonjour **manageddevice** dossier, exécutez hello suivant commande tooinstall hello **azure iot-appareil** package SDK de l’appareil et **azure-iot-périphérique-mqtt**package :
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. À l’aide d’un éditeur de texte, créez un fichier **dmpatterns_getstarted_device.js** dans le dossier **manageddevice**.
-4. Ajoutez les instructions 'require' suivantes au début du fichier **dmpatterns_getstarted_device.js** :
+3. À l’aide d’un éditeur de texte, créez un nouveau **dmpatterns_getstarted_device.js** fichier Bonjour **manageddevice** dossier.
+4. Ajouter des instructions au début de hello Hello suivant de hello « exiger » **dmpatterns_getstarted_device.js** fichier :
    
     ```
     'use strict';
@@ -127,27 +127,27 @@ Dans cette section, vous allez :
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-5. Ajoutez une variable **connectionString** et utilisez-la pour créer une instance de **Client**.  Remplacez la chaîne de connexion par la chaîne de connexion de votre appareil.  
+5. Ajouter un **connectionString** variable et l’utiliser toocreate un **Client** instance.  Remplacez la chaîne de connexion hello avec la chaîne de connexion de votre périphérique.  
    
     ```
     var connectionString = 'HostName={youriothostname};DeviceId=myDeviceId;SharedAccessKey={yourdevicekey}';
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
-6. Ajoutez la fonction suivante pour implémenter la méthode directe sur l’appareil
+6. Ajouter hello suivant de méthode directe de fonction tooimplement hello de périphérique de hello
    
     ```
     var onReboot = function(request, response) {
    
-        // Respond the cloud app for the direct method
+        // Respond hello cloud app for hello direct method
         response.send(200, 'Reboot started', function(err) {
             if (!err) {
                 console.error('An error occured when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.');
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.');
             }
         });
    
-        // Report the reboot before the physical restart
+        // Report hello reboot before hello physical restart
         var date = new Date();
         var patch = {
             iothubDM : {
@@ -174,7 +174,7 @@ Dans cette section, vous allez :
         console.log('Rebooting!');
     };
     ```
-7. Ajoutez le code suivant pour ouvrir la connexion à votre IoT Hub et démarrez l’écouteur de la méthode directe :
+7. Ajoutez suivant de hello code le hub IoT tooyour tooopen hello connexion et démarrer l’écouteur de méthode directe hello :
    
     ```
     client.open(function(err) {
@@ -186,23 +186,23 @@ Dans cette section, vous allez :
         }
     });
     ```
-8. Enregistrez et fermez le fichier **dmpatterns_getstarted_device.js**.
+8. Enregistrez et fermez hello **dmpatterns_getstarted_device.js** fichier.
    
 > [!NOTE]
-> Pour simplifier les choses, ce didacticiel n’implémente aucune stratégie de nouvelle tentative. Dans le code de production, vous devez mettre en œuvre des stratégies de nouvelle tentative (par exemple, une interruption exponentielle), comme indiqué dans l’article MSDN [Gestion des erreurs temporaires][lnk-transient-faults].
+> tookeep les choses simples, ce didacticiel n’implémente pas de toute stratégie de nouvelle tentative. Dans le code de production, vous devez implémenter des stratégies de nouvelle tentative (par exemple, une interruption exponentielle), comme indiqué dans l’article hello [gestion des pannes temporaires][lnk-transient-faults].
 
 
-## <a name="run-the-apps"></a>Exécuter les applications
-Vous êtes maintenant prêt à exécuter les applications.
+## <a name="run-hello-apps"></a>Exécuter des applications de hello
+Vous êtes maintenant prêt toorun hello applications.
 
-1. À l’invite de commandes, dans le dossier **manageddevice**, exécutez la commande suivante pour commencer à écouter la méthode directe de redémarrage.
+1. Invite de commandes hello Bonjour **manageddevice** dossier, exécutez hello suivant toobegin de commande à l’écoute de méthode directe de redémarrage hello.
    
     ```
     node dmpatterns_getstarted_device.js
     ```
-2. Exécutez l’application console C# **TriggerReboot**. Cliquez avec le bouton droit sur le projet **TriggerReboot**, puis sélectionnez **Debug** et **Démarrer une nouvelle instance**.
+2. Application de console hello exécution c# **TriggerReboot**. Avec le bouton hello **TriggerReboot** projet, sélectionnez **déboguer**, puis sélectionnez **démarrer une nouvelle instance**.
 
-3. La réponse de l’appareil à la méthode directe s’affiche dans la console.
+3. Vous consultez hello appareil réponse toohello méthode directe dans la console hello.
 
 [!INCLUDE [iot-hub-dm-followup](../../includes/iot-hub-dm-followup.md)]
 
@@ -216,7 +216,7 @@ Vous êtes maintenant prêt à exécuter les applications.
 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [Azure portal]: https://portal.azure.com/
-[Using resource groups to manage your Azure resources]: ../azure-portal/resource-group-portal.md
+[Using resource groups toomanage your Azure resources]: ../azure-portal/resource-group-portal.md
 [lnk-dm-github]: https://github.com/Azure/azure-iot-device-management
 
 [lnk-devtwin]: iot-hub-devguide-device-twins.md

@@ -1,6 +1,6 @@
 ---
-title: "Solution de sécurité et d’audit d’Operations Management Suite - Base de référence web | Microsoft Docs"
-description: "Ce document explique comment utiliser la solution de sécurité et d’audit d’Operations Management Suite (OMS) pour effectuer une évaluation de la base de référence web pour l’ensemble des serveurs web surveillés, afin de déterminer leur niveau de conformité et de sécurité."
+title: "aaaOperations gestion Suite de sécurité et Audit Solution Web base | Documents Microsoft"
+description: "Ce document explique comment solution de sécurité d’OMS et d’Audit toouse tooperform une évaluation de la ligne de base web de tous les serveurs web analysés fins de conformité et sécurité."
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
@@ -17,58 +17,58 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/27/2017
 ms.author: yurid
-ms.openlocfilehash: 0d4707dc0c0ffbf40d0d10a6d12b9709a9655258
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8aa87fa404ff97ab549dda3f9bebb75766055963
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="web-baseline-assessment-in-operations-management-suite-security-and-audit-solution"></a>Évaluation de la base de référence web dans la solution de sécurité et d’audit d’Operations Management Suite
-Ce document vous aide à utiliser les capacités d’évaluation de la base de référence web de [la solution de sécurité et d’audit d’Operations Management Suite](operations-management-suite-overview.md) pour accéder à l’état de sécurité des ressources analysées.
+Ce document vous aide à toouse [Operations Management Suite (OMS) Solution de sécurité et d’Audit](operations-management-suite-overview.md) web d’évaluation de la ligne de base fonctionnalités tooaccess hello état de sécurisation de vos ressources analysés.
 
 ## <a name="what-is-web-baseline-assessment"></a>Qu’est-ce qu’une évaluation de la base de référence web ?
-La solution de sécurité d’OMS permet actuellement d’évaluer la base de référence de sécurité pour les systèmes d’exploitation. Elle analyse les paramètres de système d’exploitation de vos serveurs toutes les 24 heures et affiche les paramètres potentiellement vulnérables. Pour plus d’informations à ce sujet, consultez [Évaluation de la base de référence dans la solution de sécurité et d’audit d’Operations Management Suite](oms-security-baseline.md).
+La solution de sécurité d’OMS permet actuellement d’évaluer la base de référence de sécurité pour les systèmes d’exploitation. Il analyse les paramètres de système d’exploitation hello de vos serveurs toutes les 24 heures et fournit un affichage des paramètres potentiellement vulnérables. Pour plus d’informations à ce sujet, consultez [Évaluation de la base de référence dans la solution de sécurité et d’audit d’Operations Management Suite](oms-security-baseline.md).
 
-L’objectif d’une évaluation de la base de référence web consiste à identifier les paramètres de serveur web potentiellement vulnérables. On distingue trois principales sources pour les configurations de base de référence web : les configurations .NET, ASP.NET et IIS.  Tout comme l’évaluation de la base de référence du système d’exploitation, la solution de sécurité d’OMS va analyser vos serveurs web toutes les 24 heures et fournir un aperçu de leur état de sécurité.  Dans Internet Information Services (IIS), les configurations sont hautement personnalisables, ce qui permet de remplacer différents niveaux de site et d’application. L’analyseur vérifie les paramètres au niveau de chaque site/application en complément du niveau racine par défaut. Vous pouvez ainsi identifier l’emplacement des paramètres potentiellement vulnérables et y remédier rapidement.
+Hello vise d’évaluation de la ligne de base hello web paramètres du serveur web potentiellement vulnérables toofind. Hello trois sources principales pour les configurations de base hello web sont : configuration .NET, ASP.NET et IIS.  Simplement comme hello évaluation de ligne de base du système d’exploitation, sécurité OMS va tooscan votre chaque 24 heures des serveurs web et fournissent une vue à l’état de sécurité d’eux.  Dans les services Internet (IIS), la configurations sont hautement personnalisables, et qui permet à différents toobe niveaux de site et l’application remplacée. le scanneur Hello vérifie les paramètres de hello à chaque niveau de site/application de niveau racine d’addition toohello par défaut. Cela vous permet des emplacements des paramètres de la vulnérabilité potentielle tooidentify et résoudre rapidement.
 
 
 ## <a name="web-security-baseline-assessment"></a>Évaluation de la base de référence de la sécurité web
-Pour cette version préliminaire, cette fonctionnalité sera accessible à l’aide de l’option de recherche d’OMS. Suivez les étapes ci-dessous pour exécuter la requête appropriée :
+Cette fonctionnalité va toobe accédé à l’aide d’option de recherche d’OMS hello pour cette version préliminaire. Suivez les étapes de hello sous requête hello affecté de tooperform :
 
-1. Dans le tableau de bord principal de **Microsoft Operations Management Suite**, cliquez sur la vignette **Sécurité et audit**.
-2. Dans le tableau de bord **Sécurité et audit**, cliquez sur le bouton **Recherche dans les journaux**.
-3. La première requête que vous pouvez utiliser est le **résumé de l’évaluation de la base de référence Web**. Dans le champ **Begin search here** (Lancer la recherche ici), tapez la requête suivante : Type*=SecurityBaselineSummary BaselineType=web*. L’écran suivant présente un exemple de sortie :
+1. Bonjour **Microsoft Operations Management Suite** cliquez sur le tableau de bord principal **sécurité et Audit** vignette.
+2. Bonjour **sécurité et Audit** tableau de bord, cliquez sur **recherche de journal** bouton.
+3. Hello première requête que vous pouvez utiliser est hello **résumé de l’évaluation de ligne de base Web**. Bonjour **rechercher ici** , tapez cette requête : Type*= SecurityBaselineSummary BaselineType = web*. Hello suivant écran présente un exemple de sortie :
 
 ![Résumé de l’évaluation de la base de référence web](./media/oms-security-web-baseline/oms-security-web-baseline-fig1-new.png)
 
 > [!NOTE]
 > Dans cette requête, chaque enregistrement indique un récapitulatif de l’évaluation sur un serveur donné.
 
-Dans la zone **Recherche dans les journaux**, vous pouvez taper différentes requêtes pour obtenir davantage d’informations sur l’évaluation de la base de référence web. En plus de la requête précédente, vous pouvez également utiliser les requêtes suivantes dans cette version préliminaire.
+Une fois que vous êtes dans hello **recherche de journal**, vous pouvez taper des requêtes différentes tooobtain plus d’informations sur l’évaluation de ligne de base hello web. En outre toohello de requête précédente, vous pouvez également utiliser hello suivant celles dans cette version préliminaire.
 
-**Évaluation de la règle de base de référence web** : chaque enregistrement représente une seule évaluation de la règle de base de référence web sur un seul serveur. Il inclut toutes les données de la règle, l’emplacement, le résultat attendu et le résultat réel.
+**Évaluation de la règle de base de référence web** : chaque enregistrement représente une seule évaluation de la règle de base de référence web sur un seul serveur. Elle inclut toutes les données de règle de hello, l’emplacement, les résultats hello attendu et de résultats réel hello.
 
 **Requête** : Type*=SecurityBaseline BaselineType=web*
 
 ![Évaluation de la règle de base de référence web](./media/oms-security-web-baseline/oms-security-web-baseline-fig2.png)
 
-**Afficher tous les résultats d’un serveur spécifique** : cette requête montre comment afficher les résultats d’un serveur spécifique.
+**Afficher tous les résultats d’un serveur spécifique**: cette requête montre l’affichage des résultats de toosee d’un serveur spécifique.
 
 **Requête** : *Type=SecurityBaseline BaselineType=web Computer=BaselineTestVM1*
 
 ![Tous les résultats](./media/oms-security-web-baseline/oms-security-web-baseline-fig3.png)
 
-Vous pouvez également utiliser ces enregistrements/requêtes pour créer vos propres tableaux de bord, rapports ou alertes. L’écran ci-dessous présente un exemple de contrôle d’interface utilisateur que vous pouvez ajouter à votre tableau de bord. Pour savoir comment visualiser vos données à l’aide du Concepteur de vue d’OMS, cliquez [ici](https://blogs.technet.microsoft.com/msoms/2016/06/30/oms-view-designer-visualize-your-data-your-way/). L’écran ci-dessous montre à quoi ressemble la mosaïque une fois que vous avez effectué cette personnalisation.
+Vous pouvez également utiliser ces toocreate enregistrements/requêtes vos propres tableaux de bord, rapports ou les alertes. écran de Hello ci-dessous présente un exemple de contrôle d’interface utilisateur que vous pouvez ajouter tooyour le tableau de bord. Vous pouvez apprendre comment toovisualize vos données à l’aide du Concepteur de vue OMS [ici](https://blogs.technet.microsoft.com/msoms/2016/06/30/oms-view-designer-visualize-your-data-your-way/). écran Hello ci-dessous est un exemple de comment hello vignette ressemblera une fois que vous apportez cette personnalisation.
 
 ![Exemple d’interface utilisateur](./media/oms-security-web-baseline/oms-security-web-baseline-fig4.png)
 
 > [!NOTE]
-> Si vous souhaitez connaître les paramètres qui sont vérifiés pour l’évaluation de la base de référence, vous pouvez télécharger [cette feuille de calcul Excel](https://gallery.technet.microsoft.com/OMS-Web-Baseline-1e811690) qui contient ces paramètres.
+> Si vous souhaitez que les paramètres de hello tooknow qui sont vérifiées pour l’évaluation de ligne de base hello, vous pouvez télécharger [cette feuille de calcul Excel](https://gallery.technet.microsoft.com/OMS-Web-Baseline-1e811690) qui contient ces paramètres.
 
 ## <a name="see-also"></a>Voir aussi
-Dans ce document, vous avez découvert la fonction d’évaluation de la base de référence web de la solution de sécurité et d’audit d’OMS. Pour plus d’informations sur la sécurité OMS, consultez les articles suivants :
+Dans ce document, vous avez découvert la fonction d’évaluation de la base de référence web de la solution de sécurité et d’audit d’OMS. toolearn en savoir plus sur la sécurité d’OMS, consultez hello suivant des articles :
 
 * [Présentation - Operations Management Suite (OMS)](operations-management-suite-overview.md)
-* [Surveiller et répondre aux alertes de sécurité dans la solution de sécurité et d’audit d’Operations Management Suite](oms-security-responding-alerts.md)
+* [Surveillance et réponse tooSecurity alertes Operations Management Suite de Solution de sécurité et d’Audit](oms-security-responding-alerts.md)
 * [Surveillance des ressources dans la solution de sécurité et d’audit d’Operations Management Suite](oms-security-monitoring-resources.md)
 

@@ -1,6 +1,6 @@
 ---
-title: Gestion de la puissance de calcul dans Azure SQL Data Warehouse (PowerShell) | Microsoft Docs
-description: "Tâches PowerShell permettant de gérer la puissance de calcul. Mettez à l’échelle les ressources de calcul en ajustant les unités DWU. Ou suspendez et reprenez des ressources de calcul pour réduire les coûts."
+title: "aaaManage de calcul power dans l’entrepôt de données SQL Azure (PowerShell) | Documents Microsoft"
+description: "PowerShell tâches toomanage une puissance de calcul. Mettez à l’échelle les ressources de calcul en ajustant les unités DWU. Ou bien, suspendre et reprendre des coûts toosave des ressources de calcul."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 6a185d96447c2e1b0b463439dd062081e783da5f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b379d4cf89570649767f6896d2c630d4f1111d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-powershell"></a>Gestion de la puissance de calcul dans Azure SQL Data Warehouse (PowerShell)
 > [!div class="op_single_selector"]
@@ -32,17 +32,17 @@ ms.lasthandoff: 07/11/2017
 >
 
 ## <a name="before-you-begin"></a>Avant de commencer
-### <a name="install-the-latest-version-of-azure-powershell"></a>Installer la dernière version d’Azure PowerShell
+### <a name="install-hello-latest-version-of-azure-powershell"></a>Installer la version la plus récente d’Azure PowerShell hello
 > [!NOTE]
-> Pour utiliser Azure PowerShell avec SQL Data Warehouse, vous devez installer Azure PowerShell version 1.0.3 ou supérieure.  Pour vérifier votre version, exécutez la commande **Get-Module -ListAvailable -Name Azure**. Vous pouvez installer la version la plus récente à partir de [Microsoft Web Platform Installer][Microsoft Web Platform Installer].  Pour plus d’informations, consultez [Installation et configuration d’Azure PowerShell][How to install and configure Azure PowerShell].
+> toouse Azure PowerShell avec l’entrepôt de données SQL, vous avez besoin d’Azure PowerShell version 1.0.3 ou supérieur.  exécution de votre version actuelle de tooverify commande hello **Get-Module - ListAvailable-nom Azure**. Vous pouvez installer la version la plus récente à partir de hello [Microsoft Web Platform Installer][Microsoft Web Platform Installer].  Pour plus d’informations, consultez [comment tooinstall et configurer Azure PowerShell][How tooinstall and configure Azure PowerShell].
 >
 > 
 
 ### <a name="get-started-with-azure-powershell-cmdlets"></a>Prise en main des applets de commande Azure PowerShell
-Pour commencer :
+tooget démarré :
 
 1. Ouvrez Azure PowerShell.
-2. À l’invite de PowerShell, exécutez les commandes suivantes pour vous connecter à Azure Resource Manager et sélectionnez votre abonnement.
+2. À l’invite de PowerShell hello, exécutez toosign de ces commandes dans toohello Azure Resource Manager et sélectionnez votre abonnement.
 
     ```PowerShell
     Login-AzureRmAccount
@@ -56,7 +56,7 @@ Pour commencer :
 ## <a name="scale-compute-power"></a>Mise à l’échelle de la puissance de calcul
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-Pour modifier les unités DWU, utilisez l’applet de commande PowerShell [Set-AzureRmSqlDatabase][Set-AzureRmSqlDatabase]. L'exemple suivant définit l'objectif de niveau de service sur DW1000 pour la base de données MySQLDW hébergée sur le serveur MyServer.
+toochange hello Dwu, utilisez hello [Set-AzureRmSqlDatabase] [ Set-AzureRmSqlDatabase] applet de commande PowerShell. Hello exemple suivant définit hello service niveau objectif tooDW1000 pour la base de données de hello MySQLDW qui est hébergé sur le serveur monserveur.
 
 ```Powershell
 Set-AzureRmSqlDatabase -DatabaseName "MySQLDW" -ServerName "MyServer" -RequestedServiceObjectiveName "DW1000"
@@ -67,10 +67,10 @@ Set-AzureRmSqlDatabase -DatabaseName "MySQLDW" -ServerName "MyServer" -Requested
 ## <a name="pause-compute"></a>Suspension du calcul
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-Pour interrompre une base de données, utilisez l’applet de commande [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]. Dans l’exemple suivant, une base de données appelée Database02 et hébergée sur un serveur appelé Server01 est interrompue. Le serveur est un groupe de ressources Azure appelé ResourceGroup1.
+toopause une base de données, utilisez hello [Suspend-AzureRmSqlDatabase] [ Suspend-AzureRmSqlDatabase] applet de commande. Hello exemple suivant suspend une base de données appelé base de données02 hébergé sur un serveur nommé Server01. serveur de Hello est dans un groupe de ressources Azure nommé ResourceGroup1.
 
 > [!NOTE]
-> Si votre serveur est nommé foo.database.windows.net, utilisez « foo » en tant que nom du serveur dans les applets de commande PowerShell.
+> Notez que si votre serveur est foo.database.windows.net, utilisez « foo » comme hello - nom du serveur dans les applets de commande PowerShell hello.
 >
 > 
 
@@ -78,7 +78,7 @@ Pour interrompre une base de données, utilisez l’applet de commande [Suspend-
 Suspend-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
 –ServerName "Server01" –DatabaseName "Database02"
 ```
-Une variante, l'exemple suivant récupère la base de données dans l'objet $database. Puis il redirige l’objet récupéré vers [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]. Les résultats sont stockés dans l'objet resultDatabase. La dernière commande affiche les résultats.
+Une variation, l’exemple suivant récupère la base de données hello en objet de hello $database. Elle redirige ensuite les objets hello trop[Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]. résultats de Hello sont stockés dans resultDatabase d’objet hello. commande finale Hello montre les résultats de hello.
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
@@ -92,14 +92,14 @@ $resultDatabase
 ## <a name="resume-compute"></a>Reprise du calcul
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-Pour démarrer une base de données, utilisez l’applet de commande [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase]. Dans l’exemple suivant, une base de données appelée Database02 et hébergée sur un serveur appelé Server01 est démarrée. Le serveur est un groupe de ressources Azure appelé ResourceGroup1.
+toostart une base de données, utilisez hello [Resume-AzureRmSqlDatabase] [ Resume-AzureRmSqlDatabase] applet de commande. Hello exemple suivant démarre une base de données appelé base de données02 hébergé sur un serveur nommé Server01. serveur de Hello est dans un groupe de ressources Azure nommé ResourceGroup1.
 
 ```Powershell
 Resume-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
 –ServerName "Server01" -DatabaseName "Database02"
 ```
 
-Une variante, l'exemple suivant récupère la base de données dans l'objet $database. Il redirige ensuite l’objet [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase] et stocke les résultats dans $resultDatabase. La dernière commande affiche les résultats.
+Une variation, l’exemple suivant récupère la base de données hello en objet de hello $database. Elle redirige ensuite les objets hello trop[Resume-AzureRmSqlDatabase] [ Resume-AzureRmSqlDatabase] et stocke les résultats de hello dans $resultDatabase. commande finale Hello montre les résultats de hello.
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
@@ -112,7 +112,7 @@ $resultDatabase
 
 ## <a name="check-database-state"></a>Vérifier l’état de base de données
 
-Comme indiqué dans les exemples ci-dessus, vous pouvez utiliser l’applet de commande [Get-AzureRmSqlDatabase][Get-AzureRmSqlDatabase] pour obtenir des informations sur une base de données, pour vérifier ainsi son état mais aussi pour l’utiliser en tant qu’argument. 
+Comme indiqué dans hello exemples ci-dessus, un utilisateur peut employer [Get-AzureRmSqlDatabase] [ Get-AzureRmSqlDatabase] applet de commande tooget plus d’informations sur une base de données, ainsi la vérification hello l’état, mais également toouse en tant qu’argument. 
 
 ```powershell
 Get-AzureRmSqlDatabase [-ResourceGroupName] <String> [-ServerName] <String> [[-DatabaseName] <String>]
@@ -142,7 +142,7 @@ ElasticPoolName               :
 EarliestRestoreDate           : 1/1/0001 12:00:00 AM
 ```
 
-Où vous pouvez ensuite vérifier *l’état* de la base de données. Dans ce cas, vous pouvez voir que la base de données est en ligne. 
+Où vous pouvez ensuite vérifier toosee hello *état* de base de données hello. Dans ce cas, vous pouvez voir que la base de données est en ligne. 
 
 Lorsque vous exécutez cette commande, vous devriez recevoir une valeur d’état En ligne, Suspension, Reprise, Mise à l’échelle ou Suspendu.
 
@@ -156,7 +156,7 @@ Pour d’autres tâches de gestion, consultez la rubrique [Vue d’ensemble du s
 <!--Article references-->
 [Service capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 [Management overview]: ./sql-data-warehouse-overview-manage.md
-[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Manage compute overview]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->

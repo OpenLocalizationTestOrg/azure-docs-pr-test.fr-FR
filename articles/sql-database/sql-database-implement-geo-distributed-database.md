@@ -1,6 +1,6 @@
 ---
-title: "Implémenter une solution de base de données SQL Azure géo-distribuée | Microsoft Docs"
-description: "Découvrez comment configurer votre base de données et votre application SQL Azure pour le basculement vers une base de données répliquée et tester le basculement."
+title: "aaaImplement une solution de base de données SQL Azure répartis géographiquement | Documents Microsoft"
+description: "En savoir plus tooconfigure votre base de données SQL Azure et l’application tooa basculement répliquée de base de données et testez le basculement."
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/26/2017
 ms.author: carlrab
-ms.openlocfilehash: 9f53f318e20dac9248906bdbe898ba4dacb286ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9295d33c669405108a1a64ef1e7cb77f582773a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="implement-a-geo-distributed-database"></a>Implémenter une base de données géo-distribuée
 
-Dans ce didacticiel, vous configurez une application et une base de données SQL Azure pour le basculement vers une région distante, puis testez votre plan de basculement. Vous allez apprendre à effectuer les actions suivantes : 
+Dans ce didacticiel, vous configurez une base de données SQL Azure et d’une application de la région de basculement tooa à distance, ensuite Testez votre plan de basculement. Vous allez apprendre à effectuer les actions suivantes : 
 
 > [!div class="checklist"]
 > * Créer des utilisateurs de base de données et leur accorder des autorisations
 > * Configurer une règle de pare-feu au niveau de la base de données
 > * Créer un [groupe de basculement de géoréplication](sql-database-geo-replication-overview.md)
-> * Créer et compiler une application Java pour interroger une base de données SQL Azure
+> * Créer et compiler un tooquery d’application Java une base de données SQL Azure
 > * Effectuer une simulation de récupération d'urgence
 
 Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/) avant de commencer.
@@ -38,47 +38,47 @@ Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https:/
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour suivre ce tutoriel, vérifiez que les conditions préalables suivantes sont bien satisfaites :
+toocomplete ce didacticiel, assurez-vous que hello est suivant des conditions préalables requises sont effectuées :
 
-- La dernière version d’[Azure PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs) est installée. 
-- Une base de données SQL Azure est installée. Ce didacticiel utilise la base de données exemple AdventureWorksLT nommée **mySampleDatabase** créée à partir de l’un des démarrages rapides suivants :
+- Hello installé dernières [Azure PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs). 
+- Une base de données SQL Azure est installée. Ce didacticiel utilise la base de données AdventureWorksLT hello avec un nom de **mySampleDatabase** à partir d’un de ces Démarrages rapides :
 
    - [Créer une base de données - Portail](sql-database-get-started-portal.md)
    - [Créer une base de données - CLI](sql-database-get-started-cli.md)
    - [Créer une base de données - PowerShell](sql-database-get-started-powershell.md)
 
-- Vous avez identifié une méthode pour exécuter les scripts SQL sur votre base de données. Vous pouvez utiliser l’un des outils de requête suivants :
-   - L’éditeur de requêtes dans le [portail Azure](https://portal.azure.com). Pour plus d’informations sur l’utilisation de l’éditeur de requêtes dans le portail Azure, consultez la section [Utilisez l’éditeur de requêtes pour vous connecter et interroger des données](sql-database-get-started-portal.md#query-the-sql-database).
-   - La dernière version de [SQL Server Management Studio](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms), qui est un environnement intégré pour la gestion des infrastructures SQL, allant de SQL Server à SQL Database pour Microsoft Windows.
-   - La nouvelle version de [Visual Studio Code](https://code.visualstudio.com/docs), qui est un éditeur de code graphique pour Linux, macOS et Windows et qui prend en charge les extensions, y compris [l’extension mssql](https://aka.ms/mssql-marketplace) pour l’exécution de requêtes dans Microsoft SQL Server, Azure SQL Database et SQL Data Warehouse. Pour plus d’informations sur l’utilisation de cet outil avec la base de données SQL Azure, consultez l’article [Utilisez VS Code pour vous connecter et interroger des données](sql-database-connect-query-vscode.md). 
+- A identifié un tooexecute méthode SQL scripts contre votre base de données, vous pouvez utiliser une des hello suivant des outils de requête :
+   - éditeur de requête Hello Bonjour [portail Azure](https://portal.azure.com). Pour plus d’informations sur l’utilisation de l’éditeur de requête hello Bonjour portail Azure, consultez [se connecter et requête à l’aide de l’éditeur de requête](sql-database-get-started-portal.md#query-the-sql-database).
+   - version la plus récente de Hello [SQL Server Management Studio](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms), qui est un environnement intégré pour la gestion d’une infrastructure SQL, à partir de SQL Server tooSQL de base de données pour Microsoft Windows.
+   - version la plus récente de Hello [Visual Studio Code](https://code.visualstudio.com/docs), qui est un éditeur de code graphique pour Linux, Mac OS, et que Windows qui prend en charge les extensions, y compris hello [mssql extension](https://aka.ms/mssql-marketplace) pour l’interrogation de Microsoft SQL Server , Base de données SQL azure et SQL Data Warehouse. Pour plus d’informations sur l’utilisation de cet outil avec la base de données SQL Azure, consultez l’article [Utilisez VS Code pour vous connecter et interroger des données](sql-database-connect-query-vscode.md). 
 
 ## <a name="create-database-users-and-grant-permissions"></a>Créer des utilisateurs de base de données et accorder des autorisations
 
-Connectez-vous à votre base de données et créez des comptes d’utilisateur à l’aide de l’un des outils de requête suivant :
+Se connecter tooyour de base de données et créer des comptes d’utilisateur à l’aide de hello suivant des outils de requête :
 
-- L’éditeur de requêtes dans le portail Azure
+- éditeur de requête Hello Bonjour portail Azure
 - SQL Server Management Studio
 - Visual Studio Code
 
-Ces comptes d’utilisateur sont répliqués automatiquement vers votre serveur secondaire (et restent synchronisés). Pour utiliser SQL Server Management Studio ou Visual Studio Code, vous devrez peut-être configurer une règle de pare-feu si vous vous connectez à partir d’un client à une adresse IP pour laquelle vous n’avez pas encore configuré de pare-feu. Pour des instructions plus détaillées, consultez la section [Créer une règle de pare-feu au niveau du serveur](sql-database-get-started-portal.md#create-a-server-level-firewall-rule).
+Ces comptes d’utilisateur répliquent automatiquement le serveur secondaire de tooyour (et être synchronisés). toouse SQL Server Management Studio ou Visual Studio Code, vous devrez peut-être tooconfigure une règle de pare-feu si vous vous connectez à partir d’un client à une adresse IP pour laquelle vous n'avez pas encore configuré un pare-feu. Pour des instructions plus détaillées, consultez la section [Créer une règle de pare-feu au niveau du serveur](sql-database-get-started-portal.md#create-a-server-level-firewall-rule).
 
-- Dans une fenêtre de requête, exécutez la requête suivante pour créer deux comptes d’utilisateur dans votre base de données. Ce script accorde des autorisations **db_owner** pour le compte **app_admin** et accorde les autorisations **SÉLECTIONNER** et **METTE À JOUR** pour le compte **app_user**. 
+- Dans une fenêtre de requête, exécutez hello suivant requête toocreate deux comptes d’utilisateur dans votre base de données. Ce script accorde **db_owner** autorisations toohello **app_admin** compte et accorde **sélectionnez** et **mise à jour** toohello d’autorisations **app_user** compte. 
 
    ```sql
    CREATE USER app_admin WITH PASSWORD = 'ChangeYourPassword1';
-   --Add SQL user to db_owner role
+   --Add SQL user toodb_owner role
    ALTER ROLE db_owner ADD MEMBER app_admin; 
    --Create additional SQL user
    CREATE USER app_user WITH PASSWORD = 'ChangeYourPassword1';
-   --grant permission to SalesLT schema
-   GRANT SELECT, INSERT, DELETE, UPDATE ON SalesLT.Product TO app_user;
+   --grant permission tooSalesLT schema
+   GRANT SELECT, INSERT, DELETE, UPDATE ON SalesLT.Product tooapp_user;
    ```
 
 ## <a name="create-database-level-firewall"></a>Créer un pare-feu au niveau de la base de données
 
-Créez une [règle de pare-feu au niveau de la base de données](https://docs.microsoft.com/sql/relational-databases/system-stored-procedures/sp-set-database-firewall-rule-azure-sql-database) pour votre base de données SQL. Cette règle de pare-feu au niveau de la base de données effectue automatiquement la réplication vers le serveur secondaire que vous allez créer dans ce didacticiel. Pour vous simplifier la tâche (dans ce didacticiel), utilisez l’adresse IP publique de l’ordinateur sur lequel vous effectuez les étapes de ce didacticiel. Pour déterminer l’adresse IP utilisée pour la règle de pare-feu au niveau du serveur pour votre ordinateur actuel, consultez la section [Créer une règle de pare-feu au niveau du serveur](sql-database-get-started-portal.md#create-a-server-level-firewall-rule).  
+Créez une [règle de pare-feu au niveau de la base de données](https://docs.microsoft.com/sql/relational-databases/system-stored-procedures/sp-set-database-firewall-rule-azure-sql-database) pour votre base de données SQL. Cette règle de pare-feu de niveau base de données réplique automatiquement toohello serveur secondaire que vous créez dans ce didacticiel. Pour plus de simplicité (dans ce didacticiel), utilisez hello une adresse IP publique de l’ordinateur hello sur lequel vous effectuez les étapes hello dans ce didacticiel. adresse IP de toodetermine hello utilisé pour la règle de pare-feu de niveau serveur hello pour votre ordinateur actuel, consultez [création d’un pare-feu au niveau du serveur](sql-database-get-started-portal.md#create-a-server-level-firewall-rule).  
 
-- Dans la fenêtre de requête ouverte, remplacez la requête précédente par la requête suivante, en remplaçant les adresses IP par les adresses IP appropriées pour votre environnement.  
+- Dans la fenêtre de requête ouverte, remplacez les requêtes précédentes hello hello suivant la requête, en remplaçant les adresses IP hello avec hello adresses IP appropriées pour votre environnement.  
 
    ```sql
    -- Create database-level firewall setting for your public IP address
@@ -87,13 +87,13 @@ Créez une [règle de pare-feu au niveau de la base de données](https://docs.mi
 
 ## <a name="create-an-active-geo-replication-auto-failover-group"></a>Créer un groupe de basculement automatique de géoréplication active 
 
-À l’aide d’Azure PowerShell, créez un [groupe de basculement automatique de géoréplication active](sql-database-geo-replication-overview.md) entre votre serveur SQL Azure existant et le nouveau serveur SQL Azure vide dans une région Azure, puis ajoutez votre base de données exemple au groupe de basculement.
+À l’aide d’Azure PowerShell, créer un [groupe de basculement automatique de géo-réplication active](sql-database-geo-replication-overview.md) entre votre serveur SQL Azure et hello nouvelle existants vides serveur SQL Azure dans une région Azure, et puis ajoutez votre groupe de basculement toohello exemple de base de données.
 
 > [!IMPORTANT]
 > Ces commandes cmdlets nécessitent Azure PowerShell 4.0. [!INCLUDE [sample-powershell-install](../../includes/sample-powershell-install-no-ssh.md)]
 >
 
-1. Remplissez les variables de vos scripts PowerShell en utilisant les valeurs de votre serveur existant et de la base de données exemple et fournissez une valeur globalement unique pour le nom du groupe de basculement.
+1. Remplir les variables pour vos scripts PowerShell à l’aide des valeurs de hello pour votre serveur existant et de la base de données exemple et fournir une valeur unique pour le nom de groupe de basculement.
 
    ```powershell
    $adminlogin = "ServerAdmin"
@@ -117,7 +117,7 @@ Créez une [règle de pare-feu au niveau de la base de données](https://docs.mi
    $mydrserver   
    ```
 
-3. Créez un groupe de basculement entre les deux serveurs.
+3. Créer un groupe de basculement entre deux serveurs de hello.
 
    ```powershell
    $myfailovergroup = New-AzureRMSqlDatabaseFailoverGroup `
@@ -130,7 +130,7 @@ Créez une [règle de pare-feu au niveau de la base de données](https://docs.mi
    $myfailovergroup   
    ```
 
-4. Ajoutez votre base de données au groupe de basculement.
+4. Ajouter à votre groupe de basculement de toohello de base de données.
 
    ```powershell
    $myfailovergroup = Get-AzureRmSqlDatabase `
@@ -146,10 +146,10 @@ Créez une [règle de pare-feu au niveau de la base de données](https://docs.mi
 
 ## <a name="install-java-software"></a>Installer le logiciel Java
 
-Les étapes de cette section supposent que vous connaissez le développement avec Java et que vous ne savez pas utiliser la base de données SQL Azure. 
+étapes de Hello dans cette section supposent que vous êtes familiarisé avec le développement à l’aide de Java et tooworking nouvelle base de données SQL Azure. 
 
 ### <a name="mac-os"></a>**Mac OS**
-Ouvrez votre terminal et accédez au répertoire dans lequel vous envisagez de créer votre projet Java. Entrez les commandes suivantes pour installer **brew** et **Maven** : 
+Ouvrez votre terminal et accédez répertoire tooa où vous prévoyez de créer un projet Java. Installer **brew** et **Maven** en entrant hello suivant de commandes : 
 
 ```bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -157,23 +157,23 @@ brew update
 brew install maven
 ```
 
-Pour obtenir des instructions détaillées sur l’installation et la configuration des environnements Java et Maven, rendez-vous sur la page [Build an app using SQL Server](https://www.microsoft.com/sql-server/developer-get-started/) (Création d’une application à l’aide de SQL Server), sélectionnez **Java**, sélectionnez **MacOS**, puis suivez les instructions détaillées pour la configuration de Java et Maven aux étapes 1.2 et 1.3.
+Pour obtenir des instructions détaillées sur l’installation et configuration d’environnement Java et Maven, accédez hello [générer une application à l’aide de SQL Server](https://www.microsoft.com/sql-server/developer-get-started/), sélectionnez **Java**, sélectionnez **MacOS**, puis suivez Hello instructions détaillées pour la configuration de Java et Maven à l’étape 1.2 et 1.3.
 
 ### <a name="linux-ubuntu"></a>**Linux (Ubuntu)**
-Ouvrez votre terminal et accédez au répertoire dans lequel vous envisagez de créer votre projet Java. Entrez les commandes suivantes pour installer **Maven** :
+Ouvrez votre terminal et accédez répertoire tooa où vous prévoyez de créer un projet Java. Installer **Maven** en entrant hello suivant de commandes :
 
 ```bash
 sudo apt-get install maven
 ```
 
-Pour obtenir des instructions détaillées sur l’installation et la configuration des environnements Java et Maven, rendez-vous sur la page [Build an app using SQL Server](https://www.microsoft.com/sql-server/developer-get-started/) (Création d’une application à l’aide de SQL Server), sélectionnez **Java**, sélectionnez **Ubuntu**, puis suivez les instructions détaillées pour la configuration de Java et Maven aux étapes 1.2, 1.3 et 1.4.
+Pour obtenir des instructions détaillées sur l’installation et configuration d’environnement Java et Maven, accédez hello [générer une application à l’aide de SQL Server](https://www.microsoft.com/sql-server/developer-get-started/), sélectionnez **Java**, sélectionnez **Ubuntu**, puis suivez Hello instructions détaillées pour la configuration de Java et Maven à l’étape 1.2, 1.3 et 1.4.
 
 ### <a name="windows"></a>**Windows**
-Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programme d’installation officiel. Utilisez Maven pour gérer les dépendances ainsi que pour créer, tester et exécuter votre projet Java. Pour obtenir des instructions détaillées sur l’installation et la configuration des environnements Java et Maven, rendez-vous sur la page [Build an app using SQL Server](https://www.microsoft.com/sql-server/developer-get-started/) (Création d’une application à l’aide de SQL Server), sélectionnez **Java**, sélectionnez Windows, puis suivez les instructions détaillées pour la configuration de Java et Maven aux étapes 1.2 et 1.3.
+Installer [Maven](https://maven.apache.org/download.cgi) à l’aide du programme d’installation officielle de hello. Utilisez Maven toohelp gérer les dépendances, créer, tester et exécuter votre projet Java. Pour obtenir des instructions détaillées sur l’installation et configuration d’environnement Java et Maven, accédez hello [générer une application à l’aide de SQL Server](https://www.microsoft.com/sql-server/developer-get-started/), sélectionnez **Java**, sélectionnez Windows, puis suivez hello des instructions détaillées de configuration de Java et Maven à l’étape 1.2 et 1.3.
 
 ## <a name="create-sqldbsample-project"></a>Créer le projet SqlDbSample
 
-1. Dans la console de commandes (par exemple Bash), créez un projet Maven. 
+1. Dans la console de commande hello (par exemple, un interpréteur de commandes), créez un projet de Maven. 
    ```bash
    mvn archetype:generate "-DgroupId=com.sqldbsamples" "-DartifactId=SqlDbSample" "-DarchetypeArtifactId=maven-archetype-quickstart" "-Dversion=1.0.0"
    ```
@@ -184,9 +184,9 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
    cd SqlDbSamples
    ```
 
-4. À l’aide de votre éditeur habituel, ouvrez le fichier pom.xml dans le dossier de votre projet. 
+4. À l’aide de votre éditeur favori, ouvrir le fichier de pom.xml hello dans votre dossier de projet. 
 
-5. Ajoutez le pilote JDBC Microsoft pour la dépendance de SQL Server à votre projet Maven en ouvrant votre éditeur de texte habituel et en copiant-collant les lignes suivantes dans votre fichier pom.xml. Ne remplacez pas les valeurs existantes préremplies dans le fichier. La dépendance JDBC doit être collée dans la section « dependencies » plus large ( ).   
+5. Ajouter hello pilote JDBC Microsoft pour le projet de SQL Server dépendance tooyour Maven en ouvrant l’éditeur de texte et copier- coller hello lignes suivantes dans votre fichier pom.xml. Ne pas remplacer les valeurs existantes hello préremplies dans le fichier de hello. Hello dépendance JDBC doit être collé dans hello section « dépendances » supérieure ().   
 
    ```xml
    <dependency>
@@ -196,7 +196,7 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
    </dependency>
    ```
 
-6. Spécifiez la version de Java à utiliser pour compiler le projet en ajoutant la section « properties » suivante dans le fichier pom.xml, après la section « dependencies ». 
+6. Spécifiez hello version de Java toocompile hello projet contre en ajoutant des hello suivant la section « Propriétés » dans le fichier de pom.xml hello après la section « dépendances » de hello. 
 
    ```xml
    <properties>
@@ -204,7 +204,7 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
      <maven.compiler.target>1.8</maven.compiler.target>
    </properties>
    ```
-7. Ajoutez la section « build » suivante dans le fichier pom.xml après la section « properties » pour la prise en charge des fichiers manifeste dans des fichiers JAR.       
+7. Ajouter suivant de hello « build » section dans le fichier de pom.xml hello après hello « propriétés » section toosupport fichiers manifeste dans des fichiers JAR.       
 
    ```xml
    <build>
@@ -224,8 +224,8 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
      </plugins>
    </build>
    ```
-8. Enregistrez et fermez le fichier pom.xml.
-9. Ouvrez le fichier App.java (C:\apache-maven-3.5.0\SqlDbSample\src\main\java\com\sqldbsamples\App.java) et remplacez son contenu avec le contenu suivant. Remplacez le nom du groupe de basculement par le nom de votre groupe de basculement. Si vous avez modifié le nom de la base de données, l’utilisateur ou le mot de passe, modifiez aussi ces valeurs.
+8. Enregistrez et fermez le fichier de pom.xml hello.
+9. Ouvrir le fichier de App.java hello (C:\apache-maven-3.5.0\SqlDbSample\src\main\java\com\sqldbsamples\App.java) et remplacez contenu de hello par hello suivant le contenu. Remplacez le nom de groupe de basculement hello par nom hello pour votre groupe de basculement. Si vous avez modifié les valeurs hello pour le nom de base de données hello, un utilisateur ou mot de passe, modifiez ces valeurs.
 
    ```java
    package com.sqldbsamples;
@@ -272,7 +272,7 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
    }
 
    private static boolean insertData(int id) {
-      // Insert data into the product table with a unique product name that we can use to find the product again later
+      // Insert data into hello product table with a unique product name that we can use toofind hello product again later
       String sql = "INSERT INTO SalesLT.Product (Name, ProductNumber, Color, StandardCost, ListPrice, SellStartDate) VALUES (?,?,?,?,?,?);";
 
       try (Connection connection = DriverManager.getConnection(READ_WRITE_URL); 
@@ -290,7 +290,7 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
    }
 
    private static boolean selectData(int id) {
-      // Query the data that was previously inserted into the primary database from the geo replicated database
+      // Query hello data that was previously inserted into hello primary database from hello geo replicated database
       String sql = "SELECT Name, Color, ListPrice FROM SalesLT.Product WHERE Name = ?";
 
       try (Connection connection = DriverManager.getConnection(READ_ONLY_URL); 
@@ -305,7 +305,7 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
    }
 
    private static int getHighWaterMarkId() {
-      // Query the high water mark id that is stored in the table to be able to make unique inserts 
+      // Query hello high water mark id that is stored in hello table toobe able toomake unique inserts 
       String sql = "SELECT MAX(ProductId) FROM SalesLT.Product";
       int result = 1;
         
@@ -322,16 +322,16 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
       }
    }
    ```
-6. Enregistrez et fermez le fichier App.java.
+6. Enregistrez et fermez le fichier de App.java hello.
 
-## <a name="compile-and-run-the-sqldbsample-project"></a>Compiler et exécuter le projet SqlDbSample
+## <a name="compile-and-run-hello-sqldbsample-project"></a>Compilez et exécutez hello SqlDbSample projet
 
-1. Dans la console de commandes, exécutez la commande suivante.
+1. Dans la console de commande hello, exécutez toofollowing commande.
 
    ```bash
    mvn package
    ```
-2. Lorsque vous avez terminé, exécutez la commande suivante pour exécuter l’application (elle s’exécute pendant environ 1 heure, sauf si vous l’arrêtez manuellement) :
+2. Lorsque vous avez terminé, exécutez hello suivant commande toorun hello application (il s’exécute pendant environ 1 heure, sauf si vous l’arrêtez manuellement) :
 
    ```bash
    mvn -q -e exec:java "-Dexec.mainClass=com.sqldbsamples.App"
@@ -356,7 +356,7 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
    -FailoverGroupName $myfailovergroupname
    ```
 
-2. Observez les résultats de l’application pendant le basculement. Certaines insertions échouent pendant l’actualisation du cache du DNS.     
+2. Observer les résultats de l’application hello pendant le basculement. Certaines insertions échouent pendant que hello cache DNS actualise.     
 
 3. Découvrez le rôle que votre serveur de récupération d’urgence exécute.
 
@@ -373,7 +373,7 @@ Installez [Maven](https://maven.apache.org/download.cgi) à l’aide du programm
    -FailoverGroupName $myfailovergroupname
    ```
 
-5. Observez les résultats de l’application pendant la restauration automatique. Certaines insertions échouent pendant l’actualisation du cache du DNS.     
+5. Observer les résultats de l’application hello lors de la restauration automatique. Certaines insertions échouent pendant que hello cache DNS actualise.     
 
 6. Découvrez le rôle que votre serveur de récupération d’urgence exécute.
 

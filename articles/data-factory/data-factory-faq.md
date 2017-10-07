@@ -1,5 +1,5 @@
 ---
-title: "Azure Data Factory - Forum aux Questions"
+title: aaaAzure Data Factory - Forum aux Questions
 description: Forum aux Questions sur Azure Data Factory.
 services: data-factory
 documentationcenter: 
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: 086e6b2fb9bd0ee8541401b6f0d65268926e45a5
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 78289fb4b6e15d74772af6c71ec25c7d2ca1a0bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory---frequently-asked-questions"></a>Azure Data Factory - Forum aux Questions
 ## <a name="general-questions"></a>Questions générales
 ### <a name="what-is-azure-data-factory"></a>qu'est-ce qu'Azure Data Factory ?
-Data Factory est un service d’intégration de données dans le cloud qui **automatise le déplacement et la transformation des données**. À la manière d’une usine, qui utilise des machines visant à transformer des matières premières en produits manufacturés, Data Factory orchestre des services existants qui collectent des données brutes et les transforment en informations prêtes à l’emploi.
+Fabrique de données est basé sur un cloud service de l’intégration de données **automatise le déplacement de hello et la transformation des données**. Tout comme une fabrique qui s’exécute équipement tootake les matières premières et de leur transformation en produits finis, Data Factory orchestre des services existants qui collectent des données brutes et transforment en informations de prêt à l’emploi.
 
-Data Factory vous permet de créer des flux de travail pilotés par les données pour déplacer des données entre des magasins de données locaux et cloud et traiter/transformer des données avec des services de calcul comme Azure HDInsight et Azure Data Lake Analytics. Après avoir créé un pipeline qui exécute l’action dont vous avez besoin, vous pouvez planifier son exécution périodique (toutes les heures, tous les jours, toutes les semaines, etc.).   
+Fabrique de données vous permet de données de toomove de flux de travail pilotés par les données toocreate entre à la fois localement et les magasins de données cloud ainsi que processus/transformer des données à l’aide des services de calcul tels que Azure HDInsight et Analytique de LAC de données Azure. Après avoir créé un pipeline qui effectue l’action hello dont vous avez besoin, vous pouvez la planifier toorun régulièrement (horaire, quotidienne, hebdomadaire, etc.).   
 
 Pour plus d’informations, consultez [Vue d’ensemble et concepts clés](data-factory-introduction.md).
 
 ### <a name="where-can-i-find-pricing-details-for-azure-data-factory"></a>où puis-je trouver des informations de tarification pour Azure Data Factory ?
-Consultez la [page de tarification de Data Factory][adf-pricing-details] pour plus d’informations sur la tarification d’Azure Data Factory.  
+Consultez [page de tarification de la fabrique de données] [ adf-pricing-details] pour hello tarification pour hello Azure Data Factory.  
 
 ### <a name="how-do-i-get-started-with-azure-data-factory"></a>comment prendre en main Azure Data Factory ?
-* Pour obtenir une vue d'ensemble d'Azure Data Factory, consultez [Présentation d'Azure Data Factory](data-factory-introduction.md).
-* Pour obtenir un didacticiel expliquant comment **copier/déplacer des données** au moyen de l’activité de copie, consultez [Copie de données d’Azure Blob Storage vers une base de données SQL Azure](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
-* Pour obtenir un didacticiel sur la façon de **transformer des données** au moyen de l’activité Hive de HDInsight. Consultez [Traiter des données en exécutant un script Hive sur un cluster Hadoop](data-factory-build-your-first-pipeline.md)
+* Pour une vue d’ensemble d’Azure Data Factory, consultez [Introduction tooAzure Data Factory](data-factory-introduction.md).
+* Pour obtenir un didacticiel sur la façon de trop**les données de copie/déplacement** à l’aide de l’activité de copie, consultez [copier les données de stockage d’objets Blob Azure tooAzure base de données SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+* Pour obtenir un didacticiel sur la façon de trop**transformer des données** à l’aide d’activité de la ruche HDInsight. Consultez [Traiter des données en exécutant un script Hive sur un cluster Hadoop](data-factory-build-your-first-pipeline.md)
 
-### <a name="what-is-the-data-factorys-region-availability"></a>dans quelle région sera disponible Data Factory ?
-Data Factory est disponible dans les régions **Ouest des États-Unis** et **Europe du Nord**. Les services de calcul et de stockage utilisés par les fabriques de données peuvent être proposés dans d'autres régions. Consultez [Régions prises en charge](data-factory-introduction.md#supported-regions).
+### <a name="what-is-hello-data-factorys-region-availability"></a>Quelle est la disponibilité de la région de la fabrique de données hello ?
+Data Factory est disponible dans les régions **Ouest des États-Unis** et **Europe du Nord**. calcul de Hello et services de stockage utilisés par les fabriques de données peuvent être dans d’autres régions. Consultez [Régions prises en charge](data-factory-introduction.md#supported-regions).
 
-### <a name="what-are-the-limits-on-number-of-data-factoriespipelinesactivitiesdatasets"></a>quelles sont les limites du nombre de fabriques de données/pipelines/activités/jeux de données ?
-Consultez la section **Limites d’Azure Data Factory** de l’article [Abonnement Azure et limites, quotas et contraintes du service](../azure-subscription-service-limits.md#data-factory-limits) .
+### <a name="what-are-hello-limits-on-number-of-data-factoriespipelinesactivitiesdatasets"></a>Quelles sont les limites de hello sur le nombre de fabriques de données/pipelines/activités/datasets ?
+Consultez **limites de fabrique de données Azure** section Hello [abonnement Azure et limites de Service, Quotas et contraintes](../azure-subscription-service-limits.md#data-factory-limits) l’article.
 
-### <a name="what-is-the-authoringdeveloper-experience-with-azure-data-factory-service"></a>Qu’est-il possible de faire avec le service Azure Data Factory en termes de création/développement ?
-Vous pouvez créer des fabriques de données en utilisant un des outils/SDK suivants :
+### <a name="what-is-hello-authoringdeveloper-experience-with-azure-data-factory-service"></a>Nouveautés d’expérience de création/développeur hello avec le service Azure Data Factory ?
+Vous pouvez créer/créer des fabriques de données à l’aide d’une des hello suivant outils/kits de développement logiciel :
 
-* **Portail Azure** : les panneaux du service Data Factory dans le portail Azure fournissent une interface utilisateur complète qui vous permet de créer des fabriques de données et des services liés. **Data Factory Editor**, qui fait également partie du portail, vous permet de créer facilement des services liés, des tables, des jeux de données et des pipelines en spécifiant des définitions JSON pour ces artefacts. Consultez [Créer votre premier pipeline de données en utilisant le portail Azure](data-factory-build-your-first-pipeline-using-editor.md) pour obtenir un exemple d’utilisation du portail et de l’éditeur pour créer et déployer une fabrique de données.
-* **Visual Studio** : vous pouvez utiliser Visual Studio pour créer une fabrique de données Azure. Pour plus d’informations, consultez [Créer votre premier pipeline de données à l’aide de Visual Studio](data-factory-build-your-first-pipeline-using-vs.md) .
+* **Portail Azure** panneaux de Data Factory hello Bonjour Azure portal fournit interface utilisateur élaborée pour vous toocreate données fabriques ad lié services. Hello **éditeur Data Factory**, qui fait également partie du portail de hello, vous permet de tooeasily créer des services liés, les tables, les jeux de données et les pipelines en spécifiant des définitions de JSON pour ces artefacts. Consultez [générer votre première pipeline de données à l’aide du portail Azure](data-factory-build-your-first-pipeline-using-editor.md) pour un exemple d’utilisation hello / l’Éditeur du portail toocreate et déployer une fabrique de données.
+* **Visual Studio** vous pouvez utiliser Visual Studio toocreate une fabrique de données Azure. Pour plus d’informations, consultez [Créer votre premier pipeline de données à l’aide de Visual Studio](data-factory-build-your-first-pipeline-using-vs.md) .
 * **Azure PowerShell** : consultez [Créer et surveiller Azure Data Factory à l’aide d’Azure PowerShell](data-factory-build-your-first-pipeline-using-powershell.md) pour obtenir un didacticiel/une procédure pas à pas pour créer une fabrique de données à l’aide de PowerShell. Consultez [Informations de référence sur les applets de commande Data Factory][adf-powershell-reference] dans la bibliothèque MSDN pour obtenir une documentation complète sur les applets de commande Data Factory.
 * **Bibliothèque de classes .NET** Vous pouvez créer par programmation des fabriques de données à l'aide du Kit de développement logiciel (SDK) Data Factory .NET. Consultez [Créer, surveiller et gérer des fabriques de données à l'aide du Kit de développement logiciel (SDK) .NET](data-factory-create-data-factories-programmatically.md) pour découvrir comment créer une fabrique de données à l'aide du Kit de développement logiciel (SDK) .NET. Consultez [Informations de référence sur la bibliothèque de classes Data Factory][msdn-class-library-reference] pour obtenir une documentation complète sur le Kit de développement logiciel (SDK) Data Factory .NET.
-* **API REST** Vous pouvez également utiliser l'API REST exposée par le service Azure Data Factory pour créer et déployer des fabriques de données. Consultez [Informations de référence sur l’API REST Data Factory][msdn-rest-api-reference] pour obtenir une documentation complète de l’API REST Data Factory.
+* **API REST** vous pouvez également utiliser hello API REST exposées par toocreate de service Azure Data Factory hello et déployer des fabriques de données. Consultez [Informations de référence sur l’API REST Data Factory][msdn-rest-api-reference] pour obtenir une documentation complète de l’API REST Data Factory.
 * **Modèle Azure Resource Manager** Consultez [Didacticiel : concevoir votre première fabrique de données Azure à l’aide du modèle Azure Resource Manager](data-factory-build-your-first-pipeline-using-arm.md) pour plus d’informations.
 
 ### <a name="can-i-rename-a-data-factory"></a>Puis-je renommer une fabrique de données ?
-Non. Tout comme les autres ressources Azure, le nom d'une fabrique de données Azure ne peut pas être modifié.
+Non. Comme d’autres ressources Azure, les nom de hello d’une fabrique de données Azure ne peut pas être modifié.
 
-### <a name="can-i-move-a-data-factory-from-one-azure-subscription-to-another"></a>Puis-je déplacer une fabrique de données d’un abonnement Azure à un autre ?
-Oui. Utilisez le bouton **Déplacer** sur le panneau de votre fabrique de données comme indiqué dans le graphique ci-dessous :
+### <a name="can-i-move-a-data-factory-from-one-azure-subscription-tooanother"></a>Puis-je déplacer une fabrique de données à partir d’un abonnement Azure tooanother ?
+Oui. Hello d’utilisation **déplacer** bouton sur le panneau de fabrique de données, comme indiqué dans hello suivant schéma :
 
 ![Déplacer la fabrique de données](media/data-factory-faq/move-data-factory.png)
 
-### <a name="what-are-the-compute-environments-supported-by-data-factory"></a>Quels sont les environnements de calcul pris en charge par Data Factory ?
-Le tableau suivant fournit une liste d’environnements de calcul pris en charge par Data Factory et les activités qui peuvent s’exécuter sur ces derniers.
+### <a name="what-are-hello-compute-environments-supported-by-data-factory"></a>Quelles sont les environnements de calcul hello pris en charge par la fabrique de données ?
+Hello tableau suivant fournit une liste des environnements de calcul pris en charge par les activités de fabrique de données et hello pouvant s’exécuter sur ces derniers.
 
 | Environnement de calcul | activités |
 | --- | --- |
@@ -73,48 +73,48 @@ Le tableau suivant fournit une liste d’environnements de calcul pris en charge
 | [Azure SQL](data-factory-compute-linked-services.md#azure-sql-linked-service), [Azure SQL Data Warehouse](data-factory-compute-linked-services.md#azure-sql-data-warehouse-linked-service), [SQL Server](data-factory-compute-linked-services.md#sql-server-linked-service) |[Procédure stockée](data-factory-stored-proc-activity.md) |
 
 ### <a name="how-does-azure-data-factory-compare-with-sql-server-integration-services-ssis"></a>Comparaison d’Azure Data Factory avec SQL Server Integration Services (SSIS) 
-Consultez la présentation [Azure Data Factory et SSIS](http://www.sqlbits.com/Sessions/Event15/Azure_Data_Factory_vs_SSIS) faite par un de nos MVP (Most Valued Professional), Reza Rad. Certains des changements récents Data Factory peuvent ne pas figurer dans le jeu de diapositives. Nous ajoutons continuellement des fonctionnalités à Azure Data Factory. Nous ajoutons continuellement des fonctionnalités à Azure Data Factory. Nous intégrerons ces mises à jour dans la comparaison des technologies d’intégration de données de Microsoft un peu plus tard cette année.   
+Consultez hello [vs d’Azure Data Factory. et SSIS](http://www.sqlbits.com/Sessions/Event15/Azure_Data_Factory_vs_SSIS) faite par un de nos MVP (Most Valued Professional), Reza Rad. Certaines des modifications récentes de hello dans la fabrique de données peut ne pas figurer dans le jeu de diapositives hello. Nous ajoutons en permanence plusieurs fonctionnalités tooAzure Data Factory. Nous ajoutons en permanence plusieurs fonctionnalités tooAzure Data Factory. Nous s’intégrer ces mises à jour dans la comparaison hello de technologies d’intégration de données à partir de Microsoft un peu plus tard cette année.   
 
 ## <a name="activities---faq"></a>Activités - Forum Aux Questions
-### <a name="what-are-the-different-types-of-activities-you-can-use-in-a-data-factory-pipeline"></a>Quels sont les différents types d’activités que vous pouvez utiliser dans un pipeline Data Factory ?
-* [Activités de déplacement des données](data-factory-data-movement-activities.md) pour déplacer les données.
-* [Activités de transformation des données](data-factory-data-transformation-activities.md) pour traiter/transformer les données.
+### <a name="what-are-hello-different-types-of-activities-you-can-use-in-a-data-factory-pipeline"></a>Quelles sont les hello différents types d’activités que vous pouvez utiliser dans un pipeline de fabrique de données ?
+* [Activités de déplacement des données](data-factory-data-movement-activities.md) toomove données.
+* [Activités de Transformation des données](data-factory-data-transformation-activities.md) tooprocess/transformer des données.
 
 ### <a name="when-does-an-activity-run"></a>Quand une activité s'exécute-t-elle ?
-Les paramètres de configuration de la **disponibilité** présents dans la table de données de sortie déterminent quand l'activité doit être exécutée. Si des jeux de données d’entrée sont spécifiés, l’activité vérifie si toutes les dépendances de données d’entrée sont satisfaites (par exemple, l’état **Prêt** ) avant de s’exécuter.
+Hello **disponibilité** hello de paramètre de configuration de sortie détermine de table de données lorsque l’activité hello est exécutée. Si des jeux de données d’entrée est spécifiées, activité hello vérifie si toutes les dépendances de données d’entrée hello sont satisfaites (autrement dit, **prêt** état) avant l’exécution.
 
 ## <a name="copy-activity---faq"></a>Activité de copie - Forum Aux Questions
-### <a name="is-it-better-to-have-a-pipeline-with-multiple-activities-or-a-separate-pipeline-for-each-activity"></a>Est-il préférable d'avoir un pipeline avec plusieurs activités ou un pipeline distinct pour chaque activité ?
-Les pipelines sont censés regrouper des activités connexes. Vous pouvez conserver les activités dans un seul pipeline si les tables qui les relient ne sont pas utilisées par d’autres activités extérieures au pipeline. De cette façon, vous n'aurez pas besoin de relier les périodes actives du pipeline pour qu'elles s'accordent les unes avec les autres. En outre, l’intégrité des données dans les tables internes au pipeline est mieux préservée lors de la mise à jour du pipeline. La mise à jour d'un pipeline arrête toutes les activités du pipeline, les supprime et les crée de nouveau. En termes de création, il peut être plus facile de voir le flux de données au sein des activités connexes dans un seul fichier JSON pour le pipeline.
+### <a name="is-it-better-toohave-a-pipeline-with-multiple-activities-or-a-separate-pipeline-for-each-activity"></a>Il est mieux toohave un pipeline avec plusieurs activités ou un pipeline distinct pour chaque activité ?
+Pipelines sont censés toobundle des activités connexes. Si les datasets hello qui les relient ne sont pas consommés par toute autre activité en dehors du pipeline de hello, vous pouvez conserver les activités hello dans un pipeline. De cette manière, vous devez pas période active du pipeline toochain afin qu’ils s’alignent sur eux. En outre, hello l’intégrité des données dans les tables hello toohello interne pipeline est mieux préservé lors de la mise à jour du pipeline de hello. Mise à jour du pipeline essentiellement arrête toutes les activités de hello dans le pipeline de hello, les supprime et crée les à nouveau. À partir de la création du point de vue, il peut également être des flux de hello toosee plus facilement des données au sein de hello liée activités dans JSON d’un fichier pour le pipeline de hello.
 
-### <a name="what-are-the-supported-data-stores"></a>Quelles sont les banques de données prises en charge ?
-L’activité de copie dans Data Factory permet de copier les données d’un magasin de données source vers un magasin de données récepteur. Data Factory prend en charge les magasins de données suivants. Les données de n’importe quelle source peuvent être écrites dans n’importe quel récepteur. Cliquez sur une banque de données pour découvrir comment copier des données depuis/vers cette banque.
+### <a name="what-are-hello-supported-data-stores"></a>Quelles sont les hello prise en charge des magasins de données ?
+Activité de copie dans la fabrique de données copie des données à partir d’un magasin de données de source données magasin tooa récepteur. Fabrique de données prend en charge hello suivant des magasins de données. Données à partir de n’importe quelle source peuvent être écrites tooany récepteur. Cliquez sur un toolearn de magasin de données comment tooand de données toocopy de ce magasin.
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
 > [!NOTE]
-> Les banques de données signalées par un astérisque (*) peuvent être locales ou résider sur une instance Azure IaaS. Elles nécessitent que vous installiez une [passerelle de gestion des données](data-factory-data-management-gateway.md) sur un ordinateur local ou Azure IaaS.
+> Stocke des données avec * peut être local ou sur Azure IaaS et vous obligent tooinstall [passerelle de gestion des données](data-factory-data-management-gateway.md) sur un ordinateur de IaaS Azure/le local.
 
-### <a name="what-are-the-supported-file-formats"></a>Quels sont les formats de fichier pris en charge ?
+### <a name="what-are-hello-supported-file-formats"></a>Quelles sont les hello pris en charge les formats de fichier ?
 [!INCLUDE [data-factory-file-format](../../includes/data-factory-file-format.md)]
 
-### <a name="where-is-the-copy-operation-performed"></a>Où est effectuée l’opération de copie ?
-Consultez la section relative au [déplacement des données disponibles à l’échelle mondiale](data-factory-data-movement-activities.md#global) pour plus d’informations. En bref, lorsqu’il s’agit d’un magasin de données local, l’opération de copie est effectuée par la passerelle de gestion des données dans votre environnement local. Lorsque le déplacement des données se fait entre deux magasins cloud, l’opération de copie est effectuée dans la région la plus proche de l’emplacement du récepteur dans la même zone géographique.
+### <a name="where-is-hello-copy-operation-performed"></a>Où l’opération de copie hello est effectuée ?
+Consultez la section relative au [déplacement des données disponibles à l’échelle mondiale](data-factory-data-movement-activities.md#global) pour plus d’informations. En bref, lorsqu’une banque de données locale est impliquée, opération de copie hello est effectuée par hello passerelle de gestion des données dans votre environnement local. Et, lorsque le déplacement des données de hello est entre deux magasins de cloud, opération de copie de hello est effectuée dans hello région emplacement le plus proche toohello récepteur Bonjour même geography.
 
 ## <a name="hdinsight-activity---faq"></a>Activité de HDInsight - Forum Aux Questions
 ### <a name="what-regions-are-supported-by-hdinsight"></a>Quelles sont les régions prises en charge par HDInsight ?
-Consultez la page [Tarification relative à HDInsight][hdinsight-supported-regions] ou la section Disponibilité géographique dans l’article suivant.
+Consultez hello section disponibilité géographique dans l’article suivant de hello : ou [tarification HDInsight][hdinsight-supported-regions].
 
 ### <a name="what-region-is-used-by-an-on-demand-hdinsight-cluster"></a>quelle est la région utilisée par un cluster HDInsight à la demande ?
-Le cluster HDInsight à la demande est créé dans la même région que le stockage que vous avez spécifié pour être utilisé avec le cluster.    
+Bonjour à la demande HDInsight cluster est créé dans hello même région où le stockage hello toobe utilisé avec hello cluster spécifié existe.    
 
-### <a name="how-to-associate-additional-storage-accounts-to-your-hdinsight-cluster"></a>Comment associer des comptes de stockage supplémentaires à votre cluster HDInsight ?
-Si vous utilisez votre propre cluster HDInsight (BYOC, Bring Your Own Cluster), consultez les rubriques suivantes :
+### <a name="how-tooassociate-additional-storage-accounts-tooyour-hdinsight-cluster"></a>Comment les comptes de stockage supplémentaire de tooassociate tooyour HDInsight cluster ?
+Si vous utilisez votre propre HDInsight Cluster (BYOC - mettre de votre propre Cluster), consultez hello rubriques suivantes :
 
 * [Utilisation d’un cluster HDInsight avec des comptes de stockage et des metastores secondaires][hdinsight-alternate-storage]
 * [Utilisation de comptes de stockage supplémentaires avec Hive HDInsight][hdinsight-alternate-storage-2]
 
-Si vous utilisez un cluster à la demande créé par le service Data Factory, spécifiez les comptes de stockage supplémentaires pour le service lié HDInsight afin que le service Data Factory puisse les inscrire en votre nom. Dans la définition JSON pour le service lié à la demande, utilisez la propriété **additionalLinkedServiceNames** pour spécifier les comptes de stockage secondaires, comme indiqué dans l'extrait de code JSON suivant :
+Si vous utilisez un cluster à la demande qui est créé par le service Data Factory de hello, spécifiez les comptes de stockage supplémentaires pour hello HDInsight le service lié afin que le service de fabrique de données hello de les inscrire à votre place. Bonjour définition JSON pour le service lié à la demande de hello, utilisez **additionalLinkedServiceNames** comptes de stockage de remplacement de propriété toospecify comme indiqué dans hello suivant extrait de code JSON :
 
 ```JSON
 {
@@ -133,25 +133,25 @@ Si vous utilisez un cluster à la demande créé par le service Data Factory, sp
     }
 }
 ```
-Dans l'exemple ci-dessus, otherLinkedServiceName1 et otherLinkedServiceName2 représentent les services liés dont les définitions contiennent des informations d'identification nécessaires au cluster HDInsight pour accéder aux comptes de stockage secondaires.
+Dans l’exemple hello ci-dessus, otherLinkedServiceName1 et otherLinkedServiceName2 représentent les services liés dont les définitions contiennent des informations d’identification que hello des comptes de stockage de remplacement tooaccess HDInsight cluster besoins.
 
 ## <a name="slices---faq"></a>Tranches - Forum Aux Questions
 ### <a name="why-are-my-input-slices-not-in-ready-state"></a>Pourquoi mes tranches d’entrée ne sont-elles pas à l’état Prêt ?
-L’une des erreurs les plus courantes est de ne pas définir la propriété **external** sur **true** dans le jeu de données d’entrée quand les données d’entrée sont externes à la fabrique de données (c’est-à-dire qu’elles n’ont pas été générées par celle-ci).
+Une erreur courante n’affecte pas **externe** propriété trop**true** sur hello dataset d’entrée lorsque les données d’entrée hello est la fabrique de données externe toohello (ne pas produit par la fabrique de données hello).
 
-Dans l’exemple suivant, vous devez uniquement définir **external** sur true pour **dataset1**.  
+Dans l’exemple suivant de hello, vous ne devez tooset **externe** tootrue sur **dataset1**.  
 
-**DataFactory1** Pipeline 1 : dataset1 -> activity1 -> dataset2 -> activity2 -> dataset3 Pipeline 2 : dataset3-> activity3 -> dataset4
+**DataFactory1** Pipeline 1 : dataset1 -&gt; activity1 -&gt; dataset2 -&gt; activity2 -&gt; dataset3 Pipeline 2 : dataset3-&gt; activity3 -&gt; dataset4
 
-Si vous avez une autre fabrique de données avec un pipeline qui prend dataset4 (généré par le pipeline 2 dans DataFactory1), marquez dataset4 comme un jeu de données externe, car il a été généré par une autre fabrique de données (DataFactory1, et non DataFactory2).  
+Si vous avez un autre fabrique de données avec un pipeline qui prend dataset4 (généré par le pipeline 2 dans la fabrique de données 1), marquez dataset4 comme un jeu de données externe, car le jeu de données hello est généré par une fabrique de données différentes (DataFactory1, pas DataFactory2).  
 
 **DataFactory2**    
 Pipeline 1 : dataset4->activity4->dataset5
 
-Si la propriété « external » est définie correctement, vérifiez que les données d’entrée se trouvent bien dans l’emplacement spécifié dans la définition du jeu de données d’entrée.
+Si la propriété external de hello est définie correctement, vérifiez si les données d’entrée hello existent à l’emplacement de hello spécifié dans la définition du dataset d’entrée hello.
 
-### <a name="how-to-run-a-slice-at-another-time-than-midnight-when-the-slice-is-being-produced-daily"></a>Comment choisir une heure d’exécution autre que minuit pour une tranche qui est générée quotidiennement ?
-Utilisez la propriété **offset** pour spécifier l’heure à laquelle la tranche doit être générée. Pour plus d’informations sur cette propriété, consultez la section [Disponibilité du jeu de données](data-factory-create-datasets.md#dataset-availability) . Voici un exemple rapide :
+### <a name="how-toorun-a-slice-at-another-time-than-midnight-when-hello-slice-is-being-produced-daily"></a>Comment toorun un secteur à un autre moment à minuit si le secteur de hello est en cours produit tous les jours ?
+Hello d’utilisation **offset** propriété toospecify hello heure à laquelle hello tranche toobe généré. Pour plus d’informations sur cette propriété, consultez la section [Disponibilité du jeu de données](data-factory-create-datasets.md#dataset-availability) . Voici un exemple rapide :
 
 ```json
 "availability":
@@ -161,36 +161,36 @@ Utilisez la propriété **offset** pour spécifier l’heure à laquelle la tran
     "offset": "06:00:00"
 }
 ```
-Les tranches quotidiennes commencent à **6 h** au lieu de minuit, qui est l’heure par défaut.     
+Début des tranches quotidiennes à **6 h 00** au lieu de minuit par défaut de hello.     
 
 ### <a name="how-can-i-rerun-a-slice"></a>Comment puis-je réexécuter une tranche ?
-Vous pouvez réexécuter une tranche de l'une des manières suivantes :
+Vous pouvez réexécuter une tranche dans un des hello suivant façons :
 
-* Utilisez l’application Surveiller et gérer pour réexécuter une fenêtre d’activité ou une tranche. Pour obtenir des instructions, consultez [Réexécuter les fenêtres d’activité sélectionnées](data-factory-monitor-manage-app.md#perform-batch-actions) .   
-* Cliquez sur **Exécuter** dans la barre de commandes du panneau **TRANCHE DE DONNÉES** de la tranche, dans le portail Azure.
-* Exécutez l’applet de commande **Set-AzureRmDataFactorySliceStatus** en ayant affecté la valeur **En attente** à l’état de la tranche.   
+* Utilisez surveiller et gérer une application toorerun une fenêtre d’activité ou la tranche. Pour obtenir des instructions, consultez [Réexécuter les fenêtres d’activité sélectionnées](data-factory-monitor-manage-app.md#perform-batch-actions) .   
+* Cliquez sur **exécuter** dans la barre de commandes de hello en hello **tranche de données** Panneau de la tranche de hello Bonjour portail Azure.
+* Exécutez **Set-AzureRmDataFactorySliceStatus** applet de commande avec l’état défini trop**attente** de la tranche de hello.   
 
     ```PowerShell
     Set-AzureRmDataFactorySliceStatus -Status Waiting -ResourceGroupName $ResourceGroup -DataFactoryName $df -TableName $table -StartDateTime "02/26/2015 19:00:00" -EndDateTime "02/26/2015 20:00:00"
     ```
-Consultez [Set-AzureRmDataFactorySliceStatus][set-azure-datafactory-slice-status] pour plus d’informations sur l’applet de commande.
+Consultez [Set-AzureRmDataFactorySliceStatus] [ set-azure-datafactory-slice-status] pour plus d’informations sur l’applet de commande hello.
 
-### <a name="how-long-did-it-take-to-process-a-slice"></a>Combien de temps dure le traitement d'une tranche ?
-Utilisez l’Explorateur de fenêtres d’activité dans l’application Surveiller et gérer pour connaître la durée du traitement d’une tranche de données. Pour plus d’informations, consultez [Explorateur de fenêtres d’activité](data-factory-monitor-manage-app.md#activity-window-explorer) .
+### <a name="how-long-did-it-take-tooprocess-a-slice"></a>La durée pendant laquelle elle a duré tooprocess une tranche ?
+Utiliser l’Explorateur de fenêtre d’activité dans tooknow moniteur & application de gérer la durée pendant laquelle elle a duré tooprocess une tranche de données. Pour plus d’informations, consultez [Explorateur de fenêtres d’activité](data-factory-monitor-manage-app.md#activity-window-explorer) .
 
-Vous pouvez également faire ce qui suit dans le portail Azure :  
+Vous pouvez également effectuer hello suivant Bonjour portail Azure :  
 
-1. Cliquez sur la vignette **Jeux de données** dans le panneau **DATA FACTORY** de votre fabrique de données.
-2. Cliquez sur le jeu de données spécifique dans le panneau **Jeux de données** .
-3. Sélectionnez la tranche qui vous intéresse dans la liste **Tranches récentes** située dans le panneau **TABLE**.
-4. Cliquez sur l'exécution dans la liste **Exécutions d’activité** située dans le panneau **TRANCHE DE DONNÉES**.
-5. Cliquez sur la vignette **Propriétés** dans le panneau **DÉTAILS DE L’EXÉCUTION D’ACTIVITÉ**.
-6. Une valeur doit apparaître dans le champ **DURÉE** . Il s’agit du temps nécessaire pour traiter la tranche.   
+1. Cliquez sur **Datasets** vignette sur hello **DATA FACTORY** Panneau de votre fabrique de données.
+2. Cliquez sur le jeu de données spécifique hello sur hello **Datasets** panneau.
+3. Tranche hello SELECT qui vous intéressez dans hello **tranches récentes** liste hello **TABLE** panneau.
+4. Cliquez sur Exécuter à partir de hello : activité hello **activité** liste hello **tranche de données** panneau.
+5. Cliquez sur **propriétés** vignette sur hello **détails de l’activité exécuter** panneau.
+6. Vous devez voir hello **durée** champ avec une valeur. Cette valeur est la durée de hello la tranche de hello tooprocess.   
 
-### <a name="how-to-stop-a-running-slice"></a>Comment arrêter une tranche en cours d'exécution ?
-Si vous devez arrêter l’exécution du pipeline, vous pouvez utiliser l’applet de commande [Suspend-AzureRmDataFactoryPipeline](/powershell/module/azurerm.datafactories/suspend-azurermdatafactorypipeline) . Actuellement, l'interruption du pipeline n'arrête pas les exécutions de tranche en cours. Une fois que les exécutions en cours sont terminées, aucune tranche supplémentaire n'est récupérée.
+### <a name="how-toostop-a-running-slice"></a>Comment toostop une tranche en cours d’exécution ?
+Si vous avez besoin de pipeline de hello toostop à partir de l’exécution, vous pouvez utiliser [Suspend-AzureRmDataFactoryPipeline](/powershell/module/azurerm.datafactories/suspend-azurermdatafactorypipeline) applet de commande. Actuellement, la suspension du pipeline de hello n’arrête pas les exécutions de tranche hello qui sont en cours d’exécution. Une fois que les exécutions en cours hello terminer, aucune coupe n’est récupéré.
 
-Si vous voulez vraiment arrêter immédiatement toutes les exécutions, le seul moyen est de supprimer le pipeline et de le recréer. Si vous choisissez de supprimer le pipeline, il est INUTILE de supprimer les tables et les services liés qu'il utilise.
+Si vous voulez vraiment toostop toutes les exécutions de hello immédiatement, hello uniquement de façon serait toodelete hello pipeline et recréez-le. Si vous choisissez de pipeline de hello toodelete, il est inutile toodelete tables et les services liés utilisés par le pipeline de hello.
 
 [create-factory-using-dotnet-sdk]: data-factory-create-data-factories-programmatically.md
 [msdn-class-library-reference]: /dotnet/api/microsoft.azure.management.datafactories.models

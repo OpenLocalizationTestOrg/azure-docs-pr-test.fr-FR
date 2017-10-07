@@ -1,6 +1,6 @@
 ---
-title: "Afficher tous les groupes existants dans Azure Active Directory | Microsoft Docs"
-description: Comment afficher ou rechercher des groupes dans Azure Active Directory
+title: aaaView tous les groupes dans Azure Active Directory | Documents Microsoft
+description: Comment tooview ou rechercher des groupes dans Azure Active Directory
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 1cc8b9194433840df9ce16baf1a0ec2c3dd08ad9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ae668d1cdb8032a332053dc40164d4dc829bdd19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-or-search-for-your-user-groups-in-azure-active-directory"></a>Afficher ou rechercher vos groupes d’utilisateurs dans Azure Active Directory
-Cet article explique comment afficher tous les groupes dans Azure Active Directory (Azure AD). L’une des fonctionnalités de gestion des utilisateurs Azure AD est que vous pouvez utiliser des groupes pour effectuer des tâches de gestion telles que l’attribution de licences ou d’autorisations à un certain nombre d’utilisateurs à la fois.
+Cet article explique la façon dont les tooview tous les groupes dans Azure Active Directory (Azure AD). Une des fonctionnalités de hello de gestion des utilisateurs Azure AD est que vous pouvez utiliser des tâches de gestion de groupes tooperform tels que l’attribution des licences ou autorisations nombre tooa d’utilisateurs à la fois.
 
-## <a name="how-do-i-see-all-the-groups"></a>Comment afficher tous les groupes ?
-1. Connectez-vous au [portail Azure](https://portal.azure.com) en utilisant un compte d’administrateur général pour le répertoire.
-2. Sélectionnez **Plus de services**, saisissez **Utilisateurs et groupes** dans la zone de texte, puis sélectionnez **Entrée**.
+## <a name="how-do-i-see-all-hello-groups"></a>Comment pour afficher tous les groupes de hello ?
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) avec un compte qui est un administrateur global pour le répertoire de hello.
+2. Sélectionnez **davantage de services**, entrez **utilisateurs et groupes** dans hello de zone de texte, puis sélectionnez **entrée**.
 
    ![Ouverture du panneau Utilisateurs et groupes](./media/active-directory-groups-view-azure-portal/search-user-management.png)
-3. Dans le panneau **Utilisateurs et groupes**, sélectionnez **Tous les groupes**.
+3. Sur hello **utilisateurs et groupes** panneau, sélectionnez **tous les groupes**.
 
-   ![Ouvrir le panneau de groupes](./media/active-directory-groups-view-azure-portal/view-groups-blade.png)
-4. Dans le panneau **Utilisateurs et groupes - Tous les groupes** , vous pouvez ajouter ou supprimer des colonnes d’affichage, filtrer la liste pour rechercher un groupe, ou apporter des modifications à des groupes pour lesquels vous avez les autorisations de modification.
+   ![Panneau de groupes hello ouverture](./media/active-directory-groups-view-azure-portal/view-groups-blade.png)
+4. Sur hello **utilisateurs et groupes - tous les groupes** panneau, vous pouvez ajouter ou supprimer des colonnes d’affichage, filtre hello liste toosearch pour un groupe, ou d’apporter des modifications toogroups que vous avez toochange d’autorisations suffisantes.
 
 ## <a name="next-steps"></a>Étapes suivantes
 Ces articles fournissent des informations supplémentaires sur Azure Active Directory.

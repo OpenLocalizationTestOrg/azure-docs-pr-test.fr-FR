@@ -1,6 +1,6 @@
 ---
-title: Utilisation de certificats avec Enterprise Integration Pack | Microsoft Docs
-description: "Découvrez comment utiliser les certificats avec Enterprise Integration Pack | Azure Logic Apps"
+title: "certificats aaaUsing avec le Pack d’intégration Enterprise | Documents Microsoft"
+description: "En savoir plus l’utilisation des certificats avec hello Pack d’intégration Enterprise toouse | Azure Logic Apps"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: padmavc
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 0570aab14283b38f9efcc50636f0c0c1c8e3ed13
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7ba9f597a03a852a9ba05d2af08fe4bc2d98aef7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="learn-about-certificates-and-enterprise-integration-pack"></a>En savoir plus sur les certificats et Enterprise Integration Pack
 ## <a name="overview"></a>Vue d'ensemble
-Enterprise Integration utilise des certificats pour sécuriser les communications B2B. Vous pouvez utiliser deux types de certificats dans vos applications Enterprise Integration :
+Intégration d’entreprise utilise les communications de certificats toosecure B2B. Vous pouvez utiliser deux types de certificats dans vos applications Enterprise Integration :
 
 * Des certificats publics, qui doivent être achetés auprès d’une autorité de certification (CA).
-* Des certificats privés, que vous pouvez créer vous-même. Ces certificats sont parfois appelés « certificats auto-signés ».
+* Des certificats privés, que vous pouvez créer vous-même. Ces certificats sont parfois tooas auxquels les certificats auto-signés.
 
 ## <a name="what-are-certificates"></a>Que sont les certificats ?
-Les certificats sont des documents numériques qui vérifient l’identité des participants dans des communications électroniques et qui sécurisent ces communications électroniques.
+Les certificats sont des documents numériques qui vérifient l’identité hello de participants hello dans les communications électroniques et qui également sécuriser les communications électroniques.
 
 ## <a name="why-use-certificates"></a>Pourquoi utiliser des certificats ?
-Parfois, les communications B2B doivent rester confidentielles. Enterprise Integration utilise des certificats pour sécuriser ces communications de deux manières :
+Parfois, les communications B2B doivent rester confidentielles. Intégration d’entreprise utilise des certificats toosecure ces communications de deux manières :
 
-* En chiffrant le contenu des messages
+* En chiffrant contenu hello des messages
 * En signant numériquement les messages  
 
 ## <a name="upload-a-public-certificate"></a>Téléchargement d’un certificat public
 
-Pour utiliser un *certificat public* dans vos applications logiques avec fonctionnalités B2B, vous devez tout d’abord télécharger le certificat dans votre compte d’intégration.  
+toouse un *certificat public* dans vos applications logiques avec les fonctionnalités B2B, vous devez tout d’abord certificat de hello tooupload à votre compte d’intégration.  
 
-Après avoir téléchargé un certificat, vous pouvez l'utiliser pour sécuriser vos messages B2B lorsque vous définissez leurs propriétés dans les [contrats](logic-apps-enterprise-integration-agreements.md) que vous créez.  
+Après avoir téléchargé un certificat, il est disponible toohelp vous sécuriser vos messages B2B lorsque vous définissez leurs propriétés Bonjour [accords](logic-apps-enterprise-integration-agreements.md) que vous créez.  
 
-Voici les étapes détaillées pour télécharger vos certificats publics sur votre compte d’intégration une fois que vous êtes connecté au portail Azure :
+Voici hello des instructions détaillées sur le téléchargement de vos certificats publics dans votre compte d’intégration après vous être connecté toohello portail Azure :
 
-1. Sélectionnez **Plus de services** et entrez **intégration** dans la zone de recherche de filtre. Sélectionnez **Comptes d’intégration** dans la liste des résultats.     
+1. Sélectionnez **davantage de services** et entrez **intégration** dans la zone de recherche filtre hello. Sélectionnez **comptes d’intégration** à partir de la liste des résultats hello     
 ![Sélectionnez Parcourir](media/logic-apps-enterprise-integration-certificates/overview-1.png)  
-2. Sélectionnez le compte d’intégration auquel vous ajouterez le certificat.  
-![Sélectionnez le compte d’intégration auquel vous ajouterez le certificat](media/logic-apps-enterprise-integration-certificates/overview-3.png)  
-3. Sélectionnez la mosaïque **Certificats** .  
-![Sélectionnez la mosaïque Certificats](media/logic-apps-enterprise-integration-certificates/certificate-1.png)
-4. Dans le panneau **Certificats** qui s’affiche, sélectionnez le bouton **Ajouter**.   
-![Cliquez sur le bouton Ajouter](media/logic-apps-enterprise-integration-certificates/certificate-2.png)
-5. Entrez le **nom** de votre certificat, puis sélectionnez le type de certificat **public** dans la liste déroulante.  
-6. Sélectionnez l’icône de dossier à droite de la zone de texte **Certificat**. Lorsque le sélecteur de fichiers apparaît, recherchez puis sélectionnez le fichier de certificat que vous souhaitez télécharger sur votre compte d’intégration.
-7. Sélectionnez le certificat, puis choisissez **OK** dans le sélecteur de fichiers. Cette opération valide et télécharge le certificat sur votre compte d’intégration.
-8. Enfin, de retour dans le panneau **Ajouter un certificat**, sélectionnez le bouton **OK**.  
-![Cliquez sur le bouton OK](media/logic-apps-enterprise-integration-certificates/certificate-3.png)  
-9. Sélectionnez la mosaïque **Certificats** . Vous devez voir le certificat qui vient d’être ajouté.  
-![Consultez le nouveau certificat](media/logic-apps-enterprise-integration-certificates/certificate-4.png)  
+2. Sélectionnez hello intégration compte toowhich tooadd hello certificat.  
+![Sélectionnez hello intégration compte toowhich tooadd hello certificat](media/logic-apps-enterprise-integration-certificates/overview-3.png)  
+3. Sélectionnez hello **certificats** vignette.  
+![Sélectionnez hello certificats vignette](media/logic-apps-enterprise-integration-certificates/certificate-1.png)
+4. Bonjour **certificats** panneau s’ouvre, sélectionnez hello **ajouter** bouton.   
+![Sélectionnez le bouton Ajouter de hello](media/logic-apps-enterprise-integration-certificates/certificate-2.png)
+5. Entrez un **nom** pour votre certificat et le type de certificat puis hello en tant que **public** à partir de la liste déroulante de hello.  
+6. Icône de dossier hello SELECT sur le côté droit de hello Hello **certificat** zone de texte. Lorsque le sélecteur de fichier hello s’ouvre, recherchez et sélectionnez hello fichier de certificat que vous souhaitez le compte d’intégration tooupload tooyour.
+7. Sélectionnez le certificat de hello, puis **OK** dans le sélecteur de fichier hello. Cela valide et télécharge le compte d’intégration tooyour hello certificat.
+8. Enfin, de retour sur hello **ajouter un certificat** panneau, sélectionnez hello **OK** bouton.  
+![Sélectionnez le bouton OK de hello](media/logic-apps-enterprise-integration-certificates/certificate-3.png)  
+9. Sélectionnez hello **certificats** vignette. Vous devez voir hello certificat a été ajouté récemment.  
+![Consultez le nouveau certificat de hello](media/logic-apps-enterprise-integration-certificates/certificate-4.png)  
 
 ## <a name="upload-a-private-certificate"></a>Téléchargement d’un certificat privé
 
-Pour utiliser un *certificat privé* dans vos applications logiques avec des capacités B2B, vous pouvez télécharger un certificat privé dans votre compte d’intégration en effectuant les étapes suivantes.
+toouse un *certificat privé* dans vos applications logiques avec les fonctionnalités B2B, vous pouvez télécharger un compte d’intégration tooyour certificat privé à hello en prenant comme suit
 
-1. [Chargez votre clé privée dans Key Vault](../key-vault/key-vault-get-started.md "En savoir plus sur Key Vault") et indiquez un **nom de clé**. 
+1. [Télécharger votre tooKey de clé privée coffre](../key-vault/key-vault-get-started.md "en savoir plus sur le coffre de clés") et fournir un **nom de la clé** 
    
    > [!TIP]
-   > Vous devez autoriser Logic Apps à effectuer des opérations sur Key Vault. Vous pouvez autoriser l’accès au principal du service Logic Apps à l’aide de cette commande PowerShell : `Set-AzureRmKeyVaultAccessPolicy -VaultName 'TestcertKeyVault' -ServicePrincipalName '7cd684f4-8a78-49b0-91ec-6a35d38739ba' -PermissionsToKeys decrypt, sign, get, list`  
+   > Vous devez autoriser les opérations de tooperform Logic Apps sur le coffre de clés. Vous pouvez accorder principal du service accès toohello Logic Apps à l’aide de hello suivant de commande PowerShell :`Set-AzureRmKeyVaultAccessPolicy -VaultName 'TestcertKeyVault' -ServicePrincipalName '7cd684f4-8a78-49b0-91ec-6a35d38739ba' -PermissionsToKeys decrypt, sign, get, list`  
    > 
    > 
 
-Après avoir réalisé l’étape précédente, ajoutez un certificat privé au compte d’intégration.
+Une fois que vous avez effectuées précédemment hello, ajoutez un compte de toointegration de certificat privé.
 
-Voici les étapes détaillées pour télécharger vos certificats privés sur votre compte d’intégration une fois que vous êtes connecté au portail Azure :  
+Suivantes sont hello des instructions détaillées sur le téléchargement de vos certificats privés dans votre compte d’intégration après que vous être connecté toohello portail Azure :  
  
-1. Sélectionnez le compte d’intégration auquel vous souhaitez ajouter le certificat, puis sélectionnez la mosaïque **Certificats**.  
-![Sélectionnez la mosaïque Certificats](media/logic-apps-enterprise-integration-certificates/certificate-1.png)  
-2. Dans le panneau **Certificats** qui s’affiche, sélectionnez le bouton **Ajouter**.   
-![Cliquez sur le bouton Ajouter](media/logic-apps-enterprise-integration-certificates/certificate-2.png)
-3. Entrez le **nom** de votre certificat, puis sélectionnez le type de certificat **privé** dans la liste déroulante.   
-4. Sélectionnez l’icône de dossier à droite de la zone de texte **Certificat**. Lorsque le sélecteur de fichiers apparaît, recherchez le certificat public que vous souhaitez charger sur votre compte d’intégration.   
+1. Sélectionnez hello intégration compte toowhich vous tooadd hello certificat et sélectionnez hello **certificats** vignette.  
+![Sélectionnez hello certificats vignette](media/logic-apps-enterprise-integration-certificates/certificate-1.png)  
+2. Bonjour **certificats** panneau s’ouvre, sélectionnez hello **ajouter** bouton.   
+![Sélectionnez le bouton Ajouter de hello](media/logic-apps-enterprise-integration-certificates/certificate-2.png)
+3. Entrez un **nom** pour votre certificat et le type de certificat hello sélectionnez en tant que **privé** à partir de la liste déroulante de hello.   
+4. Sélectionnez l’icône de dossier hello sur le côté droit de hello Hello **certificat** zone de texte. Lorsque le sélecteur de fichier hello s’ouvre, trouver le certificat public correspondant hello compte d’intégration tooupload tooyour.   
    
    > [!Note]
-   > Lors de l’ajout d’un certificat privé, il est important d’ajouter le certificat public correspondant à afficher dans les paramètres d’envoi et de réception du [contrat AS2](logic-apps-enterprise-integration-as2.md) pour la signature et le chiffrement des messages.
+   > Lors de l’ajout d’un certificat privé, il est important de tooadd correspondant publique du certificat tooshow dans [accord AS2](logic-apps-enterprise-integration-as2.md) recevoir et envoyer des paramètres pour signer et chiffrer les messages de type hello.
    > 
    >   
 
-5. Sélectionnez les valeurs appropriées dans les listes déroulantes **Groupe de ressources**, **Key Vault** et **Nom de la clé**, puis cliquez sur le bouton **OK**.  
+5. Sélectionnez hello **groupe de ressources**, **le coffre de clés**, **nom de la clé** et sélectionnez hello **OK** bouton.  
 ![Ajouter le certificat](media/logic-apps-enterprise-integration-certificates/privatecertificate-1.png)  
-6. Sélectionnez la mosaïque **Certificats** . Vous devez voir le certificat qui vient d’être ajouté.
-![Consultez le nouveau certificat](media/logic-apps-enterprise-integration-certificates/privatecertificate-2.png)  
+6. Sélectionnez hello **certificats** vignette. Vous devez voir hello certificat a été ajouté récemment.
+![Consultez le nouveau certificat de hello](media/logic-apps-enterprise-integration-certificates/privatecertificate-2.png)  
 
 
 

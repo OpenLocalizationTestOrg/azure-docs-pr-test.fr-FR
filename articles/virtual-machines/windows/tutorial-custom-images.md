@@ -1,6 +1,6 @@
 ---
-title: "Créer des images de machine virtuelle personnalisées avec Azure PowerShell | Microsoft Docs"
-description: "Tutoriel : créez une image de machine virtuelle personnalisée à l’aide d’Azure PowerShell."
+title: "images de machine virtuelle personnalisées aaaCreate avec hello Azure PowerShell | Documents Microsoft"
+description: "Didacticiel : créer une image de machine virtuelle personnalisée à l’aide de hello Azure PowerShell."
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: cynthn
@@ -16,97 +16,97 @@ ms.workload: infrastructure
 ms.date: 05/08/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 96be2872a902a7d7063bf1dff7b4ca209a5b67c1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a759fe1b7e7b72f531399b0f4a99e341713c6a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-custom-image-of-an-azure-vm-using-powershell"></a>Créer une image personnalisée d’une machine virtuelle Azure à l’aide de PowerShell
 
-Les images personnalisées sont comme des images de la Place de marché, sauf que vous les créez vous-même. Les images personnalisées peuvent être utilisées pour amorcer des configurations comme le préchargement des applications, les configurations d’application et d’autres configurations de système d’exploitation. Ce didacticiel explique comment créer votre propre image personnalisée d’une machine virtuelle Azure. Vous allez apprendre à effectuer les actions suivantes :
+Les images personnalisées sont comme des images de la Place de marché, sauf que vous les créez vous-même. Images personnalisées peuvent être des configurations toobootstrap utilisés tels que le préchargement des applications, les configurations de l’application et les autres configurations de système d’exploitation. Ce didacticiel explique comment créer votre propre image personnalisée d’une machine virtuelle Azure. Vous allez apprendre à effectuer les actions suivantes :
 
 > [!div class="checklist"]
 > * Exécuter Sysprep et généraliser les machines virtuelles
 > * Créer une image personnalisée
 > * Créer une machine virtuelle à partir d’une image personnalisée
-> * Répertorier toutes les images dans votre abonnement
+> * La liste de toutes les images hello dans votre abonnement
 > * Supprimer une image
 
-Ce didacticiel requiert le module Azure PowerShell version 3.6 ou ultérieure. Exécutez ` Get-Module -ListAvailable AzureRM` pour trouver la version. Si vous devez effectuer une mise à niveau, consultez [Installer le module Azure PowerShell](/powershell/azure/install-azurerm-ps).
+Ce didacticiel nécessite hello Azure PowerShell version 3.6 ou version ultérieure du module. Exécutez ` Get-Module -ListAvailable AzureRM` version de hello toofind. Si vous avez besoin de tooupgrade, consultez [installez Azure PowerShell module](/powershell/azure/install-azurerm-ps).
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Les étapes ci-dessous expliquent comment prendre une machine virtuelle existante et la transformer en une image personnalisée réutilisable que vous pouvez utiliser pour créer de nouvelles instances de machines virtuelles.
+étapes Hello ci-dessous décrit en détail comment tootake une machine virtuelle existante et les activer dans personnalisé réutilisable de l’image que vous peuvent utiliser toocreate de nouvelles instances de machine virtuelle.
 
-Pour exécuter l’exemple dans ce didacticiel, vous devez disposer d’une machine virtuelle. Si nécessaire, cet [exemple de script](../scripts/virtual-machines-windows-powershell-sample-create-vm.md) peut en créer une pour vous. Au cours du didacticiel, remplacez les noms du groupe de ressources et de la machine virtuelle si nécessaire.
+exemple de hello toocomplete dans ce didacticiel, vous devez disposer d’un ordinateur virtuel existant. Si nécessaire, cet [exemple de script](../scripts/virtual-machines-windows-powershell-sample-create-vm.md) peut en créer une pour vous. Lorsque le travail didacticiel de hello, remplacez machine virtuelle et groupe de ressources hello noms lorsque cela est nécessaire.
 
 ## <a name="prepare-vm"></a>Préparer la machine virtuelle
 
-Pour créer une image de machine virtuelle, vous devez préparer la machine virtuelle en la généralisant, en la libérant et en la marquant comme généralisée dans Azure.
+toocreate une image d’un ordinateur virtuel, vous devez tooprepare hello VM par hello généraliser machine virtuelle, désallocation et puis marque la source de hello machine virtuelle comme généralisé dans Azure.
 
-### <a name="generalize-the-windows-vm-using-sysprep"></a>Généraliser la machine virtuelle Windows à l’aide de Sysprep
+### <a name="generalize-hello-windows-vm-using-sysprep"></a>Généraliser hello virtuelle Windows à l’aide de Sysprep
 
-Sysprep supprime toutes les informations personnelles de votre compte, entre autres, et prépare la machine de façon à pouvoir l’utiliser comme image. Pour plus d’informations sur Sysprep, voir [Introduction à l’utilisation de Sysprep](http://technet.microsoft.com/library/bb457073.aspx).
+Sysprep supprime toutes vos informations de compte personnel, entre autres choses et prépare hello machine toobe est utilisé en tant qu’image. Pour plus d’informations sur Sysprep, consultez [comment tooUse Sysprep : Introduction](http://technet.microsoft.com/library/bb457073.aspx).
 
 
-1. Connectez-vous à la machine virtuelle.
-2. Ouvrez la fenêtre d’invite de commandes en tant qu’administrateur. Remplacez le répertoire par *%windir%\system32\sysprep*, puis exécutez *sysprep.exe*.
-3. Dans la boîte de dialogue **Outil de préparation du système**, sélectionnez *Entrer en mode OOBE (Out-of-Box Experience)* et vérifiez que la case *Généraliser* est cochée.
+1. Connecter l’ordinateur virtuel de toohello.
+2. Ouvrez la fenêtre d’invite de commandes hello en tant qu’administrateur. Basculez hello trop*%windir%\system32\sysprep*, puis exécutez *sysprep.exe*.
+3. Bonjour **outil de préparation système** boîte de dialogue, sélectionnez *entrer le système Out-of-Box Experience (OOBE)*et assurez-vous que hello *Generalize* case à cocher est activée.
 4. Dans **Options d’arrêt**, sélectionnez *Arrêter*, puis cliquez sur **OK**.
-5. Une fois l’opération Sysprep terminée, elle arrête la machine virtuelle. **Ne redémarrez pas la machine virtuelle**.
+5. Quand Sysprep se termine, il arrête de machine virtuelle de hello. **Ne redémarrez pas hello VM**.
 
-### <a name="deallocate-and-mark-the-vm-as-generalized"></a>Libérer la machine virtuelle et la marquer comme généralisée
+### <a name="deallocate-and-mark-hello-vm-as-generalized"></a>Désallouer et marquer hello machine virtuelle comme généralisé
 
-Pour créer une image, la machine virtuelle doit être libérée et marquée comme généralisée dans Azure.
+toocreate une image, hello machine virtuelle doit toobe désalloué et marquée comme généralisé dans Azure.
 
-Libérez la machine virtuelle à l’aide de [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm).
+À l’aide de machine virtuelle libérée hello [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm).
 
 ```powershell
 Stop-AzureRmVM -ResourceGroupName myResourceGroupImages -Name myVM -Force
 ```
 
-Définissez l’état de la machine virtuelle sur `-Generalized` à l’aide de [Set-AzureRmVm](/powershell/module/azurerm.compute/set-azurermvm). 
+Définir le statut de hello de machine virtuelle de hello trop`-Generalized` à l’aide de [Set-AzureRmVm](/powershell/module/azurerm.compute/set-azurermvm). 
    
 ```powershell
 Set-AzureRmVM -ResourceGroupName myResourceGroupImages -Name myVM -Generalized
 ```
 
 
-## <a name="create-the-image"></a>Création de l’image
+## <a name="create-hello-image"></a>Création d’image de hello
 
-Créez à présent une image de la machine virtuelle à l’aide de [New-AzureRmImageConfig](/powershell/module/azurerm.compute/new-azurermimageconfig) et [New-AzureRmImage](/powershell/module/azurerm.compute/new-azurermimage). L’exemple suivant crée une image nommée *myimage* à partir d’une machine virtuelle nommée *myimage*.
+Vous pouvez désormais créer une image de machine virtuelle de hello à l’aide de [New-AzureRmImageConfig](/powershell/module/azurerm.compute/new-azurermimageconfig) et [New-AzureRmImage](/powershell/module/azurerm.compute/new-azurermimage). Hello exemple suivant crée une image nommée *myImage* à partir d’un ordinateur virtuel nommé *myVM*.
 
-Accédez à la machine virtuelle. 
+Obtenir un ordinateur virtuel de hello. 
 
 ```powershell
 $vm = Get-AzureRmVM -Name myVM -ResourceGroupName myResourceGroupImages
 ```
 
-Créez la configuration de l’image.
+Créer la configuration de l’image hello.
 
 ```powershell
 $image = New-AzureRmImageConfig -Location EastUS -SourceVirtualMachineId $vm.ID 
 ```
 
-Créez l’image.
+Créer l’image de hello.
 
 ```powershell
 New-AzureRmImage -Image $image -ImageName myImage -ResourceGroupName myResourceGroupImages
 ``` 
 
  
-## <a name="create-vms-from-the-image"></a>Créer des machines virtuelles à partir de l’image
+## <a name="create-vms-from-hello-image"></a>Créer des ordinateurs virtuels à partir de l’image de hello
 
-Maintenant que vous avez une image, vous pouvez créer une ou plusieurs nouvelles machines virtuelles à partir de l’image. La création d’une machine virtuelle à partir d’une image personnalisée est très similaire à la création d’une machine virtuelle à l’aide d’une image de la Place de marché. Lorsque vous utilisez une image de la Place de marché, vous devez entrer des informations sur l’image, le fournisseur de l’image, l’offre, la référence et la version. Avec une image personnalisée, vous devez simplement fournir l’ID de la ressource d’image personnalisée. 
+Maintenant que vous disposez d’une image, vous pouvez créer un ou plusieurs nouveaux ordinateurs virtuels à partir de l’image de hello. Création d’une machine virtuelle à partir d’une image personnalisée est très similaire toocreating une machine virtuelle à l’aide d’une image de Marketplace. Lorsque vous utilisez une image de Marketplace, vous avez tooinformation sur les images de hello, fournisseur d’images, offre, référence (SKU) et version. Avec une image personnalisée, vous devez simplement des ID de hello tooprovide de ressource d’image personnalisée hello. 
 
-Dans le script suivant, nous créons une variable *$image* pour stocker des informations sur l’image personnalisée à l’aide de [Get-AzureRmImage](/powershell/module/azurerm.compute/get-azurermimage) et nous utilisons ensuite [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) et spécifions l’ID à l’aide de la variable *$image* que nous venons de créer. 
+Dans hello le script suivant, nous créons une variable *$image* toostore plus d’informations sur l’utilisation d’une image personnalisée hello [Get-AzureRmImage](/powershell/module/azurerm.compute/get-azurermimage) puis nous les utilisons [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage)et spécifiez l’ID de hello à l’aide de hello *$image* variable nous venons de créer. 
 
-Le script crée une machine virtuelle nommée *myVMfromImage* à partir de notre image personnalisée dans un groupe de ressources nommé *myResourceGroupFromImage* dans l’emplacement *Ouest des États-Unis*.
+script de Hello crée un ordinateur virtuel nommé *myVMfromImage* à partir de notre image personnalisée dans un groupe de ressources nommé *myResourceGroupFromImage* Bonjour *ouest des États-Unis* emplacement.
 
 
 ```powershell
-$cred = Get-Credential -Message "Enter a username and password for the virtual machine."
+$cred = Get-Credential -Message "Enter a username and password for hello virtual machine."
 
 New-AzureRmResourceGroup -Name myResourceGroupFromImage -Location EastUS
 
@@ -159,12 +159,12 @@ $vmConfig = New-AzureRmVMConfig `
         -ComputerName myComputer `
         -Credential $cred 
 
-# Here is where we create a variable to store information about the image 
+# Here is where we create a variable toostore information about hello image 
 $image = Get-AzureRmImage `
     -ImageName myImage `
     -ResourceGroupName myResourceGroupImages
 
-# Here is where we specify that we want to create the VM from and image and provide the image ID
+# Here is where we specify that we want toocreate hello VM from and image and provide hello image ID
 $vmConfig = Set-AzureRmVMSourceImage -VM $vmConfig -Id $image.Id
 
 $vmConfig = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic.Id
@@ -177,7 +177,7 @@ New-AzureRmVM `
 
 ## <a name="image-management"></a>Gestion d’image 
 
-Voici quelques exemples de tâches d’images de gestion courantes et comment les exécuter à l’aide de PowerShell.
+Voici quelques exemples de tâches courantes de gestion image et comment toocomplete les à l’aide de PowerShell.
 
 Répertoriez toutes les images par nom.
 
@@ -186,7 +186,7 @@ $images = Find-AzureRMResource -ResourceType Microsoft.Compute/images
 $images.name
 ```
 
-Supprimez une image. Cet exemple supprime l’image nommée *myOldImage* à partir du groupe *myResourceGroup*.
+Supprimez une image. Cet exemple supprime hello image nommée *myOldImage* de hello *myResourceGroup*.
 
 ```powershell
 Remove-AzureRmImage `
@@ -202,10 +202,10 @@ Ce didacticiel vous montré comment créer une image de machine virtuelle. Vous 
 > * Exécuter Sysprep et généraliser les machines virtuelles
 > * Créer une image personnalisée
 > * Créer une machine virtuelle à partir d’une image personnalisée
-> * Répertorier toutes les images dans votre abonnement
+> * La liste de toutes les images hello dans votre abonnement
 > * Supprimer une image
 
-Passez au didacticiel suivant pour en savoir plus sur les machines virtuelles hautement disponibles.
+Avance toohello toolearn de didacticiel suivant sur les ordinateurs virtuels comment hautement disponibles.
 
 > [!div class="nextstepaction"]
 > [Créer des machines virtuelles hautement disponibles](tutorial-availability-sets.md)

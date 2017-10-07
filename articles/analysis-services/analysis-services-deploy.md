@@ -1,6 +1,6 @@
 ---
-title: "Procéder à un déploiement sur Azure Analysis Services à l’aide de SSDT | Microsoft Docs"
-description: "Découvrez comment déployer un modèle tabulaire sur un serveur Azure Analysis Services à l’aide de SSDT."
+title: "aaaDeploy tooAzure Analysis Services à l’aide de SSDT | Documents Microsoft"
+description: "Découvrez comment toodeploy un tooan de modèle tabulaire Azure Analysis Services server à l’aide de SSDT."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,51 +15,51 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: owend
-ms.openlocfilehash: e9a3aedfb6e55696e1525e226fada1062fd5eda8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e3f3771fe32a37b9e0173c274080c647152edd4c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-a-model-from-ssdt"></a>Déployer un modèle à partir de SSDT
-Une fois que vous avez créé un serveur dans votre abonnement Azure, vous êtes prêt à déployer une base de données de modèle tabulaire sur celui-ci. Vous pouvez utiliser SQL Server Data Tools (SSDT) pour créer et déployer un projet de modèle tabulaire sur lequel vous travaillez. 
+Une fois que vous avez créé un serveur dans votre abonnement Azure, vous êtes prêt toodeploy un tooit de base de données de modèle tabulaire. Vous pouvez utiliser SQL Server Data Tools (SSDT) toobuild et déployer un projet de modèle tabulaire sur lequel vous travaillez. 
 
 ## <a name="prerequisites"></a>Composants requis
-Pour commencer, vous avez besoin des éléments suivants :
+tooget démarré, vous devez :
 
-* **Serveur Analysis Services** dans Azure. Pour plus d’informations, consultez l’article [Création d’un serveur Azure Analysis Services dans le portail Azure](analysis-services-create-server.md).
-* **Projet de modèle tabulaire** dans SSDT ou modèle tabulaire existant au niveau de compatibilité 1200 ou supérieur. Vous ne l’avez jamais fait ? Essayez le [Didacticiel de modélisation tabulaire des ventes Internet Adventure Works](https://msdn.microsoft.com/library/hh231691.aspx).
-* **Passerelle locale** : si une ou plusieurs sources de données sont locales dans le réseau de votre entreprise, vous devez installer une [Passerelle de données locale](analysis-services-gateway.md). La passerelle est nécessaire pour que votre serveur se connecte dans le cloud à vos sources de données locales pour traiter et actualiser les données du modèle.
+* **Serveur Analysis Services** dans Azure. toolearn, voir [créer un serveur Azure Analysis Services](analysis-services-create-server.md).
+* **Projet de modèle tabulaire** dans SSDT ou un modèle tabulaire existant hello 1200 au niveau de compatibilité supérieur. Vous ne l’avez jamais fait ? Essayez de hello [didacticiel de modélisation tabulaire vente Adventure Works Internet](https://msdn.microsoft.com/library/hh231691.aspx).
+* **Passerelle locale** -si une ou plusieurs sources de données sont localement dans le réseau de votre organisation, vous devez tooinstall une [passerelle de données locale](analysis-services-gateway.md). passerelle de Hello est nécessaire pour la connexion à votre serveur dans le cloud de hello tooyour des données sources tooprocess et l’actualisation des données locales dans le modèle de hello.
 
 > [!TIP]
-> Avant de déployer, assurez-vous que vous pouvez traiter les données de vos tables. Dans SSDT, cliquez sur **Modèle** > **Traiter** > **Traiter tout**. Si le traitement échoue, vous ne pourrez pas procéder au déploiement.
+> Avant de déployer, assurez-vous que vous pouvez traiter les données de salutation dans vos tables. Dans SSDT, cliquez sur **Modèle** > **Traiter** > **Traiter tout**. Si le traitement échoue, vous ne pourrez pas procéder au déploiement.
 > 
 > 
 
-## <a name="to-deploy-a-tabular-model-from-ssdt"></a>Pour déployer un modèle tabulaire à partir de SSDT
+## <a name="toodeploy-a-tabular-model-from-ssdt"></a>toodeploy un modèle tabulaire à partir de SSDT
 
-1. Avant de déployer, vous devez obtenir le nom du serveur. Dans **Portail Azure** > Serveur > **Présentation** > **Nom du serveur**, copiez le nom du serveur.
+1. Avant de déployer, vous devez le nom du serveur tooget hello. Dans **portail Azure** > serveur > **vue d’ensemble** > **nom du serveur**, copier le nom de serveur hello.
    
     ![Obtenir le nom du serveur dans Azure](./media/analysis-services-deploy/aas-deploy-get-server-name.png)
-2. Dans SSDT > **Explorateur de solutions**, cliquez avec le bouton droit sur le projet > **Propriétés**. Ensuite, dans **Déploiement** > **Serveur**, collez le nom du serveur.   
+2. Dans SSDT > **l’Explorateur de solutions**, projet de hello avec le bouton droit > **propriétés**. Ensuite, dans **déploiement** > **Server** collez le nom du serveur hello.   
    
     ![Coller le nom du serveur dans la propriété du serveur de déploiement](./media/analysis-services-deploy/aas-deploy-deployment-server-property.png)
-3. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur **Propriétés**, puis cliquez sur **Déployer**. Vous serez peut-être invité à vous connecter à Azure.
+3. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur **Propriétés**, puis cliquez sur **Déployer**. Vous pouvez être invité à toosign dans tooAzure.
    
-    ![Déployer sur un serveur](./media/analysis-services-deploy/aas-deploy-deploy.png)
+    ![Déployer tooserver](./media/analysis-services-deploy/aas-deploy-deploy.png)
    
-    L’état du déploiement s’affiche dans la fenêtre Sortie et dans Déployer.
+    État du déploiement s’affiche dans les deux fenêtres de sortie hello et déployer.
    
     ![état du déploiement](./media/analysis-services-deploy/aas-deploy-status.png)
 
-C’est tout !
+C’est tout est tooit !
 
 
-## <a name="troubleshooting"></a>Résolution de problèmes
-Si le déploiement échoue lors du déploiement de métadonnées, il est probable que SSDT n’ait pas pu se connecter à votre serveur. Vérifiez que vous pouvez vous connecter à votre serveur à l’aide de SSMS. Vérifiez ensuite que la propriété Serveur de déploiement du projet est correcte.
+## <a name="troubleshooting"></a>Résolution des problèmes
+Si le déploiement échoue lors du déploiement des métadonnées, il est probable, car SSDT n’a pas pu se connecter à tooyour server. Assurez-vous que vous pouvez vous connecter serveur tooyour à l’aide de SSMS. Vérifiez que hello propriété du serveur de déploiement pour le projet de hello est correct.
 
-Si le déploiement échoue sur une table, il est probable que votre serveur n’ait pas pu se connecter à une source de données. Si votre source de données est locale dans le réseau de votre entreprise, veillez à installer une [Passerelle de données locale](analysis-services-gateway.md).
+Si le déploiement échoue sur une table, il est probable, car votre serveur n’a pas pu se connecter de source de données tooa. Si votre source de données est locale dans le réseau de votre organisation, être tooinstall vraiment une [passerelle de données locale](analysis-services-gateway.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que votre modèle tabulaire est déployé sur votre serveur, vous êtes prêt à vous connecter à celui-ci. Vous pouvez vous [connecter à celui-ci avec SSMS](analysis-services-manage.md) pour le gérer. Vous pouvez également vous [connecter à celui-ci à l’aide d’un outil client](analysis-services-connect.md) tel que Power BI, Power BI Desktop ou Excel, et commencer à créer des rapports.
+Maintenant que vous avez votre serveur déployé tooyour de modèle tabulaire, vous êtes prêt tooconnect tooit. Vous pouvez [connecter tooit avec SSMS](analysis-services-manage.md) toomanage il. Et vous pouvez [se connecter à l’aide d’un outil client de tooit](analysis-services-connect.md) comme Power BI, Power BI Desktop, ou Excel et la création de rapports de début.
 

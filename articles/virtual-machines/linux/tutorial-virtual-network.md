@@ -1,6 +1,6 @@
 ---
-title: "Réseaux virtuels Azure et machines virtuelles Linux | Microsoft Docs"
-description: "Didacticiel : Gérer des réseaux virtuels Azure et des machines virtuelles Linux avec Azure CLI"
+title: "aaaAzure réseaux virtuels et des ordinateurs virtuels Linux | Documents Microsoft"
+description: "Didacticiel - gérer les réseaux virtuels Azure et les ordinateurs virtuels Linux par hello CLI d’Azure"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: neilpeterson
@@ -16,38 +16,38 @@ ms.workload: infrastructure
 ms.date: 05/10/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 2366905b8160675f77cbc41ba97540af70be8c01
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 57e6bd4de16f0e31d53dc67bf50dc5730d43712b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-azure-virtual-networks-and-linux-virtual-machines-with-the-azure-cli"></a>Gérer des réseaux virtuels Azure et des machines virtuelles Linux avec Azure CLI
+# <a name="manage-azure-virtual-networks-and-linux-virtual-machines-with-hello-azure-cli"></a>Gérer les réseaux virtuels Azure et les ordinateurs virtuels Linux par hello CLI d’Azure
 
-Les machines virtuelles Azure utilisent la gestion réseau Azure pour la communication réseau interne et externe. Ce didacticiel vous guide dans le déploiement de deux machines virtuelles et la configuration de la gestion réseau Azure pour celles-ci. Les exemples de ce didacticiel supposent que les machines virtuelles hébergent une application web avec un back-end de base de données. Le didacticiel ne comprend cependant pas le déploiement d’une application. Ce didacticiel vous montre comment effectuer les opérations suivantes :
+Les machines virtuelles Azure utilisent la gestion réseau Azure pour la communication réseau interne et externe. Ce didacticiel vous guide dans le déploiement de deux machines virtuelles et la configuration de la gestion réseau Azure pour celles-ci. exemples de Hello dans ce didacticiel partent du principe que les machines virtuelles de hello sont héberge une application web avec une base de données principale, toutefois, une application n’est pas déployée dans le didacticiel de hello. Ce didacticiel vous montre comment effectuer les opérations suivantes :
 
 > [!div class="checklist"]
 > * Déployer un réseau virtuel
 > * Créer un sous-réseau dans un réseau virtuel
-> * Attacher des machines virtuelles à un sous-réseau
+> * Joindre des ordinateurs virtuels tooa sous-réseau
 > * Gérer les adresses IP publiques des machines virtuelles
 > * Sécuriser le trafic internet entrant
-> * Sécuriser le trafic entre machines virtuelles
+> * Sécuriser le trafic tooVM de machine virtuelle
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter l’interface de ligne de commande Azure version 2.0.4 ou une version ultérieure pour poursuivre la procédure décrite dans ce didacticiel. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, ce didacticiel nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="vm-networking-overview"></a>Vue d’ensemble de la mise en réseau de machines virtuelles
 
-Les réseaux virtuels Azure permettent des connexions réseau sécurisées entre des machines virtuelles, Internet et d’autres services Azure SQL Database. Les réseaux virtuels sont divisés en segments logiques, appelés sous-réseaux. Les sous-réseaux sont utilisés pour contrôler le flux du réseau et comme une limite de sécurité. Quand vous déployez une machine virtuelle, elle inclut généralement une interface de réseau virtuel, qui est attachée à un sous-réseau.
+Réseaux virtuels Azure activer des connexions réseau sécurisées entre les machines virtuelles, hello internet et autres services Azure comme base de données SQL Azure. Les réseaux virtuels sont divisés en segments logiques, appelés sous-réseaux. Sous-réseaux sont utilisés les flux de réseau toocontrol et comme une limite de sécurité. Lorsque vous déployez une machine virtuelle, il inclut généralement une interface de réseau virtuel, ce qui est attaché tooa sous-réseau.
 
 ## <a name="deploy-virtual-network"></a>Déployer un réseau virtuel
 
 Pour ce didacticiel, un seul réseau virtuel est créé avec deux sous-réseaux. Un sous-réseau frontal pour l’hébergement d’une application web et un sous-réseau principal pour l’hébergement d’un serveur de base de données.
 
-Avant de pouvoir créer un réseau virtuel, créez un groupe de ressources avec [az group create](/cli/azure/group#create). L’exemple suivant crée un groupe de ressources nommé *myRGNetwork* à l’emplacement eastus.
+Avant de pouvoir créer un réseau virtuel, créez un groupe de ressources avec [az group create](/cli/azure/group#create). Hello exemple suivant crée un groupe de ressources nommé *myRGNetwork* dans l’emplacement d’eastus hello.
 
 ```azurecli-interactive 
 az group create --name myRGNetwork --location eastus
@@ -55,7 +55,7 @@ az group create --name myRGNetwork --location eastus
 
 ### <a name="create-virtual-network"></a>Création d’un réseau virtuel
 
-Utilisez la commande [az network vnet create](/cli/azure/network/vnet#create) pour créer un réseau virtuel. Dans cet exemple, le réseau est nommé *mvVnet* et le préfixe d’adresse *10.0.0.0/16* lui est affecté. Un sous-réseau est également créé avec le nom *mySubnetFrontEnd* et le préfixe d’adresse *10.0.1.0/24*. Plus loin dans ce didacticiel, une machine virtuelle frontale est connectée à ce sous-réseau. 
+Nous hello [créer un réseau virtuel du réseau az](/cli/azure/network/vnet#create) commande toocreate un réseau virtuel. Dans cet exemple, le réseau de hello est nommé *mvVnet* et dispose d’un préfixe d’adresse *10.0.0.0/16*. Un sous-réseau est également créé avec le nom *mySubnetFrontEnd* et le préfixe d’adresse *10.0.1.0/24*. Plus loin dans ce didacticiel, une machine virtuelle frontale est connecté toothis sous-réseau. 
 
 ```azurecli-interactive 
 az network vnet create \
@@ -68,7 +68,7 @@ az network vnet create \
 
 ### <a name="create-subnet"></a>Créer un sous-réseau
 
-Un nouveau sous-réseau est ajouté au réseau virtuel à l’aide de la commande [az network vnet subnet create](/cli/azure/network/vnet/subnet#create). Dans cet exemple, le réseau est nommé *mySubnetBackEnd* et le préfixe d’adresse *10.0.2.0/24* lui est affecté. Ce sous-réseau est utilisé avec tous les services principaux.
+Un nouveau sous-réseau est ajouté toohello de réseau virtuel à l’aide de hello [créer de sous-réseau de réseau virtuel az réseau](/cli/azure/network/vnet/subnet#create) commande. Dans cet exemple, le sous-réseau de hello est nommé *mySubnetBackEnd* et dispose d’un préfixe d’adresse *10.0.2.0/24*. Ce sous-réseau est utilisé avec tous les services principaux.
 
 ```azurecli-interactive 
 az network vnet subnet create \
@@ -78,21 +78,21 @@ az network vnet subnet create \
   --address-prefix 10.0.2.0/24
 ```
 
-À ce stade, un réseau a été créé et segmenté en deux sous-réseaux, un pour les services frontaux et un autre pour les services principaux. Dans la section suivante, des machines virtuelles sont créées et connectées à ces sous-réseaux.
+À ce stade, un réseau a été créé et segmenté en deux sous-réseaux, un pour les services frontaux et un autre pour les services principaux. Dans la section suivante de hello, les ordinateurs virtuels sont créés et toothese sous-réseaux connectés.
 
 ## <a name="understand-public-ip-address"></a>Présentation des adresses IP publiques
 
-Une adresse IP publique permet aux ressources Azure d’être accessibles sur Internet. Dans cette section du didacticiel, une machine virtuelle est créée pour montrer l’utilisation des adresses IP publiques.
+Une adresse IP publique permet de ressources Azure toobe accessible sur internet de hello. Dans cette section du didacticiel de hello, une machine virtuelle est créée toodemonstrate comment les adresses toowork avec l’adresse IP publique.
 
 ### <a name="allocation-method"></a>Méthode d’allocation
 
-Une adresse IP publique peut être allouée comme adresse dynamique ou statique. Par défaut, une adresse IP publique est allouée dynamiquement. Les adresses IP dynamiques sont libérées quand une machine virtuelle est désallouée. Ce comportement fait que l’adresse IP change lors de toute opération qui inclut une désallocation de la machine virtuelle.
+Une adresse IP publique peut être allouée comme adresse dynamique ou statique. Par défaut, une adresse IP publique est allouée dynamiquement. Les adresses IP dynamiques sont libérées quand une machine virtuelle est désallouée. Ce comportement provoque hello IP adresse toochange pendant toute opération qui inclut une désallocation de machine virtuelle.
 
-La méthode d’allocation peut être définie comme étant statique, ce qui garantit que l’adresse IP reste affectée à une machine virtuelle, même pendant qu’elle est désallouée. Quand vous utilisez une adresse IP allouée de manière statique, vous ne pouvez pas spécifier l’adresse IP elle-même. Au lieu de cela, elle est allouée à partir d’un pool d’adresses disponibles.
+méthode d’allocation de Hello peut être définie toostatic, ce qui garantit que les adresses IP de hello restent affectés tooa machine virtuelle, même pendant un état libéré. Lorsque vous utilisez une adresse IP allouée de manière statique, hello adresse IP ne peut pas être spécifié. Au lieu de cela, elle est allouée à partir d’un pool d’adresses disponibles.
 
 ### <a name="dynamic-allocation"></a>Allocation dynamique
 
-Quand vous créez une machine virtuelle avec la commande [az vm create](/cli/azure/vm#create), la méthode d’allocation des adresse IP publiques par défaut est dynamique. Dans l’exemple suivant, une machine virtuelle est créée avec une adresse IP dynamique. 
+Lors de la création d’une machine virtuelle avec hello [az vm créer](/cli/azure/vm#create) hello par défaut public d’allocation méthode d’adresse IP est dynamique de la commande. Bonjour l’exemple suivant, un ordinateur virtuel est créé avec une adresse IP dynamique. 
 
 ```azurecli-interactive 
 az vm create \
@@ -108,25 +108,25 @@ az vm create \
 
 ### <a name="static-allocation"></a>Allocation statique
 
-Lors de la création d’une machine virtuelle avec la commande [az vm create](/cli/azure/vm#create), incluez l’argument `--public-ip-address-allocation static` pour affecter une adresse IP publique. Cette opération n’est pas montrée dans ce didacticiel, mais dans la section suivante, une adresse IP dynamique est changée en adresse statique. 
+Lors de la création d’un ordinateur virtuel à l’aide de hello [az vm créer](/cli/azure/vm#create) command, inclure hello `--public-ip-address-allocation static` argument tooassign une adresse IP publique statique. Cette opération n’est pas illustrée dans ce didacticiel, toutefois dans la section suivante de hello une adresse IP allouée dynamiquement est modifié tooa alloué statiquement adresse. 
 
 ### <a name="change-allocation-method"></a>Changer la méthode d’allocation
 
-La méthode d’allocation d’adresse IP peut être changée avec la commande [az network public-ip update](/cli/azure/network/public-ip#update). Dans cet exemple, la méthode de l’allocation de l’adresse IP de la machine virtuelle frontale est changée en statique.
+la méthode de l’allocation d’adresses IP Hello peut être modifiée à l’aide de hello [mise à jour de az réseau public-ip](/cli/azure/network/public-ip#update) commande. Dans cet exemple, hello méthode d’allocation d’adresse IP de hello frontal machine virtuelle est déplacée toostatic.
 
-Désallouez d’abord la machine virtuelle.
+Tout d’abord, désallouer hello machine virtuelle.
 
 ```azurecli-interactive 
 az vm deallocate --resource-group myRGNetwork --name myFrontEndVM
 ```
 
-Utilisez la commande [az network public-ip update](/cli/azure/network/public-ip#update) pour mettre à jour la méthode d’allocation. Dans ce cas, la `--allocation-method` est définie sur *statique*.
+Hello d’utilisation [mise à jour de az réseau public-ip](/cli/azure/network/public-ip#update) commande tooupdate hello d’allocation (méthode). Dans ce cas, hello `--allocation-method` est défini trop*statique*.
 
 ```azurecli-interactive 
 az network public-ip update --resource-group myRGNetwork --name myFrontEndIP --allocation-method static
 ```
 
-Démarrez la machine virtuelle.
+Démarrez hello machine virtuelle.
 
 ```azurecli-interactive 
 az vm start --resource-group myRGNetwork --name myFrontEndVM --no-wait
@@ -134,37 +134,37 @@ az vm start --resource-group myRGNetwork --name myFrontEndVM --no-wait
 
 ### <a name="no-public-ip-address"></a>Pas d’adresse IP publique
 
-Souvent, une machine virtuelle ne doit pas être accessible sur Internet. Pour créer une machine virtuelle sans adresse IP publique, utilisez l’argument `--public-ip-address ""` avec une paire de guillemets doubles vide. Cette configuration est montrée plus loin dans ce didacticiel.
+Souvent, une machine virtuelle n’a pas besoin toobe accessible sur internet de hello. toocreate une machine virtuelle sans une adresse IP publique, utilisez hello `--public-ip-address ""` argument avec un ensemble vide de guillemets doubles. Cette configuration est montrée plus loin dans ce didacticiel.
 
 ## <a name="secure-network-traffic"></a>sécurisent le trafic réseau
 
-Un groupe de sécurité réseau (NSG) contient une liste de règles de sécurité qui autorisent ou rejettent le trafic réseau vers les ressources connectées aux réseaux virtuels Azure (VNet). Les groupes de sécurité réseau peuvent être associés à des sous-réseaux ou à des interfaces réseau individuelles. Quand un groupe de sécurité réseau est associé à une interface réseau, il s’applique seulement à la machine virtuelle associée. Lorsqu’un NSG est associé à un sous-réseau, les règles s’appliquent à toutes les ressources connectées au sous-réseau. 
+Un groupe de sécurité réseau (NSG) contient une liste de règles de sécurité qui autorisent ou refusent tooresources de trafic réseau connecté tooAzure de réseaux virtuels (VNet). Groupes de sécurité réseau peuvent être toosubnets associée ou interfaces réseau individuelles. Lorsqu’un groupe de sécurité réseau est associé à une interface réseau, il s’applique uniquement hello associé la machine virtuelle. Lorsqu’un groupe de sécurité réseau est associé tooa sous-réseau, les règles de hello s’appliquent tooall ressources toohello connecté sous-réseau. 
 
 ### <a name="network-security-group-rules"></a>Règles de groupe de sécurité réseau
 
-Les règles de groupe de sécurité réseau définissent les ports réseau sur lesquels le trafic est autorisé ou refusé. Les règles peuvent comprendre des plages d’adresses IP sources et de destination, de façon à ce que le trafic soit contrôlé entre des systèmes ou des sous-réseaux spécifiques. Les règles de groupe de sécurité réseau ont également une priorité (entre 1 et 4 096). Les règles sont évaluées dans l’ordre des priorités. Une règle avec une priorité de 100 est évaluée avant une règle avec une priorité de 200.
+Les règles de groupe de sécurité réseau définissent les ports réseau sur lesquels le trafic est autorisé ou refusé. règles de Hello peuvent inclure des plages d’adresses IP source et de destination afin que le trafic est contrôlé entre systèmes spécifiques ou des sous-réseaux. Les règles de groupe de sécurité réseau ont également une priorité (entre 1 et 4 096). Les règles sont évaluées dans l’ordre de hello de priorité. Une règle avec une priorité de 100 est évaluée avant une règle avec une priorité de 200.
 
-Tous les groupes de ressources réseau contiennent un ensemble de règles par défaut. Les règles par défaut ne peuvent pas être supprimées, mais comme la priorité la plus basse leur est attribuée, elles peuvent être remplacées par les règles que vous créez.
+Tous les groupes de ressources réseau contiennent un ensemble de règles par défaut. les règles par défaut Hello ne peut pas être supprimés, mais comme ils sont affectés de priorité la plus faible de hello, elles peuvent être remplacées par les règles hello que vous créez.
 
 - **Réseau virtuel** : le trafic en provenance et à destination d’un réseau virtuel est autorisé à la fois dans les directions entrante et sortante.
 - **Internet** : le trafic sortant est autorisé, mais le trafic entrant est bloqué.
-- **Équilibreur de charge** : autoriser l’équilibreur de charge d’Azure à tester l’intégrité de vos machines virtuelles et des instances de rôle. Si vous n’utilisez pas un groupe à charge équilibrée, vous pouvez remplacer cette règle.
+- **L’équilibrage de charge** -charge équilibrage tooprobe hello l’intégrité autoriser Azure de vos machines virtuelles et les instances de rôle. Si vous n’utilisez pas un groupe à charge équilibrée, vous pouvez remplacer cette règle.
 
 ### <a name="create-network-security-groups"></a>Créer des groupes de sécurité réseau
 
-Un groupe de sécurité réseau peut être créé en même temps qu’une machine virtuelle avec la commande [az vm create](/cli/azure/vm#create). Dans ce cas, le groupe de sécurité réseau est associé à l’interface réseau des machines virtuelles et une règle de groupe de sécurité réseau est créée automatiquement pour autoriser le trafic sur le port *22* depuis n’importe quelle source. Plus tôt dans ce didacticiel, le groupe de sécurité réseau frontal a été créé automatiquement avec la machine virtuelle frontale. Une règle de groupe de sécurité réseau a également été créée automatiquement pour le port 22. 
+Un groupe de sécurité réseau permettre être créé à hello même temps comme un ordinateur virtuel à l’aide de hello [az vm créer](/cli/azure/vm#create) commande. Lorsque vous procédez ainsi, hello NSG associée à interface réseau de machines virtuelles hello et une règle de groupe de sécurité réseau est créé automatiquement le trafic de tooallow sur le port *22* à partir de n’importe quelle source. Plus haut dans ce didacticiel, hello NSG frontal a été créée automatiquement avec hello frontal machine virtuelle. Une règle de groupe de sécurité réseau a également été créée automatiquement pour le port 22. 
 
-Dans certains cas, il peut être utile de créer au préalable un groupe de sécurité réseau, par exemple quand des règles SSH par défaut ne doivent pas être créées ou quand le groupe de sécurité réseau doit être attaché à un sous-réseau. 
+Dans certains cas, il peut être utile toopre-créer un groupe de sécurité réseau, tels que lorsque les règles SSH par défaut ne doivent pas être créées, ou lorsque hello NSG doit être attaché tooa sous-réseau. 
 
-Utilisez la commande [az network nsg create](/cli/azure/network/nsg#create) pour créer un groupe de sécurité réseau.
+Hello d’utilisation [az réseau nsg créer](/cli/azure/network/nsg#create) commande toocreate un groupe de sécurité réseau.
 
 ```azurecli-interactive 
 az network nsg create --resource-group myRGNetwork --name myNSGBackEnd
 ```
 
-Au lieu que le groupe de sécurité réseau soit associé à une interface réseau, il est associé à un sous-réseau. Dans cette configuration, toute machine virtuelle qui est attachée au sous-réseau hérite des règles du groupe de sécurité réseau.
+Au lieu de l’association d’interface réseau de hello NSG tooa, il est associé à un sous-réseau. Dans cette configuration, toutes les machines virtuelles qui sont attaché toohello sous-réseau hérite des règles du groupe de sécurité réseau hello.
 
-Mettez à jour le sous-réseau existant nommé *mySubnetBackEnd* avec le nouveau groupe de sécurité réseau.
+Mise à jour hello de sous-réseau existant nommé *mySubnetBackEnd* avec hello du groupe de sécurité réseau.
 
 ```azurecli-interactive 
 az network vnet subnet update \
@@ -174,7 +174,7 @@ az network vnet subnet update \
   --network-security-group myNSGBackEnd
 ```
 
-Créez maintenant une machine virtuelle attachée à *mySubnetBackEnd*. Notez que l’argument `--nsg` a comme valeur une paire de guillemets doubles vide. Vous n’avez pas besoin de créer un groupe de sécurité réseau avec la machine virtuelle. La machine virtuelle est attachée au sous-réseau principal, qui est protégé par le groupe de sécurité réseau principal créé au préalable. Ce groupe de sécurité réseau s’applique à la machine virtuelle. Notez aussi que l’argument `--public-ip-address` a comme valeur une paire de guillemets doubles vide. Cette configuration crée une machine virtuelle sans adresse IP publique. 
+Maintenant créer un ordinateur virtuel, qui est attaché toohello *mySubnetBackEnd*. Notez que hello `--nsg` argument a une valeur de guillemets doubles vides. Un groupe de sécurité réseau n’a pas besoin toobe créé par hello machine virtuelle. Hello machine virtuelle est sous-réseau principal toohello attachée, ce qui est protégé par hello principal groupe de sécurité réseau créé au préalable. Ce groupe de sécurité réseau s’applique toohello machine virtuelle. En outre, Notez ici que hello `--public-ip-address` argument a une valeur de guillemets doubles vides. Cette configuration crée une machine virtuelle sans adresse IP publique. 
 
 ```azurecli-interactive 
 az vm create \
@@ -190,9 +190,9 @@ az vm create \
 
 ### <a name="secure-incoming-traffic"></a>Sécuriser le trafic entrant
 
-Quand la machine virtuelle frontale a été créée, une règle de groupe de sécurité réseau a été créée pour autoriser le trafic entrant sur le port 22. Cette règle autorise les connexions SSH à la machine virtuelle. Pour cet exemple, le trafic doit également être autorisé sur le port *80*. Cette configuration rend accessible une application web sur la machine virtuelle.
+Lorsque hello frontal machine virtuelle a été créée, une règle de groupe de sécurité réseau a été créée tooallow du trafic entrant sur le port 22. Cette règle permet de toohello des connexions SSH machine virtuelle. Pour cet exemple, le trafic doit également être autorisé sur le port *80*. Cette configuration autorise une toobe d’application web accédé sur hello machine virtuelle.
 
-Utilisez la commande [az network nsg rule create](/cli/azure/network/nsg/rule#create) pour créer une règle pour le port *80*.
+Hello d’utilisation [créer de règle de groupe de sécurité réseau du réseau az](/cli/azure/network/nsg/rule#create) commande toocreate une règle pour le port *80*.
 
 ```azurecli-interactive 
 az network nsg rule create \
@@ -209,7 +209,7 @@ az network nsg rule create \
   --destination-port-range 80
 ```
 
-La machine virtuelle frontale est maintenant accessible seulement sur le port *22* et sur le port *80*. Tout le trafic entrant est bloqué au niveau du groupe de sécurité réseau. Il peut être utile de visualiser les configurations des règles du groupe de sécurité réseau. Vous pouvez obtenir la configuration des règles de groupe de sécurité réseau avec la commande [az network rule list](/cli/azure/network/nsg/rule#list). 
+Hello frontal machine virtuelle est désormais uniquement accessible sur le port *22* et le port *80*. Tout le trafic entrant est bloqué au niveau de groupe de sécurité réseau hello. Il peut être utile de toovisualize configurations de la règle NSG hello. Configuration de la règle NSG hello retour avec hello [liste de règles de réseau az](/cli/azure/network/nsg/rule#list) commande. 
 
 ```azurecli-interactive 
 az network nsg rule list --resource-group myRGNetwork --nsg-name myNSGFrontEnd --output table
@@ -224,11 +224,11 @@ Allow     *                                               22  Inbound      defau
 Allow     *                                               80  Inbound      http                      200  Tcp         Succeeded            myRGNetwork      *                      *
 ```
 
-### <a name="secure-vm-to-vm-traffic"></a>Sécuriser le trafic entre machines virtuelles
+### <a name="secure-vm-toovm-traffic"></a>Sécuriser le trafic tooVM de machine virtuelle
 
-Les règles de groupe de sécurité réseau peuvent également s’appliquer entre les machines virtuelles. Pour cet exemple, la machine virtuelle frontale doit communiquer avec la machine virtuelle principale sur les ports *22* et *3306*. Cette configuration autorise les connexions SSH à partir de la machine virtuelle frontale et permet aussi à une application sur la machine virtuelle frontale de communiquer avec une base de données MySQL principale. Tout autre trafic doit être bloqué entre la machine virtuelle frontale et la machine virtuelle principale.
+Les règles de groupe de sécurité réseau peuvent également s’appliquer entre les machines virtuelles. Pour cet exemple, hello VM frontal doit toocommunicate avec hello VM principal sur le port *22* et *3306*. Cette configuration permet des connexions SSH hello frontal machine virtuelle et également autoriser une application sur hello frontal toocommunicate de machine virtuelle avec une base de données MySQL back-end. Tout autre trafic doit être bloqué entre hello frontaux et principaux virtuels.
 
-Utilisez la commande [az network nsg rule create](/cli/azure/network/nsg/rule#create) pour créer une règle pour le port 22. Notez que l’argument `--source-address-prefix` spécifie la valeur *10.0.1.0/24*. Cette configuration garantit que seul le trafic provenant du sous-réseau frontal est autorisé à travers le groupe de sécurité réseau.
+Hello d’utilisation [créer de règle de groupe de sécurité réseau du réseau az](/cli/azure/network/nsg/rule#create) commande toocreate une règle pour le port 22. Notez que hello `--source-address-prefix` argument spécifie une valeur de *10.0.1.0/24*. Cette configuration garantit que seul le trafic de sous-réseau frontal de hello est autorisé via hello NSG.
 
 ```azurecli-interactive 
 az network nsg rule create \
@@ -262,7 +262,7 @@ az network nsg rule create \
   --destination-port-range "3306"
 ```
 
-Enfin, comme les groupes de sécurité réseau ont une règle par défaut qui autorise tout le trafic entre les machines virtuelles d’un même réseau virtuel, vous pouvez créer une règle pour que les groupes de sécurité réseau principaux bloquent tout le trafic. Notez ici que `--priority` a la valeur *300*, qui est inférieure à la règle du groupe de sécurité réseau et à la règle MySQL. Cette configuration garantit que le trafic SSH et MySQL est toujours autorisé à travers le groupe de sécurité réseau.
+Enfin, étant donné que les groupes de sécurité réseau ont une règle par défaut lui accordant tout le trafic entre les ordinateurs virtuels dans hello même réseau virtuel, une règle peut être créée pour hello principaux groupes de sécurité réseau tooblock tout le trafic. Notez ici que hello `--priority` reçoit la valeur de *300*, qui est plus faible que les deux hello des règles de groupe de sécurité réseau et de MySQL. Cette configuration garantit que le trafic SSH et MySQL est toujours autorisé via hello groupe de sécurité réseau.
 
 ```azurecli-interactive 
 az network nsg rule create \
@@ -279,7 +279,7 @@ az network nsg rule create \
   --destination-port-range "*"
 ```
 
-La machine virtuelle principale est maintenant accessible seulement sur le port *22* et sur le port *3306* à partir du sous réseau frontal. Tout le trafic entrant est bloqué au niveau du groupe de sécurité réseau. Il peut être utile de visualiser les configurations des règles du groupe de sécurité réseau. Vous pouvez obtenir la configuration des règles de groupe de sécurité réseau avec la commande [az network rule list](/cli/azure/network/nsg/rule#list). 
+Hello principal machine virtuelle est désormais uniquement accessible sur le port *22* et le port *3306* à partir du sous-réseau frontal de hello. Tout le trafic entrant est bloqué au niveau de groupe de sécurité réseau hello. Il peut être utile de toovisualize configurations de la règle NSG hello. Configuration de la règle NSG hello retour avec hello [liste de règles de réseau az](/cli/azure/network/nsg/rule#list) commande. 
 
 ```azurecli-interactive 
 az network nsg rule list --resource-group myRGNetwork --nsg-name myNSGBackEnd --output table
@@ -297,17 +297,17 @@ Deny      *                           *                       Inbound      denyA
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce tutoriel, vous avez créé et sécurisé des réseaux Azure concernant les machines virtuelles. Vous avez appris à effectuer les actions suivantes :
+Dans ce didacticiel, vous créé et sécurisé de réseaux Azure en tant que machines de toovirtual connexes. Vous avez appris à effectuer les actions suivantes :
 
 > [!div class="checklist"]
 > * Déployer un réseau virtuel
 > * Créer un sous-réseau dans un réseau virtuel
-> * Attacher des machines virtuelles à un sous-réseau
+> * Joindre des ordinateurs virtuels tooa sous-réseau
 > * Gérer les adresses IP publiques des machines virtuelles
 > * Sécuriser le trafic internet entrant
-> * Sécuriser le trafic entre machines virtuelles
+> * Sécuriser le trafic tooVM de machine virtuelle
 
-Passez au didacticiel suivant pour découvrir comment sécuriser les données sur des machines virtuelles avec Sauvegarde Azure. 
+Avance toohello toolearn de didacticiel suivant sur la sécurisation des données sur des machines virtuelles à l’aide de la sauvegarde Azure. 
 
 > [!div class="nextstepaction"]
 > [Sauvegarder des machines virtuelles Linux dans Azure](./tutorial-backup-vms.md)

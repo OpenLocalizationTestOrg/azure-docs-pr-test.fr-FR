@@ -1,6 +1,6 @@
 ---
-title: "Configuration d’un mode de distribution d’équilibrage de charge | Microsoft Docs"
-description: "Procédure de configuration du mode de distribution d’équilibrage de charge Azure pour prendre en charge l'affinité d’IP source"
+title: "mode de distribution d’équilibrage de charge aaaConfigure | Documents Microsoft"
+description: "Comment tooconfigure Azure charge affinité de l’IP équilibrage distribution mode toosupport source"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -13,17 +13,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: 4cb000c8ee1bb2e267dc0813dab23a77a46080ce
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e745240b733ffc07928d8ed0ae097785ad4f412e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-the-distribution-mode-for-load-balancer"></a>Configuration du mode de distribution de l’équilibrage de charge
+# <a name="configure-hello-distribution-mode-for-load-balancer"></a>Configurer le mode de distribution de hello pour l’équilibrage de charge
 
 ## <a name="hash-based-distribution-mode"></a>Mode de distribution basé sur le hachage
 
-L’algorithme de distribution par défaut est un hachage à 5 tuples (IP source, port source, IP de destination, port de destination, type de protocole) pour mapper le trafic vers des serveurs disponibles. Il fournit l’adhérence uniquement dans une session de transport. Les paquets de la même session sont dirigés vers la même instance IP (DIP) de centre de données derrière le point de terminaison d’équilibrage de charge. Lorsque le client démarre une nouvelle session à partir du même IP source, le port source change et contraint le trafic à se diriger vers un autre point de terminaison DIP.
+algorithme de distribution par défaut Hello est un 5-tuple (IP, port source, source destination IP, port de destination, type de protocole) des serveurs toomap trafic tooavailable de hachage. Il fournit l’adhérence uniquement dans une session de transport. Les paquets hello même session sera dirigé toohello même centre de données IP (DIP) de l’instance derrière le point de terminaison à charge équilibrée hello. Lorsque hello client démarre une nouvelle session de hello la même adresse IP source, port source de hello change et provoque l’hello trafic toogo tooa DIP point de terminaison différent.
 
 ![équilibrage de charge basé sur le hachage](./media/load-balancer-distribution-mode/load-balancer-distribution.png)
 
@@ -31,37 +31,37 @@ Figure 1 : distribution 5 tuples
 
 ## <a name="source-ip-affinity-mode"></a>Mode d’affinité d’IP source
 
-Nous vous avons un autre mode de distribution appelé « affinité d’IP source » (également connu sous le nom d’« affinité de session » ou d’« affinité d’IP client »). L’équilibrage de charge Azure peut être configuré pour utiliser 2 tuples (IP source, IP de destination) ou 3 tuples (IP Source, adresse de destination, protocole) pour mapper le trafic vers les serveurs disponibles. En utilisant l'affinité d’IP Source, les connexions établies à partir du même ordinateur client vont au même point de terminaison DIP.
+Nous vous avons un autre mode de distribution appelé « affinité d’IP source » (également connu sous le nom d’« affinité de session » ou d’« affinité d’IP client »). Équilibrage de charge Azure peut être toouse configuré un objet de 2 tuples (adresse IP Source, adresse IP de Destination) ou 3-tuple (IP Source, adresse IP de Destination, protocole) toomap trafic toohello des serveurs disponibles. À l’aide d’affinité de l’adresse IP Source, les connexions initiées à partir de hello même ordinateur client passe toohello même point de terminaison DIP.
 
-Le schéma suivant illustre une configuration à 2 tuples. Notez comment la distribution 2 tuples passe de l’équilibrage de charge à la machine virtuelle 1 (VM1), puis est sauvegardée par VM2 et VM3.
+Hello suivant schéma illustre une configuration de l’objet de 2 tuples. Notez que l’exécution de 2 tuples hello via hello charge équilibrage toovirtual machine 1 (VM1) qui est ensuite sauvegardé par VM2 et VM3.
 
 ![affinité de session](./media/load-balancer-distribution-mode/load-balancer-session-affinity.png)
 
 Figure 2 : distribution 2 tuples
 
-L’affinité d’IP source permet de résoudre une incompatibilité entre l’équilibrage de charge Azure et la passerelle du Bureau à distance (RD). Vous pouvez maintenant générer une batterie de passerelles des services Bureau à distance dans un seul service cloud.
+Affinité d’IP source a résolu une incompatibilité entre hello équilibrage de charge Azure et de passerelle de bureau à distance (RD). Vous pouvez maintenant générer une batterie de passerelles des services Bureau à distance dans un seul service cloud.
 
-Le chargement de médias constitue un autre cas d’utilisation où le chargement des données se produit via UDP, mais le plan de contrôle via TCP :
+Un autre scénario d’utilisation est un téléchargement de média où le téléchargement des données hello s’effectue via UDP mais plan du contrôle hello s’effectue via TCP :
 
-* Un client établit d’abord une session TCP avec l'adresse publique d'équilibrage de charge et est ensuite dirigé vers une adresse DIP spécifique. Ce canal est laissé actif pour surveiller l'état de connexion
-* Une nouvelle session UDP à partir du même ordinateur client est initialisée au niveau du même point de terminaison public de l’équilibrage de charge, le but ici étant que cette connexion soit également dirigée vers le même point de terminaison DIP que la connexion TCP précédente afin que le téléchargement de média puisse être exécuté à haut débit tout en conservant un canal de contrôle via le TCP.
+* Tout d’abord, un client lance une session TCP toohello équilibrage adresse publique, obtient tooa dirigée DIP spécifique, ce canal est intégrité de connexion hello gauche toomonitor active
+* Une nouvelle session UDP de hello même ordinateur client est initiée toohello équilibrage même point de terminaison public, attente hello ici est que cette connexion est également toohello dirigée même point de terminaison DIP en tant que connexion TCP de la précédente hello afin que le téléchargement du support peut être exécuté à haut débit tout en conservant un canal de contrôle via TCP.
 
 > [!NOTE]
-> Lorsqu’un jeu d'équilibrage de charge (suppression ou ajout d'une machine virtuelle) est modifié, la distribution des demandes du client est recalculée. Vous ne pouvez pas dépendre de nouvelles connexions à partir de clients existants qui se retrouvent sur le même serveur. En outre, le mode de distribution d'affinité d’IP source peut entraîner une distribution inégale du trafic. Les clients qui s’exécutent derrière des serveurs proxy peuvent être vu comme une application cliente unique.
+> Lorsqu’un jeu d’équilibrage de charge est modifiée (suppression ou ajout d’une machine virtuelle), la distribution hello de demandes de client est recalculée. Vous ne peuvent pas dépendre de nouvelles connexions à partir de clients existants retrouvent à hello même serveur. En outre, le mode de distribution d'affinité d’IP source peut entraîner une distribution inégale du trafic. Les clients qui s’exécutent derrière des serveurs proxy peuvent être vu comme une application cliente unique.
 
 ## <a name="configuring-source-ip-affinity-settings-for-load-balancer"></a>Configuration des paramètres d'affinité d’IP source pour l'équilibrage de charge
 
-Pour les machines virtuelles, vous pouvez utiliser PowerShell pour modifier les paramètres de délai d'attente :
+Pour les ordinateurs virtuels, vous pouvez utiliser les paramètres de délai d’attente toochange PowerShell :
 
-Ajouter un point de terminaison Azure à une machine virtuelle et définir le mode de distribution d'équilibrage de charge
+Ajouter un tooa de point de terminaison Azure Machine virtuelle et de définir le mode de distribution d’équilibrage de charge
 
 ```powershell
 Get-AzureVM -ServiceName mySvc -Name MyVM1 | Add-AzureEndpoint -Name HttpIn -Protocol TCP -PublicPort 80 -LocalPort 8080 –LoadBalancerDistribution sourceIP | Update-AzureVM
 ```
 
-LoadBalancerDistribution peut être défini avec la valeur sourceIP pour un équilibrage de charge à 2 tuples (IP source, IP de destination), sourceIPProtocol pour un équilibrage de charge à 3 tuples (IP source, IP de destination, protocole) ou none si vous préférez le comportement par défaut de l’équilibrage de charge à 5 tuples.
+LoadBalancerDistribution peut être définie toosourceIP pour un objet de 2 tuples (adresse IP Source, adresse IP de Destination) d’équilibrage de charge, sourceIPProtocol pour l’équilibrage de charge (protocole IP Source, adresse IP de Destination) à 3 tuples, ou aucun si vous souhaitez que le comportement par défaut de hello d’équilibrage de charge de 5-tuple.
 
-Utilisez ce qui suit pour récupérer la configuration du mode de distribution d'équilibrage de charge d'un point de terminaison :
+Utilisez hello suivant tooretrieve une configuration en mode de distribution d’équilibrage de point de terminaison charge :
 
     PS C:\> Get-AzureVM –ServiceName MyService –Name MyVM | Get-AzureEndpoint
 
@@ -83,19 +83,19 @@ Utilisez ce qui suit pour récupérer la configuration du mode de distribution d
     IdleTimeoutInMinutes : 15
     LoadBalancerDistribution : sourceIP
 
-Si l'élément LoadBalancerDistribution n'est pas présent, l'équilibrage de charge Azure utilise alors l'algorithme par défaut à 5 tuples.
+Si l’élément de LoadBalancerDistribution hello n’est pas présent équilibreur de charge Azure hello utilise algorithme de 5-tuple hello par défaut.
 
-### <a name="set-the-distribution-mode-on-a-load-balanced-endpoint-set"></a>Définir le mode de distribution sur un jeu de points de terminaison d'équilibrage de charge
+### <a name="set-hello-distribution-mode-on-a-load-balanced-endpoint-set"></a>Définir le mode de Distribution hello sur un ensemble de point de terminaison à charge équilibrée
 
-Si les points de terminaison font partie d'un jeu de points de terminaison d'équilibrage de charge, le mode de distribution doit être défini sur le jeu de points de terminaison d'équilibrage de charge :
+Si les points de terminaison font partie d’un ensemble de point de terminaison à charge équilibrée, mode de distribution hello doit être défini sur le jeu de point de terminaison d’équilibrage hello :
 
 ```powershell
 Set-AzureLoadBalancedEndpoint -ServiceName MyService -LBSetName LBSet1 -Protocol TCP -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 –LoadBalancerDistribution sourceIP
 ```
 
-### <a name="cloud-service-configuration-to-change-distribution-mode"></a>Configuration du service cloud pour modifier le mode de distribution
+### <a name="cloud-service-configuration-toochange-distribution-mode"></a>Mode de distribution cloud Service configuration toochange
 
-Vous pouvez utiliser le Kit de développement logiciel (SDK) Azure pour .NET 2.5 (qui sera publié en novembre) pour mettre à jour votre service cloud. Les paramètres de point de terminaison des services cloud sont définis dans .csdef. Pour mettre à jour le mode de distribution d'équilibrage de charge pour un déploiement de services cloud, une mise à niveau du déploiement s'impose.
+Vous pouvez tirer parti de hello Azure SDK pour .NET 2.5 (toobe publiée en novembre) tooupdate votre Service Cloud. Paramètres de point de terminaison pour les Services Cloud sont effectuées dans hello .csdef. Dans l’ordre tooupdate hello charge équilibrage mode de distribution pour un déploiement de Services de cloud computing, une mise à niveau du déploiement est requis.
 Voici un exemple de modifications apportées aux paramètres de point de terminaison dans .csdef :
 
 ```xml
@@ -118,9 +118,9 @@ Voici un exemple de modifications apportées aux paramètres de point de termina
 
 ## <a name="api-example"></a>Exemple d’API
 
-Vous pouvez configurer la distribution d’équilibrage de charge à l’aide de l’API Gestion des services. Veillez à ajouter l’en-tête `x-ms-version` et à le définir sur la version `2014-09-01` ou une version ultérieure.
+Vous pouvez configurer la distribution d’équilibrage de charge hello à l’aide des API de gestion de service hello. Assurez-vous que tooadd hello `x-ms-version` en-tête a la valeur tooversion `2014-09-01` ou une version ultérieure.
 
-### <a name="update-the-configuration-of-the-specified-load-balanced-set-in-a-deployment"></a>Mettre à jour la configuration du jeu d'équilibrage de la charge spécifié dans un déploiement
+### <a name="update-hello-configuration-of-hello-specified-load-balanced-set-in-a-deployment"></a>Configuration de hello de mise à jour de hello spécifiée d’un équilibrage de charge dans un déploiement
 
 #### <a name="request-example"></a>Exemple de demande
 
@@ -145,7 +145,7 @@ Vous pouvez configurer la distribution d’équilibrage de charge à l’aide de
       </InputEndpoint>
     </LoadBalancedEndpointList>
 
-La valeur de LoadBalancerDistribution peut être sourceIP pour une affinité à 2 tuples, sourceIPProtocol pour une affinité à 3 tuples ou none (aucune affinité. par exemple 5 tuples)
+valeur Hello LoadBalancerDistribution peut être sourceIP pour l’affinité de l’objet de 2 tuples, sourceIPProtocol pour l’affinité de l’objet de 3 tuples ou none (pour aucune affinité. par exemple 5 tuples)
 
 #### <a name="response"></a>Réponse
 

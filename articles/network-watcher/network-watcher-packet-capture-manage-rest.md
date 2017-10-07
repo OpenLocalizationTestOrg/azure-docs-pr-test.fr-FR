@@ -1,6 +1,6 @@
 ---
-title: "Gérer les captures de paquets avec Azure Network Watcher - API REST | Microsoft Docs"
-description: "Cette page explique comment gérer la fonctionnalité de capture de paquets de Network Watcher à l’aide de l’API REST Azure"
+title: "captures de paquets d’aaaManage d’observateur de réseau Azure - API REST | Documents Microsoft"
+description: "Cette page explique comment toomanage hello la fonctionnalité de capture de paquet de l’Observateur réseau à l’aide des API REST Azure"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 49ec20802a252258d8493eb26510270b925e851a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a531fbe796e85e94961bd192d171defb299be05
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-packet-captures-with-azure-network-watcher-using-azure-rest-api"></a>Gérer les captures de paquets avec Azure Network Watcher à l’aide de l’API REST Azure
 
@@ -29,24 +29,24 @@ ms.lasthandoff: 08/29/2017
 > - [CLI 2.0](network-watcher-packet-capture-manage-cli.md)
 > - [API REST Azure](network-watcher-packet-capture-manage-rest.md)
 
-La fonctionnalité de capture des paquets Network Watcher vous permet de créer des sessions de capture afin d’effectuer le suivi du trafic en direction et en provenance d’une machine virtuelle. Les filtres sont fournis pour la session de capture afin de vous garantir que vous capturez uniquement le trafic souhaité. La capture des paquets permet de diagnostiquer les anomalies réseau de manière proactive et réactive. Elle permet aussi de collecter des statistiques réseau, d’obtenir des informations sur les intrusions, de déboguer des communications client-serveur, etc. En déclenchant à distance des captures de paquets, cette fonctionnalité simplifie l’exécution manuelle de la capture de paquets sur l’ordinateur souhaité, ce qui permet d’économiser un temps précieux.
+Capture de paquets de l’Observateur réseau vous permet de toocreate capture sessions tootrack trafic tooand à partir d’un ordinateur virtuel. Les filtres sont fournies pour tooensure de session de capture hello que vous capturer le trafic hello seulement que vous le souhaitez. Capture des paquets permet des anomalies de réseau toodiagnose proactive et réactive. Autres utilisations incluent la collecte des statistiques de réseau, obtenir des informations sur les intrusions, toodebug client-serveur de communications et bien plus encore. En étant en mesure de tooremotely déclencheur paquet captures, cette fonctionnalité facilite hello de l’exécution d’une capture de paquets sur l’ordinateur souhaité hello, qui permet d’économiser un temps précieux et manuellement.
 
-Cet article passe en revue les différentes tâches de gestion actuellement disponibles pour la capture de paquets.
+Cet article passe en revue hello différentes tâches de gestion qui sont actuellement disponibles pour la capture des paquets.
 
 - [**Obtenir une capture de paquets**](#get-a-packet-capture)
 - [**Répertorier toutes les captures de paquets**](#list-all-packet-captures)
-- [**Interroger l’état d’une capture de paquets**](#query-packet-capture-status)
+- [**Interroger le statut d’une capture de paquets hello**](#query-packet-capture-status)
 - [**Démarrer une capture de paquets**](#start-packet-capture)
 - [**Arrêter une capture de paquets**](#stop-packet-capture)
 - [**Supprimer une capture de paquets**](#delete-packet-capture)
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Dans ce scénario, vous appelez l’API REST Network Watcher pour exécuter la vérification des flux IP. ARMclient permet d’appeler l’API REST à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
+Dans ce scénario, vous appelez toorun d’API Rest de l’Observateur réseau hello IP flux vérifier. ARMclient est utilisé toocall hello REST API à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
 
-Ce scénario suppose que vous ayez déjà suivi la procédure décrite dans [Créer une instance d’Azure Network Watcher](network-watcher-create.md) pour créer un Network Watcher.
+Ce scénario suppose que vous avez déjà suivi les étapes hello dans [créer un observateur réseau](network-watcher-create.md) toocreate un observateur réseau.
 
-> La capture de paquets requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`. Pour installer l’extension sur une machine virtuelle Windows, consultez la page [Extension de machine virtuelle Agent Network Watcher pour Windows](../virtual-machines/windows/extensions-nwa.md). Pour une machine virtuelle Linux, consultez la page [Extension de machine virtuelle Agent Network Watcher pour Linux](../virtual-machines/linux/extensions-nwa.md).
+> La capture de paquets requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`. Pour installer l’extension de hello sur une machine virtuelle Windows, visitez [extension de machine virtuelle d’Agent de l’Observateur réseau Azure pour Windows](../virtual-machines/windows/extensions-nwa.md) et de, visitez Linux VM [extension de machine virtuelle Azure réseau Observateur Agent pour Linux](../virtual-machines/linux/extensions-nwa.md).
 
 ## <a name="log-in-with-armclient"></a>Se connecter à ARMClient
 
@@ -56,12 +56,12 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>Récupérer une machine virtuelle
 
-Exécutez le script suivant pour renvoyer une machine virtuelle. Ces informations sont nécessaires pour démarrer une capture de paquets.
+Exécutez hello suivant script tooreturn une machine virtuelle. Ces informations sont nécessaires pour démarrer une capture de paquets.
 
-Le code suivant requiert des variables :
+Hello suivant code a besoin de variables :
 
-- **subscriptionId** - L’ID d’abonnement peut également être récupéré avec l’applet de commande **Get-AzureRMSubscription**.
-- **resourceGroupName** - Le nom d’un groupe de ressources qui contient les machines virtuelles.
+- **ID d’abonnement** -id d’abonnement hello peut également être récupéré avec hello **Get-AzureRMSubscription** applet de commande.
+- **resourceGroupName** hello - nom du groupe de ressources qui contient des machines virtuelles.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -70,7 +70,7 @@ $resourceGroupName = "<resource group name>"
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-À partir de la sortie suivante, l’ID de la machine virtuelle est utilisé dans l’exemple suivant.
+À partir de la sortie suivante de hello, id hello de machine virtuelle de hello est utilisé dans l’exemple suivant de hello.
 
 ```json
 ...
@@ -88,7 +88,7 @@ armclient get https://management.azure.com/subscriptions/${subscriptionId}/Resou
 
 ## <a name="get-a-packet-capture"></a>Obtenir une capture de paquets
 
-L’exemple suivant obtient l’état d’une capture de paquets.
+exemple Hello obtient état hello d’une capture de paquet
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -97,7 +97,7 @@ $networkWatcherName = "NetworkWatcher_westcentralus"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}/querystatus?api-version=2016-12-01"
 ```
 
-Les réponses ci-après sont des exemples de réponses classiques renvoyées lors de l’interrogation de l’état d’une capture de paquets.
+Hello réponses suivantes sont des exemples d’une réponse de type retourné lors de l’interrogation État hello d’une capture de paquets.
 
 ```json
 {
@@ -122,7 +122,7 @@ Les réponses ci-après sont des exemples de réponses classiques renvoyées lor
 
 ## <a name="list-all-packet-captures"></a>Répertorier toutes les captures de paquets
 
-L’exemple suivant obtient toutes les sessions de capture de paquets dans une région.
+Hello exemple ci-dessous obtient toutes les sessions de capture de paquets dans une région.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -131,7 +131,7 @@ $networkWatcherName = "NetworkWatcher_westcentralus"
 armclient get "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures?api-version=2016-12-01"
 ```
 
-La réponse ci-après est un exemple de réponse classique renvoyée lors de l’obtention de toutes les captures de paquets.
+Bonjour réponse suivante est un exemple d’une réponse de type retourné lors de l’obtention de tous les paquets capture
 
 ```json
 {
@@ -196,7 +196,7 @@ ture_17_23_15_364.cap",
 
 ## <a name="query-packet-capture-status"></a>Interroger l’état d’une capture de paquets
 
-L’exemple suivant obtient toutes les sessions de capture de paquets dans une région.
+Hello exemple ci-dessous obtient toutes les sessions de capture de paquets dans une région.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -206,7 +206,7 @@ $packetCaptureName = "TestPacketCapture5"
 armclient get "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/packetCaptures/${packetCaptureName}/querystatus?api-version=2016-12-01"
 ```
 
-La réponse ci-après est un exemple de réponse classique renvoyée lors de l’interrogation de l’état d’une capture de paquets.
+Hello réponse suivante est un exemple d’une réponse de type retourné lors de l’interrogation État hello d’une capture de paquets.
 
 ```json
 {
@@ -220,7 +220,7 @@ La réponse ci-après est un exemple de réponse classique renvoyée lors de l�
 
 ## <a name="start-packet-capture"></a>Démarrer une capture de paquets
 
-L’exemple suivant crée une capture de paquets sur une machine virtuelle.  L’exemple est paramétré pour permettre une certaine flexibilité dans la création d’un exemple.
+Bonjour à l’exemple suivant crée une capture de paquets sur un ordinateur virtuel.  exemple de Hello est paramétrable tooallow pour une grande souplesse pour la création d’un exemple.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -272,7 +272,7 @@ armclient PUT "https://management.azure.com/subscriptions/${subscriptionId}/Reso
 
 ## <a name="stop-packet-capture"></a>Arrêter une capture de paquets
 
-L’exemple suivant arrête une capture de paquets sur une machine virtuelle.  L’exemple est paramétré pour permettre une certaine flexibilité dans la création d’un exemple.
+Bonjour à l’exemple suivant arrête une capture de paquets sur un ordinateur virtuel.  exemple de Hello est paramétrable tooallow pour une grande souplesse pour la création d’un exemple.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -284,7 +284,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="delete-packet-capture"></a>Supprimer une capture de paquets
 
-L’exemple suivant supprime une capture de paquets d’une machine virtuelle.  L’exemple est paramétré pour permettre une certaine flexibilité dans la création d’un exemple.
+Bonjour à l’exemple suivant supprime une capture de paquets sur un ordinateur virtuel.  exemple de Hello est paramétrable tooallow pour une grande souplesse pour la création d’un exemple.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -296,13 +296,13 @@ armclient delete "https://management.azure.com/subscriptions/${subscriptionId}/R
 ```
 
 > [!NOTE]
-> La suppression d’une capture de paquets ne supprime pas le fichier du compte de stockage.
+> Suppression d’une capture de paquets ne supprime pas le fichier hello hello compte de stockage
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour obtenir des instructions de téléchargement des fichiers à partir des comptes de stockage Azure, consultez [Prise en main du stockage d’objets blob Azure à l’aide de .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md). L’explorateur de stockage peut aussi être utilisé. Pour en savoir plus sur l’explorateur de stockage, cliquez sur le lien suivant : [Microsoft Azure Storage Explorer](http://storageexplorer.com/) (Explorateur de stockage Microsoft Azure).
+Pour obtenir des instructions sur le téléchargement de fichiers à partir des comptes de stockage azure, consultez trop[prise en main le stockage Blob Azure à l’aide de .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md). L’explorateur de stockage peut aussi être utilisé. Plus d’informations sur l’Explorateur de stockage trouverez ici hello lien : [Explorateur de stockage](http://storageexplorer.com/)
 
-Découvrez comment automatiser les captures de paquets avec des alertes de machine virtuelle en consultant [Use packet capture to do proactive network monitoring with Azure Functions](network-watcher-alert-triggered-packet-capture.md) (Utiliser la capture de paquets pour surveiller un réseau de manière proactive avec Azure Functions).
+Découvrez comment de captures de paquets de tooautomate d’alertes de l’ordinateur virtuel en consultant [créer une capture de paquets déclenchées alerte](network-watcher-alert-triggered-packet-capture.md)
 
 
 

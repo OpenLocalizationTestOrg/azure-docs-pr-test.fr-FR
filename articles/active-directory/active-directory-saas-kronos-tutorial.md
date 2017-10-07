@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Kronos | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Kronos."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Kronos."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,125 +13,125 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: jeedes
-ms.openlocfilehash: eb61ec0a7d3e992a285b1af3d4a7fbe1feb8d991
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 16fd5c203162d10b78f51b00d79017adaf8632c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-kronos"></a>Didacticiel : Intégration d’Azure Active Directory à Kronos
 
-Dans ce didacticiel, vous allez apprendre à intégrer Kronos à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate Kronos avec Azure Active Directory (Azure AD).
 
-L’intégration de Kronos dans Azure AD vous offre les avantages suivants :
+Intégration Kronos à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à Kronos
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Kronos (via l’authentification unique) avec leur compte Azure AD
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooKronos
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooKronos (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD avec Kronos, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec Kronos, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement **Kronos Workforce Central** pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Kronos à partir de la galerie
+1. Ajout de Kronos à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-kronos-from-the-gallery"></a>Ajout de Kronos à partir de la galerie
-Pour configurer l’intégration de Kronos avec Azure AD, vous devez ajouter Kronos à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-kronos-from-hello-gallery"></a>Ajout de Kronos à partir de la galerie de hello
+tooconfigure hello intégration de Kronos dans Azure AD, vous devez tooadd Kronos à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Kronos à partir de la galerie, procédez comme suit :**
+**tooadd Kronos à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, entrez **Kronos**.
+4. Dans la zone de recherche de hello, tapez **Kronos**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kronos-tutorial/tutorial_kronos_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Kronos**, puis cliquez sur **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **Kronos**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kronos-tutorial/tutorial_kronos_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Kronos avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Kronos équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur Kronos associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello Kronos est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Kronos doit toobe établie.
 
-Dans Kronos, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.
+Dans Kronos, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec Kronos, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec Kronos, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Kronos](#creating-a-kronos-test-user)** pour avoir un équivalent de Britta Simon dans Kronos lié à la représentation Azure AD associée.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test Kronos](#creating-a-kronos-test-user)**  -toohave un équivalent de Britta Simon dans Kronos est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Kronos.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Kronos.
 
-**Pour configurer l’authentification unique Azure AD avec Kronos, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec Kronos, effectuez hello comme suit :**
 
-1. Dans le portail Azure, sur la page d’intégration de l’application **Kronos**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Kronos** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-kronos-tutorial/tutorial_kronos_samlbase.png)
 
-3. Dans la section **Domaine et URL Kronos**, procédez comme suit :
+3. Sur hello **Kronos domaine et les URL** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kronos-tutorial/tutorial_kronos_url.png)
 
-    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<company name>.kronos.net/`
+    a. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<company name>.kronos.net/`
 
-    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<company name>.kronos.net/wfc/navigator/logonWithUID`
+    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<company name>.kronos.net/wfc/navigator/logonWithUID`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur et l’URL de réponse réels. Pour obtenir ces valeurs, contactez l’[l’équipe de support technique de Kronos](https://www.kronos.in/contact/en-in/form).
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs hello URL d’identificateur et de réponse réelle. Contact [équipe de support technique Kronos](https://www.kronos.in/contact/en-in/form) tooget ces valeurs.
  
-4. Votre application Kronos attend les assertions SAML dans un format spécifique. Collaborez avec [l’équipe de support de Kronos](https://www.kronos.in/contact/en-in/form) pour identifier tout d’abord l’identificateur utilisateur correct qui est mappé à l’application. Suivez également les instructions sur l’attribut à utiliser pour ce mappage.
+4. Votre application Kronos attend les assertions SAML hello dans un format spécifique. Travailler avec [équipe de support technique Kronos](https://www.kronos.in/contact/en-in/form) première tooidentify hello correct identifiant d’utilisateur, qui est mappée à une application hello. Prenez également les conseils hello d’attribut hello, qui souhaite toouse pour ce mappage.
  
-     Microsoft recommande d’utiliser l’attribut **« NameIdentifier »** en tant qu’identificateur utilisateur. Vous pouvez gérer les valeurs de ces attributs à partir de la section **« Attributs utilisateur »** sur la page d’intégration des applications.
+     Microsoft recommande d’utiliser hello **« NameIdentifier »** attribut sous la forme d’identificateur de l’utilisateur. Vous pouvez gérer les valeurs de ces attributs hello depuis hello **« Attributs utilisateur »** section sur la page d’intégration d’application.
      
-     La capture d’écran suivante montre un exemple : Ici, nous avons mappé **l’identificateur d’utilisateur (nameid)** avec la fonction **ExtractMailPrefix()** de **user.userprincipalname**. Cela donne la valeur de préfixe de l’adresse de messagerie de l’utilisateur qui est l’ID d’utilisateur unique. Celle-ci est envoyée à l’application Kronos pour chaque réponse correcte. 
+     Hello suivant capture d’écran montre un exemple de cela. Ici, nous avons mappé hello **identificateur d’utilisateur (nameid)** avec **ExtractMailPrefix()** fonction de **user.userprincipalname**. Cela donne la valeur hello préfixe par courrier électronique des utilisateur hello qui est hello ID utilisateur unique. Ceci est envoyé toohello Kronos application chaque réponse correcte. 
      
     ![Configurer l’authentification unique](./media/active-directory-saas-kronos-tutorial/tutorial_kronos_attribute.png)
 
-5. Dans la section **Attributs utilisateur** de la boîte de dialogue **Authentification unique** :
+5. Bonjour **attributs utilisateur** section hello **l’authentification unique** boîte de dialogue :
 
-    a. Dans la liste déroulante Identificateur de l’utilisateur, sélectionnez **ExtractMailPrefix**.
+    a. Dans la liste de déroulante hello identificateur d’utilisateur, sélectionnez **ExtractMailPrefix**.
 
-    b. Dans la liste déroulante **E-mail**, sélectionnez **user.userprincipalname**.
+    b. Bonjour **Mail** liste déroulante, sélectionnez **user.userprincipalname**.
 
-6. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
+6. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kronos-tutorial/tutorial_kronos_certificate.png) 
 
@@ -139,65 +139,65 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dan
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kronos-tutorial/tutorial_general_400.png)
 
-8. Pour configurer l’authentification unique côté **Kronos**, vous devez envoyer le **XML de métadonnées** téléchargé à [l’équipe de support technique de Kronos](https://www.kronos.in/contact/en-in/form). 
+8. tooconfigure l’authentification unique sur **Kronos** côté, vous devez hello toosend téléchargé **Metadata XML** trop[équipe de support technique Kronos](https://www.kronos.in/contact/en-in/form). 
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kronos-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kronos-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kronos-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kronos-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-kronos-test-user"></a>Création d’un utilisateur de test Kronos
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Kronos. Tous les utilisateurs de Kronos doivent être configurés dans cette application avant de procéder à l’authentification unique. 
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Kronos. Kronos application a besoin de toutes les toobe d’utilisateurs hello configuré dans l’application hello avant de procéder à l’authentification unique. 
 
-Collaborez avec l’[équipe de support technique de Kronos](https://www.kronos.in/contact/en-in/form) pour approvisionner tous ces utilisateurs dans l’application. 
+Travailler avec hello [équipe de support technique Kronos](https://www.kronos.in/contact/en-in/form) tooprovision tous ces utilisateurs dans l’application hello. 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Kronos.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooKronos.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à Kronos, procédez comme suit :**
+**tooassign Britta Simon tooKronos, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Kronos**.
+2. Dans la liste des applications hello, sélectionnez **Kronos**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kronos-tutorial/tutorial_kronos_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -205,7 +205,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -213,13 +213,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration SSO Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration de l’authentification unique de Azure AD à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la mosaïque Kronos dans le volet d’accès, vous devez être connecté automatiquement à votre application Kronos.
+Lorsque vous cliquez sur hello Kronos vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour Kronos application.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
