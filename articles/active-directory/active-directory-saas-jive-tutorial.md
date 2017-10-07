@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Jive | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Jive."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de Jive."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,224 +13,224 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 6d2d4b777d7afd74598d2eba4a7e3571a8a18d6f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f22bf78a55e8a4a9ea2f0020ef2f535be88b6302
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-jive"></a><span data-ttu-id="8b4af-103">Didacticiel : Intégration d’Azure Active Directory avec Jive</span><span class="sxs-lookup"><span data-stu-id="8b4af-103">Tutorial: Azure Active Directory integration with Jive</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-jive"></a><span data-ttu-id="036cd-103">Didacticiel : Intégration d’Azure Active Directory avec Jive</span><span class="sxs-lookup"><span data-stu-id="036cd-103">Tutorial: Azure Active Directory integration with Jive</span></span>
 
-<span data-ttu-id="8b4af-104">Dans ce didacticiel, vous allez apprendre à intégrer Jive à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="8b4af-104">In this tutorial, you learn how to integrate Jive with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="036cd-104">Dans ce didacticiel, vous apprendrez comment toointegrate Jive avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="036cd-104">In this tutorial, you learn how toointegrate Jive with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="8b4af-105">L’intégration de Jive dans Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="8b4af-105">Integrating Jive with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="036cd-105">Intégration Jive à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="036cd-105">Integrating Jive with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="8b4af-106">Dans Azure AD, vous pouvez contrôler qui a accès à Jive</span><span class="sxs-lookup"><span data-stu-id="8b4af-106">You can control in Azure AD who has access to Jive</span></span>
-- <span data-ttu-id="8b4af-107">Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Jive (via l’authentification unique) avec leur compte Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b4af-107">You can enable your users to automatically get signed-on to Jive (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="8b4af-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="8b4af-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="036cd-106">Vous pouvez contrôler dans Azure AD qui a accès tooJive</span><span class="sxs-lookup"><span data-stu-id="036cd-106">You can control in Azure AD who has access tooJive</span></span>
+- <span data-ttu-id="036cd-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooJive (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="036cd-107">You can enable your users tooautomatically get signed-on tooJive (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="036cd-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="036cd-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="8b4af-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="8b4af-109">If you want to know more information about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="036cd-109">Si vous souhaitez tooknow plus d’informations sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="036cd-109">If you want tooknow more information about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="8b4af-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="8b4af-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="036cd-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="036cd-110">Prerequisites</span></span>
 
-<span data-ttu-id="8b4af-111">Pour configurer l’intégration d’Azure AD avec Jive, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="8b4af-111">To configure Azure AD integration with Jive, you need the following items:</span></span>
+<span data-ttu-id="036cd-111">tooconfigure intégration d’Azure AD à Jive, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="036cd-111">tooconfigure Azure AD integration with Jive, you need hello following items:</span></span>
 
-- <span data-ttu-id="8b4af-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b4af-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="8b4af-113">Un abonnement Jive pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="8b4af-113">A Jive single-sign on enabled subscription</span></span>
+- <span data-ttu-id="036cd-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="036cd-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="036cd-113">Un abonnement Jive pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="036cd-113">A Jive single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="8b4af-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="8b4af-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="036cd-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="036cd-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="8b4af-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="8b4af-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="036cd-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="036cd-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="8b4af-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="8b4af-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="8b4af-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="8b4af-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="036cd-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="036cd-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="036cd-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="036cd-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="8b4af-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="8b4af-118">Scenario description</span></span>
-<span data-ttu-id="8b4af-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="8b4af-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="8b4af-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="8b4af-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="036cd-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="036cd-118">Scenario description</span></span>
+<span data-ttu-id="036cd-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="036cd-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="036cd-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="036cd-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="8b4af-121">Ajout de Jive depuis la galerie</span><span class="sxs-lookup"><span data-stu-id="8b4af-121">Adding Jive from the gallery</span></span>
-2. <span data-ttu-id="8b4af-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b4af-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="036cd-121">Ajout de Jive à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="036cd-121">Adding Jive from hello gallery</span></span>
+2. <span data-ttu-id="036cd-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="036cd-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-jive-from-the-gallery"></a><span data-ttu-id="8b4af-123">Ajout de Jive depuis la galerie</span><span class="sxs-lookup"><span data-stu-id="8b4af-123">Adding Jive from the gallery</span></span>
-<span data-ttu-id="8b4af-124">Pour configurer l’intégration de Jive avec Azure AD, vous devez ajouter Jive disponible dans la galerie, à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="8b4af-124">To configure the integration of Jive into Azure AD, you need to add Jive from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-jive-from-hello-gallery"></a><span data-ttu-id="036cd-123">Ajout de Jive à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="036cd-123">Adding Jive from hello gallery</span></span>
+<span data-ttu-id="036cd-124">intégration de hello tooconfigure de Jive dans Azure AD, vous devez tooadd Jive à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="036cd-124">tooconfigure hello integration of Jive into Azure AD, you need tooadd Jive from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="8b4af-125">**Pour ajouter Jive à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="8b4af-125">**To add Jive from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="036cd-125">**tooadd Jive à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="036cd-125">**tooadd Jive from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="8b4af-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="036cd-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="036cd-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="8b4af-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="8b4af-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="036cd-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="036cd-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="036cd-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="036cd-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="8b4af-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="8b4af-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="036cd-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="036cd-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="8b4af-133">Dans la zone de recherche, entrez **Jive**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-133">In the search box, type **Jive**.</span></span>
+4. <span data-ttu-id="036cd-133">Dans la zone de recherche de hello, tapez **Jive**.</span><span class="sxs-lookup"><span data-stu-id="036cd-133">In hello search box, type **Jive**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jive-tutorial/tutorial_jive_search.png)
 
-5. <span data-ttu-id="8b4af-135">Dans le volet de résultats, sélectionnez **Jive**, puis cliquez sur **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="8b4af-135">In the results panel, select **Jive**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="036cd-135">Dans le volet de résultats hello, sélectionnez **Jive**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="036cd-135">In hello results panel, select **Jive**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jive-tutorial/tutorial_jive_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="8b4af-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b4af-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="8b4af-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Jive avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="8b4af-138">In this section, you configure and test Azure AD single sign-on with Jive based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="036cd-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="036cd-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="036cd-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Jive avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="036cd-138">In this section, you configure and test Azure AD single sign-on with Jive based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="8b4af-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Jive équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8b4af-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Jive is to a user in Azure AD.</span></span> <span data-ttu-id="8b4af-140">En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Jive associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="8b4af-140">In other words, a link relationship between an Azure AD user and the related user in Jive needs to be established.</span></span>
+<span data-ttu-id="036cd-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Jive est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="036cd-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Jive is tooa user in Azure AD.</span></span> <span data-ttu-id="036cd-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Jive doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="036cd-140">In other words, a link relationship between an Azure AD user and hello related user in Jive needs toobe established.</span></span>
 
-<span data-ttu-id="8b4af-141">Pour cela, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** dans Jive.</span><span class="sxs-lookup"><span data-stu-id="8b4af-141">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Jive.</span></span>
+<span data-ttu-id="036cd-141">Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans Jive.</span><span class="sxs-lookup"><span data-stu-id="036cd-141">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in Jive.</span></span>
 
-<span data-ttu-id="8b4af-142">Pour configurer et tester l’authentification unique Azure AD avec Jive, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="8b4af-142">To configure and test Azure AD single sign-on with Jive, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="036cd-142">tooconfigure et test Azure AD l’authentification unique à Jive, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="036cd-142">tooconfigure and test Azure AD single sign-on with Jive, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="8b4af-143">**[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="8b4af-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="8b4af-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="8b4af-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="8b4af-145">**[Création d’un utilisateur de test Jive](#creating-a-jive-test-user)** pour avoir un équivalent de Britta Simon dans Jive lié à la représentation Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="8b4af-145">**[Creating a Jive test user](#creating-a-jive-test-user)** - to have a counterpart of Britta Simon in Jive that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="8b4af-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8b4af-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="8b4af-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="8b4af-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="036cd-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="036cd-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="036cd-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="036cd-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="036cd-145">**[Création d’un utilisateur de test Jive](#creating-a-jive-test-user)**  -toohave un équivalent de Britta Simon dans Jive est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="036cd-145">**[Creating a Jive test user](#creating-a-jive-test-user)** - toohave a counterpart of Britta Simon in Jive that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="036cd-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="036cd-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="036cd-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="036cd-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="8b4af-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b4af-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="036cd-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="036cd-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="8b4af-149">Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et configurez l’authentification unique dans votre application Jive.</span><span class="sxs-lookup"><span data-stu-id="8b4af-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Jive application.</span></span>
+<span data-ttu-id="036cd-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de Jive.</span><span class="sxs-lookup"><span data-stu-id="036cd-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Jive application.</span></span>
 
-<span data-ttu-id="8b4af-150">**Pour configurer l’authentification unique Azure AD avec Jive, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="8b4af-150">**To configure Azure AD single sign-on with Jive, perform the following steps:**</span></span>
+<span data-ttu-id="036cd-150">**tooconfigure Azure AD l’authentification unique à Jive, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="036cd-150">**tooconfigure Azure AD single sign-on with Jive, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="8b4af-151">Dans le portail Azure, sur la page d’intégration de l’application **Jive**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-151">In the Azure portal, on the **Jive** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="036cd-151">Bonjour portail Azure, sur hello **Jive** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="036cd-151">In hello Azure portal, on hello **Jive** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="8b4af-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="8b4af-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="036cd-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="036cd-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-jive-tutorial/tutorial_jive_samlbase.png)
 
-3. <span data-ttu-id="8b4af-155">Dans la section **Domaine et URL Jive**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="8b4af-155">On the **Jive Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="036cd-155">Sur hello **Jive domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="036cd-155">On hello **Jive Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-jive-tutorial/tutorial_jive_url.png)
 
-    <span data-ttu-id="8b4af-157">a.</span><span class="sxs-lookup"><span data-stu-id="8b4af-157">a.</span></span> <span data-ttu-id="8b4af-158">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<instance name>.jivecustom.com`</span><span class="sxs-lookup"><span data-stu-id="8b4af-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<instance name>.jivecustom.com`</span></span>
+    <span data-ttu-id="036cd-157">a.</span><span class="sxs-lookup"><span data-stu-id="036cd-157">a.</span></span> <span data-ttu-id="036cd-158">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<instance name>.jivecustom.com`</span><span class="sxs-lookup"><span data-stu-id="036cd-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<instance name>.jivecustom.com`</span></span>
 
-    <span data-ttu-id="8b4af-159">b.</span><span class="sxs-lookup"><span data-stu-id="8b4af-159">b.</span></span> <span data-ttu-id="8b4af-160">Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<instance name>.jiveon.com`</span><span class="sxs-lookup"><span data-stu-id="8b4af-160">In the **Identifier** textbox, type a URL using the following pattern: `https://<instance name>.jiveon.com`</span></span>
+    <span data-ttu-id="036cd-159">b.</span><span class="sxs-lookup"><span data-stu-id="036cd-159">b.</span></span> <span data-ttu-id="036cd-160">Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<instance name>.jiveon.com`</span><span class="sxs-lookup"><span data-stu-id="036cd-160">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<instance name>.jiveon.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="8b4af-161">Il ne s’agit pas des valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="8b4af-161">These values are not the real.</span></span> <span data-ttu-id="8b4af-162">Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels.</span><span class="sxs-lookup"><span data-stu-id="8b4af-162">Update these values with the actual Sign-on URL and Identifier.</span></span> <span data-ttu-id="8b4af-163">Pour obtenir ces valeurs, contactez l’[équipe de support technique Jive](https://www.jivesoftware.com/services-support/).</span><span class="sxs-lookup"><span data-stu-id="8b4af-163">Contact [Jive Client support team](https://www.jivesoftware.com/services-support/) to get these values.</span></span> 
+    > <span data-ttu-id="036cd-161">Ces valeurs ne sont pas hello réel.</span><span class="sxs-lookup"><span data-stu-id="036cd-161">These values are not hello real.</span></span> <span data-ttu-id="036cd-162">Mettre à jour ces valeurs avec l’URL de connexion réel hello et l’identificateur.</span><span class="sxs-lookup"><span data-stu-id="036cd-162">Update these values with hello actual Sign-on URL and Identifier.</span></span> <span data-ttu-id="036cd-163">Contact [équipe de support Client de Jive](https://www.jivesoftware.com/services-support/) tooget ces valeurs.</span><span class="sxs-lookup"><span data-stu-id="036cd-163">Contact [Jive Client support team](https://www.jivesoftware.com/services-support/) tooget these values.</span></span> 
  
-4. <span data-ttu-id="8b4af-164">Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier XML sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="8b4af-164">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the XML file on your computer.</span></span>
+4. <span data-ttu-id="036cd-164">Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier XML de hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="036cd-164">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello XML file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-jive-tutorial/tutorial_jive_certificate.png) 
 
-5. <span data-ttu-id="8b4af-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="8b4af-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="036cd-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="036cd-166">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-jive-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="8b4af-168">Pour configurer l’authentification unique côté **Jive**, connectez-vous au locataire Jive en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="8b4af-168">To configure single sign-on on **Jive** side, sign-on to your Jive tenant as an administrator.</span></span>
+6. <span data-ttu-id="036cd-168">tooconfigure l’authentification unique sur **Jive** client Jive de tooyour part, la session en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="036cd-168">tooconfigure single sign-on on **Jive** side, sign-on tooyour Jive tenant as an administrator.</span></span>
 
-7. <span data-ttu-id="8b4af-169">Dans le menu du haut, cliquez sur **Saml**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-169">In the menu on the top, Click "**Saml**."</span></span>
+7. <span data-ttu-id="036cd-169">Dans le menu hello haut de hello, cliquez sur «**Saml**. »</span><span class="sxs-lookup"><span data-stu-id="036cd-169">In hello menu on hello top, Click "**Saml**."</span></span>
 
     ![Configurer l’authentification unique côté application](./media/active-directory-saas-jive-tutorial/tutorial_jive_002.png)
 
-    <span data-ttu-id="8b4af-171">a.</span><span class="sxs-lookup"><span data-stu-id="8b4af-171">a.</span></span> <span data-ttu-id="8b4af-172">Sélectionnez **Activé** sous l’onglet **Général**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-172">Select **Enabled** under the **General** tab.</span></span>   
-    <span data-ttu-id="8b4af-173">b.</span><span class="sxs-lookup"><span data-stu-id="8b4af-173">b.</span></span> <span data-ttu-id="8b4af-174">Cliquez sur le bouton «**Enregistrer tous les paramètres saml**».</span><span class="sxs-lookup"><span data-stu-id="8b4af-174">Click the "**Save all saml settings**" button.</span></span>
+    <span data-ttu-id="036cd-171">a.</span><span class="sxs-lookup"><span data-stu-id="036cd-171">a.</span></span> <span data-ttu-id="036cd-172">Sélectionnez **activé** sous hello **général** onglet.</span><span class="sxs-lookup"><span data-stu-id="036cd-172">Select **Enabled** under hello **General** tab.</span></span>   
+    <span data-ttu-id="036cd-173">b.</span><span class="sxs-lookup"><span data-stu-id="036cd-173">b.</span></span> <span data-ttu-id="036cd-174">Cliquez sur hello »**enregistrer tous les paramètres saml**» bouton.</span><span class="sxs-lookup"><span data-stu-id="036cd-174">Click hello "**Save all saml settings**" button.</span></span>
 
-8. <span data-ttu-id="8b4af-175">Accédez à l’onglet «**Idp Metadata**(Métadonnées du fournisseur d’identité) ».</span><span class="sxs-lookup"><span data-stu-id="8b4af-175">Navigate to the "**Idp Metadata**" tab.</span></span>
+8. <span data-ttu-id="036cd-175">Accédez toohello «**Idp Metadata**« onglet.</span><span class="sxs-lookup"><span data-stu-id="036cd-175">Navigate toohello "**Idp Metadata**" tab.</span></span>
    
     ![Configurer l’authentification unique côté application](./media/active-directory-saas-jive-tutorial/tutorial_jive_003.png)
    
-    <span data-ttu-id="8b4af-177">a.</span><span class="sxs-lookup"><span data-stu-id="8b4af-177">a.</span></span> <span data-ttu-id="8b4af-178">Copiez le contenu du fichier XML de métadonnées téléchargé et collez-le dans la zone de texte **Métadonnées du fournisseur d'identité (IDP)** .</span><span class="sxs-lookup"><span data-stu-id="8b4af-178">Copy the content of the downloaded metadata XML file, and then paste it into the **Identity Provider (IDP) Metadata** textbox.</span></span>
+    <span data-ttu-id="036cd-177">a.</span><span class="sxs-lookup"><span data-stu-id="036cd-177">a.</span></span> <span data-ttu-id="036cd-178">Copier le contenu du fichier XML de métadonnées téléchargé de hello hello et collez-le à hello **métadonnées du fournisseur d’identité (IDP)** zone de texte.</span><span class="sxs-lookup"><span data-stu-id="036cd-178">Copy hello content of hello downloaded metadata XML file, and then paste it into hello **Identity Provider (IDP) Metadata** textbox.</span></span>
     
-    <span data-ttu-id="8b4af-179">b.</span><span class="sxs-lookup"><span data-stu-id="8b4af-179">b.</span></span> <span data-ttu-id="8b4af-180">Cliquez sur le bouton «**Enregistrer tous les paramètres saml**».</span><span class="sxs-lookup"><span data-stu-id="8b4af-180">Click the "**Save all saml settings**" button.</span></span> 
+    <span data-ttu-id="036cd-179">b.</span><span class="sxs-lookup"><span data-stu-id="036cd-179">b.</span></span> <span data-ttu-id="036cd-180">Cliquez sur hello »**enregistrer tous les paramètres saml**» bouton.</span><span class="sxs-lookup"><span data-stu-id="036cd-180">Click hello "**Save all saml settings**" button.</span></span> 
 
-9. <span data-ttu-id="8b4af-181">Accédez à l’onglet «**Mappage d’attributs utilisateur**».</span><span class="sxs-lookup"><span data-stu-id="8b4af-181">Go to the "**User Attribute Mapping**" tab.</span></span>
+9. <span data-ttu-id="036cd-181">Accédez toohello «**un mappage d’attribut utilisateur**« onglet.</span><span class="sxs-lookup"><span data-stu-id="036cd-181">Go toohello "**User Attribute Mapping**" tab.</span></span>
    
     ![Configurer l’authentification unique côté application](./media/active-directory-saas-jive-tutorial/tutorial_jive_004.png)
    
-    <span data-ttu-id="8b4af-183">a.</span><span class="sxs-lookup"><span data-stu-id="8b4af-183">a.</span></span> <span data-ttu-id="8b4af-184">Dans la zone de texte **E-mail**, copiez et collez le nom de la valeur **mail**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-184">In the **Email** textbox, copy and paste the attribute name of **mail** value.</span></span>
+    <span data-ttu-id="036cd-183">a.</span><span class="sxs-lookup"><span data-stu-id="036cd-183">a.</span></span> <span data-ttu-id="036cd-184">Bonjour **messagerie** zone de texte, copiez et collez nom d’attribut hello de **mail** valeur.</span><span class="sxs-lookup"><span data-stu-id="036cd-184">In hello **Email** textbox, copy and paste hello attribute name of **mail** value.</span></span>
    
-    <span data-ttu-id="8b4af-185">b.</span><span class="sxs-lookup"><span data-stu-id="8b4af-185">b.</span></span> <span data-ttu-id="8b4af-186">Dans la zone de texte **Prénom**, copiez et collez le nom de la valeur **givenname**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-186">In the **First Name** textbox, copy and paste the attribute name of **givenname** value.</span></span>
+    <span data-ttu-id="036cd-185">b.</span><span class="sxs-lookup"><span data-stu-id="036cd-185">b.</span></span> <span data-ttu-id="036cd-186">Bonjour **prénom** zone de texte, copiez et collez nom d’attribut hello de **givenname** valeur.</span><span class="sxs-lookup"><span data-stu-id="036cd-186">In hello **First Name** textbox, copy and paste hello attribute name of **givenname** value.</span></span>
    
-    <span data-ttu-id="8b4af-187">c.</span><span class="sxs-lookup"><span data-stu-id="8b4af-187">c.</span></span> <span data-ttu-id="8b4af-188">Dans la zone de texte **Nom**, copiez et collez le nom de la valeur **surname**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-188">In the **Last Name** textbox, copy and paste the attribute name of **surname** value.</span></span>
+    <span data-ttu-id="036cd-187">c.</span><span class="sxs-lookup"><span data-stu-id="036cd-187">c.</span></span> <span data-ttu-id="036cd-188">Bonjour **nom** zone de texte, copiez et collez nom d’attribut hello de **surname** valeur.</span><span class="sxs-lookup"><span data-stu-id="036cd-188">In hello **Last Name** textbox, copy and paste hello attribute name of **surname** value.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="8b4af-189">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="8b4af-189">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="8b4af-190">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="8b4af-190">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="8b4af-191">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="8b4af-191">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="036cd-189">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="036cd-189">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="036cd-190">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="036cd-190">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="036cd-191">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="036cd-191">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="8b4af-192">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b4af-192">Creating an Azure AD test user</span></span>
-<span data-ttu-id="8b4af-193">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="8b4af-193">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="036cd-192">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="036cd-192">Creating an Azure AD test user</span></span>
+<span data-ttu-id="036cd-193">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="036cd-193">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="8b4af-195">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="8b4af-195">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="036cd-195">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="036cd-195">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="8b4af-196">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-196">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="036cd-196">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="036cd-196">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jive-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="8b4af-198">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-198">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="036cd-198">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="036cd-198">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jive-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="8b4af-200">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="8b4af-200">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="036cd-200">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="036cd-200">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jive-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="8b4af-202">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="8b4af-202">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="036cd-202">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="036cd-202">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jive-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="8b4af-204">a.</span><span class="sxs-lookup"><span data-stu-id="8b4af-204">a.</span></span> <span data-ttu-id="8b4af-205">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-205">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="036cd-204">a.</span><span class="sxs-lookup"><span data-stu-id="036cd-204">a.</span></span> <span data-ttu-id="036cd-205">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="036cd-205">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="8b4af-206">b.</span><span class="sxs-lookup"><span data-stu-id="8b4af-206">b.</span></span> <span data-ttu-id="8b4af-207">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="8b4af-207">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="036cd-206">b.</span><span class="sxs-lookup"><span data-stu-id="036cd-206">b.</span></span> <span data-ttu-id="036cd-207">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="036cd-207">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="8b4af-208">c.</span><span class="sxs-lookup"><span data-stu-id="8b4af-208">c.</span></span> <span data-ttu-id="8b4af-209">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-209">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="036cd-208">c.</span><span class="sxs-lookup"><span data-stu-id="036cd-208">c.</span></span> <span data-ttu-id="036cd-209">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="036cd-209">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="8b4af-210">d.</span><span class="sxs-lookup"><span data-stu-id="8b4af-210">d.</span></span> <span data-ttu-id="8b4af-211">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-211">Click **Create**.</span></span>
+    <span data-ttu-id="036cd-210">d.</span><span class="sxs-lookup"><span data-stu-id="036cd-210">d.</span></span> <span data-ttu-id="036cd-211">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="036cd-211">Click **Create**.</span></span>
  
-### <a name="creating-a-jive-test-user"></a><span data-ttu-id="8b4af-212">Création d’un utilisateur de test Jive</span><span class="sxs-lookup"><span data-stu-id="8b4af-212">Creating a Jive test user</span></span>
+### <a name="creating-a-jive-test-user"></a><span data-ttu-id="036cd-212">Création d’un utilisateur de test Jive</span><span class="sxs-lookup"><span data-stu-id="036cd-212">Creating a Jive test user</span></span>
 
-<span data-ttu-id="8b4af-213">Collaborez avec l’[équipe du support du client Jive](https://www.jivesoftware.com/services-support/) pour ajouter des utilisateurs dans la plateforme Jive.</span><span class="sxs-lookup"><span data-stu-id="8b4af-213">Work with [Jive Client support team](https://www.jivesoftware.com/services-support/) to add the users in the Jive platform.</span></span>
+<span data-ttu-id="036cd-213">Travailler avec [équipe de support Client de Jive](https://www.jivesoftware.com/services-support/) tooadd les utilisateurs de hello dans la plateforme de Jive hello.</span><span class="sxs-lookup"><span data-stu-id="036cd-213">Work with [Jive Client support team](https://www.jivesoftware.com/services-support/) tooadd hello users in hello Jive platform.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="8b4af-214">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="8b4af-214">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="036cd-214">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="036cd-214">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="8b4af-215">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Jive.</span><span class="sxs-lookup"><span data-stu-id="8b4af-215">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Jive.</span></span>
+<span data-ttu-id="036cd-215">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooJive.</span><span class="sxs-lookup"><span data-stu-id="036cd-215">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooJive.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="8b4af-217">**Pour affecter Britta Simon à Jive, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="8b4af-217">**To assign Britta Simon to Jive, perform the following steps:**</span></span>
+<span data-ttu-id="036cd-217">**tooassign Britta Simon tooJive, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="036cd-217">**tooassign Britta Simon tooJive, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="8b4af-218">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-218">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="036cd-218">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="036cd-218">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="8b4af-220">Dans la liste des applications, sélectionnez **Jive**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-220">In the applications list, select **Jive**.</span></span>
+2. <span data-ttu-id="036cd-220">Dans la liste des applications hello, sélectionnez **Jive**.</span><span class="sxs-lookup"><span data-stu-id="036cd-220">In hello applications list, select **Jive**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-jive-tutorial/tutorial_jive_app.png) 
 
-3. <span data-ttu-id="8b4af-222">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-222">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="036cd-222">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="036cd-222">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="8b4af-224">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-224">Click **Add** button.</span></span> <span data-ttu-id="8b4af-225">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-225">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="036cd-224">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="036cd-224">Click **Add** button.</span></span> <span data-ttu-id="036cd-225">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="036cd-225">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="8b4af-227">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="8b4af-227">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="036cd-227">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="036cd-227">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="8b4af-228">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-228">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="036cd-228">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="036cd-228">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="8b4af-229">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="8b4af-229">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="036cd-229">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="036cd-229">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="8b4af-230">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="8b4af-230">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="036cd-230">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="036cd-230">Testing single sign-on</span></span>
 
-<span data-ttu-id="8b4af-231">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="8b4af-231">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="036cd-231">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="036cd-231">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="8b4af-232">Lorsque vous cliquez sur la vignette Jive dans le volet d’accès, vous devez être connecté automatiquement à votre application Jive.</span><span class="sxs-lookup"><span data-stu-id="8b4af-232">When you click the Jive tile in the Access Panel, you should get automatically signed-on to your Jive application.</span></span>
+<span data-ttu-id="036cd-232">Lorsque vous cliquez sur mosaïque Jive hello hello volet d’accès, vous devez obtenir l’application de Jive automatiquement signé sur tooyour.</span><span class="sxs-lookup"><span data-stu-id="036cd-232">When you click hello Jive tile in hello Access Panel, you should get automatically signed-on tooyour Jive application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="8b4af-233">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="8b4af-233">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="036cd-233">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="036cd-233">Additional resources</span></span>
 
-* [<span data-ttu-id="8b4af-234">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="8b4af-234">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="8b4af-235">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="8b4af-235">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
-* [<span data-ttu-id="8b4af-236">Configurer l’approvisionnement de l’utilisateur</span><span class="sxs-lookup"><span data-stu-id="8b4af-236">Configure User Provisioning</span></span>](active-directory-saas-jive-provisioning-tutorial.md)
+* [<span data-ttu-id="036cd-234">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="036cd-234">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="036cd-235">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="036cd-235">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="036cd-236">Configurer l’approvisionnement de l’utilisateur</span><span class="sxs-lookup"><span data-stu-id="036cd-236">Configure User Provisioning</span></span>](active-directory-saas-jive-provisioning-tutorial.md)
 
 <!--Image references-->
 

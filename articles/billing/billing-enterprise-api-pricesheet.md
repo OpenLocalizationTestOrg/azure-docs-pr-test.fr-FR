@@ -1,6 +1,6 @@
 ---
-title: "API de facturation d’entreprise Azure - Grille tarifaire | Microsoft Docs"
-description: "Découvrez les API de création de rapports qui permettent aux clients Azure en entreprise d’extraire leurs données de consommation par programmation."
+title: "aaaAzure API d’entreprise facturation - PriceSheet | Documents Microsoft"
+description: "Découvrez hello API de Reporting qui permettent aux données de consommation de toopull clients entreprise Azure par programme."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: 2e7d6e883abe4cee13bc5f684baf2a1ea9c6c397
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4cfe694c63fba266d117054b046d9caacb3b7197
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="reporting-apis-for-enterprise-customers---price-sheet"></a><span data-ttu-id="96c58-103">API de création de rapports pour les clients en entreprise - Grille tarifaire</span><span class="sxs-lookup"><span data-stu-id="96c58-103">Reporting APIs for Enterprise customers - Price Sheet</span></span>
+# <a name="reporting-apis-for-enterprise-customers---price-sheet"></a><span data-ttu-id="19285-103">API de création de rapports pour les clients en entreprise - Grille tarifaire</span><span class="sxs-lookup"><span data-stu-id="19285-103">Reporting APIs for Enterprise customers - Price Sheet</span></span>
 
-<span data-ttu-id="96c58-104">L’API Grille tarifaire fournit les tarifs applicables pour chaque compteur selon l’abonnement et la période de facturation donnés.</span><span class="sxs-lookup"><span data-stu-id="96c58-104">The Price Sheet API provides the applicable rate for each Meter for the given Enrollment and Billing Period.</span></span>
+<span data-ttu-id="19285-104">Hello API de feuille de prix fournit les taux applicable hello pour chacun des compteurs pour hello donné d’inscription et la période de facturation.</span><span class="sxs-lookup"><span data-stu-id="19285-104">hello Price Sheet API provides hello applicable rate for each Meter for hello given Enrollment and Billing Period.</span></span>
 
-##<a name="request"></a><span data-ttu-id="96c58-105">Requête</span><span class="sxs-lookup"><span data-stu-id="96c58-105">Request</span></span>
-<span data-ttu-id="96c58-106">Les propriétés d’en-tête communes qui doivent être ajoutées sont spécifiées [ici](billing-enterprise-api.md).</span><span class="sxs-lookup"><span data-stu-id="96c58-106">Common header properties that need to be added are specified [here](billing-enterprise-api.md).</span></span> <span data-ttu-id="96c58-107">Si aucune période de facturation n’est spécifiée, les données de la période de facturation en cours sont retournées.</span><span class="sxs-lookup"><span data-stu-id="96c58-107">If a billing period is not specified, then data for the current billing period is returned.</span></span>
+##<a name="request"></a><span data-ttu-id="19285-105">Demande</span><span class="sxs-lookup"><span data-stu-id="19285-105">Request</span></span>
+<span data-ttu-id="19285-106">Propriétés d’en-tête commun nécessitant toobe ajouté sont spécifiées [ici](billing-enterprise-api.md).</span><span class="sxs-lookup"><span data-stu-id="19285-106">Common header properties that need toobe added are specified [here](billing-enterprise-api.md).</span></span> <span data-ttu-id="19285-107">Si une période de facturation n’est pas spécifiée, puis les données de facturation actuel de hello période sont retournées.</span><span class="sxs-lookup"><span data-stu-id="19285-107">If a billing period is not specified, then data for hello current billing period is returned.</span></span>
 
-|<span data-ttu-id="96c58-108">Méthode</span><span class="sxs-lookup"><span data-stu-id="96c58-108">Method</span></span> | <span data-ttu-id="96c58-109">URI de demande</span><span class="sxs-lookup"><span data-stu-id="96c58-109">Request URI</span></span>|
+|<span data-ttu-id="19285-108">Méthode</span><span class="sxs-lookup"><span data-stu-id="19285-108">Method</span></span> | <span data-ttu-id="19285-109">URI de demande</span><span class="sxs-lookup"><span data-stu-id="19285-109">Request URI</span></span>|
 |-|-|
-|<span data-ttu-id="96c58-110">GET</span><span class="sxs-lookup"><span data-stu-id="96c58-110">GET</span></span>|<span data-ttu-id="96c58-111">https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/pricesheet</span><span class="sxs-lookup"><span data-stu-id="96c58-111">https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/pricesheet</span></span>|
-|<span data-ttu-id="96c58-112">GET</span><span class="sxs-lookup"><span data-stu-id="96c58-112">GET</span></span>|<span data-ttu-id="96c58-113">https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/pricesheet</span><span class="sxs-lookup"><span data-stu-id="96c58-113">https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/pricesheet</span></span>|
+|<span data-ttu-id="19285-110">GET</span><span class="sxs-lookup"><span data-stu-id="19285-110">GET</span></span>|<span data-ttu-id="19285-111">https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/pricesheet</span><span class="sxs-lookup"><span data-stu-id="19285-111">https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/pricesheet</span></span>|
+|<span data-ttu-id="19285-112">GET</span><span class="sxs-lookup"><span data-stu-id="19285-112">GET</span></span>|<span data-ttu-id="19285-113">https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/pricesheet</span><span class="sxs-lookup"><span data-stu-id="19285-113">https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/pricesheet</span></span>|
 
 > [!Note]
-> <span data-ttu-id="96c58-114">Pour utiliser la préversion de l’API, remplacez v2 par v1 dans l’URL ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="96c58-114">To use the preview version of API, replace v2 with v1 in the above URL.</span></span>
+> <span data-ttu-id="19285-114">version d’évaluation hello toouse de l’API, remplacez v2 v1 Bonjour au-dessus des URL.</span><span class="sxs-lookup"><span data-stu-id="19285-114">toouse hello preview version of API, replace v2 with v1 in hello above URL.</span></span>
 >
 
-## <a name="response"></a><span data-ttu-id="96c58-115">Réponse</span><span class="sxs-lookup"><span data-stu-id="96c58-115">Response</span></span>
+## <a name="response"></a><span data-ttu-id="19285-115">Réponse</span><span class="sxs-lookup"><span data-stu-id="19285-115">Response</span></span>
 
     
         [
@@ -68,29 +68,29 @@ ms.lasthandoff: 08/03/2017
     
 
 > [!Note]
-><span data-ttu-id="96c58-116">Si vous utilisez la préversion de l’API, le champ meterId n’est pas disponible.</span><span class="sxs-lookup"><span data-stu-id="96c58-116">If you are using the Preview API, meterId field is not available.</span></span>
+><span data-ttu-id="19285-116">Si vous utilisez hello API d’aperçu, le champ d’ID de jauge n’est pas disponible.</span><span class="sxs-lookup"><span data-stu-id="19285-116">If you are using hello Preview API, meterId field is not available.</span></span>
 >
 
-<span data-ttu-id="96c58-117">**Définitions des propriétés de réponse**</span><span class="sxs-lookup"><span data-stu-id="96c58-117">**Response property definitions**</span></span>
+<span data-ttu-id="19285-117">**Définitions des propriétés de réponse**</span><span class="sxs-lookup"><span data-stu-id="19285-117">**Response property definitions**</span></span>
 
-|<span data-ttu-id="96c58-118">Nom de la propriété</span><span class="sxs-lookup"><span data-stu-id="96c58-118">Property Name</span></span>| <span data-ttu-id="96c58-119">Type</span><span class="sxs-lookup"><span data-stu-id="96c58-119">Type</span></span>| <span data-ttu-id="96c58-120">Description</span><span class="sxs-lookup"><span data-stu-id="96c58-120">Description</span></span>
+|<span data-ttu-id="19285-118">Nom de la propriété</span><span class="sxs-lookup"><span data-stu-id="19285-118">Property Name</span></span>| <span data-ttu-id="19285-119">Type</span><span class="sxs-lookup"><span data-stu-id="19285-119">Type</span></span>| <span data-ttu-id="19285-120">Description</span><span class="sxs-lookup"><span data-stu-id="19285-120">Description</span></span>
 |-|-|-|
-|<span data-ttu-id="96c58-121">id</span><span class="sxs-lookup"><span data-stu-id="96c58-121">id</span></span>| <span data-ttu-id="96c58-122">chaîne</span><span class="sxs-lookup"><span data-stu-id="96c58-122">string</span></span>| <span data-ttu-id="96c58-123">ID unique qui représente un élément de grille tarifaire donné (compteur par période de facturation)</span><span class="sxs-lookup"><span data-stu-id="96c58-123">The unique Id that represents a particular PriceSheet item (meter by billing period)</span></span>|
-|<span data-ttu-id="96c58-124">billingPeriodId</span><span class="sxs-lookup"><span data-stu-id="96c58-124">billingPeriodId</span></span>| <span data-ttu-id="96c58-125">chaîne</span><span class="sxs-lookup"><span data-stu-id="96c58-125">string</span></span>| <span data-ttu-id="96c58-126">ID unique qui représente une période de facturation donnée</span><span class="sxs-lookup"><span data-stu-id="96c58-126">The unique Id that represents a particular Billing period</span></span>|
-|<span data-ttu-id="96c58-127">meterId</span><span class="sxs-lookup"><span data-stu-id="96c58-127">meterId</span></span>| <span data-ttu-id="96c58-128">chaîne</span><span class="sxs-lookup"><span data-stu-id="96c58-128">string</span></span>| <span data-ttu-id="96c58-129">Identificateur du compteur.</span><span class="sxs-lookup"><span data-stu-id="96c58-129">The identifier for the meter.</span></span> <span data-ttu-id="96c58-130">Il peut être mappé au meterId d’utilisation.</span><span class="sxs-lookup"><span data-stu-id="96c58-130">It can be mapped to the usage meterId.</span></span>|
-|<span data-ttu-id="96c58-131">meterName</span><span class="sxs-lookup"><span data-stu-id="96c58-131">meterName</span></span>| <span data-ttu-id="96c58-132">chaîne</span><span class="sxs-lookup"><span data-stu-id="96c58-132">string</span></span>| <span data-ttu-id="96c58-133">Nom du compteur</span><span class="sxs-lookup"><span data-stu-id="96c58-133">The meter name</span></span>|
-|<span data-ttu-id="96c58-134">unitOfMeasure</span><span class="sxs-lookup"><span data-stu-id="96c58-134">unitOfMeasure</span></span>| <span data-ttu-id="96c58-135">chaîne</span><span class="sxs-lookup"><span data-stu-id="96c58-135">string</span></span>| <span data-ttu-id="96c58-136">Unité de mesure pour mesurer le service</span><span class="sxs-lookup"><span data-stu-id="96c58-136">The Unit of Measure for measuring the service</span></span>|
-|<span data-ttu-id="96c58-137">includedQuantity</span><span class="sxs-lookup"><span data-stu-id="96c58-137">includedQuantity</span></span>| <span data-ttu-id="96c58-138">décimal</span><span class="sxs-lookup"><span data-stu-id="96c58-138">decimal</span></span>| <span data-ttu-id="96c58-139">Quantité incluse</span><span class="sxs-lookup"><span data-stu-id="96c58-139">Quantity that is included</span></span> |
-|<span data-ttu-id="96c58-140">partNumber</span><span class="sxs-lookup"><span data-stu-id="96c58-140">partNumber</span></span>| <span data-ttu-id="96c58-141">chaîne</span><span class="sxs-lookup"><span data-stu-id="96c58-141">string</span></span>| <span data-ttu-id="96c58-142">Numéro de référence associé au compteur</span><span class="sxs-lookup"><span data-stu-id="96c58-142">The part number associated with the Meter</span></span>|
-|<span data-ttu-id="96c58-143">unitPrice</span><span class="sxs-lookup"><span data-stu-id="96c58-143">unitPrice</span></span>| <span data-ttu-id="96c58-144">décimal</span><span class="sxs-lookup"><span data-stu-id="96c58-144">decimal</span></span>| <span data-ttu-id="96c58-145">Prix unitaire du compteur</span><span class="sxs-lookup"><span data-stu-id="96c58-145">The unit price for the meter</span></span>|
-|<span data-ttu-id="96c58-146">currencyCode</span><span class="sxs-lookup"><span data-stu-id="96c58-146">currencyCode</span></span>| <span data-ttu-id="96c58-147">chaîne</span><span class="sxs-lookup"><span data-stu-id="96c58-147">string</span></span>| <span data-ttu-id="96c58-148">Code de devise du prix unitaire</span><span class="sxs-lookup"><span data-stu-id="96c58-148">The currency code for the unitPrice</span></span>|
+|<span data-ttu-id="19285-121">id</span><span class="sxs-lookup"><span data-stu-id="19285-121">id</span></span>| <span data-ttu-id="19285-122">string</span><span class="sxs-lookup"><span data-stu-id="19285-122">string</span></span>| <span data-ttu-id="19285-123">Hello Id unique qui représente un élément particulier de PriceSheet (compteur par période de facturation)</span><span class="sxs-lookup"><span data-stu-id="19285-123">hello unique Id that represents a particular PriceSheet item (meter by billing period)</span></span>|
+|<span data-ttu-id="19285-124">billingPeriodId</span><span class="sxs-lookup"><span data-stu-id="19285-124">billingPeriodId</span></span>| <span data-ttu-id="19285-125">string</span><span class="sxs-lookup"><span data-stu-id="19285-125">string</span></span>| <span data-ttu-id="19285-126">Hello Id unique qui représente une période de facturation particulière</span><span class="sxs-lookup"><span data-stu-id="19285-126">hello unique Id that represents a particular Billing period</span></span>|
+|<span data-ttu-id="19285-127">meterId</span><span class="sxs-lookup"><span data-stu-id="19285-127">meterId</span></span>| <span data-ttu-id="19285-128">string</span><span class="sxs-lookup"><span data-stu-id="19285-128">string</span></span>| <span data-ttu-id="19285-129">Identificateur Hello pour le compteur de hello.</span><span class="sxs-lookup"><span data-stu-id="19285-129">hello identifier for hello meter.</span></span> <span data-ttu-id="19285-130">Il peut être mappé toohello utilisation de l’ID de jauge.</span><span class="sxs-lookup"><span data-stu-id="19285-130">It can be mapped toohello usage meterId.</span></span>|
+|<span data-ttu-id="19285-131">meterName</span><span class="sxs-lookup"><span data-stu-id="19285-131">meterName</span></span>| <span data-ttu-id="19285-132">string</span><span class="sxs-lookup"><span data-stu-id="19285-132">string</span></span>| <span data-ttu-id="19285-133">nom de compteur Hello</span><span class="sxs-lookup"><span data-stu-id="19285-133">hello meter name</span></span>|
+|<span data-ttu-id="19285-134">unitOfMeasure</span><span class="sxs-lookup"><span data-stu-id="19285-134">unitOfMeasure</span></span>| <span data-ttu-id="19285-135">string</span><span class="sxs-lookup"><span data-stu-id="19285-135">string</span></span>| <span data-ttu-id="19285-136">Hello unité de mesure de service de hello</span><span class="sxs-lookup"><span data-stu-id="19285-136">hello Unit of Measure for measuring hello service</span></span>|
+|<span data-ttu-id="19285-137">includedQuantity</span><span class="sxs-lookup"><span data-stu-id="19285-137">includedQuantity</span></span>| <span data-ttu-id="19285-138">décimal</span><span class="sxs-lookup"><span data-stu-id="19285-138">decimal</span></span>| <span data-ttu-id="19285-139">Quantité incluse</span><span class="sxs-lookup"><span data-stu-id="19285-139">Quantity that is included</span></span> |
+|<span data-ttu-id="19285-140">partNumber</span><span class="sxs-lookup"><span data-stu-id="19285-140">partNumber</span></span>| <span data-ttu-id="19285-141">string</span><span class="sxs-lookup"><span data-stu-id="19285-141">string</span></span>| <span data-ttu-id="19285-142">numéro de référence Hello associé hello compteur</span><span class="sxs-lookup"><span data-stu-id="19285-142">hello part number associated with hello Meter</span></span>|
+|<span data-ttu-id="19285-143">unitPrice</span><span class="sxs-lookup"><span data-stu-id="19285-143">unitPrice</span></span>| <span data-ttu-id="19285-144">Décimal</span><span class="sxs-lookup"><span data-stu-id="19285-144">decimal</span></span>| <span data-ttu-id="19285-145">prix unitaire Hello pour le compteur de hello</span><span class="sxs-lookup"><span data-stu-id="19285-145">hello unit price for hello meter</span></span>|
+|<span data-ttu-id="19285-146">currencyCode</span><span class="sxs-lookup"><span data-stu-id="19285-146">currencyCode</span></span>| <span data-ttu-id="19285-147">string</span><span class="sxs-lookup"><span data-stu-id="19285-147">string</span></span>| <span data-ttu-id="19285-148">code de devise Hello hello UnitPrice</span><span class="sxs-lookup"><span data-stu-id="19285-148">hello currency code for hello unitPrice</span></span>|
 <br/>
-## <a name="see-also"></a><span data-ttu-id="96c58-149">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="96c58-149">See also</span></span>
+## <a name="see-also"></a><span data-ttu-id="19285-149">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="19285-149">See also</span></span>
 
-* [<span data-ttu-id="96c58-150">API Périodes de facturation</span><span class="sxs-lookup"><span data-stu-id="96c58-150">Billing Periods API</span></span>](billing-enterprise-api-billing-periods.md)
+* [<span data-ttu-id="19285-150">API Périodes de facturation</span><span class="sxs-lookup"><span data-stu-id="19285-150">Billing Periods API</span></span>](billing-enterprise-api-billing-periods.md)
 
-* [<span data-ttu-id="96c58-151">API Détails de l’utilisation</span><span class="sxs-lookup"><span data-stu-id="96c58-151">Usage Detail API</span></span>](billing-enterprise-api-usage-detail.md)
+* [<span data-ttu-id="19285-151">API Détails de l’utilisation</span><span class="sxs-lookup"><span data-stu-id="19285-151">Usage Detail API</span></span>](billing-enterprise-api-usage-detail.md)
 
-* [<span data-ttu-id="96c58-152">API Solde et résumé</span><span class="sxs-lookup"><span data-stu-id="96c58-152">Balance and Summary API</span></span>](billing-enterprise-api-balance-summary.md)
+* [<span data-ttu-id="19285-152">API Solde et résumé</span><span class="sxs-lookup"><span data-stu-id="19285-152">Balance and Summary API</span></span>](billing-enterprise-api-balance-summary.md)
 
-* [<span data-ttu-id="96c58-153">API Frais de la Place de marché</span><span class="sxs-lookup"><span data-stu-id="96c58-153">Marketplace Store Charge API</span></span>](billing-enterprise-api-marketplace-storecharge.md)
+* [<span data-ttu-id="19285-153">API Frais de la Place de marché</span><span class="sxs-lookup"><span data-stu-id="19285-153">Marketplace Store Charge API</span></span>](billing-enterprise-api-marketplace-storecharge.md)

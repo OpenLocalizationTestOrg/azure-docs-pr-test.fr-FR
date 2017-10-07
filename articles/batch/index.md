@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Batch - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à utiliser Batch pour exécuter efficacement des applications de calcul haute performance en parallèle et à grande échelle. Didacticiels, références d’API et autres documents."
+title: "aaaAzure Documentation lot - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toouse efficacement du lot toorun des parallèles à grande échelle et les applications informatiques hautes performances. Didacticiels, références d’API et autres documents."
 services: batch
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: bf3e8b9e8976e2b68bc0da6a3beb1dacfaef6066
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 25172c7b3462794643d1cba539fcd0d9a6c4c62e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="batch-documentation"></a>Documentation Batch
 
-Apprenez à utiliser Batch pour exécuter efficacement des applications de calcul haute performance en parallèle et à grande échelle dans le cloud. Les didacticiels, références d’API et autres documents vous montrent comment définir les ressources de calcul Azure pour exécuter vos applications en parallèle ou à grande échelle sans avoir à configurer ou gérer manuellement votre infrastructure.
+Découvrez comment parallèles à grande échelle de toouse lot toorun et efficacement dans les applications informatiques hautes performances hello cloud. Didacticiels, des références de l’API et toute autre documentation montrent comment toodefine hello Azure compute ressources tooexecute vos applications en parallèle ou à grande échelle sans configuration manuellement ou de gestion d’infrastructure.
 
 <ul class="panelContent cardsFTitle">
     <li>

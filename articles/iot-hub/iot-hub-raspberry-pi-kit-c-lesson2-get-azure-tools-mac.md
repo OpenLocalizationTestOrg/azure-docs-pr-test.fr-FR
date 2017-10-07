@@ -1,5 +1,5 @@
 ---
-title: "Connecter Raspberry Pi (C) à Azure IoT - Leçon 2 : Outils Azure (macOS) | Microsoft Docs"
+title: "Connect Raspberry PI (C) tooAzure IoT - leçon 2 : Windows Azure tools (macOS) | Documents Microsoft"
 description: "Sur Mac OS, installez Python et l’interface de ligne de commande Azure (Azure CLI)."
 services: iot-hub
 documentationcenter: 
@@ -17,63 +17,63 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 3810990f4a27270fa45709f4d9dbb36a8f4369a8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a079250fd94fa9bc1c11b6c21de02a8d46f6f3bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-azure-tools-macos-1010"></a><span data-ttu-id="24260-104">Obtenir les outils Azure (macOS 10.10)</span><span class="sxs-lookup"><span data-stu-id="24260-104">Get Azure tools (macOS 10.10)</span></span>
+# <a name="get-azure-tools-macos-1010"></a><span data-ttu-id="459e8-104">Obtenir les outils Azure (macOS 10.10)</span><span class="sxs-lookup"><span data-stu-id="459e8-104">Get Azure tools (macOS 10.10)</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="24260-105">Windows 7 et versions ultérieures</span><span class="sxs-lookup"><span data-stu-id="24260-105">Windows 7 and later</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-win32.md)
-> * [<span data-ttu-id="24260-106">Ubuntu 16.04</span><span class="sxs-lookup"><span data-stu-id="24260-106">Ubuntu 16.04</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-ubuntu.md)
-> * [<span data-ttu-id="24260-107">macOS 10.10</span><span class="sxs-lookup"><span data-stu-id="24260-107">macOS 10.10</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-mac.md)
+> * [<span data-ttu-id="459e8-105">Windows 7 et versions ultérieures</span><span class="sxs-lookup"><span data-stu-id="459e8-105">Windows 7 and later</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-win32.md)
+> * [<span data-ttu-id="459e8-106">Ubuntu 16.04</span><span class="sxs-lookup"><span data-stu-id="459e8-106">Ubuntu 16.04</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-ubuntu.md)
+> * [<span data-ttu-id="459e8-107">macOS 10.10</span><span class="sxs-lookup"><span data-stu-id="459e8-107">macOS 10.10</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-mac.md)
 
-## <a name="what-you-will-do"></a><span data-ttu-id="24260-108">Procédure à suivre</span><span class="sxs-lookup"><span data-stu-id="24260-108">What you will do</span></span>
-<span data-ttu-id="24260-109">Installez l’interface de ligne de commande Azure (Azure CLI).</span><span class="sxs-lookup"><span data-stu-id="24260-109">Install the Azure command-line interface (Azure CLI).</span></span> <span data-ttu-id="24260-110">Si vous rencontrez des problèmes, recherchez des solutions dans la [page de résolution des problèmes](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span><span class="sxs-lookup"><span data-stu-id="24260-110">If you have any problems, look for solutions on the [troubleshooting page](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="459e8-108">Procédure à suivre</span><span class="sxs-lookup"><span data-stu-id="459e8-108">What you will do</span></span>
+<span data-ttu-id="459e8-109">Installez hello Azure interface de ligne de commande (CLI d’Azure).</span><span class="sxs-lookup"><span data-stu-id="459e8-109">Install hello Azure command-line interface (Azure CLI).</span></span> <span data-ttu-id="459e8-110">Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span><span class="sxs-lookup"><span data-stu-id="459e8-110">If you have any problems, look for solutions on hello [troubleshooting page](iot-hub-raspberry-pi-kit-c-troubleshooting.md).</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="24260-111">Contenu</span><span class="sxs-lookup"><span data-stu-id="24260-111">What you will learn</span></span>
-<span data-ttu-id="24260-112">Cet article portera sur les éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="24260-112">In this article, you will learn:</span></span>
-* <span data-ttu-id="24260-113">Comment installer Azure CLI.</span><span class="sxs-lookup"><span data-stu-id="24260-113">How to install Azure CLI.</span></span>
-* <span data-ttu-id="24260-114">Comment ajouter un sous-groupe IoT de l’interface de ligne de commande Azure.</span><span class="sxs-lookup"><span data-stu-id="24260-114">How to add an IoT subgroup of the Azure CLI.</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="459e8-111">Contenu</span><span class="sxs-lookup"><span data-stu-id="459e8-111">What you will learn</span></span>
+<span data-ttu-id="459e8-112">Cet article portera sur les éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="459e8-112">In this article, you will learn:</span></span>
+* <span data-ttu-id="459e8-113">Comment tooinstall CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="459e8-113">How tooinstall Azure CLI.</span></span>
+* <span data-ttu-id="459e8-114">Comment tooadd un sous-groupe IoT Hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="459e8-114">How tooadd an IoT subgroup of hello Azure CLI.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="24260-115">Ce dont vous avez besoin</span><span class="sxs-lookup"><span data-stu-id="24260-115">What you need</span></span>
-* <span data-ttu-id="24260-116">Un Mac avec une connexion Internet.</span><span class="sxs-lookup"><span data-stu-id="24260-116">A Mac with an Internet connection.</span></span>
-* <span data-ttu-id="24260-117">Un abonnement Azure actif.</span><span class="sxs-lookup"><span data-stu-id="24260-117">An active Azure subscription.</span></span> <span data-ttu-id="24260-118">Si vous ne possédez pas de compte Azure, vous pouvez créer un [compte d’évaluation Azure gratuit](http://azure.microsoft.com/pricing/free-trial/) en quelques minutes.</span><span class="sxs-lookup"><span data-stu-id="24260-118">If you don't have an Azure account, you can create a [free Azure trial account](http://azure.microsoft.com/pricing/free-trial/) in just a few minutes.</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="459e8-115">Ce dont vous avez besoin</span><span class="sxs-lookup"><span data-stu-id="459e8-115">What you need</span></span>
+* <span data-ttu-id="459e8-116">Un Mac avec une connexion Internet.</span><span class="sxs-lookup"><span data-stu-id="459e8-116">A Mac with an Internet connection.</span></span>
+* <span data-ttu-id="459e8-117">Un abonnement Azure actif.</span><span class="sxs-lookup"><span data-stu-id="459e8-117">An active Azure subscription.</span></span> <span data-ttu-id="459e8-118">Si vous ne possédez pas de compte Azure, vous pouvez créer un [compte d’évaluation Azure gratuit](http://azure.microsoft.com/pricing/free-trial/) en quelques minutes.</span><span class="sxs-lookup"><span data-stu-id="459e8-118">If you don't have an Azure account, you can create a [free Azure trial account](http://azure.microsoft.com/pricing/free-trial/) in just a few minutes.</span></span>
 
-## <a name="install-python"></a><span data-ttu-id="24260-119">Installer python</span><span class="sxs-lookup"><span data-stu-id="24260-119">Install Python</span></span>
-<span data-ttu-id="24260-120">Bien que Mac OS soit fourni avec Python 2.7, il est recommandé d’installer Python via Homebrew.</span><span class="sxs-lookup"><span data-stu-id="24260-120">Although macOS comes with Python 2.7 out of the box, we recommend that you install Python through Homebrew.</span></span> <span data-ttu-id="24260-121">Voir [Installation de Python sur Mac OS](http://docs.python-guide.org/en/latest/starting/install/osx/).</span><span class="sxs-lookup"><span data-stu-id="24260-121">See [Installing Python on macOS](http://docs.python-guide.org/en/latest/starting/install/osx/).</span></span>
+## <a name="install-python"></a><span data-ttu-id="459e8-119">Installation de Python</span><span class="sxs-lookup"><span data-stu-id="459e8-119">Install Python</span></span>
+<span data-ttu-id="459e8-120">Bien que macOS fourni avec Python 2.7 prédéfinies hello, nous vous recommandons d’installer Python via Homebrew.</span><span class="sxs-lookup"><span data-stu-id="459e8-120">Although macOS comes with Python 2.7 out of hello box, we recommend that you install Python through Homebrew.</span></span> <span data-ttu-id="459e8-121">Voir [Installation de Python sur Mac OS](http://docs.python-guide.org/en/latest/starting/install/osx/).</span><span class="sxs-lookup"><span data-stu-id="459e8-121">See [Installing Python on macOS](http://docs.python-guide.org/en/latest/starting/install/osx/).</span></span>
 
-<span data-ttu-id="24260-122">Installez Python et pip en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="24260-122">Install Python and pip by running the following command:</span></span>
+<span data-ttu-id="459e8-122">Installer Python et pip en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="459e8-122">Install Python and pip by running hello following command:</span></span>
 
 ```bash
 brew install python
 ```
 
-## <a name="install-the-azure-cli"></a><span data-ttu-id="24260-123">Installer l’interface de ligne de commande Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="24260-123">Install the Azure CLI</span></span>
-<span data-ttu-id="24260-124">L’interface de ligne de commande Azure offre une expérience de ligne de commande multiplateforme pour Azure.</span><span class="sxs-lookup"><span data-stu-id="24260-124">The Azure CLI provides a multiplatform command-line experience for Azure.</span></span> <span data-ttu-id="24260-125">Vous travaillez directement à partir de votre ligne de commande pour approvisionner et gérer les ressources.</span><span class="sxs-lookup"><span data-stu-id="24260-125">You work directly from your command line to provision and manage resources.</span></span> 
+## <a name="install-hello-azure-cli"></a><span data-ttu-id="459e8-123">Installer hello CLI d’Azure</span><span class="sxs-lookup"><span data-stu-id="459e8-123">Install hello Azure CLI</span></span>
+<span data-ttu-id="459e8-124">Hello CLI d’Azure fournit une expérience en ligne de commande multiplateforme pour Azure.</span><span class="sxs-lookup"><span data-stu-id="459e8-124">hello Azure CLI provides a multiplatform command-line experience for Azure.</span></span> <span data-ttu-id="459e8-125">Travailler directement depuis votre tooprovision de ligne de commande et de gérer les ressources.</span><span class="sxs-lookup"><span data-stu-id="459e8-125">You work directly from your command line tooprovision and manage resources.</span></span> 
 
-<span data-ttu-id="24260-126">Pour installer la dernière version d’Azure CLI, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="24260-126">To install the latest Azure CLI, follow these steps:</span></span>
+<span data-ttu-id="459e8-126">tooinstall hello dernière CLI d’Azure, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="459e8-126">tooinstall hello latest Azure CLI, follow these steps:</span></span>
 
-1. <span data-ttu-id="24260-127">Exécutez les commandes suivantes dans une fenêtre de Terminal.</span><span class="sxs-lookup"><span data-stu-id="24260-127">Run the following commands in a terminal window.</span></span> <span data-ttu-id="24260-128">L’installation de l’interface de ligne de commande Azure peut prendre cinq minutes.</span><span class="sxs-lookup"><span data-stu-id="24260-128">It might take five minutes to install the Azure CLI.</span></span>
+1. <span data-ttu-id="459e8-127">Exécutez hello suivant les commandes dans une fenêtre de terminal.</span><span class="sxs-lookup"><span data-stu-id="459e8-127">Run hello following commands in a terminal window.</span></span> <span data-ttu-id="459e8-128">Il peut prendre cinq minutes tooinstall hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="459e8-128">It might take five minutes tooinstall hello Azure CLI.</span></span>
 
    ```bash
    pip install --upgrade azure-cli
    pip install --upgrade azure-cli-iot
    ```
-2. <span data-ttu-id="24260-129">Vérifiez l’installation en exécutant la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="24260-129">Verify the installation by running the following command:</span></span>
+2. <span data-ttu-id="459e8-129">Hello Vérifiez-la en exécutant hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="459e8-129">Verify hello installation by running hello following command:</span></span>
 
    ```bash
    az iot -h
    ```
 
-<span data-ttu-id="24260-130">Si l’installation a réussi, vous devez voir la sortie suivante.</span><span class="sxs-lookup"><span data-stu-id="24260-130">You should see the following output if the installation is successful.</span></span>
+<span data-ttu-id="459e8-130">Vous devez voir suivant de hello de sortie si l’installation de hello a réussi.</span><span class="sxs-lookup"><span data-stu-id="459e8-130">You should see hello following output if hello installation is successful.</span></span>
 
-![Sortie indiquant la réussite](media/iot-hub-raspberry-pi-lessons/lesson2/az_iot_help_osx.png)
+![Sortie qui indique la réussite](media/iot-hub-raspberry-pi-lessons/lesson2/az_iot_help_osx.png)
 
-## <a name="summary"></a><span data-ttu-id="24260-132">Résumé</span><span class="sxs-lookup"><span data-stu-id="24260-132">Summary</span></span>
-<span data-ttu-id="24260-133">Vous avez installé l’interface de ligne de commande Azure.</span><span class="sxs-lookup"><span data-stu-id="24260-133">You've installed the Azure CLI.</span></span> <span data-ttu-id="24260-134">La tâche suivante consiste à créer votre Azure IoT Hub et votre identité d’appareil à l’aide de l’interface de ligne de commande Azure.</span><span class="sxs-lookup"><span data-stu-id="24260-134">Your next task is to create your Azure IoT hub and device identity by using the Azure CLI.</span></span>
+## <a name="summary"></a><span data-ttu-id="459e8-132">Résumé</span><span class="sxs-lookup"><span data-stu-id="459e8-132">Summary</span></span>
+<span data-ttu-id="459e8-133">Vous avez installé hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="459e8-133">You've installed hello Azure CLI.</span></span> <span data-ttu-id="459e8-134">La tâche suivante est toocreate votre identité Azure IoT hub et appareil à l’aide de hello CLI d’Azure.</span><span class="sxs-lookup"><span data-stu-id="459e8-134">Your next task is toocreate your Azure IoT hub and device identity by using hello Azure CLI.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="24260-135">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="24260-135">Next steps</span></span>
-[<span data-ttu-id="24260-136">Créer votre IoT Hub et inscrire Raspberry Pi 3</span><span class="sxs-lookup"><span data-stu-id="24260-136">Create your IoT hub and register Raspberry Pi 3</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-prepare-azure-iot-hub.md)
+## <a name="next-steps"></a><span data-ttu-id="459e8-135">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="459e8-135">Next steps</span></span>
+[<span data-ttu-id="459e8-136">Créer votre IoT Hub et inscrire Raspberry Pi 3</span><span class="sxs-lookup"><span data-stu-id="459e8-136">Create your IoT hub and register Raspberry Pi 3</span></span>](iot-hub-raspberry-pi-kit-c-lesson2-prepare-azure-iot-hub.md)
 

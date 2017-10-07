@@ -1,6 +1,6 @@
 ---
-title: "Affichage du contenu Javadoc dans Eclipse pour le package de bibliothèques Azure pour Java"
-description: "Comment afficher le contenu Javadoc pour les bibliothèques Azure dans Eclipse."
+title: "aaaDisplaying contenu Javadoc dans Eclipse pour hello Package de bibliothèques Azure pour Java"
+description: "Comment toodisplay hello contenu Javadoc pour les bibliothèques de Azure hello dans Eclipse."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,57 +14,57 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: b44deb773b2159cba1d5d957455409f10fc49334
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8070023a24dc07eca8df906db5b8b662ceed6ccc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="displaying-javadoc-content-in-eclipse-for-the-azure-libraries-package-for-java"></a><span data-ttu-id="1f37a-103">Affichage du contenu Javadoc dans Eclipse pour le package de bibliothèques Azure pour Java</span><span class="sxs-lookup"><span data-stu-id="1f37a-103">Displaying Javadoc Content in Eclipse for the Azure Libraries Package for Java</span></span>
-<span data-ttu-id="1f37a-104">Vous pouvez afficher le contenu Javadoc pour les bibliothèques Azure pour Java dans votre environnement Eclipse en associant ce contenu aux bibliothèques Azure pour Java.</span><span class="sxs-lookup"><span data-stu-id="1f37a-104">The Javadoc content for the Azure Libraries for Java can be viewed within your Eclipse environment by associating the Javadoc content to the Azure Libraries for Java.</span></span> <span data-ttu-id="1f37a-105">Les étapes suivantes montrent comment utiliser cette fonctionnalité dans Eclipse.</span><span class="sxs-lookup"><span data-stu-id="1f37a-105">The following steps show you how to use this functionality within Eclipse.</span></span>
+# <a name="displaying-javadoc-content-in-eclipse-for-hello-azure-libraries-package-for-java"></a><span data-ttu-id="54600-103">Affichage de contenu Javadoc dans Eclipse pour hello Package de bibliothèques Azure pour Java</span><span class="sxs-lookup"><span data-stu-id="54600-103">Displaying Javadoc Content in Eclipse for hello Azure Libraries Package for Java</span></span>
+<span data-ttu-id="54600-104">Hello contenu Javadoc pour hello bibliothèques Azure pour Java peut être affiché dans votre environnement Eclipse en associant hello Javadoc toohello contenu bibliothèques Azure pour Java.</span><span class="sxs-lookup"><span data-stu-id="54600-104">hello Javadoc content for hello Azure Libraries for Java can be viewed within your Eclipse environment by associating hello Javadoc content toohello Azure Libraries for Java.</span></span> <span data-ttu-id="54600-105">Hello étapes suivantes vous montrent comment toouse cette fonctionnalité dans Eclipse.</span><span class="sxs-lookup"><span data-stu-id="54600-105">hello following steps show you how toouse this functionality within Eclipse.</span></span>
 
-<span data-ttu-id="1f37a-106">Cette procédure part du principe que vous avez déjà ajouté la bibliothèque Azure pour Java à votre chemin de build.</span><span class="sxs-lookup"><span data-stu-id="1f37a-106">This procedure assumes you have already added the Azure Library for Java to your build path.</span></span>
+<span data-ttu-id="54600-106">Cette procédure suppose que vous avez déjà ajouté hello bibliothèque Azure pour le chemin d’accès de build Java tooyour.</span><span class="sxs-lookup"><span data-stu-id="54600-106">This procedure assumes you have already added hello Azure Library for Java tooyour build path.</span></span>
 
-## <a name="to-display-javadoc-content-in-eclipse-for-the-azure-libraries-for-java"></a><span data-ttu-id="1f37a-107">Pour afficher le contenu Javadoc dans Eclipse pour les bibliothèques Azure pour Java</span><span class="sxs-lookup"><span data-stu-id="1f37a-107">To display Javadoc content in Eclipse for the Azure Libraries for Java</span></span>
-* <span data-ttu-id="1f37a-108">Dans l’Explorateur de projets d’Eclipse, dans la section **Bibliothèques référencées** de votre projet, ouvrez le menu contextuel de la bibliothèque Azure pour Java JAR.</span><span class="sxs-lookup"><span data-stu-id="1f37a-108">Within Eclipse's Project Explorer, in the **Referenced Libraries** section of your project, open the context menu for the Azure Library for Java JAR.</span></span> <span data-ttu-id="1f37a-109">Par exemple, **microsoft-Microsoft Azure-api-0.1.0.jar** (le numéro de version peut différer en fonction de la version que vous avez installée).</span><span class="sxs-lookup"><span data-stu-id="1f37a-109">For example, **microsoft-windowsazure-api-0.1.0.jar** (the version number may be different, dependent upon which version you have installed).</span></span>
+## <a name="toodisplay-javadoc-content-in-eclipse-for-hello-azure-libraries-for-java"></a><span data-ttu-id="54600-107">toodisplay contenu Javadoc dans Eclipse pour hello bibliothèques Azure pour Java</span><span class="sxs-lookup"><span data-stu-id="54600-107">toodisplay Javadoc content in Eclipse for hello Azure Libraries for Java</span></span>
+* <span data-ttu-id="54600-108">Dans l’Explorateur de projets d’Eclipse, Bonjour **bibliothèques référencées** section de votre projet, le menu contextuel Ouvrir hello hello bibliothèque Azure pour JAR.</span><span class="sxs-lookup"><span data-stu-id="54600-108">Within Eclipse's Project Explorer, in hello **Referenced Libraries** section of your project, open hello context menu for hello Azure Library for Java JAR.</span></span> <span data-ttu-id="54600-109">Par exemple, **microsoft-windowsazure-api-0.1.0.jar** (numéro de version hello peut-être être différentes, la version que vous avez installé).</span><span class="sxs-lookup"><span data-stu-id="54600-109">For example, **microsoft-windowsazure-api-0.1.0.jar** (hello version number may be different, dependent upon which version you have installed).</span></span>
 
-* <span data-ttu-id="1f37a-110">Cliquez sur **Propriétés**.</span><span class="sxs-lookup"><span data-stu-id="1f37a-110">Click **Properties**.</span></span>
+* <span data-ttu-id="54600-110">Cliquez sur **Propriétés**.</span><span class="sxs-lookup"><span data-stu-id="54600-110">Click **Properties**.</span></span>
 
-* <span data-ttu-id="1f37a-111">Dans la boîte de dialogue **Propriétés**, dans le volet gauche, cliquez sur **Emplacement Javadoc**.</span><span class="sxs-lookup"><span data-stu-id="1f37a-111">Within the **Properties** dialog, in the left-hand pane, click **Javadoc Location**.</span></span> <span data-ttu-id="1f37a-112">La boîte de dialogue **Emplacement Javadoc** s’affiche.</span><span class="sxs-lookup"><span data-stu-id="1f37a-112">The **Javadoc Location** dialog is displayed.</span></span>
+* <span data-ttu-id="54600-111">Au sein de hello **propriétés** boîte de dialogue, dans le volet gauche de hello, cliquez sur **emplacement Javadoc**.</span><span class="sxs-lookup"><span data-stu-id="54600-111">Within hello **Properties** dialog, in hello left-hand pane, click **Javadoc Location**.</span></span> <span data-ttu-id="54600-112">Hello **emplacement Javadoc** boîte de dialogue s’affiche.</span><span class="sxs-lookup"><span data-stu-id="54600-112">hello **Javadoc Location** dialog is displayed.</span></span>
 
-* <span data-ttu-id="1f37a-113">Vous pouvez spécifier une **URL Javadoc** ou un **Javadoc dans archive**.</span><span class="sxs-lookup"><span data-stu-id="1f37a-113">You can specify a **Javadoc URL**, or a **Javadoc in archive**.</span></span>
+* <span data-ttu-id="54600-113">Vous pouvez spécifier une **URL Javadoc** ou un **Javadoc dans archive**.</span><span class="sxs-lookup"><span data-stu-id="54600-113">You can specify a **Javadoc URL**, or a **Javadoc in archive**.</span></span>
 
-   * <span data-ttu-id="1f37a-114">Si vous choisissez de spécifier une **URL Javadoc**, utilisez une URL du type **http://dl.windowsazure.com/javadoc** ou **http://dl.windowsazure.com/storage/javadoc**.</span><span class="sxs-lookup"><span data-stu-id="1f37a-114">If you choose to specify a **Javadoc URL**, use the URLs such as **http://dl.windowsazure.com/javadoc** or **http://dl.windowsazure.com/storage/javadoc**.</span></span>
+   * <span data-ttu-id="54600-114">Si vous choisissez toospecify un **URL de Javadoc**, utilisez hello URL comme **http://dl.windowsazure.com/javadoc** ou **http://dl.windowsazure.com/storage/javadoc**.</span><span class="sxs-lookup"><span data-stu-id="54600-114">If you choose toospecify a **Javadoc URL**, use hello URLs such as **http://dl.windowsazure.com/javadoc** or **http://dl.windowsazure.com/storage/javadoc**.</span></span>
 
-   * <span data-ttu-id="1f37a-115">Si vous choisissez d’utiliser **Javadoc dans archive**, vous pouvez spécifier un fichier externe ou un fichier d’espace de travail.</span><span class="sxs-lookup"><span data-stu-id="1f37a-115">If you choose to use **Javadoc in archive**, you can specify an external file, or a workspace file.</span></span>
+   * <span data-ttu-id="54600-115">Si vous choisissez toouse **Javadoc dans une archive**, vous pouvez spécifier un fichier externe ou un fichier de l’espace de travail.</span><span class="sxs-lookup"><span data-stu-id="54600-115">If you choose toouse **Javadoc in archive**, you can specify an external file, or a workspace file.</span></span>
 
-   <span data-ttu-id="1f37a-116">Faites votre choix et parcourez/validez en fonction des besoins.</span><span class="sxs-lookup"><span data-stu-id="1f37a-116">Make your choice and browse/validate as needed.</span></span> <span data-ttu-id="1f37a-117">L’exemple suivant associe les bibliothèques Azure pour Java au JAR Javadoc correspondant téléchargé localement dans un dossier nommé **c:\MyAzureJARs**.</span><span class="sxs-lookup"><span data-stu-id="1f37a-117">The following example associates the Azure Libraries for Java with the corresponding Javadoc JAR that has been downloaded locally to a folder named **c:\MyAzureJARs**.</span></span>
+   <span data-ttu-id="54600-116">Faites votre choix et parcourez/validez en fonction des besoins.</span><span class="sxs-lookup"><span data-stu-id="54600-116">Make your choice and browse/validate as needed.</span></span> <span data-ttu-id="54600-117">Hello exemple suivant associe hello les bibliothèques Azure pour Java hello JAR Javadoc correspondant a été téléchargé localement dossier tooa nommé **c:\MyAzureJARs**.</span><span class="sxs-lookup"><span data-stu-id="54600-117">hello following example associates hello Azure Libraries for Java with hello corresponding Javadoc JAR that has been downloaded locally tooa folder named **c:\MyAzureJARs**.</span></span>
 
    ![][ic553487]
 
-* <span data-ttu-id="1f37a-118">*Étape facultative* : cliquez sur **Valider**.</span><span class="sxs-lookup"><span data-stu-id="1f37a-118">*Optional Step*: Click **Validate**.</span></span> <span data-ttu-id="1f37a-119">Des problèmes potentiels avec le JAR Javadoc peuvent apparaître ici.</span><span class="sxs-lookup"><span data-stu-id="1f37a-119">Potential issues with the Javadoc JAR could be displayed here.</span></span>
+* <span data-ttu-id="54600-118">*Étape facultative* : cliquez sur **Valider**.</span><span class="sxs-lookup"><span data-stu-id="54600-118">*Optional Step*: Click **Validate**.</span></span> <span data-ttu-id="54600-119">Problèmes potentiels avec hello JAR Javadoc pourraient apparaître ici.</span><span class="sxs-lookup"><span data-stu-id="54600-119">Potential issues with hello Javadoc JAR could be displayed here.</span></span>
 
-* <span data-ttu-id="1f37a-120">Cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="1f37a-120">Click **OK**.</span></span>
+* <span data-ttu-id="54600-120">Cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="54600-120">Click **OK**.</span></span>
 
-<span data-ttu-id="1f37a-121">Une fois associé à la bibliothèque, le contenu Javadoc doit s’afficher dans votre IDE Eclipse.</span><span class="sxs-lookup"><span data-stu-id="1f37a-121">Once associated with the library, the Javadoc content should display within your Eclipse IDE.</span></span> <span data-ttu-id="1f37a-122">Par exemple, si `blob` est défini comme étant de type `CloudBlockBlob` dans votre code, ce qui suit est un exemple de contenu Javadoc qui apparaît lorsque vous tapez `blob.acquireLease` dans le code :</span><span class="sxs-lookup"><span data-stu-id="1f37a-122">For example, if `blob` is defined of type `CloudBlockBlob` within your code, the following is an example of Javadoc content that appears when you type `blob.acquireLease` in code:</span></span>
+<span data-ttu-id="54600-121">Une fois associé à la bibliothèque de hello, hello contenu Javadoc doit s’afficher dans votre IDE Eclipse.</span><span class="sxs-lookup"><span data-stu-id="54600-121">Once associated with hello library, hello Javadoc content should display within your Eclipse IDE.</span></span> <span data-ttu-id="54600-122">Par exemple, si `blob` est défini de type `CloudBlockBlob` dans votre code, hello Voici un exemple de contenu Javadoc qui apparaît lorsque vous tapez `blob.acquireLease` dans le code :</span><span class="sxs-lookup"><span data-stu-id="54600-122">For example, if `blob` is defined of type `CloudBlockBlob` within your code, hello following is an example of Javadoc content that appears when you type `blob.acquireLease` in code:</span></span>
 
 ![][ic553488]
 
-## <a name="see-also"></a><span data-ttu-id="1f37a-123">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="1f37a-123">See Also</span></span>
-<span data-ttu-id="1f37a-124">[Kit de ressources Azure pour Eclipse][Azure Toolkit for Eclipse]</span><span class="sxs-lookup"><span data-stu-id="1f37a-124">[Azure Toolkit for Eclipse][Azure Toolkit for Eclipse]</span></span>
+## <a name="see-also"></a><span data-ttu-id="54600-123">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="54600-123">See Also</span></span>
+<span data-ttu-id="54600-124">[Kit de ressources Azure pour Eclipse][Azure Toolkit for Eclipse]</span><span class="sxs-lookup"><span data-stu-id="54600-124">[Azure Toolkit for Eclipse][Azure Toolkit for Eclipse]</span></span>
 
-<span data-ttu-id="1f37a-125">[Création d’une application Hello World pour Azure dans Eclipse][Creating a Hello World Application for Azure in Eclipse]</span><span class="sxs-lookup"><span data-stu-id="1f37a-125">[Creating a Hello World Application for Azure in Eclipse][Creating a Hello World Application for Azure in Eclipse]</span></span>
+<span data-ttu-id="54600-125">[Création d’une application Hello World pour Azure dans Eclipse][Creating a Hello World Application for Azure in Eclipse]</span><span class="sxs-lookup"><span data-stu-id="54600-125">[Creating a Hello World Application for Azure in Eclipse][Creating a Hello World Application for Azure in Eclipse]</span></span>
 
-<span data-ttu-id="1f37a-126">[Installation du kit de ressources Azure pour Eclipse][Installing the Azure Toolkit for Eclipse]</span><span class="sxs-lookup"><span data-stu-id="1f37a-126">[Installing the Azure Toolkit for Eclipse][Installing the Azure Toolkit for Eclipse]</span></span> 
+<span data-ttu-id="54600-126">[Lors de l’installation hello boîte à outils Azure pour Eclipse][Installing hello Azure Toolkit for Eclipse]</span><span class="sxs-lookup"><span data-stu-id="54600-126">[Installing hello Azure Toolkit for Eclipse][Installing hello Azure Toolkit for Eclipse]</span></span> 
 
-<span data-ttu-id="1f37a-127">Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le [Centre de développement Java pour Azure][Azure Java Developer Center].</span><span class="sxs-lookup"><span data-stu-id="1f37a-127">For more information about using Azure with Java, see the [Azure Java Developer Center][Azure Java Developer Center].</span></span>
+<span data-ttu-id="54600-127">Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez hello [centre de développement Java Azure][Azure Java Developer Center].</span><span class="sxs-lookup"><span data-stu-id="54600-127">For more information about using Azure with Java, see hello [Azure Java Developer Center][Azure Java Developer Center].</span></span>
 
 <!-- URL List -->
 
 [Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 

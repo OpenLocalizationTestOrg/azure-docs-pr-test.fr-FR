@@ -1,6 +1,6 @@
 ---
-title: "Exemple de script Azure CLI - Lier un certificat SSL personnalisé à une application web | Microsoft Docs"
-description: "Exemple de script Azure CLI - Lier un certificat SSL personnalisé à une application web"
+title: "aaaAzure exemple de Script CLI - lier une application du web tooa de certificat SSL personnalisée | Documents Microsoft"
+description: "Exemple de Script CLI Azure - liaison d’une application web des tooa de certificat personnalisée SSL"
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -16,47 +16,47 @@ ms.topic: sample
 ms.date: 06/19/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: d4fab3fb2c297bf5f498b63bee46692febb9180b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2fec2db84a2007fa6b005776c84d4f8cba392b46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="bind-a-custom-ssl-certificate-to-a-web-app"></a><span data-ttu-id="d887a-103">Lier un certificat SSL personnalisé à une application web</span><span class="sxs-lookup"><span data-stu-id="d887a-103">Bind a custom SSL certificate to a web app</span></span>
+# <a name="bind-a-custom-ssl-certificate-tooa-web-app"></a><span data-ttu-id="1234e-103">Lier une application du web tooa de certificat SSL personnalisée</span><span class="sxs-lookup"><span data-stu-id="1234e-103">Bind a custom SSL certificate tooa web app</span></span>
 
-<span data-ttu-id="d887a-104">Cet exemple de script crée une application web dans App Service avec ses ressources associées, puis lie le certificat SSL d’un nom de domaine personnalisé à celle-ci.</span><span class="sxs-lookup"><span data-stu-id="d887a-104">This sample script creates a web app in App Service with its related resources, then binds the SSL certificate of a custom domain name to it.</span></span> <span data-ttu-id="d887a-105">Pour cet exemple, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="d887a-105">For this sample, you will need:</span></span>
+<span data-ttu-id="1234e-104">Cet exemple de script crée une application web dans le Service d’applications avec ses ressources connexes, puis lie le certificat SSL de hello d’un tooit de nom de domaine personnalisé.</span><span class="sxs-lookup"><span data-stu-id="1234e-104">This sample script creates a web app in App Service with its related resources, then binds hello SSL certificate of a custom domain name tooit.</span></span> <span data-ttu-id="1234e-105">Pour cet exemple, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="1234e-105">For this sample, you will need:</span></span>
 
-* <span data-ttu-id="d887a-106">Un accès à la page de configuration DNS du Registre de votre domaine.</span><span class="sxs-lookup"><span data-stu-id="d887a-106">Access to your domain registrar's DNS configuration page.</span></span>
-* <span data-ttu-id="d887a-107">Un fichier .PFX valide et son mot de passe pour le certificat SSL que vous voulez charger et lier.</span><span class="sxs-lookup"><span data-stu-id="d887a-107">A valid .PFX file and its password for the SSL certificate you want to upload and bind.</span></span>
+* <span data-ttu-id="1234e-106">Page de configuration tooyour domaine du bureau d’enregistrement DNS d’accès.</span><span class="sxs-lookup"><span data-stu-id="1234e-106">Access tooyour domain registrar's DNS configuration page.</span></span>
+* <span data-ttu-id="1234e-107">Valide. Le fichier PFX et son mot de passe hello SSL de certificat vous souhaitez tooupload et établir une liaison.</span><span class="sxs-lookup"><span data-stu-id="1234e-107">A valid .PFX file and its password for hello SSL certificate you want tooupload and bind.</span></span>
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="d887a-108">Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0 ou une version ultérieure pour poursuivre la procédure décrite dans cet article.</span><span class="sxs-lookup"><span data-stu-id="d887a-108">If you choose to install and use the CLI locally, this topic requires that you are running the Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="d887a-109">Exécutez `az --version` pour trouver la version.</span><span class="sxs-lookup"><span data-stu-id="d887a-109">Run `az --version` to find the version.</span></span> <span data-ttu-id="d887a-110">Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="d887a-110">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="1234e-108">Si vous choisissez tooinstall et que vous utilisez hello CLI localement, cette rubrique requiert que vous exécutez hello CLI d’Azure version 2.0 ou ultérieure.</span><span class="sxs-lookup"><span data-stu-id="1234e-108">If you choose tooinstall and use hello CLI locally, this topic requires that you are running hello Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="1234e-109">Exécutez `az --version` version de hello toofind.</span><span class="sxs-lookup"><span data-stu-id="1234e-109">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="1234e-110">Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="1234e-110">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
 
-## <a name="sample-script"></a><span data-ttu-id="d887a-111">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="d887a-111">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="1234e-111">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="1234e-111">Sample script</span></span>
 
-<span data-ttu-id="d887a-112">[!code-azurecli-interactive[main](../../../cli_scripts/app-service/configure-ssl-certificate/configure-ssl-certificate.sh?highlight=3-5 "Lier un certificat SSL personnalisé à une application web")]</span><span class="sxs-lookup"><span data-stu-id="d887a-112">[!code-azurecli-interactive[main](../../../cli_scripts/app-service/configure-ssl-certificate/configure-ssl-certificate.sh?highlight=3-5 "Bind a custom SSL certificate to a web app")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/app-service/configure-ssl-certificate/configure-ssl-certificate.sh?highlight=3-5 "Bind a custom SSL certificate tooa web app")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
-## <a name="script-explanation"></a><span data-ttu-id="d887a-113">Explication du script</span><span class="sxs-lookup"><span data-stu-id="d887a-113">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="1234e-112">Explication du script</span><span class="sxs-lookup"><span data-stu-id="1234e-112">Script explanation</span></span>
 
-<span data-ttu-id="d887a-114">Ce script utilise les commandes suivantes.</span><span class="sxs-lookup"><span data-stu-id="d887a-114">This script uses the following commands.</span></span> <span data-ttu-id="d887a-115">Chaque commande du tableau renvoie à une documentation spécifique.</span><span class="sxs-lookup"><span data-stu-id="d887a-115">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="1234e-113">Ce script utilise hello suivant les commandes.</span><span class="sxs-lookup"><span data-stu-id="1234e-113">This script uses hello following commands.</span></span> <span data-ttu-id="1234e-114">Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.</span><span class="sxs-lookup"><span data-stu-id="1234e-114">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="d887a-116">Commande</span><span class="sxs-lookup"><span data-stu-id="d887a-116">Command</span></span> | <span data-ttu-id="d887a-117">Remarques</span><span class="sxs-lookup"><span data-stu-id="d887a-117">Notes</span></span> |
+| <span data-ttu-id="1234e-115">Commande</span><span class="sxs-lookup"><span data-stu-id="1234e-115">Command</span></span> | <span data-ttu-id="1234e-116">Remarques</span><span class="sxs-lookup"><span data-stu-id="1234e-116">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="d887a-118">az group create</span><span class="sxs-lookup"><span data-stu-id="d887a-118">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="d887a-119">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="d887a-119">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="d887a-120">az appservice plan create</span><span class="sxs-lookup"><span data-stu-id="d887a-120">az appservice plan create</span></span>](https://docs.microsoft.com/cli/azure/appservice/plan#create) | <span data-ttu-id="d887a-121">Crée un plan App Service.</span><span class="sxs-lookup"><span data-stu-id="d887a-121">Creates an App Service plan.</span></span> |
-| [<span data-ttu-id="d887a-122">az webapp create</span><span class="sxs-lookup"><span data-stu-id="d887a-122">az webapp create</span></span>](https://docs.microsoft.com/cli/azure/webapp#create) | <span data-ttu-id="d887a-123">Crée une application web Azure.</span><span class="sxs-lookup"><span data-stu-id="d887a-123">Creates an Azure web app.</span></span> |
-| [<span data-ttu-id="d887a-124">az webapp config hostname add</span><span class="sxs-lookup"><span data-stu-id="d887a-124">az webapp config hostname add</span></span>](https://docs.microsoft.com/cli/azure/webapp/config/hostname#add) | <span data-ttu-id="d887a-125">Mappe un domaine personnalisé à une application web.</span><span class="sxs-lookup"><span data-stu-id="d887a-125">Maps a custom domain to a web app.</span></span> |
-| [<span data-ttu-id="d887a-126">az webapp config ssl upload</span><span class="sxs-lookup"><span data-stu-id="d887a-126">az webapp config ssl upload</span></span>](https://docs.microsoft.com/cli/azure/webapp/config/ssl#upload) | <span data-ttu-id="d887a-127">Charge un certificat SSL personnalisé sur une application web.</span><span class="sxs-lookup"><span data-stu-id="d887a-127">Uploads an SSL certificate to a web app.</span></span> |
-| [<span data-ttu-id="d887a-128">az webapp config ssl bind</span><span class="sxs-lookup"><span data-stu-id="d887a-128">az webapp config ssl bind</span></span>](https://docs.microsoft.com/cli/azure/webapp/config/ssl#bind) | <span data-ttu-id="d887a-129">Lie un certificat SSL chargé à une application web.</span><span class="sxs-lookup"><span data-stu-id="d887a-129">Binds an uploaded SSL certificate to a web app.</span></span> |
+| [<span data-ttu-id="1234e-117">az group create</span><span class="sxs-lookup"><span data-stu-id="1234e-117">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="1234e-118">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="1234e-118">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="1234e-119">az appservice plan create</span><span class="sxs-lookup"><span data-stu-id="1234e-119">az appservice plan create</span></span>](https://docs.microsoft.com/cli/azure/appservice/plan#create) | <span data-ttu-id="1234e-120">Crée un plan App Service.</span><span class="sxs-lookup"><span data-stu-id="1234e-120">Creates an App Service plan.</span></span> |
+| [<span data-ttu-id="1234e-121">az webapp create</span><span class="sxs-lookup"><span data-stu-id="1234e-121">az webapp create</span></span>](https://docs.microsoft.com/cli/azure/webapp#create) | <span data-ttu-id="1234e-122">Crée une application web Azure.</span><span class="sxs-lookup"><span data-stu-id="1234e-122">Creates an Azure web app.</span></span> |
+| [<span data-ttu-id="1234e-123">az webapp config hostname add</span><span class="sxs-lookup"><span data-stu-id="1234e-123">az webapp config hostname add</span></span>](https://docs.microsoft.com/cli/azure/webapp/config/hostname#add) | <span data-ttu-id="1234e-124">Mappe une domaine personnalisé tooa l’application web.</span><span class="sxs-lookup"><span data-stu-id="1234e-124">Maps a custom domain tooa web app.</span></span> |
+| [<span data-ttu-id="1234e-125">az webapp config ssl upload</span><span class="sxs-lookup"><span data-stu-id="1234e-125">az webapp config ssl upload</span></span>](https://docs.microsoft.com/cli/azure/webapp/config/ssl#upload) | <span data-ttu-id="1234e-126">Télécharge une certificat SSL tooa l’application web.</span><span class="sxs-lookup"><span data-stu-id="1234e-126">Uploads an SSL certificate tooa web app.</span></span> |
+| [<span data-ttu-id="1234e-127">az webapp config ssl bind</span><span class="sxs-lookup"><span data-stu-id="1234e-127">az webapp config ssl bind</span></span>](https://docs.microsoft.com/cli/azure/webapp/config/ssl#bind) | <span data-ttu-id="1234e-128">Lie une application web des tooa de certificat téléchargée SSL.</span><span class="sxs-lookup"><span data-stu-id="1234e-128">Binds an uploaded SSL certificate tooa web app.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="d887a-130">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="d887a-130">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="1234e-129">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="1234e-129">Next steps</span></span>
 
-<span data-ttu-id="d887a-131">Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="d887a-131">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="1234e-130">Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="1234e-130">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="d887a-132">Vous trouverez des exemples supplémentaires de scripts CLI App Service dans la [documentation relative à Azure App Service](../app-service-cli-samples.md).</span><span class="sxs-lookup"><span data-stu-id="d887a-132">Additional App Service CLI script samples can be found in the [Azure App Service documentation](../app-service-cli-samples.md).</span></span>
+<span data-ttu-id="1234e-131">Vous trouverez des exemples de script CLI de Service d’application supplémentaires Bonjour [documentation d’Azure App Service](../app-service-cli-samples.md).</span><span class="sxs-lookup"><span data-stu-id="1234e-131">Additional App Service CLI script samples can be found in hello [Azure App Service documentation](../app-service-cli-samples.md).</span></span>

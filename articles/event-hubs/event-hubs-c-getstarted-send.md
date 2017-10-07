@@ -1,6 +1,6 @@
 ---
-title: "Envoyer des événements vers Azure Event Hubs avec C | Microsoft Docs"
-description: "Envoyer des événements vers Azure Event Hubs avec C"
+title: "aaaSend événements tooAzure concentrateurs d’événements à l’aide de C | Documents Microsoft"
+description: "Envoyer des événements de concentrateurs d’événements tooAzure à l’aide de C"
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -14,43 +14,43 @@ ms.devlang: csharp
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: a615ee39b6c3731cc7df366e9fabeed5219a71b4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bb53300c070debb4a3658a38df9d3966f08e81ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-events-to-azure-event-hubs-using-c"></a><span data-ttu-id="43a81-103">Envoyer des événements vers Azure Event Hubs avec C</span><span class="sxs-lookup"><span data-stu-id="43a81-103">Send events to Azure Event Hubs using C</span></span>
+# <a name="send-events-tooazure-event-hubs-using-c"></a><span data-ttu-id="b8e15-103">Envoyer des événements de concentrateurs d’événements tooAzure à l’aide de C</span><span class="sxs-lookup"><span data-stu-id="b8e15-103">Send events tooAzure Event Hubs using C</span></span>
 
-## <a name="introduction"></a><span data-ttu-id="43a81-104">Introduction</span><span class="sxs-lookup"><span data-stu-id="43a81-104">Introduction</span></span>
-<span data-ttu-id="43a81-105">Les concentrateurs d’événements représentent un système d’ingestion à l’extensibilité élevée en mesure d’absorber des millions d’événements par seconde, ce qui permet à une application de traiter et d’analyser les quantités énormes de données produites par vos périphériques connectés et vos applications.</span><span class="sxs-lookup"><span data-stu-id="43a81-105">Event Hubs is a highly scalable ingestion system that can ingest millions of events per second, enabling an application to process and analyze the massive amounts of data produced by your connected devices and applications.</span></span> <span data-ttu-id="43a81-106">Une fois collectées dans un concentrateur d’événements, les données peuvent être transformées et stockées à l’aide de n’importe quel fournisseur d’analyses en temps réel ou d’un cluster de stockage.</span><span class="sxs-lookup"><span data-stu-id="43a81-106">Once collected into an event hub, you can transform and store data using any real-time analytics provider or storage cluster.</span></span>
+## <a name="introduction"></a><span data-ttu-id="b8e15-104">Introduction</span><span class="sxs-lookup"><span data-stu-id="b8e15-104">Introduction</span></span>
+<span data-ttu-id="b8e15-105">Concentrateurs d’événements est un système de réception hautement évolutives pouvant millions d’événements par seconde, l’activation d’un tooprocess de l’application de réception et analyser hello des quantités massives de données généré par vos périphériques connectés et les applications.</span><span class="sxs-lookup"><span data-stu-id="b8e15-105">Event Hubs is a highly scalable ingestion system that can ingest millions of events per second, enabling an application tooprocess and analyze hello massive amounts of data produced by your connected devices and applications.</span></span> <span data-ttu-id="b8e15-106">Une fois collectées dans un concentrateur d’événements, les données peuvent être transformées et stockées à l’aide de n’importe quel fournisseur d’analyses en temps réel ou d’un cluster de stockage.</span><span class="sxs-lookup"><span data-stu-id="b8e15-106">Once collected into an event hub, you can transform and store data using any real-time analytics provider or storage cluster.</span></span>
 
-<span data-ttu-id="43a81-107">Pour plus d’informations, consultez la [Vue d’ensemble des concentrateurs d’événements][Vue d’ensemble des concentrateurs d’événements].</span><span class="sxs-lookup"><span data-stu-id="43a81-107">For more information, please see the [Event Hubs overview][Event Hubs overview].</span></span>
+<span data-ttu-id="b8e15-107">Pour plus d’informations, consultez hello [vue d’ensemble des concentrateurs d’événements] [vue d’ensemble des concentrateurs d’événements].</span><span class="sxs-lookup"><span data-stu-id="b8e15-107">For more information, please see hello [Event Hubs overview][Event Hubs overview].</span></span>
 
-<span data-ttu-id="43a81-108">Dans ce didacticiel, vous allez apprendre à envoyer des événements à un Event Hub à l’aide d’une application console en C. Pour recevoir des événements, cliquez sur le langage de réception approprié dans la table des matières de gauche.</span><span class="sxs-lookup"><span data-stu-id="43a81-108">In this tutorial, you will learn how to send events to an event hub using a console application in C. To receive events, click the appropriate receiving language in the left-hand table of contents.</span></span>
+<span data-ttu-id="b8e15-108">Dans ce didacticiel, vous allez apprendre comment concentrateur d’événements toosend événements tooan à l’aide d’une application console dans tooreceive c. les événements, cliquez sur hello réception langue dans la table de gauche hello du contenu.</span><span class="sxs-lookup"><span data-stu-id="b8e15-108">In this tutorial, you will learn how toosend events tooan event hub using a console application in C. tooreceive events, click hello appropriate receiving language in hello left-hand table of contents.</span></span>
 
-<span data-ttu-id="43a81-109">Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="43a81-109">To complete this tutorial, you will need the following:</span></span>
+<span data-ttu-id="b8e15-109">toocomplete ce didacticiel, vous devez hello suivant :</span><span class="sxs-lookup"><span data-stu-id="b8e15-109">toocomplete this tutorial, you will need hello following:</span></span>
 
-* <span data-ttu-id="43a81-110">Un environnement de développement en C.</span><span class="sxs-lookup"><span data-stu-id="43a81-110">A C development environment.</span></span> <span data-ttu-id="43a81-111">Pour ce didacticiel, nous partirons du principe que la pile GCC est sur une machine virtuelle Linux Azure dotée du système d’exploitation Ubuntu 14.04.</span><span class="sxs-lookup"><span data-stu-id="43a81-111">For this tutorial, we will assume the gcc stack on an Azure Linux VM with Ubuntu 14.04.</span></span>
-* <span data-ttu-id="43a81-112">[Microsoft Visual Studio](https://www.visualstudio.com/).</span><span class="sxs-lookup"><span data-stu-id="43a81-112">[Microsoft Visual Studio](https://www.visualstudio.com/).</span></span>
-* <span data-ttu-id="43a81-113">Un compte Azure actif.</span><span class="sxs-lookup"><span data-stu-id="43a81-113">An active Azure account.</span></span> <span data-ttu-id="43a81-114">Si vous ne possédez pas de compte, vous pouvez créer un compte d'évaluation gratuit en quelques minutes.</span><span class="sxs-lookup"><span data-stu-id="43a81-114">If you don't have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="43a81-115">Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="43a81-115">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+* <span data-ttu-id="b8e15-110">Un environnement de développement en C.</span><span class="sxs-lookup"><span data-stu-id="b8e15-110">A C development environment.</span></span> <span data-ttu-id="b8e15-111">Pour ce didacticiel, nous allons supposer la pile de gcc hello sur une machine virtuelle Linux de Azure avec Ubuntu 14.04.</span><span class="sxs-lookup"><span data-stu-id="b8e15-111">For this tutorial, we will assume hello gcc stack on an Azure Linux VM with Ubuntu 14.04.</span></span>
+* <span data-ttu-id="b8e15-112">[Microsoft Visual Studio](https://www.visualstudio.com/).</span><span class="sxs-lookup"><span data-stu-id="b8e15-112">[Microsoft Visual Studio](https://www.visualstudio.com/).</span></span>
+* <span data-ttu-id="b8e15-113">Un compte Azure actif.</span><span class="sxs-lookup"><span data-stu-id="b8e15-113">An active Azure account.</span></span> <span data-ttu-id="b8e15-114">Si vous ne possédez pas de compte, vous pouvez créer un compte d'évaluation gratuit en quelques minutes.</span><span class="sxs-lookup"><span data-stu-id="b8e15-114">If you don't have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="b8e15-115">Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="b8e15-115">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="send-messages-to-event-hubs"></a><span data-ttu-id="43a81-116">Envoi de messages vers Event Hubs</span><span class="sxs-lookup"><span data-stu-id="43a81-116">Send messages to Event Hubs</span></span>
-<span data-ttu-id="43a81-117">Dans cette section, nous allons écrire une application en C pour envoyer des événements à votre concentrateur d’événements.</span><span class="sxs-lookup"><span data-stu-id="43a81-117">In this section we write a C app to send events to your event hub.</span></span> <span data-ttu-id="43a81-118">Le code utilise la bibliothèque Proton AMQP du [projet Apache Qpid](http://qpid.apache.org/).</span><span class="sxs-lookup"><span data-stu-id="43a81-118">The code uses the Proton AMQP library from the [Apache Qpid project](http://qpid.apache.org/).</span></span> <span data-ttu-id="43a81-119">Cette approche est similaire à l’utilisation des rubriques et des files d’attente Service Bus avec AMQP en partant du langage C comme indiqué [ici](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504).</span><span class="sxs-lookup"><span data-stu-id="43a81-119">This is analogous to using Service Bus queues and topics with AMQP from C as shown [here](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504).</span></span> <span data-ttu-id="43a81-120">Pour plus d’informations, consultez la [documentation Qpid Proton](http://qpid.apache.org/proton/index.html).</span><span class="sxs-lookup"><span data-stu-id="43a81-120">For more information, see [Qpid Proton documentation](http://qpid.apache.org/proton/index.html).</span></span>
+## <a name="send-messages-tooevent-hubs"></a><span data-ttu-id="b8e15-116">Envoyer des messages tooEvent concentrateurs</span><span class="sxs-lookup"><span data-stu-id="b8e15-116">Send messages tooEvent Hubs</span></span>
+<span data-ttu-id="b8e15-117">Dans cette section, nous écrivons un concentrateur d’événements C application toosend événements tooyour.</span><span class="sxs-lookup"><span data-stu-id="b8e15-117">In this section we write a C app toosend events tooyour event hub.</span></span> <span data-ttu-id="b8e15-118">Hello de code utilise la bibliothèque de Proton AMQP hello de hello [projet Apache Qpid](http://qpid.apache.org/).</span><span class="sxs-lookup"><span data-stu-id="b8e15-118">hello code uses hello Proton AMQP library from hello [Apache Qpid project](http://qpid.apache.org/).</span></span> <span data-ttu-id="b8e15-119">Il s’agit files d’attente de Service Bus toousing analogue et rubriques avec AMQP c comme [ici](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504).</span><span class="sxs-lookup"><span data-stu-id="b8e15-119">This is analogous toousing Service Bus queues and topics with AMQP from C as shown [here](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504).</span></span> <span data-ttu-id="b8e15-120">Pour plus d’informations, consultez la [documentation Qpid Proton](http://qpid.apache.org/proton/index.html).</span><span class="sxs-lookup"><span data-stu-id="b8e15-120">For more information, see [Qpid Proton documentation](http://qpid.apache.org/proton/index.html).</span></span>
 
-1. <span data-ttu-id="43a81-121">Dans la [page Qpid AMQP Messenger](https://qpid.apache.org/proton/messenger.html), suivez les instructions d’installation de Qpid Proton correspondant à votre environnement.</span><span class="sxs-lookup"><span data-stu-id="43a81-121">From the [Qpid AMQP Messenger page](https://qpid.apache.org/proton/messenger.html), follow the instructions to install Qpid Proton, depending on your environment.</span></span>
-2. <span data-ttu-id="43a81-122">Pour compiler la bibliothèque Proton, installez les packages suivants :</span><span class="sxs-lookup"><span data-stu-id="43a81-122">To compile the Proton library, install the following packages:</span></span>
+1. <span data-ttu-id="b8e15-121">À partir de hello [page Qpid AMQP Messenger](https://qpid.apache.org/proton/messenger.html), suivez hello instructions tooinstall Qpid Proton, selon votre environnement.</span><span class="sxs-lookup"><span data-stu-id="b8e15-121">From hello [Qpid AMQP Messenger page](https://qpid.apache.org/proton/messenger.html), follow hello instructions tooinstall Qpid Proton, depending on your environment.</span></span>
+2. <span data-ttu-id="b8e15-122">toocompile hello bibliothèque Proton, installez hello suivant des packages :</span><span class="sxs-lookup"><span data-stu-id="b8e15-122">toocompile hello Proton library, install hello following packages:</span></span>
    
     ```shell
     sudo apt-get install build-essential cmake uuid-dev openssl libssl-dev
     ```
-3. <span data-ttu-id="43a81-123">Téléchargez la [bibliothèque Qpid Proton](http://qpid.apache.org/proton/index.html) et effectuez son extraction, par exemple :</span><span class="sxs-lookup"><span data-stu-id="43a81-123">Download the [Qpid Proton library](http://qpid.apache.org/proton/index.html), and extract it, e.g.:</span></span>
+3. <span data-ttu-id="b8e15-123">Télécharger hello [bibliothèque Qpid Proton](http://qpid.apache.org/proton/index.html)et l’extraire, par exemple :</span><span class="sxs-lookup"><span data-stu-id="b8e15-123">Download hello [Qpid Proton library](http://qpid.apache.org/proton/index.html), and extract it, e.g.:</span></span>
    
     ```shell
     wget http://archive.apache.org/dist/qpid/proton/0.7/qpid-proton-0.7.tar.gz
     tar xvfz qpid-proton-0.7.tar.gz
     ```
-4. <span data-ttu-id="43a81-124">Créez un répertoire de build, compilez-le et installez-le :</span><span class="sxs-lookup"><span data-stu-id="43a81-124">Create a build directory, compile and install:</span></span>
+4. <span data-ttu-id="b8e15-124">Créez un répertoire de build, compilez-le et installez-le :</span><span class="sxs-lookup"><span data-stu-id="b8e15-124">Create a build directory, compile and install:</span></span>
    
     ```shell
     cd qpid-proton-0.7
@@ -59,7 +59,7 @@ ms.lasthandoff: 08/18/2017
     cmake -DCMAKE_INSTALL_PREFIX=/usr ..
     sudo make install
     ```
-5. <span data-ttu-id="43a81-125">Dans le répertoire de travail, créez un fichier nommé **sender.c** avec le code suivant.</span><span class="sxs-lookup"><span data-stu-id="43a81-125">In your work directory, create a new file called **sender.c** with the following code.</span></span> <span data-ttu-id="43a81-126">N’oubliez pas de remplacer la valeur du nom de votre concentrateur d’événements et du nom de votre espace de noms.</span><span class="sxs-lookup"><span data-stu-id="43a81-126">Remember to substitute the value for your event hub name and namespace name.</span></span> <span data-ttu-id="43a81-127">Vous devez également remplacer une version codée URL de la clé pour le **SendRule** précédemment créé.</span><span class="sxs-lookup"><span data-stu-id="43a81-127">You must also substitute a URL-encoded version of the key for the **SendRule** created earlier.</span></span> <span data-ttu-id="43a81-128">Vous pouvez la coder par URL [ici](http://www.w3schools.com/tags/ref_urlencode.asp).</span><span class="sxs-lookup"><span data-stu-id="43a81-128">You can URL-encode it [here](http://www.w3schools.com/tags/ref_urlencode.asp).</span></span>
+5. <span data-ttu-id="b8e15-125">Dans votre répertoire de travail, créez un nouveau fichier appelé **sender.c** avec hello suivant de code.</span><span class="sxs-lookup"><span data-stu-id="b8e15-125">In your work directory, create a new file called **sender.c** with hello following code.</span></span> <span data-ttu-id="b8e15-126">N’oubliez pas de valeur de hello toosubstitute pour votre nom de hub d’événements et le nom de l’espace de noms.</span><span class="sxs-lookup"><span data-stu-id="b8e15-126">Remember toosubstitute hello value for your event hub name and namespace name.</span></span> <span data-ttu-id="b8e15-127">Vous devez également remplacer une version codée URL de clé hello hello **SendRule** créé précédemment.</span><span class="sxs-lookup"><span data-stu-id="b8e15-127">You must also substitute a URL-encoded version of hello key for hello **SendRule** created earlier.</span></span> <span data-ttu-id="b8e15-128">Vous pouvez la coder par URL [ici](http://www.w3schools.com/tags/ref_urlencode.asp).</span><span class="sxs-lookup"><span data-stu-id="b8e15-128">You can URL-encode it [here](http://www.w3schools.com/tags/ref_urlencode.asp).</span></span>
    
     ```c
     #include "proton/message.h"
@@ -121,7 +121,7 @@ ms.lasthandoff: 08/18/2017
     }
    
     int main(int argc, char** argv) {
-        printf("Press Ctrl-C to stop the sender process\n");
+        printf("Press Ctrl-C toostop hello sender process\n");
    
         pn_messenger_t *messenger = pn_messenger(NULL);
         pn_messenger_set_outgoing_window(messenger, 1);
@@ -140,23 +140,23 @@ ms.lasthandoff: 08/18/2017
         return 0;
     }
     ```
-6. <span data-ttu-id="43a81-129">Compilez le fichier (en supposant que **gcc**est défini) :</span><span class="sxs-lookup"><span data-stu-id="43a81-129">Compile the file, assuming **gcc**:</span></span>
+6. <span data-ttu-id="b8e15-129">Compilez le fichier de hello, en supposant que **gcc**:</span><span class="sxs-lookup"><span data-stu-id="b8e15-129">Compile hello file, assuming **gcc**:</span></span>
    
     ```
     gcc sender.c -o sender -lqpid-proton
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="43a81-130">Dans ce code, nous utilisons une fenêtre sortante de 1 pour forcer l’envoi des messages dès que possible.</span><span class="sxs-lookup"><span data-stu-id="43a81-130">In this code, we use an outgoing window of 1 to force the messages out as soon as possible.</span></span> <span data-ttu-id="43a81-131">En général, votre application doit essayer d’envoyer les messages par lot pour augmenter le débit.</span><span class="sxs-lookup"><span data-stu-id="43a81-131">In general, your application should try to batch messages to increase throughput.</span></span> <span data-ttu-id="43a81-132">Consultez la [page Qpid AMQP Messenger](https://qpid.apache.org/proton/messenger.html) pour plus d’informations sur l’utilisation de la bibliothèque Qpid Proton dans l’ensemble des environnements et à partir des plateformes pour lesquelles des liaisons sont fournies (actuellement Perl, PHP, Python et Ruby).</span><span class="sxs-lookup"><span data-stu-id="43a81-132">See the [Qpid AMQP Messenger page](https://qpid.apache.org/proton/messenger.html) for information about how to use the Qpid Proton library in this and other environments, and from platforms for which bindings are provided (currently Perl, PHP, Python, and Ruby).</span></span>
+    > <span data-ttu-id="b8e15-130">Dans ce code, nous utilisons une fenêtre sortante 1 tooforce de message d’appel sortant dès que possible.</span><span class="sxs-lookup"><span data-stu-id="b8e15-130">In this code, we use an outgoing window of 1 tooforce hello messages out as soon as possible.</span></span> <span data-ttu-id="b8e15-131">En général, votre application doit essayer de débit de tooincrease toobatch messages.</span><span class="sxs-lookup"><span data-stu-id="b8e15-131">In general, your application should try toobatch messages tooincrease throughput.</span></span> <span data-ttu-id="b8e15-132">Consultez hello [page Qpid AMQP Messenger](https://qpid.apache.org/proton/messenger.html) pour plus d’informations sur la façon dont toouse hello bibliothèque Qpid Proton dans cette section et autres environnements et de plateformes dont les liaisons sont fournis (actuellement Perl, PHP, Python et Ruby).</span><span class="sxs-lookup"><span data-stu-id="b8e15-132">See hello [Qpid AMQP Messenger page](https://qpid.apache.org/proton/messenger.html) for information about how toouse hello Qpid Proton library in this and other environments, and from platforms for which bindings are provided (currently Perl, PHP, Python, and Ruby).</span></span>
 
 
-## <a name="next-steps"></a><span data-ttu-id="43a81-133">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="43a81-133">Next steps</span></span>
-<span data-ttu-id="43a81-134">Vous pouvez en apprendre plus sur Event Hubs en consultant les liens suivants :</span><span class="sxs-lookup"><span data-stu-id="43a81-134">You can learn more about Event Hubs by visiting the following links:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b8e15-133">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="b8e15-133">Next steps</span></span>
+<span data-ttu-id="b8e15-134">Vous pouvez plus d’informations sur les concentrateurs d’événements en visitant hello suivant liens :</span><span class="sxs-lookup"><span data-stu-id="b8e15-134">You can learn more about Event Hubs by visiting hello following links:</span></span>
 
-* [<span data-ttu-id="43a81-135">Vue d’ensemble des hubs d’événements</span><span class="sxs-lookup"><span data-stu-id="43a81-135">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md
+* [<span data-ttu-id="b8e15-135">Vue d’ensemble des hubs d’événements</span><span class="sxs-lookup"><span data-stu-id="b8e15-135">Event Hubs overview</span></span>](event-hubs-what-is-event-hubs.md
 )
-* [<span data-ttu-id="43a81-136">Créer un concentrateur d’événements</span><span class="sxs-lookup"><span data-stu-id="43a81-136">Create an event hub</span></span>](event-hubs-create.md)
-* [<span data-ttu-id="43a81-137">FAQ sur les hubs d'événements</span><span class="sxs-lookup"><span data-stu-id="43a81-137">Event Hubs FAQ</span></span>](event-hubs-faq.md)
+* [<span data-ttu-id="b8e15-136">Créer un concentrateur d’événements</span><span class="sxs-lookup"><span data-stu-id="b8e15-136">Create an event hub</span></span>](event-hubs-create.md)
+* [<span data-ttu-id="b8e15-137">FAQ sur les hubs d'événements</span><span class="sxs-lookup"><span data-stu-id="b8e15-137">Event Hubs FAQ</span></span>](event-hubs-faq.md)
 
 <!-- Images. -->
 [21]: ./media/event-hubs-c-ephcs-getstarted/run-csharp-ephcs1.png

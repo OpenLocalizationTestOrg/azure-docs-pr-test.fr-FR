@@ -1,5 +1,5 @@
 ---
-title: "Tarification d’Azure Cloud Shell (version préliminaire) | Microsoft Docs"
+title: "aaaAzure Cloud Shell tarification (version préliminaire) | Documents Microsoft"
 description: "Vue d’ensemble de la tarification d’Azure Cloud Shell"
 services: 
 documentationcenter: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: juluk
-ms.openlocfilehash: aacb7173392b1903b39b82fabb152d076b142ce9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ca88b43de5fe416e9d0f2f5e4095c6d0318186e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="pricing"></a><span data-ttu-id="b2de4-103">Tarification</span><span class="sxs-lookup"><span data-stu-id="b2de4-103">Pricing</span></span>
+# <a name="pricing"></a><span data-ttu-id="41f4f-103">Tarification</span><span class="sxs-lookup"><span data-stu-id="41f4f-103">Pricing</span></span>
 
-## <a name="compute-cost"></a><span data-ttu-id="b2de4-104">Coût de calcul</span><span class="sxs-lookup"><span data-stu-id="b2de4-104">Compute Cost</span></span>
-<span data-ttu-id="b2de4-105">Azure Cloud Shell s’exécute sur une machine fournie gratuitement, mais requiert un partage de fichiers Azure attaché à utiliser.</span><span class="sxs-lookup"><span data-stu-id="b2de4-105">Azure Cloud Shell runs on a machine provided for free, but requires an attached Azure file share to use.</span></span> 
+## <a name="compute-cost"></a><span data-ttu-id="41f4f-104">Coût de calcul</span><span class="sxs-lookup"><span data-stu-id="41f4f-104">Compute Cost</span></span>
+<span data-ttu-id="41f4f-105">Interpréteur de commandes Azure Cloud s’exécute sur un ordinateur fourni gratuitement, mais nécessite une toouse de partage de fichier d’Azure attaché.</span><span class="sxs-lookup"><span data-stu-id="41f4f-105">Azure Cloud Shell runs on a machine provided for free, but requires an attached Azure file share toouse.</span></span> 
 
-## <a name="storage-cost"></a><span data-ttu-id="b2de4-106">Coût de stockage</span><span class="sxs-lookup"><span data-stu-id="b2de4-106">Storage Cost</span></span>
-<span data-ttu-id="b2de4-107">Cloud Shell crée une image de 5 Go par défaut dans votre partage de fichiers pour conserver votre répertoire $HOME.</span><span class="sxs-lookup"><span data-stu-id="b2de4-107">Cloud Shell creates a default 5GB image in your file share to persist your $HOME directory.</span></span> <span data-ttu-id="b2de4-108">Les partages de fichiers Azure font l’objet de frais standard.</span><span class="sxs-lookup"><span data-stu-id="b2de4-108">Azure file shares incur regular costs.</span></span>
+## <a name="storage-cost"></a><span data-ttu-id="41f4f-106">Coût de stockage</span><span class="sxs-lookup"><span data-stu-id="41f4f-106">Storage Cost</span></span>
+<span data-ttu-id="41f4f-107">Interpréteur de commandes de cloud crée une image de 5 Go par défaut votre répertoire $HOME votre toopersist de partage de fichier.</span><span class="sxs-lookup"><span data-stu-id="41f4f-107">Cloud Shell creates a default 5GB image in your file share toopersist your $HOME directory.</span></span> <span data-ttu-id="41f4f-108">Les partages de fichiers Azure font l’objet de frais standard.</span><span class="sxs-lookup"><span data-stu-id="41f4f-108">Azure file shares incur regular costs.</span></span>
 
-<span data-ttu-id="b2de4-109">Cliquez [ici pour plus d’informations sur les coûts d’Azure](https://azure.microsoft.com/pricing/details/storage/files/).</span><span class="sxs-lookup"><span data-stu-id="b2de4-109">Check [here for details on Azure Files costs](https://azure.microsoft.com/pricing/details/storage/files/).</span></span> 
+<span data-ttu-id="41f4f-109">Cliquez [ici pour plus d’informations sur les coûts d’Azure](https://azure.microsoft.com/pricing/details/storage/files/).</span><span class="sxs-lookup"><span data-stu-id="41f4f-109">Check [here for details on Azure Files costs](https://azure.microsoft.com/pricing/details/storage/files/).</span></span> 

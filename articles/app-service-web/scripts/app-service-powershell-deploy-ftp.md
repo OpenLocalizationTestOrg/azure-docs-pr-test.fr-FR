@@ -1,6 +1,6 @@
 ---
-title: "Exemple de script Azure PowerShell - Télécharger des fichiers vers une application web via FTP | Microsoft Docs"
-description: "Exemple de script Azure PowerShell - Télécharger des fichiers vers une application web via FTP"
+title: "aaaAzure téléchargement fichiers tooa web app à l’aide de FTP - exemple de Script PowerShell | Documents Microsoft"
+description: "Exemple de PowerShell Script Azure - téléchargement fichiers tooa web app à l’aide de FTP"
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -15,43 +15,43 @@ ms.topic: sample
 ms.date: 03/20/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 96b99110b63b037746fcc40eb15db5d718eb71a1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 32a0a529e94c1315cc6730faf23fca2693c50ffb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-files-to-a-web-app-using-ftp"></a><span data-ttu-id="0083b-103">Télécharger des fichiers vers une application web via FTP</span><span class="sxs-lookup"><span data-stu-id="0083b-103">Upload files to a web app using FTP</span></span>
+# <a name="upload-files-tooa-web-app-using-ftp"></a><span data-ttu-id="1c0e0-103">Télécharger les fichiers tooa web app à l’aide de FTP</span><span class="sxs-lookup"><span data-stu-id="1c0e0-103">Upload files tooa web app using FTP</span></span>
 
-<span data-ttu-id="0083b-104">Cet exemple de script crée une application web dans App Service avec ses ressources associées, puis déploie votre code d’application web au moyen du site FTP (via [WebClient.UploadFile()](https://msdn.microsoft.com/library/ms144229.aspx)).</span><span class="sxs-lookup"><span data-stu-id="0083b-104">This sample script creates a web app in App Service with its related resources, and then deploys your web app code using FTP (via [WebClient.UploadFile()](https://msdn.microsoft.com/library/ms144229.aspx)).</span></span>
+<span data-ttu-id="1c0e0-104">Cet exemple de script crée une application web dans App Service avec ses ressources associées, puis déploie votre code d’application web au moyen du site FTP (via [WebClient.UploadFile()](https://msdn.microsoft.com/library/ms144229.aspx)).</span><span class="sxs-lookup"><span data-stu-id="1c0e0-104">This sample script creates a web app in App Service with its related resources, and then deploys your web app code using FTP (via [WebClient.UploadFile()](https://msdn.microsoft.com/library/ms144229.aspx)).</span></span>
 
-<span data-ttu-id="0083b-105">Si nécessaire, installez Azure PowerShell à l’aide des instructions figurant dans le [guide Azure PowerShell](/powershell/azure/overview), puis exécutez `Login-AzureRmAccount` pour créer une connexion avec Azure.</span><span class="sxs-lookup"><span data-stu-id="0083b-105">If needed, install the Azure PowerShell using the instruction found in the [Azure PowerShell guide](/powershell/azure/overview), and then run `Login-AzureRmAccount` to create a connection with Azure.</span></span>
+<span data-ttu-id="1c0e0-105">Si nécessaire, installez hello Azure PowerShell en utilisant une instruction de hello trouvé dans hello [guide Azure PowerShell](/powershell/azure/overview), puis exécutez `Login-AzureRmAccount` toocreate une connexion avec Azure.</span><span class="sxs-lookup"><span data-stu-id="1c0e0-105">If needed, install hello Azure PowerShell using hello instruction found in hello [Azure PowerShell guide](/powershell/azure/overview), and then run `Login-AzureRmAccount` toocreate a connection with Azure.</span></span>
 
-## <a name="sample-script"></a><span data-ttu-id="0083b-106">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="0083b-106">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="1c0e0-106">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="1c0e0-106">Sample script</span></span>
 
-<span data-ttu-id="0083b-107">[!code-powershell[principal](../../../powershell_scripts/app-service/deploy-ftp/deploy-ftp.ps1?highlight=1 "Télécharger des fichiers vers une application web via FTP")]</span><span class="sxs-lookup"><span data-stu-id="0083b-107">[!code-powershell[main](../../../powershell_scripts/app-service/deploy-ftp/deploy-ftp.ps1?highlight=1 "Upload files to a web app using FTP")]</span></span>
+[!code-powershell[main](../../../powershell_scripts/app-service/deploy-ftp/deploy-ftp.ps1?highlight=1 "Upload files tooa web app using FTP")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="0083b-108">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="0083b-108">Clean up deployment</span></span> 
+## <a name="clean-up-deployment"></a><span data-ttu-id="1c0e0-107">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="1c0e0-107">Clean up deployment</span></span> 
 
-<span data-ttu-id="0083b-109">Une fois l’exemple de script exécuté, la commande suivante permet de supprimer le groupe de ressources, l’application web et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="0083b-109">After the script sample has been run, the following command can be used to remove the resource group, web app, and all related resources.</span></span>
+<span data-ttu-id="1c0e0-108">Après exécution de l’exemple de script hello, hello commande suivante peut être groupe de ressources hello tooremove utilisé, l’application web et toutes les ressources.</span><span class="sxs-lookup"><span data-stu-id="1c0e0-108">After hello script sample has been run, hello following command can be used tooremove hello resource group, web app, and all related resources.</span></span>
 
 ```powershell
 Remove-AzureRmResourceGroup -Name $webappname -Force
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="0083b-110">Explication du script</span><span class="sxs-lookup"><span data-stu-id="0083b-110">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="1c0e0-109">Explication du script</span><span class="sxs-lookup"><span data-stu-id="1c0e0-109">Script explanation</span></span>
 
-<span data-ttu-id="0083b-111">Ce script utilise les commandes suivantes.</span><span class="sxs-lookup"><span data-stu-id="0083b-111">This script uses the following commands.</span></span> <span data-ttu-id="0083b-112">Chaque commande du tableau renvoie à une documentation spécifique.</span><span class="sxs-lookup"><span data-stu-id="0083b-112">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="1c0e0-110">Ce script utilise hello suivant les commandes.</span><span class="sxs-lookup"><span data-stu-id="1c0e0-110">This script uses hello following commands.</span></span> <span data-ttu-id="1c0e0-111">Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.</span><span class="sxs-lookup"><span data-stu-id="1c0e0-111">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="0083b-113">Commande</span><span class="sxs-lookup"><span data-stu-id="0083b-113">Command</span></span> | <span data-ttu-id="0083b-114">Remarques</span><span class="sxs-lookup"><span data-stu-id="0083b-114">Notes</span></span> |
+| <span data-ttu-id="1c0e0-112">Commande</span><span class="sxs-lookup"><span data-stu-id="1c0e0-112">Command</span></span> | <span data-ttu-id="1c0e0-113">Remarques</span><span class="sxs-lookup"><span data-stu-id="1c0e0-113">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="0083b-115">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="0083b-115">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="0083b-116">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="0083b-116">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="0083b-117">New-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="0083b-117">New-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/new-azurermappserviceplan) | <span data-ttu-id="0083b-118">Crée un plan App Service.</span><span class="sxs-lookup"><span data-stu-id="0083b-118">Creates an App Service plan.</span></span> |
-| [<span data-ttu-id="0083b-119">New-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="0083b-119">New-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/new-azurermwebapp) | <span data-ttu-id="0083b-120">Crée une application web.</span><span class="sxs-lookup"><span data-stu-id="0083b-120">Creates a web app.</span></span> |
-| [<span data-ttu-id="0083b-121">Get-AzureRmWebAppPublishingProfile</span><span class="sxs-lookup"><span data-stu-id="0083b-121">Get-AzureRmWebAppPublishingProfile</span></span>](/powershell/module/azurerm.websites/get-azurermwebapppublishingprofile) | <span data-ttu-id="0083b-122">Obtient un profil de publication d’application web.</span><span class="sxs-lookup"><span data-stu-id="0083b-122">Get a web app's publishing profile.</span></span> |
+| [<span data-ttu-id="1c0e0-114">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="1c0e0-114">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="1c0e0-115">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="1c0e0-115">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="1c0e0-116">New-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="1c0e0-116">New-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/new-azurermappserviceplan) | <span data-ttu-id="1c0e0-117">Crée un plan App Service.</span><span class="sxs-lookup"><span data-stu-id="1c0e0-117">Creates an App Service plan.</span></span> |
+| [<span data-ttu-id="1c0e0-118">New-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="1c0e0-118">New-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/new-azurermwebapp) | <span data-ttu-id="1c0e0-119">Crée une application web.</span><span class="sxs-lookup"><span data-stu-id="1c0e0-119">Creates a web app.</span></span> |
+| [<span data-ttu-id="1c0e0-120">Get-AzureRmWebAppPublishingProfile</span><span class="sxs-lookup"><span data-stu-id="1c0e0-120">Get-AzureRmWebAppPublishingProfile</span></span>](/powershell/module/azurerm.websites/get-azurermwebapppublishingprofile) | <span data-ttu-id="1c0e0-121">Obtient un profil de publication d’application web.</span><span class="sxs-lookup"><span data-stu-id="1c0e0-121">Get a web app's publishing profile.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="0083b-123">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="0083b-123">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="1c0e0-122">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="1c0e0-122">Next steps</span></span>
 
-<span data-ttu-id="0083b-124">Pour plus d’informations sur le module Azure PowerShell, consultez la [Documentation Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="0083b-124">For more information on the Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
+<span data-ttu-id="1c0e0-123">Pour plus d’informations sur le module Azure PowerShell de hello, consultez [documentation Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="1c0e0-123">For more information on hello Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
 
-<span data-ttu-id="0083b-125">Vous trouverez des exemples supplémentaires de scripts Azure PowerShell pour Azure App Service Web Apps sur la page [Azure PowerShell Samples](../app-service-powershell-samples.md) (Exemples Azure PowerShell).</span><span class="sxs-lookup"><span data-stu-id="0083b-125">Additional Azure Powershell samples for Azure App Service Web Apps can be found in the [Azure PowerShell samples](../app-service-powershell-samples.md).</span></span>
+<span data-ttu-id="1c0e0-124">Vous trouverez des exemples supplémentaires de Azure Powershell pour Azure App Service Web Apps Bonjour [exemples Azure PowerShell](../app-service-powershell-samples.md).</span><span class="sxs-lookup"><span data-stu-id="1c0e0-124">Additional Azure Powershell samples for Azure App Service Web Apps can be found in hello [Azure PowerShell samples](../app-service-powershell-samples.md).</span></span>

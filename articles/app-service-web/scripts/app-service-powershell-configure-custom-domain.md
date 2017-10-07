@@ -1,6 +1,6 @@
 ---
-title: "Exemple de script Azure PowerShell - Affecter un domaine personnalisé à une application web | Microsoft Docs"
-description: "Exemple de script Azure PowerShell - Affecter un domaine personnalisé à une application web"
+title: "aaaAzure exemple de Script PowerShell - affecter une application web de tooa domaine personnalisé | Documents Microsoft"
+description: "Exemple de PowerShell Script Azure - affecter une application web de tooa domaine personnalisé"
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -15,44 +15,44 @@ ms.topic: sample
 ms.date: 03/20/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 6d25fe8098848fc69470c77e3200bee554c1f875
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 10224e800588019626ef25cbba4a926096779920
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-a-custom-domain-to-a-web-app"></a><span data-ttu-id="aa4d8-103">Affecter un domaine personnalisé à une application web</span><span class="sxs-lookup"><span data-stu-id="aa4d8-103">Assign a custom domain to a web app</span></span>
+# <a name="assign-a-custom-domain-tooa-web-app"></a><span data-ttu-id="e3bab-103">Affecter une application web de tooa domaine personnalisé</span><span class="sxs-lookup"><span data-stu-id="e3bab-103">Assign a custom domain tooa web app</span></span>
 
-<span data-ttu-id="aa4d8-104">Cet exemple de script crée une application web dans App Service avec ses ressources associées, puis la mappe à `www.<yourdomain>`.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-104">This sample script creates a web app in App Service with its related resources, and then maps `www.<yourdomain>` to it.</span></span> 
+<span data-ttu-id="e3bab-104">Cet exemple de script crée une application web dans le Service d’applications avec ses ressources connexes et mappe ensuite `www.<yourdomain>` tooit.</span><span class="sxs-lookup"><span data-stu-id="e3bab-104">This sample script creates a web app in App Service with its related resources, and then maps `www.<yourdomain>` tooit.</span></span> 
 
-<span data-ttu-id="aa4d8-105">Si nécessaire, installez Azure PowerShell à l’aide des instructions figurant dans le [Guide Azure PowerShell](/powershell/azure/overview), puis exécutez `Login-AzureRmAccount` pour créer une connexion avec Azure.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-105">If needed, install the Azure PowerShell using the instruction found in the [Azure PowerShell guide](/powershell/azure/overview), and then run `Login-AzureRmAccount` to create a connection with Azure.</span></span> <span data-ttu-id="aa4d8-106">Vous devez également avoir accès à la page de configuration DNS du bureau d’enregistrement de votre domaine.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-106">Also, you need to have access to your domain registrar's DNS configuration page.</span></span>
+<span data-ttu-id="e3bab-105">Si nécessaire, installez hello Azure PowerShell en utilisant une instruction de hello trouvé dans hello [guide Azure PowerShell](/powershell/azure/overview), puis exécutez `Login-AzureRmAccount` toocreate une connexion avec Azure.</span><span class="sxs-lookup"><span data-stu-id="e3bab-105">If needed, install hello Azure PowerShell using hello instruction found in hello [Azure PowerShell guide](/powershell/azure/overview), and then run `Login-AzureRmAccount` toocreate a connection with Azure.</span></span> <span data-ttu-id="e3bab-106">En outre, vous devez page de configuration toohave accès tooyour domaine du bureau d’enregistrement DNS.</span><span class="sxs-lookup"><span data-stu-id="e3bab-106">Also, you need toohave access tooyour domain registrar's DNS configuration page.</span></span>
 
-## <a name="sample-script"></a><span data-ttu-id="aa4d8-107">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="aa4d8-107">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="e3bab-107">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="e3bab-107">Sample script</span></span>
 
-<span data-ttu-id="aa4d8-108">[!code-powershell[main](../../../powershell_scripts/app-service/map-custom-domain/map-custom-domain.ps1?highlight=1 "Affecter un domaine personnalisé à une application web")]</span><span class="sxs-lookup"><span data-stu-id="aa4d8-108">[!code-powershell[main](../../../powershell_scripts/app-service/map-custom-domain/map-custom-domain.ps1?highlight=1 "Assign a custom domain to a web app")]</span></span>
+[!code-powershell[main](../../../powershell_scripts/app-service/map-custom-domain/map-custom-domain.ps1?highlight=1 "Assign a custom domain tooa web app")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="aa4d8-109">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="aa4d8-109">Clean up deployment</span></span> 
+## <a name="clean-up-deployment"></a><span data-ttu-id="e3bab-108">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="e3bab-108">Clean up deployment</span></span> 
 
-<span data-ttu-id="aa4d8-110">Une fois l’exemple de script exécuté, la commande suivante permet de supprimer le groupe de ressources, l’application web et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-110">After the script sample has been run, the following command can be used to remove the resource group, web app, and all related resources.</span></span>
+<span data-ttu-id="e3bab-109">Après exécution de l’exemple de script hello, hello commande suivante peut être groupe de ressources hello tooremove utilisé, l’application web et toutes les ressources.</span><span class="sxs-lookup"><span data-stu-id="e3bab-109">After hello script sample has been run, hello following command can be used tooremove hello resource group, web app, and all related resources.</span></span>
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="aa4d8-111">Explication du script</span><span class="sxs-lookup"><span data-stu-id="aa4d8-111">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="e3bab-110">Explication du script</span><span class="sxs-lookup"><span data-stu-id="e3bab-110">Script explanation</span></span>
 
-<span data-ttu-id="aa4d8-112">Ce script utilise les commandes suivantes.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-112">This script uses the following commands.</span></span> <span data-ttu-id="aa4d8-113">Chaque commande du tableau renvoie à une documentation spécifique.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-113">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="e3bab-111">Ce script utilise hello suivant les commandes.</span><span class="sxs-lookup"><span data-stu-id="e3bab-111">This script uses hello following commands.</span></span> <span data-ttu-id="e3bab-112">Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.</span><span class="sxs-lookup"><span data-stu-id="e3bab-112">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="aa4d8-114">Commande</span><span class="sxs-lookup"><span data-stu-id="aa4d8-114">Command</span></span> | <span data-ttu-id="aa4d8-115">Remarques</span><span class="sxs-lookup"><span data-stu-id="aa4d8-115">Notes</span></span> |
+| <span data-ttu-id="e3bab-113">Commande</span><span class="sxs-lookup"><span data-stu-id="e3bab-113">Command</span></span> | <span data-ttu-id="e3bab-114">Remarques</span><span class="sxs-lookup"><span data-stu-id="e3bab-114">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="aa4d8-116">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="aa4d8-116">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="aa4d8-117">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-117">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="aa4d8-118">New-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="aa4d8-118">New-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/new-azurermappserviceplan) | <span data-ttu-id="aa4d8-119">Crée un plan App Service.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-119">Creates an App Service plan.</span></span> |
-| [<span data-ttu-id="aa4d8-120">New-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="aa4d8-120">New-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/new-azurermwebapp) | <span data-ttu-id="aa4d8-121">Crée une application web.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-121">Creates a web app.</span></span> |
-| [<span data-ttu-id="aa4d8-122">Set-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="aa4d8-122">Set-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/set-azurermappserviceplan) | <span data-ttu-id="aa4d8-123">Modifie le niveau tarifaire d’un plan App Service.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-123">Modifies an App Service plan to change its pricing tier.</span></span> |
-| [<span data-ttu-id="aa4d8-124">Set-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="aa4d8-124">Set-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/set-azurermwebapp) | <span data-ttu-id="aa4d8-125">Modifie la configuration d’une application web.</span><span class="sxs-lookup"><span data-stu-id="aa4d8-125">Modifies a web app's configuration.</span></span> |
+| [<span data-ttu-id="e3bab-115">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="e3bab-115">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="e3bab-116">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="e3bab-116">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="e3bab-117">New-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="e3bab-117">New-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/new-azurermappserviceplan) | <span data-ttu-id="e3bab-118">Crée un plan App Service.</span><span class="sxs-lookup"><span data-stu-id="e3bab-118">Creates an App Service plan.</span></span> |
+| [<span data-ttu-id="e3bab-119">New-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="e3bab-119">New-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/new-azurermwebapp) | <span data-ttu-id="e3bab-120">Crée une application web.</span><span class="sxs-lookup"><span data-stu-id="e3bab-120">Creates a web app.</span></span> |
+| [<span data-ttu-id="e3bab-121">Set-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="e3bab-121">Set-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/set-azurermappserviceplan) | <span data-ttu-id="e3bab-122">Modifie un toochange du plan App Service à son niveau de tarification.</span><span class="sxs-lookup"><span data-stu-id="e3bab-122">Modifies an App Service plan toochange its pricing tier.</span></span> |
+| [<span data-ttu-id="e3bab-123">Set-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="e3bab-123">Set-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/set-azurermwebapp) | <span data-ttu-id="e3bab-124">Modifie la configuration d’une application web.</span><span class="sxs-lookup"><span data-stu-id="e3bab-124">Modifies a web app's configuration.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="aa4d8-126">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="aa4d8-126">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e3bab-125">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="e3bab-125">Next steps</span></span>
 
-<span data-ttu-id="aa4d8-127">Pour plus d’informations sur le module Azure PowerShell, consultez la [Documentation Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="aa4d8-127">For more information on the Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
+<span data-ttu-id="e3bab-126">Pour plus d’informations sur le module Azure PowerShell de hello, consultez [documentation Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="e3bab-126">For more information on hello Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
 
-<span data-ttu-id="aa4d8-128">Vous trouverez des exemples supplémentaires de scripts Azure PowerShell pour Azure App Service Web Apps sur la page [Azure PowerShell Samples](../app-service-powershell-samples.md) (Exemples Azure PowerShell).</span><span class="sxs-lookup"><span data-stu-id="aa4d8-128">Additional Azure Powershell samples for Azure App Service Web Apps can be found in the [Azure PowerShell samples](../app-service-powershell-samples.md).</span></span>
+<span data-ttu-id="e3bab-127">Vous trouverez des exemples supplémentaires de Azure Powershell pour Azure App Service Web Apps Bonjour [exemples Azure PowerShell](../app-service-powershell-samples.md).</span><span class="sxs-lookup"><span data-stu-id="e3bab-127">Additional Azure Powershell samples for Azure App Service Web Apps can be found in hello [Azure PowerShell samples](../app-service-powershell-samples.md).</span></span>
