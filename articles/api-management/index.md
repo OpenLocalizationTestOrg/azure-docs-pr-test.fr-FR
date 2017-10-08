@@ -1,6 +1,6 @@
 ---
-title: "Documentation Gestion des API Azure - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment utiliser la gestion des API pour publier des API en toute sécurité et à grande échelle. Des documents vous montrent comment créer des passerelles API modernes pour les services principaux existants."
+title: "aaaAzure documentation sur l’API Management - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toouse gestion des API toopublish API en toute sécurité et à grande échelle. Documentation montre comment les passerelles API modernes toocreate pour les services principaux existants."
 services: api-management
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 09eb558a4e4b32fa6e1094c55f321db8ce008d4d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2bd5d7dc7c6df3ad01a704fdd28c9437d39a04b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-documentation"></a>Documentation Gestion des API
 
-Découvrez comment utiliser la gestion des API pour publier des API pour des développeurs externes, partenaires et employés en toute sécurité et à grande échelle. Des didacticiels, des références d’API et d’autres documents vous montrent comment créer et gérer des passerelles API modernes pour les services principaux existants hébergés n’importe où.
+Découvrez comment toouse gestion des API toopublish API tooexternal, les partenaires et les employés, les développeurs en toute sécurité et à grande échelle. Didacticiels, des références de l’API et toute autre documentation vous montrent comment toocreate et gérer les passerelles API modernes pour les services principaux existants hébergés en tout lieu.
 
 <ul class="panelContent cardsFTitle">
     <li>

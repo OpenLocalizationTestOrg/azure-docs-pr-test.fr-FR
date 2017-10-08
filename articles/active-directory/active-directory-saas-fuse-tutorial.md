@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure AD à Fuse | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Fuse."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et fusible."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,206 +14,206 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jeedes
-ms.openlocfilehash: 9a91e22faced9e126043bebefd85c307dbdf933d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 720ed8af0b5de1e3bee5a40353ca0ee661766864
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-fuse"></a><span data-ttu-id="d0d0f-103">Didacticiel : Intégration d’Azure Active Directory avec Fuse</span><span class="sxs-lookup"><span data-stu-id="d0d0f-103">Tutorial: Azure Active Directory integration with Fuse</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-fuse"></a><span data-ttu-id="c90ec-103">Didacticiel : Intégration d’Azure Active Directory avec Fuse</span><span class="sxs-lookup"><span data-stu-id="c90ec-103">Tutorial: Azure Active Directory integration with Fuse</span></span>
 
-<span data-ttu-id="d0d0f-104">Dans ce didacticiel, vous allez apprendre à intégrer Fuse dans Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="d0d0f-104">In this tutorial, you learn how to integrate Fuse with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="c90ec-104">Dans ce didacticiel, vous apprendrez comment toointegrate fusible avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="c90ec-104">In this tutorial, you learn how toointegrate Fuse with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="d0d0f-105">L’intégration de Fuse dans Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="d0d0f-105">Integrating Fuse with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="c90ec-105">Intégration fusible à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="c90ec-105">Integrating Fuse with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="d0d0f-106">Dans Azure AD, vous pouvez contrôler qui a accès à Fuse.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-106">You can control in Azure AD who has access to Fuse.</span></span>
-- <span data-ttu-id="d0d0f-107">Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Fuse (via l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-107">You can enable your users to automatically get signed-on to Fuse (Single Sign-On) with their Azure AD accounts.</span></span>
-- <span data-ttu-id="d0d0f-108">Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-108">You can manage your accounts in one central location - the Azure portal.</span></span>
+- <span data-ttu-id="c90ec-106">Vous pouvez contrôler dans Azure AD qui a accès tooFuse.</span><span class="sxs-lookup"><span data-stu-id="c90ec-106">You can control in Azure AD who has access tooFuse.</span></span>
+- <span data-ttu-id="c90ec-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooFuse (Single Sign-On) avec leurs comptes Azure AD.</span><span class="sxs-lookup"><span data-stu-id="c90ec-107">You can enable your users tooautomatically get signed-on tooFuse (Single Sign-On) with their Azure AD accounts.</span></span>
+- <span data-ttu-id="c90ec-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.</span><span class="sxs-lookup"><span data-stu-id="c90ec-108">You can manage your accounts in one central location - hello Azure portal.</span></span>
 
-<span data-ttu-id="d0d0f-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="d0d0f-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="c90ec-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="c90ec-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="d0d0f-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="d0d0f-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="c90ec-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="c90ec-110">Prerequisites</span></span>
 
-<span data-ttu-id="d0d0f-111">Pour configurer l’intégration d’Azure AD avec Fuse, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="d0d0f-111">To configure Azure AD integration with Fuse, you need the following items:</span></span>
+<span data-ttu-id="c90ec-111">intégration de tooconfigure Azure AD à fusible, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="c90ec-111">tooconfigure Azure AD integration with Fuse, you need hello following items:</span></span>
 
-- <span data-ttu-id="d0d0f-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="d0d0f-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="d0d0f-113">Un abonnement Fuse pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="d0d0f-113">A Fuse single sign-on enabled subscription</span></span>
+- <span data-ttu-id="c90ec-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="c90ec-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="c90ec-113">Un abonnement Fuse pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="c90ec-113">A Fuse single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="d0d0f-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="c90ec-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="c90ec-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="d0d0f-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="d0d0f-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="c90ec-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="c90ec-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="d0d0f-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="d0d0f-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="d0d0f-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="c90ec-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="c90ec-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="c90ec-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="c90ec-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="d0d0f-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="d0d0f-118">Scenario description</span></span>
-<span data-ttu-id="d0d0f-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="d0d0f-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="d0d0f-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="c90ec-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="c90ec-118">Scenario description</span></span>
+<span data-ttu-id="c90ec-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="c90ec-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="c90ec-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="c90ec-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="d0d0f-121">Ajouter Fuse depuis la galerie</span><span class="sxs-lookup"><span data-stu-id="d0d0f-121">Add Fuse from the gallery</span></span>
-2. <span data-ttu-id="d0d0f-122">Configurer et tester l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="d0d0f-122">Configure and test Azure AD single sign-on</span></span>
+1. <span data-ttu-id="c90ec-121">Ajouter un fusible à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="c90ec-121">Add Fuse from hello gallery</span></span>
+2. <span data-ttu-id="c90ec-122">Configurer et tester l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="c90ec-122">Configure and test Azure AD single sign-on</span></span>
 
-## <a name="add-fuse-from-the-gallery"></a><span data-ttu-id="d0d0f-123">Ajouter Fuse depuis la galerie</span><span class="sxs-lookup"><span data-stu-id="d0d0f-123">Add Fuse from the gallery</span></span>
-<span data-ttu-id="d0d0f-124">Pour configurer l’intégration de Fuse avec Azure AD, vous devez ajouter Fuse disponible dans la galerie, à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-124">To configure the integration of Fuse into Azure AD, you need to add Fuse from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="add-fuse-from-hello-gallery"></a><span data-ttu-id="c90ec-123">Ajouter un fusible à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="c90ec-123">Add Fuse from hello gallery</span></span>
+<span data-ttu-id="c90ec-124">tooconfigure hello intégration de fusible dans Azure AD, vous devez tooadd fusible à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="c90ec-124">tooconfigure hello integration of Fuse into Azure AD, you need tooadd Fuse from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="d0d0f-125">**Pour ajouter Fuse à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d0d0f-125">**To add Fuse from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="c90ec-125">**tooadd fusible à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="c90ec-125">**tooadd Fuse from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d0d0f-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="c90ec-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="c90ec-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
-    ![Bouton Azure Active Directory][1]
+    ![bouton d’Azure Active Directory Hello][1]
 
-2. <span data-ttu-id="d0d0f-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="d0d0f-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="c90ec-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="c90ec-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-129">Then go too**All applications**.</span></span>
 
-    ![Panneau Applications d’entreprise][2]
+    ![panneau des applications Enterprise Hello][2]
     
-3. <span data-ttu-id="d0d0f-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="c90ec-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="c90ec-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
-    ![Bouton Nouvelle application][3]
+    ![Nouveau bouton d’application Hello][3]
 
-4. <span data-ttu-id="d0d0f-133">Dans la zone de recherche, tapez **Fuse**, sélectionnez **Fuse** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-133">In the search box, type **Fuse**, select **Fuse** from result panel then click **Add** button to add the application.</span></span>
+4. <span data-ttu-id="c90ec-133">Dans la zone de recherche de hello, tapez **fusible**, sélectionnez **fusible** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="c90ec-133">In hello search box, type **Fuse**, select **Fuse** from result panel then click **Add** button tooadd hello application.</span></span>
 
-    ![Fuse dans la liste des résultats](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_addfromgallery.png)
+    ![Dans la liste des résultats hello de fusible](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_addfromgallery.png)
 
-## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="d0d0f-135">Configurer et tester l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="d0d0f-135">Configure and test Azure AD single sign-on</span></span>
+## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="c90ec-135">Configurer et tester l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="c90ec-135">Configure and test Azure AD single sign-on</span></span>
 
-<span data-ttu-id="d0d0f-136">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Fuse, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="d0d0f-136">In this section, you configure and test Azure AD single sign-on with Fuse based on a test user called "Britta Simon".</span></span>
+<span data-ttu-id="c90ec-136">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Fuse, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="c90ec-136">In this section, you configure and test Azure AD single sign-on with Fuse based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="d0d0f-137">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Fuse correspondant dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-137">For single sign-on to work, Azure AD needs to know what the counterpart user in Fuse is to a user in Azure AD.</span></span> <span data-ttu-id="d0d0f-138">En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Fuse associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-138">In other words, a link relationship between an Azure AD user and the related user in Fuse needs to be established.</span></span>
+<span data-ttu-id="c90ec-137">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello fusible est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="c90ec-137">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Fuse is tooa user in Azure AD.</span></span> <span data-ttu-id="c90ec-138">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans fusible besoins toobe est établie.</span><span class="sxs-lookup"><span data-stu-id="c90ec-138">In other words, a link relationship between an Azure AD user and hello related user in Fuse needs toobe established.</span></span>
 
-<span data-ttu-id="d0d0f-139">Dans Fuse, assignez la valeur du **nom d’utilisateur** d’Azure AD comme valeur de **Username** (Nom d’utilisateur) pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-139">In Fuse, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="c90ec-139">Dans fusible, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="c90ec-139">In Fuse, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="d0d0f-140">Pour configurer et tester l’authentification unique Azure AD avec Fuse, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="d0d0f-140">To configure and test Azure AD single sign-on with Fuse, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="c90ec-140">tooconfigure et test Azure AD l’authentification unique avec fusible, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="c90ec-140">tooconfigure and test Azure AD single sign-on with Fuse, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="d0d0f-141">**[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="d0d0f-142">**[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="d0d0f-143">**[Créer un utilisateur de test Fuse](#create-a-fuse-test-user)** pour avoir dans Fuse un équivalent de Britta Simon lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-143">**[Create a Fuse test user](#create-a-fuse-test-user)** - to have a counterpart of Britta Simon in Fuse that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="d0d0f-144">**[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-144">**[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="d0d0f-145">**[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-145">**[Test single sign-on](#test-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="c90ec-141">**[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="c90ec-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="c90ec-142">**[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="c90ec-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="c90ec-143">**[Créer un utilisateur de test fusible](#create-a-fuse-test-user)**  -toohave un équivalent de Britta Simon dans fusible est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="c90ec-143">**[Create a Fuse test user](#create-a-fuse-test-user)** - toohave a counterpart of Britta Simon in Fuse that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="c90ec-144">**[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="c90ec-144">**[Assign hello Azure AD test user](#assign-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="c90ec-145">**[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="c90ec-145">**[Test single sign-on](#test-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="d0d0f-146">Configurer l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="d0d0f-146">Configure Azure AD single sign-on</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="c90ec-146">Configurer l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="c90ec-146">Configure Azure AD single sign-on</span></span>
 
-<span data-ttu-id="d0d0f-147">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Fuse.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-147">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Fuse application.</span></span>
+<span data-ttu-id="c90ec-147">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application fusible.</span><span class="sxs-lookup"><span data-stu-id="c90ec-147">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Fuse application.</span></span>
 
-<span data-ttu-id="d0d0f-148">**Pour configurer l’authentification unique Azure AD avec Fuse, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d0d0f-148">**To configure Azure AD single sign-on with Fuse, perform the following steps:**</span></span>
+<span data-ttu-id="c90ec-148">**tooconfigure Azure AD l’authentification unique avec fusible, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="c90ec-148">**tooconfigure Azure AD single sign-on with Fuse, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d0d0f-149">Dans le portail Azure, dans la page d’intégration de l’application **Fuse**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-149">In the Azure portal, on the **Fuse** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="c90ec-149">Bonjour portail Azure, sur hello **fusible** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-149">In hello Azure portal, on hello **Fuse** application integration page, click **Single sign-on**.</span></span>
 
     ![Lien Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="d0d0f-151">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-151">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="c90ec-151">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="c90ec-151">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_samlbase.png)
 
-3. <span data-ttu-id="d0d0f-153">Dans la section **Domaine et URL Fuse**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="d0d0f-153">On the **Fuse Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="c90ec-153">Sur hello **fusible de domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="c90ec-153">On hello **Fuse Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Informations d’authentification unique dans Fuse Domain and URLs (Domaine et URL Fuse)](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_url.png)
     
-    <span data-ttu-id="d0d0f-155">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<tenant name>.fusion-universal.com/`</span><span class="sxs-lookup"><span data-stu-id="d0d0f-155">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<tenant name>.fusion-universal.com/`</span></span>
+    <span data-ttu-id="c90ec-155">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenant name>.fusion-universal.com/`</span><span class="sxs-lookup"><span data-stu-id="c90ec-155">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<tenant name>.fusion-universal.com/`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="d0d0f-156">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-156">This value is not real.</span></span> <span data-ttu-id="d0d0f-157">Mettez à jour cette valeur avec l’URL de connexion réelle.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-157">Update this value with the actual Sign-On URL.</span></span> <span data-ttu-id="d0d0f-158">Pour obtenir cette valeur, contactez l’[équipe de support client Fuse](mailto:support@fusion-universal.com).</span><span class="sxs-lookup"><span data-stu-id="d0d0f-158">Contact [Fuse Client support team](mailto:support@fusion-universal.com) to get this value.</span></span> 
+    > <span data-ttu-id="c90ec-156">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="c90ec-156">This value is not real.</span></span> <span data-ttu-id="c90ec-157">Mettre à jour de cette valeur avec hello URL de connexion réel.</span><span class="sxs-lookup"><span data-stu-id="c90ec-157">Update this value with hello actual Sign-On URL.</span></span> <span data-ttu-id="c90ec-158">Contact [équipe de support Client de fusible](mailto:support@fusion-universal.com) tooget cette valeur.</span><span class="sxs-lookup"><span data-stu-id="c90ec-158">Contact [Fuse Client support team](mailto:support@fusion-universal.com) tooget this value.</span></span> 
  
-4. <span data-ttu-id="d0d0f-159">Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (brut)**, puis enregistrez le fichier du certificat sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-159">On the **SAML Signing Certificate** section, click **Certificate (Raw)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="c90ec-159">Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Raw)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="c90ec-159">On hello **SAML Signing Certificate** section, click **Certificate (Raw)** and then save hello certificate file on your computer.</span></span>
 
-    ![Lien Téléchargement de certificat](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_certificate.png) 
+    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_certificate.png) 
 
-5. <span data-ttu-id="d0d0f-161">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="d0d0f-161">Click **Save** button.</span></span>
+5. <span data-ttu-id="c90ec-161">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="c90ec-161">Click **Save** button.</span></span>
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-fuse-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="d0d0f-163">Dans la section **Configuration de Fuse** , cliquez sur **Configurer Fuse** pour ouvrir la fenêtre **Configurer l’authentification**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-163">On the **Fuse Configuration** section, click **Configure Fuse** to open **Configure sign-on** window.</span></span> <span data-ttu-id="d0d0f-164">Copiez **l’URL de déconnexion, l’ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="d0d0f-164">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="c90ec-163">Sur hello **fusible de Configuration** , cliquez sur **configurer fusible** tooopen **configurer l’authentification** fenêtre.</span><span class="sxs-lookup"><span data-stu-id="c90ec-163">On hello **Fuse Configuration** section, click **Configure Fuse** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="c90ec-164">Hello de copie **URL de déconnexion, ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="c90ec-164">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configuration de Fuse](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_configure.png) 
 
-7. <span data-ttu-id="d0d0f-166">Pour configurer l’authentification unique de votre application, contactez l’[équipe de support Fuse](mailto:support@fusion-universal.com) et fournissez-lui les éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="d0d0f-166">To get SSO configured for your application, contact [Fuse support team](mailto:support@fusion-universal.com) and provide them with the following:</span></span>
+7. <span data-ttu-id="c90ec-166">tooget l’authentification unique configurée pour votre application, contactez [équipe de support fusible](mailto:support@fusion-universal.com) et leur fournir des éléments suivants de hello :</span><span class="sxs-lookup"><span data-stu-id="c90ec-166">tooget SSO configured for your application, contact [Fuse support team](mailto:support@fusion-universal.com) and provide them with hello following:</span></span>
 
-    * <span data-ttu-id="d0d0f-167">Le **fichier de certificat (brut)** téléchargé</span><span class="sxs-lookup"><span data-stu-id="d0d0f-167">The downloaded **Certificate (Raw) file**</span></span>
-    * <span data-ttu-id="d0d0f-168">L’**URL du service d’authentification unique SAML**</span><span class="sxs-lookup"><span data-stu-id="d0d0f-168">The **SAML Single Sign-On Service URL**</span></span>
-    * <span data-ttu-id="d0d0f-169">L’**ID d’entité SAML**</span><span class="sxs-lookup"><span data-stu-id="d0d0f-169">The **SAML Entity ID**</span></span>
-    * <span data-ttu-id="d0d0f-170">L’**URL de déconnexion**</span><span class="sxs-lookup"><span data-stu-id="d0d0f-170">The **Sign-Out URL**</span></span>
+    * <span data-ttu-id="c90ec-167">Hello téléchargé **fichier de certificat (Raw)**</span><span class="sxs-lookup"><span data-stu-id="c90ec-167">hello downloaded **Certificate (Raw) file**</span></span>
+    * <span data-ttu-id="c90ec-168">Hello **SAML Sign-On URL du Service unique**</span><span class="sxs-lookup"><span data-stu-id="c90ec-168">hello **SAML Single Sign-On Service URL**</span></span>
+    * <span data-ttu-id="c90ec-169">Hello **ID d’entité SAML**</span><span class="sxs-lookup"><span data-stu-id="c90ec-169">hello **SAML Entity ID**</span></span>
+    * <span data-ttu-id="c90ec-170">Hello **URL de déconnexion**</span><span class="sxs-lookup"><span data-stu-id="c90ec-170">hello **Sign-Out URL**</span></span>
 
 > [!TIP]
-> <span data-ttu-id="d0d0f-171">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-171">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="d0d0f-172">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-172">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="d0d0f-173">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="d0d0f-173">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="c90ec-171">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="c90ec-171">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="c90ec-172">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="c90ec-172">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="c90ec-173">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="c90ec-173">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="d0d0f-174">Créer un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="d0d0f-174">Create an Azure AD test user</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="c90ec-174">Créer un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="c90ec-174">Create an Azure AD test user</span></span>
 
-<span data-ttu-id="d0d0f-175">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-175">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+<span data-ttu-id="c90ec-175">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="c90ec-175">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
    ![Créer un utilisateur de test Azure AD][100]
 
-<span data-ttu-id="d0d0f-177">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d0d0f-177">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="c90ec-177">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="c90ec-177">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d0d0f-178">Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-178">In the Azure portal, in the left pane, click the **Azure Active Directory** button.</span></span>
+1. <span data-ttu-id="c90ec-178">Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.</span><span class="sxs-lookup"><span data-stu-id="c90ec-178">In hello Azure portal, in hello left pane, click hello **Azure Active Directory** button.</span></span>
 
-    ![Bouton Azure Active Directory](./media/active-directory-saas-fuse-tutorial/create_aaduser_01.png)
+    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-fuse-tutorial/create_aaduser_01.png)
 
-2. <span data-ttu-id="d0d0f-180">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-180">To display the list of users, go to **Users and groups**, and then click **All users**.</span></span>
+2. <span data-ttu-id="c90ec-180">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-180">toodisplay hello list of users, go too**Users and groups**, and then click **All users**.</span></span>
 
-    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-fuse-tutorial/create_aaduser_02.png)
+    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-fuse-tutorial/create_aaduser_02.png)
 
-3. <span data-ttu-id="d0d0f-182">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-182">To open the **User** dialog box, click **Add** at the top of the **All Users** dialog box.</span></span>
+3. <span data-ttu-id="c90ec-182">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="c90ec-182">tooopen hello **User** dialog box, click **Add** at hello top of hello **All Users** dialog box.</span></span>
 
-    ![Bouton Ajouter](./media/active-directory-saas-fuse-tutorial/create_aaduser_03.png)
+    ![bouton Ajouter de Hello](./media/active-directory-saas-fuse-tutorial/create_aaduser_03.png)
 
-4. <span data-ttu-id="d0d0f-184">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="d0d0f-184">In the **User** dialog box, perform the following steps:</span></span>
+4. <span data-ttu-id="c90ec-184">Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="c90ec-184">In hello **User** dialog box, perform hello following steps:</span></span>
 
-    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-fuse-tutorial/create_aaduser_04.png)
+    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-fuse-tutorial/create_aaduser_04.png)
 
-    <span data-ttu-id="d0d0f-186">a.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-186">a.</span></span> <span data-ttu-id="d0d0f-187">Dans la zone **Nom**, tapez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-187">In the **Name** box, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="c90ec-186">a.</span><span class="sxs-lookup"><span data-stu-id="c90ec-186">a.</span></span> <span data-ttu-id="c90ec-187">Bonjour **nom** , tapez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-187">In hello **Name** box, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="d0d0f-188">b.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-188">b.</span></span> <span data-ttu-id="d0d0f-189">Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-189">In the **User name** box, type the email address of user Britta Simon.</span></span>
+    <span data-ttu-id="c90ec-188">b.</span><span class="sxs-lookup"><span data-stu-id="c90ec-188">b.</span></span> <span data-ttu-id="c90ec-189">Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="c90ec-189">In hello **User name** box, type hello email address of user Britta Simon.</span></span>
 
-    <span data-ttu-id="d0d0f-190">c.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-190">c.</span></span> <span data-ttu-id="d0d0f-191">Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-191">Select the **Show Password** check box, and then write down the value that's displayed in the **Password** box.</span></span>
+    <span data-ttu-id="c90ec-190">c.</span><span class="sxs-lookup"><span data-stu-id="c90ec-190">c.</span></span> <span data-ttu-id="c90ec-191">Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.</span><span class="sxs-lookup"><span data-stu-id="c90ec-191">Select hello **Show Password** check box, and then write down hello value that's displayed in hello **Password** box.</span></span>
 
-    <span data-ttu-id="d0d0f-192">d.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-192">d.</span></span> <span data-ttu-id="d0d0f-193">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-193">Click **Create**.</span></span>
+    <span data-ttu-id="c90ec-192">d.</span><span class="sxs-lookup"><span data-stu-id="c90ec-192">d.</span></span> <span data-ttu-id="c90ec-193">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-193">Click **Create**.</span></span>
  
-### <a name="create-a-fuse-test-user"></a><span data-ttu-id="d0d0f-194">Créer un utilisateur de test Fuse</span><span class="sxs-lookup"><span data-stu-id="d0d0f-194">Create a Fuse test user</span></span>
+### <a name="create-a-fuse-test-user"></a><span data-ttu-id="c90ec-194">Créer un utilisateur de test Fuse</span><span class="sxs-lookup"><span data-stu-id="c90ec-194">Create a Fuse test user</span></span>
 
-<span data-ttu-id="d0d0f-195">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Fuse.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-195">In this section, you create a user called Britta Simon in Fuse.</span></span> <span data-ttu-id="d0d0f-196">Collaborez avec l’[équipe du support technique Fuse](mailto:support@fusion-universal.com) pour ajouter des utilisateurs dans la plate-forme Fuse.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-196">Please work with [Fuse support team](mailto:support@fusion-universal.com) to add the users in the Fuse platform.</span></span>
+<span data-ttu-id="c90ec-195">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Fuse.</span><span class="sxs-lookup"><span data-stu-id="c90ec-195">In this section, you create a user called Britta Simon in Fuse.</span></span> <span data-ttu-id="c90ec-196">Collaborez avec [équipe de support fusible](mailto:support@fusion-universal.com) tooadd les utilisateurs de hello dans la plateforme de fusible hello.</span><span class="sxs-lookup"><span data-stu-id="c90ec-196">Please work with [Fuse support team](mailto:support@fusion-universal.com) tooadd hello users in hello Fuse platform.</span></span>
 
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="d0d0f-197">Affecter l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="d0d0f-197">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="c90ec-197">Affecter l’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="c90ec-197">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="d0d0f-198">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Fuse.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-198">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Fuse.</span></span>
+<span data-ttu-id="c90ec-198">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooFuse.</span><span class="sxs-lookup"><span data-stu-id="c90ec-198">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooFuse.</span></span>
 
-![Attribuer le rôle d’utilisateur][200] 
+![Attribuer le rôle d’utilisateur hello][200] 
 
-<span data-ttu-id="d0d0f-200">**Pour affecter Britta Simon à Fuse, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d0d0f-200">**To assign Britta Simon to Fuse, perform the following steps:**</span></span>
+<span data-ttu-id="c90ec-200">**tooassign Britta Simon tooFuse, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="c90ec-200">**tooassign Britta Simon tooFuse, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d0d0f-201">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-201">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="c90ec-201">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-201">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="d0d0f-203">Dans la liste des applications, sélectionnez **Fuse**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-203">In the applications list, select **Fuse**.</span></span>
+2. <span data-ttu-id="c90ec-203">Dans la liste des applications hello, sélectionnez **fusible**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-203">In hello applications list, select **Fuse**.</span></span>
 
-    ![Lien Fuse dans la liste des applications](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_app.png)  
+    ![lien de fusible Hello dans la liste des Applications hello](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_app.png)  
 
-3. <span data-ttu-id="d0d0f-205">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-205">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="c90ec-205">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-205">In hello menu on hello left, click **Users and groups**.</span></span>
 
-    ![Lien « Utilisateurs et groupes »][202]
+    ![lien de « Utilisateurs et groupes » Hello][202]
 
-4. <span data-ttu-id="d0d0f-207">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-207">Click **Add** button.</span></span> <span data-ttu-id="d0d0f-208">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-208">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="c90ec-207">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-207">Click **Add** button.</span></span> <span data-ttu-id="c90ec-208">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-208">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
-    ![Volet Ajouter une attribution][203]
+    ![volet d’ajouter l’affectation de Hello][203]
 
-5. <span data-ttu-id="d0d0f-210">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-210">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="c90ec-210">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="c90ec-210">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="d0d0f-211">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-211">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="c90ec-211">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-211">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="d0d0f-212">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-212">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="c90ec-212">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="c90ec-212">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="test-single-sign-on"></a><span data-ttu-id="d0d0f-213">Tester l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="d0d0f-213">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="c90ec-213">Tester l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="c90ec-213">Test single sign-on</span></span>
 
-<span data-ttu-id="d0d0f-214">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-214">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="c90ec-214">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="c90ec-214">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="d0d0f-215">Lorsque vous cliquez sur la vignette Fuse dans le volet d’accès, vous devez être connecté automatiquement à votre application Fuse.</span><span class="sxs-lookup"><span data-stu-id="d0d0f-215">When you click the Fuse tile in the Access Panel, you should get automatically signed-on to your Fuse application.</span></span>
-<span data-ttu-id="d0d0f-216">Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="d0d0f-216">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="c90ec-215">Lorsque vous cliquez sur mosaïque fusible hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour fusible application.</span><span class="sxs-lookup"><span data-stu-id="c90ec-215">When you click hello Fuse tile in hello Access Panel, you should get automatically signed-on tooyour Fuse application.</span></span>
+<span data-ttu-id="c90ec-216">Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="c90ec-216">For more information about the Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="d0d0f-217">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="d0d0f-217">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="c90ec-217">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="c90ec-217">Additional resources</span></span>
 
-* [<span data-ttu-id="d0d0f-218">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="d0d0f-218">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="d0d0f-219">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="d0d0f-219">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="c90ec-218">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="c90ec-218">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="c90ec-219">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="c90ec-219">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : intégration d’Azure Active Directory à Panopto | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Panopto."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Panopto."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,237 +13,237 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/30/2017
 ms.author: jeedes
-ms.openlocfilehash: 725fba1227cfc9c4850f9e2d6fd0b13e88eafa20
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 76b30e1cd2782bb5fba3d229378b8f82652b6503
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-panopto"></a><span data-ttu-id="0b850-103">Didacticiel : Intégration d’Azure Active Directory à Panopto</span><span class="sxs-lookup"><span data-stu-id="0b850-103">Tutorial: Azure Active Directory integration with Panopto</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-panopto"></a><span data-ttu-id="44e31-103">Didacticiel : Intégration d’Azure Active Directory à Panopto</span><span class="sxs-lookup"><span data-stu-id="44e31-103">Tutorial: Azure Active Directory integration with Panopto</span></span>
 
-<span data-ttu-id="0b850-104">Dans ce didacticiel, vous allez apprendre à intégrer Panopto à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="0b850-104">In this tutorial, you learn how to integrate Panopto with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="44e31-104">Dans ce didacticiel, vous apprendrez comment toointegrate Panopto avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="44e31-104">In this tutorial, you learn how toointegrate Panopto with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="0b850-105">L’intégration de Panopto à Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="0b850-105">Integrating Panopto with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="44e31-105">Intégration de Panopto à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="44e31-105">Integrating Panopto with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="0b850-106">Dans Azure AD, vous pouvez contrôler qui a accès à Panopto.</span><span class="sxs-lookup"><span data-stu-id="0b850-106">You can control in Azure AD who has access to Panopto</span></span>
-- <span data-ttu-id="0b850-107">Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Panopto (par authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="0b850-107">You can enable your users to automatically get signed-on to Panopto (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="0b850-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="0b850-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="44e31-106">Vous pouvez contrôler dans Azure AD qui a accès tooPanopto</span><span class="sxs-lookup"><span data-stu-id="44e31-106">You can control in Azure AD who has access tooPanopto</span></span>
+- <span data-ttu-id="44e31-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooPanopto (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="44e31-107">You can enable your users tooautomatically get signed-on tooPanopto (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="44e31-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="44e31-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="0b850-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="0b850-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="44e31-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="44e31-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="0b850-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="0b850-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="44e31-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="44e31-110">Prerequisites</span></span>
 
-<span data-ttu-id="0b850-111">Pour configurer l’intégration d’Azure AD à Panopto, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="0b850-111">To configure Azure AD integration with Panopto, you need the following items:</span></span>
+<span data-ttu-id="44e31-111">tooconfigure intégration d’Azure AD à Panopto, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="44e31-111">tooconfigure Azure AD integration with Panopto, you need hello following items:</span></span>
 
-- <span data-ttu-id="0b850-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="0b850-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="0b850-113">Un abonnement Panopto pour lequel l’authentification unique est activée.</span><span class="sxs-lookup"><span data-stu-id="0b850-113">A Panopto single sign-on enabled subscription</span></span>
+- <span data-ttu-id="44e31-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="44e31-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="44e31-113">Un abonnement Panopto pour lequel l’authentification unique est activée.</span><span class="sxs-lookup"><span data-stu-id="44e31-113">A Panopto single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="0b850-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="0b850-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="44e31-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="44e31-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="0b850-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="0b850-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="44e31-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="44e31-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="0b850-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="0b850-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="0b850-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="0b850-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="44e31-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="44e31-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="44e31-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="44e31-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="0b850-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="0b850-118">Scenario description</span></span>
-<span data-ttu-id="0b850-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="0b850-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="0b850-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="0b850-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="44e31-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="44e31-118">Scenario description</span></span>
+<span data-ttu-id="44e31-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="44e31-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="44e31-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="44e31-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="0b850-121">Ajout de Panopto à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="0b850-121">Adding Panopto from the gallery</span></span>
-2. <span data-ttu-id="0b850-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="0b850-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="44e31-121">Ajout de Panopto à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="44e31-121">Adding Panopto from hello gallery</span></span>
+2. <span data-ttu-id="44e31-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="44e31-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-panopto-from-the-gallery"></a><span data-ttu-id="0b850-123">Ajout de Panopto à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="0b850-123">Adding Panopto from the gallery</span></span>
-<span data-ttu-id="0b850-124">Pour configurer l’intégration de Panopto à Azure AD, vous devez ajouter Panopto à votre liste d’applications SaaS gérées, à partir de la galerie.</span><span class="sxs-lookup"><span data-stu-id="0b850-124">To configure the integration of Panopto into Azure AD, you need to add Panopto from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-panopto-from-hello-gallery"></a><span data-ttu-id="44e31-123">Ajout de Panopto à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="44e31-123">Adding Panopto from hello gallery</span></span>
+<span data-ttu-id="44e31-124">intégration de hello tooconfigure de Panopto dans Azure AD, vous devez tooadd Panopto à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="44e31-124">tooconfigure hello integration of Panopto into Azure AD, you need tooadd Panopto from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="0b850-125">**Pour ajouter Panopto à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="0b850-125">**To add Panopto from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="44e31-125">**tooadd Panopto à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="44e31-125">**tooadd Panopto from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="0b850-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="0b850-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="44e31-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="44e31-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="0b850-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="0b850-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="0b850-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="0b850-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="44e31-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="44e31-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="44e31-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="44e31-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="0b850-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="0b850-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="44e31-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="44e31-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="0b850-133">Dans la zone de recherche, entrez **Panopto**.</span><span class="sxs-lookup"><span data-stu-id="0b850-133">In the search box, type **Panopto**.</span></span>
+4. <span data-ttu-id="44e31-133">Dans la zone de recherche de hello, tapez **Panopto**.</span><span class="sxs-lookup"><span data-stu-id="44e31-133">In hello search box, type **Panopto**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-panopto-tutorial/tutorial_panopto_search.png)
 
-5. <span data-ttu-id="0b850-135">Dans le panneau des résultats, sélectionnez **Panopto**, puis cliquez sur **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="0b850-135">In the results panel, select **Panopto**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="44e31-135">Dans le volet de résultats hello, sélectionnez **Panopto**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="44e31-135">In hello results panel, select **Panopto**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-panopto-tutorial/tutorial_panopto_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="0b850-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="0b850-137">Configuring and testing Azure AD single sign-on</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="44e31-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="44e31-137">Configuring and testing Azure AD single sign-on</span></span>
 
-<span data-ttu-id="0b850-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Panopto avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="0b850-138">In this section, you configure and test Azure AD single sign-on with Panopto based on a test user called "Britta Simon."</span></span>
+<span data-ttu-id="44e31-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Panopto avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="44e31-138">In this section, you configure and test Azure AD single sign-on with Panopto based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="0b850-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Panopto équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="0b850-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Panopto is to a user in Azure AD.</span></span> <span data-ttu-id="0b850-140">En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Panopto associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="0b850-140">In other words, a link relationship between an Azure AD user and the related user in Panopto needs to be established.</span></span>
+<span data-ttu-id="44e31-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Panopto est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="44e31-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Panopto is tooa user in Azure AD.</span></span> <span data-ttu-id="44e31-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Panopto doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="44e31-140">In other words, a link relationship between an Azure AD user and hello related user in Panopto needs toobe established.</span></span>
 
-<span data-ttu-id="0b850-141">Dans Panopto, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="0b850-141">In Panopto, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="44e31-141">Dans Panopto, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="44e31-141">In Panopto, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="0b850-142">Pour configurer et tester l’authentification unique Azure AD avec Panopto, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="0b850-142">To configure and test Azure AD single sign-on with Panopto, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="44e31-142">tooconfigure et test Azure AD l’authentification unique à Panopto, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="44e31-142">tooconfigure and test Azure AD single sign-on with Panopto, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="0b850-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="0b850-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="0b850-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="0b850-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="0b850-145">**[Création d’un utilisateur de test Panopto](#creating-a-panopto-test-user)** pour obtenir un équivalent de Britta Simon dans Panopto lié à la représentation Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="0b850-145">**[Creating a Panopto test user](#creating-a-panopto-test-user)** - to have a counterpart of Britta Simon in Panopto that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="0b850-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="0b850-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="0b850-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="0b850-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="44e31-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="44e31-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="44e31-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="44e31-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="44e31-145">**[Création d’un utilisateur de test Panopto](#creating-a-panopto-test-user)**  -toohave un équivalent de Britta Simon dans Panopto est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="44e31-145">**[Creating a Panopto test user](#creating-a-panopto-test-user)** - toohave a counterpart of Britta Simon in Panopto that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="44e31-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="44e31-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="44e31-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="44e31-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="0b850-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="0b850-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="44e31-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="44e31-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="0b850-149">Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et configurez l’authentification unique dans votre application Panopto.</span><span class="sxs-lookup"><span data-stu-id="0b850-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Panopto application.</span></span>
+<span data-ttu-id="44e31-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Panopto.</span><span class="sxs-lookup"><span data-stu-id="44e31-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Panopto application.</span></span>
 
-<span data-ttu-id="0b850-150">**Pour configurer l’authentification unique Azure AD avec Panopto, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="0b850-150">**To configure Azure AD single sign-on with Panopto, perform the following steps:**</span></span>
+<span data-ttu-id="44e31-150">**tooconfigure Azure AD single sign-on avec Panopto, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="44e31-150">**tooconfigure Azure AD single sign-on with Panopto, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="0b850-151">Dans le portail Azure, sur la page d’intégration de l’application **Panopto**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="0b850-151">In the Azure portal, on the **Panopto** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="44e31-151">Bonjour portail Azure, sur hello **Panopto** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="44e31-151">In hello Azure portal, on hello **Panopto** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="0b850-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="0b850-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="44e31-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="44e31-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-panopto-tutorial/tutorial_panopto_samlbase.png)
 
-3. <span data-ttu-id="0b850-155">Dans la section **Domaine et URL Panopto**, effectuez les étapes suivantes :</span><span class="sxs-lookup"><span data-stu-id="0b850-155">On the **Panopto Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="44e31-155">Sur hello **Panopto domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="44e31-155">On hello **Panopto Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-panopto-tutorial/tutorial_panopto_url.png)
 
-    <span data-ttu-id="0b850-157">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<tenant-name>.panopto.com`</span><span class="sxs-lookup"><span data-stu-id="0b850-157">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<tenant-name>.panopto.com`</span></span>
+    <span data-ttu-id="44e31-157">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenant-name>.panopto.com`</span><span class="sxs-lookup"><span data-stu-id="44e31-157">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<tenant-name>.panopto.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="0b850-158">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="0b850-158">This value is not real.</span></span> <span data-ttu-id="0b850-159">Mettez à jour cette valeur avec l’URL de connexion réelle.</span><span class="sxs-lookup"><span data-stu-id="0b850-159">Update this value with the actual Sign-On URL.</span></span> <span data-ttu-id="0b850-160">Contactez [l’équipe de support technique Panopto](mailto:support@panopto.com‎) pour obtenir cette valeur.</span><span class="sxs-lookup"><span data-stu-id="0b850-160">Contact [Panopto Client support team](mailto:support@panopto.com‎) to get this value.</span></span> 
+    > <span data-ttu-id="44e31-158">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="44e31-158">This value is not real.</span></span> <span data-ttu-id="44e31-159">Mettre à jour de cette valeur avec hello URL de connexion réel.</span><span class="sxs-lookup"><span data-stu-id="44e31-159">Update this value with hello actual Sign-On URL.</span></span> <span data-ttu-id="44e31-160">Contact [équipe de support Client de Panopto](mailto:support@panopto.com‎) tooget cette valeur.</span><span class="sxs-lookup"><span data-stu-id="44e31-160">Contact [Panopto Client support team](mailto:support@panopto.com‎) tooget this value.</span></span> 
  
-4. <span data-ttu-id="0b850-161">Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="0b850-161">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="44e31-161">Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="44e31-161">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-panopto-tutorial/tutorial_panopto_certificate.png) 
 
-5. <span data-ttu-id="0b850-163">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="0b850-163">Click **Save** button.</span></span>
+5. <span data-ttu-id="44e31-163">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="44e31-163">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-panopto-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="0b850-165">Dans la section **Configuration de Panopto**, cliquez sur **Configurer Panopto** pour ouvrir la fenêtre **Configurer l’authentification**.</span><span class="sxs-lookup"><span data-stu-id="0b850-165">On the **Panopto Configuration** section, click **Configure Panopto** to open **Configure sign-on** window.</span></span> <span data-ttu-id="0b850-166">Copiez l’**ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide**.</span><span class="sxs-lookup"><span data-stu-id="0b850-166">Copy the **SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="44e31-165">Sur hello **Panopto Configuration** , cliquez sur **Panopto de configurer** tooopen **configurer l’authentification** fenêtre.</span><span class="sxs-lookup"><span data-stu-id="44e31-165">On hello **Panopto Configuration** section, click **Configure Panopto** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="44e31-166">Hello de copie **ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="44e31-166">Copy hello **SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-panopto-tutorial/tutorial_panopto_configure.png) 
 
-7. <span data-ttu-id="0b850-168">Dans une autre fenêtre de navigateur web, connectez-vous à votre site d’entreprise Panopto en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="0b850-168">In a different web browser window, log in to your Panopto company site as an administrator.</span></span>
+7. <span data-ttu-id="44e31-168">Dans une fenêtre de navigateur web, ouvrez une session dans le site d’entreprise Panopto tooyour en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="44e31-168">In a different web browser window, log in tooyour Panopto company site as an administrator.</span></span>
 
-8. <span data-ttu-id="0b850-169">Dans la barre d’outils située sur la gauche, cliquez sur **System (Système)**, puis sur **Identity Providers (Fournisseurs d’identité)**.</span><span class="sxs-lookup"><span data-stu-id="0b850-169">In the toolbar on the left, click **System**, and then click **Identity Providers**.</span></span>
+8. <span data-ttu-id="44e31-169">Dans la barre d’outils de hello en hello gauche, cliquez sur **système**, puis cliquez sur **fournisseurs d’identité**.</span><span class="sxs-lookup"><span data-stu-id="44e31-169">In hello toolbar on hello left, click **System**, and then click **Identity Providers**.</span></span>
    
-   <span data-ttu-id="0b850-170">![Système](./media/active-directory-saas-panopto-tutorial/ic777670.png "système")</span><span class="sxs-lookup"><span data-stu-id="0b850-170">![System](./media/active-directory-saas-panopto-tutorial/ic777670.png "System")</span></span>
-9. <span data-ttu-id="0b850-171">Cliquez sur **Add Provider**.</span><span class="sxs-lookup"><span data-stu-id="0b850-171">Click **Add Provider**.</span></span>
+   <span data-ttu-id="44e31-170">![Système](./media/active-directory-saas-panopto-tutorial/ic777670.png "système")</span><span class="sxs-lookup"><span data-stu-id="44e31-170">![System](./media/active-directory-saas-panopto-tutorial/ic777670.png "System")</span></span>
+9. <span data-ttu-id="44e31-171">Cliquez sur **Add Provider**.</span><span class="sxs-lookup"><span data-stu-id="44e31-171">Click **Add Provider**.</span></span>
    
-   <span data-ttu-id="0b850-172">![Fournisseurs d’identité](./media/active-directory-saas-panopto-tutorial/ic777671.png "fournisseurs d’identité")</span><span class="sxs-lookup"><span data-stu-id="0b850-172">![Identity Providers](./media/active-directory-saas-panopto-tutorial/ic777671.png "Identity Providers")</span></span>
+   <span data-ttu-id="44e31-172">![Fournisseurs d’identité](./media/active-directory-saas-panopto-tutorial/ic777671.png "fournisseurs d’identité")</span><span class="sxs-lookup"><span data-stu-id="44e31-172">![Identity Providers](./media/active-directory-saas-panopto-tutorial/ic777671.png "Identity Providers")</span></span>
    
-10. <span data-ttu-id="0b850-173">Dans la section du fournisseur SAML, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="0b850-173">In the SAML provider section, perform the following steps:</span></span>
+10. <span data-ttu-id="44e31-173">Bonjour section fournisseur SAML, procédez hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="44e31-173">In hello SAML provider section, perform hello following steps:</span></span>
    
-    <span data-ttu-id="0b850-174">![Configuration SaaS](./media/active-directory-saas-panopto-tutorial/ic777672.png "configuration SaaS")</span><span class="sxs-lookup"><span data-stu-id="0b850-174">![SaaS configuration](./media/active-directory-saas-panopto-tutorial/ic777672.png "SaaS configuration")</span></span>
+    <span data-ttu-id="44e31-174">![Configuration SaaS](./media/active-directory-saas-panopto-tutorial/ic777672.png "configuration SaaS")</span><span class="sxs-lookup"><span data-stu-id="44e31-174">![SaaS configuration](./media/active-directory-saas-panopto-tutorial/ic777672.png "SaaS configuration")</span></span>
     
-    <span data-ttu-id="0b850-175">a.</span><span class="sxs-lookup"><span data-stu-id="0b850-175">a.</span></span> <span data-ttu-id="0b850-176">Dans la liste **Provider Type (Type de fournisseur)**, sélectionnez **SAML20**.</span><span class="sxs-lookup"><span data-stu-id="0b850-176">From the **Provider Type** list, select **SAML20**.</span></span>    
+    <span data-ttu-id="44e31-175">a.</span><span class="sxs-lookup"><span data-stu-id="44e31-175">a.</span></span> <span data-ttu-id="44e31-176">À partir de hello **Type de fournisseur** liste, sélectionnez **SAML20**.</span><span class="sxs-lookup"><span data-stu-id="44e31-176">From hello **Provider Type** list, select **SAML20**.</span></span>    
     
-    <span data-ttu-id="0b850-177">b.</span><span class="sxs-lookup"><span data-stu-id="0b850-177">b.</span></span> <span data-ttu-id="0b850-178">Dans la zone de texte **Instance Name** , attribuez un nom à votre instance.</span><span class="sxs-lookup"><span data-stu-id="0b850-178">In the **Instance Name** textbox, type a name for the instance.</span></span>
+    <span data-ttu-id="44e31-177">b.</span><span class="sxs-lookup"><span data-stu-id="44e31-177">b.</span></span> <span data-ttu-id="44e31-178">Bonjour **nom de l’Instance** zone de texte, tapez un nom pour l’instance de hello.</span><span class="sxs-lookup"><span data-stu-id="44e31-178">In hello **Instance Name** textbox, type a name for hello instance.</span></span>
 
-    <span data-ttu-id="0b850-179">c.</span><span class="sxs-lookup"><span data-stu-id="0b850-179">c.</span></span> <span data-ttu-id="0b850-180">Dans la zone de texte **Friendly Description** , entrez une description conviviale.</span><span class="sxs-lookup"><span data-stu-id="0b850-180">In the **Friendly Description** textbox, type a friendly description.</span></span>
+    <span data-ttu-id="44e31-179">c.</span><span class="sxs-lookup"><span data-stu-id="44e31-179">c.</span></span> <span data-ttu-id="44e31-180">Bonjour **Description conviviale** zone de texte, tapez une description conviviale.</span><span class="sxs-lookup"><span data-stu-id="44e31-180">In hello **Friendly Description** textbox, type a friendly description.</span></span>
     
-    <span data-ttu-id="0b850-181">d.</span><span class="sxs-lookup"><span data-stu-id="0b850-181">d.</span></span> <span data-ttu-id="0b850-182">Dans la zone de texte **URL de la page de rebond**, collez la valeur de l’**URL du service d’authentification unique SAML** que vous avez copiée sur le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="0b850-182">In **Bounce Page Url** textbox, paste the value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="44e31-181">d.</span><span class="sxs-lookup"><span data-stu-id="44e31-181">d.</span></span> <span data-ttu-id="44e31-182">Dans **Url de Page de rebond** hello valeur de zone de texte **SAML Sign-On URL du Service unique**, lequel vous avez copié à partir du portail Azure.</span><span class="sxs-lookup"><span data-stu-id="44e31-182">In **Bounce Page Url** textbox, paste hello value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="0b850-183">e.</span><span class="sxs-lookup"><span data-stu-id="0b850-183">e.</span></span> <span data-ttu-id="0b850-184">Dans la zone de texte **Émetteur**, collez la valeur de **ID d’entité SAML** que vous avez copiée depuis le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="0b850-184">In the **Issuer** textbox, paste the value of **SAML Entity ID**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="44e31-183">e.</span><span class="sxs-lookup"><span data-stu-id="44e31-183">e.</span></span> <span data-ttu-id="44e31-184">Bonjour **émetteur** zone de texte, valeur hello coller **ID d’entité SAML**, lequel vous avez copié à partir du portail Azure.</span><span class="sxs-lookup"><span data-stu-id="44e31-184">In hello **Issuer** textbox, paste hello value of **SAML Entity ID**, which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="0b850-185">f.</span><span class="sxs-lookup"><span data-stu-id="0b850-185">f.</span></span> <span data-ttu-id="0b850-186">Ouvrez votre certificat codé en base 64, téléchargé à partir du portail Azure, copiez son contenu dans le Presse-papiers, puis collez-le dans la zone de texte **Clé publique**.</span><span class="sxs-lookup"><span data-stu-id="0b850-186">Open your base-64 encoded certificate, which you have downloaded from Azure portal, copy the content of it in to your clipboard, and then paste it to the **Public Key**  textbox.</span></span>
+    <span data-ttu-id="44e31-185">f.</span><span class="sxs-lookup"><span data-stu-id="44e31-185">f.</span></span> <span data-ttu-id="44e31-186">Ouvrez votre certificat codé en base 64, ce qui vous avez téléchargé à partir d’Azure hello copie portail, contenu de celui-ci dans le Presse-papiers de tooyour, et le coller ensuite toohello **clé publique** zone de texte.</span><span class="sxs-lookup"><span data-stu-id="44e31-186">Open your base-64 encoded certificate, which you have downloaded from Azure portal, copy hello content of it in tooyour clipboard, and then paste it toohello **Public Key**  textbox.</span></span>
 
-11. <span data-ttu-id="0b850-187">Cliquez sur **Save**.</span><span class="sxs-lookup"><span data-stu-id="0b850-187">Click **Save**.</span></span>
+11. <span data-ttu-id="44e31-187">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="44e31-187">Click **Save**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="0b850-188">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="0b850-188">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="0b850-189">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="0b850-189">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="0b850-190">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="0b850-190">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="44e31-188">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="44e31-188">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="44e31-189">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="44e31-189">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="44e31-190">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="44e31-190">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="0b850-191">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="0b850-191">Creating an Azure AD test user</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="44e31-191">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="44e31-191">Creating an Azure AD test user</span></span>
 
-<span data-ttu-id="0b850-192">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="0b850-192">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+<span data-ttu-id="44e31-192">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="44e31-192">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="0b850-194">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="0b850-194">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="44e31-194">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="44e31-194">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="0b850-195">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="0b850-195">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="44e31-195">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="44e31-195">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-panopto-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="0b850-197">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="0b850-197">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="44e31-197">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="44e31-197">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-panopto-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="0b850-199">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="0b850-199">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="44e31-199">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="44e31-199">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-panopto-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="0b850-201">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="0b850-201">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="44e31-201">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="44e31-201">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-panopto-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="0b850-203">a.</span><span class="sxs-lookup"><span data-stu-id="0b850-203">a.</span></span> <span data-ttu-id="0b850-204">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="0b850-204">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="44e31-203">a.</span><span class="sxs-lookup"><span data-stu-id="44e31-203">a.</span></span> <span data-ttu-id="44e31-204">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="44e31-204">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="0b850-205">b.</span><span class="sxs-lookup"><span data-stu-id="0b850-205">b.</span></span> <span data-ttu-id="0b850-206">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="0b850-206">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="44e31-205">b.</span><span class="sxs-lookup"><span data-stu-id="44e31-205">b.</span></span> <span data-ttu-id="44e31-206">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="44e31-206">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="0b850-207">c.</span><span class="sxs-lookup"><span data-stu-id="0b850-207">c.</span></span> <span data-ttu-id="0b850-208">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="0b850-208">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="44e31-207">c.</span><span class="sxs-lookup"><span data-stu-id="44e31-207">c.</span></span> <span data-ttu-id="44e31-208">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="44e31-208">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="0b850-209">d.</span><span class="sxs-lookup"><span data-stu-id="0b850-209">d.</span></span> <span data-ttu-id="0b850-210">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="0b850-210">Click **Create**.</span></span>
+    <span data-ttu-id="44e31-209">d.</span><span class="sxs-lookup"><span data-stu-id="44e31-209">d.</span></span> <span data-ttu-id="44e31-210">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="44e31-210">Click **Create**.</span></span>
  
-### <a name="creating-a-panopto-test-user"></a><span data-ttu-id="0b850-211">Création d’un utilisateur de test Panopto</span><span class="sxs-lookup"><span data-stu-id="0b850-211">Creating a Panopto test user</span></span>
+### <a name="creating-a-panopto-test-user"></a><span data-ttu-id="44e31-211">Création d’un utilisateur de test Panopto</span><span class="sxs-lookup"><span data-stu-id="44e31-211">Creating a Panopto test user</span></span>
 
-<span data-ttu-id="0b850-212">Aucun élément d’action ne vous permet de configurer l’approvisionnement des utilisateurs dans Panopto.</span><span class="sxs-lookup"><span data-stu-id="0b850-212">There is no action item for you to configure user provisioning to Panopto.</span></span>  
-<span data-ttu-id="0b850-213">Lorsqu’un utilisateur affecté tente de se connecter à Panopto à l’aide du panneau d’accès, Panopto vérifie si cet utilisateur existe.</span><span class="sxs-lookup"><span data-stu-id="0b850-213">When an assigned user tries to log in to Panopto using the access panel, Panopto checks whether the user exists.</span></span>  
+<span data-ttu-id="44e31-212">Il n’existe aucun élément d’action pour vous tooconfigure configuration de l’utilisateur tooPanopto.</span><span class="sxs-lookup"><span data-stu-id="44e31-212">There is no action item for you tooconfigure user provisioning tooPanopto.</span></span>  
+<span data-ttu-id="44e31-213">Quand un utilisateur affecté tente de toolog dans tooPanopto à l’aide du volet d’accès hello, Panopto vérifie l’existence d’un utilisateur de hello.</span><span class="sxs-lookup"><span data-stu-id="44e31-213">When an assigned user tries toolog in tooPanopto using hello access panel, Panopto checks whether hello user exists.</span></span>  
 
-<span data-ttu-id="0b850-214">Si aucun compte d’utilisateur n’est disponible, Panopto le crée automatiquement.</span><span class="sxs-lookup"><span data-stu-id="0b850-214">If there is no user account available yet, it is automatically created by Panopto.</span></span>
+<span data-ttu-id="44e31-214">Si aucun compte d’utilisateur n’est disponible, Panopto le crée automatiquement.</span><span class="sxs-lookup"><span data-stu-id="44e31-214">If there is no user account available yet, it is automatically created by Panopto.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="0b850-215">Vous pouvez utiliser n’importe quel outil ou API de création de compte d’utilisateur, fourni par Panopto, pour approvisionner des comptes utilisateur AAD.</span><span class="sxs-lookup"><span data-stu-id="0b850-215">You can use any other Panopto user account creation tools or APIs provided by Panopto to provision Azure AD user accounts.</span></span>
+><span data-ttu-id="44e31-215">Vous pouvez utiliser n’importe quel autre Panopto utilisateur compte outil de création ou API fournie par Panopto tooprovision comptes d’utilisateur Azure AD.</span><span class="sxs-lookup"><span data-stu-id="44e31-215">You can use any other Panopto user account creation tools or APIs provided by Panopto tooprovision Azure AD user accounts.</span></span>
 >
 >
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="0b850-216">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="0b850-216">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="44e31-216">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="44e31-216">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="0b850-217">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Panopto.</span><span class="sxs-lookup"><span data-stu-id="0b850-217">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Panopto.</span></span>
+<span data-ttu-id="44e31-217">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooPanopto.</span><span class="sxs-lookup"><span data-stu-id="44e31-217">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooPanopto.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="0b850-219">**Pour affecter Britta Simon à Panopto, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="0b850-219">**To assign Britta Simon to Panopto, perform the following steps:**</span></span>
+<span data-ttu-id="44e31-219">**tooassign Britta Simon tooPanopto, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="44e31-219">**tooassign Britta Simon tooPanopto, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="0b850-220">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="0b850-220">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="44e31-220">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="44e31-220">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="0b850-222">Dans la liste des applications, sélectionnez **Panopto**.</span><span class="sxs-lookup"><span data-stu-id="0b850-222">In the applications list, select **Panopto**.</span></span>
+2. <span data-ttu-id="44e31-222">Dans la liste des applications hello, sélectionnez **Panopto**.</span><span class="sxs-lookup"><span data-stu-id="44e31-222">In hello applications list, select **Panopto**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-panopto-tutorial/tutorial_panopto_app.png) 
 
-3. <span data-ttu-id="0b850-224">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="0b850-224">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="44e31-224">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="44e31-224">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="0b850-226">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="0b850-226">Click **Add** button.</span></span> <span data-ttu-id="0b850-227">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="0b850-227">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="44e31-226">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="44e31-226">Click **Add** button.</span></span> <span data-ttu-id="44e31-227">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="44e31-227">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="0b850-229">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="0b850-229">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="44e31-229">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="44e31-229">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="0b850-230">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="0b850-230">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="44e31-230">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="44e31-230">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="0b850-231">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="0b850-231">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="44e31-231">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="44e31-231">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="0b850-232">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="0b850-232">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="44e31-232">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="44e31-232">Testing single sign-on</span></span>
 
-<span data-ttu-id="0b850-233">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="0b850-233">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="44e31-233">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="44e31-233">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="0b850-234">Lorsque vous cliquez sur la vignette Panopto dans le panneau d’accès, vous accédez automatiquement à la page de connexion Panopto.</span><span class="sxs-lookup"><span data-stu-id="0b850-234">When you click the Panopto tile in the Access Panel, you should get automatically login page of Panopto application.</span></span>
-<span data-ttu-id="0b850-235">Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="0b850-235">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+<span data-ttu-id="44e31-234">Lorsque vous cliquez sur mosaïque Panopto hello hello volet d’accès, vous devez obtenir automatiquement page de connexion de Panopto application.</span><span class="sxs-lookup"><span data-stu-id="44e31-234">When you click hello Panopto tile in hello Access Panel, you should get automatically login page of Panopto application.</span></span>
+<span data-ttu-id="44e31-235">Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="44e31-235">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="0b850-236">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="0b850-236">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="44e31-236">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="44e31-236">Additional resources</span></span>
 
-* [<span data-ttu-id="0b850-237">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="0b850-237">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="0b850-238">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="0b850-238">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="44e31-237">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="44e31-237">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="44e31-238">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="44e31-238">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

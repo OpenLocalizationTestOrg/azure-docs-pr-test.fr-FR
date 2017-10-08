@@ -1,7 +1,7 @@
 ---
 layout: LandingPage
-description: "Apprenez à synchroniser les répertoires et à activer l’authentification unique. La documentation vous montre comment intégrer une suite complète de fonctionnalités de gestion d’identité."
-title: "Documentation Azure Active Directory - Didacticiels, informations de référence sur les API | Microsoft Docs"
+description: "Découvrez comment activer et toosynchronize répertoires sur l’authentification unique. Documentation vous montre comment toointegrate une suite complète de fonctionnalités de gestion des identités."
+title: "aaaAzure Documentation d’Active Directory - didacticiels, référence de l’API | Documents Microsoft"
 services: active-directory
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 8933c77013d7b0d886d3e309dc0b1a72026eb677
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a99aa3cc979a518c5b53cb1540f037b6776fb157
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-documentation"></a>Documentation Azure Active Directory
 
-Découvrez comment synchroniser les répertoires et activer l’authentification unique avec Azure Active Directory (Azure AD). Des didacticiels, références d’API et autres documents vous montrent comment intégrer des fonctionnalités de gestion d’identité, y compris l’authentification multifacteur, l’enregistrement d’appareils, le contrôle d’accès basé sur les rôles, ainsi que la surveillance et les alertes de sécurité.
+Découvrez comment les répertoires toosynchronize et activer l’authentification unique avec Azure Active Directory (Azure AD). Didacticiels, des références de l’API et toute autre documentation vous montrent comment les fonctionnalités de gestion d’identité toointegrate notamment l’authentification multifacteur, inscription de l’appareil, accès en fonction du rôle de contrôlent et contrôle de la sécurité et d’alerte.
 
 <ul class="panelContent cardsFTitle">
     <li>

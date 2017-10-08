@@ -1,6 +1,6 @@
 ---
-title: "Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine Azure Active Directory pour les clients de bas niveau Windows | Microsoft Docs"
-description: "Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine Azure Active Directory pour les clients de bas niveau Windows."
+title: ordinateurs joints au aaaTroubleshooting hello-inscription automatique de domaine Azure AD pour les clients de bas niveau Windows | Documents Microsoft
+description: "Résolution des problèmes d’inscription automatique hello de domaine Azure AD joint les ordinateurs pour les clients de bas niveau de Windows."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,88 +14,88 @@ ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: a7c8ef4c59c53c21258f0c61963d8f994a3946ba
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 84fe666576f13de09d1eaa5692517d45a4dbeebe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-auto-registration-of-domain-joined-computers-to-azure-ad-for-windows-down-level-clients"></a><span data-ttu-id="c8db9-103">Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine Azure Active Directory pour les clients de bas niveau Windows</span><span class="sxs-lookup"><span data-stu-id="c8db9-103">Troubleshooting auto-registration of domain joined computers to Azure AD for Windows down-level clients</span></span> 
+# <a name="troubleshooting-auto-registration-of-domain-joined-computers-tooazure-ad-for-windows-down-level-clients"></a><span data-ttu-id="05b6b-103">Résolution des problèmes d’enregistrement automatique du domaine joint tooAzure d’ordinateurs Active Directory pour les clients de bas niveau de Windows</span><span class="sxs-lookup"><span data-stu-id="05b6b-103">Troubleshooting auto-registration of domain joined computers tooAzure AD for Windows down-level clients</span></span> 
 
-<span data-ttu-id="c8db9-104">Cette rubrique s’applique uniquement aux clients suivants :</span><span class="sxs-lookup"><span data-stu-id="c8db9-104">This topic is applicable only to the following clients:</span></span> 
+<span data-ttu-id="05b6b-104">Cette rubrique est applicable toohello uniquement après les clients :</span><span class="sxs-lookup"><span data-stu-id="05b6b-104">This topic is applicable only toohello following clients:</span></span> 
 
-- <span data-ttu-id="c8db9-105">Windows 7</span><span class="sxs-lookup"><span data-stu-id="c8db9-105">Windows 7</span></span> 
-- <span data-ttu-id="c8db9-106">Windows 8.1</span><span class="sxs-lookup"><span data-stu-id="c8db9-106">Windows 8.1</span></span> 
-- <span data-ttu-id="c8db9-107">Windows Server 2008 R2</span><span class="sxs-lookup"><span data-stu-id="c8db9-107">Windows Server 2008 R2</span></span> 
-- <span data-ttu-id="c8db9-108">Windows Server 2012</span><span class="sxs-lookup"><span data-stu-id="c8db9-108">Windows Server 2012</span></span> 
-- <span data-ttu-id="c8db9-109">Windows Server 2012 R2</span><span class="sxs-lookup"><span data-stu-id="c8db9-109">Windows Server 2012 R2</span></span> 
+- <span data-ttu-id="05b6b-105">Windows 7</span><span class="sxs-lookup"><span data-stu-id="05b6b-105">Windows 7</span></span> 
+- <span data-ttu-id="05b6b-106">Windows 8.1</span><span class="sxs-lookup"><span data-stu-id="05b6b-106">Windows 8.1</span></span> 
+- <span data-ttu-id="05b6b-107">Windows Server 2008 R2</span><span class="sxs-lookup"><span data-stu-id="05b6b-107">Windows Server 2008 R2</span></span> 
+- <span data-ttu-id="05b6b-108">Windows Server 2012</span><span class="sxs-lookup"><span data-stu-id="05b6b-108">Windows Server 2012</span></span> 
+- <span data-ttu-id="05b6b-109">Windows Server 2012 R2</span><span class="sxs-lookup"><span data-stu-id="05b6b-109">Windows Server 2012 R2</span></span> 
  
 
-<span data-ttu-id="c8db9-110">Pour Windows 10 ou Windows Server 2016, voir [Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine Azure Active Directory pour Windows 10 et Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md).</span><span class="sxs-lookup"><span data-stu-id="c8db9-110">For Windows 10 or Windows Server 2016, see [Troubleshooting auto-registration of domain joined computers to Azure AD – Windows 10 and Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md).</span></span>
+<span data-ttu-id="05b6b-110">Pour Windows 10 ou Windows Server 2016, consultez [résolution des problèmes d’enregistrement automatique du domaine joint ordinateurs tooAzure AD – Windows 10 et Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md).</span><span class="sxs-lookup"><span data-stu-id="05b6b-110">For Windows 10 or Windows Server 2016, see [Troubleshooting auto-registration of domain joined computers tooAzure AD – Windows 10 and Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md).</span></span>
 
-<span data-ttu-id="c8db9-111">Cette rubrique suppose que vous avez configuré l’inscription automatique d’appareils joints à un domaine comme décrit dans [Configuration de l’inscription automatique auprès d’Azure Active Directory d’appareils Windows joints à un domaine](active-directory-device-registration-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="c8db9-111">This topic assumes that you have configured auto-registration of domain-joined devices as outlined in described in [How to configure automatic registration of Windows domain-joined devices with Azure Active Directory](active-directory-device-registration-get-started.md).</span></span>
+<span data-ttu-id="05b6b-111">Cette rubrique suppose que vous avez configuré l’inscription automatique des appareils joints au domaine comme expliqué dans décrites dans [comment tooconfigure l’inscription automatique de Windows appartenant au domaine des appareils avec Azure Active Directory](active-directory-device-registration-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="05b6b-111">This topic assumes that you have configured auto-registration of domain-joined devices as outlined in described in [How tooconfigure automatic registration of Windows domain-joined devices with Azure Active Directory](active-directory-device-registration-get-started.md).</span></span>
  
-<span data-ttu-id="c8db9-112">Cette rubrique vous fournit des conseils sur la façon de résoudre les problèmes potentiels.</span><span class="sxs-lookup"><span data-stu-id="c8db9-112">This topic provides you with troubleshooting guidance on how to resolve potential issues.</span></span>  
-<span data-ttu-id="c8db9-113">Voici quelques points à noter pour obtenir des résultats corrects :</span><span class="sxs-lookup"><span data-stu-id="c8db9-113">Some things to note for successful outcomes:</span></span> 
+<span data-ttu-id="05b6b-112">Cette rubrique fournit des conseils sur la façon dont des problèmes potentiels de tooresolve de résolution des problèmes.</span><span class="sxs-lookup"><span data-stu-id="05b6b-112">This topic provides you with troubleshooting guidance on how tooresolve potential issues.</span></span>  
+<span data-ttu-id="05b6b-113">Toonote de certains éléments de résultats :</span><span class="sxs-lookup"><span data-stu-id="05b6b-113">Some things toonote for successful outcomes:</span></span> 
 
-- <span data-ttu-id="c8db9-114">L’inscription de ces clients sur Azure AD est par utilisateur/appareil.</span><span class="sxs-lookup"><span data-stu-id="c8db9-114">Registration of these clients on Azure AD is per user/device.</span></span> <span data-ttu-id="c8db9-115">Par exemple, si jdoe et jharnett se connectent à cet appareil, un enregistrement distinct (DeviceID) est créé pour chacun de ces utilisateurs dans l’onglet des informations UTILISATEUR.</span><span class="sxs-lookup"><span data-stu-id="c8db9-115">As an example: If jdoe and jharnett log in to this device, a separate registration (DeviceID) is created for each of these users in the USER info tab.</span></span>  
+- <span data-ttu-id="05b6b-114">L’inscription de ces clients sur Azure AD est par utilisateur/appareil.</span><span class="sxs-lookup"><span data-stu-id="05b6b-114">Registration of these clients on Azure AD is per user/device.</span></span> <span data-ttu-id="05b6b-115">Par exemple : Si jdoe et jharnett connecter toothis périphérique, un enregistrement distinct (DeviceID) est créé pour chacun de ces utilisateurs dans l’onglet info d’utilisateur hello.</span><span class="sxs-lookup"><span data-stu-id="05b6b-115">As an example: If jdoe and jharnett log in toothis device, a separate registration (DeviceID) is created for each of these users in hello USER info tab.</span></span>  
 
-- <span data-ttu-id="c8db9-116">L’inscription prédéfinie de ces clients est configurée pour être tentée à l’ouverture de session ou au verrouillage/déverrouillage, et il peut y avoir un délai de 5 minutes déclenché par une tâche du Planificateur de tâches.</span><span class="sxs-lookup"><span data-stu-id="c8db9-116">Registration of these clients out of the box is configured to try at either logon or lock/unlock and there could be 5-minute delay that this is triggered using a Task Scheduler task.</span></span> 
+- <span data-ttu-id="05b6b-116">L’inscription de ces clients en dehors de la zone de hello est tootry configuré à l’ouverture et de verrouiller/déverrouiller et il peut y avoir de délai de 5 minutes que cela est déclenché à l’aide d’une tâche du Planificateur de tâches.</span><span class="sxs-lookup"><span data-stu-id="05b6b-116">Registration of these clients out of hello box is configured tootry at either logon or lock/unlock and there could be 5-minute delay that this is triggered using a Task Scheduler task.</span></span> 
 
-- <span data-ttu-id="c8db9-117">Une réinstallation du système d’exploitation, ou une désinscription et une réinscription manuelles, peuvent créer une nouvelle inscription sur Azure AD et aboutir à plusieurs entrées sous l’onglet des informations UTILISATEUR dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="c8db9-117">A re-install of the operating system or a manual un-register and re-register may create a new registration on Azure AD and will result in multiple entries under the USER info tab in the Azure portal.</span></span> 
+- <span data-ttu-id="05b6b-117">Réinstallation du système d’exploitation de hello ou annuler l’inscription manuelle et réinscrire peut créer une nouvelle inscription sur Azure AD et entraîne plusieurs entrées sous l’onglet d’informations utilisateur hello Bonjour portail Azure.</span><span class="sxs-lookup"><span data-stu-id="05b6b-117">A re-install of hello operating system or a manual un-register and re-register may create a new registration on Azure AD and will result in multiple entries under hello USER info tab in hello Azure portal.</span></span> 
 
 
-## <a name="step-1-retrieve-the-registration-status"></a><span data-ttu-id="c8db9-118">Étape 1 : Récupérer l’état de l’inscription</span><span class="sxs-lookup"><span data-stu-id="c8db9-118">Step 1: Retrieve the registration status</span></span> 
+## <a name="step-1-retrieve-hello-registration-status"></a><span data-ttu-id="05b6b-118">Étape 1 : Récupération de l’état de l’inscription de hello</span><span class="sxs-lookup"><span data-stu-id="05b6b-118">Step 1: Retrieve hello registration status</span></span> 
 
-<span data-ttu-id="c8db9-119">**Pour vérifier l’état de l’inscription :**</span><span class="sxs-lookup"><span data-stu-id="c8db9-119">**To verify the registration status:**</span></span>  
+<span data-ttu-id="05b6b-119">**état de l’inscription de hello tooverify :**</span><span class="sxs-lookup"><span data-stu-id="05b6b-119">**tooverify hello registration status:**</span></span>  
 
-1. <span data-ttu-id="c8db9-120">Ouvrez une invite de commandes en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="c8db9-120">Open the command prompt as an administrator</span></span> 
+1. <span data-ttu-id="05b6b-120">Invite de commandes ouverte hello en tant qu’administrateur</span><span class="sxs-lookup"><span data-stu-id="05b6b-120">Open hello command prompt as an administrator</span></span> 
 
-2. <span data-ttu-id="c8db9-121">Saisissez `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /i"`</span><span class="sxs-lookup"><span data-stu-id="c8db9-121">Type `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /i"`</span></span>
+2. <span data-ttu-id="05b6b-121">Saisissez `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /i"`</span><span class="sxs-lookup"><span data-stu-id="05b6b-121">Type `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /i"`</span></span>
 
-<span data-ttu-id="c8db9-122">Cette commande affiche une boîte de dialogue qui vous donne plus de détails sur l’état de la jonction.</span><span class="sxs-lookup"><span data-stu-id="c8db9-122">This command displays a dialog box that provides you with more details about the join status.</span></span>
+<span data-ttu-id="05b6b-122">Cette commande affiche une boîte de dialogue qui vous offre plus de détails sur l’état de jointure hello.</span><span class="sxs-lookup"><span data-stu-id="05b6b-122">This command displays a dialog box that provides you with more details about hello join status.</span></span>
 
 ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/01.png)
 
 
-## <a name="step-2-evaluate-the-registration-status"></a><span data-ttu-id="c8db9-124">Étape 2 : Évaluer l’état de l’inscription</span><span class="sxs-lookup"><span data-stu-id="c8db9-124">Step 2: Evaluate the registration status</span></span> 
+## <a name="step-2-evaluate-hello-registration-status"></a><span data-ttu-id="05b6b-124">Étape 2 : Évaluer l’état de l’inscription de hello</span><span class="sxs-lookup"><span data-stu-id="05b6b-124">Step 2: Evaluate hello registration status</span></span> 
 
-<span data-ttu-id="c8db9-125">Si la jonction n’a pas réussi, la boîte de dialogue vous fournit plus d’informations sur le problème qui s’est produit.</span><span class="sxs-lookup"><span data-stu-id="c8db9-125">If the join was not successful, the dialog box provides you with details about the issue that has occured.</span></span>
+<span data-ttu-id="05b6b-125">Si la jointure de hello n’a pas réussi, boîte de dialogue hello vous offre plus d’informations sur le problème hello qui s’est produite.</span><span class="sxs-lookup"><span data-stu-id="05b6b-125">If hello join was not successful, hello dialog box provides you with details about hello issue that has occured.</span></span>
 
-<span data-ttu-id="c8db9-126">**Les tâches les plus courantes sont :**</span><span class="sxs-lookup"><span data-stu-id="c8db9-126">**The most common issues are:**</span></span>
+<span data-ttu-id="05b6b-126">**les problèmes les plus courants Hello sont :**</span><span class="sxs-lookup"><span data-stu-id="05b6b-126">**hello most common issues are:**</span></span>
 
-- <span data-ttu-id="c8db9-127">Une mauvaise configuration d’AD FS ou d’Azure AD</span><span class="sxs-lookup"><span data-stu-id="c8db9-127">A misconfigured AD FS or Azure AD</span></span>
+- <span data-ttu-id="05b6b-127">Une mauvaise configuration d’AD FS ou d’Azure AD</span><span class="sxs-lookup"><span data-stu-id="05b6b-127">A misconfigured AD FS or Azure AD</span></span>
 
     ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/02.png)
 
-- <span data-ttu-id="c8db9-129">Vous n’êtes pas connecté en tant qu’utilisateur du domaine</span><span class="sxs-lookup"><span data-stu-id="c8db9-129">You are not signed on as a domain user</span></span>
+- <span data-ttu-id="05b6b-129">Vous n’êtes pas connecté en tant qu’utilisateur du domaine</span><span class="sxs-lookup"><span data-stu-id="05b6b-129">You are not signed on as a domain user</span></span>
 
     ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/03.png)
 
-- <span data-ttu-id="c8db9-131">Un quota a été atteint.</span><span class="sxs-lookup"><span data-stu-id="c8db9-131">A quota has been reached</span></span>
+- <span data-ttu-id="05b6b-131">Un quota a été atteint.</span><span class="sxs-lookup"><span data-stu-id="05b6b-131">A quota has been reached</span></span>
 
     ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/04.png)
 
-- <span data-ttu-id="c8db9-133">Le service ne répond pas.</span><span class="sxs-lookup"><span data-stu-id="c8db9-133">The service is not responding</span></span> 
+- <span data-ttu-id="05b6b-133">Hello service ne répond pas</span><span class="sxs-lookup"><span data-stu-id="05b6b-133">hello service is not responding</span></span> 
 
     ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/05.png)
 
-<span data-ttu-id="c8db9-135">Vous pouvez également trouver les informations d’état dans le journal des événements sous **Applications and Services Log\Microsoft-Workplace Join**.</span><span class="sxs-lookup"><span data-stu-id="c8db9-135">You can also find the status information in the event log under **Applications and Services Log\Microsoft-Workplace Join**.</span></span>
+<span data-ttu-id="05b6b-135">Vous trouverez également des informations d’état hello dans le journal des événements hello sous **Applications et Services Log\Microsoft-jonction**.</span><span class="sxs-lookup"><span data-stu-id="05b6b-135">You can also find hello status information in hello event log under **Applications and Services Log\Microsoft-Workplace Join**.</span></span>
   
-<span data-ttu-id="c8db9-136">**Les causes les plus courantes d’un échec d’inscription sont :**</span><span class="sxs-lookup"><span data-stu-id="c8db9-136">**The most common causes for a failed registration are:**</span></span> 
+<span data-ttu-id="05b6b-136">**causes les plus courantes Hello pour un échec d’inscription sont :**</span><span class="sxs-lookup"><span data-stu-id="05b6b-136">**hello most common causes for a failed registration are:**</span></span> 
 
-- <span data-ttu-id="c8db9-137">Votre ordinateur n’est pas sur le réseau interne de l’entreprise ou un réseau privé virtuel sans connexion à un contrôleur de domaine Active Directory local.</span><span class="sxs-lookup"><span data-stu-id="c8db9-137">Your computer is not on the organization’s internal network or a VPN without connection to an on-premises AD domain controller.</span></span>
+- <span data-ttu-id="05b6b-137">Votre ordinateur n’est pas sur le réseau interne de hello organisation ou un réseau privé virtuel sans connexion tooan locaux contrôleur de domaine Active Directory.</span><span class="sxs-lookup"><span data-stu-id="05b6b-137">Your computer is not on hello organization’s internal network or a VPN without connection tooan on-premises AD domain controller.</span></span>
 
-- <span data-ttu-id="c8db9-138">Vous êtes connecté à votre ordinateur avec un compte d’ordinateur local.</span><span class="sxs-lookup"><span data-stu-id="c8db9-138">You are logged on to your computer with a local computer account.</span></span> 
+- <span data-ttu-id="05b6b-138">Vous êtes connecté sur l’ordinateur tooyour avec un compte d’ordinateur local.</span><span class="sxs-lookup"><span data-stu-id="05b6b-138">You are logged on tooyour computer with a local computer account.</span></span> 
 
-- <span data-ttu-id="c8db9-139">Problèmes de configuration du service :</span><span class="sxs-lookup"><span data-stu-id="c8db9-139">Service configuration issues:</span></span> 
+- <span data-ttu-id="05b6b-139">Problèmes de configuration du service :</span><span class="sxs-lookup"><span data-stu-id="05b6b-139">Service configuration issues:</span></span> 
 
-  - <span data-ttu-id="c8db9-140">Le serveur de fédération a été configuré pour prendre en charge **WIAORMULTIAUTHN**.</span><span class="sxs-lookup"><span data-stu-id="c8db9-140">The federation server has been configured to support **WIAORMULTIAUTHN**.</span></span> 
+  - <span data-ttu-id="05b6b-140">Hello serveur de fédération a été configuré toosupport **WIAORMULTIAUTHN**.</span><span class="sxs-lookup"><span data-stu-id="05b6b-140">hello federation server has been configured toosupport **WIAORMULTIAUTHN**.</span></span> 
 
-  - <span data-ttu-id="c8db9-141">Il n’existe aucun objet de point de connexion de service qui pointe vers le nom de votre domaine vérifié dans Azure AD dans la forêt Active Directory à laquelle l’ordinateur appartient.</span><span class="sxs-lookup"><span data-stu-id="c8db9-141">There is no Service Connection Point object that points to your verified domain name in Azure AD in the AD forest where the computer belongs to.</span></span>
+  - <span data-ttu-id="05b6b-141">Il n’existe aucun objet de Point de connexion qui pointe le nom de domaine vérifié tooyour dans Azure AD dans la forêt hello AD où appartient hello ordinateur.</span><span class="sxs-lookup"><span data-stu-id="05b6b-141">There is no Service Connection Point object that points tooyour verified domain name in Azure AD in hello AD forest where hello computer belongs to.</span></span>
 
-  - <span data-ttu-id="c8db9-142">Un utilisateur a atteint la limite d’appareils.</span><span class="sxs-lookup"><span data-stu-id="c8db9-142">A user has reached the limit of devices.</span></span> <span data-ttu-id="c8db9-143">Consultez Prise en main du service Azure Active Directory Device Registration.</span><span class="sxs-lookup"><span data-stu-id="c8db9-143">Please see Get Started with Azure Active Directory Device Registration.</span></span>
+  - <span data-ttu-id="05b6b-142">Un utilisateur a atteint la limite de hello des périphériques.</span><span class="sxs-lookup"><span data-stu-id="05b6b-142">A user has reached hello limit of devices.</span></span> <span data-ttu-id="05b6b-143">Consultez Prise en main du service Azure Active Directory Device Registration.</span><span class="sxs-lookup"><span data-stu-id="05b6b-143">Please see Get Started with Azure Active Directory Device Registration.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="c8db9-144">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="c8db9-144">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="05b6b-144">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="05b6b-144">Next steps</span></span>
 
-<span data-ttu-id="c8db9-145">Pour plus d’informations, consultez le [FAQ sur l’inscription d’appareils automatique](active-directory-device-registration-faq.md)</span><span class="sxs-lookup"><span data-stu-id="c8db9-145">For more information, see the [Automatic device registration FAQ](active-directory-device-registration-faq.md)</span></span> 
+<span data-ttu-id="05b6b-145">Pour plus d’informations, consultez hello [Forum aux questions sur l’inscription automatique](active-directory-device-registration-faq.md)</span><span class="sxs-lookup"><span data-stu-id="05b6b-145">For more information, see hello [Automatic device registration FAQ](active-directory-device-registration-faq.md)</span></span> 

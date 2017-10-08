@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec JobScore | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et JobScore."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et JobScore."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,197 +13,197 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: jeedes
-ms.openlocfilehash: f6ed2d362f7b027bfdc38ba2fdaa03948ff5632c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6693a5fd96bfd7fbcd7197983b5f04d061970bdd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-jobscore"></a><span data-ttu-id="a060c-103">Didacticiel : Intégration d’Azure Active Directory à JobScore</span><span class="sxs-lookup"><span data-stu-id="a060c-103">Tutorial: Azure Active Directory integration with JobScore</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-jobscore"></a><span data-ttu-id="d58cd-103">Didacticiel : Intégration d’Azure Active Directory à JobScore</span><span class="sxs-lookup"><span data-stu-id="d58cd-103">Tutorial: Azure Active Directory integration with JobScore</span></span>
 
-<span data-ttu-id="a060c-104">Dans ce didacticiel, vous allez apprendre à intégrer JobScore à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="a060c-104">In this tutorial, you learn how to integrate JobScore with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="d58cd-104">Dans ce didacticiel, vous apprendrez comment toointegrate JobScore avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="d58cd-104">In this tutorial, you learn how toointegrate JobScore with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="a060c-105">L’intégration de JobScore avec Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="a060c-105">Integrating JobScore with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="d58cd-105">Intégration JobScore à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="d58cd-105">Integrating JobScore with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="a060c-106">Dans Azure AD, vous pouvez contrôler qui a accès à JobScore</span><span class="sxs-lookup"><span data-stu-id="a060c-106">You can control in Azure AD who has access to JobScore</span></span>
-- <span data-ttu-id="a060c-107">Vous pouvez autoriser les utilisateurs à se connecter automatiquement à JobScore (par le biais de l’authentification unique) avec leur compte Azure AD</span><span class="sxs-lookup"><span data-stu-id="a060c-107">You can enable your users to automatically get signed-on to JobScore (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="a060c-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="a060c-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="d58cd-106">Vous pouvez contrôler dans Azure AD qui a accès tooJobScore</span><span class="sxs-lookup"><span data-stu-id="d58cd-106">You can control in Azure AD who has access tooJobScore</span></span>
+- <span data-ttu-id="d58cd-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooJobScore (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="d58cd-107">You can enable your users tooautomatically get signed-on tooJobScore (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="d58cd-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="d58cd-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="a060c-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="a060c-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="d58cd-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="d58cd-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="a060c-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="a060c-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="d58cd-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="d58cd-110">Prerequisites</span></span>
 
-<span data-ttu-id="a060c-111">Pour configurer l’intégration d’Azure AD à JobScore, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="a060c-111">To configure Azure AD integration with JobScore, you need the following items:</span></span>
+<span data-ttu-id="d58cd-111">tooconfigure intégration d’Azure AD avec JobScore, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="d58cd-111">tooconfigure Azure AD integration with JobScore, you need hello following items:</span></span>
 
-- <span data-ttu-id="a060c-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="a060c-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="a060c-113">Un abonnement JobScore pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="a060c-113">A JobScore single sign-on enabled subscription</span></span>
+- <span data-ttu-id="d58cd-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="d58cd-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="d58cd-113">Un abonnement JobScore pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="d58cd-113">A JobScore single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a060c-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="a060c-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="d58cd-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="d58cd-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="a060c-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="a060c-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="d58cd-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="d58cd-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="a060c-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="a060c-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="a060c-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="a060c-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="d58cd-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="d58cd-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="d58cd-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="d58cd-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="a060c-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="a060c-118">Scenario description</span></span>
-<span data-ttu-id="a060c-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="a060c-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="a060c-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="a060c-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="d58cd-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="d58cd-118">Scenario description</span></span>
+<span data-ttu-id="d58cd-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="d58cd-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="d58cd-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="d58cd-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="a060c-121">Ajout de JobScore à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="a060c-121">Adding JobScore from the gallery</span></span>
-2. <span data-ttu-id="a060c-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a060c-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="d58cd-121">Ajout de JobScore à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="d58cd-121">Adding JobScore from hello gallery</span></span>
+2. <span data-ttu-id="d58cd-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="d58cd-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-jobscore-from-the-gallery"></a><span data-ttu-id="a060c-123">Ajout de JobScore à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="a060c-123">Adding JobScore from the gallery</span></span>
-<span data-ttu-id="a060c-124">Pour configurer l’intégration de JobScore à Azure AD, vous devez ajouter JobScore à partir de la galerie à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="a060c-124">To configure the integration of JobScore into Azure AD, you need to add JobScore from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-jobscore-from-hello-gallery"></a><span data-ttu-id="d58cd-123">Ajout de JobScore à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="d58cd-123">Adding JobScore from hello gallery</span></span>
+<span data-ttu-id="d58cd-124">intégration de hello tooconfigure de JobScore dans Azure AD, vous devez tooadd JobScore à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="d58cd-124">tooconfigure hello integration of JobScore into Azure AD, you need tooadd JobScore from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="a060c-125">**Pour ajouter JobScore à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a060c-125">**To add JobScore from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="d58cd-125">**tooadd JobScore à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d58cd-125">**tooadd JobScore from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a060c-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="a060c-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="d58cd-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="d58cd-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="a060c-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="a060c-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="a060c-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="a060c-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="d58cd-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="d58cd-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="a060c-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="a060c-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="d58cd-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="d58cd-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="a060c-133">Dans la zone de recherche, entrez **JobScore**.</span><span class="sxs-lookup"><span data-stu-id="a060c-133">In the search box, type **JobScore**.</span></span>
+4. <span data-ttu-id="d58cd-133">Dans la zone de recherche de hello, tapez **JobScore**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-133">In hello search box, type **JobScore**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jobscore-tutorial/tutorial_jobscore_search.png)
 
-5. <span data-ttu-id="a060c-135">Dans le volet de résultats, sélectionnez **JobScore**, puis cliquez sur **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="a060c-135">In the results panel, select **JobScore**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="d58cd-135">Dans le volet de résultats hello, sélectionnez **JobScore**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="d58cd-135">In hello results panel, select **JobScore**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jobscore-tutorial/tutorial_jobscore_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="a060c-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a060c-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="a060c-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec JobScore avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="a060c-138">In this section, you configure and test Azure AD single sign-on with JobScore based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="d58cd-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="d58cd-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="d58cd-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec JobScore avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="d58cd-138">In this section, you configure and test Azure AD single sign-on with JobScore based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="a060c-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur JobScore équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a060c-139">For single sign-on to work, Azure AD needs to know what the counterpart user in JobScore is to a user in Azure AD.</span></span> <span data-ttu-id="a060c-140">En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur JobScore associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="a060c-140">In other words, a link relationship between an Azure AD user and the related user in JobScore needs to be established.</span></span>
+<span data-ttu-id="d58cd-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans JobScore est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="d58cd-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in JobScore is tooa user in Azure AD.</span></span> <span data-ttu-id="d58cd-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans JobScore doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="d58cd-140">In other words, a link relationship between an Azure AD user and hello related user in JobScore needs toobe established.</span></span>
 
-<span data-ttu-id="a060c-141">Dans JobScore, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="a060c-141">In JobScore, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="d58cd-141">Dans JobScore, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="d58cd-141">In JobScore, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="a060c-142">Pour configurer et tester l’authentification unique Azure AD avec JobScore, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="a060c-142">To configure and test Azure AD single sign-on with JobScore, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="d58cd-142">tooconfigure et test Azure AD l’authentification unique avec JobScore, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="d58cd-142">tooconfigure and test Azure AD single sign-on with JobScore, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="a060c-143">**[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="a060c-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="a060c-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="a060c-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="a060c-145">**[Création d’un utilisateur de test JobScore](#creating-a-jobscore-test-user)** pour avoir un équivalent de Britta Simon dans JobScore lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="a060c-145">**[Creating a JobScore test user](#creating-a-jobscore-test-user)** - to have a counterpart of Britta Simon in JobScore that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="a060c-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a060c-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="a060c-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="a060c-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="d58cd-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="d58cd-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="d58cd-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="d58cd-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="d58cd-145">**[Création d’un utilisateur de test JobScore](#creating-a-jobscore-test-user)**  -toohave un équivalent de Britta Simon dans JobScore est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="d58cd-145">**[Creating a JobScore test user](#creating-a-jobscore-test-user)** - toohave a counterpart of Britta Simon in JobScore that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="d58cd-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="d58cd-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="d58cd-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="d58cd-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="a060c-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a060c-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="d58cd-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="d58cd-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="a060c-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application JobScore.</span><span class="sxs-lookup"><span data-stu-id="a060c-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your JobScore application.</span></span>
+<span data-ttu-id="d58cd-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application JobScore.</span><span class="sxs-lookup"><span data-stu-id="d58cd-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your JobScore application.</span></span>
 
-<span data-ttu-id="a060c-150">**Pour configurer l’authentification unique Azure AD avec JobScore, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a060c-150">**To configure Azure AD single sign-on with JobScore, perform the following steps:**</span></span>
+<span data-ttu-id="d58cd-150">**tooconfigure Azure AD single sign-on avec JobScore, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d58cd-150">**tooconfigure Azure AD single sign-on with JobScore, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a060c-151">Dans le portail Azure, sur la page d’intégration de l’application **JobScore**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="a060c-151">In the Azure portal, on the **JobScore** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="d58cd-151">Bonjour portail Azure, sur hello **JobScore** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-151">In hello Azure portal, on hello **JobScore** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="a060c-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="a060c-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="d58cd-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="d58cd-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-jobscore-tutorial/tutorial_jobscore_samlbase.png)
 
-3. <span data-ttu-id="a060c-155">Dans la section **Domaine et URL JobScore**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="a060c-155">On the **JobScore Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="d58cd-155">Sur hello **JobScore domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="d58cd-155">On hello **JobScore Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-jobscore-tutorial/tutorial_jobscore_url.png)
 
-    <span data-ttu-id="a060c-157">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://hire.jobscore.com/auth/adfs/<company name>`</span><span class="sxs-lookup"><span data-stu-id="a060c-157">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://hire.jobscore.com/auth/adfs/<company name>`</span></span>
+    <span data-ttu-id="d58cd-157">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://hire.jobscore.com/auth/adfs/<company name>`</span><span class="sxs-lookup"><span data-stu-id="d58cd-157">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://hire.jobscore.com/auth/adfs/<company name>`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="a060c-158">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="a060c-158">This value is not real.</span></span> <span data-ttu-id="a060c-159">Mettez à jour cette valeur avec l’URL de connexion réelle.</span><span class="sxs-lookup"><span data-stu-id="a060c-159">Update this value with the actual Sign-On URL.</span></span> <span data-ttu-id="a060c-160">Contactez [l’équipe de support client de JobScore](mailto:support@jobscore.com) pour obtenir cette valeur.</span><span class="sxs-lookup"><span data-stu-id="a060c-160">Contact [JobScore Client support team](mailto:support@jobscore.com) to get this value.</span></span> 
+    > <span data-ttu-id="d58cd-158">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="d58cd-158">This value is not real.</span></span> <span data-ttu-id="d58cd-159">Mettre à jour de cette valeur avec hello URL de connexion réel.</span><span class="sxs-lookup"><span data-stu-id="d58cd-159">Update this value with hello actual Sign-On URL.</span></span> <span data-ttu-id="d58cd-160">Contact [équipe de support Client de JobScore](mailto:support@jobscore.com) tooget cette valeur.</span><span class="sxs-lookup"><span data-stu-id="d58cd-160">Contact [JobScore Client support team](mailto:support@jobscore.com) tooget this value.</span></span> 
  
-4. <span data-ttu-id="a060c-161">Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="a060c-161">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="d58cd-161">Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="d58cd-161">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-jobscore-tutorial/tutorial_jobscore_certificate.png) 
 
-5. <span data-ttu-id="a060c-163">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="a060c-163">Click **Save** button.</span></span>
+5. <span data-ttu-id="d58cd-163">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="d58cd-163">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-jobscore-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="a060c-165">Pour configurer l’authentification unique côté **JobScore**, vous devez envoyer le **XML de métadonnées** téléchargé à [l’équipe de support technique de JobScore](mailto:support@jobscore.com).</span><span class="sxs-lookup"><span data-stu-id="a060c-165">To configure single sign-on on **JobScore** side, you need to send the downloaded **Metadata XML** to [JobScore support team](mailto:support@jobscore.com).</span></span> 
+6. <span data-ttu-id="d58cd-165">tooconfigure l’authentification unique sur **JobScore** côté, vous devez hello toosend téléchargé **Metadata XML** trop[équipe de support JobScore](mailto:support@jobscore.com).</span><span class="sxs-lookup"><span data-stu-id="d58cd-165">tooconfigure single sign-on on **JobScore** side, you need toosend hello downloaded **Metadata XML** too[JobScore support team](mailto:support@jobscore.com).</span></span> 
 
 > [!TIP]
-> <span data-ttu-id="a060c-166">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="a060c-166">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="a060c-167">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="a060c-167">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="a060c-168">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="a060c-168">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="d58cd-166">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="d58cd-166">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="d58cd-167">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="d58cd-167">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="d58cd-168">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="d58cd-168">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="a060c-169">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="a060c-169">Creating an Azure AD test user</span></span>
-<span data-ttu-id="a060c-170">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="a060c-170">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="d58cd-169">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="d58cd-169">Creating an Azure AD test user</span></span>
+<span data-ttu-id="d58cd-170">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="d58cd-170">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="a060c-172">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a060c-172">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="d58cd-172">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d58cd-172">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a060c-173">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="a060c-173">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="d58cd-173">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="d58cd-173">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jobscore-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="a060c-175">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="a060c-175">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="d58cd-175">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-175">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jobscore-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="a060c-177">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="a060c-177">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="d58cd-177">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="d58cd-177">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jobscore-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="a060c-179">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="a060c-179">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="d58cd-179">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="d58cd-179">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-jobscore-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="a060c-181">a.</span><span class="sxs-lookup"><span data-stu-id="a060c-181">a.</span></span> <span data-ttu-id="a060c-182">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="a060c-182">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="d58cd-181">a.</span><span class="sxs-lookup"><span data-stu-id="d58cd-181">a.</span></span> <span data-ttu-id="d58cd-182">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-182">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="a060c-183">b.</span><span class="sxs-lookup"><span data-stu-id="a060c-183">b.</span></span> <span data-ttu-id="a060c-184">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="a060c-184">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="d58cd-183">b.</span><span class="sxs-lookup"><span data-stu-id="d58cd-183">b.</span></span> <span data-ttu-id="d58cd-184">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="d58cd-184">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="a060c-185">c.</span><span class="sxs-lookup"><span data-stu-id="a060c-185">c.</span></span> <span data-ttu-id="a060c-186">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="a060c-186">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="d58cd-185">c.</span><span class="sxs-lookup"><span data-stu-id="d58cd-185">c.</span></span> <span data-ttu-id="d58cd-186">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-186">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="a060c-187">d.</span><span class="sxs-lookup"><span data-stu-id="a060c-187">d.</span></span> <span data-ttu-id="a060c-188">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="a060c-188">Click **Create**.</span></span>
+    <span data-ttu-id="d58cd-187">d.</span><span class="sxs-lookup"><span data-stu-id="d58cd-187">d.</span></span> <span data-ttu-id="d58cd-188">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-188">Click **Create**.</span></span>
  
-### <a name="creating-a-jobscore-test-user"></a><span data-ttu-id="a060c-189">Création d’un utilisateur de test JobScore</span><span class="sxs-lookup"><span data-stu-id="a060c-189">Creating a JobScore test user</span></span>
+### <a name="creating-a-jobscore-test-user"></a><span data-ttu-id="d58cd-189">Création d’un utilisateur de test JobScore</span><span class="sxs-lookup"><span data-stu-id="d58cd-189">Creating a JobScore test user</span></span>
 
-<span data-ttu-id="a060c-190">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans JobScore.</span><span class="sxs-lookup"><span data-stu-id="a060c-190">In this section, you create a user called Britta Simon in JobScore.</span></span> <span data-ttu-id="a060c-191">Collaborez avec [l’équipe du support technique de JobScore](mailto:support@jobscore.com) pour ajouter des utilisateurs dans la plateforme JobScore.</span><span class="sxs-lookup"><span data-stu-id="a060c-191">Work with [JobScore support team](mailto:support@jobscore.com) to add the users in the JobScore platform.</span></span>
+<span data-ttu-id="d58cd-190">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans JobScore.</span><span class="sxs-lookup"><span data-stu-id="d58cd-190">In this section, you create a user called Britta Simon in JobScore.</span></span> <span data-ttu-id="d58cd-191">Travailler avec [équipe de support JobScore](mailto:support@jobscore.com) tooadd les utilisateurs de hello dans la plateforme de JobScore hello.</span><span class="sxs-lookup"><span data-stu-id="d58cd-191">Work with [JobScore support team](mailto:support@jobscore.com) tooadd hello users in hello JobScore platform.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="a060c-192">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="a060c-192">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="d58cd-192">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="d58cd-192">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="a060c-193">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à JobScore.</span><span class="sxs-lookup"><span data-stu-id="a060c-193">In this section, you enable Britta Simon to use Azure single sign-on by granting access to JobScore.</span></span>
+<span data-ttu-id="d58cd-193">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooJobScore.</span><span class="sxs-lookup"><span data-stu-id="d58cd-193">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooJobScore.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="a060c-195">**Pour affecter Britta Simon à JobScore, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a060c-195">**To assign Britta Simon to JobScore, perform the following steps:**</span></span>
+<span data-ttu-id="d58cd-195">**tooassign Britta Simon tooJobScore, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d58cd-195">**tooassign Britta Simon tooJobScore, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a060c-196">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="a060c-196">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="d58cd-196">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-196">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="a060c-198">Dans la liste des applications, sélectionnez **JobScore**.</span><span class="sxs-lookup"><span data-stu-id="a060c-198">In the applications list, select **JobScore**.</span></span>
+2. <span data-ttu-id="d58cd-198">Dans la liste des applications hello, sélectionnez **JobScore**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-198">In hello applications list, select **JobScore**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-jobscore-tutorial/tutorial_jobscore_app.png) 
 
-3. <span data-ttu-id="a060c-200">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="a060c-200">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="d58cd-200">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-200">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="a060c-202">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="a060c-202">Click **Add** button.</span></span> <span data-ttu-id="a060c-203">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="a060c-203">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="d58cd-202">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-202">Click **Add** button.</span></span> <span data-ttu-id="d58cd-203">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-203">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="a060c-205">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="a060c-205">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="d58cd-205">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="d58cd-205">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="a060c-206">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="a060c-206">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="d58cd-206">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-206">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="a060c-207">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="a060c-207">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="d58cd-207">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="d58cd-207">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="a060c-208">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="a060c-208">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="d58cd-208">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="d58cd-208">Testing single sign-on</span></span>
 
-<span data-ttu-id="a060c-209">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="a060c-209">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="d58cd-209">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="d58cd-209">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="a060c-210">Si vous cliquez sur la mosaïque JobScore dans le volet d’accès, vous devez vous connecter automatiquement à votre application JobScore.</span><span class="sxs-lookup"><span data-stu-id="a060c-210">When you click the JobScore tile in the Access Panel, you should get automatically signed-on to your JobScore application.</span></span>
+<span data-ttu-id="d58cd-210">Lorsque vous cliquez sur mosaïque JobScore hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour JobScore application.</span><span class="sxs-lookup"><span data-stu-id="d58cd-210">When you click hello JobScore tile in hello Access Panel, you should get automatically signed-on tooyour JobScore application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="a060c-211">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="a060c-211">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="d58cd-211">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="d58cd-211">Additional resources</span></span>
 
-* [<span data-ttu-id="a060c-212">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="a060c-212">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="a060c-213">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="a060c-213">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="d58cd-212">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="d58cd-212">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="d58cd-213">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="d58cd-213">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

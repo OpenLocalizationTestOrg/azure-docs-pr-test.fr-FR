@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à FM:Systems | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et FM:Systems."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et FM : Systems."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,213 +13,213 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/17/2017
 ms.author: jeedes
-ms.openlocfilehash: 3a597d228f6c9234ec2fd2644ec3ac50b98f3b6b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 677ef74dac663a43835d65a4d4f4fd031a0078cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-fmsystems"></a><span data-ttu-id="19bf2-103">Didacticiel : Intégration d’Azure Active Directory à FM:Systems</span><span class="sxs-lookup"><span data-stu-id="19bf2-103">Tutorial: Azure Active Directory integration with FM:Systems</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-fmsystems"></a><span data-ttu-id="28260-103">Didacticiel : Intégration d’Azure Active Directory à FM:Systems</span><span class="sxs-lookup"><span data-stu-id="28260-103">Tutorial: Azure Active Directory integration with FM:Systems</span></span>
 
-<span data-ttu-id="19bf2-104">Dans ce didacticiel, vous allez apprendre à intégrer FM:Systems à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="19bf2-104">In this tutorial, you learn how to integrate FM:Systems with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="28260-104">Dans ce didacticiel, vous apprendrez comment toointegrate FM : Systems avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="28260-104">In this tutorial, you learn how toointegrate FM:Systems with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="19bf2-105">L’intégration de FM:Systems à Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="19bf2-105">Integrating FM:Systems with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="28260-105">Intégration FM : Systems à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="28260-105">Integrating FM:Systems with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="19bf2-106">Dans Azure AD, vous pouvez contrôler qui a accès à FM:Systems.</span><span class="sxs-lookup"><span data-stu-id="19bf2-106">You can control in Azure AD who has access to FM:Systems</span></span>
-- <span data-ttu-id="19bf2-107">Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à FM:Systems (via l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="19bf2-107">You can enable your users to automatically get signed-on to FM:Systems (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="19bf2-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="19bf2-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="28260-106">Vous pouvez contrôler dans Azure AD qui a accès tooFM:Systems</span><span class="sxs-lookup"><span data-stu-id="28260-106">You can control in Azure AD who has access tooFM:Systems</span></span>
+- <span data-ttu-id="28260-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooFM:Systems (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="28260-107">You can enable your users tooautomatically get signed-on tooFM:Systems (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="28260-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="28260-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="19bf2-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="19bf2-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="28260-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="28260-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="19bf2-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="19bf2-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="28260-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="28260-110">Prerequisites</span></span>
 
-<span data-ttu-id="19bf2-111">Pour configurer l’intégration d’Azure AD à FM:Systems, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="19bf2-111">To configure Azure AD integration with FM:Systems, you need the following items:</span></span>
+<span data-ttu-id="28260-111">tooconfigure intégration d’Azure AD avec FM : Systems, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="28260-111">tooconfigure Azure AD integration with FM:Systems, you need hello following items:</span></span>
 
-- <span data-ttu-id="19bf2-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="19bf2-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="19bf2-113">Un abonnement FM:Systems pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="19bf2-113">An FM:Systems single sign-on enabled subscription</span></span>
+- <span data-ttu-id="28260-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="28260-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="28260-113">Un abonnement FM:Systems pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="28260-113">An FM:Systems single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="19bf2-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="19bf2-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="28260-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="28260-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="19bf2-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="19bf2-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="28260-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="28260-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="19bf2-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="19bf2-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="19bf2-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="19bf2-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="28260-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="28260-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="28260-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="28260-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="19bf2-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="19bf2-118">Scenario description</span></span>
-<span data-ttu-id="19bf2-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="19bf2-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="19bf2-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="19bf2-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="28260-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="28260-118">Scenario description</span></span>
+<span data-ttu-id="28260-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="28260-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="28260-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="28260-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="19bf2-121">Ajout de FM:Systems à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="19bf2-121">Adding FM:Systems from the gallery</span></span>
-2. <span data-ttu-id="19bf2-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="19bf2-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="28260-121">Ajout de FM : Systems à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="28260-121">Adding FM:Systems from hello gallery</span></span>
+2. <span data-ttu-id="28260-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="28260-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-fmsystems-from-the-gallery"></a><span data-ttu-id="19bf2-123">Ajout de FM:Systems à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="19bf2-123">Adding FM:Systems from the gallery</span></span>
-<span data-ttu-id="19bf2-124">Pour configurer l’intégration de FM:Systems à Azure AD, vous devez ajouter FM:Systems disponible dans la galerie, à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="19bf2-124">To configure the integration of FM:Systems into Azure AD, you need to add FM:Systems from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-fmsystems-from-hello-gallery"></a><span data-ttu-id="28260-123">Ajout de FM : Systems à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="28260-123">Adding FM:Systems from hello gallery</span></span>
+<span data-ttu-id="28260-124">tooconfigure hello intégration de FM : Systems dans Azure AD, vous devez tooadd FM : Systems à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="28260-124">tooconfigure hello integration of FM:Systems into Azure AD, you need tooadd FM:Systems from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="19bf2-125">**Pour ajouter FM:Systems à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="19bf2-125">**To add FM:Systems from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="28260-125">**tooadd FM : Systems à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="28260-125">**tooadd FM:Systems from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="19bf2-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="28260-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="28260-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="19bf2-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="19bf2-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="28260-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="28260-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="28260-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="28260-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="19bf2-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="19bf2-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="28260-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="28260-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="19bf2-133">Dans la zone de recherche, tapez **FM:Systems**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-133">In the search box, type **FM:Systems**.</span></span>
+4. <span data-ttu-id="28260-133">Dans la zone de recherche de hello, tapez **FM : Systems**.</span><span class="sxs-lookup"><span data-stu-id="28260-133">In hello search box, type **FM:Systems**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-fm-systems-tutorial/tutorial_fmsystems_search.png)
 
-5. <span data-ttu-id="19bf2-135">Dans le volet de résultats, sélectionnez **FM:Systems**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="19bf2-135">In the results panel, select **FM:Systems**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="28260-135">Dans le volet de résultats hello, sélectionnez **FM : Systems**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="28260-135">In hello results panel, select **FM:Systems**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-fm-systems-tutorial/tutorial_fmsystems_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="19bf2-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="19bf2-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="19bf2-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec FM:Systems, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="19bf2-138">In this section, you configure and test Azure AD single sign-on with FM:Systems based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="28260-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="28260-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="28260-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec FM:Systems, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="28260-138">In this section, you configure and test Azure AD single sign-on with FM:Systems based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="19bf2-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur FM:Systems équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="19bf2-139">For single sign-on to work, Azure AD needs to know what the counterpart user in FM:Systems is to a user in Azure AD.</span></span> <span data-ttu-id="19bf2-140">En d’autres termes, une relation entre un utilisateur Azure AD et l’utilisateur FM:Systems associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="19bf2-140">In other words, a link relationship between an Azure AD user and the related user in FM:Systems needs to be established.</span></span>
+<span data-ttu-id="28260-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans FM : Systems est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="28260-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in FM:Systems is tooa user in Azure AD.</span></span> <span data-ttu-id="28260-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans FM : Systems doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="28260-140">In other words, a link relationship between an Azure AD user and hello related user in FM:Systems needs toobe established.</span></span>
 
-<span data-ttu-id="19bf2-141">Dans FM:Systems, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="19bf2-141">In FM:Systems, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="28260-141">Dans FM : Systems, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="28260-141">In FM:Systems, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="19bf2-142">Pour configurer et tester l’authentification unique Azure AD avec FM:Systems, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="19bf2-142">To configure and test Azure AD single sign-on with FM:Systems, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="28260-142">tooconfigure et test Azure AD l’authentification unique avec FM : Systems, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="28260-142">tooconfigure and test Azure AD single sign-on with FM:Systems, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="19bf2-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="19bf2-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="19bf2-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="19bf2-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="19bf2-145">**[Création d’un utilisateur de test FM:Systems](#creating-an-fmsystems-test-user)** pour avoir un équivalent de Britta Simon dans FM:Systems lié à la représentation Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="19bf2-145">**[Creating an FM:Systems test user](#creating-an-fmsystems-test-user)** - to have a counterpart of Britta Simon in FM:Systems that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="19bf2-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="19bf2-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="19bf2-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="19bf2-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="28260-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="28260-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="28260-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="28260-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="28260-145">**[Création d’un utilisateur de test FM : Systems](#creating-an-fmsystems-test-user)**  -toohave un homologue de Britta Simon dans FM : Systems qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="28260-145">**[Creating an FM:Systems test user](#creating-an-fmsystems-test-user)** - toohave a counterpart of Britta Simon in FM:Systems that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="28260-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="28260-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="28260-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="28260-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="19bf2-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="19bf2-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="28260-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="28260-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="19bf2-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application FM:Systems.</span><span class="sxs-lookup"><span data-stu-id="19bf2-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your FM:Systems application.</span></span>
+<span data-ttu-id="28260-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application FM : Systems.</span><span class="sxs-lookup"><span data-stu-id="28260-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your FM:Systems application.</span></span>
 
-<span data-ttu-id="19bf2-150">**Pour configurer l’authentification unique Azure AD avec FM:Systems, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="19bf2-150">**To configure Azure AD single sign-on with FM:Systems, perform the following steps:**</span></span>
+<span data-ttu-id="28260-150">**tooconfigure Azure AD single sign-on avec FM : Systems, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="28260-150">**tooconfigure Azure AD single sign-on with FM:Systems, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="19bf2-151">Dans le portail Azure, dans la page d’intégration de l’application **FM:Systems**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-151">In the Azure portal, on the **FM:Systems** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="28260-151">Bonjour portail Azure, sur hello **FM : Systems** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="28260-151">In hello Azure portal, on hello **FM:Systems** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="19bf2-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="19bf2-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="28260-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="28260-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-fm-systems-tutorial/tutorial_fmsystems_samlbase.png)
 
-3. <span data-ttu-id="19bf2-155">Dans la section **Domaine et URL FM:Systems**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="19bf2-155">On the **FM:Systems Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="28260-155">Sur hello **FM : Systems domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="28260-155">On hello **FM:Systems Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-fm-systems-tutorial/tutorial_fmsystems_url.png)
 
-    <span data-ttu-id="19bf2-157">Dans la zone de texte **URL de réponse**, tapez **l’URL de réponse de FM:Systems** au format suivant : `https://<companyname>.fmshosted.com/fminteract/ConsumerService2.aspx`</span><span class="sxs-lookup"><span data-stu-id="19bf2-157">In the **Reply URL** textbox, type your FM:Systems **Reply URL**, type the URL using the following pattern: `https://<companyname>.fmshosted.com/fminteract/ConsumerService2.aspx`</span></span>
+    <span data-ttu-id="28260-157">Bonjour **URL de réponse** zone de texte, tapez votre FM : Systems **URL de réponse**, tapez l’URL hello hello suivant le modèle à l’aide de :`https://<companyname>.fmshosted.com/fminteract/ConsumerService2.aspx`</span><span class="sxs-lookup"><span data-stu-id="28260-157">In hello **Reply URL** textbox, type your FM:Systems **Reply URL**, type hello URL using hello following pattern: `https://<companyname>.fmshosted.com/fminteract/ConsumerService2.aspx`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="19bf2-158">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="19bf2-158">This value is not real.</span></span> <span data-ttu-id="19bf2-159">Mettez à jour la valeur avec l’URL de réponse réelle.</span><span class="sxs-lookup"><span data-stu-id="19bf2-159">Update this value with the actual Reply URL.</span></span> <span data-ttu-id="19bf2-160">Pour obtenir cette valeur, contactez [l’équipe du support technique FM:Systems](https://fmsystems.com/ask-us/).</span><span class="sxs-lookup"><span data-stu-id="19bf2-160">Contact [FM:Systems support team](https://fmsystems.com/ask-us/) to get this value.</span></span>
+    > <span data-ttu-id="28260-158">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="28260-158">This value is not real.</span></span> <span data-ttu-id="28260-159">Mettre à jour cette valeur avec l’URL de réponse réelle hello.</span><span class="sxs-lookup"><span data-stu-id="28260-159">Update this value with hello actual Reply URL.</span></span> <span data-ttu-id="28260-160">Contact [équipe de support FM : Systems](https://fmsystems.com/ask-us/) tooget cette valeur.</span><span class="sxs-lookup"><span data-stu-id="28260-160">Contact [FM:Systems support team](https://fmsystems.com/ask-us/) tooget this value.</span></span>
  
-4. <span data-ttu-id="19bf2-161">Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="19bf2-161">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="28260-161">Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="28260-161">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-fm-systems-tutorial/tutorial_fmsystems_certificate.png) 
 
-5. <span data-ttu-id="19bf2-163">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="19bf2-163">Click **Save** button.</span></span>
+5. <span data-ttu-id="28260-163">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="28260-163">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-fm-systems-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="19bf2-165">Pour configurer l’authentification unique côté **FM:Systems**, vous devez envoyer les **métadonnées XML** téléchargées à [l’équipe du support technique FM:Systems](https://fmsystems.com/ask-us/).</span><span class="sxs-lookup"><span data-stu-id="19bf2-165">To configure single sign-on on **FM:Systems** side, you need to send the downloaded **Metadata XML** to [FM:Systems support team](https://fmsystems.com/ask-us/).</span></span> <span data-ttu-id="19bf2-166">Elle configure ce paramètre pour que la connexion SSO SAML soit définie correctement des deux côtés.</span><span class="sxs-lookup"><span data-stu-id="19bf2-166">They set this setting to have the SAML SSO connection set properly on both sides.</span></span> <span data-ttu-id="19bf2-167">Vous recevrez une notification dès que l’authentification unique aura été activée pour votre abonnement.</span><span class="sxs-lookup"><span data-stu-id="19bf2-167">You will get a notification when SSO has been enabled for your subscription.</span></span>
+6. <span data-ttu-id="28260-165">tooconfigure l’authentification unique sur **FM : Systems** côté, vous devez hello toosend téléchargé **Metadata XML** trop[équipe de support FM : Systems](https://fmsystems.com/ask-us/).</span><span class="sxs-lookup"><span data-stu-id="28260-165">tooconfigure single sign-on on **FM:Systems** side, you need toosend hello downloaded **Metadata XML** too[FM:Systems support team](https://fmsystems.com/ask-us/).</span></span> <span data-ttu-id="28260-166">Ils définir ce hello toohave de paramètre connexion SSO SAML correctement des deux côtés.</span><span class="sxs-lookup"><span data-stu-id="28260-166">They set this setting toohave hello SAML SSO connection set properly on both sides.</span></span> <span data-ttu-id="28260-167">Vous recevrez une notification dès que l’authentification unique aura été activée pour votre abonnement.</span><span class="sxs-lookup"><span data-stu-id="28260-167">You will get a notification when SSO has been enabled for your subscription.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="19bf2-168">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="19bf2-168">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="19bf2-169">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="19bf2-169">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="19bf2-170">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="19bf2-170">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="28260-168">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="28260-168">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="28260-169">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="28260-169">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="28260-170">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="28260-170">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="19bf2-171">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="19bf2-171">Creating an Azure AD test user</span></span>
-<span data-ttu-id="19bf2-172">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="19bf2-172">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="28260-171">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="28260-171">Creating an Azure AD test user</span></span>
+<span data-ttu-id="28260-172">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="28260-172">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="19bf2-174">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="19bf2-174">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="28260-174">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="28260-174">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="19bf2-175">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-175">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="28260-175">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="28260-175">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-fm-systems-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="19bf2-177">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-177">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="28260-177">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="28260-177">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-fm-systems-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="19bf2-179">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="19bf2-179">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="28260-179">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="28260-179">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-fm-systems-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="19bf2-181">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="19bf2-181">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="28260-181">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="28260-181">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-fm-systems-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="19bf2-183">a.</span><span class="sxs-lookup"><span data-stu-id="19bf2-183">a.</span></span> <span data-ttu-id="19bf2-184">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-184">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="28260-183">a.</span><span class="sxs-lookup"><span data-stu-id="28260-183">a.</span></span> <span data-ttu-id="28260-184">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="28260-184">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="19bf2-185">b.</span><span class="sxs-lookup"><span data-stu-id="19bf2-185">b.</span></span> <span data-ttu-id="19bf2-186">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="19bf2-186">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="28260-185">b.</span><span class="sxs-lookup"><span data-stu-id="28260-185">b.</span></span> <span data-ttu-id="28260-186">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="28260-186">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="19bf2-187">c.</span><span class="sxs-lookup"><span data-stu-id="19bf2-187">c.</span></span> <span data-ttu-id="19bf2-188">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-188">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="28260-187">c.</span><span class="sxs-lookup"><span data-stu-id="28260-187">c.</span></span> <span data-ttu-id="28260-188">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="28260-188">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="19bf2-189">d.</span><span class="sxs-lookup"><span data-stu-id="19bf2-189">d.</span></span> <span data-ttu-id="19bf2-190">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-190">Click **Create**.</span></span>
+    <span data-ttu-id="28260-189">d.</span><span class="sxs-lookup"><span data-stu-id="28260-189">d.</span></span> <span data-ttu-id="28260-190">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="28260-190">Click **Create**.</span></span>
  
-### <a name="creating-an-fmsystems-test-user"></a><span data-ttu-id="19bf2-191">Création d’un utilisateur de test FM:Systems</span><span class="sxs-lookup"><span data-stu-id="19bf2-191">Creating an FM:Systems test user</span></span>
+### <a name="creating-an-fmsystems-test-user"></a><span data-ttu-id="28260-191">Création d’un utilisateur de test FM:Systems</span><span class="sxs-lookup"><span data-stu-id="28260-191">Creating an FM:Systems test user</span></span>
 
-1. <span data-ttu-id="19bf2-192">Dans une fenêtre de navigateur web, connectez-vous à votre site d’entreprise FM:Systems en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="19bf2-192">In a web browser window, log into your FM:Systems company site as an administrator.</span></span>
+1. <span data-ttu-id="28260-192">Dans une fenêtre de navigateur web, connectez-vous à votre site d’entreprise FM:Systems en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="28260-192">In a web browser window, log into your FM:Systems company site as an administrator.</span></span>
 
-2. <span data-ttu-id="19bf2-193">Accédez à **System Administration \> Manage Security \> Users \> User list**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-193">Go to **System Administration \> Manage Security \> Users \> User list**.</span></span>
+2. <span data-ttu-id="28260-193">Accédez trop**Administration système \> gérer la sécurité \> utilisateurs \> liste des utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="28260-193">Go too**System Administration \> Manage Security \> Users \> User list**.</span></span>
    
-    <span data-ttu-id="19bf2-194">![Administration système](./media/active-directory-saas-fm-systems-tutorial/ic795905.png "Administration système")</span><span class="sxs-lookup"><span data-stu-id="19bf2-194">![System Administration](./media/active-directory-saas-fm-systems-tutorial/ic795905.png "System Administration")</span></span>
+    <span data-ttu-id="28260-194">![Administration système](./media/active-directory-saas-fm-systems-tutorial/ic795905.png "Administration système")</span><span class="sxs-lookup"><span data-stu-id="28260-194">![System Administration](./media/active-directory-saas-fm-systems-tutorial/ic795905.png "System Administration")</span></span>
 
-3. <span data-ttu-id="19bf2-195">Cliquez sur **Create new user**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-195">Click **Create new user**.</span></span>
+3. <span data-ttu-id="28260-195">Cliquez sur **Create new user**.</span><span class="sxs-lookup"><span data-stu-id="28260-195">Click **Create new user**.</span></span>
    
-    <span data-ttu-id="19bf2-196">![Créer un nouvel utilisateur](./media/active-directory-saas-fm-systems-tutorial/ic795906.png "Créer un nouvel utilisateur")</span><span class="sxs-lookup"><span data-stu-id="19bf2-196">![Create New User](./media/active-directory-saas-fm-systems-tutorial/ic795906.png "Create New User")</span></span>
+    <span data-ttu-id="28260-196">![Créer un nouvel utilisateur](./media/active-directory-saas-fm-systems-tutorial/ic795906.png "Créer un nouvel utilisateur")</span><span class="sxs-lookup"><span data-stu-id="28260-196">![Create New User](./media/active-directory-saas-fm-systems-tutorial/ic795906.png "Create New User")</span></span>
 
-4. <span data-ttu-id="19bf2-197">Dans la section **Create User** , procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="19bf2-197">In the **Create User** section, perform the following steps:</span></span>
+4. <span data-ttu-id="28260-197">Bonjour **Create User** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="28260-197">In hello **Create User** section, perform hello following steps:</span></span>
    
-    <span data-ttu-id="19bf2-198">![Create User](./media/active-directory-saas-fm-systems-tutorial/ic795907.png "Create User")</span><span class="sxs-lookup"><span data-stu-id="19bf2-198">![Create User](./media/active-directory-saas-fm-systems-tutorial/ic795907.png "Create User")</span></span>
+    <span data-ttu-id="28260-198">![Create User](./media/active-directory-saas-fm-systems-tutorial/ic795907.png "Create User")</span><span class="sxs-lookup"><span data-stu-id="28260-198">![Create User](./media/active-directory-saas-fm-systems-tutorial/ic795907.png "Create User")</span></span>
    
-    <span data-ttu-id="19bf2-199">a.</span><span class="sxs-lookup"><span data-stu-id="19bf2-199">a.</span></span> <span data-ttu-id="19bf2-200">Entrez les valeurs appropriées dans les champs **Nom d’utilisateur**, **Mot de passe**, **Confirmer le mot de passe**, **Adresse e-mail** et **Numéro d’employé** d’un compte Azure Active Directory valide que vous souhaitez approvisionner.</span><span class="sxs-lookup"><span data-stu-id="19bf2-200">Type the **UserName**, the **Password**, **Confirm Password**, **E-mail** and the **Employee ID** of a valid Azure Active Directory account you want to provision into the related textboxes.</span></span>
+    <span data-ttu-id="28260-199">a.</span><span class="sxs-lookup"><span data-stu-id="28260-199">a.</span></span> <span data-ttu-id="28260-200">Hello de type **nom d’utilisateur**, hello **mot de passe**, **confirmer le mot de passe**, **messagerie** et hello **ID d’employé**d’un Azure valide compte Active Directory que vous voulez tooprovision dans hello relatives des zones de texte.</span><span class="sxs-lookup"><span data-stu-id="28260-200">Type hello **UserName**, hello **Password**, **Confirm Password**, **E-mail** and hello **Employee ID** of a valid Azure Active Directory account you want tooprovision into hello related textboxes.</span></span>
    
-    <span data-ttu-id="19bf2-201">b.</span><span class="sxs-lookup"><span data-stu-id="19bf2-201">b.</span></span> <span data-ttu-id="19bf2-202">Cliquez sur **Suivant**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-202">Click **Next**.</span></span>
+    <span data-ttu-id="28260-201">b.</span><span class="sxs-lookup"><span data-stu-id="28260-201">b.</span></span> <span data-ttu-id="28260-202">Cliquez sur **Suivant**.</span><span class="sxs-lookup"><span data-stu-id="28260-202">Click **Next**.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="19bf2-203">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="19bf2-203">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="28260-203">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="28260-203">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="19bf2-204">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à FM:Systems.</span><span class="sxs-lookup"><span data-stu-id="19bf2-204">In this section, you enable Britta Simon to use Azure single sign-on by granting access to FM:Systems.</span></span>
+<span data-ttu-id="28260-204">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooFM:Systems.</span><span class="sxs-lookup"><span data-stu-id="28260-204">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooFM:Systems.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="19bf2-206">**Pour affecter Britta Simon à FM:Systems, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="19bf2-206">**To assign Britta Simon to FM:Systems, perform the following steps:**</span></span>
+<span data-ttu-id="28260-206">**tooassign Britta Simon tooFM:Systems, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="28260-206">**tooassign Britta Simon tooFM:Systems, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="19bf2-207">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-207">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="28260-207">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="28260-207">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="19bf2-209">Dans la liste des applications, sélectionnez **FM:Systems**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-209">In the applications list, select **FM:Systems**.</span></span>
+2. <span data-ttu-id="28260-209">Dans la liste des applications hello, sélectionnez **FM : Systems**.</span><span class="sxs-lookup"><span data-stu-id="28260-209">In hello applications list, select **FM:Systems**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-fm-systems-tutorial/tutorial_fmsystems_app.png) 
 
-3. <span data-ttu-id="19bf2-211">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-211">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="28260-211">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="28260-211">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="19bf2-213">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-213">Click **Add** button.</span></span> <span data-ttu-id="19bf2-214">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-214">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="28260-213">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="28260-213">Click **Add** button.</span></span> <span data-ttu-id="28260-214">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="28260-214">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="19bf2-216">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="19bf2-216">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="28260-216">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="28260-216">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="19bf2-217">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-217">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="28260-217">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="28260-217">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="19bf2-218">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="19bf2-218">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="28260-218">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="28260-218">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="19bf2-219">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="19bf2-219">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="28260-219">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="28260-219">Testing single sign-on</span></span>
 
-<span data-ttu-id="19bf2-220">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="19bf2-220">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="28260-220">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="28260-220">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="19bf2-221">Lorsque vous cliquez sur la vignette FM:Systems dans le volet d’accès, vous devez être connecté automatiquement à votre application FM:Systems.</span><span class="sxs-lookup"><span data-stu-id="19bf2-221">When you click the FM:Systems tile in the Access Panel, you should get automatically signed-on to your FM:Systems application.</span></span>
-<span data-ttu-id="19bf2-222">Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="19bf2-222">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+<span data-ttu-id="28260-221">Lorsque vous cliquez sur mosaïque FM : Systems hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour FM : Systems application.</span><span class="sxs-lookup"><span data-stu-id="28260-221">When you click hello FM:Systems tile in hello Access Panel, you should get automatically signed-on tooyour FM:Systems application.</span></span>
+<span data-ttu-id="28260-222">Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="28260-222">For more information about the Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="19bf2-223">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="19bf2-223">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="28260-223">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="28260-223">Additional resources</span></span>
 
-* [<span data-ttu-id="19bf2-224">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="19bf2-224">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="19bf2-225">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="19bf2-225">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="28260-224">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="28260-224">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="28260-225">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="28260-225">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

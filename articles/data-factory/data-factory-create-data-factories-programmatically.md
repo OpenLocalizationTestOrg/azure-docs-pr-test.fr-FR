@@ -1,6 +1,6 @@
 ---
-title: "Créer des pipelines de données à l’aide du Kit de développement logiciel (SDK) .NET Azure | Microsoft Docs"
-description: "Découvrez comment créer, analyser et gérer par programmation des fabriques de données Azure à l'aide du Kit de développement logiciel (SDK) Data Factory."
+title: "aaaCreate des pipelines de données à l’aide du Kit de développement .NET Azure | Documents Microsoft"
+description: "Découvrez comment tooprogrammatically créer, surveiller et gérer des fabriques de données Azure à l’aide du SDK de fabrique de données."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,109 +14,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 9d9dac75321c5d4e079f49320d9b7c6f56e48754
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 190b5f99edbb3c27e1e8efb8990b9e601b22458f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-monitor-and-manage-azure-data-factories-using-azure-data-factory-net-sdk"></a><span data-ttu-id="83187-103">Créer, surveiller et gérer des fabriques de données Azure à l’aide du Kit de développement logiciel (SDK) Azure Data Factory .NET</span><span class="sxs-lookup"><span data-stu-id="83187-103">Create, monitor, and manage Azure data factories using Azure Data Factory .NET SDK</span></span>
-## <a name="overview"></a><span data-ttu-id="83187-104">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="83187-104">Overview</span></span>
-<span data-ttu-id="83187-105">Vous pouvez créer, surveiller et gérer des fabriques de données Azure par programmation à l'aide du Kit SDK Data Factory .NET.</span><span class="sxs-lookup"><span data-stu-id="83187-105">You can create, monitor, and manage Azure data factories programmatically using Data Factory .NET SDK.</span></span> <span data-ttu-id="83187-106">Cet article contient une procédure pas à pas que vous pouvez suivre pour créer un exemple d'application console .NET qui crée et surveille une fabrique de données.</span><span class="sxs-lookup"><span data-stu-id="83187-106">This article contains a walkthrough that you can follow to create a sample .NET console application that creates and monitors a data factory.</span></span> 
+# <a name="create-monitor-and-manage-azure-data-factories-using-azure-data-factory-net-sdk"></a><span data-ttu-id="e4aeb-103">Créer, surveiller et gérer des fabriques de données Azure à l’aide du Kit de développement logiciel (SDK) Azure Data Factory .NET</span><span class="sxs-lookup"><span data-stu-id="e4aeb-103">Create, monitor, and manage Azure data factories using Azure Data Factory .NET SDK</span></span>
+## <a name="overview"></a><span data-ttu-id="e4aeb-104">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="e4aeb-104">Overview</span></span>
+<span data-ttu-id="e4aeb-105">Vous pouvez créer, surveiller et gérer des fabriques de données Azure par programmation à l'aide du Kit SDK Data Factory .NET.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-105">You can create, monitor, and manage Azure data factories programmatically using Data Factory .NET SDK.</span></span> <span data-ttu-id="e4aeb-106">Cet article contient une procédure pas à pas que vous pouvez suivre toocreate une exemple .NET d’application console qui crée et analyse d’une fabrique de données.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-106">This article contains a walkthrough that you can follow toocreate a sample .NET console application that creates and monitors a data factory.</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="83187-107">Cet article ne couvre pas toutes les API .NET Data Factory.</span><span class="sxs-lookup"><span data-stu-id="83187-107">This article does not cover all the Data Factory .NET API.</span></span> <span data-ttu-id="83187-108">Consultez [Informations de référence sur l’API .NET Data Factory](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1) pour la documentation complète sur l’API .NET pour Data Factory.</span><span class="sxs-lookup"><span data-stu-id="83187-108">See [Data Factory .NET API Reference](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1) for comprehensive documentation on .NET API for Data Factory.</span></span> 
+> <span data-ttu-id="e4aeb-107">Cet article ne couvre pas hello toutes les API .NET de fabrique de données.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-107">This article does not cover all hello Data Factory .NET API.</span></span> <span data-ttu-id="e4aeb-108">Consultez [Informations de référence sur l’API .NET Data Factory](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1) pour la documentation complète sur l’API .NET pour Data Factory.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-108">See [Data Factory .NET API Reference](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1) for comprehensive documentation on .NET API for Data Factory.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="83187-109">Conditions préalables</span><span class="sxs-lookup"><span data-stu-id="83187-109">Prerequisites</span></span>
-* <span data-ttu-id="83187-110">Visual Studio 2012, 2013 ou 2015</span><span class="sxs-lookup"><span data-stu-id="83187-110">Visual Studio 2012 or 2013 or 2015</span></span>
-* <span data-ttu-id="83187-111">Téléchargez et installez le [Kit SDK Azure .NET](http://azure.microsoft.com/downloads/).</span><span class="sxs-lookup"><span data-stu-id="83187-111">Download and install [Azure .NET SDK](http://azure.microsoft.com/downloads/).</span></span>
-* <span data-ttu-id="83187-112">Azure PowerShell.</span><span class="sxs-lookup"><span data-stu-id="83187-112">Azure PowerShell.</span></span> <span data-ttu-id="83187-113">Suivez les instructions de l’article [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) pour installer Azure PowerShell sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="83187-113">Follow instructions in [How to install and configure Azure PowerShell](/powershell/azure/overview) article to install Azure PowerShell on your computer.</span></span> <span data-ttu-id="83187-114">Vous utilisez Azure PowerShell pour créer une application Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="83187-114">You use Azure PowerShell to create an Azure Active Directory application.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="e4aeb-109">Conditions préalables</span><span class="sxs-lookup"><span data-stu-id="e4aeb-109">Prerequisites</span></span>
+* <span data-ttu-id="e4aeb-110">Visual Studio 2012, 2013 ou 2015</span><span class="sxs-lookup"><span data-stu-id="e4aeb-110">Visual Studio 2012 or 2013 or 2015</span></span>
+* <span data-ttu-id="e4aeb-111">Téléchargez et installez le [Kit SDK Azure .NET](http://azure.microsoft.com/downloads/).</span><span class="sxs-lookup"><span data-stu-id="e4aeb-111">Download and install [Azure .NET SDK](http://azure.microsoft.com/downloads/).</span></span>
+* <span data-ttu-id="e4aeb-112">Azure PowerShell.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-112">Azure PowerShell.</span></span> <span data-ttu-id="e4aeb-113">Suivez les instructions de [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) article tooinstall Azure PowerShell sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-113">Follow instructions in [How tooinstall and configure Azure PowerShell](/powershell/azure/overview) article tooinstall Azure PowerShell on your computer.</span></span> <span data-ttu-id="e4aeb-114">Vous utilisez Azure PowerShell toocreate une application Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-114">You use Azure PowerShell toocreate an Azure Active Directory application.</span></span>
 
-### <a name="create-an-application-in-azure-active-directory"></a><span data-ttu-id="83187-115">Créer une application dans Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="83187-115">Create an application in Azure Active Directory</span></span>
-<span data-ttu-id="83187-116">Créez une application Azure Active Directory, créez un principal de service pour l’application et attribuez-lui le rôle **Contributeurs de Data Factory** .</span><span class="sxs-lookup"><span data-stu-id="83187-116">Create an Azure Active Directory application, create a service principal for the application, and assign it to the **Data Factory Contributor** role.</span></span>
+### <a name="create-an-application-in-azure-active-directory"></a><span data-ttu-id="e4aeb-115">Créer une application dans Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="e4aeb-115">Create an application in Azure Active Directory</span></span>
+<span data-ttu-id="e4aeb-116">Créer une application Azure Active Directory, créez un principal de service pour l’application hello et affectez-le toohello **collaborateur de fabrique de données** rôle.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-116">Create an Azure Active Directory application, create a service principal for hello application, and assign it toohello **Data Factory Contributor** role.</span></span>
 
-1. <span data-ttu-id="83187-117">Lancez **PowerShell**.</span><span class="sxs-lookup"><span data-stu-id="83187-117">Launch **PowerShell**.</span></span>
-2. <span data-ttu-id="83187-118">Exécutez la commande suivante, puis saisissez le nom d’utilisateur et le mot de passe que vous avez utilisés pour la connexion au portail Azure.</span><span class="sxs-lookup"><span data-stu-id="83187-118">Run the following command and enter the user name and password that you use to sign in to the Azure portal.</span></span>
+1. <span data-ttu-id="e4aeb-117">Lancez **PowerShell**.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-117">Launch **PowerShell**.</span></span>
+2. <span data-ttu-id="e4aeb-118">Exécutez hello suivant de commande et entrez le nom d’utilisateur hello et le mot de passe que vous utilisez toosign dans toohello portail Azure.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-118">Run hello following command and enter hello user name and password that you use toosign in toohello Azure portal.</span></span>
 
     ```PowerShell
     Login-AzureRmAccount
     ```
-3. <span data-ttu-id="83187-119">Exécutez la commande suivante pour afficher tous les abonnements de ce compte.</span><span class="sxs-lookup"><span data-stu-id="83187-119">Run the following command to view all the subscriptions for this account.</span></span>
+3. <span data-ttu-id="e4aeb-119">Exécutez hello suivant commande tooview tous les abonnements hello pour ce compte.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-119">Run hello following command tooview all hello subscriptions for this account.</span></span>
 
     ```PowerShell
     Get-AzureRmSubscription
     ```
-4. <span data-ttu-id="83187-120">Exécutez la commande suivante pour sélectionner l’abonnement que vous souhaitez utiliser.</span><span class="sxs-lookup"><span data-stu-id="83187-120">Run the following command to select the subscription that you want to work with.</span></span> <span data-ttu-id="83187-121">Remplacez **&lt;NameOfAzureSubscription**&gt; par le nom de votre abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="83187-121">Replace **&lt;NameOfAzureSubscription**&gt; with the name of your Azure subscription.</span></span>
+4. <span data-ttu-id="e4aeb-120">Tooselect hello abonnement toowork avec la commande suivante d’exécution hello.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-120">Run hello following command tooselect hello subscription that you want toowork with.</span></span> <span data-ttu-id="e4aeb-121">Remplacez  **&lt;NameOfAzureSubscription** &gt; avec le nom de hello de votre abonnement Azure.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-121">Replace **&lt;NameOfAzureSubscription**&gt; with hello name of your Azure subscription.</span></span>
 
     ```PowerShell
     Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
     ```
 
    > [!IMPORTANT]
-   > <span data-ttu-id="83187-122">Notez les éléments **SubscriptionId** et **TenantId** dans la sortie de cette commande.</span><span class="sxs-lookup"><span data-stu-id="83187-122">Note down **SubscriptionId** and **TenantId** from the output of this command.</span></span>
+   > <span data-ttu-id="e4aeb-122">Notez **SubscriptionId** et **TenantId** à partir de la sortie de hello de cette commande.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-122">Note down **SubscriptionId** and **TenantId** from hello output of this command.</span></span>
 
-5. <span data-ttu-id="83187-123">Créez un groupe de ressources Azure nommé **ADFTutorialResourceGroup** en exécutant la commande suivante dans PowerShell.</span><span class="sxs-lookup"><span data-stu-id="83187-123">Create an Azure resource group named **ADFTutorialResourceGroup** by running the following command in the PowerShell.</span></span>
+5. <span data-ttu-id="e4aeb-123">Créer un groupe de ressources Azure nommé **ADFTutorialResourceGroup** en exécutant hello commande Bonjour PowerShell suivante.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-123">Create an Azure resource group named **ADFTutorialResourceGroup** by running hello following command in hello PowerShell.</span></span>
 
     ```PowerShell
     New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
     ```
 
-    <span data-ttu-id="83187-124">Si le groupe de ressources existe, indiquez s’il faut le mettre à jour (Y) ou le conserver tel quel (N).</span><span class="sxs-lookup"><span data-stu-id="83187-124">If the resource group already exists, you specify whether to update it (Y) or keep it as (N).</span></span>
+    <span data-ttu-id="e4aeb-124">Si groupe de ressources hello existe déjà, vous spécifiez si tooupdate il (Y) ou conserver en tant que (N).</span><span class="sxs-lookup"><span data-stu-id="e4aeb-124">If hello resource group already exists, you specify whether tooupdate it (Y) or keep it as (N).</span></span>
 
-    <span data-ttu-id="83187-125">Si vous utilisez un autre groupe de ressources, vous devez remplacer ADFTutorialResourceGroup par le nom de votre groupe de ressources dans ce didacticiel.</span><span class="sxs-lookup"><span data-stu-id="83187-125">If you use a different resource group, you need to use the name of your resource group in place of ADFTutorialResourceGroup in this tutorial.</span></span>
-6. <span data-ttu-id="83187-126">Créez une application Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="83187-126">Create an Azure Active Directory application.</span></span>
+    <span data-ttu-id="e4aeb-125">Si vous utilisez un autre groupe de ressources, vous devez le nom de hello toouse de votre groupe de ressources à la place de ADFTutorialResourceGroup dans ce didacticiel.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-125">If you use a different resource group, you need toouse hello name of your resource group in place of ADFTutorialResourceGroup in this tutorial.</span></span>
+6. <span data-ttu-id="e4aeb-126">Créez une application Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-126">Create an Azure Active Directory application.</span></span>
 
     ```PowerShell
     $azureAdApplication = New-AzureRmADApplication -DisplayName "ADFDotNetWalkthroughApp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.adfdotnetwalkthroughapp.org/example" -Password "Pass@word1"
     ```
 
-    <span data-ttu-id="83187-127">Si vous obtenez l’erreur suivante, spécifiez une autre URL et relancez la commande.</span><span class="sxs-lookup"><span data-stu-id="83187-127">If you get the following error, specify a different URL and run the command again.</span></span>
+    <span data-ttu-id="e4aeb-127">Si vous obtenez hello l’erreur suivante, spécifiez une autre URL et réexécutez la commande hello.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-127">If you get hello following error, specify a different URL and run hello command again.</span></span>
     
     ```PowerShell
-    Another object with the same value for property identifierUris already exists.
+    Another object with hello same value for property identifierUris already exists.
     ```
-7. <span data-ttu-id="83187-128">Créez le principal du service AD.</span><span class="sxs-lookup"><span data-stu-id="83187-128">Create the AD service principal.</span></span>
+7. <span data-ttu-id="e4aeb-128">Créer hello principal du service Active Directory.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-128">Create hello AD service principal.</span></span>
 
     ```PowerShell
     New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
     ```
-8. <span data-ttu-id="83187-129">Ajoutez le principal du service au rôle **Contributeurs de Data Factory** .</span><span class="sxs-lookup"><span data-stu-id="83187-129">Add service principal to the **Data Factory Contributor** role.</span></span>
+8. <span data-ttu-id="e4aeb-129">Ajouter toohello principal de service **collaborateur de fabrique de données** rôle.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-129">Add service principal toohello **Data Factory Contributor** role.</span></span>
 
     ```PowerShell
     New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
     ```
-9. <span data-ttu-id="83187-130">Récupérez l’ID de l’application.</span><span class="sxs-lookup"><span data-stu-id="83187-130">Get the application ID.</span></span>
+9. <span data-ttu-id="e4aeb-130">Obtenir l’ID d’application hello.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-130">Get hello application ID.</span></span>
 
     ```PowerShell
     $azureAdApplication 
     ```
-    <span data-ttu-id="83187-131">Notez l’ID d’application (applicationID) dans la sortie.</span><span class="sxs-lookup"><span data-stu-id="83187-131">Note down the application ID (applicationID) from the output.</span></span>
+    <span data-ttu-id="e4aeb-131">Notez l’ID d’application hello (applicationID) à partir de la sortie de hello.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-131">Note down hello application ID (applicationID) from hello output.</span></span>
 
-<span data-ttu-id="83187-132">Vous devez avoir les quatre valeurs suivantes après ces étapes :</span><span class="sxs-lookup"><span data-stu-id="83187-132">You should have following four values from these steps:</span></span>
+<span data-ttu-id="e4aeb-132">Vous devez avoir les quatre valeurs suivantes après ces étapes :</span><span class="sxs-lookup"><span data-stu-id="e4aeb-132">You should have following four values from these steps:</span></span>
 
-* <span data-ttu-id="83187-133">ID client</span><span class="sxs-lookup"><span data-stu-id="83187-133">Tenant ID</span></span>
-* <span data-ttu-id="83187-134">Identifiant d’abonnement</span><span class="sxs-lookup"><span data-stu-id="83187-134">Subscription ID</span></span>
-* <span data-ttu-id="83187-135">ID de l'application</span><span class="sxs-lookup"><span data-stu-id="83187-135">Application ID</span></span>
-* <span data-ttu-id="83187-136">Mot de passe (spécifié dans la première commande)</span><span class="sxs-lookup"><span data-stu-id="83187-136">Password (specified in the first command)</span></span>
+* <span data-ttu-id="e4aeb-133">ID client</span><span class="sxs-lookup"><span data-stu-id="e4aeb-133">Tenant ID</span></span>
+* <span data-ttu-id="e4aeb-134">Identifiant d’abonnement</span><span class="sxs-lookup"><span data-stu-id="e4aeb-134">Subscription ID</span></span>
+* <span data-ttu-id="e4aeb-135">ID de l'application</span><span class="sxs-lookup"><span data-stu-id="e4aeb-135">Application ID</span></span>
+* <span data-ttu-id="e4aeb-136">Mot de passe (spécifié dans la première commande de hello)</span><span class="sxs-lookup"><span data-stu-id="e4aeb-136">Password (specified in hello first command)</span></span>
 
-## <a name="walkthrough"></a><span data-ttu-id="83187-137">Procédure pas à pas</span><span class="sxs-lookup"><span data-stu-id="83187-137">Walkthrough</span></span>
-<span data-ttu-id="83187-138">Dans la procédure pas à pas, vous créez une fabrique de données avec un pipeline qui contient une activité de copie.</span><span class="sxs-lookup"><span data-stu-id="83187-138">In the walkthrough, you create a data factory with a pipeline that contains a copy activity.</span></span> <span data-ttu-id="83187-139">L’activité de copie les données d’un dossier de votre stockage d’objets blob Azure vers un autre dossier dans le même stockage d’objets blob.</span><span class="sxs-lookup"><span data-stu-id="83187-139">The copy activity copies data from a folder in your Azure blob storage to another folder in the same blob storage.</span></span> 
+## <a name="walkthrough"></a><span data-ttu-id="e4aeb-137">Procédure pas à pas</span><span class="sxs-lookup"><span data-stu-id="e4aeb-137">Walkthrough</span></span>
+<span data-ttu-id="e4aeb-138">Hello procédure pas à pas, vous créez une fabrique de données avec un pipeline qui contient une activité de copie.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-138">In hello walkthrough, you create a data factory with a pipeline that contains a copy activity.</span></span> <span data-ttu-id="e4aeb-139">Hello activité de copie copie les données à partir d’un dossier dans le dossier tooanother stockage blob Azure hello même stockage d’objets blob.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-139">hello copy activity copies data from a folder in your Azure blob storage tooanother folder in hello same blob storage.</span></span> 
 
-<span data-ttu-id="83187-140">L’activité de copie effectue le déplacement des données dans Azure Data Factory.</span><span class="sxs-lookup"><span data-stu-id="83187-140">The Copy Activity performs the data movement in Azure Data Factory.</span></span> <span data-ttu-id="83187-141">Elle est mise en œuvre par un service disponible dans le monde entier, capable de copier des données entre différents magasins de données de façon sécurisée, fiable et évolutive.</span><span class="sxs-lookup"><span data-stu-id="83187-141">The activity is powered by a globally available service that can copy data between various data stores in a secure, reliable, and scalable way.</span></span> <span data-ttu-id="83187-142">Pour plus d’informations sur l’activité de copie, consultez l’article [Activités de déplacement des données](data-factory-data-movement-activities.md) .</span><span class="sxs-lookup"><span data-stu-id="83187-142">See [Data Movement Activities](data-factory-data-movement-activities.md) article for details about the Copy Activity.</span></span>
+<span data-ttu-id="e4aeb-140">Activité de copie de Hello effectue le déplacement des données de hello dans Azure Data Factory.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-140">hello Copy Activity performs hello data movement in Azure Data Factory.</span></span> <span data-ttu-id="e4aeb-141">activité Hello est rendue possible par un service globalement disponible qui permettre copier des données entre différentes banques de données de manière sécurisée, fiable et évolutive.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-141">hello activity is powered by a globally available service that can copy data between various data stores in a secure, reliable, and scalable way.</span></span> <span data-ttu-id="e4aeb-142">Consultez [les activités de déplacement des données](data-factory-data-movement-activities.md) article pour plus d’informations sur l’activité de copie de hello.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-142">See [Data Movement Activities](data-factory-data-movement-activities.md) article for details about hello Copy Activity.</span></span>
 
-1. <span data-ttu-id="83187-143">À l’aide de Visual Studio 2012/2013/2015, créez une application console C# .NET.</span><span class="sxs-lookup"><span data-stu-id="83187-143">Using Visual Studio 2012/2013/2015, create a C# .NET console application.</span></span>
-   1. <span data-ttu-id="83187-144">Lancez **Visual Studio** 2012/2013/2015.</span><span class="sxs-lookup"><span data-stu-id="83187-144">Launch **Visual Studio** 2012/2013/2015.</span></span>
-   2. <span data-ttu-id="83187-145">Cliquez sur **Fichier**, pointez le curseur de la souris sur **Nouveau**, puis cliquez sur **Projet**.</span><span class="sxs-lookup"><span data-stu-id="83187-145">Click **File**, point to **New**, and click **Project**.</span></span>
-   3. <span data-ttu-id="83187-146">Développez **Modèles**, puis sélectionnez **Visual C#**.</span><span class="sxs-lookup"><span data-stu-id="83187-146">Expand **Templates**, and select **Visual C#**.</span></span> <span data-ttu-id="83187-147">Dans cette procédure pas à pas, vous utilisez C#, mais vous pouvez utiliser un autre langage .NET.</span><span class="sxs-lookup"><span data-stu-id="83187-147">In this walkthrough, you use C#, but you can use any .NET language.</span></span>
-   4. <span data-ttu-id="83187-148">Sélectionnez **Application console** dans la liste des types de projet située sur la droite.</span><span class="sxs-lookup"><span data-stu-id="83187-148">Select **Console Application** from the list of project types on the right.</span></span>
-   5. <span data-ttu-id="83187-149">Entrez **DataFactoryAPITestApp** dans le champ Nom.</span><span class="sxs-lookup"><span data-stu-id="83187-149">Enter **DataFactoryAPITestApp** for the Name.</span></span>
-   6. <span data-ttu-id="83187-150">Sélectionnez **C:\ADFGetStarted** dans le champ Emplacement.</span><span class="sxs-lookup"><span data-stu-id="83187-150">Select **C:\ADFGetStarted** for the Location.</span></span>
-   7. <span data-ttu-id="83187-151">Cliquez sur **OK** pour créer le projet.</span><span class="sxs-lookup"><span data-stu-id="83187-151">Click **OK** to create the project.</span></span>
-2. <span data-ttu-id="83187-152">Cliquez sur **Outils**, pointez le curseur de la souris sur **Gestionnaire de package NuGet**, puis cliquez sur **Console du gestionnaire de package**.</span><span class="sxs-lookup"><span data-stu-id="83187-152">Click **Tools**, point to **NuGet Package Manager**, and click **Package Manager Console**.</span></span>
-3. <span data-ttu-id="83187-153">Dans la **Console du Gestionnaire de package**, effectuez les étapes suivantes :</span><span class="sxs-lookup"><span data-stu-id="83187-153">In the **Package Manager Console**, do the following steps:</span></span>
-   1. <span data-ttu-id="83187-154">Exécutez la commande suivante pour installer le package Data Factory : `Install-Package Microsoft.Azure.Management.DataFactories`</span><span class="sxs-lookup"><span data-stu-id="83187-154">Run the following command to install Data Factory package: `Install-Package Microsoft.Azure.Management.DataFactories`</span></span>
-   2. <span data-ttu-id="83187-155">Exécutez la commande suivante pour installer le package Azure Active Directory (vous utilisez l’API Active Directory dans le code) : `Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`</span><span class="sxs-lookup"><span data-stu-id="83187-155">Run the following command to install Azure Active Directory package (you use Active Directory API in the code): `Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`</span></span>
-4. <span data-ttu-id="83187-156">Remplacez le contenu du fichier **App.config** du projet par le contenu suivant :</span><span class="sxs-lookup"><span data-stu-id="83187-156">Replace the contents of **App.config** file in the project with the following content:</span></span> 
+1. <span data-ttu-id="e4aeb-143">À l’aide de Visual Studio 2012/2013/2015, créez une application console C# .NET.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-143">Using Visual Studio 2012/2013/2015, create a C# .NET console application.</span></span>
+   1. <span data-ttu-id="e4aeb-144">Lancez **Visual Studio** 2012/2013/2015.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-144">Launch **Visual Studio** 2012/2013/2015.</span></span>
+   2. <span data-ttu-id="e4aeb-145">Cliquez sur **fichier**, pointez trop**nouveau**, puis cliquez sur **projet**.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-145">Click **File**, point too**New**, and click **Project**.</span></span>
+   3. <span data-ttu-id="e4aeb-146">Développez **Modèles**, puis sélectionnez **Visual C#**.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-146">Expand **Templates**, and select **Visual C#**.</span></span> <span data-ttu-id="e4aeb-147">Dans cette procédure pas à pas, vous utilisez C#, mais vous pouvez utiliser un autre langage .NET.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-147">In this walkthrough, you use C#, but you can use any .NET language.</span></span>
+   4. <span data-ttu-id="e4aeb-148">Sélectionnez **Application Console** à partir de la liste hello des types de projets sur hello droite.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-148">Select **Console Application** from hello list of project types on hello right.</span></span>
+   5. <span data-ttu-id="e4aeb-149">Entrez **DataFactoryAPITestApp** pour hello nom.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-149">Enter **DataFactoryAPITestApp** for hello Name.</span></span>
+   6. <span data-ttu-id="e4aeb-150">Sélectionnez **C:\ADFGetStarted** pour hello emplacement.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-150">Select **C:\ADFGetStarted** for hello Location.</span></span>
+   7. <span data-ttu-id="e4aeb-151">Cliquez sur **OK** projet hello de toocreate.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-151">Click **OK** toocreate hello project.</span></span>
+2. <span data-ttu-id="e4aeb-152">Cliquez sur **outils**, pointez trop**Gestionnaire de Package NuGet**, puis cliquez sur **Package Manager Console**.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-152">Click **Tools**, point too**NuGet Package Manager**, and click **Package Manager Console**.</span></span>
+3. <span data-ttu-id="e4aeb-153">Bonjour **Package Manager Console**, hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="e4aeb-153">In hello **Package Manager Console**, do hello following steps:</span></span>
+   1. <span data-ttu-id="e4aeb-154">Exécutez hello suivant du package de fabrique de données tooinstall de commande :`Install-Package Microsoft.Azure.Management.DataFactories`</span><span class="sxs-lookup"><span data-stu-id="e4aeb-154">Run hello following command tooinstall Data Factory package: `Install-Package Microsoft.Azure.Management.DataFactories`</span></span>
+   2. <span data-ttu-id="e4aeb-155">Exécutez hello suivant du package d’Azure Active Directory tooinstall commandes (vous utilisez les API d’Active Directory dans le code hello) :`Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`</span><span class="sxs-lookup"><span data-stu-id="e4aeb-155">Run hello following command tooinstall Azure Active Directory package (you use Active Directory API in hello code): `Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`</span></span>
+4. <span data-ttu-id="e4aeb-156">Remplacez le contenu hello de **App.config** fichier projet hello avec hello suivant le contenu :</span><span class="sxs-lookup"><span data-stu-id="e4aeb-156">Replace hello contents of **App.config** file in hello project with hello following content:</span></span> 
     
     ```xml
     <?xml version="1.0" encoding="utf-8" ?>
@@ -127,14 +127,14 @@ ms.lasthandoff: 08/18/2017
             <add key="WindowsManagementUri" value="https://management.core.windows.net/" />
 
             <add key="ApplicationId" value="your application ID" />
-            <add key="Password" value="Password you used while creating the AAD application" />
+            <add key="Password" value="Password you used while creating hello AAD application" />
             <add key="SubscriptionId" value= "Subscription ID" />
             <add key="ActiveDirectoryTenantId" value="Tenant ID" />
         </appSettings>
     </configuration>
     ```
-5. <span data-ttu-id="83187-157">Dans le fichier App.Config, remplacez les valeurs de **&lt;ID d’Application&gt;**, **&lt;Mot de passe&gt;**, **&lt;ID d’abonnement&gt;**, et **&lt;ID client&gt;** par vos propres valeurs.</span><span class="sxs-lookup"><span data-stu-id="83187-157">In the App.Config file, update values for **&lt;Application ID&gt;**, **&lt;Password&gt;**, **&lt;Subscription ID&gt;**, and **&lt;tenant ID&gt;** with your own values.</span></span>
-6. <span data-ttu-id="83187-158">Ajoutez les instructions **using** ci-après dans le fichier **Program.cs** du projet.</span><span class="sxs-lookup"><span data-stu-id="83187-158">Add the following **using** statements to the **Program.cs** file in the project.</span></span>
+5. <span data-ttu-id="e4aeb-157">Dans le fichier App.Config hello, mettre à jour les valeurs de  **&lt;ID d’Application&gt;**,  **&lt;mot de passe&gt;**,  **&lt; ID d’abonnement&gt;**, et  **&lt;ID de locataire&gt;**  avec vos propres valeurs.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-157">In hello App.Config file, update values for **&lt;Application ID&gt;**, **&lt;Password&gt;**, **&lt;Subscription ID&gt;**, and **&lt;tenant ID&gt;** with your own values.</span></span>
+6. <span data-ttu-id="e4aeb-158">Ajoutez hello suivant **à l’aide de** instructions toohello **Program.cs** fichier hello projet.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-158">Add hello following **using** statements toohello **Program.cs** file in hello project.</span></span>
 
     ```csharp
     using System.Configuration;
@@ -150,15 +150,15 @@ ms.lasthandoff: 08/18/2017
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
     ```
-6. <span data-ttu-id="83187-159">Ajoutez à la méthode **Main** le code suivant, qui crée une instance de la classe **DataPipelineManagementClient**.</span><span class="sxs-lookup"><span data-stu-id="83187-159">Add the following code that creates an instance of **DataPipelineManagementClient** class to the **Main** method.</span></span> <span data-ttu-id="83187-160">Cet objet vous permet de créer une fabrique de données, un service lié, des jeux de données d’entrée et de sortie, ainsi qu’un pipeline.</span><span class="sxs-lookup"><span data-stu-id="83187-160">You use this object to create a data factory, a linked service, input and output datasets, and a pipeline.</span></span> <span data-ttu-id="83187-161">Il vous permet également d’analyser les tranches d’un jeu de données lors de l’exécution.</span><span class="sxs-lookup"><span data-stu-id="83187-161">You also use this object to monitor slices of a dataset at runtime.</span></span>
+6. <span data-ttu-id="e4aeb-159">Ajouter hello suivant le code qui crée une instance de **DataPipelineManagementClient** classe toohello **Main** (méthode).</span><span class="sxs-lookup"><span data-stu-id="e4aeb-159">Add hello following code that creates an instance of **DataPipelineManagementClient** class toohello **Main** method.</span></span> <span data-ttu-id="e4aeb-160">Vous utilisez cette toocreate objet une fabrique de données, un service lié, les jeux de données d’entrée et de sortie et un pipeline.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-160">You use this object toocreate a data factory, a linked service, input and output datasets, and a pipeline.</span></span> <span data-ttu-id="e4aeb-161">Vous montre également comment utiliser cet objet toomonitor de plusieurs secteurs un jeu de données lors de l’exécution.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-161">You also use this object toomonitor slices of a dataset at runtime.</span></span>
 
     ```csharp
     // create data factory management client
 
-    //IMPORTANT: specify the name of Azure resource group here
+    //IMPORTANT: specify hello name of Azure resource group here
     string resourceGroupName = "ADFTutorialResourceGroup";
 
-    //IMPORTANT: the name of the data factory must be globally unique.
+    //IMPORTANT: hello name of hello data factory must be globally unique.
     // Therefore, update this value. For example:APITutorialFactory05122017
     string dataFactoryName = "APITutorialFactory";
 
@@ -172,10 +172,10 @@ ms.lasthandoff: 08/18/2017
     ```
 
    > [!IMPORTANT]
-   > <span data-ttu-id="83187-162">Remplacez la valeur de **resourceGroupName** par le nom de votre groupe de ressources Azure.</span><span class="sxs-lookup"><span data-stu-id="83187-162">Replace the value of **resourceGroupName** with the name of your Azure resource group.</span></span> <span data-ttu-id="83187-163">Vous pouvez créer un groupe de ressources à l’aide du cmdlet [New-AzureResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) .</span><span class="sxs-lookup"><span data-stu-id="83187-163">You can create a resource group using the [New-AzureResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) cmdlet.</span></span>
+   > <span data-ttu-id="e4aeb-162">Remplacez la valeur hello **resourceGroupName** avec nom hello de votre groupe de ressources Azure.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-162">Replace hello value of **resourceGroupName** with hello name of your Azure resource group.</span></span> <span data-ttu-id="e4aeb-163">Vous pouvez créer un groupe de ressources à l’aide de hello [New-AzureResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) applet de commande.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-163">You can create a resource group using hello [New-AzureResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) cmdlet.</span></span>
    >
-   > <span data-ttu-id="83187-164">Mettez à jour le nom de la fabrique de données (dataFactoryName) pour le rendre unique.</span><span class="sxs-lookup"><span data-stu-id="83187-164">Update name of the data factory (dataFactoryName) to be unique.</span></span> <span data-ttu-id="83187-165">Le nom de la fabrique de données doit être un nom global unique.</span><span class="sxs-lookup"><span data-stu-id="83187-165">Name of the data factory must be globally unique.</span></span> <span data-ttu-id="83187-166">Consultez la rubrique [Data Factory - Règles d'affectation des noms](data-factory-naming-rules.md) pour savoir comment nommer les artefacts Data Factory.</span><span class="sxs-lookup"><span data-stu-id="83187-166">See [Data Factory - Naming Rules](data-factory-naming-rules.md) topic for naming rules for Data Factory artifacts.</span></span>
-7. <span data-ttu-id="83187-167">Ajoutez à la méthode **Main** le code suivant, qui crée une **fabrique de données**.</span><span class="sxs-lookup"><span data-stu-id="83187-167">Add the following code that creates a **data factory** to the **Main** method.</span></span>
+   > <span data-ttu-id="e4aeb-164">Nom de la mise à jour de hello données fabrique (dataFactoryName) toobe unique.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-164">Update name of hello data factory (dataFactoryName) toobe unique.</span></span> <span data-ttu-id="e4aeb-165">Nom de la fabrique de données hello doit être globalement unique.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-165">Name of hello data factory must be globally unique.</span></span> <span data-ttu-id="e4aeb-166">Consultez la rubrique [Data Factory - Règles d'affectation des noms](data-factory-naming-rules.md) pour savoir comment nommer les artefacts Data Factory.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-166">See [Data Factory - Naming Rules](data-factory-naming-rules.md) topic for naming rules for Data Factory artifacts.</span></span>
+7. <span data-ttu-id="e4aeb-167">Ajouter hello suivant le code qui crée un **fabrique de données** toohello **Main** (méthode).</span><span class="sxs-lookup"><span data-stu-id="e4aeb-167">Add hello following code that creates a **data factory** toohello **Main** method.</span></span>
 
     ```csharp
     // create a data factory
@@ -192,10 +192,10 @@ ms.lasthandoff: 08/18/2017
         }
     );
     ```
-8. <span data-ttu-id="83187-168">Ajoutez le code suivant pour créer un **service lié Azure Storage** dans la méthode **Main**.</span><span class="sxs-lookup"><span data-stu-id="83187-168">Add the following code that creates an **Azure Storage linked service** to the **Main** method.</span></span>
+8. <span data-ttu-id="e4aeb-168">Ajouter hello suivant le code qui crée un **service lié Azure Storage** toohello **Main** (méthode).</span><span class="sxs-lookup"><span data-stu-id="e4aeb-168">Add hello following code that creates an **Azure Storage linked service** toohello **Main** method.</span></span>
 
    > [!IMPORTANT]
-   > <span data-ttu-id="83187-169">Remplacez **storageaccountname** et **accountkey** par le nom et la clé de votre compte Azure Storage.</span><span class="sxs-lookup"><span data-stu-id="83187-169">Replace **storageaccountname** and **accountkey** with name and key of your Azure Storage account.</span></span>
+   > <span data-ttu-id="e4aeb-169">Remplacez **storageaccountname** et **accountkey** par le nom et la clé de votre compte Azure Storage.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-169">Replace **storageaccountname** and **accountkey** with name and key of your Azure Storage account.</span></span>
 
     ```csharp
     // create a linked service for input data store: Azure Storage
@@ -214,11 +214,11 @@ ms.lasthandoff: 08/18/2017
         }
     );
     ```
-9. <span data-ttu-id="83187-170">Ajoutez à la méthode **Main** le code suivant, qui crée des **jeux de données d’entrée et de sortie**.</span><span class="sxs-lookup"><span data-stu-id="83187-170">Add the following code that creates **input and output datasets** to the **Main** method.</span></span>
+9. <span data-ttu-id="e4aeb-170">Ajouter hello suivant le code qui crée **jeux de données d’entrée et de sortie** toohello **Main** (méthode).</span><span class="sxs-lookup"><span data-stu-id="e4aeb-170">Add hello following code that creates **input and output datasets** toohello **Main** method.</span></span>
 
-    <span data-ttu-id="83187-171">Le paramètre **FolderPath** de l’objet blob d’entrée a la valeur **adftutorial/**, où **adftutorial** est le nom du conteneur dans votre stockage des objets blob.</span><span class="sxs-lookup"><span data-stu-id="83187-171">The **FolderPath** for the input blob is set to **adftutorial/** where **adftutorial** is the name of the container in your blob storage.</span></span> <span data-ttu-id="83187-172">Si ce conteneur n'existe pas dans votre stockage d'objets blob Azure, créez un conteneur nommé **adftutorial** et chargez un fichier texte sur celui-ci.</span><span class="sxs-lookup"><span data-stu-id="83187-172">If this container does not exist in your Azure blob storage, create a container with this name: **adftutorial** and upload a text file to the container.</span></span>
+    <span data-ttu-id="e4aeb-171">Hello **FolderPath** d’objet blob d’entrée de hello est défini trop**adftutorial /** où **adftutorial** est le nom hello du conteneur de hello dans votre stockage d’objets blob.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-171">hello **FolderPath** for hello input blob is set too**adftutorial/** where **adftutorial** is hello name of hello container in your blob storage.</span></span> <span data-ttu-id="e4aeb-172">Si ce conteneur n’existe pas dans votre stockage d’objets blob Azure, créer un conteneur portant ce nom : **adftutorial** et télécharger un conteneur de toohello du fichier texte.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-172">If this container does not exist in your Azure blob storage, create a container with this name: **adftutorial** and upload a text file toohello container.</span></span>
 
-    <span data-ttu-id="83187-173">Le paramètre FolderPath de l’objet blob de sortie est défini sur **adftutorial/apifactoryoutput/{Slice}** où la valeur **Slice** est calculée dynamiquement en fonction de la valeur de **SliceStart** (date/heure de début de chaque tranche).</span><span class="sxs-lookup"><span data-stu-id="83187-173">The FolderPath for the output blob is set to: **adftutorial/apifactoryoutput/{Slice}** where **Slice** is dynamically calculated based on the value of **SliceStart** (start date-time of each slice.)</span></span>
+    <span data-ttu-id="e4aeb-173">Hello FolderPath pour hello blob a la valeur de sortie : **adftutorial/apifactoryoutput / {Slice}** où **tranche** est la valeur calculée dynamiquement hello selon **SliceStart**(début de date et heure de chaque secteur).</span><span class="sxs-lookup"><span data-stu-id="e4aeb-173">hello FolderPath for hello output blob is set to: **adftutorial/apifactoryoutput/{Slice}** where **Slice** is dynamically calculated based on hello value of **SliceStart** (start date-time of each slice.)</span></span>
 
     ```csharp
     // create input and output datasets
@@ -294,9 +294,9 @@ ms.lasthandoff: 08/18/2017
         }
     });
     ```
-10. <span data-ttu-id="83187-174">Ajoutez à la méthode **Main** le code suivant, qui **crée et active un pipeline**.</span><span class="sxs-lookup"><span data-stu-id="83187-174">Add the following code that **creates and activates a pipeline** to the **Main** method.</span></span> <span data-ttu-id="83187-175">Ce pipeline dispose d’une fonction **CopyActivity** qui accepte **BlobSource** en tant que source et **BlobSink** en tant que récepteur.</span><span class="sxs-lookup"><span data-stu-id="83187-175">This pipeline has a **CopyActivity** that takes **BlobSource** as a source and **BlobSink** as a sink.</span></span>
+10. <span data-ttu-id="e4aeb-174">Ajoutez le code suivant de hello **crée et Active un pipeline** toohello **Main** (méthode).</span><span class="sxs-lookup"><span data-stu-id="e4aeb-174">Add hello following code that **creates and activates a pipeline** toohello **Main** method.</span></span> <span data-ttu-id="e4aeb-175">Ce pipeline dispose d’une fonction **CopyActivity** qui accepte **BlobSource** en tant que source et **BlobSink** en tant que récepteur.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-175">This pipeline has a **CopyActivity** that takes **BlobSource** as a source and **BlobSink** as a sink.</span></span>
 
-    <span data-ttu-id="83187-176">L’activité de copie effectue le déplacement des données dans Azure Data Factory.</span><span class="sxs-lookup"><span data-stu-id="83187-176">The Copy Activity performs the data movement in Azure Data Factory.</span></span> <span data-ttu-id="83187-177">Elle est mise en œuvre par un service disponible dans le monde entier, capable de copier des données entre différents magasins de données de façon sécurisée, fiable et évolutive.</span><span class="sxs-lookup"><span data-stu-id="83187-177">The activity is powered by a globally available service that can copy data between various data stores in a secure, reliable, and scalable way.</span></span> <span data-ttu-id="83187-178">Pour plus d’informations sur l’activité de copie, consultez l’article [Activités de déplacement des données](data-factory-data-movement-activities.md) .</span><span class="sxs-lookup"><span data-stu-id="83187-178">See [Data Movement Activities](data-factory-data-movement-activities.md) article for details about the Copy Activity.</span></span>
+    <span data-ttu-id="e4aeb-176">Activité de copie de Hello effectue le déplacement des données de hello dans Azure Data Factory.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-176">hello Copy Activity performs hello data movement in Azure Data Factory.</span></span> <span data-ttu-id="e4aeb-177">activité Hello est rendue possible par un service globalement disponible qui permettre copier des données entre différentes banques de données de manière sécurisée, fiable et évolutive.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-177">hello activity is powered by a globally available service that can copy data between various data stores in a secure, reliable, and scalable way.</span></span> <span data-ttu-id="e4aeb-178">Consultez [les activités de déplacement des données](data-factory-data-movement-activities.md) article pour plus d’informations sur l’activité de copie de hello.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-178">See [Data Movement Activities](data-factory-data-movement-activities.md) article for details about hello Copy Activity.</span></span>
 
     ```csharp
     // create a pipeline
@@ -315,7 +315,7 @@ ms.lasthandoff: 08/18/2017
             {
                 Description = "Demo Pipeline for data transfer between blobs",
     
-                // Initial value for pipeline's active period. With this, you won't need to set slice status
+                // Initial value for pipeline's active period. With this, you won't need tooset slice status
                 Start = PipelineActivePeriodStartTime,
                 End = PipelineActivePeriodEndTime,
     
@@ -354,7 +354,7 @@ ms.lasthandoff: 08/18/2017
         }
     });
     ```
-12. <span data-ttu-id="83187-179">Ajoutez le code suivant à la méthode **Main** pour obtenir l’état d’une tranche de données du jeu de données de sortie.</span><span class="sxs-lookup"><span data-stu-id="83187-179">Add the following code to the **Main** method to get the status of a data slice of the output dataset.</span></span> <span data-ttu-id="83187-180">Une seule tranche est attendue dans cet exemple.</span><span class="sxs-lookup"><span data-stu-id="83187-180">There is only one slice expected in this sample.</span></span>
+12. <span data-ttu-id="e4aeb-179">Ajouter hello suivant code toohello **Main** jeu de données de sortie de statut de hello tooget de méthode d’une tranche de données de hello.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-179">Add hello following code toohello **Main** method tooget hello status of a data slice of hello output dataset.</span></span> <span data-ttu-id="e4aeb-180">Une seule tranche est attendue dans cet exemple.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-180">There is only one slice expected in this sample.</span></span>
 
     ```csharp
     // Pulling status within a timeout threshold
@@ -363,8 +363,8 @@ ms.lasthandoff: 08/18/2017
     
     while (DateTime.Now - start < TimeSpan.FromMinutes(5) && !done)
     {
-        Console.WriteLine("Pulling the slice status");
-        // wait before the next status check
+        Console.WriteLine("Pulling hello slice status");
+        // wait before hello next status check
         Thread.Sleep(1000 * 12);
     
         var datalistResponse = client.DataSlices.List(resourceGroupName, dataFactoryName, Dataset_Destination,
@@ -389,13 +389,13 @@ ms.lasthandoff: 08/18/2017
         }
     }
     ```
-13. <span data-ttu-id="83187-181">**(facultatif)** Ajoutez à la méthode **Main** le code suivant pour obtenir les détails d’exécution d’une tranche de données.</span><span class="sxs-lookup"><span data-stu-id="83187-181">**(optional)** Add the following code to get run details for a data slice to the **Main** method.</span></span>
+13. <span data-ttu-id="e4aeb-181">**(facultatif)**  Tooget exécuter les détails pour un toohello de tranche de données de code suivant de hello ajouter **Main** (méthode).</span><span class="sxs-lookup"><span data-stu-id="e4aeb-181">**(optional)** Add hello following code tooget run details for a data slice toohello **Main** method.</span></span>
 
     ```csharp
     Console.WriteLine("Getting run details of a data slice");
     
-    // give it a few minutes for the output slice to be ready
-    Console.WriteLine("\nGive it a few minutes for the output slice to be ready and press any key.");
+    // give it a few minutes for hello output slice toobe ready
+    Console.WriteLine("\nGive it a few minutes for hello output slice toobe ready and press any key.");
     Console.ReadKey();
     
     var datasliceRunListResponse = client.DataSliceRuns.List(
@@ -418,10 +418,10 @@ ms.lasthandoff: 08/18/2017
         Console.WriteLine("ErrorMessage: \t{0}", run.ErrorMessage);
     }
     
-    Console.WriteLine("\nPress any key to exit.");
+    Console.WriteLine("\nPress any key tooexit.");
     Console.ReadKey();
     ```
-14. <span data-ttu-id="83187-182">Ajoutez à la classe **Program** la méthode d’assistance suivante utilisée par la méthode **Main**.</span><span class="sxs-lookup"><span data-stu-id="83187-182">Add the following helper method used by the **Main** method to the **Program** class.</span></span> <span data-ttu-id="83187-183">Cette méthode affiche une boîte de dialogue qui vous permet de fournir un **nom d’utilisateur** et un **mot de passe** de connexion au portail Azure.</span><span class="sxs-lookup"><span data-stu-id="83187-183">This method pops a dialog box that that lets you provide **user name** and **password** that you use to log in to Azure portal.</span></span>
+14. <span data-ttu-id="e4aeb-182">Ajouter hello suivant la méthode d’assistance utilisée par hello **principal** méthode toohello **programme** classe.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-182">Add hello following helper method used by hello **Main** method toohello **Program** class.</span></span> <span data-ttu-id="e4aeb-183">Cette méthode affiche une boîte de dialogue qui vous permet de fournir **nom d’utilisateur** et **mot de passe** utiliser toolog dans tooAzure portal.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-183">This method pops a dialog box that that lets you provide **user name** and **password** that you use toolog in tooAzure portal.</span></span>
 
     ```csharp
     public static async Task<string> GetAuthorizationHeader()
@@ -437,29 +437,29 @@ ms.lasthandoff: 08/18/2017
         if (result != null)
             return result.AccessToken;
 
-        throw new InvalidOperationException("Failed to acquire token");
+        throw new InvalidOperationException("Failed tooacquire token");
     }
     ```
 
-15. <span data-ttu-id="83187-184">Dans l’Explorateur de solutions, développez le projet **DataFactoryAPITestApp**, cliquez avec le bouton droit sur **Références**, puis cliquez sur **Ajouter une référence**.</span><span class="sxs-lookup"><span data-stu-id="83187-184">In the Solution Explorer, expand the project: **DataFactoryAPITestApp**, right-click **References**, and click **Add Reference**.</span></span> <span data-ttu-id="83187-185">Cochez la case pour l’assembly `System.Configuration` et cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="83187-185">Select check box for `System.Configuration` assembly and click **OK**.</span></span>
-15. <span data-ttu-id="83187-186">Générez l'application console.</span><span class="sxs-lookup"><span data-stu-id="83187-186">Build the console application.</span></span> <span data-ttu-id="83187-187">Dans le menu, cliquez sur **Générer**, puis sur **Générer la solution**.</span><span class="sxs-lookup"><span data-stu-id="83187-187">Click **Build** on the menu and click **Build Solution**.</span></span>
-16. <span data-ttu-id="83187-188">Vérifiez qu'il existe au moins un fichier dans le conteneur adftutorial de votre stockage d'objets blob Azure.</span><span class="sxs-lookup"><span data-stu-id="83187-188">Confirm that there is at least one file in the adftutorial container in your Azure blob storage.</span></span> <span data-ttu-id="83187-189">Si ce n'est pas le cas, créez le fichier Emp.txt dans le bloc-notes avec le contenu suivant, puis chargez-le sur le conteneur adftutorial.</span><span class="sxs-lookup"><span data-stu-id="83187-189">If not, create Emp.txt file in Notepad with the following content and upload it to the adftutorial container.</span></span>
+15. <span data-ttu-id="e4aeb-184">Bonjour l’Explorateur de solutions, développez le projet de hello : **DataFactoryAPITestApp**, avec le bouton droit **références**, puis cliquez sur **ajouter une référence**.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-184">In hello Solution Explorer, expand hello project: **DataFactoryAPITestApp**, right-click **References**, and click **Add Reference**.</span></span> <span data-ttu-id="e4aeb-185">Cochez la case pour l’assembly `System.Configuration` et cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-185">Select check box for `System.Configuration` assembly and click **OK**.</span></span>
+15. <span data-ttu-id="e4aeb-186">Créer une application de console hello.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-186">Build hello console application.</span></span> <span data-ttu-id="e4aeb-187">Cliquez sur **générer** sur hello menu et cliquez sur **générer la Solution**.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-187">Click **Build** on hello menu and click **Build Solution**.</span></span>
+16. <span data-ttu-id="e4aeb-188">Vérifiez qu’est au moins un fichier dans le conteneur d’adftutorial hello dans votre stockage d’objets blob Azure.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-188">Confirm that there is at least one file in hello adftutorial container in your Azure blob storage.</span></span> <span data-ttu-id="e4aeb-189">Si ce n’est pas le cas, créer à Emp.txt fichier dans le bloc-notes avec hello suivant contenu et le télécharger toohello adftutorial conteneur.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-189">If not, create Emp.txt file in Notepad with hello following content and upload it toohello adftutorial container.</span></span>
 
     ```
     John, Doe
     Jane, Doe
     ```
-17. <span data-ttu-id="83187-190">Exécutez l’exemple en cliquant dans le menu sur **Déboguer** -> **Démarrer le débogage**.</span><span class="sxs-lookup"><span data-stu-id="83187-190">Run the sample by clicking **Debug** -> **Start Debugging** on the menu.</span></span> <span data-ttu-id="83187-191">Si **Obtention des détails d’exécution d’une tranche de données** s’affiche, patientez quelques minutes, puis appuyez sur **Entrée**.</span><span class="sxs-lookup"><span data-stu-id="83187-191">When you see the **Getting run details of a data slice**, wait for a few minutes, and press **ENTER**.</span></span>
-18. <span data-ttu-id="83187-192">Utilisez le portail Azure pour vérifier que la fabrique de données **APITutorialFactory** est créée avec les artefacts suivants :</span><span class="sxs-lookup"><span data-stu-id="83187-192">Use the Azure portal to verify that the data factory **APITutorialFactory** is created with the following artifacts:</span></span>
-    * <span data-ttu-id="83187-193">Service lié : **AzureStorageLinkedService**</span><span class="sxs-lookup"><span data-stu-id="83187-193">Linked service: **AzureStorageLinkedService**</span></span>
-    * <span data-ttu-id="83187-194">Jeu de données : **DatasetBlobSource** et **DatasetBlobDestination**.</span><span class="sxs-lookup"><span data-stu-id="83187-194">Dataset: **DatasetBlobSource** and **DatasetBlobDestination**.</span></span>
-    * <span data-ttu-id="83187-195">Pipeline : **PipelineBlobSample**</span><span class="sxs-lookup"><span data-stu-id="83187-195">Pipeline: **PipelineBlobSample**</span></span>
-19. <span data-ttu-id="83187-196">Vérifiez qu’un fichier de sortie est créé dans le dossier **apifactoryoutput** du conteneur **adftutorial**.</span><span class="sxs-lookup"><span data-stu-id="83187-196">Verify that an output file is created in the **apifactoryoutput** folder in the **adftutorial** container.</span></span>
+17. <span data-ttu-id="e4aeb-190">Exécuter l’exemple hello en cliquant sur **déboguer** -> **démarrer le débogage** menu hello.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-190">Run hello sample by clicking **Debug** -> **Start Debugging** on hello menu.</span></span> <span data-ttu-id="e4aeb-191">Lorsque vous consultez hello **détails d’une tranche de données mise en route de l’exécution**, attendez quelques minutes, puis appuyez sur **entrée**.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-191">When you see hello **Getting run details of a data slice**, wait for a few minutes, and press **ENTER**.</span></span>
+18. <span data-ttu-id="e4aeb-192">Utilisez hello tooverify portail Azure cette fabrique de données hello **APITutorialFactory** est créée avec hello suivant artefacts :</span><span class="sxs-lookup"><span data-stu-id="e4aeb-192">Use hello Azure portal tooverify that hello data factory **APITutorialFactory** is created with hello following artifacts:</span></span>
+    * <span data-ttu-id="e4aeb-193">Service lié : **AzureStorageLinkedService**</span><span class="sxs-lookup"><span data-stu-id="e4aeb-193">Linked service: **AzureStorageLinkedService**</span></span>
+    * <span data-ttu-id="e4aeb-194">Jeu de données : **DatasetBlobSource** et **DatasetBlobDestination**.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-194">Dataset: **DatasetBlobSource** and **DatasetBlobDestination**.</span></span>
+    * <span data-ttu-id="e4aeb-195">Pipeline : **PipelineBlobSample**</span><span class="sxs-lookup"><span data-stu-id="e4aeb-195">Pipeline: **PipelineBlobSample**</span></span>
+19. <span data-ttu-id="e4aeb-196">Vérifiez qu’un fichier de sortie est créé dans hello **apifactoryoutput** dossier Bonjour **adftutorial** conteneur.</span><span class="sxs-lookup"><span data-stu-id="e4aeb-196">Verify that an output file is created in hello **apifactoryoutput** folder in hello **adftutorial** container.</span></span>
 
-## <a name="get-a-list-of-failed-data-slices"></a><span data-ttu-id="83187-197">Obtenir une liste des tranches de données en échec</span><span class="sxs-lookup"><span data-stu-id="83187-197">Get a list of failed data slices</span></span> 
+## <a name="get-a-list-of-failed-data-slices"></a><span data-ttu-id="e4aeb-197">Obtenir une liste des tranches de données en échec</span><span class="sxs-lookup"><span data-stu-id="e4aeb-197">Get a list of failed data slices</span></span> 
 
 ```csharp
-// Parse the resource path
+// Parse hello resource path
 var ResourceGroupName = "ADFTutorialResourceGroup";
 var DataFactoryName = "DataFactoryAPITestApp";
 
@@ -495,7 +495,7 @@ do
 while (response != null);
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="83187-198">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="83187-198">Next steps</span></span>
-<span data-ttu-id="83187-199">Consultez l’exemple suivant pour créer un pipeline à l’aide du Kit de développement logiciel .NET qui copie les données d’un stockage d’objets blob Azure dans une base de données SQL Azure :</span><span class="sxs-lookup"><span data-stu-id="83187-199">See the following example for creating a pipeline using .NET SDK that copies data from an Azure blob storage to an Azure SQL database:</span></span> 
+## <a name="next-steps"></a><span data-ttu-id="e4aeb-198">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="e4aeb-198">Next steps</span></span>
+<span data-ttu-id="e4aeb-199">Consultez hello exemple pour la création d’un pipeline à l’aide du Kit de développement logiciel .NET qui copie les données à partir d’une base de données SQL Azure de tooan stockage blob Azure suivant :</span><span class="sxs-lookup"><span data-stu-id="e4aeb-199">See hello following example for creating a pipeline using .NET SDK that copies data from an Azure blob storage tooan Azure SQL database:</span></span> 
 
-- [<span data-ttu-id="83187-200">Créer un pipeline pour copier des données de stockage d’objets Blob dans SQL Database</span><span class="sxs-lookup"><span data-stu-id="83187-200">Create a pipeline to copy data from Blob Storage to SQL Database</span></span>](data-factory-copy-activity-tutorial-using-dotnet-api.md)
+- [<span data-ttu-id="e4aeb-200">Créer un pipeline de données de toocopy de tooSQL de stockage d’objets Blob de base de données</span><span class="sxs-lookup"><span data-stu-id="e4aeb-200">Create a pipeline toocopy data from Blob Storage tooSQL Database</span></span>](data-factory-copy-activity-tutorial-using-dotnet-api.md)

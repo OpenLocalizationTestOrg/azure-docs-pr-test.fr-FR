@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : intégration d’Azure Active Directory dans HappyFox | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et HappyFox."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et HappyFox."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,227 +13,227 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: jeedes
-ms.openlocfilehash: 8b5ad750d7849e4037ed7ee93c48b5645c68e799
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1190652d7d1144c7eddea339cb3f9175912407fc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-happyfox"></a><span data-ttu-id="ecfca-103">Didacticiel : intégration d’Azure Active Directory dans HappyFox</span><span class="sxs-lookup"><span data-stu-id="ecfca-103">Tutorial: Azure Active Directory integration with HappyFox</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-happyfox"></a><span data-ttu-id="496aa-103">Didacticiel : intégration d’Azure Active Directory dans HappyFox</span><span class="sxs-lookup"><span data-stu-id="496aa-103">Tutorial: Azure Active Directory integration with HappyFox</span></span>
 
-<span data-ttu-id="ecfca-104">Dans ce didacticiel, vous allez apprendre à intégrer HappyFox dans Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="ecfca-104">In this tutorial, you learn how to integrate HappyFox with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="496aa-104">Dans ce didacticiel, vous apprendrez comment toointegrate HappyFox avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="496aa-104">In this tutorial, you learn how toointegrate HappyFox with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="ecfca-105">L’intégration de HappyFox dans Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="ecfca-105">Integrating HappyFox with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="496aa-105">Intégration HappyFox à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="496aa-105">Integrating HappyFox with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="ecfca-106">Dans Azure AD, vous pouvez contrôler qui a accès à HappyFox</span><span class="sxs-lookup"><span data-stu-id="ecfca-106">You can control in Azure AD who has access to HappyFox</span></span>
-- <span data-ttu-id="ecfca-107">Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à HappyFox (par le biais de l’authentification unique) avec leur compte Azure AD</span><span class="sxs-lookup"><span data-stu-id="ecfca-107">You can enable your users to automatically get signed-on to HappyFox (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="ecfca-108">Vous pouvez gérer vos comptes depuis un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="ecfca-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="496aa-106">Vous pouvez contrôler dans Azure AD qui a accès tooHappyFox</span><span class="sxs-lookup"><span data-stu-id="496aa-106">You can control in Azure AD who has access tooHappyFox</span></span>
+- <span data-ttu-id="496aa-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooHappyFox (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="496aa-107">You can enable your users tooautomatically get signed-on tooHappyFox (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="496aa-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="496aa-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="ecfca-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="ecfca-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="496aa-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="496aa-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="ecfca-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="ecfca-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="496aa-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="496aa-110">Prerequisites</span></span>
 
-<span data-ttu-id="ecfca-111">Pour configurer l’intégration d’Azure AD avec HappyFox, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="ecfca-111">To configure Azure AD integration with HappyFox, you need the following items:</span></span>
+<span data-ttu-id="496aa-111">tooconfigure intégration d’Azure AD avec HappyFox, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="496aa-111">tooconfigure Azure AD integration with HappyFox, you need hello following items:</span></span>
 
-- <span data-ttu-id="ecfca-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="ecfca-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="ecfca-113">Un abonnement HappyFox pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="ecfca-113">A HappyFox single-sign on enabled subscription</span></span>
+- <span data-ttu-id="496aa-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="496aa-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="496aa-113">Un abonnement HappyFox pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="496aa-113">A HappyFox single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ecfca-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="ecfca-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="496aa-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="496aa-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="ecfca-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="ecfca-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="496aa-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="496aa-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="ecfca-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="ecfca-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="ecfca-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="ecfca-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="496aa-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="496aa-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="496aa-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="496aa-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="ecfca-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="ecfca-118">Scenario description</span></span>
-<span data-ttu-id="ecfca-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="ecfca-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="ecfca-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="ecfca-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="496aa-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="496aa-118">Scenario description</span></span>
+<span data-ttu-id="496aa-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="496aa-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="496aa-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="496aa-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="ecfca-121">Ajout de HappyFox à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="ecfca-121">Adding HappyFox from the gallery</span></span>
-2. <span data-ttu-id="ecfca-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="ecfca-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="496aa-121">Ajout de HappyFox à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="496aa-121">Adding HappyFox from hello gallery</span></span>
+2. <span data-ttu-id="496aa-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="496aa-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-happyfox-from-the-gallery"></a><span data-ttu-id="ecfca-123">Ajout de HappyFox à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="ecfca-123">Adding HappyFox from the gallery</span></span>
-<span data-ttu-id="ecfca-124">Pour configurer l’intégration de HappyFox dans Azure AD, vous devez ajouter HappyFox à partir de la galerie dans votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="ecfca-124">To configure the integration of HappyFox into Azure AD, you need to add HappyFox from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-happyfox-from-hello-gallery"></a><span data-ttu-id="496aa-123">Ajout de HappyFox à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="496aa-123">Adding HappyFox from hello gallery</span></span>
+<span data-ttu-id="496aa-124">intégration de hello tooconfigure de HappyFox dans Azure AD, vous devez tooadd HappyFox à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="496aa-124">tooconfigure hello integration of HappyFox into Azure AD, you need tooadd HappyFox from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="ecfca-125">**Pour ajouter HappyFox à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="ecfca-125">**To add HappyFox from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="496aa-125">**tooadd HappyFox à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="496aa-125">**tooadd HappyFox from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ecfca-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="496aa-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="496aa-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="ecfca-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="ecfca-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="496aa-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="496aa-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="496aa-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="496aa-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="ecfca-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="ecfca-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="496aa-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="496aa-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="ecfca-133">Dans la zone de recherche, tapez **HappyFox**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-133">In the search box, type **HappyFox**.</span></span>
+4. <span data-ttu-id="496aa-133">Dans la zone de recherche de hello, tapez **HappyFox**.</span><span class="sxs-lookup"><span data-stu-id="496aa-133">In hello search box, type **HappyFox**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-happyfox-tutorial/tutorial_happyfox_search.png)
 
-5. <span data-ttu-id="ecfca-135">Dans le volet de résultats, sélectionnez **HappyFox**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="ecfca-135">In the results panel, select **HappyFox**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="496aa-135">Dans le volet de résultats hello, sélectionnez **HappyFox**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="496aa-135">In hello results panel, select **HappyFox**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-happyfox-tutorial/tutorial_happyfox_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="ecfca-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="ecfca-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="ecfca-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec HappyFox, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="ecfca-138">In this section, you configure and test Azure AD single sign-on with HappyFox based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="496aa-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="496aa-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="496aa-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec HappyFox, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="496aa-138">In this section, you configure and test Azure AD single sign-on with HappyFox based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="ecfca-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur HappyFox équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ecfca-139">For single sign-on to work, Azure AD needs to know what the counterpart user in HappyFox is to a user in Azure AD.</span></span> <span data-ttu-id="ecfca-140">En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur HappyFox associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="ecfca-140">In other words, a link relationship between an Azure AD user and the related user in HappyFox needs to be established.</span></span>
+<span data-ttu-id="496aa-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans HappyFox est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="496aa-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in HappyFox is tooa user in Azure AD.</span></span> <span data-ttu-id="496aa-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans HappyFox doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="496aa-140">In other words, a link relationship between an Azure AD user and hello related user in HappyFox needs toobe established.</span></span>
 
-<span data-ttu-id="ecfca-141">Dans HappyFox, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="ecfca-141">In HappyFox, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="496aa-141">Dans HappyFox, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="496aa-141">In HappyFox, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="ecfca-142">Pour configurer et tester l’authentification unique Azure AD avec HappyFox, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="ecfca-142">To configure and test Azure AD single sign-on with HappyFox, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="496aa-142">tooconfigure et test Azure AD l’authentification unique avec HappyFox, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="496aa-142">tooconfigure and test Azure AD single sign-on with HappyFox, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="ecfca-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="ecfca-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="ecfca-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="ecfca-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="ecfca-145">**[Création d’un utilisateur de test HappyFox](#creating-a-happyfox-test-user)** pour avoir un équivalent de Britta Simon dans HappyFox lié à la représentation Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="ecfca-145">**[Creating a HappyFox test user](#creating-a-happyfox-test-user)** - to have a counterpart of Britta Simon in HappyFox that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="ecfca-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ecfca-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="ecfca-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="ecfca-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="496aa-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="496aa-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="496aa-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="496aa-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="496aa-145">**[Création d’un utilisateur de test HappyFox](#creating-a-happyfox-test-user)**  -toohave un équivalent de Britta Simon dans HappyFox est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="496aa-145">**[Creating a HappyFox test user](#creating-a-happyfox-test-user)** - toohave a counterpart of Britta Simon in HappyFox that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="496aa-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="496aa-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="496aa-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="496aa-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="ecfca-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="ecfca-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="496aa-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="496aa-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="ecfca-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application HappyFox.</span><span class="sxs-lookup"><span data-stu-id="ecfca-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your HappyFox application.</span></span>
+<span data-ttu-id="496aa-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application HappyFox.</span><span class="sxs-lookup"><span data-stu-id="496aa-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your HappyFox application.</span></span>
 
-<span data-ttu-id="ecfca-150">**Pour configurer l’authentification unique Azure AD avec HappyFox, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="ecfca-150">**To configure Azure AD single sign-on with HappyFox, perform the following steps:**</span></span>
+<span data-ttu-id="496aa-150">**tooconfigure Azure AD single sign-on avec HappyFox, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="496aa-150">**tooconfigure Azure AD single sign-on with HappyFox, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ecfca-151">Dans le portail Azure, sur la page d’intégration de l’application **HappyFox**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-151">In the Azure portal, on the **HappyFox** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="496aa-151">Bonjour portail Azure, sur hello **HappyFox** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="496aa-151">In hello Azure portal, on hello **HappyFox** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="ecfca-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="ecfca-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="496aa-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="496aa-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/tutorial_happyfox_samlbase.png)
 
-3. <span data-ttu-id="ecfca-155">Dans la section **Domaine et URL HappyFox**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="ecfca-155">On the **HappyFox Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="496aa-155">Sur hello **HappyFox domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="496aa-155">On hello **HappyFox Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/tutorial_happyfox_url.png)
 
-    <span data-ttu-id="ecfca-157">a.</span><span class="sxs-lookup"><span data-stu-id="ecfca-157">a.</span></span> <span data-ttu-id="ecfca-158">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<subdomain>.happyfox.com/`</span><span class="sxs-lookup"><span data-stu-id="ecfca-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<subdomain>.happyfox.com/`</span></span>
+    <span data-ttu-id="496aa-157">a.</span><span class="sxs-lookup"><span data-stu-id="496aa-157">a.</span></span> <span data-ttu-id="496aa-158">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.happyfox.com/`</span><span class="sxs-lookup"><span data-stu-id="496aa-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<subdomain>.happyfox.com/`</span></span>
 
-    <span data-ttu-id="ecfca-159">b.</span><span class="sxs-lookup"><span data-stu-id="ecfca-159">b.</span></span> <span data-ttu-id="ecfca-160">Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<subdomain>.happyfox.com/saml/metadata/`</span><span class="sxs-lookup"><span data-stu-id="ecfca-160">In the **Identifier** textbox, type a URL using the following pattern: `https://<subdomain>.happyfox.com/saml/metadata/`</span></span>
+    <span data-ttu-id="496aa-159">b.</span><span class="sxs-lookup"><span data-stu-id="496aa-159">b.</span></span> <span data-ttu-id="496aa-160">Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.happyfox.com/saml/metadata/`</span><span class="sxs-lookup"><span data-stu-id="496aa-160">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<subdomain>.happyfox.com/saml/metadata/`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="ecfca-161">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="ecfca-161">These values are not real.</span></span> <span data-ttu-id="ecfca-162">Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels.</span><span class="sxs-lookup"><span data-stu-id="ecfca-162">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="ecfca-163">Pour obtenir ces valeurs, contactez l’[équipe de support technique HappyFox](https://support.happyfox.com/home).</span><span class="sxs-lookup"><span data-stu-id="ecfca-163">Contact [HappyFox Client support team](https://support.happyfox.com/home) to get these values.</span></span> 
+    > <span data-ttu-id="496aa-161">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="496aa-161">These values are not real.</span></span> <span data-ttu-id="496aa-162">Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur.</span><span class="sxs-lookup"><span data-stu-id="496aa-162">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="496aa-163">Contact [équipe de support Client de HappyFox](https://support.happyfox.com/home) tooget ces valeurs.</span><span class="sxs-lookup"><span data-stu-id="496aa-163">Contact [HappyFox Client support team](https://support.happyfox.com/home) tooget these values.</span></span> 
  
-4. <span data-ttu-id="ecfca-164">Dans la section **Certificat de signature SAML**, cliquez sur **Certificat (Base64)**, puis enregistrez le fichier du certificat sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="ecfca-164">On the **SAML Signing Certificate** section, click **Certificate(Base64)** and then save the Certificate file on your computer.</span></span>
+4. <span data-ttu-id="496aa-164">Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="496aa-164">On hello **SAML Signing Certificate** section, click **Certificate(Base64)** and then save hello Certificate file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/tutorial_happyfox_certificate.png) 
 
-5. <span data-ttu-id="ecfca-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="ecfca-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="496aa-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="496aa-166">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="ecfca-168">Dans la section **Configuration de HappyFox** , cliquez sur **Configurer HappyFox** pour ouvrir la fenêtre **Configurer l’authentification**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-168">On the **HappyFox Configuration** section, click **Configure HappyFox** to open **Configure sign-on** window.</span></span> <span data-ttu-id="ecfca-169">Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-169">Copy the **SAML Single Sign-On Service URL** from the **Quick Reference section**.</span></span>
+6. <span data-ttu-id="496aa-168">Sur hello **HappyFox Configuration** , cliquez sur **HappyFox de configurer** tooopen **configurer l’authentification** fenêtre.</span><span class="sxs-lookup"><span data-stu-id="496aa-168">On hello **HappyFox Configuration** section, click **Configure HappyFox** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="496aa-169">Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide**.</span><span class="sxs-lookup"><span data-stu-id="496aa-169">Copy hello **SAML Single Sign-On Service URL** from hello **Quick Reference section**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/tutorial_happyfox_configure.png) 
 
-7. <span data-ttu-id="ecfca-171">Connectez-vous au portail du personnel HappyFox et accédez à **Manage** (Gérer), puis cliquez sur l’onglet **Integrations** (Intégrations).</span><span class="sxs-lookup"><span data-stu-id="ecfca-171">Sign on to your HappyFox staff portal and navigate to **Manage**, Click on **Integrations** tab.</span></span>
+7. <span data-ttu-id="496aa-171">Se connecter sur le portail d’équipe tooyour HappyFox et accédez trop**gérer**, cliquez sur **intégrations** onglet.</span><span class="sxs-lookup"><span data-stu-id="496aa-171">Sign on tooyour HappyFox staff portal and navigate too**Manage**, Click on **Integrations** tab.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/header.png) 
 
-8. <span data-ttu-id="ecfca-173">Dans l’onglet Integrations (Intégrations), cliquez sur **Configure** (Configurer) sous **SAML Integration** (Intégration SAML) pour ouvrir les paramètres d’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="ecfca-173">In the Integrations tab, Click **Configure** under **SAML Integration** to open the Single Sign On Settings.</span></span>
+8. <span data-ttu-id="496aa-173">Dans l’onglet d’intégrations hello, cliquez sur **configurer** sous **SAML intégration** tooopen hello Single Sign On Settings.</span><span class="sxs-lookup"><span data-stu-id="496aa-173">In hello Integrations tab, Click **Configure** under **SAML Integration** tooopen hello Single Sign On Settings.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/configure.png) 
 
-9. <span data-ttu-id="ecfca-175">Dans la section de configuration SAML, collez l’**URL d’authentification unique SAML** que vous avez copiée à partir du portail Azure dans la zone de texte **URL cible d’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-175">Inside SAML configuration section, paste the **SAML Single Sign-On Service URL** that you have copied from Azure portal into **SSO Target URL** textbox.</span></span>
+9. <span data-ttu-id="496aa-175">Dans la section de configuration de SAML, collez hello **SAML Sign-On URL du Service unique** que vous avez copié à partir du portail Azure en **URL cible de l’authentification unique** zone de texte.</span><span class="sxs-lookup"><span data-stu-id="496aa-175">Inside SAML configuration section, paste hello **SAML Single Sign-On Service URL** that you have copied from Azure portal into **SSO Target URL** textbox.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/targeturl.png)
 
-10. <span data-ttu-id="ecfca-177">Ouvrez le certificat téléchargé à partir du portail Azure dans le Bloc-notes et collez son contenu dans la section **IdP Signature** (Signature IdP).</span><span class="sxs-lookup"><span data-stu-id="ecfca-177">Open the certificate downloaded from Azure portal in notepad and paste its content in **IdP Signature** section.</span></span>
+10. <span data-ttu-id="496aa-177">Ouvrir le certificat hello téléchargé à partir du portail Azure dans le bloc-notes et copiez son contenu dans **IdP Signature** section.</span><span class="sxs-lookup"><span data-stu-id="496aa-177">Open hello certificate downloaded from Azure portal in notepad and paste its content in **IdP Signature** section.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/cert.png)
 
-11. <span data-ttu-id="ecfca-179">Cliquez sur le bouton **Enregistrer les paramètres**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-179">Click **Save Settings** button.</span></span>
+11. <span data-ttu-id="496aa-179">Cliquez sur le bouton **Enregistrer les paramètres**.</span><span class="sxs-lookup"><span data-stu-id="496aa-179">Click **Save Settings** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/savesettings.png)
 
 > [!TIP]
-> <span data-ttu-id="ecfca-181">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="ecfca-181">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="ecfca-182">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="ecfca-182">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="ecfca-183">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="ecfca-183">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="496aa-181">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="496aa-181">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="496aa-182">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="496aa-182">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="496aa-183">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="496aa-183">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="ecfca-184">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="ecfca-184">Creating an Azure AD test user</span></span>
-<span data-ttu-id="ecfca-185">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="ecfca-185">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="496aa-184">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="496aa-184">Creating an Azure AD test user</span></span>
+<span data-ttu-id="496aa-185">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="496aa-185">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="ecfca-187">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="ecfca-187">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="496aa-187">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="496aa-187">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ecfca-188">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-188">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="496aa-188">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="496aa-188">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-happyfox-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="ecfca-190">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-190">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="496aa-190">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="496aa-190">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-happyfox-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="ecfca-192">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="ecfca-192">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="496aa-192">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="496aa-192">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-happyfox-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="ecfca-194">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="ecfca-194">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="496aa-194">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="496aa-194">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-happyfox-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="ecfca-196">a.</span><span class="sxs-lookup"><span data-stu-id="ecfca-196">a.</span></span> <span data-ttu-id="ecfca-197">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-197">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="496aa-196">a.</span><span class="sxs-lookup"><span data-stu-id="496aa-196">a.</span></span> <span data-ttu-id="496aa-197">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="496aa-197">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="ecfca-198">b.</span><span class="sxs-lookup"><span data-stu-id="ecfca-198">b.</span></span> <span data-ttu-id="ecfca-199">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="ecfca-199">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="496aa-198">b.</span><span class="sxs-lookup"><span data-stu-id="496aa-198">b.</span></span> <span data-ttu-id="496aa-199">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="496aa-199">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="ecfca-200">c.</span><span class="sxs-lookup"><span data-stu-id="ecfca-200">c.</span></span> <span data-ttu-id="ecfca-201">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-201">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="496aa-200">c.</span><span class="sxs-lookup"><span data-stu-id="496aa-200">c.</span></span> <span data-ttu-id="496aa-201">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="496aa-201">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="ecfca-202">d.</span><span class="sxs-lookup"><span data-stu-id="ecfca-202">d.</span></span> <span data-ttu-id="ecfca-203">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-203">Click **Create**.</span></span>
+    <span data-ttu-id="496aa-202">d.</span><span class="sxs-lookup"><span data-stu-id="496aa-202">d.</span></span> <span data-ttu-id="496aa-203">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="496aa-203">Click **Create**.</span></span>
  
-### <a name="creating-a-happyfox-test-user"></a><span data-ttu-id="ecfca-204">Création d’un utilisateur de test HappyFox</span><span class="sxs-lookup"><span data-stu-id="ecfca-204">Creating a HappyFox test user</span></span>
+### <a name="creating-a-happyfox-test-user"></a><span data-ttu-id="496aa-204">Création d’un utilisateur de test HappyFox</span><span class="sxs-lookup"><span data-stu-id="496aa-204">Creating a HappyFox test user</span></span>
 
-<span data-ttu-id="ecfca-205">L’application prend en charge la configuration d’utilisateur juste-à-temps, et après authentification, les utilisateurs sont créés automatiquement dans l’application.</span><span class="sxs-lookup"><span data-stu-id="ecfca-205">Application supports Just in time user provisioning and after authentication users are created in the application automatically.</span></span>
+<span data-ttu-id="496aa-205">Application prend en charge juste configuration en temps utilisateur et une fois que les utilisateurs de l’authentification sont créés automatiquement dans l’application hello.</span><span class="sxs-lookup"><span data-stu-id="496aa-205">Application supports Just in time user provisioning and after authentication users are created in hello application automatically.</span></span>
         
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="ecfca-206">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="ecfca-206">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="496aa-206">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="496aa-206">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="ecfca-207">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à HappyFox.</span><span class="sxs-lookup"><span data-stu-id="ecfca-207">In this section, you enable Britta Simon to use Azure single sign-on by granting access to HappyFox.</span></span>
+<span data-ttu-id="496aa-207">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooHappyFox.</span><span class="sxs-lookup"><span data-stu-id="496aa-207">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooHappyFox.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="ecfca-209">**Pour assigner Britta Simon à HappyFox, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="ecfca-209">**To assign Britta Simon to HappyFox, perform the following steps:**</span></span>
+<span data-ttu-id="496aa-209">**tooassign Britta Simon tooHappyFox, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="496aa-209">**tooassign Britta Simon tooHappyFox, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ecfca-210">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-210">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="496aa-210">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="496aa-210">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="ecfca-212">Dans la liste des applications, sélectionnez **HappyFox**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-212">In the applications list, select **HappyFox**.</span></span>
+2. <span data-ttu-id="496aa-212">Dans la liste des applications hello, sélectionnez **HappyFox**.</span><span class="sxs-lookup"><span data-stu-id="496aa-212">In hello applications list, select **HappyFox**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-happyfox-tutorial/tutorial_happyfox_app.png) 
 
-3. <span data-ttu-id="ecfca-214">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-214">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="496aa-214">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="496aa-214">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="ecfca-216">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-216">Click **Add** button.</span></span> <span data-ttu-id="ecfca-217">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-217">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="496aa-216">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="496aa-216">Click **Add** button.</span></span> <span data-ttu-id="496aa-217">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="496aa-217">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="ecfca-219">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="ecfca-219">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="496aa-219">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="496aa-219">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="ecfca-220">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-220">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="496aa-220">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="496aa-220">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="ecfca-221">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="ecfca-221">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="496aa-221">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="496aa-221">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="ecfca-222">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="ecfca-222">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="496aa-222">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="496aa-222">Testing single sign-on</span></span>
 
-<span data-ttu-id="ecfca-223">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="ecfca-223">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="496aa-223">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="496aa-223">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-1. <span data-ttu-id="ecfca-224">Lorsque vous cliquez sur la mosaïque HappyFox dans le panneau d’accès, la page de connexion de l’application HappyFox devrait apparaître.</span><span class="sxs-lookup"><span data-stu-id="ecfca-224">When you click the HappyFox tile in the Access Panel, you should get login page of HappyFox application.</span></span> <span data-ttu-id="ecfca-225">Vous devriez voir le bouton **SAML** sur la page de connexion.</span><span class="sxs-lookup"><span data-stu-id="ecfca-225">You should see the **‘SAML’** button on the sign-in page.</span></span>
+1. <span data-ttu-id="496aa-224">Lorsque vous cliquez sur mosaïque HappyFox hello hello volet d’accès, vous devez obtenir la page de connexion de l’application de HappyFox.</span><span class="sxs-lookup"><span data-stu-id="496aa-224">When you click hello HappyFox tile in hello Access Panel, you should get login page of HappyFox application.</span></span> <span data-ttu-id="496aa-225">Vous devez voir hello **'SAML'** bouton sur la page de connexion hello.</span><span class="sxs-lookup"><span data-stu-id="496aa-225">You should see hello **‘SAML’** button on hello sign-in page.</span></span>
 
     ![Plug-in](./media/active-directory-saas-happyfox-tutorial/saml.png) 
 
-2. <span data-ttu-id="ecfca-227">Cliquez sur le bouton **SAML** pour vous connecter à HappyFox à l’aide de votre compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ecfca-227">Click the **‘SAML’** button to log in to HappyFox using your Azure AD account.</span></span>
+2. <span data-ttu-id="496aa-227">Cliquez sur hello **'SAML'** toolog de bouton dans tooHappyFox à l’aide de votre compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="496aa-227">Click hello **‘SAML’** button toolog in tooHappyFox using your Azure AD account.</span></span>
 
-<span data-ttu-id="ecfca-228">Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="ecfca-228">For more information about the Access Panel, see [introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="496aa-228">Pour plus d’informations sur hello volet d’accès, consultez [présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="496aa-228">For more information about hello Access Panel, see [introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="ecfca-229">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="ecfca-229">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="496aa-229">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="496aa-229">Additional resources</span></span>
 
-* [<span data-ttu-id="ecfca-230">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="ecfca-230">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="ecfca-231">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="ecfca-231">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="496aa-230">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="496aa-230">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="496aa-231">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="496aa-231">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

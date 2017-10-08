@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à WORKS MOBILE | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et WORKS MOBILE."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et WORKS MOBILE."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,211 +13,211 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: jeedes
-ms.openlocfilehash: 139a1968a59424eae278de3e7fa227ad340a1eb8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 80192218a2e99a921834bb53e708d5e4fab413f4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-works-mobile"></a><span data-ttu-id="4d7dd-103">Didacticiel : Intégration d’Azure Active Directory à WORKS MOBILE</span><span class="sxs-lookup"><span data-stu-id="4d7dd-103">Tutorial: Azure Active Directory integration with WORKS MOBILE</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-works-mobile"></a><span data-ttu-id="29ca6-103">Didacticiel : Intégration d’Azure Active Directory à WORKS MOBILE</span><span class="sxs-lookup"><span data-stu-id="29ca6-103">Tutorial: Azure Active Directory integration with WORKS MOBILE</span></span>
 
-<span data-ttu-id="4d7dd-104">Dans ce didacticiel, vous découvrez comment intégrer WORKS MOBILE à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="4d7dd-104">In this tutorial, you learn how to integrate WORKS MOBILE with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="29ca6-104">Dans ce didacticiel, vous découvrez le fonctionnement de toointegrate MOBILE avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="29ca6-104">In this tutorial, you learn how toointegrate WORKS MOBILE with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="4d7dd-105">L’intégration de WORKS MOBILE à Azure AD vous procure les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="4d7dd-105">Integrating WORKS MOBILE with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="29ca6-105">Intégration WORKS MOBILE auprès d’Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="29ca6-105">Integrating WORKS MOBILE with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="4d7dd-106">Vous pouvez contrôler dans Azure AD qui a accès à WORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-106">You can control in Azure AD who has access to WORKS MOBILE</span></span>
-- <span data-ttu-id="4d7dd-107">Vous pouvez autoriser les utilisateurs à se connecter automatiquement à WORKS MOBILE (par le biais de l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-107">You can enable your users to automatically get signed-on to WORKS MOBILE (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="4d7dd-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="4d7dd-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="29ca6-106">Vous pouvez contrôler dans Azure AD qui a accès tooWORKS MOBILE</span><span class="sxs-lookup"><span data-stu-id="29ca6-106">You can control in Azure AD who has access tooWORKS MOBILE</span></span>
+- <span data-ttu-id="29ca6-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooWORKS MOBILE (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="29ca6-107">You can enable your users tooautomatically get signed-on tooWORKS MOBILE (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="29ca6-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="29ca6-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="4d7dd-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="4d7dd-109">If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="29ca6-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="29ca6-109">If you want tooknow more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="4d7dd-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="4d7dd-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="29ca6-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="29ca6-110">Prerequisites</span></span>
 
-<span data-ttu-id="4d7dd-111">Pour configurer l’intégration d’Azure AD à WORKS MOBILE, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="4d7dd-111">To configure Azure AD integration with WORKS MOBILE, you need the following items:</span></span>
+<span data-ttu-id="29ca6-111">tooconfigure intégration d’Azure AD avec WORKS MOBILE, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="29ca6-111">tooconfigure Azure AD integration with WORKS MOBILE, you need hello following items:</span></span>
 
-- <span data-ttu-id="4d7dd-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="4d7dd-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="4d7dd-113">Un abonnement WORKS MOBILE pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="4d7dd-113">A WORKS MOBILE single sign-on enabled subscription</span></span>
+- <span data-ttu-id="29ca6-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="29ca6-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="29ca6-113">Un abonnement WORKS MOBILE pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="29ca6-113">A WORKS MOBILE single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="4d7dd-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="29ca6-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="29ca6-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="4d7dd-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="4d7dd-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="29ca6-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="29ca6-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="4d7dd-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="4d7dd-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="4d7dd-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="29ca6-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="29ca6-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="29ca6-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="29ca6-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="4d7dd-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="4d7dd-118">Scenario description</span></span>
-<span data-ttu-id="4d7dd-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="4d7dd-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="4d7dd-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="29ca6-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="29ca6-118">Scenario description</span></span>
+<span data-ttu-id="29ca6-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="29ca6-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="29ca6-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="29ca6-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="4d7dd-121">Ajout de WORKS MOBILE à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="4d7dd-121">Adding WORKS MOBILE from the gallery</span></span>
-2. <span data-ttu-id="4d7dd-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="4d7dd-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="29ca6-121">Ajout de WORKS MOBILE à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="29ca6-121">Adding WORKS MOBILE from hello gallery</span></span>
+2. <span data-ttu-id="29ca6-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="29ca6-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-works-mobile-from-the-gallery"></a><span data-ttu-id="4d7dd-123">Ajout de WORKS MOBILE à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="4d7dd-123">Adding WORKS MOBILE from the gallery</span></span>
-<span data-ttu-id="4d7dd-124">Pour configurer l’intégration de WORKS MOBILE dans Azure AD, vous devez ajouter WORKS MOBILE à partir de la galerie à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-124">To configure the integration of WORKS MOBILE into Azure AD, you need to add WORKS MOBILE from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-works-mobile-from-hello-gallery"></a><span data-ttu-id="29ca6-123">Ajout de WORKS MOBILE à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="29ca6-123">Adding WORKS MOBILE from hello gallery</span></span>
+<span data-ttu-id="29ca6-124">intégration de hello tooconfigure de WORKS MOBILE dans Azure AD, vous devez tooadd WORKS MOBILE à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="29ca6-124">tooconfigure hello integration of WORKS MOBILE into Azure AD, you need tooadd WORKS MOBILE from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="4d7dd-125">**Pour ajouter WORKS MOBILE à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="4d7dd-125">**To add WORKS MOBILE from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="29ca6-125">**tooadd MOBILE fonctionne à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="29ca6-125">**tooadd WORKS MOBILE from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="4d7dd-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="29ca6-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="29ca6-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="4d7dd-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="4d7dd-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="29ca6-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="29ca6-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="4d7dd-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="29ca6-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="29ca6-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="4d7dd-133">Dans la zone de recherche, tapez **WORKS MOBILE**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-133">In the search box, type **WORKS MOBILE**.</span></span>
+4. <span data-ttu-id="29ca6-133">Dans la zone de recherche de hello, tapez **WORKS MOBILE**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-133">In hello search box, type **WORKS MOBILE**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-worksmobile-tutorial/tutorial_worksmobile_search.png)
 
-5. <span data-ttu-id="4d7dd-135">Dans le volet de résultats, sélectionnez **WORKS MOBILE**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-135">In the results panel, select **WORKS MOBILE**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="29ca6-135">Dans le volet de résultats hello, sélectionnez **WORKS MOBILE**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="29ca6-135">In hello results panel, select **WORKS MOBILE**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-worksmobile-tutorial/tutorial_worksmobile_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="4d7dd-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="4d7dd-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="4d7dd-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec WORKS MOBILE grâce à un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="4d7dd-138">In this section, you configure and test Azure AD single sign-on with WORKS MOBILE based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="29ca6-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="29ca6-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="29ca6-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec WORKS MOBILE grâce à un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="29ca6-138">In this section, you configure and test Azure AD single sign-on with WORKS MOBILE based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="4d7dd-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur WORKS MOBILE équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-139">For single sign-on to work, Azure AD needs to know what the counterpart user in WORKS MOBILE is to a user in Azure AD.</span></span> <span data-ttu-id="4d7dd-140">En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur WORKS MOBILE associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-140">In other words, a link relationship between an Azure AD user and the related user in WORKS MOBILE needs to be established.</span></span>
+<span data-ttu-id="29ca6-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans WORKS MOBILE est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="29ca6-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in WORKS MOBILE is tooa user in Azure AD.</span></span> <span data-ttu-id="29ca6-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans WORKS MOBILE doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="29ca6-140">In other words, a link relationship between an Azure AD user and hello related user in WORKS MOBILE needs toobe established.</span></span>
 
-<span data-ttu-id="4d7dd-141">Pour ce faire, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur de **Username** dans WORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-141">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in WORKS MOBILE.</span></span>
+<span data-ttu-id="29ca6-141">Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans WORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="29ca6-141">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in WORKS MOBILE.</span></span>
 
-<span data-ttu-id="4d7dd-142">Pour configurer et tester l’authentification unique Azure AD avec WORKS MOBILE, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="4d7dd-142">To configure and test Azure AD single sign-on with WORKS MOBILE, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="29ca6-142">tooconfigure et test Azure AD l’authentification unique avec WORKS MOBILE, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="29ca6-142">tooconfigure and test Azure AD single sign-on with WORKS MOBILE, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="4d7dd-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="4d7dd-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="4d7dd-145">**[Création d’un utilisateur de test WORKS MOBILE](#creating-a-works-mobile-test-user)** pour avoir un équivalent de Britta Simon dans WORKS MOBILE qui est lié à la représentation d’un utilisateur Azure AD.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-145">**[Creating a WORKS MOBILE test user](#creating-a-works-mobile-test-user)** - to have a counterpart of Britta Simon in WORKS MOBILE that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="4d7dd-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="4d7dd-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="29ca6-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="29ca6-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="29ca6-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="29ca6-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="29ca6-145">**[Création d’un utilisateur de test fonctionne MOBILE](#creating-a-works-mobile-test-user)**  -toohave un équivalent de Britta Simon dans WORKS MOBILE qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="29ca6-145">**[Creating a WORKS MOBILE test user](#creating-a-works-mobile-test-user)** - toohave a counterpart of Britta Simon in WORKS MOBILE that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="29ca6-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="29ca6-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="29ca6-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="29ca6-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="4d7dd-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="4d7dd-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="29ca6-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="29ca6-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="4d7dd-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application WORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your WORKS MOBILE application.</span></span>
+<span data-ttu-id="29ca6-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application MOBILE de fonctionnement.</span><span class="sxs-lookup"><span data-stu-id="29ca6-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your WORKS MOBILE application.</span></span>
 
-<span data-ttu-id="4d7dd-150">**Pour configurer l’authentification unique Azure AD avec WORKS MOBILE, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="4d7dd-150">**To configure Azure AD single sign-on with WORKS MOBILE, perform the following steps:**</span></span>
+<span data-ttu-id="29ca6-150">**tooconfigure Azure AD single sign-on avec WORKS MOBILE, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="29ca6-150">**tooconfigure Azure AD single sign-on with WORKS MOBILE, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="4d7dd-151">Dans le portail Azure, sur la page d’intégration de l’application **WORKS MOBILE**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-151">In the Azure portal, on the **WORKS MOBILE** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="29ca6-151">Bonjour portail Azure, sur hello **WORKS MOBILE** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-151">In hello Azure portal, on hello **WORKS MOBILE** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="4d7dd-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="29ca6-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="29ca6-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-worksmobile-tutorial/tutorial_worksmobile_samlbase.png)
 
-3. <span data-ttu-id="4d7dd-155">Dans la section **Domaine et URL WORKS MOBILE**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="4d7dd-155">On the **WORKS MOBILE Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="29ca6-155">Sur hello **WORKS MOBILE domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="29ca6-155">On hello **WORKS MOBILE Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-worksmobile-tutorial/tutorial_worksmobile_url.png)
 
-    <span data-ttu-id="4d7dd-157">a.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-157">a.</span></span> <span data-ttu-id="4d7dd-158">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<subdomain>.worksmobile.com/jp/myservice`</span><span class="sxs-lookup"><span data-stu-id="4d7dd-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<subdomain>.worksmobile.com/jp/myservice`</span></span>
+    <span data-ttu-id="29ca6-157">a.</span><span class="sxs-lookup"><span data-stu-id="29ca6-157">a.</span></span> <span data-ttu-id="29ca6-158">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.worksmobile.com/jp/myservice`</span><span class="sxs-lookup"><span data-stu-id="29ca6-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<subdomain>.worksmobile.com/jp/myservice`</span></span>
 
-    <span data-ttu-id="4d7dd-159">b.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-159">b.</span></span> <span data-ttu-id="4d7dd-160">Dans la zone de texte **Identificateur**, entrez la valeur `worksmobile.com`.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-160">In the **Identifier** textbox, type the value as `worksmobile.com`</span></span>
+    <span data-ttu-id="29ca6-159">b.</span><span class="sxs-lookup"><span data-stu-id="29ca6-159">b.</span></span> <span data-ttu-id="29ca6-160">Bonjour **identificateur** valeur hello de type en tant que zone de texte`worksmobile.com`</span><span class="sxs-lookup"><span data-stu-id="29ca6-160">In hello **Identifier** textbox, type hello value as `worksmobile.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="4d7dd-161">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-161">This value is not real.</span></span> <span data-ttu-id="4d7dd-162">Mettez à jour cette valeur avec l’URL de connexion réelle.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-162">Update this value with the actual Sign-On URL.</span></span> <span data-ttu-id="4d7dd-163">Pour obtenir cette valeur, contactez [l’équipe de support technique WORKS MOBILE](mailto:dl_ssoinfo@worksmobile.com).</span><span class="sxs-lookup"><span data-stu-id="4d7dd-163">Contact [WORKS MOBILE Client support team](mailto:dl_ssoinfo@worksmobile.com) to get this value.</span></span> 
+    > <span data-ttu-id="29ca6-161">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="29ca6-161">This value is not real.</span></span> <span data-ttu-id="29ca6-162">Mettre à jour de cette valeur avec hello URL de connexion réel.</span><span class="sxs-lookup"><span data-stu-id="29ca6-162">Update this value with hello actual Sign-On URL.</span></span> <span data-ttu-id="29ca6-163">Contact [équipe de support technique WORKS MOBILE Client](mailto:dl_ssoinfo@worksmobile.com) tooget cette valeur.</span><span class="sxs-lookup"><span data-stu-id="29ca6-163">Contact [WORKS MOBILE Client support team](mailto:dl_ssoinfo@worksmobile.com) tooget this value.</span></span> 
  
-4. <span data-ttu-id="4d7dd-164">Dans la section **Certificat de signature SAML**, cliquez sur **Certificat (brut)**, puis enregistrez le fichier du certificat sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-164">On the **SAML Signing Certificate** section, click **Certificate(Raw)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="29ca6-164">Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Raw)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="29ca6-164">On hello **SAML Signing Certificate** section, click **Certificate(Raw)** and then save hello certificate file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-worksmobile-tutorial/tutorial_worksmobile_certificate.png) 
 
-5. <span data-ttu-id="4d7dd-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="4d7dd-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="29ca6-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="29ca6-166">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-worksmobile-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="4d7dd-168">Dans la section **Configuration de WORKS MOBILE** , cliquez sur **Configurer WORKS MOBILE** pour ouvrir la fenêtre **Configurer l’authentification**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-168">On the **WORKS MOBILE Configuration** section, click **Configure WORKS MOBILE** to open **Configure sign-on** window.</span></span> <span data-ttu-id="4d7dd-169">Copiez **l’URL de déconnexion, l’ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="4d7dd-169">Copy the **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="29ca6-168">Sur hello **WORKS MOBILE Configuration** , cliquez sur **MOBILE de WORKS configurer** tooopen **configurer l’authentification** fenêtre.</span><span class="sxs-lookup"><span data-stu-id="29ca6-168">On hello **WORKS MOBILE Configuration** section, click **Configure WORKS MOBILE** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="29ca6-169">Hello de copie **URL de déconnexion, ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="29ca6-169">Copy hello **Sign-Out URL, SAML Entity ID, and SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-worksmobile-tutorial/tutorial_worksmobile_configure.png) 
 
-7. <span data-ttu-id="4d7dd-171">Pour obtenir la configuration de l’authentification unique pour votre application, contactez [l’équipe de support WORKS MOBILE](mailto:dl_ssoinfo@worksmobile.com) et fournissez-lui les informations suivantes :</span><span class="sxs-lookup"><span data-stu-id="4d7dd-171">To get SSO configured for your application, contact [WORKS MOBILE support team](mailto:dl_ssoinfo@worksmobile.com) and provide them with the following information:</span></span> 
+7. <span data-ttu-id="29ca6-171">tooget l’authentification unique configurée pour votre application, contactez [équipe de support technique WORKS MOBILE](mailto:dl_ssoinfo@worksmobile.com) et fournissez-leur hello informations suivantes :</span><span class="sxs-lookup"><span data-stu-id="29ca6-171">tooget SSO configured for your application, contact [WORKS MOBILE support team](mailto:dl_ssoinfo@worksmobile.com) and provide them with hello following information:</span></span> 
 
-    <span data-ttu-id="4d7dd-172">• Le **fichier de certificat** téléchargé</span><span class="sxs-lookup"><span data-stu-id="4d7dd-172">• The downloaded **Certificate file**</span></span>
+    <span data-ttu-id="29ca6-172">hello • téléchargé **fichier de certificat**</span><span class="sxs-lookup"><span data-stu-id="29ca6-172">• hello downloaded **Certificate file**</span></span>
 
-    <span data-ttu-id="4d7dd-173">• **L’URL du service d’authentification unique SAML**</span><span class="sxs-lookup"><span data-stu-id="4d7dd-173">• The **SAML Single Sign-On Service URL**</span></span>
+    <span data-ttu-id="29ca6-173">• hello **SAML Sign-On URL du Service unique**</span><span class="sxs-lookup"><span data-stu-id="29ca6-173">• hello **SAML Single Sign-On Service URL**</span></span>
 
-    <span data-ttu-id="4d7dd-174">• **L’ID d’entité SAML**</span><span class="sxs-lookup"><span data-stu-id="4d7dd-174">• The **SAML Entity ID**</span></span>
+    <span data-ttu-id="29ca6-174">• hello **ID d’entité SAML**</span><span class="sxs-lookup"><span data-stu-id="29ca6-174">• hello **SAML Entity ID**</span></span>
 
-    <span data-ttu-id="4d7dd-175">• **L’URL de déconnexion**</span><span class="sxs-lookup"><span data-stu-id="4d7dd-175">• The **Sign-Out URL**</span></span>
+    <span data-ttu-id="29ca6-175">• hello **URL de déconnexion**</span><span class="sxs-lookup"><span data-stu-id="29ca6-175">• hello **Sign-Out URL**</span></span>
 
 > [!TIP]
-> <span data-ttu-id="4d7dd-176">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-176">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="4d7dd-177">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-177">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="4d7dd-178">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="4d7dd-178">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="29ca6-176">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="29ca6-176">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="29ca6-177">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="29ca6-177">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="29ca6-178">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="29ca6-178">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="4d7dd-179">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="4d7dd-179">Creating an Azure AD test user</span></span>
-<span data-ttu-id="4d7dd-180">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-180">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="29ca6-179">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="29ca6-179">Creating an Azure AD test user</span></span>
+<span data-ttu-id="29ca6-180">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="29ca6-180">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="4d7dd-182">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="4d7dd-182">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="29ca6-182">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="29ca6-182">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="4d7dd-183">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-183">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="29ca6-183">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="29ca6-183">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-worksmobile-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="4d7dd-185">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-185">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="29ca6-185">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-185">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-worksmobile-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="4d7dd-187">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-187">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="29ca6-187">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="29ca6-187">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-worksmobile-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="4d7dd-189">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="4d7dd-189">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="29ca6-189">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="29ca6-189">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-worksmobile-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="4d7dd-191">a.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-191">a.</span></span> <span data-ttu-id="4d7dd-192">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-192">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="29ca6-191">a.</span><span class="sxs-lookup"><span data-stu-id="29ca6-191">a.</span></span> <span data-ttu-id="29ca6-192">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-192">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="4d7dd-193">b.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-193">b.</span></span> <span data-ttu-id="4d7dd-194">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-194">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="29ca6-193">b.</span><span class="sxs-lookup"><span data-stu-id="29ca6-193">b.</span></span> <span data-ttu-id="29ca6-194">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="29ca6-194">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="4d7dd-195">c.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-195">c.</span></span> <span data-ttu-id="4d7dd-196">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-196">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="29ca6-195">c.</span><span class="sxs-lookup"><span data-stu-id="29ca6-195">c.</span></span> <span data-ttu-id="29ca6-196">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-196">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="4d7dd-197">d.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-197">d.</span></span> <span data-ttu-id="4d7dd-198">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-198">Click **Create**.</span></span>
+    <span data-ttu-id="29ca6-197">d.</span><span class="sxs-lookup"><span data-stu-id="29ca6-197">d.</span></span> <span data-ttu-id="29ca6-198">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-198">Click **Create**.</span></span>
  
-### <a name="creating-a-works-mobile-test-user"></a><span data-ttu-id="4d7dd-199">Création d’un utilisateur de test WORKS MOBILE</span><span class="sxs-lookup"><span data-stu-id="4d7dd-199">Creating a WORKS MOBILE test user</span></span>
+### <a name="creating-a-works-mobile-test-user"></a><span data-ttu-id="29ca6-199">Création d’un utilisateur de test WORKS MOBILE</span><span class="sxs-lookup"><span data-stu-id="29ca6-199">Creating a WORKS MOBILE test user</span></span>
 
- <span data-ttu-id="4d7dd-200">Dans cette section, vous créez un utilisateur appelé Britta Simon dans WORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-200">In this section, you create a user called Britta Simon in WORKS MOBILE.</span></span> <span data-ttu-id="4d7dd-201">Collaborez avec [l’équipe du support technique WORKS MOBILE](mailto:dl_ssoinfo@worksmobile.com) pour ajouter des utilisateurs dans la plateforme WORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-201">Please work with [WORKS MOBILE support team](mailto:dl_ssoinfo@worksmobile.com) to add the users in the WORKS MOBILE platform.</span></span>
+ <span data-ttu-id="29ca6-200">Dans cette section, vous créez un utilisateur appelé Britta Simon dans WORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="29ca6-200">In this section, you create a user called Britta Simon in WORKS MOBILE.</span></span> <span data-ttu-id="29ca6-201">Collaborez avec [équipe de support technique WORKS MOBILE](mailto:dl_ssoinfo@worksmobile.com) tooadd les utilisateurs de hello dans la plateforme MOBILE de fonctionnement de hello.</span><span class="sxs-lookup"><span data-stu-id="29ca6-201">Please work with [WORKS MOBILE support team](mailto:dl_ssoinfo@worksmobile.com) tooadd hello users in hello WORKS MOBILE platform.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="4d7dd-202">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="4d7dd-202">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="29ca6-202">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="29ca6-202">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="4d7dd-203">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à WORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-203">In this section, you enable Britta Simon to use Azure single sign-on by granting access to WORKS MOBILE.</span></span>
+<span data-ttu-id="29ca6-203">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooWORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="29ca6-203">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooWORKS MOBILE.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="4d7dd-205">**Pour affecter Britta Simon à WORKS MOBILE, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="4d7dd-205">**To assign Britta Simon to WORKS MOBILE, perform the following steps:**</span></span>
+<span data-ttu-id="29ca6-205">**tooassign Britta Simon tooWORKS MOBILE, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="29ca6-205">**tooassign Britta Simon tooWORKS MOBILE, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="4d7dd-206">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-206">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="29ca6-206">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-206">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="4d7dd-208">Dans la liste des applications, sélectionnez **WORKS MOBILE**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-208">In the applications list, select **WORKS MOBILE**.</span></span>
+2. <span data-ttu-id="29ca6-208">Dans la liste des applications hello, sélectionnez **WORKS MOBILE**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-208">In hello applications list, select **WORKS MOBILE**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-worksmobile-tutorial/tutorial_worksmobile_app.png) 
 
-3. <span data-ttu-id="4d7dd-210">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-210">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="29ca6-210">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-210">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="4d7dd-212">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-212">Click **Add** button.</span></span> <span data-ttu-id="4d7dd-213">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-213">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="29ca6-212">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-212">Click **Add** button.</span></span> <span data-ttu-id="29ca6-213">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-213">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="4d7dd-215">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-215">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="29ca6-215">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="29ca6-215">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="4d7dd-216">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-216">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="29ca6-216">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-216">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="4d7dd-217">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-217">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="29ca6-217">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="29ca6-217">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="4d7dd-218">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="4d7dd-218">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="29ca6-218">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="29ca6-218">Testing single sign-on</span></span>
 
-<span data-ttu-id="4d7dd-219">Dans cette section, vous allez tester la configuration SSO Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-219">In this section, you test your Azure AD SSO configuration using the Access Panel.</span></span>
+<span data-ttu-id="29ca6-219">Dans cette section, vous tester votre configuration de l’authentification unique de Azure AD à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="29ca6-219">In this section, you test your Azure AD SSO configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="4d7dd-220">Quand vous cliquez sur la vignette WORKS MOBILE dans le panneau d’accès, vous devez être connecté automatiquement à votre application WORKS MOBILE.</span><span class="sxs-lookup"><span data-stu-id="4d7dd-220">When you click the WORKS MOBILE tile in the Access Panel, you should get automatically signed-on to your WORKS MOBILE application.</span></span>
-<span data-ttu-id="4d7dd-221">Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="4d7dd-221">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="29ca6-220">Lorsque vous cliquez sur mosaïque fonctionne MOBILE hello hello volet d’accès, vous devez obtenir l’application MOBILE de fonctionnement de tooyour automatiquement signé sur.</span><span class="sxs-lookup"><span data-stu-id="29ca6-220">When you click hello WORKS MOBILE tile in hello Access Panel, you should get automatically signed-on tooyour WORKS MOBILE application.</span></span>
+<span data-ttu-id="29ca6-221">Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="29ca6-221">For more information about the Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="4d7dd-222">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="4d7dd-222">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="29ca6-222">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="29ca6-222">Additional resources</span></span>
 
-* [<span data-ttu-id="4d7dd-223">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="4d7dd-223">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="4d7dd-224">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="4d7dd-224">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="29ca6-223">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="29ca6-223">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="29ca6-224">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="29ca6-224">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

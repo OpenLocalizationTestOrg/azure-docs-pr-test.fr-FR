@@ -53,13 +53,13 @@
 ### [Synchronisation du mot de passe](active-directory-aadconnectsync-implement-password-synchronization.md)
 ### [Compte de service Azure AD](active-directory-aadconnectsync-howto-azureadaccount.md)
 ### [Assistant d’installation](active-directory-aadconnectsync-installation-wizard.md)
-### [Modifier la configuration par défaut](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)
+### [Modifier la configuration par défaut hello](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)
 ### [Configurer le filtrage](active-directory-aadconnectsync-configure-filtering.md)
 ### [Scheduler](active-directory-aadconnectsync-feature-scheduler.md)
 ### [Extensions d’annuaire](active-directory-aadconnectsync-feature-directory-extensions.md)
 
-### [Modifier le mot de passe du compte de service Azure AD Sync](active-directory-aadconnectsync-change-serviceacct-pass.md)
-### [Modifier le mot de passe du compte AD DS](active-directory-aadconnectsync-change-addsacct-pass.md)
+### [Modification de mot de passe du compte hello Azure AD Sync service](active-directory-aadconnectsync-change-serviceacct-pass.md)
+### [Modification de mot de passe de compte hello AD DS](active-directory-aadconnectsync-change-addsacct-pass.md)
 ### [Activer la Corbeille Active Directory](active-directory-aadconnectsync-recycle-bin.md)
 
 ### [Synchronization Service Manager](active-directory-aadconnectsync-service-manager-ui.md)
@@ -80,7 +80,7 @@
 ### [Objet non synchronisé](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md)
 ### [Synchronisation du mot de passe](active-directory-aadconnectsync-troubleshoot-password-synchronization.md)
 ### [Erreur de LargeObject provoquée par userCertificate](active-directory-aadconnectsync-largeobjecterror-usercertificate.md)
-### [Comment récupérer depuis la limite de 10 Go de base de données locale](active-directory-aadconnect-recover-from-localdb-10gb-limit.md)
+### [Comment toorecover à partir de la limite de 10 Go de base de données locale](active-directory-aadconnect-recover-from-localdb-10gb-limit.md)
 
 # Référence
 ## [Exemples de code](https://azure.microsoft.com/en-us/resources/samples/?service=active-directory)
@@ -91,7 +91,7 @@
 ## [Comptes et autorisations](active-directory-aadconnect-accounts-permissions.md)
 
 ## Synchronisation d’Azure AD Connect
-### [Attributs synchronisés avec Azure Active Directory](active-directory-aadconnectsync-attributes-synchronized.md)
+### [Attributs synchronisés tooAzure Active Directory](active-directory-aadconnectsync-attributes-synchronized.md)
 ### [Historique de publication des versions du connecteur](active-directory-aadconnectsync-connector-version-history.md)
 ### [Référence des fonctions](active-directory-aadconnectsync-functions-reference.md)
 ### [Considérations et tâches opérationnelles](active-directory-aadconnectsync-operations.md)
@@ -103,7 +103,7 @@
 
 
 # Rubriques connexes
-## [Surveillez votre infrastructure d’identité locale et vos services de synchronisation dans le cloud](../connect-health/active-directory-aadconnect-health.md)
+## [Surveiller votre identité infrastructure et la synchronisation services locaux dans le cloud de hello](../connect-health/active-directory-aadconnect-health.md)
 ## [Guide sur la conception d’identités hybrides](https://azure.microsoft.com/documentation/articles/active-directory-hybrid-identity-design-considerations-overview/)
 
 
