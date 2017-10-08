@@ -1,6 +1,6 @@
 ---
-title: "Stratégies inter-domaines dans Gestion des API Azure | Microsoft Docs"
-description: "Découvrez les stratégies inter-domaines disponibles dans Gestion des API Azure."
+title: "Gestion des API d’aaaAzure stratégies inter-domaines | Documents Microsoft"
+description: "Découvrez hello stratégies disponibles pour une utilisation dans la gestion des API Azure inter-domaines."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: ddca9e35b44a21294abbb5eaa4418bcdb85494cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dd5ebfd65b92ebd0c1f589a2bac669a3928d40b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-cross-domain-policies"></a>Gestion des API dans les stratégies de domaine
-Cette rubrique est une ressource de référence au sujet des stratégies Gestion des API suivantes. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
+Cette rubrique fournit une référence pour hello suivant des stratégies de gestion des API. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="CrossDomainPolicies"></a> Stratégies inter-domaines  
   
--   [Allow cross-domain calls](api-management-cross-domain-policies.md#AllowCrossDomainCalls) : rend l'API accessible depuis les navigateurs clients utilisant Adobe Flash et Microsoft Silverlight.  
+-   [Autoriser les appels inter-domaines](api-management-cross-domain-policies.md#AllowCrossDomainCalls) -rend hello API accessible à partir de clients basés sur navigateur Adobe Flash et Microsoft Silverlight.  
   
--   [CORS](api-management-cross-domain-policies.md#CORS) : ajoute une prise en charge partage des ressources cross-origin (CORS) à une opération ou une API afin de permettre les appels interdomaines depuis les navigateurs clients.  
+-   [CORS](api-management-cross-domain-policies.md#CORS) -ajoute le partage de ressources cross-origin (CORS) prend en charge les tooan opération ou une API tooallow entre domaines appelle à partir de clients de navigateur.  
   
--   [JSONP](api-management-cross-domain-policies.md#JSONP) : ajoute une prise en charge de JSON avec remplissage (JSONP) à une opération ou une API afin de permettre les appels interdomaines depuis les navigateurs clients utilisant JavaScript.  
+-   [JSONP](api-management-cross-domain-policies.md#JSONP) - ajoute JSON padding (JSONP) de prise en charge tooan opération ou une API tooallow entre domaines appelle à partir de clients basés sur navigateur JavaScript.  
   
 ##  <a name="AllowCrossDomainCalls"></a> Allow cross-domain calls  
- La stratégie `cross-domain` rend l’API accessible depuis les navigateurs clients utilisant Adobe Flash et Microsoft Silverlight.  
+ Hello d’utilisation `cross-domain` hello toomake de stratégie API accessible à partir de clients basés sur navigateur Adobe Flash et Microsoft Silverlight.  
   
-### <a name="policy-statement"></a>Déclaration de stratégie  
+### <a name="policy-statement"></a>Instruction de la stratégie  
   
 ```xml  
 <cross-domain>  
-   <!-Policy configuration is in the Adobe cross-domain policy file format,   
+   <!-Policy configuration is in hello Adobe cross-domain policy file format,   
       see http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html-->  
 </cross-domain>  
 ```  
@@ -57,19 +57,19 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Nom|Description|Requis|  
 |----------|-----------------|--------------|  
-|inter-domaines|Élément racine. Les éléments enfants doivent être conformes à la [spécification de fichier de stratégie inter-domaines Adobe](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html).|Oui|  
+|inter-domaines|Élément racine. Éléments enfants doivent être conformes toohello [spécification de fichier de stratégie inter-domaines Adobe](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html).|Oui|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sections de la stratégie :** inbound (entrant)  
+-   **Sections de la stratégie :** inbound  
   
 -   **Étendues de la stratégie :** globale (globale)  
   
 ##  <a name="CORS"></a> CORS  
- La stratégie `cors` ajoute la prise en charge du partage des ressources cross-origin (CORS) à une opération ou une API afin de permettre les appels inter-domaines à partir des navigateurs clients.  
+ Hello `cors` stratégie ajoute le partage de ressources cross-origin (CORS) prend en charge les tooan opération ou une API tooallow entre domaines appelle à partir de clients de navigateur.  
   
- CORS permet à un navigateur et à un serveur d'interagir et de déterminer si les demandes cross-origin doivent être autorisées ou non, par exemple dans le cas d'appels XMLHttpRequests passés via JavaScript sur une page web vers d'autres domaines). Cette stratégie offre plus de flexibilité que de simplement autoriser les demandes de même origine, mais elle est plus sûre que d'autoriser toutes les demandes cross-origin.  
+ CORS permet à un navigateur et un serveur toointeract et déterminer ou non de requêtes tooallow spécifique cross-origine (c'est-à-dire des appels xmlhttprequests établis à partir de JavaScript sur une page web des domaines tooother). Cette stratégie offre plus de flexibilité que de simplement autoriser les demandes de même origine, mais elle est plus sûre que d'autoriser toutes les demandes cross-origin.  
   
 ### <a name="policy-statement"></a>Déclaration de stratégie  
   
@@ -91,7 +91,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 ```  
   
 ### <a name="example"></a>Exemple  
- Cet exemple montre comment prendre en charge les demandes en amont, telles que celles comportant des en-têtes personnalisés ou des méthodes autres que GET et POST. Pour prendre en charge les en-têtes personnalisés et autres verbes HTTP, utilisez les sections `allowed-methods` et `allowed-headers` comme indiqué dans l’exemple suivant.  
+ Cet exemple montre comment les demandes avant le vol toosupport, telles que celles comportant des en-têtes personnalisés ou de méthodes autres que GET et POST. les en-têtes personnalisés toosupport et autres verbes HTTP, utilisez hello `allowed-methods` et `allowed-headers` sections comme indiqué dans hello l’exemple suivant.  
   
 ```xml  
 <cors allow-credentials="true">  
@@ -128,32 +128,32 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
 |cors|Élément racine.|Oui|N/A|  
-|allowed-origins|Contient des éléments `origin` qui décrivent les origines autorisées pour les demandes inter-domaines. `allowed-origins` peut contenir un seul élément `origin` qui spécifie `*` pour autoriser toute origine, ou un ou plusieurs éléments `origin` contenant un URI.|Oui|N/A|  
-|origin|La valeur peut être `*` pour autoriser toutes les origines, ou un URI qui spécifie une origine unique. L'URI doit comprendre un modèle, un hôte et un port.|Oui|Si le port n’est pas spécifié dans l’URI, le port 80 est utilisé pour HTTP et le port 443 pour HTTPS.|  
-|allowed-methods|Cet élément est requis si les méthodes autres que GET ou POST sont autorisées. Contient des éléments `method` qui spécifient les verbes HTTP pris en charge.|Non|Si cette section n’est pas présente, les méthodes GET et POST sont prises en charge.|  
-|statique|Spécifie un verbe HTTP.|Au moins un élément `method` est requis si la section `allowed-methods` est présente.|N/A|  
-|allowed-headers|Cet élément contient des éléments `header` spécifiant les noms des en-têtes qui peuvent être inclus dans la demande.|Non|N/A|  
-|expose-headers|Cet élément contient des éléments `header` spécifiant les noms des en-têtes accessibles par le client.|Non|N/A|  
-|en-tête|Spécifie un nom d’en-tête.|Au moins un élément `header` est requis dans `allowed-headers` ou `expose-headers` si la section est présente.|N/A|  
+|allowed-origins|Contient `origin` éléments qui décrivent les hello autorisé origines pour les demandes inter-domaines. `allowed-origins`peut contenir un seul `origin` élément spécifie `*` tooallow toute origine, ou une ou plusieurs `origin` éléments contenant un URI.|Oui|N/A|  
+|origin|Hello valeur peut être `*` tooallow toutes les origines, ou un URI qui spécifie une origine unique. Hello URI doit inclure un schéma, hôte et port.|Oui|Si le port de hello est omis dans un URI, le port 80 est utilisé pour HTTP et utilise le port 443 pour HTTPS.|  
+|allowed-methods|Cet élément est requis si les méthodes autres que GET ou POST sont autorisées. Contient des `method` des éléments qui spécifient hello pris en charge les verbes HTTP.|Non|Si cette section n’est pas présente, les méthodes GET et POST sont prises en charge.|  
+|statique|Spécifie un verbe HTTP.|Au moins un `method` élément est requis si hello `allowed-methods` section est présente.|N/A|  
+|allowed-headers|Cet élément contient `header` éléments spécifiant les noms des en-têtes hello qui peuvent être inclus dans la demande hello.|Non|N/A|  
+|expose-headers|Cet élément contient `header` éléments spécifiant les noms des en-têtes hello qui seront accessibles par le client de hello.|Non|N/A|  
+|en-tête|Spécifie un nom d’en-tête.|Au moins un `header` élément est requis dans `allowed-headers` ou `expose-headers` si hello section est présente.|N/A|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|allow-credentials|L’en-tête `Access-Control-Allow-Credentials` dans la réponse en amont est défini sur la valeur de cet attribut et affecte la capacité du client à envoyer des informations d’identification dans les demandes inter-domaines.|Non|false|  
-|preflight-result-max-age|L’en-tête `Access-Control-Max-Age` dans la réponse en amont est défini sur la valeur de cet attribut et affecte la capacité de l’agent utilisateur à mettre en cache la réponse en amont.|Non|0|  
+|allow-credentials|Hello `Access-Control-Allow-Credentials` en-tête dans la réponse préliminaire de hello sera toohello de valeur de cet attribut et affectent les informations d’identification de toosubmit de capacité du client hello dans les demandes inter-domaines.|Non|false|  
+|preflight-result-max-age|Hello `Access-Control-Max-Age` en-tête dans la réponse préliminaire de hello sera toohello de valeur de cet attribut et affectent la réponse de l’agent de l’utilisateur hello capacité toocache préliminaire.|Non|0|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sections de la stratégie :** inbound (entrant)  
+-   **Sections de la stratégie :** inbound  
   
 -   **Étendues de la stratégie :** API, operation (API, opération)  
   
 ##  <a name="JSONP"></a> JSONP  
- La stratégie `jsonp` ajoute la prise en charge de JSON avec remplissage (JSONP) à une opération ou une API afin de permettre les appels inter-domaines à partir des navigateurs clients utilisant JavaScript. JSONP est une méthode utilisée par les programmes JavaScript pour demander des données à un serveur se trouvant dans un autre domaine. JSONP passe outre la limite appliquée par la plupart des navigateurs web, selon laquelle l'accès aux pages web doit se trouver dans le même domaine.  
+ Hello `jsonp` ajoute la stratégie avec remplissage opération tooan de support (JSONP) ou une API tooallow les appels interdomaines à partir des clients basés sur navigateur JavaScript. JSONP est une méthode utilisée dans les données de toorequest programmes JavaScript à partir d’un serveur dans un domaine différent. JSONP contourne la limitation de hello imposée par la plupart des navigateurs web où les pages d’accès aux tooweb doivent être Bonjour même domaine.  
   
-### <a name="policy-statement"></a>Déclaration de stratégie  
+### <a name="policy-statement"></a>Instruction de la stratégie  
   
 ```xml  
 <jsonp callback-parameter-name="callback function name" />  
@@ -165,9 +165,9 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 <jsonp callback-parameter-name="cb" />  
 ```  
   
- Si vous appelez la méthode sans le paramètre de rappel ?cb=XXX, elle renvoie un code JSON simple (sans enveloppe d’appel de fonction).  
+ Si vous appelez la méthode hello sans paramètre de rappel hello ? cb = XXX, elle renvoie un code JSON brut (sans un wrapper d’appel de fonction).  
   
- Si vous ajoutez le paramètre de rappel `?cb=XXX`, il renvoie un résultat JSONP, enveloppant les résultats JSON d’origine autour de la fonction de rappel, comme `XYZ('<json result goes here>');`  
+ Si vous ajoutez le paramètre de rappel hello `?cb=XXX` il retournera un résultat JSONP, en encapsulant les résultats JSON d’origine hello autour de fonction de rappel hello comme`XYZ('<json result goes here>');`  
   
 ### <a name="elements"></a>Éléments  
   
@@ -179,10 +179,10 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|callback-parameter-name|Appel de fonction JavaScript interdomaines avec comme préfixe le nom de domaine complet de l'emplacement de la fonction.|Oui|N/A|  
+|callback-parameter-name|Hello appel de fonction JavaScript inter-domaines préfixé avec le nom de domaine complet de hello où hello fonction réside.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** outbound (sortant)  
   

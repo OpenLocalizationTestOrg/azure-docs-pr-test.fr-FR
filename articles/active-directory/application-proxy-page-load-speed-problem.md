@@ -1,6 +1,6 @@
 ---
-title: "Le chargement d’une application Proxy d’application prend trop de temps | Microsoft Docs"
-description: "Résolution des problèmes de performances associés au chargement de page avec le Proxy d’application Azure AD"
+title: "aaaAn application de Proxy d’Application prend trop de temps tooload | Documents Microsoft"
+description: "Les problèmes de performances de chargement de page avec hello Proxy d’Application Azure AD"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: ce462c90746e6af0dc201686557121665b82b93d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4c7a51f96840966a1d88933fa4e30f39479d8a5e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="an-application-proxy-application-takes-too-long-to-load"></a>Le chargement d’une application Proxy d’application prend trop de temps
+# <a name="an-application-proxy-application-takes-too-long-tooload"></a>Une application de Proxy d’Application prend trop de temps tooload
 
-Cet article vous aide à comprendre pourquoi le chargement d’une application Proxy d’application peut prendre beaucoup de temps. Plusieurs solutions sont abordées pour résoudre ce problème.
+Cet article vous a-t-il toounderstand pourquoi une application de Proxy d’Application Azure AD peut prendre un tooload beaucoup de temps et ce que vous pouvez effectuer tooresolve ce problème.
 
 ## <a name="overview"></a>Vue d'ensemble
-Si vos applications fonctionnent mais que vous constatez un temps de latence important, vous pouvez tenter d’apporter quelques ajustements mineurs à votre topologie de réseau pour améliorer la vitesse. Pour une évaluation des différentes topologies, consultez le [document des considérations sur la topologie du réseau](https://docs.microsoft.com/azure/active-directory/application-proxy-network-topology-considerations).
+Si vos applications fonctionnent, mais que vous consultez un temps de latence, il peut être quelques modifications mineures dans votre topologie de réseau que vous pouvez envisager la vitesse tooimprove hello. Pour une évaluation des différentes topologies, consultez hello [document de considérations réseau](https://docs.microsoft.com/azure/active-directory/application-proxy-network-topology-considerations).
 
-Si ces considérations ne vous aident pas à résoudre le problème, nous n’avons malheureusement pas d’autres recommandations relatives au réglage des performances. À mesure que le service Proxy d’application s’étend à des centres de données qui peuvent être plus proches de vous, il est possible que vous constatiez directement une amélioration de la latence. Pour afficher la liste complète des centres de données Azure, consultez la [page de test de la latence](http://www.azurespeed.com/Azure/Latency). 
+Si ces considérations ne vous aident pas à résoudre le problème, nous n’avons malheureusement pas d’autres recommandations relatives au réglage des performances. Comme hello service Proxy d’Application développe toomore des centres de données qui peuvent être tooyou plus proche, vous pouvez démarrer une latence toosee améliorée directement. les centres de toosee hello la liste complète des données Azure, vous pouvez voir hello [page de test de latence](http://www.azurespeed.com/Azure/Latency). 
 
-Pour trouver les centres de données avec le service Proxy d’application, utilisez l’outil [Connector Ports Test Tool](https://aadap-portcheck.connectorporttest.msappproxy.net/). 
+Hello centres de données avec le service de Proxy d’Application hello sont accessibles par hello [outil de Test des Ports connecteur](https://aadap-portcheck.connectorporttest.msappproxy.net/). 
 
 ## <a name="feedback-on-application-proxy-data-center-locations"></a>Commentaires sur les emplacements des centres de données du Proxy d’application 
-Même si certains centres de données Azure n’incluent pas encore le Proxy d’application, ils peuvent néanmoins améliorer considérablement vos temps de latence. Envoyez vos commentaires sur l’emplacement du centre de données à <aadapfeedback@microsoft.com> pour que nous puissions en tenir compte dans nos futurs développements.
+Il peut y avoir des centres de données Azure qui n’incluent pas encore le Proxy d’Application, mais risque d’entraîner l’amélioration latence élevée tooa pour vous. emplacement du centre de données de Hello < aadapfeedback@microsoft.com > afin de pouvoir utiliser votre tooplan de commentaires que nous allons développer.
 
-Nous travaillons sur des fonctionnalités supplémentaires visant à améliorer la latence pour les locataires qui constatent actuellement des temps de latence longs. Nous ne manquerons pas de partager avec vous la documentation dès qu’elle sera disponible.
+Nous travaillons sur certaines des fonctionnalités supplémentaires qui aident à améliorer la latence des hello pour les clients que vous consultez actuellement les latences et que vous être sûr de documentation de tooshare une fois disponible.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Travailler avec des serveurs proxy locaux existants](application-proxy-working-with-proxy-servers.md)

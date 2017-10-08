@@ -1,6 +1,6 @@
 ---
-title: Objets application et principal du service Azure Active Directory | Microsoft Docs
-description: "Présentation de la relation entre les objets application et principal du service dans Azure Active Directory"
+title: aaaAzure Active Directory Application et les objets de Principal du Service | Documents Microsoft
+description: "Une description de relation hello entre l’application et les objets principal du service dans Azure Active Directory"
 documentationcenter: dev-center-name
 author: dstrockis
 manager: mbaldwin
@@ -15,60 +15,60 @@ ms.workload: identity
 ms.date: 04/28/2016
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 4c75ade5f4e47ef64ccc0fe8af4b174c377dc7bc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ff7e308c0b326c3a32b101b7b323f2c0362763e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-and-service-principal-objects-in-azure-active-directory-azure-ad"></a>Objets application et principal du service dans Azure Active Directory (Azure AD)
-Parfois, la signification du terme « application » peut être mal comprise lorsqu’il est utilisé dans le contexte d’Azure AD. Cet article a pour objectif de clarifier les choses en définissant les aspects conceptuels et concrets de l’intégration des applications dans Azure AD, puis en donnant un exemple d’inscription et de consentement pour une [application mutualisée](active-directory-dev-glossary.md#multi-tenant-application).
+Parfois hello signification du terme hello « application » peut être mal comprise lorsqu’il est utilisé dans le contexte de hello d’Azure AD. Hello cet article vise toomake il plus claire, en clarifiant les aspects conceptuelles et concrètes d’intégration d’application Azure AD, avec une illustration de l’inscription et de consentement pour un [application mutualisée](active-directory-dev-glossary.md#multi-tenant-application).
 
 ## <a name="overview"></a>Vue d'ensemble
-Une application qui a été intégrée à Azure AD a des effets qui vont au-delà de l’aspect logiciel. « Application » est souvent utilisé en tant que concept, faisant référence non seulement au programme d’application, mais également à son inscription Azure AD et à son rôle lors des « conversations » d’authentification/autorisation au moment de l’exécution. Par définition, une application peut agir en tant que [client](active-directory-dev-glossary.md#client-application) (consommant une ressource), en tant que [serveur de ressources](active-directory-dev-glossary.md#resource-server) (exposant les API aux clients), voire les deux. Le protocole de conversation est défini par une [flux d’octroi d’autorisation OAuth 2.0](active-directory-dev-glossary.md#authorization-grant), permettant ainsi respectivement au client et à la ressource d’accéder aux données d’une ressource et de les protéger. Approfondissons maintenant les choses pour examiner la manière dont un modèle d’application Azure AD représente une application au moment de la conception et au moment de l’exécution. 
+Une application qui a été intégrée à Azure AD a des implications qui vont au-delà des aspects du logiciel hello. « Application » est fréquemment utilisée comme un terme conceptuel, qui fait référence toonot uniquement hello hello logiciel d’application, mais également son inscription à Azure AD et un rôle dans l’authentification/autorisation « conversations » lors de l’exécution. Par définition, une application peut fonctionner dans un [client](active-directory-dev-glossary.md#client-application) rôle (utilise une ressource), un [serveur de ressources](active-directory-dev-glossary.md#resource-server) rôle (exposition API tooclients), ou même les deux. protocole de conversation Hello est définie par une [flux d’octroi d’autorisation OAuth 2.0](active-directory-dev-glossary.md#authorization-grant), autorisant hello/ressource client tooaccess/protéger les données d’une ressource respectivement. Passons maintenant un niveau plus profond et voir comment le modèle d’application hello Azure AD représente une application au moment de la conception et d’exécution. 
 
 ## <a name="application-registration"></a>Inscription de l’application
-Lorsque vous inscrivez une application Azure AD dans le [portail Azure][AZURE-Portal], deux objets sont créés dans votre client Azure AD : un objet application et un objet principal du service.
+Lorsque vous inscrivez une application Azure AD Bonjour [portail Azure][AZURE-Portal], deux objets sont créés dans votre locataire Azure AD : un objet application et un objet principal de service.
 
 #### <a name="application-object"></a>Objet application
-Une application Azure AD est définie par son seul et unique objet application, qui réside dans le client Azure AD dans lequel l’application a été inscrite, appelé client « de base » de l’application. [L’entité Application][AAD-Graph-App-Entity] d’Azure AD Graph définit le schéma pour les propriétés d’un objet application. 
+Une application Azure AD est définie par son seul et application unique objet, qui réside dans le locataire Azure AD de hello où l’application hello a été enregistrée, connu en tant que locataire « home » de l’application hello. Bonjour Azure AD Graph [entité d’Application] [ AAD-Graph-App-Entity] définit le schéma de hello pour les propriétés d’un objet application. 
 
 #### <a name="service-principal-object"></a>Objet principal du service
-L’objet principal du service définit la stratégie et les autorisations pour l’utilisation d’une application dans un client spécifique, fournissant la base d’un principal de sécurité pour représenter l’application au moment de l’exécution. [L’entité ServicePrincipal][AAD-Graph-Sp-Entity] d’Azure AD Graph définit le schéma pour les propriétés d’un objet principal du service. 
+objet principal de service Hello définit la stratégie de hello et les autorisations d’accès d’une application dans un client spécifique, en fournissant de la base de hello pour une application de hello de toorepresent principal de sécurité au moment de l’exécution. Bonjour Azure AD Graph [entité ServicePrincipal] [ AAD-Graph-Sp-Entity] définit le schéma de hello pour les propriétés d’un objet principal service. 
 
 #### <a name="application-and-service-principal-relationship"></a>Relation entre l’application et le principal de service
-Considérez l’objet application comme la représentation *globale* de votre application pour une utilisation sur tous les clients et le principal du service comme la représentation *locale* pour une utilisation sur un client spécifique. L’objet application fait office de modèle à partir duquel les propriétés communes et par défaut sont *dérivées* pour une utilisation visant à créer des objets de principal de service correspondants. Un objet application présente donc une relation 1 à 1 avec l’application logicielle et une relation 1 à plusieurs avec le ou les objets de principal de service correspondants.
+Envisagez d’objet d’application hello comme hello *global* la représentation sous forme de votre application pour une utilisation sur tous les locataires et de principal du service hello comme hello *local* représentation pour une utilisation dans un spécifique client. Hello objet application sert hello modèle à partir de quels commun et les propriétés par défaut sont *dérivée* à utiliser pour créer des objets de principal de service correspondants. Par conséquent, un objet d’application a une relation 1:1 avec application hello et une relation 1:many avec ses objets de principal de service correspondant.
 
-Un principal de service doit être créé dans chaque locataire sur lequel l’application est utilisée, ce qui lui permet d’établir une identité pour la connexion et/ou l’accès aux ressources sécurisées par le locataire. Une application à locataire unique n’a qu’un seul principal de service (dans son locataire de base), généralement créé et pouvant être utilisé pendant l’inscription de l’application. Une application web/API mutualisée a également un principal de service créé dans chaque locataire où un utilisateur de ce client a consenti à son utilisation.  
+Un principal de service doit être créé dans chaque locataire où l’application hello est utilisée, ce qui lui tooestablish une identité pour la connexion et/ou tooresources accès sécurisé par le client hello. Une application à locataire unique n’a qu’un seul principal de service (dans son locataire de base), généralement créé et pouvant être utilisé pendant l’inscription de l’application. Une application Web de plusieurs locataire/API aura également un principal de service créé à chaque client sur lequel un utilisateur à partir de ce client a consenti tooits utilisation.  
 
 > [!NOTE]
-> Toute modification apportée à l’objet application de votre application est également répercutée dans son objet principal du service, uniquement dans le client de base de l’application (le client où elle a été inscrite). Pour l’accès mutualisé, les modifications apportées à l’objet application ne sont pas répercutées dans les objets principal de service des clients consommateurs jusqu’à ce que l’accès soit supprimé via le [volet d’accès à l’application](https://myapps.microsoft.com) et à nouveau octroyé.
+> Les modifications que vous apportez tooyour objet d’application, sont également répercutées dans son objet principal de service dans accueil client l’application hello uniquement (locataire hello dans laquelle il a été enregistré). Pour les applications mutualisées, objet d’application de modifications toohello ne sont pas répercutées dans les objets principaux de service aux clients tout consommateur, jusqu'à ce que l’accès hello est supprimé via hello [volet d’accès Application](https://myapps.microsoft.com) et accordées à nouveau.
 ><br>  
 > Notez également que les applications natives sont enregistrées en tant que mutualisées par défaut.
 > 
 > 
 
 ## <a name="example"></a>Exemple
-Le schéma suivant illustre la relation entre un objet application d’une application et les objets principal du service correspondants dans le contexte d’un exemple d’application mutualisée appelée **RH**. Il existe trois clients Azure AD dans ce scénario : 
+Hello diagramme suivant illustre la relation hello entre l’objet d’application et le service correspondant objets principal, dans le contexte de hello d’un exemple d’application mutualisée appelées d’une application **application RH**. Il existe trois clients Azure AD dans ce scénario : 
 
-* **Adatum** : le client utilisé par la société qui a développé **l’application RH** ;
-* **Contoso** : le client utilisé par l’entreprise Contoso, qui est un consommateur de **l’application RH** ;
-* **Fabrikam** : le client utilisé par l’entreprise Fabrikam, qui est également un consommateur de **l’application RH**.
+* **Adatum** - hello client utilisé par des sociétés hello développement hello **application RH**
+* **Contoso** - hello client utilisé par hello organisation Contoso, qui est un consommateur de hello **application RH**
+* **Fabrikam** - hello client utilisé par hello organisation Fabrikam, ce qui consomme également hello **application RH**
 
 ![Relation entre un objet application et un objet principal du service](./media/active-directory-application-objects/application-objects-relationship.png)
 
-Dans le schéma précédent, l’étape 1 correspond au processus de création des objets application et principal du service dans le client de base de l’application.
+Dans le diagramme précédent de hello, étape 1 consiste hello créer des application hello et objets de principal de service client de base de l’application hello.
 
-À l’étape 2, lorsque les administrateurs de Contoso et Fabrikam accordent leur consentement, un objet principal du service est créé dans le client Azure AD de leur entreprise et se voit attribuer les autorisations accordées par l’administrateur. Notez également que l’application RH peut être configurée/conçue de manière à autoriser le consentement par les utilisateurs à des fins d’utilisation individuelle.
+À l’étape 2, issue de l’accord, les administrateurs de Contoso et Fabrikam un objet principal de service est créé dans le locataire Azure AD de leur société et les autorisations affectées hello qu’administrateur hello accordé. Notez également que cette application hello RH peut être configuré/conçu de tooallow consentement des utilisateurs individuels.
 
-À l’étape 3, les clients consommateurs de l’application RH (Contoso et Fabrikam) ont chacun leur propre objet principal de service. Chacun représente leur utilisation d’une instance de l’application lors de l’exécution, régie par les autorisations consenties par l’administrateur respectif.
+À l’étape 3, hello consommateur de hello application RH (Contoso et Fabrikam) chaque doté de son propre objet principal de service. Chacun représente leur utilisation d’une instance de l’application hello lors de l’exécution, régie par hello autorisations consenties par un administrateur respectifs de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-L’objet application d’une application est accessible via l’API Azure AD Graph, l’éditeur de manifeste d’application du [portail Azure][AZURE-Portal] ou les [applets de commande Azure AD PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0), tels que représentés par son entité [Application OData][AAD-Graph-App-Entity].
+Objet d’application d’une application est accessible via hello API Azure AD Graph, hello [du portail Azure] [ AZURE-Portal] éditeur de manifeste d’application, ou [applets de commande PowerShell Azure AD](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0), comme représenté par son OData [entité d’Application][AAD-Graph-App-Entity].
 
-L’objet principal de service d’une application est accessible via l’API Azure AD Graph ou les [applets de commande Azure AD PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0), tels que représentés par son [entité ServicePrincipal OData][AAD-Graph-Sp-Entity].
+Objet principal de service d’une application est accessible via hello API Azure AD Graph ou [applets de commande PowerShell Azure AD](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0), comme représenté par son OData [entité ServicePrincipal] [ AAD-Graph-Sp-Entity].
 
-[Azure AD Graph Explorer](https://graphexplorer.azurewebsites.net/) permet d’interroger à la fois les objets d’application et de principal de service.
+Hello [Azure AD Graph Explorer](https://graphexplorer.azurewebsites.net/) est utile pour l’interrogation application hello et objets principal du service.
 
 <!--Image references-->
 

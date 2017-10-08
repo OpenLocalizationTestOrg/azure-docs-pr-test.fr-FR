@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : intégration d’Azure Active Directory à Small Improvements | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Small Improvements."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de petites améliorations."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: 49a8cd3acfc6df15ef6a51171c8421162bc94efc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 33213fe4b61f5005cf78bee2c05b2b1e5e71ae8b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-small-improvements"></a>Didacticiel : intégration d’Azure Active Directory avec Small Improvements
 
-Dans ce didacticiel, vous allez apprendre à intégrer Small Improvements à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate petites améliorations avec Azure Active Directory (Azure AD).
 
-L’intégration de Small Improvements à Azure AD vous offre les avantages suivants :
+Intégration de petites améliorations à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à Small Improvements.
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Small Improvements (via l’authentification unique) avec leur compte Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooSmall améliorations
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooSmall améliorations (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD avec Small Improvements, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec petites améliorations, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Small Improvements pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois ici [Offre d’essai](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Small Improvements à partir de la galerie
+1. Ajout de petites améliorations à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-small-improvements-from-the-gallery"></a>Ajout de Small Improvements à partir de la galerie
-Pour configurer l’intégration de Small Improvements avec Azure AD, vous devez ajouter Small Improvements à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-small-improvements-from-hello-gallery"></a>Ajout de petites améliorations à partir de la galerie de hello
+tooconfigure hello intégration de petites améliorations dans Azure AD, vous devez tooadd petites améliorations à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Small Improvements à partir de la galerie, procédez comme suit :**
+**tooadd petites améliorations à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **Small Improvements**.
+4. Dans la zone de recherche de hello, tapez **petites améliorations**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Small Improvements**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **petites améliorations**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD après de Small Improvements, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Small Improvements équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Small Improvements associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans les petites améliorations est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et l’utilisateur dans les petites améliorations hello doit toobe établie.
 
-Dans Small Improvements, assignez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **Nom d’utilisateur** pour établir la relation.
+Dans les petites améliorations, affecter la valeur de hello de hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec Small Improvements, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec petites améliorations, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Small Improvements](#creating-a-small-improvements-test-user)** pour avoir un équivalent de Britta Simon dans Small Improvements lié à la représentation Azure AD associée.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test de petites améliorations](#creating-a-small-improvements-test-user)**  -toohave un équivalent de Britta Simon petites améliorations qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Small Improvements.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de petites améliorations.
 
-**Pour configurer l’authentification unique Azure AD avec Small Improvements, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec petites améliorations, procédez hello comme suit :**
 
-1. Dans le Portail Azure, dans la page d’intégration de l’application **Small Improvements**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **petites améliorations** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_samlbase.png)
 
-3. Dans la section **Domaine et URL Small Improvements**, procédez comme suit :
+3. Sur hello **petites améliorations de domaine et les URL** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_url.png)
 
-    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<subdomain>.small-improvements.com`
+    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.small-improvements.com`
 
-    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<subdomain>.small-improvements.com`
+    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.small-improvements.com`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Contactez l’[équipe de support client Small Improvements](mailto:support@small-improvements.com) pour obtenir ces valeurs. 
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support technique de petites améliorations Client](mailto:support@small-improvements.com) tooget ces valeurs. 
  
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_certificate.png) 
 
@@ -125,80 +125,80 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-smallimprovements-tutorial/tutorial_general_400.png)
 
-6. Dans la section **Configuration de Small Improvements**, cliquez sur **Configurer Small Improvements** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
+6. Sur hello **petites améliorations Configuration** , cliquez sur **configurer petites améliorations** tooopen **configurer l’authentification** fenêtre. Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_configure.png) 
 
-7. Dans une autre fenêtre de navigateur, connectez-vous à votre site d’entreprise Small Improvements en tant qu’administrateur.
+7. Dans une autre fenêtre de navigateur, connectez-vous sur le site d’entreprise tooyour petites améliorations en tant qu’administrateur.
 
-8. Sur la page du tableau de bord principal, cliquez sur le bouton **Administration** situé sur la gauche.
+8. À partir de la page du tableau de bord principal hello, cliquez sur **Administration** sur bouton hello gauche.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_06.png) 
 
-9. Cliquez sur le bouton **SAML SSO** de la section **Integrations**.
+9. Cliquez sur hello **SSO SAML** bouton **intégrations** section.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_07.png) 
 
-10. Sur la page de configuration de l’authentification unique, procédez comme suit :
+10. Sur la page de configuration de l’authentification unique de hello, procédez hello comme suit :
    
     ![Configurer l’authentification unique](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_08.png)  
 
-    a. Dans la zone de texte **Point de terminaison HTTP**, collez la valeur de l’**URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure.
+    a. Bonjour **point de terminaison HTTP** zone de texte, valeur hello coller **SAML Sign-On URL du Service unique**, lequel vous avez copié à partir du portail Azure.
 
-    b. Ouvrez le certificat que vous avez téléchargé dans le Bloc-notes, copiez son contenu, puis collez-le dans la zone de texte **Certificat x509** . 
+    b. Ouvrez votre certificat téléchargé dans le bloc-notes, hello copie le contenu et le coller ensuite dans hello **x509 certificat** zone de texte. 
 
-    c. Si vous souhaitez que les utilisateurs disposent de l’authentification unique et de l’option d’authentification par formulaire de connexion, activez l’option **Activer l’accès également via une connexion/un mot de passe**.  
+    c. Si vous le souhaitez toohave SSO et connexion formulaire option d’authentification disponible pour les utilisateurs, puis vérifiez hello **activer un accès via une connexion/mot de passe trop** option.  
 
-    d. Entrez les informations appropriées pour nommer le bouton de connexion d’authentification unique dans la zone de texte **SAML Prompt** .  
+    d. Entrez le bouton connexion SSO hello hello valeur appropriée tooName Bonjour **SAML invite** zone de texte.  
 
     e. Cliquez sur **Enregistrer**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-small-improvements-test-user"></a>Création d'un utilisateur de test Small Improvements
 
-Pour se connecter à Small Improvements, les utilisateurs d’Azure AD doivent être approvisionnés dans Small Improvements. Dans le cas de Small Improvements, l’approvisionnement est une tâche manuelle.
+tooenable Azure AD les utilisateurs toolog dans tooSmall améliorations, vous devez les configurer dans les petites améliorations. Dans les cas de hello de petites améliorations, cette configuration est une tâche manuelle.
 
-**Pour approvisionner un compte d’utilisateur, procédez comme suit :**
+**tooprovision un compte d’utilisateur, effectuez hello comme suit :**
 
-1. Connectez-vous à votre site d’entreprise Small Improvements en tant qu’administrateur.
+1. Site d’entreprise petites améliorations tooyour ouverture de session en tant qu’administrateur.
 
-2. À partir de la page d’accueil, accédez au menu de gauche, puis cliquez sur **Administration**.
+2. À partir de la page d’accueil hello, passez toohello menu hello gauche, cliquez sur **Administration**.
 
-3. Cliquez sur le bouton **User Directory** dans la section User Management. 
+3. Cliquez sur hello **répertoire utilisateur** bouton à partir de la section Gestion de l’utilisateur. 
    
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_10.png) 
 
@@ -206,37 +206,37 @@ Pour se connecter à Small Improvements, les utilisateurs d’Azure AD doivent �
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_11.png) 
 
-5. Dans la boîte de dialogue **Add users** , procédez comme suit : 
+5. Sur hello **ajouter des utilisateurs** boîte de dialogue, effectuer hello comme suit : 
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_12.png)
     
-    a. Entrez le **prénom** de l’utilisateur, à savoir **Britta**.
+    a. Entrez hello **prénom** d’utilisateur comme **Brian**.
 
-    b. Entrez le **nom de famille** de l’utilisateur, à savoir **Simon**.
+    b. Entrez hello **nom** d’utilisateur comme **Simon**.
 
-    c. Entrez l’**adresse e-mail** de l’utilisateur, à savoir **brittasimon@contoso.com**. 
+    c. Entrez hello **messagerie** d’utilisateur comme  **brittasimon@contoso.com** . 
 
-    d. Vous pouvez également choisir d’entrer le message personnel dans la zone **Envoyer un e-mail de notification** . Décochez cette case si vous ne souhaitez envoyer de notification.
+    d. Vous pouvez également choisir le message de personnel tooenter hello Bonjour **envoyer un courrier électronique de notification** boîte. Si vous ne souhaitez pas de notification de hello toosend, puis désactivez cette case à cocher.
 
     e. Cliquez sur **Créer des utilisateurs**.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Small Improvements.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooSmall améliorations.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à Small Improvements, procédez comme suit :**
+**tooassign Britta Simon tooSmall améliorations, procédez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Small Improvements**.
+2. Dans la liste des applications hello, sélectionnez **petites améliorations**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -244,7 +244,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -252,13 +252,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.  
+objectif Hello de cette section est tootest votre configuration de l’authentification unique de Azure AD à l’aide de hello panneau d’accès.  
 
-Lorsque vous cliquez sur la vignette Small Improvements dans le volet d’accès, vous devez être connecté automatiquement à votre application Small Improvements.
+Lorsque vous cliquez sur hello petites améliorations vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour application de petites améliorations.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

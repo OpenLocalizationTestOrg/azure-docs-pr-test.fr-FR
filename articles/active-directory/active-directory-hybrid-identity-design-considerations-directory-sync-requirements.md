@@ -1,6 +1,6 @@
 ---
-title: "Considérations relatives à la conception d’identités hybrides Azure Active Directory : déterminer les exigences en matière de synchronisation de répertoire | Microsoft Docs"
-description: "Identifier les exigences nécessaires pour la synchronisation de tous les utilisateurs entre en local et cloud pour l'entreprise."
+title: "aaaAzure considérations de conception hybride identité Active Directory - déterminer les besoins de synchronisation d’annuaire | Documents Microsoft"
+description: "Identifier les exigences sont nécessaires pour la synchronisation de tous les utilisateurs de hello entre on = locaux et cloud d’entreprise de hello."
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 5ef87e606f055359ca325befd6048353ce57ca2b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6646e3792c65f37c3d62eecdb6c6f3bd257f04f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="determine-directory-synchronization-requirements"></a>Déterminer les exigences de synchronisation de répertoire
-La synchronisation consiste à fournir aux utilisateurs une identité dans le cloud basée sur leur identité locale. Qu'ils comptent utiliser le compte synchronisé pour l'authentification ou pour l'authentification fédérée, les utilisateurs doivent toujours avoir une identité dans le cloud.  Cette identité devra être gérée et mise à jour de temps en temps.  Les mises à jour peuvent prendre différentes formes, des modifications de titre aux modifications de mot de passe.  
+Synchronisation consiste à fournir aux utilisateurs une identité de cloud hello basée sur leur identité locale. Ou non qu’ils utiliseront le compte synchronisé pour l’authentification ou l’authentification fédérée, les utilisateurs de hello doivent toujours toohave une identité de cloud de hello.  Cette identité a besoin toobe conservées et mises à jour régulièrement.  mises à jour Hello peuvent prendre différentes formes, des modifications de toopassword de modifications de titre.  
 
-Commencez par évaluer la solution d'identité locale des organisations et les exigences des utilisateurs. Cette évaluation est importante pour définir les exigences techniques quant à la manière dont les identités d'utilisateur seront créées et gérées dans le cloud.  Pour la plupart des organisations, Active Directory est local et sera l'annuaire local à partir duquel les utilisateurs seront synchronisés, ce qui ne sera cependant pas toujours le cas.  
+Commencez par évaluer les organisations hello identité utilisateur et la solution contraintes locales. Cette évaluation est important toodefine hello prescriptions comment les identités d’utilisateur seront créées et mis à jour dans le cloud de hello.  Pour la plupart des organisations, Active Directory est local et ne sont hello des services locaux qui sont des utilisateurs par synchronisées de toutefois dans certains cas cela sera pas hello cas.  
 
-Veillez à répondre aux questions suivantes :
+Vérifiez que hello tooanswer suivant questions :
 
 * Combien avez-vous de forêts AD: une, plusieurs ou aucune ?
   
@@ -36,35 +36,35 @@ Veillez à répondre aux questions suivantes :
 * Avez-vous actuellement un outil de synchronisation local ?
   
   * Si oui, vos utilisateurs bénéficient-ils d'un annuaire/d'une intégration virtuels d'identités ?
-* Avez-vous un autre annuaire local que vous voulez synchroniser (par exemple, annuaire LDAP, base de données des ressources humaines, etc.) ?
-  * Procéderez-vous à une synchronisation de la liste d’adresses globale (GALSync) ?
-  * Quel est l'état actuel des UPN dans votre organisation ? 
+* Vous disposez de n’importe quel autre répertoire local que vous souhaitez toosynchronize (par exemple, annuaire LDAP, base de données des ressources humaines, etc.) ?
+  * Vous allez toobe effectuer n’importe quel GALSync ?
+  * Nouveautés d’état de hello actuel de l’UPN de votre organisation ? 
   * Avez-vous un annuaire différent pour l'authentification des utilisateurs ?
   * Votre entreprise utilise-t-elle Microsoft Exchange ?
     * Le déploiement d'Exchange hybride est-il prévu ?
 
-Maintenant que vous avez une idée des conditions de synchronisation, vous devez déterminer quel outil est adapté à ces exigences.  Microsoft propose plusieurs outils pour effectuer la synchronisation et l’intégration d’annuaire.  Pour plus d’informations, consultez [Identité hybride : Comparaison des outils d’intégration d’annuaire](active-directory-hybrid-identity-design-considerations-tools-comparison.md) . 
+Maintenant que vous avez une idée sur les conditions de synchronisation, vous devez toodetermine outil est un toomeet correct de hello ces exigences.  Microsoft fournit plusieurs intégration d’annuaire tooaccomplish outils et la synchronisation.  Consultez hello [tableau de comparaison des outils identité hybride directory integration](active-directory-hybrid-identity-design-considerations-tools-comparison.md) pour plus d’informations. 
 
-Maintenant que vous connaissez les exigences de synchronisation et l’outil requis, vous devez évaluer les applications qui utilisent ces services d’annuaire. Cette évaluation est importante pour définir les exigences techniques qui permettront d’intégrer ces applications dans le cloud. Veillez à répondre aux questions suivantes :
+Maintenant que vous avez vos exigences de synchronisation et d’un outil hello pour ce faire, de votre société, vous avez besoin d’applications hello tooevaluate qui utilisent ces services d’annuaire. Cette évaluation est importante toodefine hello spécifications techniques toointegrate ces cloud de toohello d’applications. Vérifiez que hello tooanswer suivant questions :
 
-* Ces applications migreront-elles vers le cloud et utiliseront-elles l'annuaire ?
-* Existe-t-il des attributs spéciaux qui doivent être synchronisées vers le cloud afin que ces applications puissent les utiliser correctement ?
-* Ces applications devront-elles être réécrites pour tirer parti de l'authentification par le cloud ?
-* Ces applications continueront-elles à résider en local alors que les utilisateurs y accéderont à l'aide de l'identité de cloud ?
+* Ces applications seront déplacé toohello cloud et utiliser hello directory ?
+* Y a-t-il des attributs spéciaux qui doivent toobe synchronisé toohello cloud afin de ces applications peuvent les utiliser avec succès ?
+* Ces applications devez toobe réécrite parti tootake d’authentification de cloud ?
+* Ces applications continue toolive local tandis que les utilisateurs y accéder à l’aide d’identité de cloud hello ?
 
-Vous devez également déterminer la synchronisation des annuaires d'exigences et de contraintes de sécurité. Cette évaluation est importante pour obtenir une liste des exigences qui seront nécessaires pour créer et gérer des identités d'utilisateurs dans le cloud. Veillez à répondre aux questions suivantes :
+Vous devez également toodetermine hello sécurité exigences et contraintes de synchronisation d’annuaires. Cette évaluation est important tooget une liste d’exigences hello qui seront nécessaires dans l’ordre toocreate et conserver l’identité de l’utilisateur dans le cloud de hello. Vérifiez que hello tooanswer suivant questions :
 
-* Où se trouvera le serveur de synchronisation ?
+* Où serveur de synchronisation hello se trouver ?
 * Sera-t-il lié à un domaine ?
-* Le serveur se trouvera-t-il sur un réseau restreint derrière un pare-feu, par exemple une zone DMZ ?
-  * Pourrez-vous ouvrir les ports de pare-feu requis pour prendre en charge la synchronisation ?
-* Avez-vous un plan de récupération d'urgence pour le serveur de synchronisation ?
-* Avez-vous un compte disposant des autorisations appropriées pour toutes les forêts avec lesquelles vous souhaitez synchroniser ?
-  * Si votre entreprise ne connaît pas la réponse à cette question, consultez la section « Autorisations pour la synchronisation de mot de passe » dans l'article [Installer le Service de synchronisation Azure Active Directory](https://msdn.microsoft.com/library/azure/dn757602.aspx#BKMK_CreateAnADAccountForTheSyncService) et déterminez si vous avez déjà un compte disposant de ces autorisations, ou si vous devez en créer un.
-* Si vous disposez d'une synchronisation à forêts multiples, le serveur de synchronisation est-il en mesure d'atteindre chaque forêt ?
+* Serveur de hello se trouvera sur un réseau restreint derrière un pare-feu, par exemple un réseau de périmètre ?
+  * Sera synchronisation toosupport des ports pare-feu tooopen en mesure de hello requis ?
+* Disposez-vous d’un plan de récupération d’urgence pour le serveur de synchronisation hello ?
+* Disposez-vous d’un compte disposant des autorisations correctes de hello pour toutes les forêts que vous souhaitez toosynch avec ?
+  * Si votre entreprise ne sait pas réponses hello pour cette question, passez en revue la section hello « Autorisations pour la synchronisation de mot de passe » dans l’article de hello [installation hello Service de synchronisation Azure Active Directory](https://msdn.microsoft.com/library/azure/dn757602.aspx#BKMK_CreateAnADAccountForTheSyncService) et déterminer si vous disposez déjà d’un compte disposant de ces autorisations ou si vous devez toocreate une.
+* Si vous avez synchronisation de multi-forêt est tooget en mesure de tooeach forêt de hello synchronisation server ?
 
 > [!NOTE]
-> Veillez à noter chaque réponse et à comprendre le raisonnement derrière la réponse. [Déterminer les exigences de réponse aux incidents](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md) passe en revue les options disponibles. En répondant à chacune de ces questions, vous sélectionnerez l’option correspondant le mieux à vos besoins métier.
+> Notez que tootake de chacune des réponses et comprendre hello sous-tend hello. [Déterminer les besoins de réponse aux incidents](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md) passe en revue les options hello disponibles. En répondant à chacune de ces questions, vous sélectionnerez l’option correspondant le mieux à vos besoins métier.
 > 
 > 
 

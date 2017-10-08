@@ -1,6 +1,6 @@
 ---
 title: "Flux de code d’autorisation - Azure AD B2C | Microsoft Docs"
-description: "Découvrez comment créer des applications web à l’aide d’Azure AD B2C et du protocole d’authentification OpenID Connect."
+description: "Découvrez comment toobuild web des applications à l’aide du protocole d’authentification Azure AD B2C et OpenID Connect."
 services: active-directory-b2c
 documentationcenter: 
 author: saeedakhter-msft
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2017
 ms.author: saeedakhter-msft
-ms.openlocfilehash: dfc4f2e84704307ccbea6141c0dbc8d089733b22
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6bf9d37310bd45b39bda346441413556f9fd4fdc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-oauth-20-authorization-code-flow"></a>Azure Active Directory B2C : flux de code d’autorisation OAuth 2.0
-Vous pouvez utiliser l’octroi de code d’autorisation OAuth 2.0 dans les applications qui sont installées sur un appareil pour accéder à des ressources protégées, comme des API web. Grâce à l’implémentation Azure Active Directory B2C (Azure AD B2C) d’OAuth 2.0, vous pouvez ajouter l’inscription, la connexion et d’autres tâches de gestion d’identité à vos applications mobiles et applications de bureau. Cet article est indépendant du langage. Il décrit comment envoyer et recevoir des messages HTTP sans utiliser de bibliothèque open source.
+Vous pouvez utiliser l’octroi d’un code d’autorisation hello OAuth 2.0 dans les applications installées sur un appareil toogain accès tooprotected des ressources, telles que les API web. À l’aide de mise en œuvre de hello Azure Active Directory B2C (Azure AD B2C) de OAuth 2.0, vous pouvez ajouter d’abonnement, connectez-vous et les tâches de gestion d’identité tooyour des applications mobiles et de bureau. Cet article est indépendant du langage. Dans l’article hello, nous décrivons comment toosend et recevoir des messages HTTP sans utiliser les bibliothèques open source.
 
-<!-- TODO: Need link to libraries -->
+<!-- TODO: Need link toolibraries -->
 
-Le flux de code d’autorisation OAuth 2.0 est décrit dans la [section 4.1 des spécifications OAuth 2.0](http://tools.ietf.org/html/rfc6749). Vous pouvez l’utiliser pour les activités d’authentification et d’autorisation avec la plupart des types d’applications, notamment les [applications web](active-directory-b2c-apps.md#web-apps) et les [applications installées de façon native](active-directory-b2c-apps.md#mobile-and-native-apps). Vous pouvez utiliser le flux de code d’autorisation OAuth 2.0 pour acquérir en toute sécurité des *jetons d’accès* pour vos applications, qui peuvent être utilisés pour accéder à des ressources sécurisés par un [serveur d’autorisation](active-directory-b2c-reference-protocols.md#the-basics).
+Hello flux de code d’autorisation OAuth 2.0 est décrit dans [section 4.1 de spécification de hello OAuth 2.0](http://tools.ietf.org/html/rfc6749). Vous pouvez l’utiliser pour les activités d’authentification et d’autorisation avec la plupart des types d’applications, notamment les [applications web](active-directory-b2c-apps.md#web-apps) et les [applications installées de façon native](active-directory-b2c-apps.md#mobile-and-native-apps). Vous pouvez utiliser hello OAuth 2.0 toosecurely de flux de code d’autorisation acquérir *jetons d’accès* pour vos applications, ce qui peut être utilisé tooaccess les ressources qui sont sécurisés par une [serveur d’autorisation](active-directory-b2c-reference-protocols.md#the-basics).
 
-Cet article est axé sur le flux de code d’autorisation OAuth 2.0 pour les **clients publics**. Un client public est une application cliente qui ne peut pas être approuvée pour maintenir de façon sécurisée l'intégrité d’un mot de passe secret. Cela comprend les applications mobiles, les applications de bureau et quasiment toutes les applications qui s’exécutent sur un appareil et qui ont besoin d’obtenir des jetons d’accès. 
+Cet article se concentre sur hello **clients publics** flux de code d’autorisation OAuth 2.0. Un client public est toute application cliente qui ne peut pas être approuvée toosecurely préserver l’intégrité des hello de mot de passe secret principal. Cela inclut les applications mobiles, les applications de bureau et essentiellement n’importe quelle application qui s’exécute sur un appareil et nécessite des jetons d’accès tooget. 
 
 > [!NOTE]
-> Pour ajouter la gestion d’identité à une application web à l’aide d’Azure AD B2C, utilisez [OpenID Connect](active-directory-b2c-reference-oidc.md) plutôt qu’OAuth 2.0.
+> application tooadd identity management tooa web à l’aide d’Azure AD B2C, utilisez [OpenID Connect](active-directory-b2c-reference-oidc.md) au lieu de OAuth 2.0.
 
-Azure AD B2C étend les flux OAuth 2.0 standard pour proposer plus qu’une simple authentification et une simple autorisation. Il introduit le [paramètre de stratégie](active-directory-b2c-reference-policies.md). Avec les stratégies intégrées, vous pouvez utiliser OAuth 2.0 pour ajouter des expériences utilisateur à votre application, comme l’inscription, la connexion et la gestion des profils. Dans cet article, nous allons vous montrer comment utiliser OAuth 2.0 et des stratégies pour implémenter chacune de ces expériences dans vos applications natives. Vous verrez également comment obtenir des jetons d’accès afin d’accéder à des API web.
+Azure AD B2C étend standard hello Qu'oauth 2.0 flux toodo plus de l’autorisation et d’authentification simple. Il introduit hello [paramètre de stratégie](active-directory-b2c-reference-policies.md). Avec les stratégies intégrées, vous pouvez utiliser OAuth 2.0 tooadd utilisateur rencontre tooyour application, telles que d’abonnement, connectez-vous et gestion des profils. Dans cet article, nous vous indiquons comment toouse tooimplement OAuth 2.0 et les stratégies de chacun de ces expériences dans vos applications natives. Nous vous montrons également comment tooget les jetons d’accès pour l’accès aux API web.
 
-Dans les exemples de demandes HTTP de cet article, nous utilisons notre exemple d’annuaire Azure AD B2C, **fabrikamb2c.onmicrosoft.com**. Nous utilisons également nos exemples d’application et de stratégies. Vous pouvez essayer les demandes par vous-même en utilisant ces valeurs ou bien en les remplaçant par les vôtres.
-Découvrez comment [obtenir vos propres stratégies, application et annuaire Azure AD B2C](#use-your-own-azure-ad-b2c-directory).
+Dans les requêtes d’exemple HTTP hello dans cet article, nous utilisons notre répertoire Azure AD B2C d’exemple, **fabrikamb2c.onmicrosoft.com**. Nous utilisons également nos exemples d’application et de stratégies. Vous pouvez essayer de demandes de hello vous-même à l’aide de ces valeurs, ou vous pouvez les remplacer par vos propres valeurs.
+Découvrez comment trop[obtenir votre propre annuaire Azure AD B2C, application et des stratégies](#use-your-own-azure-ad-b2c-directory).
 
 ## <a name="1-get-an-authorization-code"></a>1. Obtention d’un code d’autorisation
-Le flux de code d'autorisation commence par le client dirigeant l'utilisateur vers le point de terminaison `/authorize` . Il s’agit de la partie interactive du flux, dans laquelle l’utilisateur agit réellement. Dans cette demande, le client indique dans le paramètre `scope` les autorisations qu’il doit obtenir auprès de l’utilisateur. Dans le paramètre `p`, il indique la stratégie à exécuter. Les trois exemples suivants (avec sauts de ligne pour faciliter la lecture) utilisent chacun une stratégie différente.
+flux de code d’autorisation Hello commence par client hello dirigeant hello utilisateur toohello `/authorize` point de terminaison. Il s’agit partie interactive de hello du flux de hello, où les utilisateurs hello intervient. Dans cette demande, les clients hello indique Bonjour `scope` autorisations hello de paramètre qu’il nécessite de tooacquire à partir de l’utilisateur de hello. Bonjour `p` paramètre, il indique hello stratégie tooexecute. Hello trois chacun des exemples suivants (avec les sauts de ligne pour une meilleure lisibilité) utilisent une stratégie différente.
 
 ### <a name="use-a-sign-in-policy"></a>Utilisation d’une stratégie de connexion
 ```
@@ -78,33 +78,33 @@ client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6
 
 | Paramètre | Requis ? | Description |
 | --- | --- | --- |
-| client_id |Requis |ID d’application affecté à votre application dans le [portail Azure](https://portal.azure.com). |
-| response_type |Requis |Le type de réponse, qui doit inclure `code` pour le flux de code d’autorisation. |
-| redirect_uri |Requis |URI de redirection de votre application, où votre application envoie et reçoit des réponses d’authentification. Il doit correspondre exactement à l’un des URI de redirection que vous avez enregistrés dans le portail, sauf qu’il doit être encodé au format URL. |
-| scope |Requis |Une liste d’étendues séparées par des espaces. Une valeur d’étendue unique indique à Azure Active Directory (Azure AD) les deux autorisations qui sont demandées. Utiliser l’ID de client comme étendue indique que votre application a besoin d’un jeton d’accès qui peut être utilisé avec votre propre service ou API web, représenté par le même ID de client.  L’étendue `offline_access` indique que votre application a besoin d’un jeton d’actualisation pour un accès durable aux ressources. Vous pouvez également utiliser l’étendue `openid` pour demander un jeton d’ID à partir d’Azure AD B2C. |
-| response_mode |Recommandé |Méthode à utiliser pour renvoyer le code d’autorisation résultant à votre application. Il peut s’agir de `query`, `form_post` ou `fragment`. |
-| state |Recommandé |Une valeur incluse dans la requête qui est également renvoyée dans la réponse de jeton. Il peut s’agir d’une chaîne de n’importe quel contenu que vous voulez utiliser. Généralement, une valeur unique générée de manière aléatoire est utilisée, pour empêcher les attaques par falsification de requête intersites. L’état est également utilisé pour coder les informations sur l’état de l’utilisateur dans l’application avant la demande d’authentification. Par exemple, la page dans laquelle l’utilisateur se trouvait ou la stratégie en cours d’exécution. |
-| p |Requis |Stratégie exécutée. Il s’agit du nom d’une stratégie créée dans votre annuaire Azure AD B2C. La valeur du nom de la stratégie doit commencer par **b2c\_1\_**. Pour en savoir plus sur les stratégies, consultez [Stratégies intégrées d’Azure AD B2C](active-directory-b2c-reference-policies.md). |
-| prompt |Facultatif |Type d’interaction utilisateur requis. Actuellement, la seule valeur valide est `login`, ce qui oblige l’utilisateur à entrer ses informations d’identification sur cette demande. L’authentification unique ne prendra pas effet. |
+| client_id |Requis |ID de l’application Hello affecté application tooyour Bonjour [portail Azure](https://portal.azure.com). |
+| response_type |Requis |type de réponse Hello, qui doit inclure `code` pour les flux de code d’autorisation hello. |
+| redirect_uri |Requis |Hello URI de redirection de votre application, où les réponses d’authentification sont envoyés et reçus par votre application. Il doit correspondre exactement à celle de redirection de hello URI que vous avez enregistré dans le portail hello, sauf qu’il doit être encodé en URL. |
+| scope |Requis |Une liste d’étendues séparées par des espaces. Une valeur d’étendue unique indique tooAzure Active Directory (Azure AD) à la fois des autorisations de hello sont demandées. À l’aide du client hello ID de la portée de hello indique que votre application a besoin d’un jeton d’accès qui peut être utilisé avec votre propre service ou d’une API web, représenté par hello même ID de client.  Hello `offline_access` étendue indique que votre application a besoin d’un jeton d’actualisation pour l’accès à long terme tooresources. Vous pouvez également utiliser hello `openid` étendue toorequest un jeton d’ID à partir d’Azure Active Directory B2C. |
+| response_mode |Recommandé |méthode Hello utiliser tooyour précédent code d’autorisation qui en résulte toosend hello application. Il peut s’agir de `query`, `form_post` ou `fragment`. |
+| state |Recommandé |Une valeur incluse dans la demande hello qui est retourné dans la réponse du jeton hello. Il peut être une chaîne de contenu que vous souhaitez toouse. En règle générale, une valeur unique générée de manière aléatoire est utilisée, les attaques par falsification de tooprevent demande entre sites. état de Hello est également utilisé tooencode informations hello l’état utilisateur dans une application hello avant de la demande d’authentification hello s’est produite. Par exemple, utilisateur de hello page hello a eu lieu ou hello stratégie était en cours d’exécution. |
+| p |Requis |stratégie de Hello est exécutée. Son hello nom d’une stratégie qui est créée dans votre répertoire Azure Active Directory B2C. valeur de nom de stratégie Hello doit commencer par **b2c\_1\_**. toolearn en savoir plus sur les stratégies, consultez [stratégies intégrées d’Azure AD B2C](active-directory-b2c-reference-policies.md). |
+| prompt |Facultatif |type de Hello d’intervention de l’utilisateur qui est requise. Actuellement, hello seule valeur valide est `login`, qui force hello utilisateur tooenter leurs informations d’identification pour cette demande. L’authentification unique ne prendra pas effet. |
 
-À ce stade, il est demandé à l’utilisateur d’effectuer le flux de travail de la stratégie. Il est possible que l’utilisateur doive entrer son nom d’utilisateur et son mot de passe, se connecter avec une identité sociale, s’inscrire à l’annuaire, etc. Les actions de l’utilisateur dépendent de la façon dont la stratégie est définie.
+À ce stade, les flux de travail de la stratégie toocomplete hello est demandé à utilisateur de hello. Cela peut également impliquer l’utilisateur de hello entrer leur nom d’utilisateur et un mot de passe, vous connecter avec une identité sociale, souscrire hello répertoire ou tout autre nombre d’étapes. Actions de l’utilisateur dépendent de la stratégie de hello est définie.
 
-Une fois que l’utilisateur a terminé la stratégie, Azure AD retourne une réponse à votre application avec la valeur que vous avez utilisée pour `redirect_uri`. Il utilise la méthode spécifiée dans le paramètre `response_mode`. La réponse est exactement la même pour chacun des scénarios d’actions utilisateur, indépendamment de la stratégie exécutée.
+Utilisateur de hello après la stratégie de hello, Azure AD renvoie une application tooyour de réponse à la valeur hello vous avez utilisé pour `redirect_uri`. Il utilise la méthode hello spécifié dans hello `response_mode` paramètre. réponse de Hello est exactement hello même pour chacun des hello action scénarios utilisateur, indépendamment de la stratégie de hello qui a été exécutée.
 
 Une réponse correcte utilisant `response_mode=query` se présente ainsi :
 
 ```
 GET urn:ietf:wg:oauth:2.0:oob?
-code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...        // the authorization_code, truncated
-&state=arbitrary_data_you_can_receive_in_the_response                // the value provided in the request
+code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...        // hello authorization_code, truncated
+&state=arbitrary_data_you_can_receive_in_the_response                // hello value provided in hello request
 ```
 
 | Paramètre | Description |
 | --- | --- |
-| code |Le code d’autorisation demandé par l’application. L’application peut utiliser le code d’autorisation pour demander un jeton d’accès pour une ressource cible. Les codes d’autorisation ont des durées de vie très courtes. Généralement, ils expirent au bout de 10 minutes. |
-| state |Consultez la description complète dans le tableau de la section précédente. Si un paramètre `state` est inclus dans la demande, la même valeur doit apparaître dans la réponse. L’application doit vérifier que les valeurs `state` de la demande et de la réponse sont identiques. |
+| code |code d’autorisation Hello hello application demandée. application Hello peut utiliser toorequest de code d’autorisation hello un jeton d’accès pour une ressource cible. Les codes d’autorisation ont des durées de vie très courtes. Généralement, ils expirent au bout de 10 minutes. |
+| state |Consultez la description complète de hello dans table hello hello précédant la section. Si un `state` paramètre est inclus dans la demande hello, même valeur hello doit apparaître dans la réponse de hello. Hello application doit vérifier que hello `state` valeurs hello demande et de réponse sont identiques. |
 
-Les réponses d’erreur peuvent également être envoyées à l’URI de redirection, pour que l’application puisse les traiter de façon appropriée :
+Réponses d’erreur peuvent également être envoyés l’URI de redirection toohello afin que hello application peut gérer de façon appropriée :
 
 ```
 GET urn:ietf:wg:oauth:2.0:oob?
@@ -115,12 +115,12 @@ error=access_denied
 
 | Paramètre | Description |
 | --- | --- |
-| error |Chaîne de code d’erreur que vous pouvez utiliser pour classer les types d’erreurs se produisant. Vous pouvez également utiliser la chaîne pour réagir aux erreurs. |
-| error_description |Un message d’erreur spécifique qui peut vous aider à identifier la cause principale d’une erreur d’authentification. |
-| state |Consultez la description complète dans le tableau précédent. Si un paramètre `state` est inclus dans la demande, la même valeur doit apparaître dans la réponse. L’application doit vérifier que les valeurs `state` de la demande et de la réponse sont identiques. |
+| error |Une chaîne de code d’erreur que vous pouvez utiliser les types de hello tooclassify d’erreurs qui se produisent. Vous pouvez également utiliser hello chaîne tooreact tooerrors. |
+| error_description |Un message d’erreur spécifique qui peut vous aider à identifier hello origine d’une erreur d’authentification. |
+| state |Consultez la description complète de hello Bonjour tableau précédent. Si un `state` paramètre est inclus dans la demande hello, même valeur hello doit apparaître dans la réponse de hello. Hello application doit vérifier que hello `state` valeurs hello demande et de réponse sont identiques. |
 
 ## <a name="2-get-a-token"></a>2. Obtention d’un jeton
-Un code d’autorisation étant acquis, vous pouvez maintenant échanger `code` contre un jeton sur la ressource prévue en envoyant une demande POST au point de terminaison `/token`. Dans Azure AD B2C, la seule ressource pour laquelle vous pouvez demander un jeton est l’API web principale de votre application. La convention utilisée pour demander un jeton à vous-même consiste à utiliser votre ID de client d’application en tant qu’étendue :
+Maintenant que vous avez acquis un code d’autorisation, vous pouvez échanger hello `code` pour un jeton toohello prévu des ressources en envoyant un toohello de la demande POST `/token` point de terminaison. Dans Azure AD B2C, hello uniquement les ressources que vous pouvez demander un jeton sont votre site web principal de l’application API. convention de Hello est utilisée pour demander un jeton tooyourself est toouse l’ID de client de votre application en tant qu’étendue de hello :
 
 ```
 POST fabrikamb2c.onmicrosoft.com/oauth2/v2.0/token?p=b2c_1_sign_in HTTP/1.1
@@ -133,12 +133,12 @@ grant_type=authorization_code&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&sco
 
 | Paramètre | Requis ? | Description |
 | --- | --- | --- |
-| p |Requis |La stratégie qui a été utilisée pour obtenir le code d'autorisation. Vous ne pouvez pas utiliser une autre stratégie dans cette demande. Notez que vous ajoutez ce paramètre à la *chaîne de requête*, et non au corps POST. |
-| client_id |Requis |ID d’application affecté à votre application dans le [portail Azure](https://portal.azure.com). |
-| grant_type |Requis |Type d’autorisation. Pour le flux de code d’autorisation, le type d’autorisation doit être `authorization_code`. |
-| scope |Recommandé |Une liste d’étendues séparées par des espaces. Une valeur d’étendue unique indique à Azure AD les deux autorisations qui sont demandées. Utiliser l’ID de client comme étendue indique que votre application a besoin d’un jeton d’accès qui peut être utilisé avec votre propre service ou API web, représenté par le même ID de client.  L’étendue `offline_access` indique que votre application a besoin d’un jeton d’actualisation pour un accès durable aux ressources.  Vous pouvez également utiliser l’étendue `openid` pour demander un jeton d’ID à partir d’Azure AD B2C. |
-| code |Requis |Code d’autorisation acquis dans le premier tronçon du flux. |
-| redirect_uri |Requis |URI de redirection de l’application où vous avez reçu le code d’autorisation. |
+| p |Requis |Hello stratégie qui a été utilisé tooacquire hello autorisation code. Vous ne pouvez pas utiliser une autre stratégie dans cette demande. Notez que vous ajoutez ce paramètre toohello *chaîne de requête*, et non dans hello corps POST. |
+| client_id |Requis |ID de l’application Hello affecté application tooyour Bonjour [portail Azure](https://portal.azure.com). |
+| grant_type |Requis |type Hello d’octroi. Pour les flux de code d’autorisation hello, type d’octroi hello doit être `authorization_code`. |
+| scope |Recommandé |Une liste d’étendues séparées par des espaces. Une valeur d’étendue unique indique tooAzure AD à la fois des autorisations de hello sont demandés. À l’aide du client hello ID de la portée de hello indique que votre application a besoin d’un jeton d’accès qui peut être utilisé avec votre propre service ou d’une API web, représenté par hello même ID de client.  Hello `offline_access` étendue indique que votre application a besoin d’un jeton d’actualisation pour l’accès à long terme tooresources.  Vous pouvez également utiliser hello `openid` étendue toorequest un jeton d’ID à partir d’Azure Active Directory B2C. |
+| code |Requis |code d’autorisation Hello que vous avez obtenue dans la première branche de hello du flux de hello. |
+| redirect_uri |Requis |Hello URI de redirection d’application hello où vous avez reçu le code d’autorisation de hello. |
 
 Un jeton de réponse correct se présente ainsi :
 
@@ -154,29 +154,29 @@ Un jeton de réponse correct se présente ainsi :
 ```
 | Paramètre | Description |
 | --- | --- |
-| not_before |Heure à laquelle le jeton est considéré comme valide, en heure epoch. |
-| token_type |Valeur du type de jeton. Le seul type de jeton pris en charge par Azure AD est le jeton porteur. |
-| access_token |JSON Web Token (JWT) signé que vous avez demandé. |
-| scope |Étendues de validité du jeton. Vous pouvez également utiliser des étendues pour mettre en cache des jetons pour une utilisation ultérieure. |
-| expires_in |La durée de validité du jeton (en secondes). |
-| refresh_token |Un jeton d’actualisation OAuth 2.0. L’application peut utiliser ce jeton pour acquérir des jetons supplémentaires après l’expiration du jeton actuel. Les jetons d’actualisation sont de longue durée. Vous pouvez les utiliser pour conserver l’accès aux ressources pendant de longues périodes. Pour plus d’informations, consultez la [référence sur les jetons Azure AD B2C](active-directory-b2c-reference-tokens.md). |
+| not_before |heure de Hello à quels hello jeton est considéré comme valide dans le temps de l’époque. |
+| token_type |valeur de type de jeton Hello. Hello tapez uniquement que prend en charge d’Azure AD est porteur. |
+| access_token |Hello signé le jeton Web JSON (JWT) que vous avez demandé. |
+| scope |étendues de Hello hello jeton est valide pour. Vous pouvez également utiliser des jetons de toocache étendues pour une utilisation ultérieure. |
+| expires_in |Durée Hello de hello jeton est valide (en secondes). |
+| refresh_token |Un jeton d’actualisation OAuth 2.0. application Hello peut utiliser ce jeton tooacquire des jetons supplémentaires après l’expiration du jeton actuel de hello. Les jetons d’actualisation sont de longue durée. Vous pouvez utiliser les tooretain accès tooresources pendant de longues périodes de temps. Pour plus d’informations, consultez hello [référence de jeton Azure AD B2C](active-directory-b2c-reference-tokens.md). |
 
 Les réponses d’erreur ressemblent à ceci :
 
 ```
 {
     "error": "access_denied",
-    "error_description": "The user revoked access to the app.",
+    "error_description": "hello user revoked access toohello app.",
 }
 ```
 
 | Paramètre | Description |
 | --- | --- |
-| error |Chaîne de code d’erreur que vous pouvez utiliser pour classer les types d’erreurs se produisant. Vous pouvez également utiliser la chaîne pour réagir aux erreurs. |
-| error_description |Un message d’erreur spécifique qui peut vous aider à identifier la cause principale d’une erreur d’authentification. |
+| error |Une chaîne de code d’erreur que vous pouvez utiliser les types de hello tooclassify d’erreurs qui se produisent. Vous pouvez également utiliser hello chaîne tooreact tooerrors. |
+| error_description |Un message d’erreur spécifique qui peut vous aider à identifier hello origine d’une erreur d’authentification. |
 
-## <a name="3-use-the-token"></a>3. Utilisation du jeton
-Un jeton d’accès étant acquis, vous pouvez maintenant l’utiliser dans les demandes dirigées vers vos API web principales en l’incluant dans l’en-tête `Authorization` :
+## <a name="3-use-hello-token"></a>3. Utilisation du jeton hello
+Maintenant que vous avez acquis avec succès d’un jeton d’accès, vous pouvez utiliser le jeton de hello dans l’API web principale tooyour de demandes en l’incluant dans hello `Authorization` en-tête :
 
 ```
 GET /tasks
@@ -184,8 +184,8 @@ Host: https://mytaskwebapi.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q...
 ```
 
-## <a name="4-refresh-the-token"></a>4. Actualisation du jeton
-Les jetons d’accès et les jetons d’ID ont une courte durée de vie. Après leur expiration, vous devez les actualiser pour continuer à accéder aux ressources. Pour cela, envoyez une autre demande POST au point de terminaison `/token`. Cette fois, fournissez l’élément `refresh_token` au lieu de l’élément `code` :
+## <a name="4-refresh-hello-token"></a>4. Actualiser le jeton de hello
+Les jetons d’accès et les jetons d’ID ont une courte durée de vie. Une fois qu’ils expirent, vous devez actualiser les toocontinue tooaccess ressources. toodo, envoyer un autre toohello de demande POST `/token` point de terminaison. Cette fois-ci, fournir hello `refresh_token` au lieu de hello `code`:
 
 ```
 POST fabrikamb2c.onmicrosoft.com/oauth2/v2.0/token?p=b2c_1_sign_in HTTP/1.1
@@ -197,12 +197,12 @@ grant_type=refresh_token&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&scope=90
 
 | Paramètre | Requis ? | Description |
 | --- | --- | --- |
-| p |Requis |Stratégie utilisée pour obtenir le jeton d’actualisation d’origine. Vous ne pouvez pas utiliser une autre stratégie dans cette demande. Notez que vous ajoutez ce paramètre à la *chaîne de requête*, et non au corps POST. |
-| client_id |Recommandé |ID d’application affecté à votre application dans le [portail Azure](https://portal.azure.com). |
-| grant_type |Requis |Type d’autorisation. Pour ce tronçon du flux de code d’autorisation, le type d’autorisation doit être `refresh_token`. |
-| scope |Recommandé |Une liste d’étendues séparées par des espaces. Une valeur d’étendue unique indique à Azure AD les deux autorisations qui sont demandées. Utiliser l’ID de client comme étendue indique que votre application a besoin d’un jeton d’accès qui peut être utilisé avec votre propre service ou API web, représenté par le même ID de client.  L’étendue `offline_access` indique que votre application a besoin d’un jeton d’actualisation pour un accès durable aux ressources.  Vous pouvez également utiliser l’étendue `openid` pour demander un jeton d’ID à partir d’Azure AD B2C. |
-| redirect_uri |Facultatif |URI de redirection de l’application où vous avez reçu le code d’autorisation. |
-| refresh_token |Requis |Jeton d’actualisation d’origine que vous avez acquis dans le second tronçon du flux. |
+| p |Requis |stratégie Hello qui était le jeton d’actualisation d’origine utilisé tooacquire hello. Vous ne pouvez pas utiliser une autre stratégie dans cette demande. Notez que vous ajoutez ce paramètre toohello *chaîne de requête*, et non dans hello corps POST. |
+| client_id |Recommandé |ID de l’application Hello affecté application tooyour Bonjour [portail Azure](https://portal.azure.com). |
+| grant_type |Requis |type Hello d’octroi. Pour cette branche du flux de code d’autorisation hello, type d’octroi hello doit être `refresh_token`. |
+| scope |Recommandé |Une liste d’étendues séparées par des espaces. Une valeur d’étendue unique indique tooAzure AD à la fois des autorisations de hello sont demandés. À l’aide du client hello ID de la portée de hello indique que votre application a besoin d’un jeton d’accès qui peut être utilisé avec votre propre service ou d’une API web, représenté par hello même ID de client.  Hello `offline_access` étendue indique que nécessaires à votre application un jeton d’actualisation pour l’accès à long terme tooresources.  Vous pouvez également utiliser hello `openid` étendue toorequest un jeton d’ID à partir d’Azure Active Directory B2C. |
+| redirect_uri |Facultatif |Hello URI de redirection d’application hello où vous avez reçu le code d’autorisation de hello. |
+| refresh_token |Requis |Hello d’origine jeton d’actualisation que vous avez obtenue dans la branche de deuxième hello du flux de hello. |
 
 Un jeton de réponse correct se présente ainsi :
 
@@ -218,31 +218,31 @@ Un jeton de réponse correct se présente ainsi :
 ```
 | Paramètre | Description |
 | --- | --- |
-| not_before |Heure à laquelle le jeton est considéré comme valide, en heure epoch. |
-| token_type |Valeur du type de jeton. Le seul type de jeton pris en charge par Azure AD est le jeton porteur. |
-| access_token |Jeton JWT signé que vous avez demandé. |
-| scope |Étendues de validité du jeton. Vous pouvez également utiliser les étendues pour mettre en cache des jetons pour une utilisation ultérieure. |
-| expires_in |La durée de validité du jeton (en secondes). |
-| refresh_token |Un jeton d’actualisation OAuth 2.0. L’application peut utiliser ce jeton pour acquérir des jetons supplémentaires après l’expiration du jeton actuel. Les jetons d’actualisation sont durables, et peuvent être utilisés pour conserver l’accès aux ressources pendant des périodes prolongées. Pour plus d’informations, consultez la [référence sur les jetons Azure AD B2C](active-directory-b2c-reference-tokens.md). |
+| not_before |heure de Hello à quels hello jeton est considéré comme valide dans le temps de l’époque. |
+| token_type |valeur de type de jeton Hello. Hello tapez uniquement que prend en charge d’Azure AD est porteur. |
+| access_token |Hello signé JSON que vous avez demandé. |
+| scope |étendues de Hello hello jeton est valide pour. Vous pouvez également utiliser des jetons de toocache hello étendues pour une utilisation ultérieure. |
+| expires_in |Durée Hello de hello jeton est valide (en secondes). |
+| refresh_token |Un jeton d’actualisation OAuth 2.0. application Hello peut utiliser ce jeton tooacquire des jetons supplémentaires après l’expiration du jeton actuel de hello. Actualiser les jetons sont de longue durées et peut être utilisé tooretain accès tooresources pendant de longues périodes de temps. Pour plus d’informations, consultez hello [référence de jeton Azure AD B2C](active-directory-b2c-reference-tokens.md). |
 
 Les réponses d’erreur ressemblent à ceci :
 
 ```
 {
     "error": "access_denied",
-    "error_description": "The user revoked access to the app.",
+    "error_description": "hello user revoked access toohello app.",
 }
 ```
 
 | Paramètre | Description |
 | --- | --- |
-| error |Chaîne de code d’erreur que vous pouvez utiliser pour classer les types d’erreurs qui se produisent. Vous pouvez également utiliser la chaîne pour réagir aux erreurs. |
-| error_description |Un message d’erreur spécifique qui peut vous aider à identifier la cause principale d’une erreur d’authentification. |
+| error |Une chaîne de code d’erreur que vous pouvez utiliser les types de tooclassify d’erreurs qui se produisent. Vous pouvez également utiliser hello chaîne tooreact tooerrors. |
+| error_description |Un message d’erreur spécifique qui peut vous aider à identifier hello origine d’une erreur d’authentification. |
 
 ## <a name="use-your-own-azure-ad-b2c-directory"></a>Utiliser votre propre annuaire Azure AD B2C
-Pour essayer vous-même ces demandes, effectuez les étapes suivantes. Remplacez les exemples de valeurs que nous utilisons dans cet article par vos propres valeurs.
+tootry ces demandes vous-même, hello complet suivant les étapes. Remplacez les valeurs d’exemple hello que nous avons utilisé dans cet article avec vos propres valeurs.
 
-1. [Créez un annuaire Azure AD B2C](active-directory-b2c-get-started.md). Utilisez le nom de votre annuaire dans les demandes.
-2. [Créez une application](active-directory-b2c-app-registration.md) pour obtenir un ID d’application et un URI de redirection. Incluez un client natif dans votre application.
-3. [Créez vos stratégies](active-directory-b2c-reference-policies.md) pour obtenir les noms de vos stratégies.
+1. [Créez un annuaire Azure AD B2C](active-directory-b2c-get-started.md). Utiliser le nom hello de votre annuaire dans les demandes hello.
+2. [Créer une application](active-directory-b2c-app-registration.md) tooobtain un ID d’application et un URI de redirection. Incluez un client natif dans votre application.
+3. [Créer vos stratégies](active-directory-b2c-reference-policies.md) tooobtain vos noms de stratégie.
 

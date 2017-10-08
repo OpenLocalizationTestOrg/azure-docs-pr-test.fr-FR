@@ -1,6 +1,6 @@
 ---
-title: "Modifications apportées à un projet WebApi quand vous vous connectez à Azure AD | Microsoft Docs"
-description: "Décrit ce qui se passe dans votre projet WebApi quand vous vous connectez à Azure AD en utilisant Visual Studio"
+title: "projet de WebApi tooa aaaChanges effectuées lorsque vous vous connectez tooAzure AD | Documents Microsoft"
+description: "Décrit les effets de tooyour WebApi projet lorsque vous vous connectez tooAzure AD à l’aide de Visual Studio"
 services: active-directory
 documentationcenter: 
 author: kraigb
@@ -15,13 +15,13 @@ ms.topic: article
 ms.date: 03/01/2017
 ms.author: kraigb
 ms.custom: aaddev
-ms.openlocfilehash: 086e5a9622cad681cd282345d97e0c28ee7de2fa
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1ea77b6c75b2dc273219fa6c43f02c7a7c5312ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-webapi-project-visual-studio-azure-active-directory-connected-service"></a>Qu’est-il arrivé à mon projet WebApi (service connecté Azure Active Directory de Visual Studio) ?
+# <a name="what-happened-toomy-webapi-project-visual-studio-azure-active-directory-connected-service"></a>Le projet de WebApi toomy s’est produit (Visual Studio Azure Active Directory un service connecté)
 > [!div class="op_single_selector"]
 > * [Prise en main](vs-active-directory-webapi-getting-started.md)
 > * [Que s'est-il passé ?](vs-active-directory-webapi-what-happened.md)
@@ -50,30 +50,30 @@ ms.lasthandoff: 08/29/2017
 * `System.IdentityModel.Tokens.Jwt`
 
 ## <a name="code-changes"></a>Modifications du code
-### <a name="code-files-were-added-to-your-project"></a>Des fichiers de code ont été ajoutés à votre projet
-La classe de démarrage d’authentification **App_Start/Startup.Auth.cs** a été ajoutée à votre projet. Elle contient la logique de démarrage permettant l’authentification Azure AD.
+### <a name="code-files-were-added-tooyour-project"></a>Fichiers de code ont été ajoutées tooyour projet
+Une classe de démarrage de l’authentification, **App_Start/Startup.Auth.cs** a été ajouté projet tooyour contenant la logique de démarrage pour l’authentification Azure AD.
 
-### <a name="startup-code-was-added-to-your-project"></a>Un code de démarrage a été ajouté à votre projet
-Si vous disposiez déjà d’une classe de démarrage dans votre projet, la méthode **Configuration** a été mise à jour pour inclure un appel vers `ConfigureAuth(app)`. Sinon, une classe de démarrage a été ajoutée à votre projet.
+### <a name="startup-code-was-added-tooyour-project"></a>Code de démarrage a été ajouté tooyour projet
+Si vous disposez déjà d’une classe de démarrage dans votre projet, hello **Configuration** méthode a été mis à jour tooinclude un appel`ConfigureAuth(app)`. Sinon, une classe de démarrage a été ajoutée tooyour projet.
 
 ### <a name="your-appconfig-or-webconfig-file-has-new-configuration-values"></a>Votre fichier app.config ou web.config comporte de nouvelles valeurs de configuration.
-Les entrées de configuration ci-dessous ont été ajoutées.
+Hello suivant des entrées de configuration ont été ajouté.
 
 ```
     <appSettings>
-            <add key="ida:ClientId" value="ClientId from the new Azure AD App" />
+            <add key="ida:ClientId" value="ClientId from hello new Azure AD App" />
             <add key="ida:Tenant" value="Your selected Azure AD Tenant" />
-            <add key="ida:Audience" value="The App ID Uri from the wizard" />
+            <add key="ida:Audience" value="hello App ID Uri from hello wizard" />
     </appSettings>`
 ```
 
 ### <a name="an-azure-ad-app-was-created"></a>Une application Azure AD App a été créée
-Une application Azure AD a été créée dans le répertoire que vous avez sélectionné dans l'Assistant.
+Une Application Azure AD a été créée dans le répertoire hello que vous avez sélectionné dans l’Assistant de hello.
 
 [En savoir plus sur Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
 
-## <a name="if-i-checked-disable-individual-user-accounts-authentication-what-additional-changes-were-made-to-my-project"></a>Si j’ai coché *Désactiver l’authentification des comptes d’utilisateur individuels*, quelles autres modifications ont été apportées à mon projet ?
-Des références du package NuGet ont été supprimées, et des fichiers ont été supprimés et sauvegardés. Selon l’état de votre projet, vous pouvez avoir besoin de supprimer manuellement d’autres références ou fichiers, ou de modifier le code le cas échéant.
+## <a name="if-i-checked-disable-individual-user-accounts-authentication-what-additional-changes-were-made-toomy-project"></a>Si j’ai vérifié *désactiver l’authentification des comptes d’utilisateur individuels*, les modifications supplémentaires apportées toomy projet ?
+Des références du package NuGet ont été supprimées, et des fichiers ont été supprimés et sauvegardés. Selon l’état hello de votre projet, vous avez toomanually supprimer des références supplémentaires ou des fichiers ou modifier le code comme il convient.
 
 ### <a name="nuget-package-references-removed-for-those-present"></a>Références du package NuGet supprimées (pour celles présentes)
 * `Microsoft.AspNet.Identity.Core`
@@ -81,7 +81,7 @@ Des références du package NuGet ont été supprimées, et des fichiers ont ét
 * `Microsoft.AspNet.Identity.Owin`
 
 ### <a name="code-files-backed-up-and-removed-for-those-present"></a>Fichiers de code sauvegardés et supprimés (pour ceux présents)
-Chacun des fichiers suivants a été sauvegardé et supprimé du projet. Les fichiers de sauvegarde sont situés dans un dossier « Backup » à la racine du répertoire du projet.
+Chacun des fichiers suivants a été sauvegardé et supprimé du projet de hello. Fichiers de sauvegarde se trouvent dans un dossier racine hello du répertoire du projet hello « Backup ».
 
 * `App_Start\IdentityConfig.cs`
 * `Controllers\AccountController.cs`
@@ -90,14 +90,14 @@ Chacun des fichiers suivants a été sauvegardé et supprimé du projet. Les fic
 * `Providers\ApplicationOAuthProvider.cs`
 
 ### <a name="code-files-backed-up-for-those-present"></a>Fichiers de code sauvegardés (pour ceux présents)
-Chacun des fichiers suivants a été sauvegardé avant d’être remplacé. Les fichiers de sauvegarde sont situés dans un dossier « Backup » à la racine du répertoire du projet.
+Chacun des fichiers suivants a été sauvegardé avant d’être remplacé. Fichiers de sauvegarde se trouvent dans un dossier racine hello du répertoire du projet hello « Backup ».
 
 * `Startup.cs`
 * `App_Start\Startup.Auth.cs`
 
-## <a name="if-i-checked-read-directory-data-what-additional-changes-were-made-to-my-project"></a>Si j’ai coché *Lire les données de l’annuaire*, quelles autres modifications ont été apportées à mon projet ?
-### <a name="additional-changes-were-made-to-your-appconfig-or-webconfig"></a>Des modifications supplémentaires ont été apportées à votre fichier app.config ou web.config
-Les entrées de configuration ci-dessous ont été ajoutées.
+## <a name="if-i-checked-read-directory-data-what-additional-changes-were-made-toomy-project"></a>Si j’ai vérifié *lire les données d’annuaire*, les modifications supplémentaires apportées toomy projet ?
+### <a name="additional-changes-were-made-tooyour-appconfig-or-webconfig"></a>Des modifications supplémentaires apportées tooyour app.config ou web.config
+Hello des entrées de configuration supplémentaires suivantes ont été ajoutées.
 
 ```
     <appSettings>
@@ -106,7 +106,7 @@ Les entrées de configuration ci-dessous ont été ajoutées.
 ```
 
 ### <a name="your-azure-active-directory-app-was-updated"></a>Votre application Azure Active Directory a été mise à jour
-Votre application Azure Active Directory a été mise à jour pour inclure l’autorisation *Lire les données de l’annuaire*, et une clé supplémentaire a été créée pour être ensuite utilisée comme *ida:Password* dans le fichier `web.config`.
+Votre application d’Active Directory de Azure a été mis à jour tooinclude hello *lire les données d’annuaire* autorisation et une clé supplémentaire a été créé qui est ensuite utilisé comme hello *ida : mot de passe* Bonjour `web.config` fichier.
 
 ## <a name="next-steps"></a>Étapes suivantes
 - [En savoir plus sur Azure Active Directory](https://azure.microsoft.com/services/active-directory/)

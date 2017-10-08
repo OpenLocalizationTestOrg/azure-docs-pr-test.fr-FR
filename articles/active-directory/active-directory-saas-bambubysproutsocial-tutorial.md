@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Bambu by Sprout Social | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Bambu by Sprout Social."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Bambu par pousses sociaux."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,112 +13,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: jeedes
-ms.openlocfilehash: 985966d26f6ed0dcd4db47589abf94260ce62bf0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9998772c032476f9a18054873022f55b4bb78be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-bambu-by-sprout-social"></a>Didacticiel : Intégration d’Azure Active Directory à Bambu by Sprout Social
 
-Dans ce didacticiel, vous allez apprendre à intégrer Bambu by Sprout Social à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate Bambu par pousses sociaux avec Azure Active Directory (Azure AD).
 
-L’intégration de Bambu by Sprout Social à Azure AD vous offre les avantages suivants :
+Intégration Bambu par pousses Social à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à Bambu by Sprout Social
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Bambu by Sprout Social (via l’authentification unique) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes depuis un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a tooBambu d’accès par pousses Social
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooBambu par pousses sociaux (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 <!--## Overview
 
-To enable single sign-on with Bambu by Sprout Social, it must be configured to use Azure Active Directory as an identity provider. This guide provides information and tips on how to perform this configuration in Bambu by Sprout Social.
+tooenable single sign-on with Bambu by Sprout Social, it must be configured toouse Azure Active Directory as an identity provider. This guide provides information and tips on how tooperform this configuration in Bambu by Sprout Social.
 
 >[!Note]: 
->This embedded guide is brand new in the new Azure portal, and we’d love to hear your thoughts. Use the Feedback ? button at the top of the portal to provide feedback. The older guide for using the [Azure classic portal](https://manage.windowsazure.com) to configure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
+>This embedded guide is brand new in hello new Azure portal, and we’d love toohear your thoughts. Use hello Feedback ? button at hello top of hello portal tooprovide feedback. hello older guide for using hello [Azure classic portal](https://manage.windowsazure.com) tooconfigure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
 
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à Bambu by Sprout Social, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec Bambu par pousses sociaux, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Bambu by Sprout Social pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - Vous ne devez pas utiliser votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Bambu by Sprout Social à partir de la galerie
+1. Ajout de Bambu par pousses Social à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-bambu-by-sprout-social-from-the-gallery"></a>Ajout de Bambu by Sprout Social à partir de la galerie
-Pour configurer l’intégration de Bambu by Sprout Social à Azure AD, vous devez ajouter Bambu by Sprout Social depuis la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-bambu-by-sprout-social-from-hello-gallery"></a>Ajout de Bambu par pousses Social à partir de la galerie de hello
+intégration de hello tooconfigure de Bambu par pousses sociaux dans Azure AD, vous devez tooadd Bambu par pousses Social à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Bambu by Sprout Social à partir de la galerie, procédez comme suit :**
+**tooadd Bambu par pousses Social à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[Portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[Azure Portal](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter la nouvelle application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. Cliquez sur **nouvelle application** bouton en haut de hello de nouvelle application hello dialogue tooadd.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **Bambu by Sprout Social**.
+4. Dans la zone de recherche de hello, tapez **Bambu par pousses sociaux**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bambubysproutsocial-tutorial/tutorial_bambubysproutsocial_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Bambu by Sprout Social**, puis cliquez sur **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **Bambu par pousses sociaux**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bambubysproutsocial-tutorial/tutorial_bambubysproutsocial_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Bambu by Sprout Social sur un utilisateur de test nommé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Bambu by Sprout Social équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et l’utilisateur de Bambu by Sprout Social associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Bambu par pousses Social est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Bambu par pousses sociaux doit toobe établie.
 
-Pour cela, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** dans Bambu by Sprout Social.
+Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans Bambu par pousses sociaux.
 
-Pour configurer et tester l’authentification unique Azure AD avec Bambu by Sprout Social, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec Bambu par pousses sociaux, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l'authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Bambu by Sprout Social](#creating-a-bambu-by-sprout-social-test-user)** : pour avoir un équivalent de Britta Simon dans Bambu by Sprout Social lié à la représentation Azure AD associée.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un Bambu par l’utilisateur de test pousses sociaux](#creating-a-bambu-by-sprout-social-test-user)**  -toohave de Britta Simon dans Bambu par pousses Social qui est la représentation sous forme de toohello lié Azure AD de sa contrepartie.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Bambu by Sprout Social.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre Bambu par application pousses sociaux.
 
-**Pour configurer l’authentification unique Azure AD avec Bambu by Sprout Social, procédez comme suit :**
+**tooconfigure Azure AD l’authentification unique avec Bambu par pousses sociaux, effectuez hello comme suit :**
 
-1. Dans le Portail Azure, sur la page d’intégration de l’application **Bambu by Sprout Social**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Bambu par pousses sociaux** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, en tant que **Mode** sélectionnez **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-bambubysproutsocial-tutorial/tutorial_bambubysproutsocial_samlbase.png)
 
-3. Dans la section **Domaine et URL de Bambu by Sprout Social**, l’utilisateur n’aura pas à effectuer les étapes que l’application a déjà intégrées préalablement avec Azure. 
+3. Sur hello **Bambu par URL et de domaine de réseaux sociaux pousses** section, hello utilisateur n’est pas tooperform toutes les étapes que l’application hello est déjà pré-intégration à Azure. 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bambubysproutsocial-tutorial/tutorial_bambubysproutsocial_url.png)
 
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier XML sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier XML de hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bambubysproutsocial-tutorial/tutorial_bambubysproutsocial_certificate.png) 
 
@@ -126,81 +126,81 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bambubysproutsocial-tutorial/tutorial_general_400.png)
     
-6. Dans la section **Configuration de Bambu by Sprout Social**, cliquez sur **Configurer Bambu by Sprout Social** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
+6. Sur hello **Bambu par la Configuration de réseaux sociaux pousses** , cliquez sur **Bambu de configurer par pousses sociaux** tooopen **configurer l’authentification** fenêtre. Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bambubysproutsocial-tutorial/tutorial_bambubysproutsocial_configure.png) 
 
-7. Pour configurer l’authentification unique côté **Bambu by Sprout Social**, vous devez envoyer le **XML de métadonnées** et l’**URL du service d’authentification unique SAML** téléchargés à l’équipe de support [Bambu by Sprout Social](mailto:support@getbambu.com). Ils effectueront les réglages nécessaires pour que la connexion SSO SAML soit définie correctement des deux côtés.
+7. tooconfigure l’authentification unique sur **Bambu par pousses sociaux** côté, vous devez hello toosend téléchargé **Metadata XML** et **SAML Sign-On URL du Service unique** trop[Bambu par le support technique de pousses sociaux](mailto:support@getbambu.com). Ils seront configurer Bonjour de toohave commande connexion SSO SAML correctement des deux côtés.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Single Sign-On** (Authentification unique) et accédez à la documentation incorporée via la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** section, cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 <!--### Next steps
 
-To ensure users can sign-in to Bambu by Sprout Social after it has been configured to use Azure Active Directory, review the following tasks and topics:
+tooensure users can sign-in tooBambu by Sprout Social after it has been configured toouse Azure Active Directory, review hello following tasks and topics:
 
-- User accounts must be pre-provisioned into Bambu by Sprout Social prior to sign-in. To set this up, see Provisioning.
+- User accounts must be pre-provisioned into Bambu by Sprout Social prior toosign-in. tooset this up, see Provisioning.
  
-- Users must be assigned access to Bambu by Sprout Social in Azure AD to sign-in. To assign users, see Users.
+- Users must be assigned access tooBambu by Sprout Social in Azure AD toosign-in. tooassign users, see Users.
  
-- To configure access polices for Bambu by Sprout Social users, see Access Policies.
+- tooconfigure access polices for Bambu by Sprout Social users, see Access Policies.
  
-- For additional information on deploying single sign-on to users, see [this article](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
+- For additional information on deploying single sign-on toousers, see [this article](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bambubysproutsocial-tutorial/create_aaduser_01.png) 
 
-2. Accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs** pour afficher la liste des utilisateurs.
+2. Accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs** liste de hello toodisplay des utilisateurs.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bambubysproutsocial-tutorial/create_aaduser_02.png) 
 
-3. En haut de la boîte de dialogue, cliquez sur **Ajouter** pour ouvrir la boîte de dialogue **Utilisateur**.
+3. En haut de hello de boîte de dialogue hello, cliquez sur **ajouter** tooopen hello **utilisateur** boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bambubysproutsocial-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bambubysproutsocial-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Name**, entrez **Britta Simon**.
+    a. Bonjour **nom** zone de texte, type **Britta Simon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur** , tapez l’**adresse de messagerie** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de Britta Simon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-bambu-by-sprout-social-test-user"></a>Création d’un utilisateur de test Bambu by Sprout Social
 
-L’application prend en charge la configuration d’utilisateur juste-à-temps, et après authentification, les utilisateurs sont créés automatiquement dans l’application.
+Application prend en charge juste configuration en temps utilisateur et une fois que les utilisateurs de l’authentification seront créées automatiquement dans l’application hello.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Bambu by Sprout Social.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant son tooBambu d’accès par pousses sociaux.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à Bambu by Sprout Social, procédez comme suit :**
+**tooassign tooBambu Britta Simon par pousses sociaux, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Bambu by Sprout Social**.
+2. Dans la liste des applications hello, sélectionnez **Bambu par pousses sociaux**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bambubysproutsocial-tutorial/tutorial_bambubysproutsocial_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -208,7 +208,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -216,13 +216,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette Bambu by Sprout Social dans le volet d’accès, vous devez être connecté automatiquement à votre application Bambu by Sprout Social. Pour plus d'informations sur le panneau d'accès, consultez [Présentation du panneau d’accès](https://msdn.microsoft.com/library/dn308586). 
+Lorsque vous cliquez sur hello Bambu par vignette pousses sociaux Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour Bambu par application pousses sociaux. Pour plus d'informations sur le panneau d'accès, consultez [Présentation du panneau d’accès](https://msdn.microsoft.com/library/dn308586). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

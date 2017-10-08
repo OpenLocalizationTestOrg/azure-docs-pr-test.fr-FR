@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect Sync : Concepts techniques | Microsoft Docs"
-description: "Explique les concepts techniques liés à Azure AD Connect Sync."
+description: Explique les concepts de techniques de hello de synchronisation Azure AD Connect.
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi;andkjell
-ms.openlocfilehash: 6cf8debc6443bb60fc5f601ea4aa392eb2f13a8f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c6309bb9be462fb3d49c5b6ab302d4327ce4b7be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-sync-technical-concepts"></a>Azure AD Connect Sync : Concepts techniques
-Cet article est un résumé de la rubrique [Présentation de l’architecture](active-directory-aadconnectsync-technical-concepts.md).
+Cet article est un résumé de la rubrique de hello [présentation de l’architecture](active-directory-aadconnectsync-technical-concepts.md).
 
 Azure AD Connect Sync repose sur une plateforme de synchronisation de méta-annuaire solide.
-Les sections suivantes présentent les concepts liés à la synchronisation de méta-annuaire.
-S’appuyant sur MIIS, ILM et FIM, les services Azure Active Directory Sync fournissent la plateforme de nouvelle génération pour la connexion aux sources de données. Ils synchronisent les données entre des sources de données et assurent l’approvisionnement et le désapprovisionnement des identités.
+Hello les sections suivantes présente les concepts de hello la synchronisation de méta-annuaires.
+S’appuyant sur MIIS, ILM et FIM, hello Azure Active Directory Sync Services fournit plateforme hello pour les sources de connexion toodata, synchronisation des données entre des sources de données, ainsi que hello et annulation des identités.
 
 ![Concepts techniques](./media/active-directory-aadconnectsync-technical-concepts/scenario.png)
 
-Les sections suivantes fournissent plus de détails sur les aspects suivants du service de synchronisation FIM :
+Hello les sections suivantes fournit plus de détails sur hello suivant des aspects du Service de synchronisation FIM de hello :
 
 * Connecteur
 * Flux d’attributs
@@ -38,51 +38,50 @@ Les sections suivantes fournissent plus de détails sur les aspects suivants du 
 * Approvisionnement
 
 ## <a name="connector"></a>Connecteur
-Les modules de code utilisés pour communiquer avec un annuaire connecté sont appelés connecteurs (anciennement agents de gestion).
+modules de code Hello toocommunicate utilisé avec un annuaire connecté sont appelés liens (anciennement (MAs) des agents de gestion).
 
-Ils sont installés sur l’ordinateur exécutant Azure AD Connect Sync.
-Les connecteurs permettent de converser sans agent à l’aide de protocoles système distants, au lieu de reposer sur le déploiement d’agents spécialisés. Cela se traduit par une réduction des risques et de la durée de déploiement, en particulier quand il s’agit de systèmes et d’applications critiques.
+Ceux-ci sont installés sur l’ordinateur hello synchronisation Azure AD Connect. les connecteurs Hello fournissent hello capacité sans agent tooconverse à l’aide de protocoles système distants au lieu de compter sur le déploiement de hello d’agents spécialisés. Cela se traduit par une réduction des risques et de la durée de déploiement, en particulier quand il s’agit de systèmes et d’applications critiques.
 
-Dans l’illustration ci-dessus, le connecteur est synonyme de l’espace de connecteur mais il englobe toutes les communications avec le système externe.
+Dans l’image hello ci-dessus, connecteur de hello est synonyme de l’espace de connecteur hello mais englobe toutes les communications avec le système externe de hello.
 
-Le connecteur est responsable de toutes les fonctionnalités d’importation et d’exportation vers le système et il évite aux développeurs de devoir comprendre comment se connecter à chaque système en mode natif lors de l’utilisation de l’approvisionnement déclaratif pour personnaliser les transformations de données.
+Hello connecteur est responsable de toutes les importent et exporter des fonctionnalités toohello système évite aux développeurs d’avoir toounderstand comment tooconnect tooeach système en mode natif lorsque vous utilisez des transformations de données toocustomize approvisionnement déclaratif.
 
-Les importations et exportations ont lieu uniquement quand elles sont planifiées, ce qui offre une isolation supplémentaire par rapport aux modifications qui se produisent dans le système, dans la mesure où les modifications ne se propagent pas automatiquement à la source de données connectée. En outre, les développeurs peuvent également créer leurs propres connecteurs pour se connecter à pratiquement n'importe quelle source de données.
+Les importations et exportations ne se produisent lors de la planification, permet davantage d’isolation des modifications qui se produisent dans le système de hello, étant donné que les modifications se propagent pas automatiquement source de données connectée toohello. En outre, les développeurs peuvent créer leurs propres connecteurs pour se connecter toovirtually n’importe quelle source de données.
 
 ## <a name="attribute-flow"></a>Flux d’attributs
-Le métaverse est l’affichage consolidé de toutes les identités jointes des espaces de connecteur voisins. Dans la figure ci-dessus, le flux des attributs est représenté par des lignes comportant des flèches pour les flux entrant et sortant. Le flux des attributs est le processus de copie ou de transformation de données d'un système vers un autre et vers tous les flux d’attributs (entrants ou sortants).
+Hello métaverse est vue hello consolidé de toutes les identités jointes à partir des espaces connecteurs voisins. Dans la figure hello ci-dessus, flux d’attribut est représenté par des lignes fléchées pour les flux entrant et sortant. Flux d’attribut consiste à hello copie ou de transformation des données à partir d’un système tooanother et tous les attributs de flux (entrants ou sortants).
 
-Le flux d’attributs se produit entre l’espace de connecteur et le métaverse de manière bidirectionnelle quand l’exécution d’opérations de synchronisation (complète ou delta) est planifiée.
+Flux d’attribut se produit entre l’espace de connecteur de hello et hello métaverse bidirectionnelle des opérations de synchronisation (complète ou delta) sont planifiée toorun.
 
-Le flux d’attributs se produit uniquement quand ces synchronisations sont exécutées. Les flux d’attributs sont définis dans des règles de synchronisation. Ces règles peuvent être entrantes (ISR dans l’image ci-dessus) ou sortantes (OSR dans l’image ci-dessus).
+Le flux d’attributs se produit uniquement quand ces synchronisations sont exécutées. Les flux d’attributs sont définis dans des règles de synchronisation. Il peut s’agir d’entrantes (ISR dans l’image hello ci-dessus) ou sortantes (OSR dans l’image hello ci-dessus).
 
 ## <a name="connected-system"></a>Système connecté
-Système connecté (également appelé annuaire connecté) fait référence au système distant auquel Azure AD Connect Sync s'est connecté et vers lequel et à partir duquel il lit et écrit des données d'identité.
+Système connecté (également appelé annuaire connecté) fait référence le système distant de toohello Azure synchronisation AD Connect s’est connecté tooand lecture et écriture tooand de données d’identité à partir de.
 
 ## <a name="connector-space"></a>Espace de connecteur
-Chaque source de données connectée est représentée comme un sous-ensemble filtré des objets et des attributs dans l’espace de connecteur.
-Cela permet au service de synchronisation de s’exécuter localement sans qu’il soit nécessaire de contacter le système distant lors de la synchronisation des objets et cela limite l’interaction aux importations et exportations.
+Chaque source de données connectée est représentée comme un sous-ensemble filtré des objets de hello et les attributs dans l’espace de connecteur hello.
+Ainsi, toooperate de service de synchronisation hello localement sans le système distant de hello besoin toocontact hello lors de la synchronisation des objets de hello et restreint l’interaction tooimports et exporte uniquement.
 
-Quand la source de données et le connecteur peuvent fournir une liste de modifications (une importation delta), l’efficacité opérationnelle augmente considérablement car seules les modifications apportées depuis le dernier cycle d’interrogation sont échangées. L’espace de connecteur isole la source de données connectée des modifications qui se propagent automatiquement en exigeant que le connecteur planifie les importations et les exportations. Cette assurance supplémentaire vous procure une tranquillité d’esprit lors des tests, de l’examen ou de la confirmation de la mise à jour suivante.
+Lors de la source de données hello et le connecteur de hello ont hello capacité tooprovide une liste des modifications (importation delta), puis hello efficacité opérationnelle augmente considérablement que seules les modifications apportées depuis la dernière interrogation. hello cycle est échangés. espace de connecteur Hello isole la source de données connectée hello de propagation automatique par nécessitant que cette planification du connecteur hello importe et exporte des changements. Cette garantie accorde la tranquillité d’esprit lors du test, l’aperçu ou confirmation de la prochaine mise à jour de hello.
 
 ## <a name="metaverse"></a>Métaverse
-Le métaverse est l’affichage consolidé de toutes les identités jointes des espaces de connecteur voisins.
+Hello métaverse est vue hello consolidé de toutes les identités jointes à partir des espaces connecteurs voisins.
 
-À mesure que des identités sont liées et que l’autorité est attribuée pour différents attributs via des mappages de flux d’importation, l’objet de métaverse central commence à regrouper les informations provenant de plusieurs systèmes. À partir de ce flux d’attributs d’objets, des mappages transmettent des informations aux systèmes sortants.
+Comme les identités sont liées entre elles et autorité est affectée pour divers attributs via les mappages de flux d’importation, objet de métaverse central hello commence tooaggregate les informations à partir de plusieurs systèmes. À partir de ce flux d’attribut objet, les mappages véhiculent des systèmes d’information toooutbound.
 
-Des objets sont créés quand un système faisant autorité les projette dans le métaverse. Dès que toutes les connexions sont supprimées, l’objet de métaverse est supprimé.
+Objets sont créés quand un système faisant autorité les projette dans hello métaverse. Dès que toutes les connexions sont supprimées, l’objet de métaverse hello est supprimé.
 
-Impossible de modifier directement les objets de métaverse. Toutes les données de l'objet doivent être fournies via le flux des attributs. Le métaverse conserve les connecteurs permanents avec chaque espace de connecteur. Ces connecteurs ne nécessitent pas de réévaluation pour chaque exécution de la synchronisation. Cela signifie qu'Azure AD Connect Sync n'a pas à localiser à chaque fois l'objet distant correspondant. On n'a donc pas besoin d'agents onéreux pour empêcher des modifications des attributs qui seraient normalement responsables de la mise en corrélation des objets.
+Objets hello métaverse ne peut pas être modifiées directement. Toutes les données dans l’objet de hello doivent être utilisées via les flux d’attribut. Hello métaverse gère des connecteurs persistants pour chaque espace connecteur. Ces connecteurs ne nécessitent pas de réévaluation pour chaque exécution de la synchronisation. Cela signifie que la synchronisation Azure AD Connect n’est pas toolocate hello correspondant à distance objet chaque fois. Cela évite hello tooattributes de modifications tooprevent agents coûteux qui serait normalement responsable de la mise en corrélation des objets de hello.
 
-Lors de la découverte de nouvelles sources de données pouvant contenir des objets à gérer, Azure AD Connect Sync utilise un processus appelé règle de jointure pour évaluer les candidats potentiels avec lesquels établir un lien.
-Une fois le lien établi, cette évaluation ne se reproduit pas et le flux d’attributs normal peut se produire entre la source de données connectée et le métaverse.
+Lorsque nouvelles sources de données qui peuvent avoir des objets préexistants toobe géré, les utilisations de synchronisation Azure AD Connect un processus appelé une jointure règle tooevaluate les candidats potentiels avec le tooestablish un lien.
+Une fois le lien de hello est établie, cette évaluation ne se reproduit pas et le flux d’attribut normal peut se produire entre la source de données connectée distante hello et hello métaverse.
 
 ## <a name="provisioning"></a>Approvisionnement
-Quand une source faisant autorité projette un nouvel objet dans le métaverse, un nouvel objet d’espace de connecteur peut être créé dans un autre connecteur représentant une source de données connectée en aval.
+Lorsqu’une source d’autorité projette un nouvel objet dans le métaverse hello un nouvel objet d’espace connecteur peut être créé dans un autre connecteur représentant une source de données connectée.
 
 Cela établit intrinsèquement un lien, et le flux d’attributs peut se produire de manière bidirectionnelle.
 
-Chaque fois qu’une règle détermine qu’un nouvel objet d’espace de connecteur doit être créé, on emploie le terme d’« approvisionnement ». Toutefois, étant donné que cette opération n’a lieu que dans l’espace de connecteur, elle n’est reportée dans la source de données connectée qu’une fois qu’une exportation est effectuée.
+Chaque fois qu’une règle détermine qu’un nouvel objet d’espace connecteur doit toobe créé, il est appelé mise en service. Toutefois, étant donné que cette opération a lieu uniquement dans l’espace de connecteur hello, il ne s’applique pas dans la source de données connectée hello jusqu'à ce qu’une exportation est effectuée.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 * [Azure AD Connect Sync : personnalisation des options de synchronisation](active-directory-aadconnectsync-whatis.md)

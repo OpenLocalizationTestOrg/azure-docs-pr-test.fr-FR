@@ -1,6 +1,6 @@
 ---
-title: "Problèmes lors de l’installation du connecteur d’agent de proxy d’application | Microsoft Docs"
-description: "Comment résoudre les problèmes que vous pouvez rencontrer lors de l’installation du connecteur d’agent de proxy d’application"
+title: "l’installation d’aaaProblem hello Agent connecteur Proxy d’Application | Documents Microsoft"
+description: "Comment tootroubleshoot les problèmes qui vous pouvez face lors de l’installation hello Agent connecteur Proxy d’Application"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,60 +13,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 91b3f6f3c8339647f568a509e9efd8e1fffb13dd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 07ac366a429083af0c9b87aa9df9cf3876132b90
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="problem-installing-the-application-proxy-agent-connector"></a>Problèmes lors de l’installation du connecteur d’agent de proxy d’application
+# <a name="problem-installing-hello-application-proxy-agent-connector"></a>Problème d’installation hello Agent connecteur Proxy d’Application
 
-Le connecteur de proxy d’application Microsoft AAD est un composant de domaine interne qui utilise des connexions sortantes pour établir la connectivité à partir du point de terminaison disponible dans le cloud vers le domaine interne.
+Microsoft AAD Application Proxy Connector est un composant de domaine interne qui utilise la connectivité de connexions sortantes tooestablish hello du domaine interne de hello cloud point de terminaison disponible toohello.
 
 ## <a name="general-problem-areas-with-connector-installation"></a>Problèmes généraux avec l’installation du connecteur
 
-En cas d’échec de l’installation d’un connecteur, la cause est généralement liée à l’un des aspects suivants :
+En cas d’échec de l’installation de hello d’un connecteur, cause première hello fait généralement partie de hello suivant de zones :
 
-1.  **Connectivité** : pour une installation réussie, le nouveau connecteur doit s’inscrire et établir les propriétés d’approbation ultérieures. Pour cela, connectez-vous au service cloud du proxy d’application AAD.
+1.  **Connectivité** – toocomplete une installation réussie, hello tooregister de besoins nouveau connecteur et établir les propriétés d’approbation futures. Pour cela, en vous connectant toohello service de cloud de Proxy d’Application AAD.
 
-2.  **Établissement de l’approbation** : le nouveau connecteur crée un certificat auto-signé et s’inscrit auprès du service cloud.
+2.  **Établissement d’approbation** – nouveau connecteur de hello crée un certificat auto-signé et inscrit toohello cloud service.
 
-3.  **Authentification de l’administrateur** : pendant l’installation, l’utilisateur doit fournir des informations d’identification d’administrateur pour terminer l’installation du connecteur.
+3.  **L’authentification de l’administration de hello** – pendant l’installation, utilisateur de hello doit fournir des informations d’identification administrateur installation du connecteur toocomplete hello.
 
-## <a name="verify-connectivity-to-the-cloud-application-proxy-service-and-microsoft-login-page"></a>Vérification de la connectivité vers le service de proxy d’application cloud et la page de connexion Microsoft
+## <a name="verify-connectivity-toohello-cloud-application-proxy-service-and-microsoft-login-page"></a>Vérifiez que le service de Proxy d’Application Cloud toohello de connectivité et de la page de Microsoft Login
 
-**Objectif :** vérifier que l’ordinateur connecteur peut se connecter au point de terminaison d’inscription du proxy d’application AAD ainsi qu’à la page de connexion Microsoft.
+**Objectif :** Vérifiez que l’ordinateur connecteur hello peut se connecter de point de terminaison toohello AAD Application Proxy d’inscription ainsi que la page de connexion de Microsoft.
 
-1.  Ouvrez un navigateur et accédez à la page web suivante : <https://aadap-portcheck.connectorporttest.msappproxy.net>. Vérifiez que la connectivité vers les centres de données des États-Unis du Centre et des États-Unis de l’Est avec les ports 9090 et 9091 fonctionne.
+1.  Ouvrir un toohello de navigateur et allez suivant la page web : <https://aadap-portcheck.connectorporttest.msappproxy.net> et vérifiez que tooCentral de connectivité hello des États-Unis et l’utilisation de centres de données est des États-Unis avec les ports 9090 et 9091.
 
-2.  En cas d’échec de l’un de ces ports (absence de coche verte), vérifiez que \*.msappproxy.net est correctement défini sur le proxy principal ou le pare-feu avec les ports 9090 et 9091.
+2.  Si un de ces ports ne réussit pas (ne dispose pas une coche verte), vérifiez que hello pare-feu ou proxy du serveur principal a \*. msappproxy.net avec ports 9090 et 9091 définies correctement.
 
-3.  Ouvrez un navigateur (onglet distinct) et accédez à la page web suivante : <https://login.microsoftonline.com>. Assurez-vous que vous pouvez vous connecter à cette page.
+3.  Ouvrez un navigateur (onglet séparé) et accédez toohello suivant la page web : <https://login.microsoftonline.com>, assurez-vous que vous pouvez vous connecter toothat page.
 
 ## <a name="verify-machine-and-backend-components-support-for-application-proxy-trust-cert"></a>Vérification de la prise en charge du certificat de confiance du proxy d’application par la machine et les composants principaux
 
-**Objectif :** vérifier que l’ordinateur connecteur, le pare-feu et le proxy principal peuvent prendre en charge le certificat créé par le connecteur en vue d’une approbation ultérieure.
+**Objectif :** Vérifiez qu’ordinateur de connecteur hello, de pare-feu et de proxy de serveur principal peuvent prendre en charge de certificat hello créé par le connecteur hello pour approbation ultérieure.
 
 >[!NOTE]
->Le connecteur tente de créer un certificat SHA512 pris en charge par TLS1.2. Si l’ordinateur ou le pare-feu principal et le proxy ne prennent pas en charge TLS1.2, l’installation échoue.
+>connecteur de Hello tente toocreate un certificat SHA512 est pris en charge par TLS 1.2. Si l’ordinateur de hello ou de proxy et de pare-feu de serveur principal hello ne prend pas en charge TLS 1.2, hello installation d’échouer.
 >
 >
 
-**Résolution du problème :**
+**problème de hello tooresolve :**
 
-1.  Vérifiez que l’ordinateur prend en charge TLS1.2 (toutes les versions de Windows supérieures à 2012 R2 doivent prendre en charge TLS 1.2). Si votre ordinateur connecteur dispose de la version 2012 R2 ou d’une version inférieure, assurez-vous que les bases de connaissances suivantes sont installées sur l’ordinateur : <https://support.microsoft.com/help/2973337/sha512-is-disabled-in-windows-when-you-use-tls-1.2>
+1.  Vérifiez l’ordinateur de hello prend en charge TLS 1.2 – les versions de toutes les fenêtres après 2012 R2 doivent prendre en charge TLS 1.2. Si votre ordinateur de connecteur à partir d’une version de 2012 R2 ou les avant, assurez-vous que hello Kbits/s suivants sont installés sur l’ordinateur de hello : <https://support.microsoft.com/help/2973337/sha512-is-disabled-in-windows-when-you-use-tls-1.2>
 
-2.  Contactez votre administrateur réseau et demandez-lui de vérifier que le proxy principal et le pare-feu ne bloquent par SHA512 pour le trafic sortant.
+2.  Contactez votre administrateur réseau et demander tooverify que hello principal proxy et pare-feu ne bloquent pas SHA512 pour le trafic sortant.
 
-## <a name="verify-admin-is-used-to-install-the-connector"></a>Vérification de l’utilisation d’une connexion administrateur pour l’installation du connecteur
+## <a name="verify-admin-is-used-tooinstall-hello-connector"></a>Vérifiez qu’admin est utilisé tooinstall hello connecteur
 
-**Objectif :** vérifier que l’utilisateur qui tente d’installer le connecteur est un administrateur disposant des informations d’identification correctes. Actuellement, l’installation requiert que l’utilisateur soit un administrateur général.
+**Objectif :** Vérifiez que cet utilisateur hello qui tente de connecteur de hello tooinstall est un administrateur disposant des informations d’identification correctes. Actuellement, les utilisateurs hello doivent être un administrateur global pour hello installation toosucceed.
 
-**Pour vérifier que les informations d’identification sont correctes :**
+**informations d’identification de tooverify hello sont correctes :**
 
-Connectez-vous à <https://login.microsoftonline.com> et utilisez les mêmes informations d’identification. Vérifiez que la connexion a réussi. Vous pouvez vérifier le rôle utilisateur en sélectionnant **Azure Active Directory** -&gt; **Utilisateurs et groupes** -&gt; **Tous les utilisateurs**. 
+Vous connecter trop<https://login.microsoftonline.com> et utilisation hello les mêmes informations d’identification. Vérifiez que hello connexion est établie. Vous pouvez vérifier le rôle d’utilisateur hello en accédant trop**Azure Active Directory**  - &gt; **utilisateurs et groupes**  - &gt; **tous les utilisateurs**. 
 
-Sélectionnez votre compte d’utilisateur, puis sélectionnez « Rôle d’annuaire » dans le menu qui s’affiche. Vérifiez que le rôle sélectionné est « Administrateur général ». Si vous ne pouvez accéder à aucune des pages de cette procédure, cela signifie que vous n’êtes pas administrateur général.
+Sélectionnez votre compte d’utilisateur, puis « rôle active » dans le menu résultant de hello. Vérifiez que ce rôle sélectionné hello est « Administrateur général ». Si vous êtes tooaccess impossible des hello pages le long de ces étapes, vous n’êtes pas un administrateur global.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Présentation des connecteurs de proxy d’application Azure AD](application-proxy-understand-connectors.md)

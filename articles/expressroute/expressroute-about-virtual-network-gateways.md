@@ -1,5 +1,5 @@
 ---
-title: "À propos des passerelles de réseau virtuel pour ExpressRoute | Microsoft Docs"
+title: "passerelles de réseau virtuel aaaAbout ExpressRoute | Documents Microsoft"
 description: "En savoir plus sur les passerelles de réseau virtuel pour ExpressRoute."
 services: expressroute
 documentationcenter: na
@@ -15,38 +15,38 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/05/2017
 ms.author: cherylmc
-ms.openlocfilehash: a6363fa380d0bab05d7500141cc6019d1d3f68b8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4daf4f96b4fadb00683d8e536e51734853008c50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-virtual-network-gateways-for-expressroute"></a>À propos des passerelles de réseau virtuel pour ExpressRoute
-Une passerelle de réseau virtuel est conçue pour faire circuler le trafic réseau entre les réseaux virtuels Azure et les emplacements locaux. Lorsque vous configurez une connexion ExpressRoute, vous devez créer et configurer une passerelle de réseau virtuel et une connexion à la passerelle de réseau virtuel.
+Sert de passerelle de réseau virtuel toosend le trafic de réseau entre les réseaux virtuels Azure et les emplacements sur site. Lorsque vous configurez une connexion ExpressRoute, vous devez créer et configurer une passerelle de réseau virtuel et une connexion à la passerelle de réseau virtuel.
 
-Lorsque vous créez une passerelle de réseau virtuel, vous spécifiez plusieurs paramètres. L’un des paramètres requis spécifie si la passerelle sera utilisée pour le trafic ExpressRoute ou le trafic VPN de site à site. Dans le modèle de déploiement de Resource Manager, le paramètre est « -GatewayType ».
+Lorsque vous créez une passerelle de réseau virtuel, vous spécifiez plusieurs paramètres. Un des paramètres de hello requis spécifie si la passerelle de hello doit être utilisé pour le trafic ExpressRoute ou VPN de Site à Site. Dans le modèle de déploiement du Gestionnaire de ressources hello, paramètre de hello est '-le type de passerelle ».
 
-Lorsque le trafic réseau est envoyé sur une connexion privée, vous utilisez le type de passerelle « ExpressRoute ». C’est ce que l’on appelle une passerelle ExpressRoute. Lorsque le trafic réseau est transmis chiffré sur l’Internet public, vous utilisez le type de passerelle « Vpn ». Il s’agit alors d’une passerelle VPN. Les connexions site à site, point à site et réseau virtuel à réseau virtuel utilisent toutes une passerelle VPN.
+Lorsque le trafic réseau est envoyé sur une connexion privée, vous utilisez le type de passerelle hello « ExpressRoute ». Il s’agit également tooas auxquels une passerelle ExpressRoute. Lorsque le trafic réseau est envoyé chiffré entre hello Internet public, vous utilisez le type de passerelle hello « Vpn ». Il s’agit de tooas auxquels une passerelle VPN. Les connexions site à site, point à site et réseau virtuel à réseau virtuel utilisent toutes une passerelle VPN.
 
-Chaque réseau virtuel ne peut posséder qu’une seule passerelle de réseau virtuel par type de passerelle. Par exemple, une passerelle de réseau virtuel peut utiliser le type de passerelle VPN et une autre le type de passerelle ExpressRoute. Cet article décrit la passerelle de réseau virtuel ExpressRoute.
+Chaque réseau virtuel ne peut posséder qu’une seule passerelle de réseau virtuel par type de passerelle. Par exemple, une passerelle de réseau virtuel peut utiliser le type de passerelle VPN et une autre le type de passerelle ExpressRoute. Cet article se concentre sur la passerelle de réseau virtuel hello ExpressRoute.
 
 ## <a name="gwsku"></a>SKU de passerelle
 [!INCLUDE [expressroute-gwsku-include](../../includes/expressroute-gwsku-include.md)]
 
-Si vous souhaitez mettre à niveau votre passerelle vers une référence (SKU) de passerelle plus puissante, dans la plupart des cas, vous pouvez utiliser l’applet de commande PowerShell « Resize-AzureRmVirtualNetworkGateway ». Cela fonctionne pour les mises à niveau vers les références (SKU) Standard HighPerformance. Toutefois, pour mettre à niveau vers la référence (SKU) UltraPerformance, vous devez recréer la passerelle.
+Si vous souhaitez tooupgrade votre tooa passerelle plus puissante passerelle référence (SKU), dans la plupart des cas, vous pouvez utiliser hello applet de commande PowerShell de « Resize-AzureRmVirtualNetworkGateway ». Cela fonctionne pour les mises à niveau tooStandard et références (SKU) hautes performances. Toutefois, tooupgrade toohello UltraPerformance SKU, vous devrez passerelle de hello toorecreate.
 
 ### <a name="aggthroughput"></a>Débit agrégé estimé par SKU de passerelle
-Le tableau ci-dessous présente les types de passerelle et le débit total estimé. Cette table s’applique aux modèles de déploiement classique et Resource Manager.
+Hello tableau suivant répertorie les types de passerelles hello et débit estimé hello. Ce tableau s’applique tooboth hello Gestionnaire de ressources et les modèles de déploiement classique.
 
 [!INCLUDE [expressroute-table-aggthroughput](../../includes/expressroute-table-aggtput-include.md)]
 
 > [!IMPORTANT]
-> Le débit de l’application dépend de plusieurs facteurs, tels que la latence de bout en bout et le nombre de flux de trafic que l’application ouvre. Les numéros indiqués dans le tableau représentent la limite supérieure que l’application peut théoriquement atteindre dans un environnement idéal. 
+> Débit de l’application dépend de plusieurs facteurs, tels que de latence de bout en bout hello, et nombre de hello du trafic flux hello application ouvre. nombres de Hello dans hello table représentent hello limite supérieure qu’application hello peut theorectically atteindre dans un environnement idéal. 
 > 
 >
 
 ## <a name="resources"></a>API REST et applets de commande PowerShell
-Pour accéder à des ressources techniques supplémentaires et connaître les exigences spécifiques en matière de syntaxe lors de l’utilisation d’API REST et d’applets de commande PowerShell pour les configurations de passerelles de réseau virtuel, consultez les pages suivantes :
+Pour les ressources techniques supplémentaires en matière de syntaxe spécifique lors de l’utilisation des API REST et les applets de commande PowerShell pour les configurations de passerelle de réseau virtuel, consultez hello suivant pages :
 
 | **Classique** | **Gestionnaire de ressources** |
 | --- | --- |

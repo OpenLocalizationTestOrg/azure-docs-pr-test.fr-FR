@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Netsuite | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Netsuite."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory à Netsuite."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,82 +13,82 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 277c393536615fc8bfe8af0bc6d487115f04776c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5bb2989c1296b9f2abc9e8c84855731adc484aab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-netsuite-for-automatic-user-provisioning"></a>Didacticiel : Configuration de Netsuite pour l’approvisionnement automatique d’utilisateurs
 
-L’objectif de ce didacticiel est de vous montrer la procédure à suivre dans Netsuite et Azure AD pour approvisionner et retirer automatiquement des comptes utilisateur Azure AD vers Netsuite.
+objectif Hello de ce didacticiel est tooshow vous hello étapes que vous devez tooperform dans Netsuite et Azure AD tooautomatically approvisionner et configurer des comptes d’utilisateur à partir d’Azure AD tooNetsuite.
 
-## <a name="prerequisites"></a>Conditions préalables
+## <a name="prerequisites"></a>Composants requis
 
-Le scénario décrit dans ce didacticiel part du principe que vous disposez des éléments suivants :
+scénario de Hello décrite dans ce didacticiel part du principe que vous avez déjà hello éléments suivants :
 
 *   Un locataire Azure Active Directory.
 *   Un abonnement Netsuite pour lequel l’authentification unique est activée.
 *   Un compte utilisateur dans Netsuite avec les autorisations d’administrateur d’équipe.
 
-## <a name="assigning-users-to-netsuite"></a>Affectation d’utilisateurs à Netsuite
+## <a name="assigning-users-toonetsuite"></a>Affectation d’utilisateurs tooNetsuite
 
-Azure Active Directory utilise un concept appelé « affectations » pour déterminer les utilisateurs devant recevoir l’accès aux applications sélectionnées. Dans le cadre de l’approvisionnement automatique de comptes utilisateur, seuls les utilisateurs et les groupes qui ont été « assignés » à une application dans Azure AD sont synchronisés.
+Azure Active Directory utilise un concept appelé toodetermine « affectations » les utilisateurs qui doivent recevoir l’accès tooselected applications. Dans le contexte de hello de configuration de compte automatique d’utilisateurs, seuls les utilisateurs de hello et les groupes qui ont été « affectés » application tooan dans Azure AD sont synchronisés.
 
-Avant de configurer et d’activer le service d’approvisionnement, vous devez déterminer quels utilisateurs et/ou groupes dans Azure AD ont besoin d’accéder à votre application Netsuite. Une fois que vous avez effectuer votre choix, vous pouvez affecter ces utilisateurs à votre application Netsuite en suivant les instructions fournies ici :
+Avant de configurer et de l’activation de hello service de configuration, vous devez toodecide quels utilisateurs ou des groupes dans Azure AD représentent hello utilisateurs qui doivent accéder aux tooyour Netsuite application. Après choisi, vous pouvez attribuer à ces applications de Netsuite tooyour les utilisateurs en suivant les instructions hello ici :
 
-[Affecter un utilisateur ou un groupe à une application d’entreprise](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+[Affecter une application d’entreprise tooan utilisateur ou un groupe](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
 
-### <a name="important-tips-for-assigning-users-to-netsuite"></a>Conseils importants pour l’affectation d’utilisateurs à Netsuite
+### <a name="important-tips-for-assigning-users-toonetsuite"></a>Conseils importants pour l’affectation d’utilisateurs tooNetsuite
 
-*   Il est recommandé de n’assigner qu’un seul utilisateur Azure AD à Netsuite afin de tester la configuration de l’approvisionnement. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
+*   Il est recommandé qu’un seul utilisateur Azure AD est attribué tooNetsuite tootest hello est mise en service de configuration. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
 
-*   Quand vous affectez un utilisateur à Netsuite, vous devez sélectionner un rôle d’utilisateur valide. Le rôle « Accès par défaut » ne fonctionne pas pour l’approvisionnement.
+*   Lorsque vous affectez un tooNetsuite d’utilisateur, vous devez sélectionner un rôle d’utilisateur valide. rôle de « Accès par défaut » Hello ne fonctionne pas pour la configuration.
 
-## <a name="enable-user-provisioning"></a>Activer l’approvisionnement d’utilisateurs
+## <a name="enable-user-provisioning"></a>Activer l’approvisionnement des utilisateurs
 
-Cette section explique comment connecter votre Azure AD à l’API d’approvisionnement de comptes utilisateur de Netsuite pour créer, mettre à jour et désactiver les comptes utilisateur affectés dans Netsuite en fonction des attributions d’utilisateurs et de groupes dans Azure AD.
+Cette section vous guide à travers de la connexion du compte d’utilisateur de votre tooNetsuite AD Azure API de configuration et configurez hello toocreate du service de configuration, de mettre à jour et de désactiver les comptes d’utilisateur affecté dans Netsuite en fonction de l’affectation d’utilisateurs et de groupes dans Azure AD.
 
 > [!TIP] 
-> Vous pouvez également choisir d’activer l’authentification unique basée sur SAML pour Netsuite en suivant les instructions fournies dans le [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
+> Vous pouvez également choisir tooenabled basé sur SAML Single Sign-On pour Netsuite, en suivant les instructions hello fournies dans [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
 
-### <a name="to-configure-user-account-provisioning"></a>Pour configurer l’approvisionnement de comptes utilisateur :
+### <a name="tooconfigure-user-account-provisioning"></a>approvisionnement des comptes utilisateur tooconfigure :
 
-L’objectif de cette section est d’expliquer comment activer l’approvisionnement utilisateur des comptes utilisateur Active Directory sur Netsuite.
+objectif Hello de cette section est toooutline mode tooenable l’approvisionnement des utilisateurs d’utilisateur Active Directory de comptes tooNetsuite.
 
-1. Dans le [portail Azure](https://portal.azure.com), accédez à la section **Azure Active Directory > Applications d’entreprise > Toutes les applications**.
+1. Bonjour [portail Azure](https://portal.azure.com), parcourir toohello **Azure Active Directory > applications d’entreprise > toutes les applications** section.
 
-2. Si vous avez déjà configuré Netsuite pour l’authentification unique, recherchez votre instance de Netsuite à l’aide du champ de recherche. Sinon, sélectionnez **Ajouter** et recherchez **Netsuite** dans la galerie d’applications. Sélectionnez Netsuite dans les résultats de recherche et ajoutez-la à votre liste d’applications.
+2. Si vous avez déjà configuré Netsuite pour l’authentification unique, recherchez votre instance de Netsuite à l’aide du champ de recherche hello. Sinon, sélectionnez **ajouter** et recherchez **Netsuite** dans la galerie d’applications hello. Sélectionnez Netsuite à partir des résultats de recherche hello et ajoutez-le tooyour la liste des applications.
 
-3. Sélectionnez votre instance de Netsuite, puis sélectionnez l’onglet **Approvisionnement**.
+3. Sélectionnez votre instance de Netsuite, puis hello **Provisioning** onglet.
 
-4. Définissez le **Mode d’approvisionnement** sur **Automatique**. 
+4. Ensemble hello **Mode d’approvisionnement** trop**automatique**. 
 
     ![approvisionnement](./media/active-directory-saas-netsuite-provisioning-tutorial/provisioning.png)
 
-5. Dans la section **Informations d’identification de l’administrateur**, fournissez les paramètres de configuration suivants :
+5. Sous hello **informations d’identification administrateur** section, fournissez hello suivant les paramètres de configuration :
    
-    a. Dans la zone de texte **Nom d'utilisateur Admin**, tapez le nom d’un compte Netsuite auquel le profil **System Administrator** (Administrateur système) est affecté dans Netsuite.com.
+    a. Bonjour **nom d’utilisateur Admin** zone de texte, tapez un Netsuite compte nom a hello **administrateur système** profil dans Netsuite.com attribué.
    
-    b. Dans la zone de texte **Mot de passe d’administrateur**, entrez le mot de passe de ce compte.
+    b. Bonjour **mot de passe administrateur** zone de texte, un mot de passe type hello pour ce compte.
       
-6. Dans le portail Azure, cliquez sur **Tester la connexion** pour vérifier qu’Azure AD peut se connecter à votre application Netsuite.
+6. Bonjour portail Azure, cliquez sur **tester la connexion** tooensure AD Azure peut se connecter tooyour Netsuite application.
 
-7. Dans le champ **E-mail de notification**, entrez l’adresse e-mail d’une personne ou d’un groupe qui doit recevoir les notifications d’erreur d’approvisionnement, puis cochez la case.
+7. Bonjour **Notification par courrier électronique** , entrez l’adresse de messagerie hello d’une personne ou un groupe qui doit recevoir des notifications de d’erreur et case à cocher hello.
 
 8. Cliquez sur **Enregistrer.**
 
-9. Dans la section Mappages, sélectionnez **Synchroniser les utilisateurs Azure Active Directory avec Netsuite**.
+9. Sous la section des mappages de hello, sélectionnez **tooNetsuite de synchronisation Azure Active Directory Users.**
 
-10. Dans la section **Mappages d’attributs**, passez en revue les attributs utilisateur qui sont synchronisés d’Azure AD vers Netsuite. Remarque : les attributs sélectionnés en tant que propriétés de **Correspondance** servent à faire correspondre les comptes utilisateur dans Netsuite, en vue d’opérations de mise à jour. Cliquez sur le bouton Enregistrer pour valider les modifications.
+10. Bonjour **des mappages d’attributs** section, passez en revue les attributs utilisateur hello qui sont synchronisés à partir d’Azure AD tooNetsuite. Notez que hello attributs sélectionnés en tant que **correspondance** propriétés sont des comptes d’utilisateur hello toomatch utilisés dans Netsuite pour les opérations de mise à jour. Sélectionnez toocommit de bouton hello enregistrer toutes les modifications.
 
-11. Pour activer le service d’approvisionnement Azure AD pour Netsuite, affectez la valeur **Activé** au paramètre **État de l’approvisionnement** dans la section Paramètres.
+11. tooenable hello service de configuration d’Azure AD pour Netsuite, modification hello **état d’approvisionnement** trop**sur** Bonjour section de paramètres
 
 12. Cliquez sur **Enregistrer.**
 
-Cette commande démarre la synchronisation initiale des utilisateurs et/ou des groupes affectés à Netsuite dans la section Utilisateurs et Groupes. Remarquez que la synchronisation initiale prend plus de temps que les synchronisations suivantes, qui se produisent environ toutes les 20 minutes, tant que le service est en cours d’exécution. Vous pouvez utiliser la section **Détails de la synchronisation** pour surveiller la progression et les liens vers les rapports d’activité d’approvisionnement, qui décrivent toutes les actions effectuées par le service d’approvisionnement dans votre application Netsuite.
+Il démarre la synchronisation initiale d’utilisateurs et/ou groupes affectés tooNetsuite Bonjour les utilisateurs et la section groupes de hello. Notez que la synchronisation initiale hello prend tooperform plus de temps que les synchronisations suivantes, qui se produisent toutes les 20 minutes environ tant que service de hello est en cours d’exécution. Vous pouvez utiliser hello **détails de synchronisation** section toomonitor cours et suivre des rapports d’activité tooprovisioning des liens, qui décrivent toutes les actions effectuées par hello mise en service du service sur votre application Netsuite.
 
-Vous pouvez à présent créer un compte de test. Patientez jusqu’à 20 minutes et vérifiez que le compte a bien été synchronisé avec Netsuite.
+Vous pouvez à présent créer un compte de test. Attendez que les minutes too20 tooverify hello compte a été synchronisé tooNetsuite.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 

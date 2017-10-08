@@ -1,6 +1,6 @@
 ---
-title: "Problème de configuration de l’authentification unique fédérée pour une application de la galerie Azure AD | Microsoft Docs"
-description: "Découvrez comment résoudre certains problèmes courants que vous pouvez rencontrer lors de la configuration de l’authentification unique fédérée avec SAML pour les applications répertoriées dans la galerie d’applications Azure AD"
+title: "aaaProblem configuration fédérée l’authentification unique pour une application Azure AD galerie | Documents Microsoft"
+description: "Résoudre certains des problèmes courants de hello vous pouvez rencontrer lors de la configuration fédérée seule l’authentification à l’aide de SAML pour les applications qui sont répertoriées dans la galerie d’applications Azure AD de hello"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,99 +13,99 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 290ca66048281de5e031b0404919bed84ab19ffa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2ae1e511bd49b19159e1ab83cf79a7db5403b9a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="problem-configuring-federated-single-sign-on-for-an-azure-ad-gallery-application"></a>Problème de configuration de l’authentification unique fédérée pour une application de la galerie Azure AD
 
-Si vous rencontrez un problème lors de la configuration d’une application, vérifiez que vous avez suivi toutes les étapes du didacticiel dédié à l’application. Dans la configuration de l’application, une documentation en ligne sur la configuration de l’application vous est proposée. Pour une aide pas à pas détaillée, vous pouvez accéder à la [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/).
+Si vous rencontrez un problème lors de la configuration d’une application, Vérifiez que vous avez suivi toutes les étapes de hello dans didacticiel hello pour une application hello. Dans la configuration de l’application hello, vous disposez de la documentation inline sur la façon dont tooconfigure hello application. Vous pouvez également accéder à hello [liste des didacticiels sur la façon de toointegrate les applications SaaS avec Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/) pour obtenir une aide pas à pas détaillé.
 
-## <a name="cant-add-another-instance-of-the-application"></a>Impossible d’ajouter une autre instance de l’application
+## <a name="cant-add-another-instance-of-hello-application"></a>Impossible d’ajouter une autre instance de l’application hello
 
-Pour ajouter une deuxième instance d’une application, vous devez être en mesure de :
+tooadd une deuxième instance d’une application, vous devez toobe en mesure de :
 
--   Configurer un identificateur unique pour la deuxième instance. Vous ne pourrez pas configurer le même identificateur que celui utilisé pour la première instance.
+-   Configurer un identificateur unique pour la deuxième instance de hello. Vous ne serez pas hello tooconfigure en mesure de même identificateur utilisé pour première instance de hello.
 
--   Configurer un certificat différent de celui utilisé pour la première instance.
+-   Configurer un certificat différent que hello celui utilisé pour la première instance de hello.
 
-Si l’application ne prend en charge aucune de ces configurations, vous ne pourrez pas configurer une deuxième instance.
+Si hello application ne prend en charge des hello ci-dessus. Ensuite, vous ne serez pas en mesure de tooconfigure une deuxième instance.
 
-## <a name="cant-add-the-identifier-or-the-reply-url"></a>Impossible d’ajouter l’identificateur ou l’URL de réponse
+## <a name="cant-add-hello-identifier-or-hello-reply-url"></a>Impossible d’ajouter hello identificateur ou de hello URL de réponse
 
-Si vous n’êtes pas en mesure de configurer l’identificateur ou l’URL de réponse, vérifiez que les valeurs de l’identificateur et de l’URL de réponse correspondent aux modèles préconfigurés pour l’application.
+Si vous n’êtes pas en mesure de tooconfigure hello identificateur ou hello URL de réponse, confirmez hello identificateur et valeurs de l’URL de réponse correspondent hello préconfiguré pour l’application hello.
 
-Pour connaître les modèles préconfigurés pour l’application :
+modèles de hello tooknow préconfigurés pour l’application hello :
 
-1.  Ouvrez le [**Portail Azure**](https://portal.azure.com/) et connectez-vous en tant **qu’Administrateur général** ou **Coadministrateur**. Passez à l’étape 7. Si vous êtes déjà dans le panneau de configuration de l’application sur Azure AD.
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.** Accédez à toostep 7. Si vous êtes déjà dans le panneau de configuration d’application hello sur Azure AD.
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-   * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+   * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+6.  Sélectionnez l’application hello tooconfigure l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Sélectionnez **Authentification basée sur SAML** dans la liste déroulante **Mode**.
+8.  Sélectionnez **SAML-authentification** de hello **Mode** liste déroulante.
 
-9.  Accédez à la zone de texte **Identificateur** ou **URL de réponse** sous la section **Domaine et URL**.
+9.  Accédez toohello **identificateur** ou **URL de réponse** zone de texte, sous hello **section URL et de domaine.**
 
-10. Il existe trois façons de connaître les modèles pris en charge pour l’application :
+10. Il existe trois façons de tooknow des modèles de hello pris en charge pour l’application hello :
 
-   * Dans la zone de texte, les modèles pris en charge apparaissent sous forme d’espace réservé. *Exemple :* <https://contoso.com>.
+   * Dans la zone de texte hello, vous consultez ou hello pris en charge les modèles comme un espace réservé *exemple :* <https://contoso.com>.
 
-   * Si le modèle n’est pas pris en charge, un point d’exclamation rouge s’affiche lorsque vous essayez d’entrer la valeur dans la zone de texte. Si vous placez le pointeur de la souris sur le point d’exclamation rouge, les modèles pris en charge s’affichent.
+   * Si le modèle de hello n’est pas pris en charge, vous consultez un point d’exclamation rouge lorsque vous essayez de valeur de hello tooenter dans la zone de texte hello. Si vous pointez votre souris sur le point d’exclamation rouge de hello, vous voir les modèles de hello pris en charge.
 
-   * Vous pouvez également obtenir des informations sur les modèles pris en charge dans le didacticiel dédié à l’application. Sous la section **Configurer Azure AD pour l’authentification unique**, accédez à l’étape de configuration des valeurs sous la section **Domaine et URL**.
+   * Dans le didacticiel hello pour une application hello, vous pouvez également obtenir des informations sur les modèles de hello pris en charge. Sous hello **Azure AD de configurer l’authentification unique sur** section. Étape accédez toohello pour les valeurs hello configuré sous hello **domaine et les URL** section.
 
-Si les valeurs ne correspondent aux modèles préconfigurés sur Azure AD. Vous pouvez :
+Si les valeurs hello ne correspondent pas avec les modèles hello préconfigurés sur Azure AD. Vous pouvez :
 
--   Travailler avec le fournisseur de l’application pour obtenir des valeurs qui correspondent au modèle préconfiguré sur Azure AD
+-   Travailler avec des valeurs de tooget du fournisseur d’application hello qui correspondent au modèle hello préconfiguré sur Azure AD
 
--   Contacter l’équipe Azure AD à l’adresse <aadapprequest@microsoft.com> ou laisser un commentaire dans le didacticiel pour demander la mise à jour des modèles pris en charge pour l’application
+-   Ou bien, vous pouvez contacter l’équipe d’Azure AD à < aadapprequest@microsoft.com > ou laisser un commentaire dans hello toorequest didacticiel hello mise à jour des modèles de hello pris en charge pour l’application hello
 
-## <a name="where-do-i-set-the-entityid-user-identifier-format"></a>Où définir le format d’EntityID (identificateur d’utilisateur)
+## <a name="where-do-i-set-hello-entityid-user-identifier-format"></a>Où définir le format de hello EntityID (identifiant d’utilisateur)
 
-Vous ne pouvez pas sélectionner le format d’EntityID (identificateur d’utilisateur) qu’Azure AD envoie à l’application dans la réponse après l’authentification de l’utilisateur.
+Vous ne sont pas être en mesure de tooselect hello au format EntityID (identifiant d’utilisateur) que Azure AD envoie toohello application dans la réponse de hello après l’authentification des utilisateurs.
 
-Azure AD sélectionne le format de l’attribut NameID (identificateur d’utilisateur) en fonction de la valeur sélectionnée ou du format demandé par l’application dans la demande d’authentification SAML. Pour plus d’informations, consultez l’article [Protocole SAML d’authentification unique](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) dans la section NameIDPolicy.
+Format de hello sélectionnez Azure AD pour l’attribut de NameID hello (identifiant d’utilisateur) en fonction de la valeur hello sélectionnée ou hello format demandé par l’application hello Bonjour SAML AuthRequest. Pour plus d’informations, consultez l’article de hello [protocole SAML de l’authentification unique](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) section hello NameIDPolicy,
 
-## <a name="cant-find-the-azure-ad-metadata-to-complete-the-configuration-with-the-application"></a>Impossible de trouver les métadonnées Azure AD pour terminer la configuration avec l’application
+## <a name="cant-find-hello-azure-ad-metadata-toocomplete-hello-configuration-with-hello-application"></a>Impossible de trouver hello Azure AD métadonnées toocomplete hello configuration avec l’application hello
 
-Pour télécharger le certificat ou les métadonnées de l’application à partir d’Azure AD, effectuez les étapes suivantes :
+métadonnées de l’application hello toodownload ou un certificat d’Azure AD, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-   * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+   * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous avez configuré l’authentification unique.
+6.  Sélectionnez l’application hello que vous avez configuré l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Accédez à la section **Certificat de signature SAML**, puis cliquez sur la valeur de colonne **Télécharger**. En fonction de ce que l’application nécessite pour configurer l’authentification unique, vous voyez soit l’option de téléchargement des métadonnées XML, soit le certificat.
+8.  Accédez trop**le certificat de signature SAML** section, puis cliquez sur **télécharger** valeur de la colonne. En fonction de l’application hello nécessite la configuration de l’authentification unique, vous voyez deux toodownload d’option hello hello Metadata XML ou hello du certificat.
 
-Azure AD ne fournit pas d’URL permettant d’obtenir les métadonnées. Les métadonnées peuvent uniquement être récupérées sous forme de fichier XML.
+Azure AD ne fournit pas une URL de métadonnées hello tooget. Hello métadonnées peuvent uniquement être récupérées dans un fichier XML.
 
-## <a name="dont-know-how-to-customize-saml-claims-sent-to-an-application"></a>Vous ne savez pas comment personnaliser les revendications SAML envoyées à une application
+## <a name="dont-know-how-toocustomize-saml-claims-sent-tooan-application"></a>Ne connaissez pas comment toocustomize SAML revendications envoyé tooan application
 
-Pour savoir comment personnaliser les revendications d’attribut SAML envoyées à votre application, consultez [Claims mapping in Azure Active Directory (public preview)](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping) (Mappage de revendications dans Azure Active Directory [préversion]) pour plus d’informations.
+toolearn toocustomize hello SAML attribut revendications envoyées tooyour application, voir [revendications mappage dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping) pour plus d’informations.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Gestion des applications avec Azure Active Directory](active-directory-enable-sso-scenario.md)

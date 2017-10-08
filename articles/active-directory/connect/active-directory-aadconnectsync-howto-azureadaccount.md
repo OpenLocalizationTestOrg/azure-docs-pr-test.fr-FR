@@ -1,8 +1,8 @@
 ---
-title: "Azure AD Connect Sync : comment gérer le compte de service Azure AD | Microsoft Docs"
-description: Cette rubrique explique comment restaurer le compte de service Azure AD.
+title: "Synchronisation Azure AD Connect : comment toomanage hello Azure AD compte de service | Documents Microsoft"
+description: Cette rubrique explique comment toorestore hello Azure AD compte de service.
 services: active-directory
-keywords: "AADSTS70002, AADSTS50054, Comment réinitialiser le mot de passe du compte du service Connecteur de synchronisation Azure AD Connect"
+keywords: "AADSTS70002, AADSTS50054, comment tooreset hello mot de passe pour hello synchronisation d’Azure AD Connect compte du service du connecteur"
 documentationcenter: 
 author: andkjell
 manager: femila
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 8e9e8192ee4fcb636b5be91d2616acbc9120c8c0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e563518eae173de42a1d40bb5a76e63f29f9da42
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-connect-sync-how-to-manage-the-azure-ad-service-account"></a>Azure AD Connect Sync : comment gérer le compte de service Azure AD
-Le compte de service utilisé par le connecteur Azure AD est censé être proposé en libre-service. Si vous devez réinitialiser les informations d’identification, cette rubrique vous concerne. Par exemple, un administrateur général peut avoir réinitialisé par erreur le mot de passe du compte de service à l’aide de PowerShell.
+# <a name="azure-ad-connect-sync-how-toomanage-hello-azure-ad-service-account"></a>Synchronisation Azure AD Connect : comment toomanage hello Azure AD compte de service
+compte de service Hello utilisé par le connecteur Azure AD de hello est supposée service toobe libre. Si vous devez tooreset ses informations d’identification, cette rubrique est pour vous. Par exemple, si un administrateur Global a par erreur réinitialisation hello un mot de passe sur le compte de service hello à l’aide de PowerShell.
 
-## <a name="reset-the-credentials"></a>Réinitialisation des informations d'identification
-Si le compte de service défini sur le Connecteur Azure AD ne peut pas contacter Azure AD en raison de problèmes d’authentification, le mot de passe peut être réinitialisé.
+## <a name="reset-hello-credentials"></a>Réinitialiser les informations d’identification hello
+Si le compte de service de hello défini sur hello connecteur Azure AD ne peut pas contacter Azure AD en raison de problèmes de tooauthentication, mot de passe hello peut être réinitialisé.
 
-1. Connectez-vous au serveur de synchronisation Azure AD Connect et démarrez PowerShell.
+1. Connectez-vous au serveur de synchronisation Azure AD Connect toohello et démarrer PowerShell.
 2. Exécutez `Add-ADSyncAADServiceAccount`.  
    ![PowerShell cmdlet addadsyncaadserviceaccount](./media/active-directory-aadconnectsync-howto-azureadaccount/addadsyncaadserviceaccount.png)
 3. Fournissez les informations d’identification de l’administrateur général Azure AD.
 
-Cette applet de commande réinitialise le mot de passe du compte de service et l’actualise dans Azure AD et dans le moteur de synchronisation.
+Cette applet de commande réinitialise le mot de passe hello pour le compte de service hello et mettre à jour dans Azure AD et dans le moteur de synchronisation hello.
 
 ## <a name="known-issues-these-steps-can-solve"></a>Problèmes connus pouvant être résolus par les procédures indiquées ci-après
-Cette section est une liste d’erreurs signalées par les clients qui ont été résolues par une réinitialisation des informations d’identification sur le compte de service Azure AD.
+Cette section est une liste d’erreurs signalées par les clients qui ont été résolus par un informations d’identification réinitialiser sur hello compte de service Azure AD.
 
 - - -
 Événement 6900  
-Le serveur a rencontré une erreur inattendue lors du traitement d’une notification de modification de mot de passe :  
+serveur de Hello a rencontré une erreur inattendue lors du traitement d’une notification de modification de mot de passe :  
 AADSTS70002 : erreur de validation des informations d’identification. AADSTS50054 : l’ancien mot de passe est utilisé pour l’authentification.
 
 - - -

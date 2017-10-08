@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Configuration de LinkedIn Sales Navigator pour l’approvisionnement automatique d’utilisateurs avec Azure Active Directory | Microsoft Docs"
-description: "Découvrez comment configurer Azure Active Directory pour approvisionner et déprovisionner automatiquement des comptes d’utilisateur sur LinkedIn Sales Navigator."
+description: "Découvrez comment tooconfigure Azure Active Directory tooautomatically disposition et la disposition de l’utilisateur des comptes tooLinkedIn Navigator de ventes."
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,110 +14,110 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/15/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: 86357949c8e6927f78ca5bb8b7e20a6b88c37ef3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 322c5271535994c13a9fafadbf74f356cdfe865d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-linkedin-sales-navigator-for-automatic-user-provisioning"></a>Didacticiel : Configuration de LinkedIn Sales Navigator pour approvisionner automatiquement des utilisateurs
 
 
-L’objectif de ce didacticiel est de vous montrer les étapes à effectuer dans LinkedIn Sales Navigator et Azure AD pour approvisionner et déprovisionner automatiquement des comptes d’utilisateur d’Azure AD vers LinkedIn Sales Navigator. 
+objectif Hello de ce didacticiel est tooshow vous hello étapes que vous devez tooperform dans LinkedIn Sales navigateur et Azure AD tooautomatically approvisionner et configurer des comptes d’utilisateur à partir d’Azure AD tooLinkedIn Navigator de ventes. 
 
 ## <a name="prerequisites"></a>Composants requis
 
-Le scénario décrit dans ce didacticiel part du principe que vous disposez des éléments suivants :
+scénario de Hello décrite dans ce didacticiel part du principe que vous avez déjà hello éléments suivants :
 
 *   Un client Azure Active Directory
 *   Un client LinkedIn Sales Navigator 
-*   Un compte d’administrateur dans LinkedIn Sales Navigator ayant accès au Centre des comptes LinkedIn
+*   Un compte d’administrateur dans le navigateur de ventes LinkedIn avec accès toohello LinkedIn centre des comptes
 
 > [!NOTE]
-> Azure Active Directory s’intègre à LinkedIn Sales Navigator à l’aide du protocole [SCIM](http://www.simplecloud.info/).
+> Azure Active Directory s’intègre avec LinkedIn Navigator de ventes à l’aide de hello [SCIM](http://www.simplecloud.info/) protocole.
 
-## <a name="assigning-users-to-linkedin-sales-navigator"></a>Affectation d’utilisateurs à LinkedIn Sales Navigator
+## <a name="assigning-users-toolinkedin-sales-navigator"></a>Affectation d’utilisateurs tooLinkedIn ventes Navigator
 
-Azure Active Directory utilise un concept appelé « affectations » pour déterminer les utilisateurs devant recevoir l’accès aux applications sélectionnées. Dans le cadre de l’approvisionnement automatique de comptes d’utilisateur, les utilisateurs et les groupes qui ont été « affectés » à une application dans Azure AD sont synchronisés. 
+Azure Active Directory utilise un concept appelé toodetermine « affectations » les utilisateurs qui doivent recevoir l’accès tooselected applications. Dans le contexte de hello de configuration de compte automatique d’utilisateurs, seuls les utilisateurs de hello et les groupes qui ont été « affectés » application tooan dans Azure AD seront synchronisés. 
 
-Avant de configurer et d’activer le service d’approvisionnement, vous devez déterminer quels utilisateurs et/ou groupes dans Azure AD représentent les utilisateurs qui ont besoin d’accéder à LinkedIn Sales Navigator. Une fois que vous avez choisi, vous pouvez affecter ces utilisateurs à LinkedIn Sales Navigator en suivant les instructions fournies ici :
+Avant de configurer et de l’activation de hello service de configuration, vous devez toodecide quels utilisateurs ou des groupes dans Azure AD représentent les utilisateurs hello qui a besoin d’accès tooLinkedIn Navigator de ventes. Après choisi, vous pouvez attribuer ces tooLinkedIn utilisateurs ventes Navigator en suivant les instructions hello ici :
 
-[Affecter un utilisateur ou un groupe à une application d’entreprise](active-directory-coreapps-assign-user-azure-portal.md)
+[Affecter une application d’entreprise tooan utilisateur ou un groupe](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-to-linkedin-sales-navigator"></a>Conseils importants pour l’affectation d’utilisateurs à LinkedIn Sales Navigator
+### <a name="important-tips-for-assigning-users-toolinkedin-sales-navigator"></a>Conseils importants pour l’affectation d’utilisateurs tooLinkedIn ventes Navigator
 
-*   Il est recommandé d’affecter un seul utilisateur Azure AD à LinkedIn Sales Navigator pour tester la configuration de l’approvisionnement. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
+*   Il est recommandé qu’un seul utilisateur Azure AD avoir hello de tootest ventes Navigator tooLinkedIn service de la configuration. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
 
-*   Quand vous affectez un utilisateur à LinkedIn Sales Navigator, vous devez sélectionner le rôle **Utilisateur** dans la boîte de dialogue d’affectation. Le rôle « Accès par défaut » ne fonctionne pas pour l’approvisionnement.
+*   Lorsque vous affectez un tooLinkedIn utilisateur navigateur de ventes, vous devez sélectionner hello **utilisateur** rôle dans la boîte de dialogue attribution hello. rôle de « Accès par défaut » Hello ne fonctionne pas pour la configuration.
 
 
-## <a name="configuring-user-provisioning-to-linkedin-sales-navigator"></a>Configuration de l’approvisionnement des utilisateurs sur LinkedIn Sales Navigator
+## <a name="configuring-user-provisioning-toolinkedin-sales-navigator"></a>Configuration de configuration tooLinkedIn ventes navigateur de l’utilisateur
 
-Cette section vous guide pour connecter votre instance d’Azure AD à l’API d’approvisionnement de comptes d’utilisateur SCIM de LinkedIn Sales Navigator et configurer le service d’approvisionnement pour créer, mettre à jour et désactiver des comptes d’utilisateur affectés dans LinkedIn Sales Navigator en fonction des affectations d’utilisateurs et de groupes dans Azure AD.
+Cette section vous guide à travers de la connexion du compte d’utilisateur SCIM votre Azure AD tooLinkedIn ventes navigateur API de configuration et configurez hello toocreate du service de configuration, de mettre à jour et de désactiver les comptes d’utilisateur affecté dans le navigateur de ventes LinkedIn en fonction de l’utilisateur et l’affectation de groupe dans Azure AD.
 
 > [!TIP]
-> Vous pouvez également choisir d’activer l’authentification unique basée sur SAML pour LinkedIn Sales Navigator en suivant les instructions fournies dans le [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que ces deux fonctionnalités se complètent.
+> Vous pouvez également choisir tooenabled basé sur SAML Single Sign-On pour LinkedIn Sales Navigator, suivant les instructions hello fournies dans [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que ces deux fonctionnalités se complètent.
 
 
-### <a name="to-configure-automatic-user-account-provisioning-to-linkedin-sales-navigator-in-azure-ad"></a>Pour configurer l’approvisionnement automatique de comptes d’utilisateur sur LinkedIn Sales Navigator dans Azure AD :
+### <a name="tooconfigure-automatic-user-account-provisioning-toolinkedin-sales-navigator-in-azure-ad"></a>compte d’utilisateur automatique de tooconfigure tooLinkedIn ventes navigateur de configuration dans Azure AD :
 
 
-La première étape consiste à récupérer votre jeton d’accès LinkedIn. Si vous êtes administrateur d’entreprise, vous pouvez approvisionner vous-même un jeton d’accès. Dans le Centre des comptes, accédez à **Paramètres &gt; Paramètres globaux**, puis ouvrez le panneau de configuration **SCIM**.
+première étape de Hello est tooretrieve votre jeton d’accès LinkedIn. Si vous êtes administrateur d’entreprise, vous pouvez approvisionner vous-même un jeton d’accès. Dans votre centre de gestion, accédez trop**paramètres &gt; paramètres globaux** et ouvrez hello **SCIM le programme d’installation** Panneau de configuration.
 
 > [!NOTE]
-> Si vous ouvrez le Centre des comptes directement plutôt qu’en passant par un lien, vous pouvez y accéder en effectuant les étapes suivantes.
+> Si vous accédez au centre des comptes hello directement plutôt que via un lien, vous pouvez également accéder à l’aide de hello comme suit.
 
-1)  Connectez-vous au Centre des comptes.
+1)  Connectez-vous tooAccount Center.
 
 2)  Sélectionnez **Administrateur &gt; Paramètres d’administration**.
 
-3)  Cliquez sur **Intégrations avancées** dans la barre latérale gauche. Vous êtes redirigé vers le Centre des comptes.
+3)  Cliquez sur **avancé des intégrations** sur le volet gauche hello. Vous êtes dirigé toohello centre des comptes.
 
-4)  Cliquez sur **+ Ajouter une nouvelle configuration SCIM**, puis suivez la procédure en remplissant chaque champ.
+4)  Cliquez sur **+ ajouter une nouvelle configuration de SCIM** et suivez la procédure de hello en remplissant chaque champ.
 
 > Si l’affectation automatique de licences n’est pas activée, cela signifie que seules les données utilisateur sont synchronisées.
 
 ![Approvisionnement LinkedIn Sales Navigator](./media/active-directory-saas-linkedinsalesnavigator-provisioning-tutorial/linkedin_1.PNG)
 
-> Quand l’affectation automatique de licences est activée, vous devez noter l’instance d’application et le type de licence. Les licences sont toutes affectées sur le principe du « premier arrivé, premier servi ».
+> Lorsque l’attribution autolicense est activée, vous devez toonote l’instance d’application et le type de licence. Les licences sont attribuées sur un premier arrivé, traiter tout d’abord base jusqu'à ce que toutes les licences hello sont effectuées.
 
 ![Approvisionnement LinkedIn Sales Navigator](./media/active-directory-saas-linkedinsalesnavigator-provisioning-tutorial/linkedin_2.PNG)
 
-5)  Cliquez sur **Générer un jeton**. Un jeton d’accès doit s’afficher sous le champ **Jeton d’accès**.
+5)  Cliquez sur **Générer un jeton**. Vous devez voir votre affichage de jeton d’accès sous hello **jeton d’accès** champ.
 
-6)  Enregistrez votre jeton d’accès dans votre Presse-papiers ou votre ordinateur avant de quitter la page.
+6)  Enregistrez votre accès au jeton tooyour Presse-papiers ou un ordinateur avant de quitter la page de hello.
 
-7) Ensuite, connectez-vous au [portail Azure](https://portal.azure.com), puis accédez à la section **Azure Active Directory > Applications d’entreprise > Toutes les applications**.
+7) Ensuite, connectez-vous à toohello [portail Azure](https://portal.azure.com), puis accédez toohello **Azure Active Directory > applications d’entreprise > toutes les applications** section.
 
-8) Si vous avez déjà configuré LinkedIn Sales Navigator pour l’authentification unique, recherchez votre instance de LinkedIn Sales Navigator à l’aide du champ de recherche. Sinon, sélectionnez **Ajouter**, puis recherchez **LinkedIn Sales Navigator** dans la galerie d’applications. Sélectionnez LinkedIn Sales Navigator dans les résultats de la recherche, puis ajoutez-le à votre liste d’applications.
+8) Si vous avez déjà configuré LinkedIn Sales navigateur pour l’authentification unique, recherchez votre instance de navigateur de ventes LinkedIn à l’aide du champ de recherche hello. Sinon, sélectionnez **ajouter** et recherchez **LinkedIn Sales Navigator** dans la galerie d’applications hello. Sélectionnez LinkedIn Sales Navigator hello résultats de recherche et l’ajouter tooyour la liste des applications.
 
-9)  Sélectionnez votre instance de LinkedIn Sales Navigator, puis sélectionnez l’onglet **Approvisionnement**.
+9)  Sélectionnez votre instance de navigateur de ventes LinkedIn, puis hello **Provisioning** onglet.
 
-10) Définissez le **Mode d’approvisionnement** sur **Automatique**.
+10) Ensemble hello **Mode d’approvisionnement** trop**automatique**.
 
 ![Approvisionnement LinkedIn Sales Navigator](./media/active-directory-saas-linkedinsalesnavigator-provisioning-tutorial/linkedin_3.PNG)
 
-11)  Renseignez les champs suivants sous **Informations d’identification de l’administrateur** :
+11)  Renseignez hello suivant champs sous **informations d’identification administrateur** :
 
-* Dans l’**URL de locataire**, entrez https://api.linkedin.com.
+* Bonjour **URL de client** , saisissez https://api.linkedin.com.
 
-* Dans le champ **Jeton secret**, entrez le jeton d’accès que vous avez généré à l’étape 1, puis cliquez sur **Tester la connexion**.
+* Bonjour **Secret jeton** , indiquez le jeton d’accès hello générés à l’étape 1 et cliquez sur **tester la connexion** .
 
-* Une notification de réussite doit s’afficher en haut à droite de votre portail.
+* Vous devez voir une notification de réussite supérieurdroit côté hello de votre portail.
 
-12) Entrez l’adresse e-mail d’une personne ou d’un groupe qui doit recevoir les notifications d’erreur d’approvisionnement dans le champ **E-mail de notification**, puis cochez la case se trouvant en dessous.
+12) Entrez hello adresse de messagerie d’une personne ou un groupe qui doit recevoir des notifications d’erreur approvisionnement hello **courrier électronique de Notification** champ et la case à cocher hello ci-dessous.
 
-13) Cliquez sur **Save**. 
+13) Cliquez sur **Enregistrer**. 
 
-14) Dans la section **Mappages d’attributs**, passez en revue les attributs d’utilisateur et de groupe qui seront synchronisés d’Azure AD vers LinkedIn Sales Navigator. Notez que les attributs sélectionnés comme propriétés de **Correspondance** sont utilisés pour faire correspondre les comptes d’utilisateur et les groupes dans LinkedIn Sales Navigator pour les opérations de mise à jour. Cliquez sur le bouton Enregistrer pour valider les modifications.
+14) Bonjour **des mappages d’attributs** section, passez en revue les attributs d’utilisateur et groupe hello qui seront synchronisés à partir d’Azure AD tooLinkedIn Navigator de ventes. Notez que hello attributs sélectionnés en tant que **correspondance** propriétés seront utilisées toomatch hello des comptes d’utilisateur et les groupes dans le navigateur de ventes LinkedIn pour les opérations de mise à jour. Sélectionnez toocommit de bouton hello enregistrer toutes les modifications.
 
 ![Approvisionnement LinkedIn Sales Navigator](./media/active-directory-saas-linkedinsalesnavigator-provisioning-tutorial/linkedin_4.PNG)
 
-15) Pour activer le service d’approvisionnement Azure AD pour LinkedIn Sales Navigator, définissez l’**État d’approvisionnement** sur **Activé** dans la section **Paramètres**.
+15) tooenable hello service de configuration d’Azure AD pour LinkedIn Sales Navigator, modification hello **état d’approvisionnement** trop**sur** Bonjour **paramètres** section
 
-16) Cliquez sur **Save**. 
+16) Cliquez sur **Enregistrer**. 
 
-Cette commande démarre la synchronisation initiale des utilisateurs et/ou groupes affectés à LinkedIn Sales Navigator dans la section Utilisateurs et groupes. Notez que la synchronisation initiale prend plus de temps que les synchronisations suivantes, qui se produisent toutes les 20 minutes environ tant que le service est en cours d’exécution. Vous pouvez utiliser la section **Détails de la synchronisation** pour surveiller la progression et suivre les liens vers les rapports d’activité d’approvisionnement, qui décrivent toutes les actions effectuées par le service d’approvisionnement dans votre application LinkedIn Sales Navigator.
+Ceci démarrera la synchronisation initiale d’utilisateurs et/ou groupes affectés tooLinkedIn Navigator Sales dans la section utilisateurs et groupes de hello de hello. Notez que la synchronisation initiale hello a tooperform plus de temps que les synchronisations suivantes, qui se produisent toutes les 20 minutes environ tant que service de hello est en cours d’exécution. Vous pouvez utiliser hello **détails de synchronisation** section toomonitor cours et suivre des rapports d’activité tooprovisioning des liens, qui décrivent toutes les actions effectuées par hello mise en service du service dans votre application de navigateur de ventes LinkedIn.
 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires

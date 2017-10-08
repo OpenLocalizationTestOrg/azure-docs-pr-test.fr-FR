@@ -1,6 +1,6 @@
 ---
-title: "Une application affectée n’apparaît pas sur le volet d’accès | Microsoft Docs"
-description: "Identifier pourquoi une application n’apparaît pas sur le volet d’accès"
+title: "aaaAn affecté application n’apparaît pas dans le volet d’accès hello | Documents Microsoft"
+description: "Résoudre les problèmes de la raison pour laquelle une application n’apparaît pas dans le volet d’accès de hello"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -14,17 +14,17 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
 ms.reviwer: japere
-ms.openlocfilehash: 9ea5744d77b90929598ea5feb80c7bbdff3772fc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 089883f406267df4552c7fc991883f335ad49fd5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="an-assigned-application-is-not-appearing-on-the-access-panel"></a>Une application affectée n’apparaît pas sur le volet d’accès
+# <a name="an-assigned-application-is-not-appearing-on-hello-access-panel"></a>Une application attribuée n’apparaît pas dans le volet d’accès hello
 
-Le volet d’accès est un portail Web qui permet à un utilisateur disposant d’un compte professionnel ou scolaire dans Azure Active Directory (Azure AD) d’afficher et de démarrer des applications basées sur le cloud auxquelles l’administrateur Azure AD lui a accordé un accès. Ces applications sont configurées pour le compte de l’utilisateur dans le portail Azure AD. Pour que l’application soit visible dans le volet d’accès, elle doit être correctement configurée et affectée à l’utilisateur ou à un groupe dont est membre l’utilisateur.
+Hello volet d’accès est un portail web qui permet à un utilisateur avec un travail ou compte scolaire dans Azure Active Directory (Azure AD) tooview et démarrer les applications cloud qui hello administrateur Azure AD lui a accordé l’accès à. Ces applications sont configurées pour le compte d’utilisateur hello dans le portail Azure AD de hello. application Hello doit être configurée correctement et toohello attribué ou un utilisateur de hello de groupe est un membre de l’application de hello toosee Bonjour panneau d’accès.
 
-Les types d’applications que peut voir l’utilisateur tombent dans les catégories suivantes :
+type Hello d’applications peut s’agir d’un utilisateur se situent dans hello suivant des catégories :
 
 -   Applications Office 365
 
@@ -34,639 +34,639 @@ Les types d’applications que peut voir l’utilisateur tombent dans les catég
 
 -   Applications avec solutions d’authentification unique (SSO) existantes
 
-## <a name="general-issues-to-check-first"></a>Problèmes d’ordre général à vérifier en premier
+## <a name="general-issues-toocheck-first"></a>Général émet toocheck tout d’abord
 
--   Si une application vient d’être ajoutée pour un utilisateur, essayez de vous connecter / déconnecter de nouveau sur le volet d’accès de l’utilisateur après quelques minutes pour voir si l’application a été ajoutée.
+-   Si une application vient d’être ajoutée tooa utilisateur, réessayez toosign et l’extraction dans le volet d’accès de l’utilisateur hello après quelques minutes toosee si l’application hello est ajoutée.
 
--   Si une licence vient d’être supprimée pour un utilisateur ou un groupe dont l’utilisateur est membre, la prise en compte des modifications peut prendre du temps, en fonction de la taille et de la complexité du groupe. Prévoyez du temps supplémentaire avant de vous connecter au volet d’accès.
+-   Si une licence vient d’être supprimée d’un utilisateur ou un utilisateur hello le groupe est que membre de ce peut prendre beaucoup de temps, selon la taille de hello et la complexité du groupe hello pour toobe des modifications apportée. Prévoyez du temps supplémentaire avant de vous connecter en hello panneau d’accès.
 
-## <a name="problems-related-to-application-configuration"></a>Problèmes liés à la configuration d’applications
+## <a name="problems-related-tooapplication-configuration"></a>Configuration de tooapplication connexes des problèmes
 
-Une application n’apparaît peut-être pas dans le volet d’accès d’un utilisateur en raison d’une mauvaise configuration. Voici quelques méthodes pour résoudre les problèmes liés à la configuration d’applications :
+Une application n’apparaît peut-être pas dans le volet d’accès d’un utilisateur en raison d’une mauvaise configuration. Voici quelques méthodes que vous pourrez résoudre les problèmes de configuration connexes tooapplication de problèmes :
 
--   [Comment configurer l’authentification unique fédérée pour une application de la galerie Azure AD](#how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application)
+-   [Comment tooconfigure fédéré l’authentification unique pour une application de la galerie Azure AD](#how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application)
 
--   [Comment configurer l’authentification unique fédérée pour une application non issue de la galerie](#how-to-configure-federated-single-sign-on-for-a-non-gallery-application)
+-   [Comment tooconfigure fédéré l’authentification unique pour une application non-galerie](#how-to-configure-federated-single-sign-on-for-a-non-gallery-application)
 
--   [Comment configurer l’authentification unique avec mot de passe pour une application de la galerie Azure AD](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
+-   [Comment tooconfigure un mot de passe une seule application d’authentification pour une application de la galerie Azure AD](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
 
--   [Comment configurer l’authentification unique avec mot de passe pour une application non issue de la galerie Azure AD](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
+-   [Comment tooconfigure un mot de passe une seule application d’authentification pour une application non-galerie](#how-to-configure-password-single-sign-on-for-a-non-gallery-application)
 
-### <a name="how-to-configure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a>Comment configurer l’authentification unique fédérée pour une application de la galerie Azure AD
+### <a name="how-tooconfigure-federated-single-sign-on-for-an-azure-ad-gallery-application"></a>Comment tooconfigure fédéré l’authentification unique pour une application de la galerie Azure AD
 
-Un didacticiel pas à pas est disponible pour toutes les applications de la galerie Azure AD dans lesquelles est activée la fonctionnalité Enterprise Single Sign-On. Pour une aide pas à pas détaillée, vous pouvez accéder à la [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/).
+Toutes les applications dans la galerie d’Azure AD hello activé avec la fonctionnalité Enterprise Single Sign-On a un didacticiel pas à pas disponible. Vous pouvez accéder à hello [liste des didacticiels sur la façon de toointegrate les applications SaaS avec Azure Active Directory](https://azure.microsoft.com/documentation/articles/active-directory-saas-tutorial-list/) pour obtenir une aide pas à pas détaillé.
 
-Pour configurer une application à partir de la galerie Azure AD, vous devez effectuer les opérations suivantes :
+tooconfigure une application à partir de la galerie d’Azure AD hello vous devez :
 
--   [Ajouter une application à partir de la galerie Azure AD](#add-an-application-from-the-azure-ad-gallery)
+-   [Ajouter une application à partir de la galerie d’Azure AD hello](#add-an-application-from-the-azure-ad-gallery)
 
--   [Configurer les valeurs de métadonnées de l’application dans Azure AD (URL de connexion, identificateur, URL de réponse)](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [Configurer les valeurs de métadonnées de l’application hello dans Azure AD (URL de réponse d’URL, identificateur, authentification)](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
--   [Sélectionner l’identificateur de l’utilisateur et ajouter les attributs d’utilisateur à envoyer à l’application](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
+-   [Identificateur de l’utilisateur de sélectionner et ajouter l’application utilisateur attributs toobe envoyé toohello](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
 
 -   [Récupérer le certificat et les métadonnées Azure AD](#download-the-azure-ad-metadata-or-certificate)
 
--   [Configurer les valeurs de métadonnées Azure AD dans l’application (URL de connexion, émetteur, URL de déconnexion et certificat)](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
+-   [Configurer les valeurs de métadonnées Azure AD dans l’application hello (authentification URL, l’émetteur, URL de déconnexion et un certificat)](#configure-single-sign-on-for-an-application-from-the-azure-ad-gallery)
 
-#### <a name="add-an-application-from-the-azure-ad-gallery"></a>Ajouter une application à partir de la galerie Azure AD
+#### <a name="add-an-application-from-hello-azure-ad-gallery"></a>Ajouter une application à partir de la galerie d’Azure AD hello
 
-Pour ajouter une application à partir de la galerie Azure AD, effectuez les étapes suivantes :
+tooadd une application à partir de hello Galerie d’Azure AD, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [portail Azure](https://portal.azure.com) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [Azure Portal](https://portal.azure.com) et connectez-vous en tant qu’un **administrateur Global** ou **Co-admin**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur le bouton **Ajouter** dans le coin supérieur droit du panneau **Applications d’entreprise**.
+5.  Cliquez sur hello **ajouter** bouton au coin supérieur droit de hello sur hello **des Applications d’entreprise** panneau.
 
-6.  Dans la zone de texte **Entrer un nom** de la section **Ajouter à partir de la galerie**, tapez le nom de l’application.
+6.  Bonjour **Entrez un nom** zone de texte à partir de hello **ajouter à partir de la galerie de hello** section, entrez un nom hello de l’application hello.
 
-7.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+7.  Sélectionnez hello application tooconfigure pour l’authentification unique.
 
-8.  Avant d’ajouter l’application, vous pouvez la renommer dans la zone de texte **Nom**.
+8.  Avant d’ajouter l’application hello, vous pouvez modifier son nom à partir de hello **nom** zone de texte.
 
-9.  Pour ajouter l’application, cliquez sur le bouton **Ajouter**.
+9.  Cliquez sur **ajouter** bouton, l’application de hello tooadd.
 
-Après une courte période, vous pourrez voir le panneau de configuration de l’application.
+Après une courte période, vous être Panneau de configuration de l’application en mesure de toosee hello.
 
-#### <a name="configure-single-sign-on-for-an-application-from-the-azure-ad-gallery"></a>Configurer l’authentification unique pour une application à partir de la galerie Azure AD
+#### <a name="configure-single-sign-on-for-an-application-from-hello-azure-ad-gallery"></a>Configurer l’authentification unique pour une application à partir de la galerie d’Azure AD hello
 
-Pour configurer l’authentification unique pour une application, effectuez les étapes suivantes :
+tooconfigure l’authentification unique pour une application, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+6.  Sélectionnez l’application hello tooconfigure l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Sélectionnez **Authentification basée sur SAML** dans la liste déroulante **Mode**.
+8.  Sélectionnez **SAML-authentification** de hello **Mode** liste déroulante.
 
-9.  Entrez les valeurs obligatoires dans **Domaine et URL.** Ces valeurs doivent vous être communiquées par le fournisseur de l’application.
+9.  Entrez les valeurs hello requis dans **URL et domaine.** Vous devez obtenir ces valeurs à partir du fournisseur de l’application hello.
 
-   1. Pour configurer l’application en tant qu’application à authentification unique lancée par le fournisseur de services, une URL de connexion est obligatoire. Pour certaines applications, l’identificateur est également une valeur obligatoire.
+   1. application de hello tooconfigure en tant que l’authentification unique initiée par SP, hello signe sur l’URL, il est obligatoire. Pour certaines applications, hello identificateur est également une valeur requise.
 
-   2. Pour configurer l’application en tant qu’application à authentification unique lancée par le fournisseur d’identité, une URL de réponse est obligatoire. Pour certaines applications, l’identificateur est également une valeur obligatoire.
+   2. application hello tooconfigure initiées IdP, hello URL de réponse qu’il est obligatoire. Pour certaines applications, hello identificateur est également une valeur requise.
 
-10. **Facultatif** : pour afficher les valeurs non obligatoires, cliquez sur **Afficher les paramètres d’URL avancés**.
+10. **Facultatif :** cliquez sur **afficher les paramètres d’URL avancés** si vous souhaitez que les valeurs toosee hello non requis.
 
-11. Dans **Attributs d’utilisateur**, sélectionnez l’identificateur unique de vos utilisateurs dans la liste déroulante **Identificateur de l’utilisateur**.
+11. Bonjour **attributs utilisateur**, sélectionnez hello un identificateur unique pour vos utilisateurs Bonjour **identificateur de l’utilisateur** liste déroulante.
 
-12. **Facultatif** : pour modifier les attributs à envoyer à l’application dans le jeton SAML lorsque l’utilisateur se connecte, cliquez sur **Afficher et modifier tous les autres attributs utilisateur**.
+12. **Facultatif :** cliquez sur **afficher et modifier tous les autres attributs utilisateur** tooedit hello attributs application de toohello toobe envoyé dans un jeton SAML de hello lorsque l’utilisateur se connecter.
 
-   Pour ajouter un attribut :
+   tooadd un attribut :
 
-   1. Cliquez sur **Ajouter un attribut**. Entrez le **Nom**, puis sélectionnez la **Valeur** dans la liste déroulante.
+   1. Cliquez sur **Ajouter un attribut**. Entrez hello **nom** et Bonjour sélectionnez Bonjour **valeur** à partir de la liste déroulante de hello.
 
-   2. Cliquez sur **Enregistrer**. Le nouvel attribut s’affiche dans le tableau.
+   2. Cliquez sur **Enregistrer**. Vous consultez hello nouvel attribut dans la table de hello.
 
-13. Cliquez sur **Configurer &lt;nom de l’application&gt;** pour accéder à la documentation sur la façon de configurer l’authentification unique. En outre, vous disposez des URL de métadonnées et du certificat nécessaires à la configuration de l’authentification unique.
+13. Cliquez sur **configurer &lt;nom de l’application&gt;**  documentation tooaccess sur la tooconfigure l’authentification unique dans l’application hello. En outre, vous a hello les URL des métadonnées et le certificat requis toosetup SSO avec l’application hello.
 
-14. Cliquez sur **Enregistrer** pour enregistrer la configuration.
+14. Cliquez sur **enregistrer** configuration de hello toosave.
 
-15. Affectez des utilisateurs à l’application.
+15. Affecter des utilisateurs toohello application.
 
-#### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>Sélectionner l’identificateur de l’utilisateur et ajouter les attributs d’utilisateur à envoyer à l’application
+#### <a name="select-user-identifier-and-add-user-attributes-toobe-sent-toohello-application"></a>Identificateur de l’utilisateur de sélectionner et ajouter l’application utilisateur attributs toobe envoyé toohello
 
-Pour sélectionner l’identificateur de l’utilisateur ou ajouter des attributs d’utilisateur, effectuez les étapes suivantes :
+tooselect hello identificateur d’utilisateur ou ajouter des attributs d’utilisateur, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste de toutes vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+  * Si vous ne voyez pas l’application hello souhaité tooshow ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous avez configuré l’authentification unique.
+6.  Sélectionnez l’application hello que vous avez configuré l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Dans la section **Attributs d’utilisateur**, sélectionnez l’identificateur unique de vos utilisateurs dans la liste déroulante **Identificateur de l’utilisateur**. L’option sélectionnée doit correspondre à la valeur attendue dans l’application pour authentifier l’utilisateur.
+8.  Sous hello **attributs utilisateur** section, sélectionnez hello un identificateur unique pour vos utilisateurs Bonjour **identificateur de l’utilisateur** liste déroulante. Hello option sélectionnée doit valeur attendue toomatch hello utilisateur hello de tooauthenticate l’application hello.
 
    >[!NOTE] 
-   >Azure AD sélectionne le format de l’attribut NameID (Identificateur d’utilisateur) en fonction de la valeur sélectionnée ou du format demandé par l’application dans la demande d’authentification SAML. Pour plus d’informations, consultez l’article [Protocole SAML d’authentification unique](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) dans la section NameIDPolicy.
+   >Format de hello sélectionnez Azure AD pour l’attribut de NameID hello (identifiant d’utilisateur) en fonction de la valeur hello sélectionnée ou hello format demandé par l’application hello Bonjour SAML AuthRequest. Pour plus d’informations, consultez l’article de hello [protocole SAML de l’authentification unique](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) sous hello section NameIDPolicy.
    >
    >
 
-9.  Pour ajouter des attributs d’utilisateur, cliquez sur **Afficher et modifier tous les autres attributs utilisateur** afin de modifier les attributs à envoyer à l’application dans le jeton SAML lorsque l’utilisateur se connecte.
+9.  attributs d’utilisateur tooadd, cliquez sur **afficher et modifier tous les autres attributs de l’utilisateur** tooedit hello attributs application de toohello toobe envoyé dans un jeton SAML de hello lorsque l’utilisateur se connecter.
 
-   Pour ajouter un attribut :
+   tooadd un attribut :
 
-   1. Cliquez sur **Ajouter un attribut**. Entrez le **Nom**, puis sélectionnez la **Valeur** dans la liste déroulante.
+   1. Cliquez sur **Ajouter un attribut**. Entrez hello **nom** et Bonjour sélectionnez Bonjour **valeur** à partir de la liste déroulante de hello.
 
-   2. Cliquez sur **Enregistrer**. Le nouvel attribut s’affiche dans le tableau.
+   2. Cliquez sur **Enregistrer**. Vous verrez hello nouvel attribut dans la table de hello.
 
-#### <a name="download-the-azure-ad-metadata-or-certificate"></a>Télécharger les métadonnées ou le certificat Azure AD
+#### <a name="download-hello-azure-ad-metadata-or-certificate"></a>Télécharger des métadonnées Azure AD hello ou certificat
 
-Pour télécharger les métadonnées ou le certificat de l’application à partir d’Azure AD, effectuez les étapes suivantes :
+métadonnées de l’application hello toodownload ou un certificat d’Azure AD, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous avez configuré l’authentification unique.
+6.  Sélectionnez l’application hello que vous avez configuré l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Accédez à la section **Certificat de signature SAML**, puis cliquez sur la valeur de colonne **Télécharger**. En fonction de ce que l’application nécessite pour configurer l’authentification unique, vous voyez soit l’option de téléchargement des métadonnées XML, soit le certificat.
+8.  Accédez trop**le certificat de signature SAML** section, puis cliquez sur **télécharger** valeur de la colonne. En fonction de l’application hello nécessite la configuration de l’authentification unique, vous voyez deux toodownload d’option hello hello Metadata XML ou hello du certificat.
 
-    Azure AD ne fournit pas d’URL permettant d’obtenir les métadonnées. Les métadonnées peuvent uniquement être récupérées sous forme de fichier XML.
+    Azure AD ne fournit pas une URL de métadonnées hello tooget. Hello métadonnées peuvent uniquement être récupérées dans un fichier XML.
 
-### <a name="how-to-configure-federated-single-sign-on-for-a-non-gallery-application"></a>Comment configurer l’authentification unique fédérée pour une application non issue de la galerie
+### <a name="how-tooconfigure-federated-single-sign-on-for-a-non-gallery-application"></a>Comment tooconfigure fédéré l’authentification unique pour une application non-galerie
 
-Pour configurer une application non issue de la galerie, vous devez disposer d’Azure AD Premium, et l’application doit prendre en charge SAML 2.0. Pour plus d’informations sur les versions d’Azure AD, consultez [Tarification d’Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/).
+tooconfigure une application non-galerie, vous devez toohave Azure AD premium et l’application hello prend en charge SAML 2.0. Pour plus d’informations sur les versions d’Azure AD, consultez [Tarification d’Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/).
 
--   [Configurer les valeurs de métadonnées de l’application dans Azure AD (URL de connexion, identificateur, URL de réponse)](#configuring-single-sign-on)
+-   [Configurer les valeurs de métadonnées de l’application hello dans Azure AD (URL de réponse d’URL, identificateur, authentification)](#configuring-single-sign-on)
 
--   [Sélectionner l’identificateur de l’utilisateur et ajouter les attributs d’utilisateur à envoyer à l’application](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
+-   [Identificateur de l’utilisateur de sélectionner et ajouter l’application utilisateur attributs toobe envoyé toohello](#select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application)
 
 -   [Récupérer le certificat et les métadonnées Azure AD](#download-the-azure-ad-metadata-or-certificate)
 
--   [Configurer les valeurs de métadonnées Azure AD dans l’application (URL de connexion, émetteur, URL de déconnexion et certificat)](#configuring-single-sign-on)
+-   [Configurer les valeurs de métadonnées Azure AD dans l’application hello (authentification URL, l’émetteur, URL de déconnexion et un certificat)](#configuring-single-sign-on)
 
-#### <a name="configure-the-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a>Configurer les valeurs de métadonnées de l’application dans Azure AD (URL de connexion, identificateur, URL de réponse)
+#### <a name="configure-hello-applications-metadata-values-in-azure-ad-sign-on-url-identifier-reply-url"></a>Configurer les valeurs de métadonnées de l’application hello dans Azure AD (URL de réponse d’URL, identificateur, authentification)
 
-Pour configurer l’authentification unique pour une application qui n’est pas issue de la galerie Azure AD, effectuez les étapes suivantes :
+tooconfigure l’authentification unique pour une application qui n’est pas dans la galerie d’Azure AD hello, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur le bouton **Ajouter** dans le coin supérieur droit du panneau **Applications d’entreprise**.
+5.  Cliquez sur hello **ajouter** bouton au coin supérieur droit de hello sur hello **des Applications d’entreprise** panneau.
 
-6.  Cliquez sur **Application ne figurant pas dans la galerie** dans la section **Ajouter votre propre application**.
+6.  Cliquez sur **application Non-gallery** Bonjour **ajouter votre propre application** section.
 
-7.  Entrez le nom de votre application dans la zone de texte **Nom**.
+7.  Entrez le nom hello de l’application hello Bonjour **nom** zone de texte.
 
-8.  Pour ajouter l’application, cliquez sur le bouton **Ajouter**.
+8.  Cliquez sur **ajouter** bouton, l’application de hello tooadd.
 
-9.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+9.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-10. Sélectionnez **Authentification basée sur SAML** dans la liste déroulante **Mode**.
+10. Sélectionnez **SAML-authentification** Bonjour **Mode** liste déroulante.
 
-11. Entrez les valeurs obligatoires dans **Domaine et URL.** Ces valeurs doivent vous être communiquées par le fournisseur de l’application.
+11. Entrez les valeurs hello requis dans **URL et domaine.** Vous devez obtenir ces valeurs à partir du fournisseur de l’application hello.
 
-   1. Pour configurer l’application en tant qu’application à authentification unique lancée par le fournisseur d’identité, entrez l’URL de réponse et l’identificateur.
+   1. application de hello tooconfigure en tant que l’authentification unique initiée par les fournisseurs d’identité, entrez hello URL de réponse et hello identificateur.
 
-   2.  **Facultatif** : pour configurer l’application comme une application à authentification unique initiée par le fournisseur de services, une URL de connexion est obligatoire.
+   2.  **Facultatif :** application hello tooconfigure authentifications uniques initiées, hello signe sur l’URL, il est obligatoire.
 
-12. Dans **Attributs d’utilisateur**, sélectionnez l’identificateur unique de vos utilisateurs dans la liste déroulante **Identificateur de l’utilisateur**.
+12. Bonjour **attributs utilisateur**, sélectionnez hello un identificateur unique pour vos utilisateurs Bonjour **identificateur de l’utilisateur** liste déroulante.
 
-13. **Facultatif** : pour modifier les attributs à envoyer à l’application dans le jeton SAML lorsque l’utilisateur se connecte, cliquez sur **Afficher et modifier tous les autres attributs utilisateur**.
+13. **Facultatif :** cliquez sur **afficher et modifier tous les autres attributs utilisateur** tooedit hello attributs application de toohello toobe envoyé dans un jeton SAML de hello lorsque l’utilisateur se connecter.
 
-   Pour ajouter un attribut :
+   tooadd un attribut :
 
-   1. Cliquez sur **Ajouter un attribut**. Entrez le **Nom**, puis sélectionnez la **Valeur** dans la liste déroulante.
+   1. Cliquez sur **Ajouter un attribut**. Entrez hello **nom** et Bonjour sélectionnez Bonjour **valeur** à partir de la liste déroulante de hello.
 
-   2. Cliquez sur **Enregistrer.** Le nouvel attribut s’affiche dans le tableau.
+   2. Cliquez sur **Enregistrer.** Vous consultez hello nouvel attribut dans la table de hello.
 
-14. Cliquez sur **Configurer &lt;nom de l’application&gt;** pour accéder à la documentation expliquant comment configurer l’authentification unique pour l’application. En outre, vous disposez des URL et du certificat Azure AD nécessaires pour l’application.
+14. Cliquez sur **configurer &lt;nom de l’application&gt;**  documentation tooaccess sur la tooconfigure l’authentification unique dans l’application hello. Possède également Azure AD URL et le certificat requis pour l’application hello.
 
-#### <a name="select-user-identifier-and-add-user-attributes-to-be-sent-to-the-application"></a>Sélectionner l’identificateur de l’utilisateur et ajouter les attributs d’utilisateur à envoyer à l’application
+#### <a name="select-user-identifier-and-add-user-attributes-toobe-sent-toohello-application"></a>Identificateur de l’utilisateur de sélectionner et ajouter l’application utilisateur attributs toobe envoyé toohello
 
-Pour sélectionner l’identificateur de l’utilisateur ou ajouter des attributs d’utilisateur, effectuez les étapes suivantes :
+tooselect hello identificateur d’utilisateur ou ajouter des attributs d’utilisateur, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-   * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+   * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous avez configuré l’authentification unique.
+6.  Sélectionnez l’application hello que vous avez configuré l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Dans la section **Attributs d’utilisateur**, sélectionnez l’identificateur unique de vos utilisateurs dans la liste déroulante **Identificateur de l’utilisateur**. L’option sélectionnée doit correspondre à la valeur attendue dans l’application pour authentifier l’utilisateur.
+8.  Sous hello **attributs utilisateur** section, sélectionnez hello un identificateur unique pour vos utilisateurs Bonjour **identificateur de l’utilisateur** liste déroulante. Hello option sélectionnée doit valeur attendue toomatch hello utilisateur hello de tooauthenticate l’application hello.
 
    >[!NOTE] 
-   >Azure AD sélectionne le format de l’attribut NameID (Identificateur d’utilisateur) en fonction de la valeur sélectionnée ou du format demandé par l’application dans la demande d’authentification SAML. Pour plus d’informations, consultez l’article [Protocole SAML d’authentification unique](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) dans la section NameIDPolicy.
+   >Format de hello sélectionnez Azure AD pour l’attribut de NameID hello (identifiant d’utilisateur) en fonction de la valeur hello sélectionnée ou hello format demandé par l’application hello Bonjour SAML AuthRequest. Pour plus d’informations, consultez l’article de hello [protocole SAML de l’authentification unique](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) sous hello section NameIDPolicy.
    >
    >
 
-9.  Pour ajouter des attributs d’utilisateur, cliquez sur **Afficher et modifier tous les autres attributs utilisateur** afin de modifier les attributs à envoyer à l’application dans le jeton SAML lorsque l’utilisateur se connecte.
+9.  attributs d’utilisateur tooadd, cliquez sur **afficher et modifier tous les autres attributs de l’utilisateur** tooedit hello attributs application de toohello toobe envoyé dans un jeton SAML de hello lorsque l’utilisateur se connecter.
 
-   Pour ajouter un attribut :
+   tooadd un attribut :
 
-   1. Cliquez sur **Ajouter un attribut**. Entrez le **Nom**, puis sélectionnez la **Valeur** dans la liste déroulante.
+   1. Cliquez sur **Ajouter un attribut**. Entrez hello **nom** et Bonjour sélectionnez Bonjour **valeur** à partir de la liste déroulante de hello.
 
-   2. Cliquez sur **Enregistrer.** Le nouvel attribut s’affiche dans le tableau.
+   2. Cliquez sur **Enregistrer.** Vous consultez hello nouvel attribut dans la table de hello.
 
-#### <a name="download-the-azure-ad-metadata-or-certificate"></a>Télécharger les métadonnées ou le certificat Azure AD
+#### <a name="download-hello-azure-ad-metadata-or-certificate"></a>Télécharger des métadonnées Azure AD hello ou certificat
 
-Pour télécharger les métadonnées ou le certificat de l’application à partir d’Azure AD, effectuez les étapes suivantes :
+métadonnées de l’application hello toodownload ou un certificat d’Azure AD, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-   * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+   * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous avez configuré l’authentification unique.
+6.  Sélectionnez l’application hello que vous avez configuré l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Accédez à la section **Certificat de signature SAML**, puis cliquez sur la valeur de colonne **Télécharger**. En fonction de ce que l’application nécessite pour configurer l’authentification unique, vous voyez soit l’option de téléchargement des métadonnées XML, soit le certificat.
+8.  Accédez trop**le certificat de signature SAML** section, puis cliquez sur **télécharger** valeur de la colonne. En fonction de l’application hello nécessite la configuration de l’authentification unique, vous voyez deux toodownload d’option hello hello Metadata XML ou hello du certificat.
 
-Azure AD ne fournit pas d’URL permettant d’obtenir les métadonnées. Les métadonnées peuvent uniquement être récupérées sous forme de fichier XML.
+Azure AD ne fournit pas une URL de métadonnées hello tooget. Hello métadonnées peuvent uniquement être récupérées dans un fichier XML.
 
-### <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>Comment configurer l’authentification unique par mot de passe pour une application de la galerie Azure AD
+### <a name="how-tooconfigure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>Comment tooconfigure le mot de passe sur l’authentification unique pour une application de la galerie Azure AD
 
-Pour configurer une application à partir de la galerie Azure AD, vous devez effectuer les opérations suivantes :
+tooconfigure une application à partir de la galerie d’Azure AD hello vous devez :
 
--   [Ajouter une application à partir de la galerie Azure AD](#add-an-application-from-the-azure-ad-gallery)
+-   [Ajouter une application à partir de la galerie d’Azure AD hello](#add-an-application-from-the-azure-ad-gallery)
 
--   [Configurer l’application pour l’authentification unique par mot de passe](#configure-the-application-for-password-single-sign-on)
+-   [Configurer une application hello pour mot de passe l’authentification unique](#configure-the-application-for-password-single-sign-on)
 
-#### <a name="add-an-application-from-the-azure-ad-gallery"></a>Ajouter une application à partir de la galerie Azure AD
+#### <a name="add-an-application-from-hello-azure-ad-gallery"></a>Ajouter une application à partir de la galerie d’Azure AD hello
 
-Pour ajouter une application à partir de la galerie Azure AD, effectuez les étapes suivantes :
+tooadd une application à partir de hello Galerie d’Azure AD, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [portail Azure](https://portal.azure.com) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [Azure Portal](https://portal.azure.com) et connectez-vous en tant qu’un **administrateur Global** ou **Co-admin**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur le bouton **Ajouter** dans le coin supérieur droit du panneau **Applications d’entreprise**.
+5.  Cliquez sur hello **ajouter** bouton au coin supérieur droit de hello sur hello **des Applications d’entreprise** panneau.
 
-6.  Dans la zone de texte **Entrer un nom** de la section **Ajouter à partir de la galerie**, tapez le nom de l’application.
+6.  Bonjour **Entrez un nom** zone de texte à partir de hello **ajouter à partir de la galerie de hello** section, entrez un nom hello de l’application hello.
 
-7.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+7.  Sélectionnez hello application tooconfigure pour l’authentification unique.
 
-8.  Avant d’ajouter l’application, vous pouvez la renommer dans la zone de texte **Nom**.
+8.  Avant d’ajouter l’application hello, vous pouvez modifier son nom à partir de hello **nom** zone de texte.
 
-9.  Pour ajouter l’application, cliquez sur le bouton **Ajouter**.
+9.  Cliquez sur **ajouter** bouton, l’application de hello tooadd.
 
-Après une courte période, vous pouvez voir le panneau de configuration de l’application.
+Après une courte période, vous être Panneau de configuration de l’application en mesure de toosee hello.
 
-#### <a name="configure-the-application-for-password-single-sign-on"></a>Configurer l’application pour l’authentification unique par mot de passe
+#### <a name="configure-hello-application-for-password-single-sign-on"></a>Configurer une application hello pour mot de passe l’authentification unique
 
-Pour configurer l’authentification unique pour une application, effectuez les étapes suivantes :
+tooconfigure l’authentification unique pour une application, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-   * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+   * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+6.  Sélectionnez l’application hello tooconfigure l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Sélectionnez le mode **Authentification par mot de passe.**
+8.  Mode de sélection hello **mot de passe de session.**
 
-9.  [Affectez des utilisateurs à l’application](#how-to-assign-a-user-to-an-application-directly).
+9.  [Affecter des utilisateurs toohello application](#how-to-assign-a-user-to-an-application-directly).
 
-10. En outre, vous pouvez également fournir des informations d’identification pour le compte de l’utilisateur en sélectionnant les lignes des utilisateurs, en cliquant sur **Mettre à jour les informations d’identification** et en entrant le nom d’utilisateur et le mot de passe à la place des utilisateurs. Autrement, les utilisateurs devront entrer les informations d’identification eux-mêmes lors du lancement.
+10. En outre, vous pouvez également fournir des informations d’identification pour le compte d’utilisateur de hello en sélectionnant les lignes hello d’utilisateurs de hello en cliquant sur **informations d’identification de la mise à jour** et en entrant hello username et password pour le compte d’utilisateurs de hello. Dans le cas contraire, les utilisateurs être invité à tooenter hello informations d’identification elles-mêmes lors du lancement.
 
-### <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>Comment configurer l’authentification unique par mot de passe pour une application ne figurant pas dans la galerie
+### <a name="how-tooconfigure-password-single-sign-on-for-a-non-gallery-application"></a>Comment tooconfigure le mot de passe sur l’authentification unique pour une application non-galerie
 
-Pour configurer une application à partir de la galerie Azure AD, vous devez effectuer les opérations suivantes :
+tooconfigure une application à partir de la galerie d’Azure AD hello vous devez :
 
 -   [Ajouter une application ne figurant pas dans la galerie](#add-a-non-gallery-application)
 
--   [Configurer l’application pour l’authentification unique par mot de passe](#configure-the-application-for-password-single-sign-on)
+-   [Configurer une application hello pour mot de passe l’authentification unique](#configure-the-application-for-password-single-sign-on)
 
 #### <a name="add-a-non-gallery-application"></a>Ajouter une application ne figurant pas dans la galerie
 
-Pour ajouter une application à partir de la galerie Azure AD, effectuez les étapes suivantes :
+tooadd une application à partir de hello Galerie d’Azure AD, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [portail Azure](https://portal.azure.com) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**.
+1.  Ouvrez hello [Azure Portal](https://portal.azure.com) et connectez-vous en tant qu’un **administrateur Global** ou **Co-admin**.
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur le bouton **Ajouter** dans le coin supérieur droit du panneau **Applications d’entreprise**.
+5.  Cliquez sur hello **ajouter** bouton au coin supérieur droit de hello sur hello **des Applications d’entreprise** panneau.
 
-6.  Cliquez sur **Application ne figurant pas dans la galerie.**
+6.  Cliquez sur **Application ne figurant pas dans la galerie**.
 
-7.  Entrez le nom de votre application dans la zone de texte **Nom**. Sélectionnez **Ajouter.**
+7.  Entrez le nom hello de votre application Bonjour **nom** zone de texte. Sélectionnez **Ajouter.**
 
-Après une courte période, vous pourrez voir le panneau de configuration de l’application.
+Après une courte période, vous être Panneau de configuration de l’application en mesure de toosee hello.
 
-#### <a name="configure-the-application-for-password-single-sign-on"></a>Configurer l’application pour l’authentification unique par mot de passe
+#### <a name="configure-hello-application-for-password-single-sign-on"></a>Configurer une application hello pour mot de passe l’authentification unique
 
-Pour configurer l’authentification unique pour une application, effectuez les étapes suivantes :
+tooconfigure l’authentification unique pour une application, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-    1.  Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+    1.  Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+6.  Sélectionnez l’application hello tooconfigure l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Sélectionnez le mode **Authentification par mot de passe.**
+8.  Mode de sélection hello **mot de passe de session.**
 
-9.  Entrez **l’URL de connexion**. Il s’agit de l’URL où les utilisateurs entrent leurs nom d’utilisateur et mot de passe pour se connecter. Vérifiez que les champs de connexion sont visibles dans l’URL.
+9.  Entrez hello **URL de connexion**. Il s’agit d’URL de hello où les utilisateurs entrent leur nom d’utilisateur et mot de passe des toosign dans pour. Vérifiez la connexion hello dans les champs est visibles à l’URL de hello.
 
-10. [Affectez des utilisateurs à l’application](#how-to-assign-a-user-to-an-application-directly).
+10. [Affecter des utilisateurs toohello application](#how-to-assign-a-user-to-an-application-directly).
 
-11. En outre, vous pouvez également fournir des informations d’identification pour le compte de l’utilisateur en sélectionnant les lignes des utilisateurs, en cliquant sur **Mettre à jour les informations d’identification** et en entrant le nom d’utilisateur et le mot de passe à la place des utilisateurs. Autrement, les utilisateurs devront entrer les informations d’identification eux-mêmes lors du lancement.
+11. En outre, vous pouvez également fournir des informations d’identification pour le compte d’utilisateur de hello en sélectionnant les lignes hello d’utilisateurs de hello en cliquant sur **informations d’identification de la mise à jour** et en entrant hello username et password pour le compte d’utilisateurs de hello. Dans le cas contraire, les utilisateurs être invité à tooenter hello informations d’identification elles-mêmes lors du lancement.
 
-## <a name="problems-related-to-assigning-applications-to-users"></a>Problèmes liés à l’affectation des applications aux utilisateurs
+## <a name="problems-related-tooassigning-applications-toousers"></a>Des problèmes connexes tooassigning applications toousers
 
-Un utilisateur peut ne pas voir une application sur son volet d’accès, car il n’y est pas affecté. Voici plusieurs méthodes pour vérifier :
+Un utilisateur ne peut pas s’agir d’une application dans leur volet d’accès, car ils ne sont pas affectés toohello application. Voici certains toocheck façons :
 
--   [Vérifier si un utilisateur est affecté à l’application](#check-if-a-user-is-assigned-to-the-application)
+-   [Vérifiez si un utilisateur est affecté toohello application](#check-if-a-user-is-assigned-to-the-application)
 
--   [Comment affecter un utilisateur directement à une application](#how-to-assign-a-user-to-an-application-directly)
+-   [Comment tooassign directement une application de tooan utilisateur](#how-to-assign-a-user-to-an-application-directly)
 
--   [Vérifier si un utilisateur est affecté à une licence liée à l’application](#check-if-a-user-is-under-a-license-related-to-the-application)
+-   [Vérifiez si un utilisateur est assigné tooa licence liées toohello application](#check-if-a-user-is-under-a-license-related-to-the-application)
 
--   [Comment attribuer une licence à un utilisateur](#how-to-assign-a-user-a-license)
+-   [Comment tooassign un utilisateur tooa de licence](#how-to-assign-a-user-a-license)
 
-### <a name="check-if-a-user-is-assigned-to-the-application"></a>Vérifier si un utilisateur est affecté à l’application
+### <a name="check-if-a-user-is-assigned-toohello-application"></a>Vérifiez si un utilisateur est affecté toohello application
 
-Pour vérifier si un utilisateur est affecté à l’application, effectuez les étapes suivantes :
+toocheck si un utilisateur est assigné toohello application, procédez comme suit hello :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste de toutes vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-6.  **Recherchez** le nom de l’application en question.
+6.  **Recherche** pour nom hello de l’application hello en question.
 
 7.  Sélectionnez **Utilisateurs et groupes**.
 
-8.  Vérifiez si votre utilisateur est affecté à l’application.
+8.  Vérifiez toosee si votre utilisateur est affecté toohello application.
 
-   * Si ce n’est pas le cas, suivez les étapes décrites dans « Comment affecter un utilisateur directement à une application ».
+   * Si ce n’est pas hello comme suit dans « comment tooassign directement une application de tooan utilisateur » toodo donc.
 
-### <a name="how-to-assign-a-user-to-an-application-directly"></a>Comment affecter un utilisateur directement à une application
+### <a name="how-tooassign-a-user-tooan-application-directly"></a>Comment tooassign directement une application de tooan utilisateur
 
-Pour affecter un ou plusieurs utilisateurs directement à une application, effectuez les étapes suivantes :
+tooassign un ou plusieurs utilisateurs tooan application directement, comme suit hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général**.
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global**.
 
-2.  Ouvrez l’**extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Dans la liste qui s’affiche, sélectionnez l’application à laquelle vous souhaitez affecter un utilisateur.
+6.  Sélectionnez l’application hello tooassign une liste des utilisateurs toofrom hello.
 
-7.  Une fois l’application chargée, cliquez sur **Utilisateurs et groupes** dans le menu de navigation de gauche de l’application.
+7.  Une fois le charge de l’application hello, cliquez sur **utilisateurs et groupes** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Cliquez sur le bouton **Ajouter** en haut de la liste **Utilisateurs et groupes** pour ouvrir le panneau **Ajouter une attribution**.
+8.  Cliquez sur hello **ajouter** bouton par-dessus hello **utilisateurs et groupes** hello tooopen de liste **ajouter l’affectation** panneau.
 
-9.  Cliquez sur le sélecteur **Utilisateurs et groupes** à partir du panneau **Ajouter une attribution**.
+9.  Cliquez sur hello **utilisateurs et groupes** sélecteur de hello **ajouter l’affectation** panneau.
 
-10. Tapez **le nom complet** ou **l’adresse de messagerie** de l’utilisateur souhaité pour l’attribution dans la zone de recherche **Rechercher par nom ou adresse de messagerie**.
+10. Type Bonjour **nom complet** ou **adresse de messagerie** d’utilisateur hello vous êtes intéressé par attribution dans hello **recherche par nom ou adresse de messagerie** zone de recherche.
 
-11. Pointez sur **l’utilisateur** dans la liste pour afficher une **case à cocher**. Cliquez sur la case à cocher en regard de la photo de profil ou du logo de l’utilisateur pour ajouter ce dernier à la liste **Sélectionné**.
+11. Placez le curseur sur hello **utilisateur** dans hello liste tooreveal un **case à cocher**. Cliquez sur tooadd de photo ou le logo de profil hello case à cocher suivante toohello l’utilisateur à votre toohello utilisateur **sélectionnés** liste.
 
-12. **Facultatif :** si vous souhaitez **ajouter plusieurs utilisateurs**, entrez un autre **nom complet** ou une autre **adresse de messagerie** dans la zone de recherche **Rechercher par nom ou adresse de messagerie**, puis cliquez sur la case à cocher pour ajouter cet utilisateur à la liste **Sélectionné**.
+12. **Facultatif :** si vous souhaitez que trop**ajouter plusieurs utilisateurs**, type dans un autre **nom complet** ou **adresse de messagerie** dans hello **Rechercher par nom ou l’adresse de messagerie** zone de recherche, cliquez sur tooadd de case à cocher hello cette toohello utilisateur **sélectionnés** liste.
 
-13. Après avoir sélectionné les utilisateurs, cliquez sur le bouton **Sélectionner** pour les ajouter à la liste des utilisateurs et des groupes à affecter à l’application.
+13. Lorsque vous avez fini de sélectionner les utilisateurs, cliquez sur hello **sélectionnez** bouton tooadd les toohello la liste des toobe utilisateurs et groupes affectés toohello application.
 
-14. **Facultatif :** cliquez sur le sélecteur **Sélectionner un rôle** dans le panneau **Ajouter une attribution** pour sélectionner un rôle à affecter aux utilisateurs que vous avez sélectionnés.
+14. **Facultatif :** cliquez sur hello **sélectionner un rôle** sélecteur Bonjour **ajouter l’affectation** panneau tooselect un rôle aux utilisateurs de toohello tooassign que vous avez sélectionné.
 
-15. Cliquez sur le bouton **Attribuer** pour affecter l’application aux utilisateurs sélectionnés.
+15. Cliquez sur hello **affecter** bouton tooassign hello application toohello les utilisateurs sélectionnés.
 
-Après une courte période, les utilisateurs que vous avez sélectionnés seront en mesure de lancer ces applications dans le volet d’accès.
+Après une courte période, les utilisateurs de hello que vous avez sélectionné est en mesure de toolaunch ces applications dans hello panneau d’accès.
 
-### <a name="check-if-a-user-is-under-a-license-related-to-the-application"></a>Vérifier si un utilisateur est affecté à une licence liée à l’application
+### <a name="check-if-a-user-is-under-a-license-related-toohello-application"></a>Vérifier si un utilisateur est sous licence toohello application relative
 
-Pour vérifier les licences affectées à un utilisateur, effectuez les étapes suivantes :
+toocheck un utilisateur affecté des licences, suivez les étapes hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche du filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Utilisateurs et groupes** dans le menu de navigation.
-
-5.  Cliquez sur **Tous les utilisateurs**.
-
-6.  **Recherchez** l’utilisateur qui vous intéresse et **cliquez sur la ligne** pour le sélectionner.
-
-7.  Cliquez sur **Licences** pour voir quelles licences sont actuellement affectées à l’utilisateur.
-
-  * Si l’utilisateur est affecté à une licence Office, les applications Office internes apparaîtront dans le volet d’accès.
-
-### <a name="how-to-assign-a-user-a-license"></a>Comment affecter une licence à un utilisateur 
-
-Pour affecter une licence à un utilisateur, effectuez les étapes suivantes :
-
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
-
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
-
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche du filtre et sélectionnez l’élément **Azure Active Directory**.
-
-4.  Cliquez sur **Utilisateurs et groupes** dans le menu de navigation.
+4.  Cliquez sur **utilisateurs et groupes** dans le menu de navigation hello.
 
 5.  Cliquez sur **Tous les utilisateurs**.
 
-6.  **Recherchez** l’utilisateur qui vous intéresse et **cliquez sur la ligne** pour le sélectionner.
+6.  **Recherche** pour l’utilisateur hello vous intéressez et **cliquez sur la ligne hello** tooselect.
 
-7.  Cliquez sur **Licences** pour voir quelles licences sont actuellement affectées à l’utilisateur.
+7.  Cliquez sur **licences** toosee les licences hello d’utilisateur est affectée actuellement.
 
-8.  Cliquez sur le bouton **Attribuer**.
+  * Si l’utilisateur de hello est attribué une licence Office tooan Ceci activer premier tiers Office applications tooappear sur hello panneau d’accès de l’utilisateur.
 
-9.  Sélectionnez **un ou plusieurs produits** dans la liste des produits disponibles.
+### <a name="how-tooassign-a-user-a-license"></a>Comment tooassign un utilisateur une licence 
 
-10. **Facultatif** Cliquez sur l’élément **Options d’affectation** pour affecter les produits de façon granulaire. Cliquez sur **OK** lorsque l’opération est terminée.
+tooassign un utilisateur tooa de licences, suivez les étapes de hello ci-dessous :
 
-11. Cliquez sur le bouton **Attribuer** pour affecter ces licences à cet utilisateur.
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
 
-## <a name="problems-related-to-assigning-applications-to-groups"></a>Problèmes liés à l’affectation des applications aux groupes
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-Un utilisateur peut ne pas voir une application sur son volet d’accès, car il ne fait pas partie d’un groupe affecté à l’application. Voici plusieurs méthodes pour vérifier :
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
+
+4.  Cliquez sur **utilisateurs et groupes** dans le menu de navigation hello.
+
+5.  Cliquez sur **Tous les utilisateurs**.
+
+6.  **Recherche** pour l’utilisateur hello vous intéressez et **cliquez sur la ligne hello** tooselect.
+
+7.  Cliquez sur **licences** toosee les licences hello d’utilisateur est affectée actuellement.
+
+8.  Cliquez sur hello **affecter** bouton.
+
+9.  Sélectionnez **un ou plusieurs produits** à partir de la liste de hello des produits disponibles.
+
+10. **Facultatif** cliquez sur hello **options d’attribution** élément toogranularly affecter des produits. Cliquez sur **OK** lorsque l’opération est terminée.
+
+11. Cliquez sur hello **affecter** bouton tooassign ces utilisateur toothis de licences.
+
+## <a name="problems-related-tooassigning-applications-toogroups"></a>Des problèmes connexes tooassigning applications toogroups
+
+Un utilisateur peut s’agir d’une application dans leur volet d’accès car ils font partie d’un groupe auquel a été attribué application hello. Voici certains toocheck façons :
 
 -   [Vérifier les appartenances d’un utilisateur à des groupes](#check-a-users-group-memberships)
 
--   [Comment affecter une application directement à un groupe](#how-to-assign-an-application-to-a-group-directly)
+-   [Comment tooassign un tooa application groupe directement](#how-to-assign-an-application-to-a-group-directly)
 
--   [Vérifier si un utilisateur fait partie d’un groupe affecté à une licence](#check-if-a-user-is-part-of-group-assigned-to-a-license)
+-   [Vérifiez si un utilisateur fait partie du groupe tooa licence attribuée](#check-if-a-user-is-part-of-group-assigned-to-a-license)
 
--   [Comment attribuer une licence à un groupe](#how-to-assign-a-license-to-a-group)
+-   [Comment tooassign un tooa un groupe de licences](#how-to-assign-a-license-to-a-group)
 
 ### <a name="check-a-users-group-memberships"></a>Vérifier les appartenances d’un utilisateur à des groupes
 
-Pour vérifier l’appartenance d’un utilisateur à un groupe, effectuez les étapes suivantes :
+toocheck une appartenance de groupe, suivez les étapes hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche du filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Utilisateurs et groupes** dans le menu de navigation.
-
-5.  Cliquez sur **Tous les utilisateurs**.
-
-6.  **Recherchez** l’utilisateur qui vous intéresse et **cliquez sur la ligne** pour le sélectionner.
-
-7.  Cliquez sur **Groupes**.
-
-8.  Vérifiez si votre utilisateur fait partie d’un groupe affecté à l’application.
-
-  * Si vous souhaitez supprimer l’utilisateur du groupe, **cliquez sur la ligne** du groupe et sélectionnez Supprimer.
-
-### <a name="how-to-assign-an-application-to-a-group-directly"></a>Comment affecter une application directement à un groupe
-
-Pour affecter un ou plusieurs groupes directement à une application, procédez comme suit :
-
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général**.
-
-2.  Ouvrez l’**extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
-
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
-
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
-
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
-
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
-
-6.  Dans la liste qui s’affiche, sélectionnez l’application à laquelle vous souhaitez affecter un utilisateur.
-
-7.  Une fois l’application chargée, cliquez sur **Utilisateurs et groupes** dans le menu de navigation de gauche de l’application.
-
-8.  Cliquez sur le bouton **Ajouter** en haut de la liste **Utilisateurs et groupes** pour ouvrir le panneau **Ajouter une attribution**.
-
-9.  Cliquez sur le sélecteur **Utilisateurs et groupes** à partir du panneau **Ajouter une attribution**.
-
-10. Tapez le **nom de groupe complet** du groupe souhaité pour l’attribution dans la zone de recherche **Rechercher par nom ou adresse de messagerie**.
-
-11. Pointez sur le **groupe** dans la liste pour afficher une **case à cocher**. Cliquez sur la case à cocher en regard de la photo de profil ou du logo du groupe pour ajouter ce dernier à la liste **Sélectionné**.
-
-12. **Facultatif :** si vous souhaitez **ajouter plusieurs groupes**, entrez un autre **nom de groupe complet** dans la zone de recherche **Rechercher par nom ou adresse de messagerie**, puis cliquez sur la case à cocher pour ajouter ce groupe à la liste **Sélectionné**.
-
-13. Lorsque vous avez fini de sélectionner les groupes, cliquez sur le bouton **Sélectionner** pour les ajouter à la liste des utilisateurs et des groupes à affecter à l’application.
-
-14. **Facultatif :** cliquez sur le sélecteur **Sélectionner un rôle** dans le panneau **Ajouter une attribution** pour sélectionner un rôle à affecter aux groupes que vous avez sélectionnés.
-
-15. Cliquez sur le bouton **Attribuer** pour affecter l’application aux groupes sélectionnés.
-
-Après une courte période, les utilisateurs que vous avez sélectionnés seront en mesure de lancer ces applications dans le volet d’accès.
-
-### <a name="check-if-a-user-is-part-of-group-assigned-to-a-license"></a>Vérifier si un utilisateur fait partie d’un groupe affecté à une licence
-
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
-
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
-
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche du filtre et sélectionnez l’élément **Azure Active Directory**.
-
-4.  Cliquez sur **Utilisateurs et groupes** dans le menu de navigation.
+4.  Cliquez sur **utilisateurs et groupes** dans le menu de navigation hello.
 
 5.  Cliquez sur **Tous les utilisateurs**.
 
-6.  **Recherchez** l’utilisateur qui vous intéresse et **cliquez sur la ligne** pour le sélectionner.
+6.  **Recherche** pour l’utilisateur hello vous intéressez et **cliquez sur la ligne hello** tooselect.
 
 7.  Cliquez sur **Groupes**.
 
-8.  Cliquez sur la ligne d’un groupe spécifique.
+8.  Vérifiez toosee si l’utilisateur fait partie d’une application toohello de groupe affecté.
 
-9.  Cliquez sur **Licences** pour voir quelles licences sont affectées au groupe.
+  * Si vous souhaitez utilisateur de hello tooremove à partir du groupe de hello, **cliquez sur la ligne hello** hello groupe d’et sélectionnez Supprimer.
 
-   * Si le groupe est affecté à une licence Office, certaines applications Office internes pourront apparaître dans le volet d’accès de l’utilisateur.
+### <a name="how-tooassign-an-application-tooa-group-directly"></a>Comment tooassign un tooa application groupe directement
 
-### <a name="how-to-assign-a-license-to-a-group"></a>Comment attribuer une licence à un groupe
+tooassign un ou plusieurs groupes tooan application directement, hello suivez les étapes ci-dessous :
 
-Pour affecter une licence à un groupe, effectuez les étapes suivantes :
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global**.
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche du filtre et sélectionnez l’élément **Azure Active Directory**.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-4.  Cliquez sur **Utilisateurs et groupes** dans le menu de navigation.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
+
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
+
+6.  Sélectionnez l’application hello tooassign une liste des utilisateurs toofrom hello.
+
+7.  Une fois le charge de l’application hello, cliquez sur **utilisateurs et groupes** à partir du menu de navigation de gauche de l’application hello.
+
+8.  Cliquez sur hello **ajouter** bouton par-dessus hello **utilisateurs et groupes** hello tooopen de liste **ajouter l’affectation** panneau.
+
+9.  Cliquez sur hello **utilisateurs et groupes** sélecteur de hello **ajouter l’affectation** panneau.
+
+10. Type Bonjour **nom de groupe complète** groupe hello vous êtes intéressé par attribution dans hello **recherche par nom ou adresse de messagerie** zone de recherche.
+
+11. Placez le curseur sur hello **groupe** dans hello liste tooreveal un **case à cocher**. Cliquez sur tooadd de photo ou le logo de profil de hello case à cocher toohello groupe suivant votre toohello utilisateur **sélectionnés** liste.
+
+12. **Facultatif :** si vous souhaitez que trop**ajouter plusieurs groupes**, type dans un autre **nom de groupe complète** dans hello **recherche par nom ou adresse de messagerie** zone de recherche, Cliquez sur tooadd de case à cocher hello toohello de ce groupe **sélectionnés** liste.
+
+13. Lorsque vous avez fini de sélectionner les groupes, cliquez sur hello **sélectionnez** bouton tooadd les toohello la liste des toobe utilisateurs et groupes affectés toohello application.
+
+14. **Facultatif :** cliquez sur hello **sélectionner un rôle** sélecteur Bonjour **ajouter l’affectation** panneau tooselect un toohello de tooassign rôle groupes que vous avez sélectionné.
+
+15. Cliquez sur hello **affecter** bouton tooassign hello application toohello les groupes sélectionnés.
+
+Après une courte période, les utilisateurs de hello que vous avez sélectionné est en mesure de toolaunch ces applications dans hello panneau d’accès.
+
+### <a name="check-if-a-user-is-part-of-group-assigned-tooa-license"></a>Vérifiez si un utilisateur fait partie du groupe tooa licence attribuée
+
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
+
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
+
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
+
+4.  Cliquez sur **utilisateurs et groupes** dans le menu de navigation hello.
+
+5.  Cliquez sur **Tous les utilisateurs**.
+
+6.  **Recherche** pour l’utilisateur hello vous intéressez et **cliquez sur la ligne hello** tooselect.
+
+7.  Cliquez sur **Groupes**.
+
+8.  Cliquez sur ligne hello d’un groupe spécifique.
+
+9.  Cliquez sur **licences** toosee quel groupe hello de licences a affecté tooit.
+
+   * Si le groupe de hello est attribué une licence Office tooan sur que ceci peut activer certaine tooappear d’applications de premier tiers Office hello panneau d’accès de l’utilisateur.
+
+### <a name="how-tooassign-a-license-tooa-group"></a>Comment tooassign un tooa un groupe de licences
+
+tooassign un groupe tooa de licences, suivez les étapes de hello ci-dessous :
+
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
+
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
+
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
+
+4.  Cliquez sur **utilisateurs et groupes** dans le menu de navigation hello.
 
 5.  Cliquez sur **Tous les groupes**.
 
-6.  **Recherchez** le groupe qui vous intéresse et **cliquez sur la ligne** pour le sélectionner.
+6.  **Recherche** pour groupe hello vous intéressez et **cliquez sur la ligne hello** tooselect.
 
-7.  Cliquez sur **Licences** pour voir quelles licences sont actuellement affectées au groupe.
+7.  Cliquez sur **licences** toosee quel groupe hello de licences est affectée actuellement.
 
-8.  Cliquez sur le bouton **Attribuer**.
+8.  Cliquez sur hello **affecter** bouton.
 
-9.  Sélectionnez **un ou plusieurs produits** dans la liste des produits disponibles.
+9.  Sélectionnez **un ou plusieurs produits** à partir de la liste de hello des produits disponibles.
 
-10. **Facultatif** Cliquez sur l’élément **Options d’affectation** pour affecter les produits de façon granulaire. Cliquez sur **OK** lorsque l’opération est terminée.
+10. **Facultatif** cliquez sur hello **options d’attribution** élément toogranularly affecter des produits. Cliquez sur **OK** lorsque l’opération est terminée.
 
-11. Cliquez sur le bouton **Attribuer** pour affecter ces licences à ce groupe. Cette opération peut être très longue, selon la taille et la complexité du groupe.
+11. Cliquez sur hello **affecter** bouton tooassign ces toothis de groupe de licences. Cette opération peut prendre beaucoup de temps, selon la taille de hello et la complexité du groupe de hello.
 
 >[!NOTE]
->Pour accélérer ce processus, vous pouvez affecter temporairement une licence directement à l’utilisateur. 
+>toodo cela plus rapide, envisagez temporairement attribution directement à un utilisateur de toohello de licence. 
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Ajout de nouveaux utilisateurs à Azure Active Directory](active-directory-users-create-azure-portal.md)
+[Ajouter de nouveaux utilisateurs tooAzure Active Directory](active-directory-users-create-azure-portal.md)
 

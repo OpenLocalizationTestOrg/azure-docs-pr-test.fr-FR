@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : intégration d’Azure Active Directory à Google Apps dans Azure | Documents Microsoft"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Google Apps."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de Google Apps."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,131 +13,131 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: 065841d6b4fe50e953f01bba4d3f23de82b82726
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2093b5ab605ec0d7bbefe7a78e1eede34d756f53
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-google-apps"></a>Didacticiel : Intégration d’Azure Active Directory à Google Apps
 
-Dans ce didacticiel, vous allez apprendre à intégrer Google Apps à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate Google Apps avec Azure Active Directory (Azure AD).
 
-L’intégration de Google Apps dans Azure AD vous offre les avantages suivants :
+Intégration de Google Apps à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à Google Apps
-- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Google Apps (via l’authentification unique) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooGoogle applications
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooGoogle (Single Sign-On), les applications avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus d’informations sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD avec Google Apps, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD à Google Apps, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Google pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez bénéficier de l’essai d’un mois ici : [Offre d’essai](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="video-tutorial"></a>Didacticiel vidéo
-Comment activer l'authentification unique pour Google Apps en 2 minutes :
+Comment tooEnable Single Sign-On tooGoogle des applications dans les 2 Minutes :
 
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Enable-single-sign-on-to-Google-Apps-in-2-minutes-with-Azure-AD/player]
 
 ## <a name="frequently-asked-questions"></a>Forum Aux Questions (FAQ)
 1. **Q : Les Chromebooks et les autres appareils Chrome sont-ils compatibles avec l’authentification unique Azure AD ?**
    
-    R : Oui, les utilisateurs pourront se connecter à leurs périphériques Chromebook en saisissant leurs informations d’identification Azure AD. Consultez cet [article du support technique Google Apps](https://support.google.com/chrome/a/answer/6060880) pour en savoir plus sur les raisons de la double demande de saisie des informations d’identification.
+    R : Oui, les utilisateurs sont en mesure de toosign dans leurs appareils Chromebook à l’aide de leurs informations d’identification Azure AD. Consultez cet [article du support technique Google Apps](https://support.google.com/chrome/a/answer/6060880) pour en savoir plus sur les raisons de la double demande de saisie des informations d’identification.
 
-2. **Q : Si j’ai activé l’authentification unique, les utilisateurs pourront-ils utiliser leurs informations d’identification Azure AD pour se connecter à un produit Google, comme Google Classroom, Gmail, Google Drive, YouTube, etc. ?**
+2. **Q : si j’activer l’authentification unique, les utilisateurs de s’être toouse en mesure de leur toosign d’informations d’identification Azure AD dans tous les produits Google, telles que la classe de Google, GMail, Google Drive, YouTube et ainsi de suite ?**
    
-    R : Oui, en fonction des [Google apps](https://support.google.com/a/answer/182442?hl=en&ref_topic=1227583) que vous choisissez d’activer et de désactiver pour votre organisation.
+    R : Oui, en fonction de [les applications de Google](https://support.google.com/a/answer/182442?hl=en&ref_topic=1227583) vous choisissez tooenable ou désactiver pour votre organisation.
 
 3. **Q : Puis-je activer l’authentification unique pour uniquement un sous-ensemble de mes utilisateurs Google Apps ?**
    
-    R : Non, si vous activez l’authentification unique, l’ensemble des utilisateurs Google Apps devront s’authentifier avec leurs informations d’identification Azure AD. Google Apps ne prenant pas en charge plusieurs fournisseurs d’identité, le fournisseur associé à votre environnement Google Apps peut être Azure AD ou Google, mais pas les deux.
+    R : non, activer l’authentification unique sur immédiatement nécessite tous les votre tooauthenticate d’utilisateurs de Google Apps avec leurs informations d’identification Azure AD. Étant donné que Google Apps ne prend en charge plusieurs fournisseurs d’identité, le fournisseur d’identité pour votre environnement de Google Apps hello peut être Azure AD ou Google--mais pas les deux à hello même temps.
 
-4. **Q : Si un utilisateur est connecté via Windows, est-il automatiquement authentifié sur Google Apps sans qu’il ne lui soit demandé de saisir un mot de passe ?**
+4. **Q : si un utilisateur est connecté via Windows, sont qu'elles authentifient automatiquement les applications tooGoogle sans mise en route invité à entrer un mot de passe ?**
    
-    R : Ce scénario peut être activé par le biais de deux options. Tout d’abord, les utilisateurs peuvent se connecter aux appareils Windows 10 via [Azure Active Directory Join](active-directory-azureadjoin-overview.md). Sinon, les utilisateurs peuvent se connecter aux appareils Windows joints à un domaine au sein d’un répertoire Active Directory sur lequel est activée l’authentification unique à Azure AD via un déploiement [Active Directory Federation Services (AD FS)](active-directory-aadconnect-user-signin.md) . Quelle que soit l’option choisie, vous devez suivre le didacticiel ci-dessous pour activer l’authentification unique entre Azure AD et Google Apps.
+    R : Ce scénario peut être activé par le biais de deux options. Tout d’abord, les utilisateurs peuvent se connecter aux appareils Windows 10 via [Azure Active Directory Join](active-directory-azureadjoin-overview.md). Vous pouvez également les utilisateurs pourraient s’appareils Windows, qui sont joints au domaine de tooan locale Active Directory qui a été activé pour une seule session tooAzure AD via un [les Services de fédération Active Directory (AD FS)](active-directory-aadconnect-user-signin.md) déploiement. Les deux options nécessitent un tooperform les étapes de hello Bonjour suivant didacticiel tooenable l’authentification unique entre Azure AD et Google Apps.
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Google Apps à partir de la galerie
+1. Ajout de Google Apps à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-google-apps-from-the-gallery"></a>Ajout de Google Apps à partir de la galerie
-Pour configurer l’intégration de Google Apps à Azure AD, vous devez ajouter Google Apps à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-google-apps-from-hello-gallery"></a>Ajout de Google Apps à partir de la galerie de hello
+tooconfigure hello intégration de Google Apps dans Azure AD, vous devez tooadd Google Apps à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Google Apps à partir de la galerie, procédez comme suit :**
+**tooadd Google Apps à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche entrez **Google Apps**.
+4. Dans la zone de recherche de hello, tapez **Google Apps**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_search.png)
 
-5. Dans le panneau de résultats, sélectionnez **Google Apps**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **Google Apps**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, configurez et testez l’authentification unique Azure AD avec Google Apps sur un utilisateur test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Google Apps équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Google Apps associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Google Apps est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Google Apps doit toobe établie.
 
-Cette relation est établie en attribuant la valeur du **nom d’utilisateur** dans Azure AD comme valeur **Nom d’utilisateur** dans Google Apps.
+Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans Google Apps.
 
-Pour configurer et tester l’authentification unique Azure AD avec Google Apps, vous devez terminer les sections principales suivantes :
+tooconfigure et test Azure AD l’authentification unique avec Google Apps, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Google Apps](#creating-a-google-apps-test-user)** : pour avoir un équivalent de Britta Simon dans Google Apps, lié à la représentation de l’utilisateur Azure AD.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test de Google Apps](#creating-a-google-apps-test-user)**  -toohave un équivalent de Britta Simon dans Google Apps qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, activez l’authentification unique Azure AD dans le portail Azure et configurez l’authentification unique dans votre application Google Apps.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Google Apps.
 
-**Pour configurer l’authentification unique Azure AD avec Google Apps, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec Google Apps, procédez hello comme suit :**
 
-1. Dans le portail Azure, sur la page d’intégration de l’application **Google Apps**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Google Apps** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_samlbase.png)
 
-3. Dans la section **Domaine et URL Google Apps**, procédez comme suit :
+3. Sur hello **URL et le domaine Google Apps** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_url.png)
 
-    Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://mail.google.com/a/<yourdomain>`
+    Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://mail.google.com/a/<yourdomain>`
 
     > [!NOTE] 
-    > Cette valeur n’est pas la valeur réelle. Mettez à jour la valeur avec l’URL de connexion réelle. Contactez [l’équipe de support technique de Google](https://www.google.com/contact/).
+    > Cette valeur n’est pas la valeur réelle. Mettre à jour la valeur de hello avec l’URL de connexion réel hello. Contactez hello [équipe de support technique de Google](https://www.google.com/contact/).
  
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat** puis enregistrez le certificat sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **certificat** , puis enregistrez le certificat de hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_certificate.png) 
 
@@ -145,94 +145,94 @@ Dans cette section, activez l’authentification unique Azure AD dans le portail
 
     ![Configurer l’authentification unique](./media/active-directory-saas-google-apps-tutorial/tutorial_general_400.png)
 
-6. Dans la section **Configuration de Google Apps**, cliquez sur **Configurer Google Apps** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez **l’URL de déconnexion, l’URL de modification du mot de passe et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
+6. Sur hello **Google Apps Configuration** , cliquez sur **configurer Google Apps** tooopen **configurer l’authentification** fenêtre. Hello de copie **URL de déconnexion, SAML Sign-On URL du Service unique et modifier une URL de mot de passe** de hello **section de référence rapide.**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_configure.png) 
 
-7. Ouvrez un nouvel onglet dans votre navigateur et utilisez votre compte d’administrateur pour vous connecter à la [Console d’administration de Google Apps](http://admin.google.com/) .
+7. Ouvrez un nouvel onglet dans votre navigateur et connectez-vous à hello [Google Apps Admin Console](http://admin.google.com/) à l’aide de votre compte d’administrateur.
 
-8. Cliquez sur **Sécurité**. Si le lien ne s'affiche pas, il est peut-être masqué par le menu **Autres contrôles** situé en bas de l'écran.
+8. Cliquez sur **Security**. Si vous ne voyez pas le lien de hello, il peut être masquée sous hello **plus de contrôles** menu bas hello écran hello.
    
     ![Cliquez sur Sécurité.][10]
 
-9. Sur la page **Sécurité**, cliquez sur **Configurer l'authentification unique (SSO).**
+9. Sur hello **sécurité** , cliquez sur **configurer l’authentification unique (SSO).**
    
     ![Cliquez sur Authentification unique.][11]
 
-10. Modifiez la configuration comme suit :
+10. Effectuez hello les modifications de configuration suivantes :
    
     ![Configurer l’authentification unique][12]
    
     a. Sélectionnez **Configurer l'authentification unique avec un fournisseur d'identité tiers**.
 
-    b. Dans le champ **URL de la page de connexion**, collez la valeur de **l’URL du service d’authentification unique SAML** que vous avez copiée dans le portail Azure.
+    b. Dans le **URL de la page connexion** champ dans Google Apps, collez la valeur hello **unique Sign-On URL du Service**, lequel vous avez copié à partir du portail Azure.
 
-    c. Dans le champ **URL de la page de connexion** de Google Apps, collez la valeur de **l’URL de déconnexion** que vous avez copiée dans le portail Azure. 
+    c. Bonjour **URL de la page de déconnexion** champ dans Google Apps, collez la valeur hello **URL de déconnexion**, lequel vous avez copié à partir du portail Azure. 
 
-    d. Dans le champ **Modifier l’URL du mot de passe** de Google Apps, collez la valeur de **Modifier l’URL du mot de passe** que vous avez copiée à partir du portail Azure. 
+    d. Bonjour **modifier l’URL de mot de passe** champ dans Google Apps, collez la valeur hello **modifier l’URL de mot de passe**, lequel vous avez copié à partir du portail Azure. 
 
-    e. Dans Google Apps, chargez le certificat que vous avez téléchargé dans le portail Azure pour le **Certificat de vérification**.
+    e. Dans Google Apps, pourquoi **certificat de vérification**, télécharger le certificat hello que vous avez téléchargé à partir du portail Azure.
 
     f. Cliquez sur **Enregistrer les modifications**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
  
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-google-apps-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-google-apps-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-google-apps-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-google-apps-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-google-apps-test-user"></a>Création d’un utilisateur de test Google Apps
 
-L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans le logiciel Google Apps. Google Apps prend en charge l’approvisionnement automatique, qui est activé par défaut. Vous n’avez aucune opération à effectuer dans cette section. Si un utilisateur n’existe pas déjà dans Google Apps, un nouveau est créé lorsque vous tentez d’accéder au logiciel Google Apps.
+objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans Google Apps logiciel. Google Apps prend en charge l’approvisionnement automatique, qui est activé par défaut. Vous n’avez aucune opération à effectuer dans cette section. Si un utilisateur n’existe pas déjà dans Google Apps logiciel, un nouveau est créé lorsque vous essayez de tooaccess logiciel des applications de Google.
 
 >[!NOTE] 
->Si vous devez créer un utilisateur manuellement, contactez [l’équipe de support Google](https://www.google.com/contact/).
+>Si vous avez besoin de toocreate un utilisateur manuellement, contactez hello [équipe de support technique de Google](https://www.google.com/contact/).
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous autorisez Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Google Apps.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès à des applications de tooGoogle.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour attribuer Britta Simon à Google Apps, procédez comme suit :**
+**tooassign Britta Simon tooGoogle applications, effectuer hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Google Apps**.
+2. Dans la liste des applications hello, sélectionnez **Google Apps**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-google-apps-tutorial/tutorial_googleapps_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -240,7 +240,7 @@ Dans cette section, vous autorisez Britta Simon à utiliser l’authentification
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -248,11 +248,11 @@ Dans cette section, vous autorisez Britta Simon à utiliser l’authentification
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, pour tester vos paramètres d'authentification unique, ouvrez le volet d'accès à l'adresse [https://myapps.microsoft.com](active-directory-saas-access-panel-introduction.md), puis connectez-vous au compte de test et cliquez sur la vignette **Google Apps**.
+Dans cette section, tootest votre seule paramètres d’authentification, ouvrez hello volet d’accès au [https://myapps.microsoft.com](active-directory-saas-access-panel-introduction.md), puis connectez-vous à un compte de test hello, puis cliquez sur **Google Apps** vignette Bonjour panneau d’accès.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 * [Configurer l’approvisionnement de l’utilisateur](active-directory-saas-google-apps-provisioning-tutorial.md)
 

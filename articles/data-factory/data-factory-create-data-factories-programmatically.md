@@ -1,6 +1,6 @@
 ---
-title: "Créer des pipelines de données à l’aide du Kit de développement logiciel (SDK) .NET Azure | Microsoft Docs"
-description: "Découvrez comment créer, analyser et gérer par programmation des fabriques de données Azure à l'aide du Kit de développement logiciel (SDK) Data Factory."
+title: "aaaCreate des pipelines de données à l’aide du Kit de développement .NET Azure | Documents Microsoft"
+description: "Découvrez comment tooprogrammatically créer, surveiller et gérer des fabriques de données Azure à l’aide du SDK de fabrique de données."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,109 +14,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 9d9dac75321c5d4e079f49320d9b7c6f56e48754
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 190b5f99edbb3c27e1e8efb8990b9e601b22458f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-monitor-and-manage-azure-data-factories-using-azure-data-factory-net-sdk"></a>Créer, surveiller et gérer des fabriques de données Azure à l’aide du Kit de développement logiciel (SDK) Azure Data Factory .NET
 ## <a name="overview"></a>Vue d'ensemble
-Vous pouvez créer, surveiller et gérer des fabriques de données Azure par programmation à l'aide du Kit SDK Data Factory .NET. Cet article contient une procédure pas à pas que vous pouvez suivre pour créer un exemple d'application console .NET qui crée et surveille une fabrique de données. 
+Vous pouvez créer, surveiller et gérer des fabriques de données Azure par programmation à l'aide du Kit SDK Data Factory .NET. Cet article contient une procédure pas à pas que vous pouvez suivre toocreate une exemple .NET d’application console qui crée et analyse d’une fabrique de données. 
 
 > [!NOTE]
-> Cet article ne couvre pas toutes les API .NET Data Factory. Consultez [Informations de référence sur l’API .NET Data Factory](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1) pour la documentation complète sur l’API .NET pour Data Factory. 
+> Cet article ne couvre pas hello toutes les API .NET de fabrique de données. Consultez [Informations de référence sur l’API .NET Data Factory](/dotnet/api/index?view=azuremgmtdatafactories-4.12.1) pour la documentation complète sur l’API .NET pour Data Factory. 
 
 ## <a name="prerequisites"></a>Conditions préalables
 * Visual Studio 2012, 2013 ou 2015
 * Téléchargez et installez le [Kit SDK Azure .NET](http://azure.microsoft.com/downloads/).
-* Azure PowerShell. Suivez les instructions de l’article [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) pour installer Azure PowerShell sur votre ordinateur. Vous utilisez Azure PowerShell pour créer une application Azure Active Directory.
+* Azure PowerShell. Suivez les instructions de [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) article tooinstall Azure PowerShell sur votre ordinateur. Vous utilisez Azure PowerShell toocreate une application Azure Active Directory.
 
 ### <a name="create-an-application-in-azure-active-directory"></a>Créer une application dans Azure Active Directory
-Créez une application Azure Active Directory, créez un principal de service pour l’application et attribuez-lui le rôle **Contributeurs de Data Factory** .
+Créer une application Azure Active Directory, créez un principal de service pour l’application hello et affectez-le toohello **collaborateur de fabrique de données** rôle.
 
 1. Lancez **PowerShell**.
-2. Exécutez la commande suivante, puis saisissez le nom d’utilisateur et le mot de passe que vous avez utilisés pour la connexion au portail Azure.
+2. Exécutez hello suivant de commande et entrez le nom d’utilisateur hello et le mot de passe que vous utilisez toosign dans toohello portail Azure.
 
     ```PowerShell
     Login-AzureRmAccount
     ```
-3. Exécutez la commande suivante pour afficher tous les abonnements de ce compte.
+3. Exécutez hello suivant commande tooview tous les abonnements hello pour ce compte.
 
     ```PowerShell
     Get-AzureRmSubscription
     ```
-4. Exécutez la commande suivante pour sélectionner l’abonnement que vous souhaitez utiliser. Remplacez **&lt;NameOfAzureSubscription**&gt; par le nom de votre abonnement Azure.
+4. Tooselect hello abonnement toowork avec la commande suivante d’exécution hello. Remplacez  **&lt;NameOfAzureSubscription** &gt; avec le nom de hello de votre abonnement Azure.
 
     ```PowerShell
     Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
     ```
 
    > [!IMPORTANT]
-   > Notez les éléments **SubscriptionId** et **TenantId** dans la sortie de cette commande.
+   > Notez **SubscriptionId** et **TenantId** à partir de la sortie de hello de cette commande.
 
-5. Créez un groupe de ressources Azure nommé **ADFTutorialResourceGroup** en exécutant la commande suivante dans PowerShell.
+5. Créer un groupe de ressources Azure nommé **ADFTutorialResourceGroup** en exécutant hello commande Bonjour PowerShell suivante.
 
     ```PowerShell
     New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
     ```
 
-    Si le groupe de ressources existe, indiquez s’il faut le mettre à jour (Y) ou le conserver tel quel (N).
+    Si groupe de ressources hello existe déjà, vous spécifiez si tooupdate il (Y) ou conserver en tant que (N).
 
-    Si vous utilisez un autre groupe de ressources, vous devez remplacer ADFTutorialResourceGroup par le nom de votre groupe de ressources dans ce didacticiel.
+    Si vous utilisez un autre groupe de ressources, vous devez le nom de hello toouse de votre groupe de ressources à la place de ADFTutorialResourceGroup dans ce didacticiel.
 6. Créez une application Azure Active Directory.
 
     ```PowerShell
     $azureAdApplication = New-AzureRmADApplication -DisplayName "ADFDotNetWalkthroughApp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.adfdotnetwalkthroughapp.org/example" -Password "Pass@word1"
     ```
 
-    Si vous obtenez l’erreur suivante, spécifiez une autre URL et relancez la commande.
+    Si vous obtenez hello l’erreur suivante, spécifiez une autre URL et réexécutez la commande hello.
     
     ```PowerShell
-    Another object with the same value for property identifierUris already exists.
+    Another object with hello same value for property identifierUris already exists.
     ```
-7. Créez le principal du service AD.
+7. Créer hello principal du service Active Directory.
 
     ```PowerShell
     New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
     ```
-8. Ajoutez le principal du service au rôle **Contributeurs de Data Factory** .
+8. Ajouter toohello principal de service **collaborateur de fabrique de données** rôle.
 
     ```PowerShell
     New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
     ```
-9. Récupérez l’ID de l’application.
+9. Obtenir l’ID d’application hello.
 
     ```PowerShell
     $azureAdApplication 
     ```
-    Notez l’ID d’application (applicationID) dans la sortie.
+    Notez l’ID d’application hello (applicationID) à partir de la sortie de hello.
 
 Vous devez avoir les quatre valeurs suivantes après ces étapes :
 
 * ID client
 * Identifiant d’abonnement
 * ID de l'application
-* Mot de passe (spécifié dans la première commande)
+* Mot de passe (spécifié dans la première commande de hello)
 
 ## <a name="walkthrough"></a>Procédure pas à pas
-Dans la procédure pas à pas, vous créez une fabrique de données avec un pipeline qui contient une activité de copie. L’activité de copie les données d’un dossier de votre stockage d’objets blob Azure vers un autre dossier dans le même stockage d’objets blob. 
+Hello procédure pas à pas, vous créez une fabrique de données avec un pipeline qui contient une activité de copie. Hello activité de copie copie les données à partir d’un dossier dans le dossier tooanother stockage blob Azure hello même stockage d’objets blob. 
 
-L’activité de copie effectue le déplacement des données dans Azure Data Factory. Elle est mise en œuvre par un service disponible dans le monde entier, capable de copier des données entre différents magasins de données de façon sécurisée, fiable et évolutive. Pour plus d’informations sur l’activité de copie, consultez l’article [Activités de déplacement des données](data-factory-data-movement-activities.md) .
+Activité de copie de Hello effectue le déplacement des données de hello dans Azure Data Factory. activité Hello est rendue possible par un service globalement disponible qui permettre copier des données entre différentes banques de données de manière sécurisée, fiable et évolutive. Consultez [les activités de déplacement des données](data-factory-data-movement-activities.md) article pour plus d’informations sur l’activité de copie de hello.
 
 1. À l’aide de Visual Studio 2012/2013/2015, créez une application console C# .NET.
    1. Lancez **Visual Studio** 2012/2013/2015.
-   2. Cliquez sur **Fichier**, pointez le curseur de la souris sur **Nouveau**, puis cliquez sur **Projet**.
+   2. Cliquez sur **fichier**, pointez trop**nouveau**, puis cliquez sur **projet**.
    3. Développez **Modèles**, puis sélectionnez **Visual C#**. Dans cette procédure pas à pas, vous utilisez C#, mais vous pouvez utiliser un autre langage .NET.
-   4. Sélectionnez **Application console** dans la liste des types de projet située sur la droite.
-   5. Entrez **DataFactoryAPITestApp** dans le champ Nom.
-   6. Sélectionnez **C:\ADFGetStarted** dans le champ Emplacement.
-   7. Cliquez sur **OK** pour créer le projet.
-2. Cliquez sur **Outils**, pointez le curseur de la souris sur **Gestionnaire de package NuGet**, puis cliquez sur **Console du gestionnaire de package**.
-3. Dans la **Console du Gestionnaire de package**, effectuez les étapes suivantes :
-   1. Exécutez la commande suivante pour installer le package Data Factory : `Install-Package Microsoft.Azure.Management.DataFactories`
-   2. Exécutez la commande suivante pour installer le package Azure Active Directory (vous utilisez l’API Active Directory dans le code) : `Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`
-4. Remplacez le contenu du fichier **App.config** du projet par le contenu suivant : 
+   4. Sélectionnez **Application Console** à partir de la liste hello des types de projets sur hello droite.
+   5. Entrez **DataFactoryAPITestApp** pour hello nom.
+   6. Sélectionnez **C:\ADFGetStarted** pour hello emplacement.
+   7. Cliquez sur **OK** projet hello de toocreate.
+2. Cliquez sur **outils**, pointez trop**Gestionnaire de Package NuGet**, puis cliquez sur **Package Manager Console**.
+3. Bonjour **Package Manager Console**, hello comme suit :
+   1. Exécutez hello suivant du package de fabrique de données tooinstall de commande :`Install-Package Microsoft.Azure.Management.DataFactories`
+   2. Exécutez hello suivant du package d’Azure Active Directory tooinstall commandes (vous utilisez les API d’Active Directory dans le code hello) :`Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`
+4. Remplacez le contenu hello de **App.config** fichier projet hello avec hello suivant le contenu : 
     
     ```xml
     <?xml version="1.0" encoding="utf-8" ?>
@@ -127,14 +127,14 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
             <add key="WindowsManagementUri" value="https://management.core.windows.net/" />
 
             <add key="ApplicationId" value="your application ID" />
-            <add key="Password" value="Password you used while creating the AAD application" />
+            <add key="Password" value="Password you used while creating hello AAD application" />
             <add key="SubscriptionId" value= "Subscription ID" />
             <add key="ActiveDirectoryTenantId" value="Tenant ID" />
         </appSettings>
     </configuration>
     ```
-5. Dans le fichier App.Config, remplacez les valeurs de **&lt;ID d’Application&gt;**, **&lt;Mot de passe&gt;**, **&lt;ID d’abonnement&gt;**, et **&lt;ID client&gt;** par vos propres valeurs.
-6. Ajoutez les instructions **using** ci-après dans le fichier **Program.cs** du projet.
+5. Dans le fichier App.Config hello, mettre à jour les valeurs de  **&lt;ID d’Application&gt;**,  **&lt;mot de passe&gt;**,  **&lt; ID d’abonnement&gt;**, et  **&lt;ID de locataire&gt;**  avec vos propres valeurs.
+6. Ajoutez hello suivant **à l’aide de** instructions toohello **Program.cs** fichier hello projet.
 
     ```csharp
     using System.Configuration;
@@ -150,15 +150,15 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
     ```
-6. Ajoutez à la méthode **Main** le code suivant, qui crée une instance de la classe **DataPipelineManagementClient**. Cet objet vous permet de créer une fabrique de données, un service lié, des jeux de données d’entrée et de sortie, ainsi qu’un pipeline. Il vous permet également d’analyser les tranches d’un jeu de données lors de l’exécution.
+6. Ajouter hello suivant le code qui crée une instance de **DataPipelineManagementClient** classe toohello **Main** (méthode). Vous utilisez cette toocreate objet une fabrique de données, un service lié, les jeux de données d’entrée et de sortie et un pipeline. Vous montre également comment utiliser cet objet toomonitor de plusieurs secteurs un jeu de données lors de l’exécution.
 
     ```csharp
     // create data factory management client
 
-    //IMPORTANT: specify the name of Azure resource group here
+    //IMPORTANT: specify hello name of Azure resource group here
     string resourceGroupName = "ADFTutorialResourceGroup";
 
-    //IMPORTANT: the name of the data factory must be globally unique.
+    //IMPORTANT: hello name of hello data factory must be globally unique.
     // Therefore, update this value. For example:APITutorialFactory05122017
     string dataFactoryName = "APITutorialFactory";
 
@@ -172,10 +172,10 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
     ```
 
    > [!IMPORTANT]
-   > Remplacez la valeur de **resourceGroupName** par le nom de votre groupe de ressources Azure. Vous pouvez créer un groupe de ressources à l’aide du cmdlet [New-AzureResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) .
+   > Remplacez la valeur hello **resourceGroupName** avec nom hello de votre groupe de ressources Azure. Vous pouvez créer un groupe de ressources à l’aide de hello [New-AzureResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) applet de commande.
    >
-   > Mettez à jour le nom de la fabrique de données (dataFactoryName) pour le rendre unique. Le nom de la fabrique de données doit être un nom global unique. Consultez la rubrique [Data Factory - Règles d'affectation des noms](data-factory-naming-rules.md) pour savoir comment nommer les artefacts Data Factory.
-7. Ajoutez à la méthode **Main** le code suivant, qui crée une **fabrique de données**.
+   > Nom de la mise à jour de hello données fabrique (dataFactoryName) toobe unique. Nom de la fabrique de données hello doit être globalement unique. Consultez la rubrique [Data Factory - Règles d'affectation des noms](data-factory-naming-rules.md) pour savoir comment nommer les artefacts Data Factory.
+7. Ajouter hello suivant le code qui crée un **fabrique de données** toohello **Main** (méthode).
 
     ```csharp
     // create a data factory
@@ -192,7 +192,7 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
         }
     );
     ```
-8. Ajoutez le code suivant pour créer un **service lié Azure Storage** dans la méthode **Main**.
+8. Ajouter hello suivant le code qui crée un **service lié Azure Storage** toohello **Main** (méthode).
 
    > [!IMPORTANT]
    > Remplacez **storageaccountname** et **accountkey** par le nom et la clé de votre compte Azure Storage.
@@ -214,11 +214,11 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
         }
     );
     ```
-9. Ajoutez à la méthode **Main** le code suivant, qui crée des **jeux de données d’entrée et de sortie**.
+9. Ajouter hello suivant le code qui crée **jeux de données d’entrée et de sortie** toohello **Main** (méthode).
 
-    Le paramètre **FolderPath** de l’objet blob d’entrée a la valeur **adftutorial/**, où **adftutorial** est le nom du conteneur dans votre stockage des objets blob. Si ce conteneur n'existe pas dans votre stockage d'objets blob Azure, créez un conteneur nommé **adftutorial** et chargez un fichier texte sur celui-ci.
+    Hello **FolderPath** d’objet blob d’entrée de hello est défini trop**adftutorial /** où **adftutorial** est le nom hello du conteneur de hello dans votre stockage d’objets blob. Si ce conteneur n’existe pas dans votre stockage d’objets blob Azure, créer un conteneur portant ce nom : **adftutorial** et télécharger un conteneur de toohello du fichier texte.
 
-    Le paramètre FolderPath de l’objet blob de sortie est défini sur **adftutorial/apifactoryoutput/{Slice}** où la valeur **Slice** est calculée dynamiquement en fonction de la valeur de **SliceStart** (date/heure de début de chaque tranche).
+    Hello FolderPath pour hello blob a la valeur de sortie : **adftutorial/apifactoryoutput / {Slice}** où **tranche** est la valeur calculée dynamiquement hello selon **SliceStart**(début de date et heure de chaque secteur).
 
     ```csharp
     // create input and output datasets
@@ -294,9 +294,9 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
         }
     });
     ```
-10. Ajoutez à la méthode **Main** le code suivant, qui **crée et active un pipeline**. Ce pipeline dispose d’une fonction **CopyActivity** qui accepte **BlobSource** en tant que source et **BlobSink** en tant que récepteur.
+10. Ajoutez le code suivant de hello **crée et Active un pipeline** toohello **Main** (méthode). Ce pipeline dispose d’une fonction **CopyActivity** qui accepte **BlobSource** en tant que source et **BlobSink** en tant que récepteur.
 
-    L’activité de copie effectue le déplacement des données dans Azure Data Factory. Elle est mise en œuvre par un service disponible dans le monde entier, capable de copier des données entre différents magasins de données de façon sécurisée, fiable et évolutive. Pour plus d’informations sur l’activité de copie, consultez l’article [Activités de déplacement des données](data-factory-data-movement-activities.md) .
+    Activité de copie de Hello effectue le déplacement des données de hello dans Azure Data Factory. activité Hello est rendue possible par un service globalement disponible qui permettre copier des données entre différentes banques de données de manière sécurisée, fiable et évolutive. Consultez [les activités de déplacement des données](data-factory-data-movement-activities.md) article pour plus d’informations sur l’activité de copie de hello.
 
     ```csharp
     // create a pipeline
@@ -315,7 +315,7 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
             {
                 Description = "Demo Pipeline for data transfer between blobs",
     
-                // Initial value for pipeline's active period. With this, you won't need to set slice status
+                // Initial value for pipeline's active period. With this, you won't need tooset slice status
                 Start = PipelineActivePeriodStartTime,
                 End = PipelineActivePeriodEndTime,
     
@@ -354,7 +354,7 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
         }
     });
     ```
-12. Ajoutez le code suivant à la méthode **Main** pour obtenir l’état d’une tranche de données du jeu de données de sortie. Une seule tranche est attendue dans cet exemple.
+12. Ajouter hello suivant code toohello **Main** jeu de données de sortie de statut de hello tooget de méthode d’une tranche de données de hello. Une seule tranche est attendue dans cet exemple.
 
     ```csharp
     // Pulling status within a timeout threshold
@@ -363,8 +363,8 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
     
     while (DateTime.Now - start < TimeSpan.FromMinutes(5) && !done)
     {
-        Console.WriteLine("Pulling the slice status");
-        // wait before the next status check
+        Console.WriteLine("Pulling hello slice status");
+        // wait before hello next status check
         Thread.Sleep(1000 * 12);
     
         var datalistResponse = client.DataSlices.List(resourceGroupName, dataFactoryName, Dataset_Destination,
@@ -389,13 +389,13 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
         }
     }
     ```
-13. **(facultatif)** Ajoutez à la méthode **Main** le code suivant pour obtenir les détails d’exécution d’une tranche de données.
+13. **(facultatif)**  Tooget exécuter les détails pour un toohello de tranche de données de code suivant de hello ajouter **Main** (méthode).
 
     ```csharp
     Console.WriteLine("Getting run details of a data slice");
     
-    // give it a few minutes for the output slice to be ready
-    Console.WriteLine("\nGive it a few minutes for the output slice to be ready and press any key.");
+    // give it a few minutes for hello output slice toobe ready
+    Console.WriteLine("\nGive it a few minutes for hello output slice toobe ready and press any key.");
     Console.ReadKey();
     
     var datasliceRunListResponse = client.DataSliceRuns.List(
@@ -418,10 +418,10 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
         Console.WriteLine("ErrorMessage: \t{0}", run.ErrorMessage);
     }
     
-    Console.WriteLine("\nPress any key to exit.");
+    Console.WriteLine("\nPress any key tooexit.");
     Console.ReadKey();
     ```
-14. Ajoutez à la classe **Program** la méthode d’assistance suivante utilisée par la méthode **Main**. Cette méthode affiche une boîte de dialogue qui vous permet de fournir un **nom d’utilisateur** et un **mot de passe** de connexion au portail Azure.
+14. Ajouter hello suivant la méthode d’assistance utilisée par hello **principal** méthode toohello **programme** classe. Cette méthode affiche une boîte de dialogue qui vous permet de fournir **nom d’utilisateur** et **mot de passe** utiliser toolog dans tooAzure portal.
 
     ```csharp
     public static async Task<string> GetAuthorizationHeader()
@@ -437,29 +437,29 @@ L’activité de copie effectue le déplacement des données dans Azure Data Fac
         if (result != null)
             return result.AccessToken;
 
-        throw new InvalidOperationException("Failed to acquire token");
+        throw new InvalidOperationException("Failed tooacquire token");
     }
     ```
 
-15. Dans l’Explorateur de solutions, développez le projet **DataFactoryAPITestApp**, cliquez avec le bouton droit sur **Références**, puis cliquez sur **Ajouter une référence**. Cochez la case pour l’assembly `System.Configuration` et cliquez sur **OK**.
-15. Générez l'application console. Dans le menu, cliquez sur **Générer**, puis sur **Générer la solution**.
-16. Vérifiez qu'il existe au moins un fichier dans le conteneur adftutorial de votre stockage d'objets blob Azure. Si ce n'est pas le cas, créez le fichier Emp.txt dans le bloc-notes avec le contenu suivant, puis chargez-le sur le conteneur adftutorial.
+15. Bonjour l’Explorateur de solutions, développez le projet de hello : **DataFactoryAPITestApp**, avec le bouton droit **références**, puis cliquez sur **ajouter une référence**. Cochez la case pour l’assembly `System.Configuration` et cliquez sur **OK**.
+15. Créer une application de console hello. Cliquez sur **générer** sur hello menu et cliquez sur **générer la Solution**.
+16. Vérifiez qu’est au moins un fichier dans le conteneur d’adftutorial hello dans votre stockage d’objets blob Azure. Si ce n’est pas le cas, créer à Emp.txt fichier dans le bloc-notes avec hello suivant contenu et le télécharger toohello adftutorial conteneur.
 
     ```
     John, Doe
     Jane, Doe
     ```
-17. Exécutez l’exemple en cliquant dans le menu sur **Déboguer** -> **Démarrer le débogage**. Si **Obtention des détails d’exécution d’une tranche de données** s’affiche, patientez quelques minutes, puis appuyez sur **Entrée**.
-18. Utilisez le portail Azure pour vérifier que la fabrique de données **APITutorialFactory** est créée avec les artefacts suivants :
+17. Exécuter l’exemple hello en cliquant sur **déboguer** -> **démarrer le débogage** menu hello. Lorsque vous consultez hello **détails d’une tranche de données mise en route de l’exécution**, attendez quelques minutes, puis appuyez sur **entrée**.
+18. Utilisez hello tooverify portail Azure cette fabrique de données hello **APITutorialFactory** est créée avec hello suivant artefacts :
     * Service lié : **AzureStorageLinkedService**
     * Jeu de données : **DatasetBlobSource** et **DatasetBlobDestination**.
     * Pipeline : **PipelineBlobSample**
-19. Vérifiez qu’un fichier de sortie est créé dans le dossier **apifactoryoutput** du conteneur **adftutorial**.
+19. Vérifiez qu’un fichier de sortie est créé dans hello **apifactoryoutput** dossier Bonjour **adftutorial** conteneur.
 
 ## <a name="get-a-list-of-failed-data-slices"></a>Obtenir une liste des tranches de données en échec 
 
 ```csharp
-// Parse the resource path
+// Parse hello resource path
 var ResourceGroupName = "ADFTutorialResourceGroup";
 var DataFactoryName = "DataFactoryAPITestApp";
 
@@ -496,6 +496,6 @@ while (response != null);
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez l’exemple suivant pour créer un pipeline à l’aide du Kit de développement logiciel .NET qui copie les données d’un stockage d’objets blob Azure dans une base de données SQL Azure : 
+Consultez hello exemple pour la création d’un pipeline à l’aide du Kit de développement logiciel .NET qui copie les données à partir d’une base de données SQL Azure de tooan stockage blob Azure suivant : 
 
-- [Créer un pipeline pour copier des données de stockage d’objets Blob dans SQL Database](data-factory-copy-activity-tutorial-using-dotnet-api.md)
+- [Créer un pipeline de données de toocopy de tooSQL de stockage d’objets Blob de base de données](data-factory-copy-activity-tutorial-using-dotnet-api.md)

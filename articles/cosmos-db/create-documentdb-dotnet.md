@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB : Développer une application web avec .NET et l’API DocumentDB | Microsoft Docs"
-description: "Cet article présente un exemple de code .NET que vous pouvez utiliser pour vous connecter à l’API Azure Cosmos DB DocumentDB, et pour l’interroger."
+title: "Azure Cosmos DB : Génération d’une application web avec .NET et hello API DocumentDB | Documents Microsoft"
+description: "Présente un exemple de code .NET que vous pouvez utiliser la requête de tooand tooconnect hello Azure Cosmos DB DocumentDB API"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,23 +15,23 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 9bb863261da64c97f99757d4a0cb3474a7755591
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 35517e35d80c48662a51a99814652ffa1121fc5d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-build-a-documentdb-api-web-app-with-net-and-the-azure-portal"></a>Azure Cosmos DB : Développer une application web API DocumentDB avec .NET et le portail Azure
+# <a name="azure-cosmos-db-build-a-documentdb-api-web-app-with-net-and-hello-azure-portal"></a>Azure Cosmos DB : Génération d’une application de web API DocumentDB avec .NET et hello portail Azure
 
-Azure Cosmos DB est le service de base de données multi-modèle de Microsoft distribué à l’échelle mondiale. Rapidement, vous avez la possibilité de créer et d’interroger des documents, des paires clé/valeur, et des bases de données orientées graphe, profitant tous de la distribution à l’échelle mondiale et des capacités de mise à l’échelle horizontale au cœur d’Azure Cosmos DB. 
+Azure Cosmos DB est le service de base de données multi-modèle de Microsoft distribué à l’échelle mondiale. Vous pouvez rapidement créer et interroger des bases de données de graphique, qui bénéficient de distribution globale de hello et des fonctionnalités de mise à l’échelle horizontale au cœur de hello de base de données Azure Cosmos document et clé/valeur. 
 
-Ce guide de démarrage rapide explique comment créer, à l’aide du portail Azure, un compte Azure Cosmos DB, une base de données de documents, ainsi qu’une collection. Vous allez ensuite créer et déployer une application web de liste de tâches, basée sur [l’API .NET DocumentDB](documentdb-sdk-dotnet.md), comme illustré par la capture d’écran suivante. 
+Ce démarrage rapide montre comment toocreate un compte de base de données Azure Cosmos, base de données du document et à l’aide de la collection hello portail Azure. Vous allez ensuite générer et déployer une application web de liste todo repose sur hello [DocumentDB .NET API](documentdb-sdk-dotnet.md), comme indiqué dans hello suivant capture d’écran. 
 
 ![Application To-Do avec des exemples de données](./media/create-documentdb-dotnet/azure-comosdb-todo-app-list.png)
 
 ## <a name="prerequisites"></a>Composants requis
 
-Si vous n’avez pas encore installé Visual Studio 2017, vous pouvez télécharger et utiliser la version **gratuite** [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/). Veillez à activer **le développement Azure** lors de l’installation de Visual Studio.
+Si vous n’avez pas encore Visual Studio 2017 installé, vous pouvez télécharger et utiliser hello **libre** [2017 de Visual Studio Community Edition](https://www.visualstudio.com/downloads/). Assurez-vous que vous activez **le développement Azure** pendant l’installation de Visual Studio hello.
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
@@ -48,13 +48,13 @@ Si vous n’avez pas encore installé Visual Studio 2017, vous pouvez téléch
 <a id="add-sample-data"></a>
 ## <a name="add-sample-data"></a>Ajouter un exemple de données
 
-Vous pouvez maintenant ajouter des données à votre nouvelle collection grâce à l’Explorateur de données.
+Vous pouvez maintenant ajouter la nouvelle collection données tooyour à l’aide de l’Explorateur de données.
 
-1. Dans l’Explorateur de données, la nouvelle base de données apparaît dans le volet Collections. Développez la base de données **Tâches**, développez la collection **Éléments**, cliquez sur **Documents**, puis cliquez sur **Nouveaux documents**. 
+1. Dans l’Explorateur de données, la nouvelle base de données hello s’affiche dans le volet de Collections hello. Développez hello **tâches** de base de données, développez hello **éléments** collection, cliquez sur **Documents**, puis cliquez sur **nouveaux Documents**. 
 
-   ![Créer des documents dans l’Explorateur de données, dans le Portail Azure](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
+   ![Créer des documents dans l’Explorateur de données Bonjour portail Azure](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-new-document.png)
   
-2. À présent, ajoutez un document à la collection avec la structure suivante.
+2. Maintenant ajouter une collection de toohello document avec hello suivant la structure.
 
      ```json
      {
@@ -66,35 +66,35 @@ Vous pouvez maintenant ajouter des données à votre nouvelle collection grâce 
      }
      ```
 
-3. Une fois le fichier json ajouté à l’onglet **Documents**, cliquez sur **Enregistrer**.
+3. Une fois que vous avez ajouté hello json toohello **Documents** , cliquez sur **enregistrer**.
 
-    ![Copiez dans les données json, puis cliquez sur Enregistrer dans l’Explorateur de données du portail Azure](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
+    ![Copier des données json et cliquez sur Enregistrer dans l’Explorateur de données Bonjour portail Azure](./media/create-documentdb-dotnet/azure-cosmosdb-data-explorer-save-document.png)
 
-4.  Créez et enregistrez un document supplémentaire dans lequel vous insérez une valeur unique pour la propriété `id` et modifiez les autres propriétés selon vos besoins. Vos nouveaux documents peuvent avoir la structure de votre choix car Azure Cosmos DB n’impose aucun schéma pour vos données.
+4.  Créer et enregistrer un document plus où vous insérez une valeur unique pour hello `id` propriété et la modification hello autres propriétés comme vous le souhaitez. Vos nouveaux documents peuvent avoir la structure de votre choix car Azure Cosmos DB n’impose aucun schéma pour vos données.
 
-     Vous pouvez désormais utiliser des requêtes dans l’Explorateur de données pour récupérer vos données. Par défaut, l’Explorateur de données utilise `SELECT * FROM c` pour récupérer tous les documents dans la collection, mais vous pouvez remplacer cette requête par une autre [requête SQL](documentdb-sql-query.md), telle que `SELECT * FROM c ORDER BY c._ts DESC`, pour obtenir tous les documents dans l’ordre décroissant en fonction de leur horodateur.
+     Vous pouvez maintenant utiliser des requêtes dans l’Explorateur de données tooretrieve vos données. Par défaut, l’Explorateur de données utilise `SELECT * FROM c` tooretrieve tous les documents dans la collection de hello, mais vous pouvez modifier ce tooa différents [requête SQL](documentdb-sql-query.md), tel que `SELECT * FROM c ORDER BY c._ts DESC`, tooreturn tous les documents hello dans l’ordre décroissant en fonction de leur horodatage.
  
-     Vous pouvez également utiliser l’Explorateur de données pour créer des procédures stockées, des fonctions définies par l'utilisateur et des déclencheurs afin d’exécuter la logique métier côté serveur ainsi que la mise à l’échelle du débit. L’Explorateur de données affiche tous les accès aux données par programmation intégrés disponibles dans l’API, mais permet d’accéder facilement à vos données dans le portail Azure.
+     Vous pouvez également utiliser les procédures de toocreate stockée Explorateur de données, UDF et déclencheurs tooperform ainsi la logique métier côté serveur en tant que le débit de l’échelle. Explorateur de données expose l’ensemble du hello intégrées par programmation l’accès aux données disponibles dans l’API de hello, mais il fournit des données un accès facile tooyour hello portail Azure.
 
-## <a name="clone-the-sample-application"></a>Clonage de l’exemple d’application
+## <a name="clone-hello-sample-application"></a>Exemple d’application hello de cloner
 
-À présent, travaillons sur le code. Nous allons cloner une application API DocumentDB à partir de GitHub, définir la chaîne de connexion et l’exécuter. Vous verrez combien il est facile de travailler par programmation avec des données. 
+Maintenant nous allons passer tooworking avec le code. Nous allons cloner une application API DocumentDB à partir de GitHub, définissez la chaîne de connexion hello et exécutez-le. Vous allez voir combien il est facile toowork avec des données par programme. 
 
-1. Ouvrez une fenêtre de terminal git, comme git bash, et accédez à un répertoire de travail à l’aide de la commande `CD`.  
+1. Ouvrez une fenêtre de Terminal Server git, telles que l’interpréteur de commandes git, et `CD` répertoire de travail tooa.  
 
-2. Exécutez la commande suivante pour cloner l’exemple de référentiel. 
+2. Exécutez hello suivant le dépôt d’exemples de commande tooclone hello. 
 
     ```bash
     git clone https://github.com/Azure-Samples/documentdb-dotnet-todo-app.git
     ```
 
-3. Ouvrez le fichier de solution todo dans Visual Studio. 
+3. Puis ouvrez le fichier de solution todo hello dans Visual Studio. 
 
-## <a name="review-the-code"></a>Examiner le code
+## <a name="review-hello-code"></a>Réviser le code hello
 
-Passons rapidement en revue ce qui se passe dans l’application. Ouvrez le fichier DocumentDBRepository.cs, et vous découvrirez que ces lignes de code créent les ressources Azure Cosmos DB. 
+Nous allons effectuer une révision rapide de ce qui se passe dans l’application hello. Fichier de DocumentDBRepository.cs hello ouvert et que vous trouverez ces lignes de code créent hello des ressources de base de données Azure Cosmos. 
 
-* Le DocumentClient est initialisé à la ligne 73.
+* Hello DocumentClient est initialisée sur la ligne 73.
 
     ```csharp
     client = new DocumentClient(new Uri(ConfigurationManager.AppSettings["endpoint"]), ConfigurationManager.AppSettings["authKey"]);`
@@ -117,51 +117,51 @@ Passons rapidement en revue ce qui se passe dans l’application. Ouvrez le fich
 
 ## <a name="update-your-connection-string"></a>Mise à jour de votre chaîne de connexion
 
-Maintenant, retournez dans le portail Azure afin d’obtenir les informations de votre chaîne de connexion et de les copier dans l’application.
+Revenez toohello tooget portail Azure vos informations de chaîne de connexion et le copier dans une application hello.
 
-1. Dans le [portail Azure](http://portal.azure.com/), dans votre compte Azure Cosmos DB, dans le volet de navigation de gauche, cliquez sur **Clés**, puis sur **Clés en lecture-écriture**. Vous utiliserez les boutons Copier sur le côté droit de l’écran pour copier l’URI et la clé primaire dans le fichier web.config à l’étape suivante.
+1. Bonjour [portail Azure](http://portal.azure.com/), dans votre base de données de Cosmos Azure account, Bonjour barre de navigation gauche, cliquez sur **clés**, puis cliquez sur **en lecture-écriture clés**. Vous allez utiliser les boutons de copier hello sur droite hello Hello de toocopy écran hello URI et la clé primaire dans le fichier web.config de hello dans l’étape suivante de hello.
 
-    ![Affichage et copie d’une clé d’accès rapide dans le portail Azure, panneau Clés](./media/create-documentdb-dotnet/keys.png)
+    ![Afficher et copier une clé d’accès dans hello portail Azure, le panneau de clés](./media/create-documentdb-dotnet/keys.png)
 
-2. Dans Visual Studio 2017, ouvrez le fichier web.config. 
+2. Dans Visual Studio 2017, ouvrez le fichier web.config de hello. 
 
-3. Copiez votre valeur URI à partir du portail (à l’aide du bouton Copier) et définissez-la comme la valeur de la clé du point de terminaison dans le fichier web.config. 
+3. Copier la valeur de l’URI à partir du portail hello (à l’aide du bouton de copie hello) et le rendre hello la valeur de clé de point de terminaison hello dans le fichier web.config. 
 
     `<add key="endpoint" value="FILLME" />`
 
-4. Puis, copiez votre valeur de clé primaire à partir du portail et définissez-la comme la valeur de la authKey dans web.config. Vous venez de mettre à jour votre application avec toutes les informations nécessaires pour communiquer avec Azure Cosmos DB. 
+4. Copiez la valeur de clé primaire à partir du portail de hello, puis rendre hello valeur authKey hello dans le fichier web.config. Vous avez maintenant d’une mise à jour de votre application avec toutes informations hello lui toocommunicate avec la base de données Azure Cosmos. 
 
     `<add key="authKey" value="FILLME" />`
     
-## <a name="run-the-web-app"></a>Exécuter l’application web
-1. Dans Visual Studio, cliquez avec le bouton droit sur le nom du projet dans l’**Explorateur de solutions**, puis cliquez sur **Gérer les packages NuGet**. 
+## <a name="run-hello-web-app"></a>Exécutez l’application hello web
+1. Dans Visual Studio, cliquez sur projet hello dans **l’Explorateur de solutions** puis cliquez sur **gérer les Packages NuGet**. 
 
-2. Dans la zone **Parcourir**de NuGet, tapez *DocumentDB*.
+2. Bonjour NuGet **Parcourir** , tapez *DocumentDB*.
 
-3. À partir des résultats, installez la bibliothèque **Microsoft.Azure.DocumentDB**. Cette opération permet d’installer le package Microsoft.Azure.DocumentDB ainsi que toutes les dépendances.
+3. À partir des résultats de hello, installez hello **Microsoft.Azure.DocumentDB** bibliothèque. Cela installe le package de Microsoft.Azure.DocumentDB hello, ainsi que toutes les dépendances.
 
-4. Appuyez sur Ctrl + F5 pour exécuter l’application. Votre application s’affiche dans votre navigateur. 
+4. Cliquez sur CTRL + F5 application hello de toorun. Votre application s’affiche dans votre navigateur. 
 
-5. Cliquez sur **Créer** dans le navigateur et créer quelques tâches dans votre application To-Do.
+5. Cliquez sur **créer un nouveau** hello navigateur et créer quelques nouvelles tâches dans votre application de l’action.
 
    ![Application To-Do avec des exemples de données](./media/create-documentdb-dotnet/azure-comosdb-todo-app-list.png)
 
-Vous pouvez dès à présent revenir à l’Explorateur de données et voir la requête, modifier et travailler avec ces nouvelles données. 
+Vous pouvez maintenant revenir en arrière tooData Explorer et consultez la requête, modifier et travailler avec ces nouvelles données. 
 
-## <a name="review-slas-in-the-azure-portal"></a>Examiner les SLA dans le Portail Azure
+## <a name="review-slas-in-hello-azure-portal"></a>Passez en revue les SLA dans hello portail Azure
 
 [!INCLUDE [cosmosdb-tutorial-review-slas](../../includes/cosmos-db-tutorial-review-slas.md)]
 
 ## <a name="clean-up-resources"></a>Supprimer des ressources
 
-Si vous ne pensez pas continuer à utiliser cette application, supprimez toutes les ressources créées durant ce guide de démarrage rapide dans le Portail Azure en procédant de la façon suivante :
+Si vous n’allez toocontinue toouse cette application, supprimez toutes les ressources créées par ce démarrage rapide Bonjour portail Azure par hello comme suit :
 
-1. Dans le menu de gauche du portail Azure, cliquez sur **Groupes de ressources**, puis sur le nom de la ressource que vous avez créée. 
-2. Dans la page de votre groupe de ressources, cliquez sur **Supprimer**, tapez le nom de la ressource à supprimer dans la zone de texte, puis cliquez sur **Supprimer**.
+1. À partir du menu de gauche hello Bonjour portail Azure, cliquez sur **groupes de ressources** puis cliquez sur nom hello de ressource hello vous avez créé. 
+2. Dans la page de votre groupe de ressources, cliquez sur **supprimer**, tapez nom hello de hello ressources toodelete dans la zone de texte hello, puis cliquez sur **supprimer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce guide de démarrage rapide, vous avez appris à créer un compte Azure Cosmos DB, à créer une collection à l’aide de l’Explorateur de données et à exécuter une application web. Vous pouvez maintenant importer des données supplémentaires à votre compte Cosmos DB. 
+Ce guide de démarrage rapide, vous avez appris comment toocreate un compte de base de données Azure Cosmos, créer une collection à l’aide de hello Explorateur de données et exécuter une application web. Vous pouvez maintenant importer les comptes de Cosmos DB tooyour des données supplémentaires. 
 
 > [!div class="nextstepaction"]
 > [Importer des données dans Azure Cosmos DB](import-data.md)

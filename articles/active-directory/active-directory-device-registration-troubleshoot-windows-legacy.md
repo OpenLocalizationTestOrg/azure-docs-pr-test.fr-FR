@@ -1,6 +1,6 @@
 ---
-title: "Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine Azure Active Directory pour les clients de bas niveau Windows | Microsoft Docs"
-description: "Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine Azure Active Directory pour les clients de bas niveau Windows."
+title: ordinateurs joints au aaaTroubleshooting hello-inscription automatique de domaine Azure AD pour les clients de bas niveau Windows | Documents Microsoft
+description: "Résolution des problèmes d’inscription automatique hello de domaine Azure AD joint les ordinateurs pour les clients de bas niveau de Windows."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,15 +14,15 @@ ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: a7c8ef4c59c53c21258f0c61963d8f994a3946ba
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 84fe666576f13de09d1eaa5692517d45a4dbeebe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-auto-registration-of-domain-joined-computers-to-azure-ad-for-windows-down-level-clients"></a>Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine Azure Active Directory pour les clients de bas niveau Windows 
+# <a name="troubleshooting-auto-registration-of-domain-joined-computers-tooazure-ad-for-windows-down-level-clients"></a>Résolution des problèmes d’enregistrement automatique du domaine joint tooAzure d’ordinateurs Active Directory pour les clients de bas niveau de Windows 
 
-Cette rubrique s’applique uniquement aux clients suivants : 
+Cette rubrique est applicable toohello uniquement après les clients : 
 
 - Windows 7 
 - Windows 8.1 
@@ -31,38 +31,38 @@ Cette rubrique s’applique uniquement aux clients suivants :
 - Windows Server 2012 R2 
  
 
-Pour Windows 10 ou Windows Server 2016, voir [Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine Azure Active Directory pour Windows 10 et Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md).
+Pour Windows 10 ou Windows Server 2016, consultez [résolution des problèmes d’enregistrement automatique du domaine joint ordinateurs tooAzure AD – Windows 10 et Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md).
 
-Cette rubrique suppose que vous avez configuré l’inscription automatique d’appareils joints à un domaine comme décrit dans [Configuration de l’inscription automatique auprès d’Azure Active Directory d’appareils Windows joints à un domaine](active-directory-device-registration-get-started.md).
+Cette rubrique suppose que vous avez configuré l’inscription automatique des appareils joints au domaine comme expliqué dans décrites dans [comment tooconfigure l’inscription automatique de Windows appartenant au domaine des appareils avec Azure Active Directory](active-directory-device-registration-get-started.md).
  
-Cette rubrique vous fournit des conseils sur la façon de résoudre les problèmes potentiels.  
-Voici quelques points à noter pour obtenir des résultats corrects : 
+Cette rubrique fournit des conseils sur la façon dont des problèmes potentiels de tooresolve de résolution des problèmes.  
+Toonote de certains éléments de résultats : 
 
-- L’inscription de ces clients sur Azure AD est par utilisateur/appareil. Par exemple, si jdoe et jharnett se connectent à cet appareil, un enregistrement distinct (DeviceID) est créé pour chacun de ces utilisateurs dans l’onglet des informations UTILISATEUR.  
+- L’inscription de ces clients sur Azure AD est par utilisateur/appareil. Par exemple : Si jdoe et jharnett connecter toothis périphérique, un enregistrement distinct (DeviceID) est créé pour chacun de ces utilisateurs dans l’onglet info d’utilisateur hello.  
 
-- L’inscription prédéfinie de ces clients est configurée pour être tentée à l’ouverture de session ou au verrouillage/déverrouillage, et il peut y avoir un délai de 5 minutes déclenché par une tâche du Planificateur de tâches. 
+- L’inscription de ces clients en dehors de la zone de hello est tootry configuré à l’ouverture et de verrouiller/déverrouiller et il peut y avoir de délai de 5 minutes que cela est déclenché à l’aide d’une tâche du Planificateur de tâches. 
 
-- Une réinstallation du système d’exploitation, ou une désinscription et une réinscription manuelles, peuvent créer une nouvelle inscription sur Azure AD et aboutir à plusieurs entrées sous l’onglet des informations UTILISATEUR dans le portail Azure. 
+- Réinstallation du système d’exploitation de hello ou annuler l’inscription manuelle et réinscrire peut créer une nouvelle inscription sur Azure AD et entraîne plusieurs entrées sous l’onglet d’informations utilisateur hello Bonjour portail Azure. 
 
 
-## <a name="step-1-retrieve-the-registration-status"></a>Étape 1 : Récupérer l’état de l’inscription 
+## <a name="step-1-retrieve-hello-registration-status"></a>Étape 1 : Récupération de l’état de l’inscription de hello 
 
-**Pour vérifier l’état de l’inscription :**  
+**état de l’inscription de hello tooverify :**  
 
-1. Ouvrez une invite de commandes en tant qu’administrateur. 
+1. Invite de commandes ouverte hello en tant qu’administrateur 
 
 2. Saisissez `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /i"`
 
-Cette commande affiche une boîte de dialogue qui vous donne plus de détails sur l’état de la jonction.
+Cette commande affiche une boîte de dialogue qui vous offre plus de détails sur l’état de jointure hello.
 
 ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/01.png)
 
 
-## <a name="step-2-evaluate-the-registration-status"></a>Étape 2 : Évaluer l’état de l’inscription 
+## <a name="step-2-evaluate-hello-registration-status"></a>Étape 2 : Évaluer l’état de l’inscription de hello 
 
-Si la jonction n’a pas réussi, la boîte de dialogue vous fournit plus d’informations sur le problème qui s’est produit.
+Si la jointure de hello n’a pas réussi, boîte de dialogue hello vous offre plus d’informations sur le problème hello qui s’est produite.
 
-**Les tâches les plus courantes sont :**
+**les problèmes les plus courants Hello sont :**
 
 - Une mauvaise configuration d’AD FS ou d’Azure AD
 
@@ -76,26 +76,26 @@ Si la jonction n’a pas réussi, la boîte de dialogue vous fournit plus d’in
 
     ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/04.png)
 
-- Le service ne répond pas. 
+- Hello service ne répond pas 
 
     ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/05.png)
 
-Vous pouvez également trouver les informations d’état dans le journal des événements sous **Applications and Services Log\Microsoft-Workplace Join**.
+Vous trouverez également des informations d’état hello dans le journal des événements hello sous **Applications et Services Log\Microsoft-jonction**.
   
-**Les causes les plus courantes d’un échec d’inscription sont :** 
+**causes les plus courantes Hello pour un échec d’inscription sont :** 
 
-- Votre ordinateur n’est pas sur le réseau interne de l’entreprise ou un réseau privé virtuel sans connexion à un contrôleur de domaine Active Directory local.
+- Votre ordinateur n’est pas sur le réseau interne de hello organisation ou un réseau privé virtuel sans connexion tooan locaux contrôleur de domaine Active Directory.
 
-- Vous êtes connecté à votre ordinateur avec un compte d’ordinateur local. 
+- Vous êtes connecté sur l’ordinateur tooyour avec un compte d’ordinateur local. 
 
 - Problèmes de configuration du service : 
 
-  - Le serveur de fédération a été configuré pour prendre en charge **WIAORMULTIAUTHN**. 
+  - Hello serveur de fédération a été configuré toosupport **WIAORMULTIAUTHN**. 
 
-  - Il n’existe aucun objet de point de connexion de service qui pointe vers le nom de votre domaine vérifié dans Azure AD dans la forêt Active Directory à laquelle l’ordinateur appartient.
+  - Il n’existe aucun objet de Point de connexion qui pointe le nom de domaine vérifié tooyour dans Azure AD dans la forêt hello AD où appartient hello ordinateur.
 
-  - Un utilisateur a atteint la limite d’appareils. Consultez Prise en main du service Azure Active Directory Device Registration.
+  - Un utilisateur a atteint la limite de hello des périphériques. Consultez Prise en main du service Azure Active Directory Device Registration.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations, consultez le [FAQ sur l’inscription d’appareils automatique](active-directory-device-registration-faq.md) 
+Pour plus d’informations, consultez hello [Forum aux questions sur l’inscription automatique](active-directory-device-registration-faq.md) 

@@ -1,5 +1,5 @@
 ---
-title: "Bien démarrer avec Azure AD Xamarin | Microsoft Docs"
+title: aaaAzure AD Xamarin prise en main | Documents Microsoft
 description: "Créez des applications Xamarin qui s’intègrent avec Azure AD pour la connexion et appellent des API protégées par Azure AD en utilisant OAuth."
 services: active-directory
 documentationcenter: xamarin
@@ -15,55 +15,55 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: 54ee403f283bc5dc79911e2e813dd513ff595828
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a0d189648b7071558ac1cf2b908808668960a4e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-azure-ad-with-xamarin-apps"></a>Intégrer Azure AD avec des applications Xamarin
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
 
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Avec Xamarin, vous pouvez écrire des applications mobiles en C# qui peuvent s’exécuter sous iOS, Android et Windows (appareils mobiles et PC). Si vous créez une application avec Xamarin, Azure Active Directory (Azure AD) facilite l’authentification des utilisateurs avec leur compte Azure AD. L’application peut également utiliser en toute sécurité une API web protégée par Azure AD, telle que les API Office 365 ou l’API Azure.
+Avec Xamarin, vous pouvez écrire des applications mobiles en C# qui peuvent s’exécuter sous iOS, Android et Windows (appareils mobiles et PC). Si vous créez une application à l’aide de Xamarin, Azure Active Directory (Azure AD) rend tooauthenticate simple des utilisateurs avec leurs comptes Azure AD. application Hello peut consommer également en toute sécurité les API web qui est protégé par Azure AD, par exemple hello API Office 365 ou hello API Azure.
 
-Pour les applications Xamarin qui doivent accéder à des ressources protégées, Azure AD fournit la bibliothèque d’authentification Active Directory (ADAL). Cette bibliothèque a pour seule fonction de simplifier l’obtention des jetons d’accès pour les applications. Pour illustrer cette simplicité, cet article montre comment créer des applications DirectorySearcher effectuant les actions suivantes :
+Pour les applications Xamarin ont besoin de ressources de tooaccess protégé, Azure AD fournit hello Active Directory Authentication Library (ADAL). Hello seul but de la bibliothèque ADAL est toomake plus facile pour les jetons d’accès aux applications tooget. toodemonstrate facilement est, cet article explique comment les applications DirectorySearcher toobuild qui :
 
 * exécution sous iOS, Android, Windows Desktop, Windows Phone et Windows Store ;
-* utilisation d’une bibliothèque de classes portable (PCL) unique pour authentifier les utilisateurs et obtenir des jetons pour l’API Graph Azure AD ;
+* Utiliser une seule classe portable bibliothèque (PCL) tooauthenticate utilisateurs et obtenir des jetons pour hello API Azure AD Graph.
 * recherche, dans un annuaire, d’utilisateurs correspondant à un UPN (nom d’utilisateur principal) donné.
 
 ## <a name="before-you-get-started"></a>Avant de commencer
-* Téléchargez [la structure du projet](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/skeleton.zip) ou [l’exemple terminé](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip). Chaque téléchargement est une solution Visual Studio 2013.
-* Vous avez également besoin d’un client Azure AD dans lequel créer les utilisateurs et inscrire l’application. Si vous ne disposez pas encore d’un client, [découvrez comment en obtenir un](active-directory-howto-tenant.md).
+* Télécharger hello [projet squelette](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/skeleton.zip), ou télécharger hello [exemple terminé](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip). Chaque téléchargement est une solution Visual Studio 2013.
+* Vous devez également un locataire Azure AD dans lequel les utilisateurs de toocreate et inscrire l’application hello. Si vous n’avez pas encore un client, [apprendre comment tooget un](active-directory-howto-tenant.md).
 
-Lorsque vous êtes prêt, suivez les procédures des quatre sections qui suivent.
+Lorsque vous êtes prêt, suivez les procédures de hello dans hello quatre sections.
 
 ## <a name="step-1-set-up-your-xamarin-development-environment"></a>Étape 1 : Configurer votre environnement de développement Xamarin
-Étant donné que ce didacticiel inclut des projets pour iOS, Android et Windows, il vous faut à la fois Visual Studio et Xamarin. Pour créer l’environnement nécessaire, suivez la procédure à la page [Configurer et installer Visual Studio et Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) sur MSDN. Les instructions incluent des documents que vous pouvez consulter pour en savoir plus sur Xamarin en attendant que les installations se terminent.
+Étant donné que ce didacticiel inclut des projets pour iOS, Android et Windows, il vous faut à la fois Visual Studio et Xamarin. environnement nécessaires de toocreate hello, processus hello complète dans [définir configurer et installer Visual Studio et Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) sur MSDN. instructions de Hello incluent des documents que vous pouvez consulter toolearn plus sur Xamarin pendant que vous patientez pour hello installations toobe est terminée.
 
-Une fois vous avez terminé la configuration, ouvrez la solution dans Visual Studio. Vous y trouverez six projets : cinq projets propres à la plateforme et une PCL, DirectorySearcher.cs, partagée par toutes les plateformes.
+Après avoir terminé le programme d’installation Bonjour, ouvrir la solution de hello dans Visual Studio. Vous y trouverez six projets : cinq projets propres à la plateforme et une PCL, DirectorySearcher.cs, partagée par toutes les plateformes.
 
-## <a name="step-2-register-the-directorysearcher-app"></a>Étape 2 : Inscrire l’application DirectorySearcher
-Pour autoriser l’application à obtenir des jetons, vous devez tout d’abord l’inscrire dans votre client Azure AD et lui accorder l’autorisation d’accéder à l’API Graph Azure AD. Voici comment procéder :
+## <a name="step-2-register-hello-directorysearcher-app"></a>Étape 2 : Inscrire l’application DirectorySearcher hello
+jetons de tooget tooenable hello application, vous devez tout d’abord tooregister dans votre annuaire Azure AD de client et de lui accorder hello de tooaccess autorisation API Azure AD Graph. Voici comment procéder :
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com).
-2. Dans la barre supérieure, cliquez sur votre compte. Puis, dans la liste **Annuaire**, sélectionnez le client Active Directory dans lequel vous voulez inscrire l’application.
-3. Dans le volet gauche, cliquez sur **Plus de services**, puis sélectionnez **Azure Active Directory**.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
+2. Sur la barre supérieure de hello, cliquez sur votre compte. Ensuite, sous hello **répertoire** liste, le client d’Active Directory hello sélectionnez où vous souhaitez tooregister hello application.
+3. Cliquez sur **plus Services** dans hello du volet gauche, puis sélectionnez **Azure Active Directory**.
 4. Cliquez sur **Inscriptions des applications**, puis sélectionnez **Ajouter**.
-5. Pour créer une **application cliente native**, suivez les invites.
-  * Le champ **Nom** décrit l’application aux utilisateurs.
-  * **L’URI de redirection** est une combinaison de schémas et de chaînes qu’Azure AD utilise pour renvoyer des réponses concernant les jetons. Entrez une valeur (par exemple, http://DirectorySearcher).
-6. Une fois l’inscription terminée, Azure AD affecte un ID d’application unique à l’application. Copiez la valeur de l’onglet **Application**, car vous en aurez besoin ultérieurement.
-7. Sur la page **Paramètres**, sélectionnez **Autorisations requises**, puis **Ajouter**.
-8. Sélectionnez l’API **Microsoft Graph**. Sous **Autorisations déléguées**, ajoutez l’autorisation **Lire les données de l’annuaire**.  
-Cette action permet à l’application d’interroger l’API Graph pour les utilisateurs.
+5. toocreate un nouveau **Application cliente Native**, suivez les invites hello.
+  * **Nom** décrit hello application toousers.
+  * **URI de redirection** est une combinaison de schéma et de la chaîne que Azure AD utilise des réponses de jeton tooreturn. Entrez une valeur (par exemple, http://DirectorySearcher).
+6. Une fois que vous avez terminé l’inscription, Azure AD assigne application hello un ID d’application unique. Copier la valeur de hello de hello **Application** sous l’onglet, car vous en aurez besoin ultérieurement.
+7. Sur hello **paramètres** page, sélectionnez **autorisations requises**, puis sélectionnez **ajouter**.
+8. Sélectionnez **Microsoft Graph** comme hello API. Sous **autorisations déléguées**, ajouter hello **les données d’annuaire en lecture** autorisation.  
+Cette action active tooquery hello API Graph de hello application pour les utilisateurs.
 
 ## <a name="step-3-install-and-configure-adal"></a>Étape 3 : Installer et configurer la bibliothèque ADAL
-Maintenant que vous disposez d’une application dans Azure AD, vous pouvez installer la bibliothèque ADAL et écrire votre code lié à l’identité. Pour que la bibliothèque ADAL puisse communiquer avec Azure AD, fournissez-lui des informations sur l’inscription des applications.
+Maintenant que vous disposez d’une application dans Azure AD, vous pouvez installer la bibliothèque ADAL et écrire votre code lié à l’identité. tooenable toocommunicate ADAL avec Azure AD, lui donner des informations sur l’inscription d’une application hello.
 
-1. Ajoutez ADAL au projet DirectorySearcher à l’aide de la console du gestionnaire de package.
+1. Ajouter la bibliothèque ADAL toohello DirectorySearcher projet à l’aide de hello Console du Gestionnaire de Package.
 
     `
     PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -ProjectName DirectorySearcherLib
@@ -85,27 +85,27 @@ Maintenant que vous disposez d’une application dans Azure AD, vous pouvez inst
     PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -ProjectName DirSearchClient-Universal
     `
 
-    Notez que deux références de bibliothèque sont ajoutées à chaque projet : la partie PCL de la bibliothèque ADAL et une partie propre à la plateforme.
-2. Dans le projet DirectorySearcherLib, ouvrez DirectorySearcher.cs.
-3. Remplacez les valeurs de membre de classe par les valeurs que vous avez entrées sur le Portail Azure. Votre code se réfère à ces valeurs chaque fois qu’il utilise la bibliothèque ADAL.
+    Notez que les deux références de bibliothèque sont ajoutées tooeach projet : hello PCL partie ADAL et une partie spécifique à la plateforme.
+2. Dans le projet de DirectorySearcherLib hello, ouvrez DirectorySearcher.cs.
+3. Remplacez les valeurs de membre de classe hello avec des valeurs hello que vous avez entré dans hello portail Azure. Votre code fait référence à des valeurs de toothese chaque fois qu’il utilise la bibliothèque ADAL.
 
-  * *tenant* est le domaine de votre client Azure AD (par exemple, contoso.onmicrosoft.com).
-  * *clientId* est l’ID client de l’application, que vous avez copié à partir du portail.
-  * *returnUri* est l’URI de redirection que vous avez entré sur le portail (par exemple, http://DirectorySearcher).
+  * Hello *client* est domaine hello de votre client Azure AD (par exemple, contoso.onmicrosoft.com).
+  * Hello *clientId* est l’ID de client hello de l’application hello, que vous avez copié à partir du portail de hello.
+  * Hello *returnUri* est l’URI que vous avez entré dans le portail hello (par exemple, http://DirectorySearcher) de la redirection hello.
 
-## <a name="step-4-use-adal-to-get-tokens-from-azure-ad"></a>Étape 4 : Utiliser la bibliothèque ADAL pour obtenir des jetons à partir d’Azure AD
-Presque toute la logique d’authentification de l’application réside dans `DirectorySearcher.SearchByAlias(...)`. Dans les projets propres à la plateforme, la seule nécessité est de transmettre un paramètre contextuel à la PCL `DirectorySearcher`.
+## <a name="step-4-use-adal-tooget-tokens-from-azure-ad"></a>Étape 4 : Utiliser la bibliothèque ADAL tooget des jetons d’Azure AD
+Quasi-totalité de la logique d’authentification de l’application hello se trouve `DirectorySearcher.SearchByAlias(...)`. Tout ce qui est nécessaire dans les projets spécifiques à une plateforme hello est toopass un toohello paramètre contextuelles `DirectorySearcher` PCL.
 
-1. Ouvrez DirectorySearcher.cs et ajoutez un nouveau paramètre à la méthode `SearchByAlias(...)`. `IPlatformParameters` est le paramètre contextuel qui encapsule les objets propres à la plateforme que la bibliothèque ADAL doit authentifier.
+1. Ouvrez DirectorySearcher.cs et ajoutez un nouveau toohello de paramètre `SearchByAlias(...)` (méthode). `IPlatformParameters`est l’authentification ADAL besoins tooperform hello des objets de paramètre hello contextuelles qui encapsule hello spécifique à la plateforme.
 
     ```C#
     public static async Task<List<User>> SearchByAlias(string alias, IPlatformParameters parent)
     {
     ```
 
-2. Initialisez `AuthenticationContext`, la classe principale de la bibliothèque ADAL.  
-Cette action fournit à la bibliothèque ADAL les coordonnées dont elle a besoin pour communiquer avec Azure AD.
-3. Appelez `AcquireTokenAsync(...)`, qui accepte l’objet `IPlatformParameters` et appelle le flux d’authentification nécessaire pour renvoyer un jeton à l’application.
+2. Initialiser `AuthenticationContext`, qui est la classe principale hello de la bibliothèque ADAL.  
+Cette hello ADAL de passes action il coordonne toocommunicate besoins avec Azure AD.
+3. Appelez `AcquireTokenAsync(...)`, qui accepte hello `IPlatformParameters` de l’objet et appelle les flux d’authentification hello sont nécessaire tooreturn une application toohello de jeton.
 
     ```C#
     ...
@@ -123,8 +123,8 @@ Cette action fournit à la bibliothèque ADAL les coordonnées dont elle a besoi
     ...
     ```
 
-    `AcquireTokenAsync(...)` tente tout d’abord de renvoyer un jeton pour la ressource demandée (l’API Graph dans ce cas) sans inviter les utilisateurs à entrer leurs informations d’identification (par le biais de la mise en cache ou de l’actualisation des anciens jetons). Si nécessaire, il affiche la page de connexion d’Azure AD aux utilisateurs avant d’acquérir le jeton demandé.
-4. Joignez le jeton d’accès à la demande de l’API Graph, dans l’en-tête **Autorisation** :
+    `AcquireTokenAsync(...)`première tentatives tooreturn un jeton pour hello la ressource (hello API Graph dans ce cas) demandée sans invite les utilisateurs tooenter leurs informations d’identification (via la mise en cache ou l’actualisation des jetons ancien). Si nécessaire, il affiche les utilisateurs hello Azure AD-page de connexion avant d’acquérir le jeton demandé de hello.
+4. Attacher la demande d’API Graph hello accès toohello jeton Bonjour **autorisation** en-tête :
 
     ```C#
     ...
@@ -132,15 +132,15 @@ Cette action fournit à la bibliothèque ADAL les coordonnées dont elle a besoi
     ...
     ```
 
-Le rôle de la PCL `DirectorySearcher` et du code lié à l’identité de l’application s’arrête là. Il ne reste qu’à appeler la méthode `SearchByAlias(...)` dans les affichages de chaque plateforme et, le cas échéant, à ajouter le code permettant de gérer correctement le cycle de vie de l’interface utilisateur.
+C’est pourquoi `DirectorySearcher` le code de bibliothèque de classes portables et hello application associées à l’identité. Il ne reste que toocall hello `SearchByAlias(...)` méthode dans les vues de chaque plateforme et, le cas échéant, le code tooadd pour gérer correctement hello cycle de vie de l’interface utilisateur.
 
 ### <a name="android"></a>Android
-1. Dans MainActivity.cs, ajoutez un appel à `SearchByAlias(...)` dans le gestionnaire de clic de bouton :
+1. Dans MainActivity.cs, ajoutez un appel trop`SearchByAlias(...)` du bouton hello Gestionnaire click :
 
     ```C#
     List<User> results = await DirectorySearcher.SearchByAlias(searchTermText.Text, new PlatformParameters(this));
     ```
-2. Substituez la méthode du cycle de vie `OnActivityResult` pour rediriger toute authentification vers la méthode appropriée. La bibliothèque ADAL fournit une méthode d’assistance pour cela dans Android :
+2. Remplacer hello `OnActivityResult` tooforward de méthode du cycle de vie d’authentification redirige la méthode appropriée de toohello précédent. La bibliothèque ADAL fournit une méthode d’assistance pour cela dans Android :
 
     ```C#
     ...
@@ -153,7 +153,7 @@ Le rôle de la PCL `DirectorySearcher` et du code lié à l’identité de l’a
     ```
 
 ### <a name="windows-desktop"></a>Windows Desktop
-Dans MainWindow.xaml.cs, appelez simplement `SearchByAlias(...)` en passant un `WindowInteropHelper` dans l’objet `PlatformParameters` du bureau :
+Dans MainWindow.xaml.cs, effectuez un appel trop`SearchByAlias(...)` en passant un `WindowInteropHelper` dans desktop hello `PlatformParameters` objet :
 
 ```C#
 List<User> results = await DirectorySearcher.SearchByAlias(
@@ -162,7 +162,7 @@ List<User> results = await DirectorySearcher.SearchByAlias(
 ```
 
 #### <a name="ios"></a>iOS
-Dans DirSearchClient_iOSViewController.cs, l’objet `PlatformParameters` iOS prend une référence au contrôleur d’affichage :
+Dans DirSearchClient_iOSViewController.cs, hello iOS `PlatformParameters` objet prend un toohello référence View Controller :
 
 ```C#
 List<User> results = await DirectorySearcher.SearchByAlias(
@@ -171,7 +171,7 @@ List<User> results = await DirectorySearcher.SearchByAlias(
 ```
 
 ### <a name="windows-universal"></a>Windows Universal
-Dans Windows Universal, ouvrez MainPage.xaml.cs et implémentez la méthode `Search`. Cette méthode utilise une méthode auxiliaire dans un projet partagé pour mettre à jour l’interface utilisateur en fonction des besoins.
+Dans l’application Windows universelle, ouvrez MainPage.xaml.cs et implémentez hello `Search` (méthode). Cette méthode utilise une méthode d’assistance dans une interface utilisateur de tooupdate projet partagé si nécessaire.
 
 ```C#
 ...
@@ -182,15 +182,15 @@ List<User> results = await DirectorySearcherLib.DirectorySearcher.SearchByAlias(
 ## <a name="whats-next"></a>Étapes suivantes
 Vous disposez maintenant d’une application Xamarin fonctionnelle capable d’authentifier les utilisateurs et d’appeler en toute sécurité les API web à l’aide d’OAuth 2.0 sur cinq plateformes différentes.
 
-Si vous n’avez pas encore rempli votre client avec des utilisateurs, il est maintenant temps de le faire.
+Si vous n’avez pas déjà renseigné votre client avec les utilisateurs, est à présent hello temps toodo donc.
 
-1. Exécutez votre application DirectorySearcher, puis connectez-vous avec l’un des utilisateurs.
+1. Exécuter votre application DirectorySearcher, puis connectez-vous avec l’un des utilisateurs de hello.
 2. Recherchez d’autres utilisateurs en fonction de leur UPN.
 
-La bibliothèque ADAL facilite l’intégration des fonctionnalités d’identité communes dans l’application. Elle effectue les tâches ingrates à votre place, notamment la gestion du cache, la prise en charge du protocole OAuth, la présentation d’une interface utilisateur de connexion à l’utilisateur et l’actualisation des jetons expirés. Vous n’avez besoin de connaître qu’un seul appel d’API, `authContext.AcquireToken*(…)`.
+La bibliothèque ADAL facilite fonctionnalités d’identité commune tooincorporate facile dans une application hello. Il s’occupe de tout le travail dirty hello, telles que la gestion du cache, prise en charge de protocole d’OAuth, présentant les utilisateur hello avec une connexion de l’interface utilisateur, et l’actualisation a expiré de jetons. Vous devez tooknow uniquement une seule API appel, `authContext.AcquireToken*(…)`.
 
-Pour référence, téléchargez [l’exemple terminé](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip) (sans vos valeurs de configuration).
+Pour référence, téléchargez hello [exemple terminé](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-DotNet/archive/complete.zip) (sans les valeurs de configuration).
 
-Vous pouvez à présent aborder d’autres scénarios d’identité. Par exemple, essayez de [Sécuriser une API web .NET avec Azure AD](active-directory-devquickstarts-webapi-dotnet.md).
+Vous pouvez maintenant déplacer sur les scénarios d’identité tooadditional. Par exemple, essayez de [Sécuriser une API web .NET avec Azure AD](active-directory-devquickstarts-webapi-dotnet.md).
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

@@ -1,6 +1,6 @@
 ---
-title: Ajouter ou modifier les informations de profil pour un utilisateur dans Azure Active Directory | Microsoft Docs
-description: "Explique comment ajouter le profil utilisateur, y compris l’image de profil, dans Azure Active Directory"
+title: aaaAdd ou modifier les informations de profil pour un utilisateur dans Azure Active Directory | Documents Microsoft
+description: "Explique comment tooadd hello profil utilisateur, y compris l’image de profil, dans Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,32 +15,32 @@ ms.topic: article
 ms.date: 06/27/2017
 ms.author: curtand
 ms.reviewer: jeffsta
-ms.openlocfilehash: 81d93563a3cbe47ebe12c7ac5de26c5bbc2bb8ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 58361cf4e3ffb01126938cc1e3e1d4c521f2f01c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-or-change-profile-information-for-a-user-in-azure-active-directory"></a>Ajouter ou modifier les informations de profil pour un utilisateur dans Azure Active Directory
-Cet article explique comment ajouter des informations de profil utilisateur, comme une image de profil ou des informations d’authentification par téléphone et e-mail, dans Azure Active Directory (Azure AD). Pour en savoir plus sur l’ajout d’utilisateurs dans votre organisation, consultez [Ajout de nouveaux utilisateurs à Azure Active Directory](active-directory-users-create-azure-portal.md).
+Cet article explique comment tooadd utilisateur profil plus d’informations, par exemple une image ou téléphone et courrier électronique d’authentification informations de profil, dans Azure Active Directory (Azure AD). Pour plus d’informations sur l’ajout de nouveaux utilisateurs de votre organisation, consultez [ajouter de nouveaux utilisateurs tooAzure Active Directory](active-directory-users-create-azure-portal.md).
 
-## <a name="to-change-profile-information"></a>Pour modifier les informations de profil
-1. Connectez-vous au [portail Azure](https://portal.azure.com) en utilisant un compte d’administrateur général pour le répertoire.
-2. Sélectionnez **Plus de services**, saisissez **Utilisateurs et groupes** dans la zone de texte, puis sélectionnez **Entrée**.
+## <a name="toochange-profile-information"></a>informations de profil toochange
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) avec un compte qui est un administrateur global pour le répertoire de hello.
+2. Sélectionnez **davantage de services**, entrez **utilisateurs et groupes** dans hello de zone de texte, puis sélectionnez **entrée**.
 
    ![Ouverture du panneau Utilisateurs et groupes](./media/active-directory-users-profile-azure-portal/create-users-user-management.png)
-3. Dans le panneau **Utilisateurs et groupes**, sélectionnez **Utilisateurs**.
+3. Sur hello **utilisateurs et groupes** panneau, sélectionnez **utilisateurs**.
 
-   ![Ouverture du panneau Utilisateurs](./media/active-directory-users-profile-azure-portal/create-users-open-users-blade.png)
-4. Sur le panneau **Utilisateurs et groupes - Utilisateurs -** , sélectionnez un utilisateur dans la liste.
-5. Dans le panneau de l’utilisateur sélectionné, sélectionnez **Profil**.
+   ![Panneau d’utilisateurs ouverture hello](./media/active-directory-users-profile-azure-portal/create-users-open-users-blade.png)
+4. Sur hello **les utilisateurs et groupes d’utilisateurs -** panneau, sélectionnez un utilisateur à partir de la liste de hello.
+5. Dans le panneau hello pour l’utilisateur sélectionné de hello, sélectionnez **profil**.
 
     ![Ouverture des informations de travail](./media/active-directory-users-profile-azure-portal/active-directory-create-users-profile.png)
-6. Ajoutez ou modifiez les informations du profil. Ensuite, dans la barre de commandes, sélectionnez **Enregistrer**.
+6. Ajouter ou modifier les informations de profil hello. Puis, dans la barre de commandes hello, sélectionnez **enregistrer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Ajout de nouveaux utilisateurs à Azure Active Directory](active-directory-users-create-azure-portal.md)
-* [Réinitialiser le mot de passe d’un utilisateur dans Azure Active Directory](active-directory-users-reset-password-azure-portal.md)
-* [Attribuer des rôles d’administrateur à un utilisateur dans Azure Active Directory](active-directory-users-assign-role-azure-portal.md)
+* [Ajouter de nouveaux utilisateurs tooAzure Active Directory](active-directory-users-create-azure-portal.md)
+* [Réinitialiser le mot de passe hello pour un utilisateur dans Azure Active Directory](active-directory-users-reset-password-azure-portal.md)
+* [Affecter des rôles de tooadministrator dans Azure Active Directory d’un utilisateur](active-directory-users-assign-role-azure-portal.md)
 * [Ajouter ou modifier les informations de profil pour un utilisateur dans Azure Active Directory](active-directory-users-work-info-azure-portal.md)
 * [Supprimer un utilisateur d’un annuaire dans Azure Active Directory](active-directory-users-delete-user-azure-portal.md)

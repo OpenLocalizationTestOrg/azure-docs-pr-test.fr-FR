@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : intégration d’Azure Active Directory à Intralinks | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Intralinks."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Intralinks."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,109 +13,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: jeedes
-ms.openlocfilehash: ee7fd5b88ac806104002ffb41af11bab4fd1b2dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fa49c932d0c48d4b48e04fe91af9fc86a0c1cdb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-intralinks"></a>Didacticiel : intégration d’Azure Active Directory à Intralinks
 
-Dans ce didacticiel, vous allez apprendre à intégrer Intralinks à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate Intralinks avec Azure Active Directory (Azure AD).
 
-L’intégration d’Intralinks à Azure AD vous offre les avantages suivants :
+Intégration Intralinks à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez déterminer qui a accès à Intralinks.
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Intralinks (via l’authentification unique) avec leur compte Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooIntralinks
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooIntralinks (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à Intralinks, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec Intralinks, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Intralinks pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout d’Intralinks à partir de la galerie
+1. Ajout de Intralinks à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-intralinks-from-the-gallery"></a>Ajout d’Intralinks à partir de la galerie
-Pour configurer son intégration à Azure AD, vous devez ajouter Intralinks à votre liste d’applications SaaS gérées, à partir de la galerie.
+## <a name="adding-intralinks-from-hello-gallery"></a>Ajout de Intralinks à partir de la galerie de hello
+intégration de hello tooconfigure de Intralinks dans Azure AD, vous devez tooadd Intralinks à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Intralinks à partir de la galerie, procédez comme suit :**
+**tooadd Intralinks à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, saisissez **Intralinks**.
+4. Dans la zone de recherche de hello, tapez **Intralinks**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Intralinks**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **Intralinks**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Intralinks, en tirant parti d’un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Intralinks équivalent dans Azure AD. En d’autres termes, une relation doit être établie entre l’utilisateur Azure AD et l’utilisateur Intralinks associé.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Intralinks est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Intralinks doit toobe établie.
 
-Dans Intralinks, attribuez la valeur du **nom d’utilisateur** dans Azure AD comme valeur **Nom d’utilisateur** pour établir la relation.
+Dans Intralinks, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec Intralinks, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec Intralinks, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Intralinks](#creating-an-intralinks-test-user)** : pour avoir un équivalent de l’utilisateur Britta Simon dans Intralinks qui soit lié à la représentation de l’utilisateur Azure AD.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test Intralinks](#creating-an-intralinks-test-user)**  -toohave un équivalent de Britta Simon dans Intralinks est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Intralinks.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Intralinks.
 
-**Pour configurer l’authentification unique Azure AD avec Intralinks, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec Intralinks, effectuez hello comme suit :**
 
-1. Dans le Portail Azure, sur la page d’intégration de l’application **Intralinks**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Intralinks** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_samlbase.png)
 
-3. Dans la section **Domaine et URL Intralinks**, procédez comme suit :
+3. Sur hello **Intralinks domaine et les URL** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_url.png)
 
-    Dans la zone de texte **URL d’authentification**, tapez une URL en utilisant le modèle suivant : `https://<company name>.Intralinks.com/?PartnerIdpId=https://sts.windows.net/<AzureADTenantID>`
+    Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<company name>.Intralinks.com/?PartnerIdpId=https://sts.windows.net/<AzureADTenantID>`
 
     > [!NOTE] 
-    > Cette valeur n’est pas la valeur réelle. Mettez à jour cette valeur avec l’URL d’authentification réelle. Contactez [l’équipe de support client Intralinks](https://www.intralinks.com/contact-1) pour obtenir cette valeur. 
+    > Cette valeur n’est pas la valeur réelle. Mettre à jour de cette valeur avec hello URL de connexion réel. Contact [équipe de support Client de Intralinks](https://www.intralinks.com/contact-1) tooget cette valeur. 
  
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_certificate.png) 
 
@@ -123,63 +123,63 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-intralinks-tutorial/tutorial_general_400.png)
 
-6. Pour configurer l’authentification unique du côté de **Intralinks**, vous devez envoyer le **XML de métadonnées** téléchargé à [l’équipe de support d’Intralinks](https://www.intralinks.com/contact-1). Celle-ci configure ensuite ce paramètre pour que la connexion SSO SAML soit définie correctement des deux côtés.
+6. tooconfigure l’authentification unique sur **Intralinks** côté, vous devez hello toosend téléchargé **Metadata XML** [Intralinks l’équipe de support](https://www.intralinks.com/contact-1). Ils définir ce hello toohave de paramètre connexion SSO SAML correctement des deux côtés.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-intralinks-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-intralinks-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-intralinks-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-intralinks-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-an-intralinks-test-user"></a>Création d’un utilisateur de test Intralinks
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Intralinks. Collaborez avec [l’équipe du support technique Intralinks](https://www.intralinks.com/contact-1) pour ajouter des utilisateurs sur la plateforme Intralinks.
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Intralinks. Collaborez avec [Intralinks l’équipe de support](https://www.intralinks.com/contact-1) utilisateurs hello tooadd plate-forme de Intralinks hello.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Intralinks.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooIntralinks.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à Intralinks, procédez comme suit :**
+**tooassign Britta Simon tooIntralinks, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Intralinks**.
+2. Dans la liste des applications hello, sélectionnez **Intralinks**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -187,7 +187,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -195,51 +195,51 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
 ### <a name="add-intralinks-via-or-elite-application"></a>Ajouter une application Intralinks VIA ou Elite
 
-Intralinks utilise la même plateforme d’identité pour l’authentification unique quelle que soit l’application Intralinks, à l’exception de Dealnexus. Par conséquent, si vous envisagez d’utiliser une autre application Intralinks, vous devez d’abord configurer l’authentification unique pour une application Intralinks principale, en suivant la procédure décrite ci-dessus.
+Intralinks utilise hello même plateforme d’identité de l’authentification unique pour toutes les autres applications Intralinks à l’exception d’application de transaction Nexus. Par conséquent, si vous envisagez de toute autre application Intralinks toouse tout d’abord vous devez tooconfigure l’authentification unique pour une application Intralinks principal à l’aide de la procédure hello décrite ci-dessus.
 
-Après cela, vous pouvez suivre la procédure ci-dessous pour ajouter une autre application Intralinks dans votre client, afin de pouvoir tirer parti de cette application principale pour l’authentification unique. 
+Une fois que vous pouvez suivre une autre application Intralinks hello ci-dessous procédure tooadd dans votre client qui permettre tirer parti de cette application principale pour l’authentification unique. 
 
 >[!NOTE]
->Cette fonctionnalité est uniquement disponible pour les clients de la référence SKU Azure AD Premium. Les clients dotés de la SKU gratuite ou de base du logiciel ne peuvent pas l’utiliser.
+>Cette fonctionnalité est disponible uniquement tooAzure AD Premium SKU aux clients et non disponible pour les clients gratuit ou de la base de référence (SKU).
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, saisissez **Intralinks**.
+4. Dans la zone de recherche de hello, tapez **Intralinks**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_search.png)
 
-5. Sur **l’application Ajout Intralinks** procédez comme suit :
+5. Sur **Intralinks ajouter une application** effectuer hello comme suit :
 
     ![Ajout d’une application Intralinks VIA ou Elite](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_addapp.png)
 
-    a. Dans la zone de texte **Nom**, entrez un nom de l’application approprié, par exemple **Intralinks Elite**.
+    a. Dans **nom** zone de texte, entrez un nom approprié de l’application hello, par exemple **Intralinks Elite**.
 
     b. Cliquez sur le bouton **Ajouter**.
 
-6.  Dans le Portail Azure, sur la page d’intégration de l’application **Intralinks**, cliquez sur **Authentification unique**.
+6.  Bonjour portail Azure, sur hello **Intralinks** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-7. Dans la boîte de dialogue **Authentification unique**, sélectionnez **Mode** en tant que **Authentification liée**.
+7. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **lié Sign-on**.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_linkedsignon.png)
 
-8. Récupérez l’URL d’authentification unique initiée par le fournisseur de services depuis [l’équipe Intralinks](https://www.intralinks.com/contact-1) pour l’autre application Intralinks. Saisissez l’URL ainsi obtenue dans **Configurer l’URL d’authentification** comme indiqué ci-dessous. 
+8. Obtenir l’URL de l’authentification unique a été initiée hello hello SP de [Intralinks équipe](https://www.intralinks.com/contact-1) pour hello autre application Intralinks et entrez-la dans **configurer l’authentification sur l’URL** comme indiqué ci-dessous. 
     
      ![Configurer l’authentification unique](./media/active-directory-saas-intralinks-tutorial/tutorial_intralinks_customappurl.png)
     
-     Dans la zone de texte URL de connexion, saisissez l’URL utilisée par les utilisateurs pour se connecter à votre application Intralinks en utilisant le modèle suivant :
+     Dans la zone de texte URL de connexion hello, tapez hello l’URL utilisée par votre application de Intralinks tooyour toosign sur les utilisateurs à l’aide de hello modèle :
    
     `https://<company name>.Intralinks.com/?PartnerIdpId=https://sts.windows.net/<AzureADTenantID>`
 
@@ -247,18 +247,18 @@ Après cela, vous pouvez suivre la procédure ci-dessous pour ajouter une autre 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-intralinks-tutorial/tutorial_general_400.png)
 
-10. Affectez l’application à un utilisateur ou à un groupe, comme l’indique la section **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)**.
+10. Affecter des hello application toouser ou des groupes comme indiqué dans la section de hello  **[utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**.
 
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette Intralinks dans le volet d’accès, vous devez être connecté automatiquement à votre application Intralinks.
-Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+Lorsque vous cliquez sur hello Intralinks vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour Intralinks application.
+Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory Domain Services : activation | Microsoft Docs"
-description: "Activer Azure Active Directory Domain Services à l’aide du portail Azure Classic"
+description: "Activer Azure Active Directory Domain Services à l’aide de hello portail Azure classic"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,84 +14,84 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/28/2017
 ms.author: maheshu
-ms.openlocfilehash: ed72325ca9db99405c6173eb882a92f80cd77f47
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6263eb1849808a7c85e572e1046bc9039362dd9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-classic-portal"></a>Activer Azure Active Directory Domain Services à l’aide du portail Azure Classic
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-classic-portal"></a>Activer Azure Active Directory Domain Services à l’aide de hello portail Azure classic
 
 ## <a name="task-3-enable-azure-active-directory-domain-services"></a>Tâche 3 : Activer Azure Active Directory Domain Services
-Pour activer Azure Active Directory Domain Services (Azure AD DS) afin de gérer votre répertoire, procédez comme suit :
+Dans cette tâche, vous activez les Services de domaine d’Active Directory Azure (Azure AD DS) pour votre annuaire en procédant comme hello comme suit :
 
-1. Connectez-vous au [Portail Azure Classic](https://manage.windowsazure.com).
-2. Dans le volet de gauche, cliquez sur le bouton **Active Directory**.
-3. Sélectionnez le locataire Azure AD (annuaire) pour lequel vous souhaitez activer Azure AD DS.
+1. Accédez toohello [portail Azure classic](https://manage.windowsazure.com).
+2. Dans le volet gauche de hello, sélectionnez hello **Active Directory** bouton.
+3. Sélectionnez le locataire d’Azure Active Directory (Azure AD) hello (répertoire) pour lequel vous souhaitez tooenable Azure AD DS.
 
     ![Sélectionner un annuaire Azure AD](./media/active-directory-domain-services-getting-started/select-aad-directory.png)
-4. Sur la page de la **version préliminaire de l’annuaire**, cliquez sur l’onglet **Configurer**.
+4. Sur hello **active de la version préliminaire** , cliquez sur hello **configurer** onglet.
 
     ![Configurer l’onglet de l’annuaire](./media/active-directory-domain-services-getting-started/configure-tab.png)
-5. Sous **Services de domaine**, affectez à l’option **Activer les services de domaine pour cet annuaire** la valeur **Oui**.  
-    D’autres options de configuration d’Azure AD DS s’affichent sur la page.
+5. Sous **services de domaine**, modifiez hello **activer les services de domaine pour ce répertoire** option trop**Oui**.  
+    Les options de configuration Azure des Services de domaine Active Directory supplémentaires s’affichent sur la page de hello.
 
     ![Activer les services de domaine](./media/active-directory-domain-services-getting-started/enable-domain-services.png)
 
    > [!NOTE]
-   > Lorsque vous activez Azure AD DS pour votre locataire, Azure AD génère et stocke les hachages d’informations d’identification Kerberos et NTLM nécessaires pour l’authentification des utilisateurs.
+   > Lorsque vous activez Azure Active Directory Domain Services pour votre client, Azure AD génère et stocke hello Kerberos et NTLM d’informations d’identification hachages qui sont requis pour l’authentification des utilisateurs.
    >
    >
-6. Spécifiez le **Nom de domaine DNS des services de domaine**.
+6. Spécifiez hello **le nom de domaine DNS des services de domaine**.
 
-   * Le nom de domaine par défaut de l’annuaire (qui présente le suffixe **.onmicrosoft.com**) est sélectionné par défaut.
+   * nom de domaine par défaut Hello du répertoire de hello (avec un **. onmicrosoft.com** suffixe) est sélectionnée par défaut.
 
-   * La liste contient tous les domaines qui ont été configurés pour votre annuaire Azure AD, y compris les domaines vérifiés et non vérifiés que vous configurez sous l’onglet **Domaines**.
+   * Hello liste contient tous les domaines qui ont été configurés pour votre annuaire Azure AD, y compris les deux vérifiés et non vérifiées, les domaines que vous configurez sur hello **domaines** onglet.
 
-   * Vous pouvez également saisir un nom de domaine personnalisé. Dans cet exemple, le nom de domaine personnalisé est *contoso100.com*.
+   * Vous pouvez également saisir un nom de domaine personnalisé. Dans cet exemple, le nom de domaine personnalisé hello est *contoso100.com*.
 
      > [!WARNING]
-     > Le préfixe du nom de domaine spécifié (par exemple, *contoso100* dans le nom de domaine *contoso100.com*) doit contenir au maximum 15 caractères. Vous ne pouvez pas créer un domaine Azure AD DS dont le préfixe contient plus de 15 caractères.
+     > préfixe Hello de votre nom de domaine spécifié (par exemple, *contoso100* Bonjour *contoso100.com* nom de domaine) doit contenir au maximum 15 caractères. Vous ne pouvez pas créer un domaine Azure AD DS dont le préfixe contient plus de 15 caractères.
      >
      >
-7. Vérifiez que le nom de domaine DNS choisi pour le domaine géré n’existe pas au sein du réseau virtuel. Plus précisément, vérifiez ce qui suit :
+7. Vérifiez que nom de domaine DNS hello choisie pour hello géré domaine n’existe pas déjà dans le réseau virtuel de hello. Plus précisément, vérifiez toosee si :
 
-   * Vous disposez d’un domaine présentant le nom de domaine DNS au sein du réseau virtuel.
+   * Vous disposez déjà d’un domaine avec hello même nom de domaine DNS sur le réseau virtuel de hello.
 
-   * Le réseau virtuel que vous avez sélectionné comprend une connexion VPN avec votre réseau local et vous disposez d’un domaine présentant le même nom de domaine DNS sur votre réseau local.
+   * Hello réseau virtuel que vous avez sélectionné possède une connexion VPN à votre réseau local, et que vous avez un domaine avec hello même nom de domaine DNS de votre réseau local.
 
-   * Il existe un service cloud portant ce nom sur le réseau virtuel.
-8. Sélectionnez le réseau virtuel sur lequel vous souhaitez qu’Azure AD DS soit disponible. Dans la liste déroulante **Connecter les services de domaine à ce réseau virtuel**, sélectionnez le réseau virtuel et le sous-réseau dédié que vous avez créés. Tenez également compte des éléments suivants :
+   * Vous avez un service cloud existant portant le même nom sur le réseau virtuel de hello.
+8. Sélectionnez un réseau virtuel sur lequel vous souhaitez toobe Azure Active Directory Domain Services disponible. Sélectionnez le réseau virtuel de hello et sous-réseau dédié, vous avez créé dans hello **toothis des réseaux virtuels des services de domaine de se connecter** liste déroulante. Également envisager les suivant hello :
 
-   * Assurez-vous que le réseau virtuel que vous avez spécifié appartient à une région Azure prise en charge par Azure AD DS. Pour connaître les régions Azure dans lesquelles Azure AD DS est disponible, consultez la page [Services Azure par région](https://azure.microsoft.com/regions/#services/).
+   * Assurez-vous que ce réseau virtuel hello que vous avez spécifié appartient tooan région Azure qui est pris en charge par les Services de domaine Active Directory de Azure. tooascertain hello régions Azure où Azure des Services de domaine Active Directory est disponible, consultez [des services Azure par région](https://azure.microsoft.com/regions/#services/).
 
-   * Les réseaux virtuels appartenant à une région dans laquelle Azure AD DS n’est pas pris en charge n’apparaissent pas dans la liste déroulante.
+   * Les réseaux virtuels qui appartiennent région tooa où Azure des Services de domaine Active Directory n’est pas prise en charge ne s’affichent pas dans la liste déroulante de hello.
 
-   * Utilisez un sous-réseau dédié au sein du réseau virtuel pour Azure AD DS. Veillez à ne *pas* sélectionner le sous-réseau de passerelle. Consultez [Mise en réseau - Éléments à prendre en compte](active-directory-ds-networking.md).
+   * Utilisez un sous-réseau dédié au sein du réseau virtuel de hello pour Azure Active Directory Domain Services. Faire *pas* sélectionnez hello sous-réseau de passerelle. Consultez [Mise en réseau - Éléments à prendre en compte](active-directory-ds-networking.md).
 
-   * De même, les réseaux virtuels créés à l’aide du logiciel Azure Resource Manager ne sont pas affichés dans la liste déroulante. Les réseaux virtuels basés sur Resource Manager ne sont pas pris en charge par Azure AD DS pour le moment.
-9. Pour activer Azure AD DS, cliquez sur **Enregistrer** dans le volet des tâches, en bas de la page.
-    * La page affiche l’état *En attente* pendant l’activation de cette fonctionnalité pour votre annuaire.
+   * De même, les réseaux virtuels qui ont été créés à l’aide du Gestionnaire de ressources Azure n’apparaissent pas dans la liste déroulante de hello. Les réseaux virtuels basés sur Resource Manager ne sont pas pris en charge par Azure AD DS pour le moment.
+9. tooenable Services de domaine Active Directory Azure, dans le volet de tâches hello bas hello de page de hello, cliquez sur **enregistrer**.
+    * Alors que les Services de domaine Active Directory de Azure est activé pour votre annuaire, page de hello affiche l’état *en attente*.
 
         ![Fenêtre Activer les services de domaine](./media/active-directory-domain-services-getting-started/enable-domain-services-pendingstate.png)
 
         > [!NOTE]
-        > Azure AD DS offre une haute disponibilité pour votre domaine managé. Une fois Azure Active Directory Domain Services activé, les adresses IP auxquelles les services de domaine sont disponibles sur le réseau virtuel s’affichent l’une après l’autre. La deuxième adresse IP s’affiche rapidement après la première, dès que le service active la haute disponibilité pour votre domaine. Une fois que la haute disponibilité est configurée et active pour votre domaine, deux adresses IP apparaissent normalement dans la section **services de domaine** de l’onglet **Configurer**.
+        > Azure AD DS offre une haute disponibilité pour votre domaine managé. Après avoir activé Azure des Services de domaine Active Directory, les adresses IP hello au domaine dans lequel les services sont disponibles sur le réseau virtuel de hello sont affichent l’un à la fois. adresse IP de la deuxième Hello s’affiche tout d’abord, peu de temps après hello comme bientôt service de hello permet une haute disponibilité pour votre domaine. Lorsque la haute disponibilité est configurée et actif pour votre domaine, vous devez voir deux adresses IP Bonjour **services de domaine** section Hello **configurer** onglet.
         >
         >
-    * Après 20 à 30 minutes, la première adresse IP à laquelle les services de domaine sont disponibles sur votre réseau virtuel apparaît dans le champ **Adresse IP** de la page **Configurer**.
+    * Après environ 20 minutes too30, première adresse IP hello, au domaine dans lequel les services sont disponibles sur votre réseau virtuel Bonjour **adresse IP** champ hello **configurer** page.
 
         ![Fenêtre Azure AD DS affichant la première adresse IP configurée](./media/active-directory-domain-services-getting-started/domain-services-enabled-firstdc-available.png)
-    * Une fois que la haute disponibilité est opérationnelle pour votre domaine, deux adresses IP apparaissent sur la page. Votre domaine géré est disponible sur votre réseau virtuel sélectionné à ces deux adresses IP.
+    * Lors de la haute disponibilité est opérationnelle pour votre domaine, les deux adresses IP sont affichées sur la page de hello. Votre domaine géré est disponible sur votre réseau virtuel sélectionné à ces deux adresses IP.
 
-10. Notez ces adresses IP afin de pouvoir mettre à jour les paramètres DNS pour votre réseau virtuel. Cette étape permet aux machines virtuelles du réseau virtuel de se connecter au domaine en vue de procéder à diverses opérations, telles que la jonction de domaine.
+10. Notez les deux adresses IP de hello afin que vous pouvez mettre à jour les paramètres DNS hello pour votre réseau virtuel. Ainsi, les ordinateurs virtuels sur le domaine de toohello tooconnect hello réseau virtuel pour les opérations telles que la jonction de domaine.
 
     ![Fenêtre Azure AD DS affichant les deux adresses IP configurées](./media/active-directory-domain-services-getting-started/domain-services-enabled-bothdcs-available.png)
 
 > [!NOTE]
-> En fonction de la taille de votre locataire Azure AD (par exemple, le nombre d’utilisateurs ou de groupes), la synchronisation avec votre domaine managé peut prendre du temps. Ce processus de synchronisation se produit en arrière-plan. Pour les locataires volumineux comportant des dizaines de milliers d’objets, un ou deux jours peuvent s’écouler avant que la totalité des utilisateurs, des appartenances aux groupes et des informations d’identification soit synchronisée.
+> Selon la taille de hello de votre client Azure AD (par exemple, le nombre d’hello des utilisateurs ou groupes), domaine de synchronisation tooyour géré prend un certain temps. Ce processus de synchronisation se produit en arrière-plan de hello. Pour les clients avec des dizaines de milliers d’objets volumineux, il peut prendre une ou deux jours pour tous les utilisateurs, les appartenances aux groupes et les toobe des informations d’identification synchronisé.
 >
 >
 
 ## <a name="next-step"></a>Étape suivante
-[Tâche 4 : Mettre à jour les paramètres DNS pour le réseau virtuel Azure](active-directory-ds-getting-started-update-dns.md)
+[Tâche 4 : mettre à jour les paramètres DNS hello hello réseau virtuel Azure](active-directory-ds-getting-started-update-dns.md)

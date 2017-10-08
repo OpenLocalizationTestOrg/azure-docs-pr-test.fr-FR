@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory Identity Protection | Microsoft Docs"
-description: "Découvrez comment Azure AD Identity Protection vous permet de limiter la capacité d’un cybercriminel à exploiter une identité ou un appareil compromis et de sécuriser une identité ou un appareil déjà identifié comme potentiellement ou effectivement compromis."
+title: aaaAzure Active Directory Identity Protection | Documents Microsoft
+description: "Découvrez comment Azure AD Identity Protection vous permet capacité hello toolimit une personne malveillante de tooexploit une identité compromise ou l’unité et toosecure une identité ou un périphérique qui a été précédemment toobe suspectée ou connu compromis."
 services: active-directory
 keywords: "azure active directory identity protection, cloud app discovery, gestion d’applications, sécurité, risque, niveau de risque, vulnérabilité, stratégie de sécurité"
 documentationcenter: 
@@ -15,28 +15,28 @@ ms.topic: article
 ms.date: 08/15/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 0c7a8d68c0df729441e3f7faa5cd06066db1261d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ecca4f3cdb65585687cf44a80024f26c7cab22ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-identity-protection"></a>Azure Active Directory Identity Protection
 
-Azure Active Directory Identity Protection est une fonctionnalité de l’édition Azure AD Premium P2 qui vous permet de :
+Azure Active Directory Identity Protection est une fonctionnalité d’édition hello Azure AD Premium P2 qui vous permet de :
 
 - Détecter les vulnérabilités potentielles qui affectent les identités de votre organisation
 
-- Configurer des réponses automatiques aux actions suspectes détectées qui sont liées aux identités de votre organisation  
+- Configurer des actions suspectes de réponses automatiques toodetected qui sont les identités de l’organisation tooyour connexes  
 
-- Examiner les incidents suspects et prendre les mesures appropriées pour les résoudre   
+- Examiner les incidents suspects et prendre les mesures appropriées tooresolve les   
 
 
 ## <a name="getting-started"></a>Prise en main
 
-Microsoft sécurise les identités basées sur le cloud depuis plus de dix ans. Avec Azure Active Directory Identity Protection, vous pouvez dans votre environnement utiliser les mêmes systèmes de protection que Microsoft pour sécuriser les identités.
+Microsoft sécurise les identités basées sur le cloud depuis plus de dix ans. Avec la Protection d’identité Azure Active Directory, dans votre environnement, vous pouvez utiliser hello mêmes systèmes de protection Microsoft utilise des identités toosecure.
 
-La grande majorité des violations de sécurité ont lieu lorsque des cybercriminels parviennent à accéder à un environnement en volant l’identité d’un utilisateur. Aujourd’hui, les cybercriminels arrivent de plus en plus à exploiter les failles de fournisseurs tiers et utilisent des attaques par hameçonnage (ou « phishing ») sophistiquées toujours plus efficaces. Dès qu’un cybercriminel accède à un compte d’utilisateur, même si les privilèges de celui-ci sont faibles, il peut facilement accéder à des ressources importantes pour l’entreprise de manière latérale.
+Hello grande majorité des prennent des failles de sécurité placer lorsque des personnes malveillantes accèdent environnement tooan d’accès par le vol d’identité d’un utilisateur. Années de hello, des personnes malveillantes sont devenues plus efficaces en tirant parti des violations de tiers et d’utilisation des attaques d’hameçonnage sophistiquées. Dès qu’une personne malveillante accès aux comptes d’utilisateur doté de privilèges faibles tooeven, il est relativement facile pour les ressources d’entreprise tooimportant toogain accès via un mouvement latéral.
 
 Par conséquent, vous devez :
 
@@ -44,16 +44,16 @@ Par conséquent, vous devez :
 
 - Empêcher proactivement le détournement des identités compromises
 
-Détecter les identités compromises n’est pas chose aisée. Azure Active Directory utilise des algorithmes de Machine Learning et des modèles heuristiques adaptatifs pour détecter les anomalies et les incidents suspects qui révèlent des identités potentiellement compromises. Grâce à ces données, Identity Protection génère des rapports et des alertes qui vous permettent d’évaluer les problèmes détectés et de prendre les mesures de correction ou d’atténuation qui s’imposent.
+Détecter les identités compromises n’est pas chose aisée. Azure Active Directory utilise des algorithmes d’apprentissage automatique adaptative et anomalies de toodetect heuristique et les incidents suspects qui indiquent potentiellement compromis des identités. Protection de l’identité à l’aide de ces données, génère des rapports et les alertes qui permettent de vous hello de tooevaluate a détecté des problèmes et atténuation appropriés ou les actions de mise à jour.
 
-Mais Azure Active Directory Identity Protection est bien plus qu’un outil de surveillance et de création de rapports. Pour protéger les identités de votre organisation, vous pouvez configurer des stratégies qui répondent automatiquement aux problèmes détectés lorsqu’un niveau de risque spécifié est atteint. Outre les autres contrôles d’accès conditionnel fournis par Azure Active Directory et EMS, ces stratégies peuvent automatiquement bloquer ou déclencher des mesures de correction adaptatives qui incluent des réinitialisations de mot de passe et la mise en œuvre de l’authentification multifacteur.
+Mais Azure Active Directory Identity Protection est bien plus qu’un outil de surveillance et de création de rapports. tooprotect identités de votre organisation, vous pouvez configurer des stratégies basées sur les risques qui répondent automatiquement toodetected problèmes lorsqu’un niveau de risque spécifié a été atteint. Ces stratégies, en outre tooother conditionnel accéder aux contrôles fournis par Azure Active Directory et EMS, pouvez bloquer automatiquement ou initier des actions de mise à jour ADAPTATIF, y compris les réinitialisations de mot de passe et la mise en œuvre l’authentification multifacteur.
 
 
 #### <a name="identity-protection-capabilities"></a>Fonctionnalités d’Identity Protection
 
 **Détection des vulnérabilités et des comptes à risque :**  
 
-* Recommandations personnalisées visant à améliorer la posture de sécurité globale en mettant en évidence les vulnérabilités
+* Fournir des recommandations personnalisées tooimprove globale posture de sécurité en mettant en surbrillance les vulnérabilités
 * Calcul des niveaux de risque à la connexion
 * Calcul du niveau de risque des utilisateurs
 
@@ -62,26 +62,26 @@ Mais Azure Active Directory Identity Protection est bien plus qu’un outil de s
 
 * Envoi de notifications pour les événements à risque
 * Examen des événements à risque à l’aide d’informations contextuelles et pertinentes
-* Workflows de base pour le suivi des investigations
-* Accès rapide à des mesures de correction telles que la réinitialisation de mot de passe
+* En fournissant des workflows de base tootrack enquêtes
+* Fournissant un accès facile tooremediation des actions telles que la réinitialisation de mot de passe
 
 **Stratégies d’accès conditionnel en fonction des risques :**
 
-* Stratégie pour atténuer les connexions à risque en bloquant les connexions ou en imposant des demandes d’authentification multifacteur.
-* Stratégie pour bloquer ou sécuriser les comptes d’utilisateurs à risque
-* Stratégie pour exiger que les utilisateurs s’inscrivent à l’authentification multifacteur
+* Stratégie toomitigate risquées connexions par le blocage des connexions ou exigeant l’authentification multifacteur.
+* Stratégie tooblock ou des comptes d’utilisateur présente des risques sécurisé
+* Stratégie toorequire utilisateurs tooregister pour l’authentification multifacteur
 
 
 
 ## <a name="identity-protection-roles"></a>Rôles de protection des identités (Identity Protection)
 
-Pour équilibrer la charge des activités de gestion en ce qui concerne votre implémentation de la protection des identités, vous pouvez attribuer plusieurs rôles. Azure AD Identity Protection prend en charge 3 rôles d’annuaire :
+activités de gestion hello tooload solde autour de votre implémentation de la Protection d’identité, vous pouvez attribuer plusieurs rôles. Azure AD Identity Protection prend en charge 3 rôles d’annuaire :
 
 | Rôle                         | Peut                          | Ne peut pas
 | :--                          | ---                                |  ---   |
-| Administrateur général         | Accès complet à Identity Protection, Onboard Identity Protection| |
-| Administrateur de sécurité       | Accès complet à Identity Protection | Onboard Identity Protection, réinitialiser les mots de passe pour un utilisateur |
-| Lecteur de sécurité              | Accès en lecture seule à Identity Protection | Onboard Identity Protection, résoudre les utilisateurs, configurer les utilisateurs, réinitialiser les mots de passe |
+| Administrateur général         | Accès complet tooIdentity Protection, intégrer Identity Protection| |
+| Administrateur de sécurité       | Accès complet tooIdentity Protection | Onboard Identity Protection, réinitialiser les mots de passe pour un utilisateur |
+| Lecteur de sécurité              | Accès seule tooIdentity Protection | Onboard Identity Protection, résoudre les utilisateurs, configurer les utilisateurs, réinitialiser les mots de passe |
 
 
 
@@ -98,113 +98,113 @@ Azure Active Directory Identity Protection analyse votre configuration et détec
 
 ### <a name="risk-events"></a>Événements à risque
 
-Azure Active Directory utilise les algorithmes de Machine Learning et des modèles heuristiques adaptatifs pour détecter les actions suspectes liées aux identités de votre utilisateur. Le système crée un enregistrement pour chaque action suspecte détectée. Ces enregistrements sont également appelés événements à risque.  
+Azure Active Directory utilise des algorithmes et des paramètres heuristiques toodetect suspecte que les actions associées tooyour identités des utilisateurs d’apprentissage adaptatif. système de Hello crée un enregistrement pour chaque action suspect détecté. Ces enregistrements sont également appelés événements à risque.  
 Pour en savoir plus, consultez [Événements à risque dans Azure Active Directory](active-directory-identity-protection-risk-events.md).
 
 
 ## <a name="investigation"></a>Investigation
-Votre parcours dans Identity Protection commence généralement par le tableau de bord d’Identity Protection.
+Votre parcours via la Protection d’identité commence généralement par le tableau de bord hello Identity Protection.
 
 ![Correction](./media/active-directory-identityprotection/1000.png "Correction")
 
-Le tableau de bord vous donne accès à :
+tableau de bord Hello vous donne accès à :
 
 * des rapports comme **Utilisateurs associés à un indicateur de risque**, **Événements à risque** et **Vulnérabilités** ;
-* des paramètres vous permettant notamment de configurer vos **stratégies de sécurité**, vos **notifications** et **l’inscription à l’authentification multifacteur**.
+* Paramètres de configuration hello de votre **des stratégies de sécurité**, **Notifications** et **l’inscription de l’authentification multifacteur**
 
-Il s’agit généralement de votre point de départ pour l’investigation, le processus consistant à vérifier les activités, les journaux et les autres informations pertinentes concernant un événement à risque, afin de déterminer s’il est nécessaire d’appliquer des mesures de correction ou d’atténuation, de comprendre comment l’identité a été compromise et d’identifier la manière dont l’identité compromise a été exploitée.
+Il est généralement votre point de départ pour l’enquête, qui est le processus hello de révision des activités de hello, les journaux et autres informations pertinentes associée tooa risque de toodecide d’événements si les étapes de mise à jour ou d’atténuation sont nécessaires, et comment l’identité de hello a été compromis et comprendre comment hello compromis identité a été utilisée.
 
-Vous pouvez lier vos activités d’investigation aux [notifications](active-directory-identityprotection-notifications.md) d’Azure Active Directory Protection envoyées par courrier électronique.
+Vous pouvez lier votre toohello d’activités enquête [notifications](active-directory-identityprotection-notifications.md) Azure Active Directory Protection envoie par courrier électronique.
 
-Les sections suivantes fournissent plus de détails, ainsi que les étapes liées à une investigation.  
+Hello sections suivantes vous fournissent plus de détails et les étapes hello tooan connexes enquête.  
 
 
 ## <a name="risky-sign-ins"></a>Connexions risquées
 
-Azure Active Directory détecte les [types d’événements à risque](active-directory-reporting-risk-events.md#risk-event-types) en temps réel et hors connexion. Tous les événements à risque qui sont détectés pendant la connexion d’un utilisateur viennent alimenter un concept logique appelé « connexion risquée ». Une connexion risquée est une tentative de connexion susceptible d’émaner d’un utilisateur autre que le propriétaire légitime d’un compte d’utilisateur.
+Azure Active Directory détecte les [types d’événements à risque](active-directory-reporting-risk-events.md#risk-event-types) en temps réel et hors connexion. Chaque événement à risque qui a été détectée pour une connexion d’un utilisateur contribue tooa concept logique appelée connectez-vous présente des risques. Une connexion à présente des risques est un indicateur pour une tentative de connexion qui a ne peut-être pas été exécutée par le propriétaire légitime de hello d’un compte d’utilisateur.
 
 
 ### <a name="sign-in-risk-level"></a>Niveau de risque d’une connexion
 
-Un niveau de risque de connexion est une indication de la probabilité (haute, moyenne ou faible) qu’une tentative de connexion n’émane pas du propriétaire légitime d’un compte d’utilisateur.
+Un niveau de risque de connexion est une indication (haute, moyenne ou faible) de probabilité de hello qu’une tentative de connexion n’a pas été effectuée par le propriétaire légitime de hello d’un compte d’utilisateur.
 
 ### <a name="mitigating-sign-in-risk-events"></a>Atténuation des événements à risque à la connexion
 
-Une atténuation est une mesure visant à limiter la probabilité qu’un pirate exploite une identité ou un appareil compromis, mais qui ne permet pas de rétablir la sécurité de l’identité ou de l’appareil en question. Une atténuation ne résout pas les précédents événements de connexion à risque associés à l’identité ou à l’appareil.
+Une limitation est une action toolimit hello capacité un appareil sans restauration de l’état sans échec tooa hello identité ou un périphérique ou un attaquant tooexploit une identité compromise. Une atténuation ne résout pas les événements précédents connectez-vous risque associés hello identité ou d’appareil.
 
-Pour limiter les connexions risquées automatiquement, vous pouvez configurer des stratégies de sécurité. Avec ce type de stratégie, vous prenez en compte le niveau de risque de l’utilisateur ou de la connexion pour bloquer les connexions à risque ou exiger une authentification multifacteur de la part de l’utilisateur. Ces mesures peuvent empêcher un cybercriminel d’exploiter une identité volée pour causer des dommages et vous donner le temps de sécuriser l’identité.
+toomitigate risquée connexions automatiquement, vous pouvez configurer policicies de sécurité risque de connexion. À l’aide de ces stratégies, considèrent le niveau de risque de hello d’utilisateur de hello ou hello connectez-vous tooblock connexions risquées ou exiger l’authentification multifacteur de hello utilisateur tooperform. Ces actions peuvent empêcher un attaquant d’exploiter un endommagement de toocause d’identité et peuvent offrir une identité de hello toosecure heure.
 
 ### <a name="sign-in-risk-security-policy"></a>Stratégie de sécurité en matière de risque à la connexion
-Une stratégie en matière de risque à la connexion est une stratégie d’accès conditionnel consistant à évaluer le risque associé à une connexion spécifique et qui applique des mesures d’atténuation à partir de règles et de conditions prédéfinies.
+Une stratégie de connexion risque est une stratégie d’accès conditionnel qui prend la valeur hello risque tooa spécifique connectez-vous et applique les limitations de risques selon les règles et conditions prédéfinies.
 
 ![Stratégie en matière de risque à la connexion](./media/active-directory-identityprotection/1014.png "Stratégie en matière de risque à la connexion")
 
-Azure AD Identity Protection vous aide à gérer l’atténuation des connexions à risque, en vous permettant d’effectuer les opérations suivantes :
+Azure AD Identity Protection vous permet de gérer l’atténuation hello de connexions présentant un risque en vous permettant de :
 
-* Définir les utilisateurs et les groupes auxquels la stratégie s’applique :
+* Définir hello utilisateurs et groupes hello une stratégie s’applique à :
 
     ![Stratégie en matière de risque à la connexion](./media/active-directory-identityprotection/1015.png "Stratégie en matière de risque à la connexion")
-* Définir le niveau de risque à la connexion (Faible, Moyen ou Élevé) qui déclenche la stratégie :
+* Définissez hello connectez-vous risque seuil (faible, moyen ou élevé) qui déclenche la stratégie de hello :
 
     ![Stratégie en matière de risque à la connexion](./media/active-directory-identityprotection/1016.png "Stratégie en matière de risque à la connexion")
-* Définir les contrôles à appliquer lorsque la stratégie est déclenchée :  
+* Ensemble hello contrôles toobe appliquée au moment de la stratégie de hello déclenche :  
 
     ![Stratégie en matière de risque à la connexion](./media/active-directory-identityprotection/1017.png "Stratégie en matière de risque à la connexion")
-* Basculer l’état de votre stratégie :
+* Basculer hello de votre stratégie :
 
     ![Inscription à MFA](./media/active-directory-identityprotection/403.png "Inscription à MFA")
-* Examiner et évaluer l’impact d’un changement avant de l’appliquer :
+* Passez en revue et évaluer l’impact de hello d’une modification avant son activation :
 
     ![Stratégie en matière de risque à la connexion](./media/active-directory-identityprotection/1018.png "Stratégie en matière de risque à la connexion")
 
-#### <a name="what-you-need-to-know"></a>Bon à savoir
-Vous pouvez configurer une stratégie de sécurité en matière de risque à la connexion pour exiger l’authentification multifacteur :
+#### <a name="what-you-need-tooknow"></a>Vous devez tooknow
+Vous pouvez configurer une authentification multifacteur toorequire de stratégie de sécurité risque de connexion :
 
 ![Stratégie en matière de risque à la connexion](./media/active-directory-identityprotection/1017.png "Stratégie en matière de risque à la connexion")
 
-Toutefois, pour des raisons de sécurité, ce paramètre s’applique uniquement aux utilisateurs qui ont déjà été inscrits pour l’authentification multifacteur. En cas d’obligation d’authentification multifacteur pour un utilisateur qui n’est pas encore inscrit pour l’authentification multifacteur, l’utilisateur est bloqué.
+Toutefois, pour des raisons de sécurité, ce paramètre s’applique uniquement aux utilisateurs qui ont déjà été inscrits pour l’authentification multifacteur. Si l’authentification multifacteur de hello condition toorequire est respectée pour un utilisateur qui n’est pas encore inscrit pour l’authentification multifacteur, l’utilisateur de hello est bloquée.
 
-La meilleure pratique pour exiger une authentification multifacteur pour les connexions à risque consiste à :
+Comme meilleure pratique, si vous souhaitez que l’authentification multifacteur de toorequire pour les connexions présentant un risque, vous devez :
 
-1. Activer la [stratégie d’inscription à l’authentification multifacteur](#multi-factor-authentication-registration-policy) pour les utilisateurs concernés, et
-2. Demander aux utilisateurs concernés de se connecter à une session ne présentant aucun risque pour s’inscrire à l’authentification MFA.
+1. Activer hello [stratégie d’inscription de l’authentification multifacteur](#multi-factor-authentication-registration-policy) pourquoi les utilisateurs affectés.
+2. Nécessitent hello affectées toologin d’utilisateurs dans une session non risqué de tooperform une inscription de l’authentification Multifacteur
 
 Suivre ces étapes permet de s’assurer que l’authentification multifacteur est requise pour une connexion à risque.
 
 #### <a name="best-practices"></a>Meilleures pratiques
-La sélection d’un niveau de risque **Élevé** réduit la fréquence de déclenchement d’une stratégie et minimise l’impact sur les utilisateurs.  
+Choix d’un **haute** seuil réduit le nombre de hello de fois où une stratégie est déclenchée et réduit hello impact toousers.  
 
-Cependant, cela a pour effet d’exclure les connexions associées à un indicateur de risque **Faible** et **Moyen**. Par conséquent, il se peut qu’un cybercriminel soit en mesure d’exploiter une identité compromise.
+Toutefois, il exclut **faible** et **support** connexions signalées pour le risque d’une stratégie de hello, qui peut ne pas bloque un attaquant d’exploiter une identité compromise.
 
-Pour définir la stratégie
+Lorsque le paramètre hello stratégie,
 
 * Excluez les utilisateurs qui ne sont pas inscrits/ne peuvent pas s’inscrire à l’authentification multifacteur.
-* Excluez les utilisateurs situés dans des régions où l’activation de la stratégie n’est pas adaptée (par exemple, aucun accès au support technique).
-* Excluez les utilisateurs susceptibles de générer un grand nombre de faux positifs (développeurs, analystes de sécurité).
+* Excluez les utilisateurs dans les paramètres régionaux où l’activation de la stratégie de hello n’est pas pratique (par exemple, aucun toohelpdesk accès)
+* Exclure les utilisateurs qui sont susceptibles de toogenerate un grand nombre de faux positifs (les développeurs et aux analystes en sécurité)
 * Utilisez un niveau de risque **Élevé** pendant le déploiement initial de la stratégie ou si vous devez minimiser la complexité pour les utilisateurs finaux.
 * Utilisez un niveau de risque **Faible** si votre organisation nécessite une sécurité accrue. La sélection d’un niveau de risque **Faible** complique la connexion pour les utilisateurs, mais renforce la sécurité.
 
-Pour la plupart des organisations, nous recommandons de configurer un niveau de risque **Moyen** afin d’établir un juste équilibre entre facilité d’utilisation et sécurité.
+Hello recommandé par défaut pour la plupart des organisations est tooconfigure une règle pour un **support** seuil toostrike un compromis entre facilité d’utilisation et de sécurité.
 
-La stratégie en matière de risque à la connexion :
+stratégie de connexion risque Hello est :
 
-* est appliquée à l’ensemble du trafic de navigateur et des connexions utilisant une authentification moderne ;
-* n’est pas appliquée aux applications utilisant des protocoles de sécurité plus anciens en désactivant le point de terminaison WS-Trust sur le fournisseur d’identité fédérée, tels qu’ADFS.
+* Le trafic tooall appliqués et les connexions à l’aide de l’authentification moderne.
+* Tooapplications pas appliquées à l’aide des protocoles de sécurité plus anciens en désactivant le point de terminaison WS-Trust de hello à IDP hello fédéré, tel qu’AD FS.
 
-La page **Événements à risque** de la console Identity Protection répertorie tous les événements :
+Hello **événements à risque** page hello Identity Protection console répertorie tous les événements :
 
 * auxquels cette stratégie a été appliquée ;
-* pour lesquels vous pouvez consulter l’activité afin de déterminer si la mesure était appropriée ou non.
+* Vous pouvez consulter l’activité hello et déterminer si action de hello a appropriées ou non
 
-Pour une obtenir une vue d’ensemble de l’expérience utilisateur, consultez :
+Pour une vue d’ensemble de hello liée à l’expérience utilisateur, consultez :
 
 * [Récupération de connexion à risque](active-directory-identityprotection-flows.md#risky-sign-in-recovery)
 * [Connexion à risque bloquée](active-directory-identityprotection-flows.md#risky-sign-in-blocked)  
 * [Expériences de connexion avec Azure AD Identity Protection](active-directory-identityprotection-flows.md)  
 
-**Pour ouvrir la boîte de dialogue de configuration connexe**:
+**boîte de dialogue configuration associés tooopen hello**:
 
-- Dans le panneau **Azure AD Identity Protection**, dans la section **Configurer**, cliquez sur **Stratégie en matière de risque à la connexion**.
+- Sur hello **Azure AD Identity Protection** panneau, Bonjour **configurer** , cliquez sur **stratégie d’authentification risque**.
 
     ![Stratégie en matière de risque des utilisateurs](./media/active-directory-identityprotection/1014.png "Stratégie en matière de risque des utilisateurs")
 
@@ -212,187 +212,187 @@ Pour une obtenir une vue d’ensemble de l’expérience utilisateur, consultez�
 
 ## <a name="users-flagged-for-risk"></a>Utilisateurs associés à un indicateur de risque
 
-Tous les [événements à risque](active-directory-identity-protection-risk-events.md) actifs détectés par Azure Active Directory pour un utilisateur alimentent un concept logique appelé « risque de l’utilisateur ». Un utilisateur signalé comme présentant un risque indique qu’un compte d’utilisateur est susceptible d’avoir été compromis.
+Active tous les [risque d’événements](active-directory-identity-protection-risk-events.md) qui ont été détectés par Azure Active Directory pour un utilisateur contribuent tooa concept logique appelée risque de l’utilisateur. Un utilisateur signalé comme présentant un risque indique qu’un compte d’utilisateur est susceptible d’avoir été compromis.
 
 ![Utilisateurs associés à un indicateur de risque](./media/active-directory-identityprotection/1200.png)
 
 
 ### <a name="user-risk-level"></a>Niveau de risque d’un utilisateur
 
-Le niveau de risque d’un utilisateur est une indication (Élevé, Moyen ou Faible) de la probabilité que l’identité de l’utilisateur ait été compromise. Il est calculé en fonction des événements à risque associés à l’identité de l’utilisateur.
+Un niveau de risque d’utilisateur est une indication (haute, moyenne ou faible) de probabilité de hello que hello l’identité d’utilisateur a été compromise. Il est calculé en fonction d’événements à risque hello utilisateur associés à l’identité d’un utilisateur.
 
-L’état d’un événement à risque est soit **Actif**, soit **Fermé**. Seuls les événements à risque qui sont **actifs** entrent dans le calcul du risque d’un utilisateur.
+Hello état d’un événement à risque est **Active** ou **fermé**. Uniquement les événements qui sont des risques **Active** contribuent le calcul du niveau de risque toohello utilisateur.
 
-Le niveau de risque d’un utilisateur est calculé à l’aide des données suivantes :
+niveau de risque utilisateur Hello est calculé à l’aide de hello suivant entrées :
 
-* Événements à risque actifs ayant un impact sur l’utilisateur
+* Événements risque actif ayant un impact sur les utilisateurs hello
 * Niveau de risque de ces événements
 * Application ou non de mesures de correction
 
 ![Risques des utilisateurs](./media/active-directory-identityprotection/1031.png "Risques des utilisateurs")
 
-Vous pouvez utiliser les niveaux de risque des utilisateurs pour créer des stratégies d’accès conditionnel qui empêchent les utilisateurs à risque de se connecter ou les forcent à sécuriser leur mot de passe.
+Vous pouvez utiliser hello utilisateur risque niveaux toocreate stratégies d’accès conditionnel qui empêche les utilisateurs de risques de se connecter, ou forcer les toosecurely modifier leur mot de passe.
 
 ### <a name="closing-risk-events-manually"></a>Fermeture manuelle des événements à risque
 
-Dans la plupart des cas, vous pouvez prendre des mesures de correction telles qu’une réinitialisation de mot de passe sécurisée pour fermer automatiquement les événements à risque. Toutefois, il se peut que cela ne soit pas toujours possible.  
-C’est par exemple le cas quand :
+Dans la plupart des cas, vous prendra correctives telles que les événements de risque de fermer tooautomatically de réinitialisation de mot de passe sécurisé. Toutefois, il se peut que cela ne soit pas toujours possible.  
+C’est par exemple, les cas de hello, lorsque :
 
 * un utilisateur avec des événements à risque actifs a été supprimé ;
-* une enquête révèle qu’un événement à risque signalé a été effectué par l’utilisateur légitime.
+* Une enquête révèle qu’un événement à signalé risque a été effectuer par un utilisateur légitime de hello
 
-Comme les événements à risque dont l’état est défini sur **Actif** entrent dans le calcul du risque des utilisateurs, vous pouvez avoir besoin de réduire manuellement un niveau de risque en fermant manuellement les événements à risque.  
-Au cours de l’investigation, vous pouvez choisir d’effectuer n’importe laquelle des actions suivantes pour modifier l’état d’un événement à risque :
+Étant donné que les événements à risque qui sont **Active** calcul du toohello utilisateur risque de contribuer, vous avez peut-être toomanually réduire un niveau de risque en fermant les événements à risque manuellement.  
+Au cours de hello d’enquête, vous pouvez choisir tootake ces état de hello toochange actions d’un événement à risque des :
 
 ![Actions](./media/active-directory-identityprotection/34.png "Actions")
 
-* **Résoudre** : si après avoir examiné un événement à risque, vous avez pris une mesure de correction appropriée en dehors d’Identity Protection et pensez que l’événement à risque doit être considéré comme fermé, marquez l’événement comme résolu. L’état des événements à risque résolus est défini sur Fermé et ces événements n’entrent plus dans le calcul du risque d’un utilisateur.
-* **Marquer comme faux positif** : dans certains cas, il se peut qu’un événement à risque soit signalé à tort en tant que tel. Vous pouvez réduire le nombre de ces événements en les marquant comme faux positifs. Vous aiderez ainsi les algorithmes d’apprentissage automatique à améliorer la classification des événements similaires par la suite. L’état des événements marqués comme faux positifs est défini sur **Fermé** et ces événements n’entrent plus dans le calcul du risque de l’utilisateur.
-* **Ignorer** : si vous n’avez pris aucune mesure de correction, mais que vous souhaitez que l’événement à risque soit supprimé de la liste active, vous pouvez choisir de l’ignorer. Son état sera alors défini sur Fermé. Les événements ignorés n’entrent plus dans le calcul du risque d’un utilisateur. Cette option doit uniquement être utilisée dans des circonstances inhabituelles.
-* **Réactiver** : les événements à risque qui ont été fermés manuellement (en choisissant **Résoudre**, **Marquer comme faux positif** ou **Ignore**) peuvent être réactivés. Leur statut est alors défini à nouveau sur **Actif**. Les événements à risque réactivés contribuent au calcul du niveau de risque d’un utilisateur. Les événements à risque fermés à l’aide d’une mesure de correction (telle qu’une réinitialisation de mot de passe sécurisée) ne peuvent pas être réactivés.
+* **Résoudre** - si après avoir examiné un événement à risque, vous avez une action de mise à jour appropriées en dehors de la Protection d’identité, et si vous pensez que l’événement hello risque doit être considérée comme fermée, l’événement de hello marque comme résolu. Événements résolus définira tooClosed d’état de l’événement hello risque et événements risque de hello n’est plus contribuera toouser risque.
+* **Marquer comme faux positif** : dans certains cas, il se peut qu’un événement à risque soit signalé à tort en tant que tel. Pour réduire nombre hello de telles occurrences en marquant l’événement à risque hello comme faux positifs. Cela permet de classification de hello tooimprove algorithmes d’événements similaires Bonjour future d’apprentissage hello. état Hello d’événements de faux positifs est trop**fermé** et ils ne seront plus prises toouser risque.
+* **Ignorer** : Si vous n’avez pas pris aucune action de mise à jour, mais hello risque événement toobe est supprimé de la liste active de hello, vous pouvez marquer un événement à risque ignorer et état de l’événement hello va être fermée. Événements ignorés ne contribuent pas toouser risque. Cette option doit uniquement être utilisée dans des circonstances inhabituelles.
+* **Réactiver** -risque d’événements qui ont été fermées manuellement (en choisissant **résoudre**, **faux positif**, ou **ignorer**) peuvent être réactivés, paramètre hello statut de l’événement différé trop**Active**. Événements à risque réactivé contribuent calcul du niveau de risque toohello utilisateur. Les événements à risque fermés à l’aide d’une mesure de correction (telle qu’une réinitialisation de mot de passe sécurisée) ne peuvent pas être réactivés.
 
-**Pour ouvrir la boîte de dialogue de configuration connexe**:
+**boîte de dialogue configuration associés tooopen hello**:
 
-1. Dans le panneau **Azure AD Identity Protection**, sous **Examiner**, cliquez sur **Événements à risque**.
+1. Sur hello **Azure AD Identity Protection** panneau, sous **examiner**, cliquez sur **risque d’événements**.
 
     ![Réinitialisation manuelle du mot de passe](./media/active-directory-identityprotection/1002.png "Réinitialisation manuelle du mot de passe")
-2. Dans la liste **Événements à risque** , cliquez sur un risque.
+2. Bonjour **risque d’événements** , cliquez sur un risque.
 
     ![Réinitialisation manuelle du mot de passe](./media/active-directory-identityprotection/1003.png "Réinitialisation manuelle du mot de passe")
-3. Dans le panneau Risque, cliquez avec le bouton droit sur un utilisateur.
+3. Dans Panneau de risques hello, cliquez sur un utilisateur.
 
     ![Réinitialisation manuelle du mot de passe](./media/active-directory-identityprotection/1004.png "Réinitialisation manuelle du mot de passe")
 
 ### <a name="closing-all-risk-events-for-a-user-manually"></a>Fermeture manuelle de tous les événements à risque pour un utilisateur
-Au lieu de fermer manuellement les événements à risque pour chaque utilisateur, Azure Active Directory Identity Protection propose une méthode permettant de fermer tous les événements pour un utilisateur en un seul clic.
+Au lieu de fermeture manuellement individuellement d’événements à risque pour un utilisateur, Azure Active Directory Identity Protection vous donne également une méthode tooclose tous les événements pour un utilisateur avec un seul clic.
 
 ![Actions](./media/active-directory-identityprotection/2222.png "Actions")
 
-Lorsque vous cliquez sur **Ignorer tous les événements**, tous les événements sont fermés et l’utilisateur concerné n’est plus exposé.
+Lorsque vous cliquez sur **ignorer tous les événements**, tous les événements sont fermés et hello affectée utilisateur n’est plus exposés.
 
 ### <a name="remediating-user-risk-events"></a>Correction des événements à risque d’un utilisateur
 
-Une correction est une mesure visant à sécuriser une identité ou un appareil déjà identifié comme potentiellement ou effectivement compromis. Une mesure de correction permet de rétablir la sécurité de l’identité ou de l’appareil et de résoudre les anciens événements à risque associés à l’identité ou à l’appareil.
+Une mise à jour est une toosecure action une identité ou un périphérique qui a été précédemment ou suspecté toobe compromis. Une action de mise à jour restaure l’état sans échec tooa hello identité ou l’appareil et résout les événements précédents risque associés hello identité ou d’appareil.
 
-Pour corriger les événements à risque d’un utilisateur, vous pouvez procéder comme suit :
+événements à risque tooremediate utilisateur, vous pouvez :
 
-* Effectuez une réinitialisation de mot de passe sécurisée pour corriger manuellement les événements à risque de l’utilisateur.
-* Configurez une stratégie de sécurité en matière de risque des utilisateurs pour atténuer ou corriger automatiquement les événements à risque de l’utilisateur.
-* Réimager l’appareil infecté.  
+* Effectuer un mot de passe sécurisé tooremediate utilisateur risque les événements de réinitialisation manuelle
+* Configurer un toomitigate de stratégie de sécurité utilisateur risque ou de corriger automatiquement les événements à risque utilisateur
+* Une nouvelle image de périphérique de hello infecté  
 
 #### <a name="manual-secure-password-reset"></a>Réinitialisation manuelle et sécurisée du mot de passe
-Une réinitialisation de mot de passe sécurisée est une mesure de correction efficace pour de nombreux événements à risque. Lorsqu’elle est effectuée, ces événements à risque sont fermés et le niveau de risque de l’utilisateur correspondant recalculé automatiquement. Vous pouvez utiliser le tableau de bord d’Identity Protection afin de lancer une réinitialisation de mot de passe pour un utilisateur à risque.
+Une réinitialisation de mot de passe sécurisé est une mise à jour efficace pour de nombreux événements risque et lors de l’exécution, ferme ces événements à risque et automatiquement recalcule le niveau de risque hello utilisateur. Vous pouvez utiliser hello Identity Protection du tableau de bord tooinitiate un mot de passe réinitialisé pour un utilisateur présentant un risque.
 
-La boîte de dialogue connexe fournit deux méthodes différentes pour réinitialiser le mot de passe :
+boîte de dialogue associée Hello fournit deux méthodes différentes tooreset un mot de passe :
 
-**Réinitialiser le mot de passe** : sélectionnez **Demander à l’utilisateur de réinitialiser son mot de passe** pour permettre à l’utilisateur de récupérer lui-même son compte s’il s’est inscrit à l’authentification multifacteur. La prochaine fois que l’utilisateur se connectera, il devra résoudre une demande d’authentification multifacteur, puis sera obligé de changer le mot de passe. Cette option n’est pas disponible si le compte d’utilisateur n’est pas déjà inscrit à l’authentification multifacteur.
+**Réinitialisation du mot de passe** : sélectionnez **nécessitent hello utilisateur tooreset leur mot de passe** tooallow hello récupération tooself utilisateur si l’utilisateur de hello a inscrit pour l’authentification multifacteur. Lors de l’utilisateur hello suivant signe, utilisateur de hello sera requis toosolve stimulation avec succès d’une authentification multifacteur et mot de passe de hello toochange puis, forcé. Cette option n’est pas disponible si le compte d’utilisateur hello n’est pas déjà inscrit de l’authentification multifacteur.
 
-**Mot de passe temporaire** : sélectionnez **Générer un mot de passe temporaire** pour invalider immédiatement le mot de passe existant et créer un nouveau mot de passe temporaire pour l’utilisateur. Envoyez le nouveau mot de passe temporaire à une autre adresse de messagerie de l’utilisateur ou au responsable de l’utilisateur. Étant donné que le mot de passe est temporaire, l’utilisateur sera invité à changer le mot de passe lors de la connexion.
+**Mot de passe temporaire** : sélectionnez **générer un mot de passe temporaire** tooimmediately invalider le mot de passe existant hello et créer un nouveau mot de passe temporaire pour l’utilisateur de hello. Envoyer hello nouveau mot de passe temporaire tooan autre adresse de messagerie pour l’utilisateur de hello ou un responsable de l’utilisateur toohello. Parce que le mot de passe hello est temporaire, utilisateur de hello sera un mot de passe hello toochange demandées lors de l’authentification.
 
 ![Stratégie](./media/active-directory-identityprotection/1005.png "Stratégie")
 
-**Pour ouvrir la boîte de dialogue de configuration connexe**:
+**boîte de dialogue configuration associés tooopen hello**:
 
-1. Dans le panneau **Azure AD Identity Protection**, cliquez sur **Utilisateurs associés à un indicateur de risque**.
+1. Sur hello **Azure AD Identity Protection** panneau, cliquez sur **utilisateurs marqués pour risque**.
 
     ![Réinitialisation manuelle du mot de passe](./media/active-directory-identityprotection/1006.png "Réinitialisation manuelle du mot de passe")
-2. Dans la liste des utilisateurs, sélectionnez un utilisateur comportant au moins un risque.
+2. Dans la liste hello des utilisateurs, sélectionnez un utilisateur au moins un risque.
 
     ![Réinitialisation manuelle du mot de passe](./media/active-directory-identityprotection/1007.png "Réinitialisation manuelle du mot de passe")
-3. Dans le panneau Utilisateur, cliquez sur **Réinitialiser le mot de passe**.
+3. Dans le panneau d’utilisateur hello, cliquez sur **réinitialisation de mot de passe**.
 
     ![Réinitialisation manuelle du mot de passe](./media/active-directory-identityprotection/1008.png "Réinitialisation manuelle du mot de passe")
 
 ### <a name="user-risk-security-policy"></a>Stratégie de sécurité en matière de risque des utilisateurs
-Une stratégie de sécurité en matière de risque des utilisateurs est une stratégie d’accès conditionnel qui évalue le niveau de risque d’un utilisateur spécifique et applique des mesures de correction et d’atténuation en fonction de conditions et de règles prédéfinies.
+Une stratégie de sécurité utilisateur risque est une stratégie d’accès conditionnel qui prend la valeur hello risque tooa au niveau utilisateur et applique les actions de mise à jour et d’atténuation selon les règles et conditions prédéfinies.
 
 ![Stratégie en matière de risque des utilisateurs](./media/active-directory-identityprotection/1009.png "Stratégie en matière de risque des utilisateurs")
 
-Azure AD Identity Protection vous aide à gérer les mesures de correction et d’atténuation pour les utilisateurs associés à un indicateur de risque, en vous permettant d’effectuer les opérations suivantes :
+Azure AD Identity Protection vous permet de gérer l’atténuation de hello et mise à jour des utilisateurs marquées pour risque par ce qui vous permet :
 
-* Définir les utilisateurs et les groupes auxquels la stratégie s’applique :
+* Définir hello utilisateurs et groupes hello une stratégie s’applique à :
 
     ![Stratégie en matière de risque des utilisateurs](./media/active-directory-identityprotection/1010.png "Stratégie en matière de risque des utilisateurs")
-* Définir le niveau de risque d’un utilisateur (Faible, Moyen ou Élevé) qui déclenche la stratégie :
+* Définissez hello utilisateur risque seuil (faible, moyen ou élevé) qui déclenche la stratégie de hello :
 
     ![Stratégie en matière de risque des utilisateurs](./media/active-directory-identityprotection/1011.png "Stratégie en matière de risque des utilisateurs")
-* Définir les contrôles à appliquer lorsque la stratégie est déclenchée :
+* Ensemble hello contrôles toobe appliquée au moment de la stratégie de hello déclenche :
 
     ![Stratégie en matière de risque des utilisateurs](./media/active-directory-identityprotection/1012.png "Stratégie en matière de risque des utilisateurs")
-* Basculer l’état de votre stratégie :
+* Basculer hello de votre stratégie :
 
     ![Stratégie en matière de risque des utilisateurs](./media/active-directory-identityprotection/403.png "Inscription à MFA")
-* Examiner et évaluer l’impact d’un changement avant de l’appliquer :
+* Passez en revue et évaluer l’impact de hello d’une modification avant son activation :
 
     ![Stratégie en matière de risque des utilisateurs](./media/active-directory-identityprotection/1013.png "Stratégie en matière de risque des utilisateurs")
 
-La sélection d’un niveau de risque **Élevé** réduit la fréquence de déclenchement d’une stratégie et minimise l’impact sur les utilisateurs.
-Cependant, cela a pour effet d’exclure les utilisateurs associés à un indicateur de risque **Faible** et **Moyen**. Par conséquent, il se peut que des identités ou des appareils déjà identifiés comme potentiellement ou effectivement compromis ne soient pas sécurisés.
+Choix d’un **haute** seuil réduit le nombre de hello de fois où une stratégie est déclenchée et réduit hello impact toousers.
+Toutefois, il exclut **faible** et **support** utilisateurs signalées pour le risque d’une stratégie de hello, qui ne peut pas sécuriser les identités ou les appareils qui ont été précédemment ou suspectées toobe compromis.
 
-Pour définir la stratégie
+Lorsque le paramètre hello stratégie,
 
-* Excluez les utilisateurs susceptibles de générer un grand nombre de faux positifs (développeurs, analystes de sécurité).
-* Excluez les utilisateurs situés dans des régions où l’activation de la stratégie n’est pas adaptée (par exemple, aucun accès au support technique).
+* Exclure les utilisateurs qui sont susceptibles de toogenerate un grand nombre de faux positifs (les développeurs et aux analystes en sécurité)
+* Excluez les utilisateurs dans les paramètres régionaux où l’activation de la stratégie de hello n’est pas pratique (par exemple, aucun toohelpdesk accès)
 * Utilisez un niveau de risque **Élevé** pendant le déploiement initial de la stratégie ou si vous devez minimiser la complexité pour les utilisateurs finaux.
 * Utilisez un niveau de risque **Faible** si votre organisation nécessite une sécurité accrue. La sélection d’un niveau de risque **Faible** complique la connexion pour les utilisateurs, mais renforce la sécurité.
 
-Pour la plupart des organisations, nous recommandons de configurer un niveau de risque **Moyen** afin d’établir un juste équilibre entre facilité d’utilisation et sécurité.
+Hello recommandé par défaut pour la plupart des organisations est tooconfigure une règle pour un **support** seuil toostrike un compromis entre facilité d’utilisation et de sécurité.
 
-Pour une obtenir une vue d’ensemble de l’expérience utilisateur, consultez :
+Pour une vue d’ensemble de hello liée à l’expérience utilisateur, consultez :
 
 * [Flux de récupération de compte compromis](active-directory-identityprotection-flows.md#compromised-account-recovery).  
 * [Flux de compte compromis bloqué](active-directory-identityprotection-flows.md#compromised-account-blocked).  
 
-**Pour ouvrir la boîte de dialogue de configuration connexe**:
+**boîte de dialogue configuration associés tooopen hello**:
 
-- Dans le panneau **Azure AD Identity Protection**, dans la section **Configurer**, cliquez sur **Stratégie de risque d’utilisateur**.
+- Sur hello **Azure AD Identity Protection** panneau, Bonjour **configurer** , cliquez sur **stratégie des risques utilisateur**.
 
     ![Stratégie en matière de risque des utilisateurs](./media/active-directory-identityprotection/1009.png "Stratégie en matière de risque des utilisateurs")
 
 ### <a name="mitigating-user-risk-events"></a>Atténuation des événements à risque d’un utilisateur
-Les administrateurs peuvent définir une stratégie de sécurité en matière de risque des utilisateurs pour bloquer les utilisateurs lors de la connexion selon le niveau de risque.
+Les administrateurs peuvent définir un utilisateur risque sécurité stratégie tooblock utilisateurs lors de l’authentification en fonction du niveau de risque hello.
 
 Le blocage d’une connexion :
 
-* empêche la génération de nouveaux événements à risque pour l’utilisateur concerné ;
-* permet aux administrateurs de corriger manuellement les événements à risques affectant l’identité de l’utilisateur pour sécuriser à nouveau cette dernière.
+* Empêche la génération de nouveaux événements de risque d’utilisateur pour l’utilisateur de hello affectée hello
+* Permet aux administrateurs toomanually corriger les événements à risque hello affectant l’identité de l’utilisateur hello et restaurez-la état sécurisé de tooa
 
 
 
 ## <a name="multi-factor-authentication-registration-policy"></a>Stratégie d’inscription à l’authentification multifacteur
-Azure Multi-Factor Authentication est une méthode permettant de vérifier votre identité qui requiert l’utilisation d’autres méthodes que le nom d’utilisateur et le mot de passe. Ce service fournit une deuxième couche de sécurité pour les connexions et les transactions de l'utilisateur.  
+L’authentification multifacteur Azure est une méthode de vérification qui vous sont qui nécessite l’utilisation de hello de plus qu’un nom d’utilisateur et le mot de passe. Il fournit une deuxième couche de sécurité toouser connexions et transactions.  
 Nous vous recommandons d’exiger l’authentification multifacteur d’Azure des connexions des utilisateurs pour les raisons suivantes :
 
 * Elle fournit une authentification renforcée avec un éventail d’options de vérification simples.
-* Elle joue un rôle clé dans la préparation de votre organisation pour protéger et récupérer les comptes compromis.
+* Joue un rôle clé dans la préparation de votre organisation tooprotect et récupérer à partir de compromission du compte
 
 ![Stratégie en matière de risque des utilisateurs](./media/active-directory-identityprotection/1019.png "Stratégie en matière de risque des utilisateurs")
 
 Pour plus d’informations, consultez [Qu’est-ce qu’Azure Multi-Factor Authentication ?](../multi-factor-authentication/multi-factor-authentication.md)
 
-Azure AD Identity Protection vous permet de gérer le déploiement de l’inscription à l’authentification multifacteur en configurant une stratégie qui vous permet d’effectuer les opérations suivantes :
+Azure AD Identity Protection vous permet de gérer la sortie hello d’enregistrement de l’authentification multifacteur en configurant une stratégie qui vous permet de :
 
-* Définir les utilisateurs et les groupes auxquels la stratégie s’applique :
+* Définir hello utilisateurs et groupes hello une stratégie s’applique à :
 
     ![Stratégie MFA](./media/active-directory-identityprotection/1020.png "Stratégie MFA")
-* Définir les contrôles à appliquer lorsque la stratégie est déclenchée :  
+* Ensemble hello contrôles toobe appliquée au moment de la stratégie de hello déclenche ::  
 
     ![Stratégie MFA](./media/active-directory-identityprotection/1021.png "Stratégie MFA")
-* Basculer l’état de votre stratégie :
+* Basculer hello de votre stratégie :
 
     ![Stratégie MFA](./media/active-directory-identityprotection/403.png "Stratégie MFA")
-* Afficher l’état d’inscription actuel :
+* Afficher l’état de l’enregistrement actuel hello :
 
     ![Stratégie MFA](./media/active-directory-identityprotection/1022.png "Stratégie MFA")
 
-Pour une obtenir une vue d’ensemble de l’expérience utilisateur, consultez :
+Pour une vue d’ensemble de hello liée à l’expérience utilisateur, consultez :
 
 * [Processus d’inscription à l’authentification multifacteur](active-directory-identityprotection-flows.md#multi-factor-authentication-registration).  
 * [Expériences de connexion avec Azure AD Identity Protection](active-directory-identityprotection-flows.md).  
 
-**Pour ouvrir la boîte de dialogue de configuration connexe**:
+**boîte de dialogue configuration associés tooopen hello**:
 
-- Dans le panneau **Azure AD Identity Protection**, dans la section **Configurer**, cliquez sur **Inscription à l’authentification multifacteur**.
+- Sur hello **Azure AD Identity Protection** panneau, Bonjour **configurer** , cliquez sur **l’enregistrement de l’authentification multifacteur**.
 
     ![Stratégie MFA](./media/active-directory-identityprotection/1019.png "Stratégie MFA")
 
@@ -413,6 +413,6 @@ Pour une obtenir une vue d’ensemble de l’expérience utilisateur, consultez�
 
 * [Expériences de connexion avec Azure AD Identity Protection](active-directory-identityprotection-flows.md)
 
-* [Azure Active Directory Identity Protection - Déblocage des utilisateurs](active-directory-identityprotection-unblock-howto.md)
+* [Azure Active Directory Identity Protection - comment toounblock utilisateurs](active-directory-identityprotection-unblock-howto.md)
 
 * [Prise en main d’Azure Active Directory Identity Protection et de Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)

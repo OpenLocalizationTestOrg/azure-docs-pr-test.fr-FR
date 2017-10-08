@@ -1,6 +1,6 @@
 ---
-title: "Ressources - fonctions de modèle Azure Resource Manager | Microsoft Docs"
-description: "Décrit les fonctions à utiliser dans un modèle Azure Resource Manager pour récupérer des valeurs sur les ressources."
+title: "fonctions de modèle de gestionnaire de ressources aaaAzure - ressources | Documents Microsoft"
+description: "Décrit toouse de fonctions hello dans des valeurs de tooretrieve modèles Azure Resource Manager sur les ressources."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/09/2017
 ms.author: tomfitz
-ms.openlocfilehash: 494ade55f21c19d9c68d5cc52756528401d9bb77
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c9d524b338b8b7ea6d8c9e0135d48e4fb8f167c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-functions-for-azure-resource-manager-templates"></a>Fonctions de ressources pour les modèles Azure Resource Manager
 
-Resource Manager offre les fonctions ci-après pour obtenir des valeurs de ressource :
+Gestionnaire de ressources fournit hello suivant des fonctions pour obtenir des valeurs de ressource :
 
 * [listKeys and list{Value}](#listkeys)
 * [fournisseurs](#providers)
@@ -31,7 +31,7 @@ Resource Manager offre les fonctions ci-après pour obtenir des valeurs de resso
 * [resourceId](#resourceid)
 * [abonnement](#subscription)
 
-Pour obtenir des valeurs de paramètres, de variables ou du déploiement actuel, consultez [Fonctions de valeur de déploiement](resource-group-template-functions-deployment.md).
+tooget les valeurs de paramètres, variables ou hello en cours de déploiement, consultez [fonctions déploiement](resource-group-template-functions-deployment.md).
 
 <a id="listkeys" />
 <a id="list" />
@@ -41,18 +41,18 @@ Pour obtenir des valeurs de paramètres, de variables ou du déploiement actuel,
 
 `list{Value}(resourceName or resourceIdentifier, apiVersion)`
 
-Renvoie les valeurs pour n’importe quel type de ressource qui prend en charge l’opération list. L’utilisation la plus courante est `listKeys`. 
+Retourne hello des valeurs pour n’importe quel type de ressource qui prend en charge d’opération de liste hello. est de l’utilisation la plus courante Hello `listKeys`. 
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| nom_ressource ou identificateur_ressource |Oui |string |Identificateur unique pour la ressource. |
-| apiVersion |Oui |string |Version d'API de l'état d'exécution des ressources. En règle générale, au format, **aaaa-mm-jj**. |
+| nom_ressource ou identificateur_ressource |Oui |string |Identificateur unique pour la ressource de hello. |
+| apiVersion |Oui |string |Version d'API de l'état d'exécution des ressources. En règle générale, dans le format de hello, **aaaa-mm-jj**. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-L’objet renvoyé par listKeys a le format suivant :
+Hello a renvoyé un objet de listKeys aura hello suivant le format :
 
 ```json
 {
@@ -71,32 +71,32 @@ L’objet renvoyé par listKeys a le format suivant :
 }
 ```
 
-D’autres fonctions de liste ont différents formats de retour. Pour afficher le format d’une fonction, incluez-le dans la section des sorties comme indiqué dans l’exemple de modèle. 
+D’autres fonctions de liste ont différents formats de retour. format de hello toosee d’une fonction, incluez-le dans la section des sorties hello comme indiqué dans l’exemple de modèle de hello. 
 
 ### <a name="remarks"></a>Remarques
 
-Toute opération qui commence par **list** peut être utilisée en tant que fonction dans votre modèle. Les opérations disponibles incluent non seulement listKeys, mais également des opérations telles que `list`, `listAdminKeys` et `listStatus`. Toutefois, vous ne pouvez pas utiliser les opérations de **liste** qui requièrent des valeurs dans le corps de la demande. Par exemple, l’opération de [signature d’accès partagé de compte de liste](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS) nécessite des paramètres de corps de la demande, tels que *signedExpiry* ; par conséquent, vous ne pouvez pas l’utiliser dans un modèle.
+Toute opération qui commence par **list** peut être utilisée en tant que fonction dans votre modèle. les opérations disponibles Hello incluent non seulement le listKeys, mais également des opérations telles que `list`, `listAdminKeys`, et `listStatus`. Toutefois, vous ne pouvez pas utiliser **liste** les opérations qui requièrent des valeurs Bonjour corps de la demande. Par exemple, hello [liste compte SAP](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS) opération nécessite des paramètres de corps de la demande, tels que *signedExpiry*, vous ne pouvez pas l’utiliser dans un modèle.
 
-Pour déterminer les types de ressources qui ont une opération de liste, utilisez les options suivantes :
+toodetermine les types de ressources dont une opération de liste, vous avez hello options suivantes :
 
-* Affichez les [opérations d’API REST](/rest/api/) pour un fournisseur de ressources et recherchez les opérations de liste. Par exemple, les comptes de stockage présentent l’[opération listKeys](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys).
-* Utilisez l’applet de commande PowerShell [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation). L’exemple ci-dessous obtient toutes les opérations de liste pour les comptes de stockage :
+* Hello de vue [opérations d’API REST](/rest/api/) pour un fournisseur de ressources et recherchez les opérations de liste. Par exemple, comptes de stockage se hello [listKeys opération](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys).
+* Hello d’utilisation [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) applet de commande PowerShell. Hello exemple ci-dessous obtient toutes les opérations de liste pour les comptes de stockage :
 
   ```powershell
   Get-AzureRmProviderOperation -OperationSearchString "Microsoft.Storage/*" | where {$_.Operation -like "*list*"} | FT Operation
   ```
-* Utilisez la commande Azure CLI suivante pour filtrer uniquement les opérations de liste :
+* Utilisez hello commande CLI d’Azure toofilter hello uniquement les opérations de la liste suivante :
 
   ```azurecli
   az provider operation show --namespace Microsoft.Storage --query "resourceTypes[?name=='storageAccounts'].operations[].name | [?contains(@, 'list')]"
   ```
 
-Spécifiez la ressource en utilisant la [fonction resourceId](#resourceid) ou le format `{providerNamespace}/{resourceType}/{resourceName}`.
+Spécifier les ressources hello à l’aide soit hello [fonction resourceId](#resourceid), ou le format de hello `{providerNamespace}/{resourceType}/{resourceName}`.
 
 
 ### <a name="example"></a>Exemple
 
-L’exemple suivant montre comment renvoyer les clés primaires et secondaires à partir d’un compte de stockage dans la section outputs.
+Hello suivant montre comment tooreturn hello secondaire les clés primaires et à partir d’un compte de stockage Bonjour génère la section.
 
 ```json
 {
@@ -122,18 +122,18 @@ L’exemple suivant montre comment renvoyer les clés primaires et secondaires �
 ## <a name="providers"></a>fournisseurs
 `providers(providerNamespace, [resourceType])`
 
-Renvoie des informations sur un fournisseur de ressources et les types de ressources qu’il prend en charge. Si vous ne fournissez pas un type de ressource, la fonction renvoie tous les types pris en charge pour le fournisseur de ressources.
+Renvoie des informations sur un fournisseur de ressources et les types de ressources qu’il prend en charge. Si vous ne fournissez pas un type de ressource, la fonction hello retourne tous les types hello pris en charge pour le fournisseur de ressources hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| espacedenoms_fournisseur |Oui |string |Espace de noms du fournisseur. |
-| resourceType |Non |string |Type de ressource dans l'espace de noms spécifié. |
+| espacedenoms_fournisseur |Oui |string |Namespace du fournisseur de hello |
+| resourceType |Non |string |type Hello de ressource dans hello spécifié l’espace de noms. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaque type pris en charge est renvoyé au format suivant : 
+Chaque type pris en charge est retourné dans hello suivant le format : 
 
 ```json
 {
@@ -143,11 +143,11 @@ Chaque type pris en charge est renvoyé au format suivant :
 }
 ```
 
-Le classement du tableau des valeurs renvoyées n’est pas garanti.
+Tableau classement Hello retourné de valeurs n’est pas garantie.
 
 ### <a name="example"></a>Exemple
 
-L'exemple suivant montre comment utiliser la fonction provider :
+Bonjour à l’exemple suivant montre comment toouse hello fonction du fournisseur :
 
 ```json
 {
@@ -163,7 +163,7 @@ L'exemple suivant montre comment utiliser la fonction provider :
 }
 ```
 
-L’exemple précédent renvoie un objet dans le format suivant :
+Hello exemple précédent retourne un objet Bonjour suivant le format :
 
 ```json
 {
@@ -197,21 +197,21 @@ Renvoie un objet représentant l’état d’exécution d’une ressource.
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
 | nom_ressource ou identificateur_ressource |Oui |string |Nom ou identificateur unique d’une ressource. |
-| apiVersion |Non |string |Version d’API de la ressource spécifiée. Incluez ce paramètre lorsque la ressource n’est pas approvisionnée dans le même modèle. En règle générale, au format, **aaaa-mm-jj**. |
+| apiVersion |Non |string |Version de l’API de hello la ressource spécifiée. Incluez ce paramètre lors de la ressource de hello n’est pas configuré dans le même modèle. En règle générale, dans le format de hello, **aaaa-mm-jj**. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Chaque type de ressource retourne des propriétés différentes pour la fonction de référence. La fonction ne retourne pas un format prédéfini unique. Pour afficher les propriétés d’un type de ressource, renvoyez l’objet dans la section des sorties comme indiqué dans l’exemple.
+Chaque type de ressource retourne des propriétés différentes pour la fonction de référence hello. fonction Hello ne retourne pas un format unique, prédéfini. propriétés de hello toosee pour un type de ressource, retourner objet hello Bonjour génère section comme indiqué dans l’exemple de hello.
 
 ### <a name="remarks"></a>Remarques
 
-La fonction reference dérive sa valeur d'un état d'exécution, et ne peut donc pas être utilisée dans la section variables. Elle peut être utilisée dans la section outputs d'un modèle. 
+référence de fonction Hello dérive sa valeur à partir d’un état d’exécution et ne peut donc pas être utilisé dans la section des variables hello. Elle peut être utilisée dans la section outputs d'un modèle. 
 
-En utilisant la fonction « reference », vous déclarez de manière implicite qu’une ressource dépend d’une autre ressource si la ressource référencée est configurée dans le même modèle. Vous n’avez pas besoin d’utiliser également la propriété dependsOn. La fonction n’est pas évaluée tant que le déploiement de la ressource référencée n’est pas terminé.
+À l’aide de référence de fonction hello, vous déclarez implicitement qu’une ressource dépend d’une autre ressource, si les ressources hello référencé sont configuré au sein du même modèle. Vous n’avez pas besoin de la propriété : dependsOn de tooalso utiliser hello. Hello fonction n’est pas été évaluée jusqu'à hello ressource référencée fin de déploiement.
 
-Pour afficher les noms et les valeurs des propriétés pour un type de ressource donné, créez un modèle qui retourne l’objet dans la section outputs. Si vous disposez déjà d’une ressource de ce type, votre modèle retourne l’objet sans déployer de nouvelles ressources. 
+toosee hello noms et valeurs pour un type de ressource, créez un modèle qui retourne un objet de hello dans la section des sorties hello. Si vous disposez d’une ressource de ce type, votre modèle retourne les objet hello sans déployer toutes les nouvelles ressources. 
 
-En règle générale, vous utilisez la fonction de **référence** pour renvoyer une valeur particulière d’un objet, telle que l’URI du point de terminaison d’objet blob ou le nom de domaine complet.
+En général, vous utilisez hello **référence** tooreturn une valeur particulière d’un objet, tel que du point de terminaison hello blob URI ou le nom de domaine complet de la fonction.
 
 ```json
 "outputs": {
@@ -228,7 +228,7 @@ En règle générale, vous utilisez la fonction de **référence** pour renvoyer
 
 ### <a name="example"></a>Exemple
 
-Pour déployer et faire référence à la ressource dans le même modèle, utilisez :
+Guide de référence et toodeploy ressource hello Bonjour même modèle, utilisez :
 
 ```json
 {
@@ -263,7 +263,7 @@ Pour déployer et faire référence à la ressource dans le même modèle, utili
 }
 ``` 
 
-L’exemple précédent renvoie un objet dans le format suivant :
+Hello exemple précédent retourne un objet Bonjour suivant le format :
 
 ```json
 {
@@ -281,7 +281,7 @@ L’exemple précédent renvoie un objet dans le format suivant :
 }
 ```
 
-L’exemple ci-après référence un compte de stockage déployé dans un modèle différent. Le compte de stockage existe déjà dans le même groupe de ressources.
+Hello exemple suivant fait référence à un compte de stockage qui n’est pas déployé dans ce modèle. Hello compte de stockage existe déjà dans hello même groupe de ressources.
 
 ```json
 {
@@ -307,11 +307,11 @@ L’exemple ci-après référence un compte de stockage déployé dans un modèl
 ## <a name="resourcegroup"></a>resourceGroup
 `resourceGroup()`
 
-Renvoie un objet qui représente le groupe de ressources actuel. 
+Retourne un objet qui représente le groupe de ressources actuel hello. 
 
 ### <a name="return-value"></a>Valeur de retour
 
-L’objet renvoyé présente le format suivant :
+Hello retournée objet est Bonjour suivant le format :
 
 ```json
 {
@@ -328,7 +328,7 @@ L’objet renvoyé présente le format suivant :
 
 ### <a name="remarks"></a>Remarques
 
-Une utilisation courante de la fonction resourceGroup consiste à créer des ressources dans le même emplacement que le groupe de ressources. L'exemple suivant utilise l'emplacement du groupe de ressources pour affecter l'emplacement d'un site web.
+Une utilisation courante de la fonction du groupe de ressources hello est ressources toocreate Bonjour même emplacement que le groupe de ressources hello. Hello exemple suivant utilise hello ressource groupe emplacement tooassign hello emplacement pour un site web.
 
 ```json
 "resources": [
@@ -344,7 +344,7 @@ Une utilisation courante de la fonction resourceGroup consiste à créer des res
 
 ### <a name="example"></a>Exemple
 
-Le modèle suivant retourne les propriétés du groupe de ressources.
+Hello modèle suivant retourne les propriétés hello hello du groupe de ressources.
 
 ```json
 {
@@ -360,7 +360,7 @@ Le modèle suivant retourne les propriétés du groupe de ressources.
 }
 ```
 
-L’exemple précédent renvoie un objet dans le format suivant :
+Hello exemple précédent retourne un objet Bonjour suivant le format :
 
 ```json
 {
@@ -378,21 +378,21 @@ L’exemple précédent renvoie un objet dans le format suivant :
 ## <a name="resourceid"></a>resourceId
 `resourceId([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)`
 
-Retourne l'identificateur unique d'une ressource. Vous utilisez cette fonction lorsque le nom de la ressource est ambigu ou non configuré dans le même modèle. 
+Retourne hello identificateur unique d’une ressource. Vous utilisez cette fonction lorsque le nom de la ressource hello est ambigu ou non configuré dans hello même modèle. 
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| subscriptionId |Non |string (au format GUID) |La valeur par défaut est l’abonnement actuel. Spécifiez cette valeur lorsque vous devez récupérer une ressource se trouvant dans un autre abonnement. |
-| resourceGroupName |Non |string |La valeur par défaut est le groupe de ressources actuel. Spécifiez cette valeur lorsque vous devez récupérer une ressource se trouvant dans un autre groupe de ressources. |
+| subscriptionId |Non |string (au format GUID) |Valeur par défaut est un abonnement hello. Spécifiez cette valeur lorsque vous avez besoin de tooretrieve une ressource dans un autre abonnement. |
+| resourceGroupName |Non |string |La valeur par défaut est le groupe de ressources actuel. Spécifiez cette valeur lorsque vous avez besoin de tooretrieve une ressource dans un autre groupe de ressources. |
 | resourceType |Oui |string |Type de ressource, y compris l'espace de noms du fournisseur de ressources. |
 | nom_ressource1 |Oui |string |Nom de la ressource. |
 | nom_ressource2 |Non |string |Segment de nom de ressource suivant si la ressource est imbriquée. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-L'identificateur est retourné au format suivant :
+identificateur de Hello est retourné dans hello suivant le format :
 
 ```json
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
@@ -400,33 +400,33 @@ L'identificateur est retourné au format suivant :
 
 ### <a name="remarks"></a>Remarques
 
-Les valeurs de paramètre spécifiées varient selon que la ressource se trouve ou non dans le même abonnement et le même groupe de ressources que le déploiement actuel.
+Hello des valeurs de paramètre que vous spécifiez dépendent de la ressource de hello Bonjour même groupe d’abonnement et de ressources en tant que déploiement hello en cours.
 
-Pour obtenir l’ID de ressource d’un compte de stockage se trouvant dans le même abonnement et le même groupe de ressources, utilisez :
+ID de ressource de hello tooget pour un compte de stockage Bonjour même abonnement et le groupe de ressources, utilisez :
 
 ```json
 "[resourceId('Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-Pour obtenir l’ID de ressource d’un compte de stockage se trouvant dans le même abonnement mais dans un groupe de ressources différent, utilisez :
+ID de ressource tooget hello pour un compte de stockage dans hello même abonnement, mais d’un autre groupe de ressources, utilisez :
 
 ```json
 "[resourceId('otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-Pour obtenir l’ID de ressource d’un compte de stockage se trouvant dans un abonnement et un groupe de ressources différents, utilisez :
+ID de ressource tooget hello pour un compte de stockage dans un autre abonnement et le groupe de ressources, utilisez :
 
 ```json
 "[resourceId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-Pour obtenir l’ID de ressource d’une base de données se trouvant dans un groupe de ressources différent, utilisez :
+ID de ressource tooget hello pour une base de données dans un autre groupe de ressources, utilisez :
 
 ```json
 "[resourceId('otherResourceGroup', 'Microsoft.SQL/servers/databases', parameters('serverName'), parameters('databaseName'))]"
 ```
 
-Souvent, vous devez utiliser cette fonction lorsque vous utilisez un compte de stockage ou un réseau virtuel se trouvant dans un autre groupe de ressources. L'exemple suivant montre comment une ressource d'un groupe de ressources externe peut être facilement utilisée :
+Vous devez souvent toouse cette fonction lorsque vous utilisez un compte de stockage ou d’un réseau virtuel dans un groupe de ressources différent. Hello exemple suivant montre comment une ressource à partir d’un groupe de ressources externes peut facilement être utilisée :
 
 ```json
 {
@@ -473,7 +473,7 @@ Souvent, vous devez utiliser cette fonction lorsque vous utilisez un compte de s
 
 ### <a name="example"></a>Exemple
 
-L’exemple suivant retourne l’ID de ressource pour un compte de stockage dans le groupe de ressources :
+Hello exemple suivant renvoie les ID de ressource hello pour un compte de stockage dans le groupe de ressources hello :
 
 ```json
 {
@@ -501,7 +501,7 @@ L’exemple suivant retourne l’ID de ressource pour un compte de stockage dans
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -515,11 +515,11 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="subscription"></a>abonnement
 `subscription()`
 
-Retourne des détails concernant l’abonnement pour le déploiement actuel. 
+Retourne le plus d’informations sur l’abonnement hello pour le déploiement en cours de hello. 
 
 ### <a name="return-value"></a>Valeur de retour
 
-La fonction retourne les informations au format suivant :
+fonction Hello renvoie hello suivant le format :
 
 ```json
 {
@@ -532,7 +532,7 @@ La fonction retourne les informations au format suivant :
 
 ### <a name="example"></a>Exemple
 
-L’exemple suivant montre la fonction subscription appelée dans la section outputs. 
+Hello exemple suivant illustre hello abonnement fonction est appelée dans la section des sorties hello. 
 
 ```json
 {
@@ -549,8 +549,8 @@ L’exemple suivant montre la fonction subscription appelée dans la section out
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir une description des sections d’un modèle Azure Resource Manager, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
-* Pour fusionner plusieurs modèles, consultez [Utilisation de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
-* Pour itérer un nombre de fois spécifié lors de la création d'un type de ressource, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
-* Pour savoir comment déployer le modèle que vous avez créé, consultez [Déploiement d’une application avec un modèle Azure Resource Manager](resource-group-template-deploy.md).
+* Pour obtenir une description des sections de hello dans un modèle Azure Resource Manager, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md).
+* consultez de plusieurs modèles toomerge [à l’aide de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
+* tooiterate un nombre spécifié de fois lors de la création d’un type de ressource, consultez [créer plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
+* toosee modèle de hello toodeploy que vous avez créé, voir [déployer une application avec le modèle Azure Resource Manager](resource-group-template-deploy.md).
 

@@ -14,40 +14,40 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/24/2017
 ms.author: joroja
-ms.openlocfilehash: eb44a0d2234c9ee3801d8b3a1655d877aa2f4fef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cec6c6e110514a8bbe0e0780f36738ff21ae2f00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="walkthrough-integrate-rest-api-claims-exchanges-in-your-azure-ad-b2c-user-journey-as-validation-on-user-input"></a>Procédure pas à pas : intégration des échanges de revendications de l’API REST dans votre parcours utilisateur Azure Active Directory B2C comme validation d’une entrée de l’utilisateur
 
-L’infrastructure d’expérience d’identité sur laquelle repose Azure Active Directory B2C (Azure AD B2C) permet au développeur d’identité d’intégrer une interaction avec une API RESTful dans un parcours utilisateur.  
+Hello identité expérience Framework (IEF) qui se trouve sous Azure Active Directory B2C (B2C Active Directory de Azure) permet de hello identité développeur toointegrate une interaction avec une API RESTful dans un parcours de l’utilisateur.  
 
-À la fin de cette procédure pas à pas, vous pourrez créer un parcours utilisateur Azure AD B2C qui interagit avec les services RESTful.
+À la fin de hello de cette procédure pas à pas, vous serez en mesure de toocreate un voyage utilisateur Azure AD B2C qui interagit avec les services RESTful.
 
-L’IEF envoie des données dans des revendications et reçoit en retour des données via des revendications. L’interaction avec l’API :
+Hello IEF envoie des données dans les demandes et reçoit des données dans les revendications. interaction Hello avec hello API :
 
 - Peut être conçue comme un échange de revendications de l’API REST ou comme un profil de validation, qui s’effectue dans une étape d’orchestration.
-- Valide en général une entrée de l’utilisateur. Si la valeur de l’utilisateur est rejetée, il peut essayer à nouveau d’entrer une valeur valide, avec la possibilité de retourner un message d’erreur.
+- En général, valide l’entrée d’utilisateur de hello. Si la valeur hello à partir de l’utilisateur de hello est rejetée, utilisateur de hello peut essayer de nouveau tooenter une valeur valide avec hello opportunité tooreturn un message d’erreur.
 
-Vous pouvez aussi concevoir l’interaction comme une étape d’orchestration. Pour plus d’informations, consultez [Procédure pas à pas : intégration des échanges de revendications de l’API REST dans votre parcours utilisateur Azure Active Directory B2C comme étape d’orchestration](active-directory-b2c-rest-api-step-custom.md).
+Vous pouvez également concevoir interaction hello en guise d’étape d’orchestration. Pour plus d’informations, consultez [Procédure pas à pas : intégration des échanges de revendications de l’API REST dans votre parcours utilisateur Azure Active Directory B2C comme étape d’orchestration](active-directory-b2c-rest-api-step-custom.md).
 
-Pour l’exemple de profil de validation, nous allons utiliser le parcours utilisateur de modification de profil dans le fichier ProfileEdit.xml du pack de démarrage.
+Par exemple de profil de validation hello, nous allons utiliser voyage de hello profil Modifier utilisateur dans le fichier de pack de démarrage hello ProfileEdit.xml.
 
-Nous pouvons vérifier que le nom fourni par l’utilisateur dans la modification de profil ne figure sur aucune liste d’exclusions.
+Nous pouvons vérifier ce nom hello fournie par l’utilisateur hello dans le profil de hello Edition n’est pas partie d’une liste d’exclusion.
 
-## <a name="prerequisites"></a>Prérequis
+## <a name="prerequisites"></a>Composants requis
 
-- Un locataire Azure AD B2C configuré pour effectuer une inscription/connexion à un compte local, comme décrit dans [Bien démarrer](active-directory-b2c-get-started-custom.md).
-- Un point de terminaison API REST avec lequel vous allez interargir. Pour cette procédure pas à pas, nous avons configuré un site de démonstration appelé [WingTipGames](https://wingtipgamesb2c.azurewebsites.net/) avec un service de l’API REST.
+- Un toocomplete de client configuré un compte de connexion-haut/connectez-vous, comme décrit dans Azure AD B2C [mise en route](active-directory-b2c-get-started-custom.md).
+- Un toointeract de point de terminaison API REST avec. Pour cette procédure pas à pas, nous avons configuré un site de démonstration appelé [WingTipGames](https://wingtipgamesb2c.azurewebsites.net/) avec un service de l’API REST.
 
-## <a name="step-1-prepare-the-rest-api-function"></a>Étape 1 : préparation de la fonction de l’API REST
+## <a name="step-1-prepare-hello-rest-api-function"></a>Étape 1 : Préparer la fonction d’API REST hello
 
 > [!NOTE]
-> Cet article ne traite pas de la configuration des fonctions de l’API REST. [Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-reference) fournit un excellent kit de ressources pour la création de services RESTful dans le cloud.
+> Le programme d’installation de fonctions de l’API REST est en dehors de la portée de hello de cet article. [Les fonctions Azure](https://docs.microsoft.com/azure/azure-functions/functions-reference) fournit un excellente toolkit toocreate des services RESTful dans le cloud de hello.
 
-Nous avons créé une fonction Azure qui reçoit une revendication qu’elle attend en tant que `playerTag`. La fonction vérifie si cette revendication existe. Vous pouvez accéder au code complet de la fonction Azure dans [GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples).
+Nous avons créé une fonction Azure qui reçoit une revendication qu’elle attend en tant que `playerTag`. fonction Hello valide qui indique si cette revendication. Vous pouvez accéder à code de fonction Azure complète hello dans [GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples).
 
 ```csharp
 if (requestContentAsJObject.playerTag == null)
@@ -65,7 +65,7 @@ if (playerTag == "mcvinny" || playerTag == "msgates123" || playerTag == "revcott
     {
       version = "1.0.0",
       status = (int) HttpStatusCode.Conflict,
-      userMessage = $"The player tag '{requestContentAsJObject.playerTag}' is already used."
+      userMessage = $"hello player tag '{requestContentAsJObject.playerTag}' is already used."
     },
     new JsonMediaTypeFormatter(),
     "application/json");
@@ -74,14 +74,14 @@ if (playerTag == "mcvinny" || playerTag == "msgates123" || playerTag == "revcott
 return request.CreateResponse(HttpStatusCode.OK);
 ```
 
-L’infrastructure d’expérience d’identité attend la revendication `userMessage` retournée par la fonction Azure. Cette revendication est présentée sous forme de chaîne à l’utilisateur si la validation échoue, comme quand un état de conflit 409 est retourné dans l’exemple précédent.
+Hello IEF attend hello `userMessage` cette fonction Azure hello retourne de la revendication. Cette demande s’affiche en tant qu’un utilisateur toohello de chaîne si la validation de hello échoue, par exemple quand il est retourné un état de 409 conflit Bonjour précédent exemple.
 
-## <a name="step-2-configure-the-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworkextensionsxml-file"></a>Étape 2 : configuration de l’échange de revendications de l’API RESTful comme profil technique dans votre fichier TrustFrameworkExtensions.xml
+## <a name="step-2-configure-hello-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworkextensionsxml-file"></a>Étape 2 : Configurer exchange de revendications d’API RESTful hello comme profil technique dans votre fichier TrustFrameworkExtensions.xml
 
-Le profil technique est la configuration complète de l’échange souhaité avec le service RESTful. Ouvrez le fichier TrustFrameworkExtensions.xml et ajoutez l’extrait de code XML suivant à l’intérieur de l’élément `<ClaimsProviders>`.
+Un profil de technique est la configuration complète de hello d’exchange hello souhaitée avec hello service RESTful. Ouvrir le fichier de TrustFrameworkExtensions.xml hello et ajouter hello suivant extrait XML à l’intérieur de hello `<ClaimsProviders>` élément.
 
 > [!NOTE]
-> Dans le code XML suivant, le fournisseur RESTful `Version=1.0.0.0` est décrit comme étant le protocole. Considérez-le comme étant la fonction qui interagit avec le service externe. <!-- TODO: A full definition of the schema can be found...link to RESTful Provider schema definition>-->
+> Bonjour, XML, fournisseur RESTful suivant `Version=1.0.0.0` est décrite en tant que protocole de hello. Le considérer comme fonction hello qui interagit avec un service externe de hello. <!-- TODO: A full definition of hello schema can be found...link tooRESTful Provider schema definition>-->
 
 ```xml
 <ClaimsProvider>
@@ -109,26 +109,26 @@ Le profil technique est la configuration complète de l’échange souhaité ave
 </ClaimsProvider>
 ```
 
-L’élément `InputClaims` définit les revendications qui seront envoyées depuis l’IEF vers le service REST. Dans cet exemple, le contenu de la revendication `givenName` sera envoyé au service REST en tant que `playerTag`. Dans cet exemple, l’infrastructure d’expérience d’identité n’attend pas de revendications en retour. Au lieu de cela, elle attend une réponse du service REST et agit en fonction des codes d’état qu’elle reçoit.
+Hello `InputClaims` élément définit les revendications hello qui seront envoyées à partir de hello service REST de toohello IEF. Dans cet exemple, hello le contenu de la revendication de hello `givenName` sera envoyé service REST de toohello comme `playerTag`. Dans cet exemple, hello QU'IEF n’attend pas de revendications précédent. Au lieu de cela, il attend une réponse de service REST de hello et agit selon les codes d’état hello qu’il reçoit.
 
-## <a name="step-3-include-the-restful-service-claims-exchange-in-self-asserted-technical-profile-where-you-want-to-validate-the-user-input"></a>Étape 3 : intégration de l’échange de revendications du service RESTful dans le profil technique autodéclaré où vous voulez valider la saisie de l’utilisateur
+## <a name="step-3-include-hello-restful-service-claims-exchange-in-self-asserted-technical-profile-where-you-want-toovalidate-hello-user-input"></a>Étape 3 : Inclure hello service RESTful revendications exchange dans automatique déclarée profil technique où vous souhaitez toovalidate hello l’entrée d’utilisateur
 
-L’étape de validation est le plus souvent utilisée dans le cadre d’une interaction avec un utilisateur. Toutes les interactions où une saisie de l’utilisateur est attendue sont des *profils techniques autodéclarés*. Pour cet exemple, nous ajoutons la validation au profil technique Self-Asserted-ProfileUpdate. Il s’agit du profil technique utilisé par le fichier de stratégie de la partie de confiance `Profile Edit`.
+utilisation la plus courante de l’étape de validation hello Hello est dans une interaction de hello avec un utilisateur. Toutes les interactions où les utilisateurs hello sont tooprovide attendu d’entrée sont *automatique déclarée profils techniques*. Pour cet exemple, nous allons ajouter profil technique du libre-service Asserted-ProfileUpdate toohello validation hello. Il s’agit profil technique hello hello du fichier de stratégie de confiance partie de confiance `Profile Edit` utilise.
 
-Pour ajouter l’échange de revendications au profil technique autodéclaré :
+tooadd hello revendications exchange toohello automatique déclarée profil technique :
 
-1. Ouvrez le fichier TrustFrameworkBase.xml et recherchez `<TechnicalProfile Id="SelfAsserted-ProfileUpdate">`.
-2. Passez en revue la configuration de ce profil technique. Notez comment l’échange avec l’utilisateur est défini sous la forme de revendications demandées à l’utilisateur (revendications d’entrée) et de revendications attendues en retour par le fournisseur autodéclaré (revendications de sortie).
+1. Ouvrez le fichier TrustFrameworkBase.xml de hello et recherchez `<TechnicalProfile Id="SelfAsserted-ProfileUpdate">`.
+2. Passez en revue la configuration hello de ce profil technique. Observez comment exchange hello avec l’utilisateur de hello est défini en tant que revendications qui seront demandées de l’utilisateur hello (revendications d’entrée) et qui sera attendu de fournisseur de hello automatique déclarée (revendications de sortie).
 3. Recherchez `TechnicalProfileReferenceId="SelfAsserted-ProfileUpdate`. Notez que ce profil est appelé au titre de l’étape d’orchestration 6 de `<UserJourney Id="ProfileEdit">`.
 
-## <a name="step-4-upload-and-test-the-profile-edit-rp-policy-file"></a>Étape 4 : téléchargement et test du fichier de stratégie de partie de confiance de modification de profil
+## <a name="step-4-upload-and-test-hello-profile-edit-rp-policy-file"></a>Étape 4 : Télécharger et d’un fichier de stratégie de hello profil modifier RP test
 
-1. Chargez la nouvelle version du fichier TrustFrameworkExtensions.xml.
-2. Sélectionnez **Exécuter maintenant** pour tester le fichier de stratégie de partie de confiance Modification de profil.
-3. Testez la validation en fournissant un des noms existants (par exemple mcvinny) dans le champ **Prénom**. Si tout est correctement configuré, vous devez normalement recevoir un message indiquant à l’utilisateur que l’étiquette player est déjà utilisée.
+1. Téléchargez hello une nouvelle version du fichier de TrustFrameworkExtensions.xml hello.
+2. Utilisez **exécuter maintenant** profil de hello tootest modifier le fichier de stratégie RP.
+3. Test de validation de hello en fournissant un des noms de hello existant (par exemple, mcvinny) Bonjour **prénom** champ. Si tout est configuré correctement, vous devez recevoir un message qui avertit les utilisateurs hello que hello lecteur balise est déjà utilisée.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Changer la modification de profil et l’inscription des utilisateurs pour collecter des informations supplémentaires auprès de vos utilisateurs](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)
+[Modifier hello profil utilisateur et modifier l’inscription toogather des informations supplémentaires à partir de vos utilisateurs](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)
 
 [Procédure pas à pas : intégration des échanges de revendications de l’API REST dans votre parcours utilisateur Azure AD B2C comme étape d’orchestration](active-directory-b2c-rest-api-step-custom.md)

@@ -1,6 +1,6 @@
 ---
-title: Gestion de groupes dans Azure Active Directory | Microsoft Docs
-description: "Découvrez comment créer et gérer des groupes pour gérer les utilisateurs d’Azure à l’aide d’Azure Active Directory."
+title: groupes aaaManaging dans Azure Active Directory | Documents Microsoft
+description: "Comment toocreate et gérer des groupes toomanage Azure utilisateurs à l’aide d’Azure Active Directory."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -17,11 +17,11 @@ ms.author: curtand
 ms.reviewer: kairaz.contractor
 ms.custom: oldportal;it-pro;
 robots: NOINDEX
-ms.openlocfilehash: 2cc2b63312b331a19c61cd7b59a4cac78edf32e6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9bee224655639740b3dd99983892b30c3c537aa0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-groups-in-azure-active-directory"></a>Gestion des groupes dans Azure Active Directory
 > [!div class="op_single_selector"]
@@ -31,77 +31,77 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-L’une des principales fonctionnalités de la gestion des utilisateurs Azure Active Directory (Azure AD) est la possibilité de créer des groupes d’utilisateurs. Un groupe vous permet d’effectuer différentes tâches de gestion, par exemple l’attribution de licences ou autorisations à plusieurs utilisateurs simultanément. Vous pouvez également utiliser des groupes pour affecter des autorisations d’accès à
+Une des fonctionnalités de hello de gestion des utilisateurs Azure Active Directory (Azure AD) est de groupes de toocreate hello possibilité d’utilisateurs. Vous utilisez un groupe tooperform gestion des tâches telles que l’affectation de licences ou autorisations nombre tooa d’utilisateurs à la fois. Vous pouvez également utiliser des groupes l’autorisation accès tooassign de
 
-* Ressources telles que des objets de l’annuaire
-* Il peut s’agir de ressources externes à l’annuaire, comme des applications SaaS, des services Azure, des sites SharePoint ou des ressources locales.
+* Ressources telles que les objets dans le répertoire de hello
+* Répertoire des ressources toohello externes tels que les applications SaaS, les services Azure, les sites SharePoint ou les ressources locales
 
-En outre, le propriétaire d’une ressource peut également attribuer l’accès à une ressource à un groupe Azure AD appartenant à quelqu’un d’autre. Cette attribution autorise les membres de ce groupe à accéder à la ressource. De son côté, le propriétaire du groupe gère l’appartenance au groupe. Le propriétaire de la ressource délègue au propriétaire du groupe l’autorisation d’affecter des utilisateurs à ses ressources.
+En outre, un propriétaire de la ressource peut également affecter groupe accès tooa ressource tooan Azure AD appartenant à une autre personne. Cette affectation accorde à ses membres hello d’une ressource groupe accès toohello. Ensuite, propriétaire hello du groupe de hello gère l’appartenance au groupe de hello. En réalité, hello propriétaire délégués toohello propriétaire de la ressource de hello hello autorisation tooassign utilisateurs tootheir ressource du groupe de.
 
 > [!IMPORTANT]
-> Microsoft recommande de gérer Azure AD à l’aide du [Centre d’administration Azure AD](https://aad.portal.azure.com) dans le portail Azure au lieu d’utiliser le portail Azure classique référencé dans cet article. Pour savoir comment gérer des groupes dans le centre d’administration Azure AD, consultez [Créer un groupe et ajouter des membres dans Azure Active Directory](active-directory-groups-create-azure-portal.md).
+> Microsoft recommande de gérer Azure AD en utilisant hello [centre d’administration Azure AD](https://aad.portal.azure.com) Bonjour portail Azure au lieu d’utiliser hello portail Azure classic référencée dans cet article. Pour la façon dont les groupes toomanage dans le centre d’administration hello Azure AD, consultez [créer un groupe et ajouter des membres dans Azure Active Directory](active-directory-groups-create-azure-portal.md).
 
 ## <a name="how-do-i-create-a-group"></a>Comment créer un groupe ?
-Selon les services auxquels votre organisation s’est abonnée, vous pouvez créer un groupe à l’aide de l’un des portails suivants :
+Selon toowhich de services hello que votre organisation est abonnée, vous pouvez créer un groupe à l’aide de valeurs hello suivantes :
 
-* le Portail Azure Classic
-* le portail des comptes Office 365
-* le portail des comptes Windows Intune
+* Hello portail Azure classic
+* portail du compte Hello Office 365
+* portail de compte Windows Intune Hello
 
-Nous décrivons ici les tâches effectuées dans le Portail Azure Classic. Pour plus d’informations sur l’utilisation des portails non Azure pour gérer Azure Active Directory, consultez [Administration de votre annuaire Azure AD](active-directory-administer.md).
+Nous allons décrire des tâches effectue Bonjour portail Azure classic. Pour plus d’informations sur l’utilisation des portails de non-Azure toomanage votre annuaire Azure AD, consultez [administrer votre annuaire Azure AD](active-directory-administer.md).
 
-1. Dans le [Portail Azure Classic](https://manage.windowsazure.com), sélectionnez **Active Directory**, puis le nom de l’annuaire de votre organisation.
-2. Sélectionnez l’onglet **Groupes** .
+1. Bonjour [portail Azure classic](https://manage.windowsazure.com), sélectionnez **Active Directory**, puis sélectionnez le nom hello du répertoire de hello pour votre organisation.
+2. Sélectionnez hello **groupes** onglet.
 3. Sélectionnez **Ajouter un groupe**.
-4. Dans la fenêtre **Ajouter un groupe** , spécifiez le nom et la description d’un groupe.
+4. Bonjour **ajouter un groupe** fenêtre, spécifiez le nom de hello et hello description d’un groupe.
 
 ## <a name="how-do-i-add-or-remove-individual-users-in-a-security-group"></a>Comment ajouter ou supprimer des utilisateurs individuels dans un groupe de sécurité ?
-**Pour ajouter un utilisateur individuel à un groupe**
+**tooadd un groupe de tooa utilisateur individuel**
 
-1. Dans le [Portail Azure Classic](https://manage.windowsazure.com), sélectionnez **Active Directory**, puis le nom de l’annuaire de votre organisation.
-2. Sélectionnez l’onglet **Groupes** .
-3. Ouvrez le groupe auquel vous souhaitez ajouter des membres. Ouvrez l’onglet **Membres** du groupe sélectionné s’il n’est pas déjà affiché.
+1. Bonjour [portail Azure classic](https://manage.windowsazure.com), sélectionnez **Active Directory**, puis sélectionnez le nom hello du répertoire de hello pour votre organisation.
+2. Sélectionnez hello **groupes** onglet.
+3. Ouvrez toowhich de groupe hello tooadd membres. Ouvrir hello **membres** onglet Hello sélectionné groupe si elle n'affiche pas déjà.
 4. Sélectionnez **Ajouter des membres**.
-5. Dans la page **Ajouter des membres** , sélectionnez le nom de l’utilisateur ou du groupe à ajouter en tant que membre de ce groupe. Vérifiez qu’il a été ajouté au volet **Sélectionné** .
+5. Sur hello **ajouter des membres** page, le nom hello select de l’utilisateur de hello ou un groupe que vous souhaitez tooadd en tant que membre de ce groupe. Assurez-vous que ce nom est ajouté toohello **sélectionnés** volet.
 
-**Pour supprimer un utilisateur individuel d’un groupe**
+**tooremove un utilisateur individuel à partir d’un groupe**
 
-1. Dans le [Portail Azure Classic](https://manage.windowsazure.com), sélectionnez **Active Directory**, puis le nom de l’annuaire de votre organisation.
-2. Sélectionnez l’onglet **Groupes** .
-3. Ouvrez le groupe duquel vous souhaitez supprimer des membres.
-4. Sélectionnez l’onglet **Membres**, puis le nom du membre à supprimer de ce groupe, et enfin **Supprimer**.
-5. À l’invite, confirmez que vous souhaitez supprimer ce membre du groupe.
+1. Bonjour [portail Azure classic](https://manage.windowsazure.com), sélectionnez **Active Directory**, puis sélectionnez le nom hello du répertoire de hello pour votre organisation.
+2. Sélectionnez hello **groupes** onglet.
+3. Groupe hello ouvert à partir de laquelle vous souhaitez que les membres de tooremove.
+4. Sélectionnez hello **membres** onglet, le nom hello sélectionnez du membre hello que vous souhaitez tooremove à partir de ce groupe, puis cliquez sur **supprimer**.
+5. Confirmer l’invite hello tooremove ce membre du groupe de hello.
 
-## <a name="how-can-i-manage-the-membership-of-a-group-dynamically"></a>Comment puis-je gérer dynamiquement l’appartenance à un groupe ?
-Dans Azure AD, vous pouvez très facilement définir une règle simple pour déterminer les utilisateurs qui sont membres du groupe. Une règle simple est une règle qui ne fait qu’une seule comparaison. Par exemple, si un groupe est affecté à une application SaaS, vous pouvez définir une règle pour ajouter des utilisateurs ayant la fonction « Représentant ». Cette règle accorde ensuite l’accès à cette application SaaS à tous les utilisateurs ayant ce poste dans votre annuaire.
+## <a name="how-can-i-manage-hello-membership-of-a-group-dynamically"></a>Comment puis-je gérer dynamiquement l’appartenance de hello d’un groupe ?
+Dans Azure AD, vous pouvez très facilement configurer un toodetermine règle simple que les utilisateurs qui sont membres de toobe du groupe de hello. Une règle simple est une règle qui ne fait qu’une seule comparaison. Par exemple, si un groupe est affecté tooa application SaaS, vous pouvez configurer une règle tooadd utilisateurs avec un titre de « Commercial ». Cette règle accorde ensuite l’accès toothis SaaS tooall utilisateurs avec cette fonction dans votre annuaire.
 
-Lorsqu’un attribut d’un utilisateur change, le système évalue toutes les règles de groupe dynamique d’un annuaire pour voir si la modification de l’attribut de l’utilisateur déclenche des ajouts ou suppressions de groupe. Si un utilisateur respecte une règle d’un groupe, il est ajouté en tant que membre de ce groupe. S’il ne respecte plus la règle d’un groupe dont il est membre, il est supprimé de ce groupe.
+Lorsque tous les attributs d’une modification de l’utilisateur, système de hello prend la valeur toutes les règles de groupe dynamique dans un toosee active si la modification d’attribut hello d’utilisateur de hello déclencherait n’importe quel groupe ajoute ou supprime. Si un utilisateur répond à une règle sur un groupe, ils sont ajoutés en tant que membre toothat groupe. Si elles ne répondent plus aux règles hello d’un groupe, de qu'ils sont membres, ils sont supprimés en tant que membres de ce groupe.
 
 > [!NOTE]
-> Vous pouvez définir une règle d’appartenance dynamique sur les groupes de sécurité ou Office 365. Les appartenances à des groupes imbriquées ne sont pas prises en charge pour l’affectation basée sur le groupe à des applications.
+> Vous pouvez définir une règle d’appartenance dynamique sur les groupes de sécurité ou Office 365. Appartenances aux groupes imbriqués ne sont pas actuellement pris en charge pour l’affectation basée sur le groupe tooapplications.
 >
-> L’appartenance dynamique à des groupes nécessite qu’une licence Azure AD Premium soit affectée à
+> Appartenance dynamique à des groupes nécessite un toobe de licence Azure AD Premium assigné à
 >
-> * L’administrateur qui gère la règle sur un groupe
-> * Tous les membres du groupe
+> * administrateur Hello qui gère la règle hello sur un groupe
+> * Tous les membres du groupe de hello
 >
 >
 
-**Pour activer l’appartenance dynamique pour un groupe**
+**appartenance dynamique de tooenable pour un groupe**
 
-1. Dans le [Portail Azure Classic](https://manage.windowsazure.com), sélectionnez **Active Directory**, puis le nom de l’annuaire de votre organisation.
-2. Sélectionnez l’onglet **Groupes** , puis ouvrez le groupe que vous souhaitez modifier.
-3. Sélectionnez l’onglet **Configurer**, puis définissez **Activer les appartenances dynamiques** sur **Oui**.
-4. Définissez une seule règle simple pour le groupe, qui contrôle la manière dont l’appartenance dynamique fonctionne pour ce groupe. Assurez-vous que l’option **Ajouter des utilisateurs où** est cochée, puis sélectionnez une propriété d’utilisateur dans la liste (par exemple, department, jobTitle, etc.).
+1. Bonjour [portail Azure classic](https://manage.windowsazure.com), sélectionnez **Active Directory**, puis sélectionnez le nom hello du répertoire de hello pour votre organisation.
+2. Sélectionnez hello **groupes** onglet et groupe ouvert hello tooedit.
+3. Sélectionnez hello **configurer** onglet, puis définissez **activer les appartenances dynamiques** trop**Oui**.
+4. Configurer une seule règle simple pour hello groupe toocontrol appartenance dynamique fonctionne pour ce groupe. Vérifiez que hello **ajouter des utilisateurs où** option est sélectionnée, puis sélectionnez une propriété de l’utilisateur à partir de la liste hello (par exemple, département, jobTitle, etc.),
 5. Ensuite, sélectionnez une condition (Non égal à, Égal à, Ne commence pas par, Commence par, Ne contient pas, Contient, Ne correspond pas, Correspond).
-6. Spécifiez une valeur de comparaison pour la propriété d’utilisateur sélectionnée.
+6. Spécifiez une valeur de comparaison pour la propriété hello sélectionné de l’utilisateur.
 
-Pour en savoir plus sur la création de règles *avancées* (règles pouvant contenir plusieurs comparaisons) pour l’appartenance dynamique à un groupe, consultez la page [Utilisation d’attributs pour créer des règles avancées](active-directory-accessmanagement-groups-with-advanced-rules.md).
+toolearn comment toocreate *avancées* règles (qui peut contenir plusieurs comparaisons) pour l’appartenance au groupe dynamique, consultez [à l’aide des attributs toocreate des règles avancées](active-directory-accessmanagement-groups-with-advanced-rules.md).
 
 ## <a name="additional-information"></a>Informations supplémentaires
 Ces articles fournissent des informations supplémentaires sur Azure Active Directory.
 
-* [Gestion de l’accès aux ressources avec les groupes Azure Active Directory](active-directory-manage-groups.md)
+* [La gestion des accès tooresources avec les groupes Azure Active Directory](active-directory-manage-groups.md)
 * [Configuration des paramètres de groupe avec les applets de commande Azure Active Directory](active-directory-accessmanagement-groups-settings-cmdlets.md)
 * [Index d’articles pour la gestion des applications dans Azure Active Directory](active-directory-apps-index.md)
 * [Qu’est-ce qu’Azure Active Directory ?](active-directory-whatis.md)

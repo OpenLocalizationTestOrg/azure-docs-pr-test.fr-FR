@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec ITRP | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et ITRP."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et ITRP."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,67 +13,67 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: jeedes
-ms.openlocfilehash: fae1c7b6b0e04c1e23123d3aee7913cb3131e645
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 35463a55fcfc1e55c90700737961c1ff2e58992a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-itrp"></a>Didacticiel : Intégration d’Azure Active Directory avec ITRP
 
-Dans ce didacticiel, vous allez apprendre à intégrer ITRP à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate ITRP avec Azure Active Directory (Azure AD).
 
-L’intégration d’ITRP dans Azure AD vous offre les avantages suivants :
+Intégration d’ITRP à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à ITRP.
-- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à ITRP (par authentification unique) avec leur compte Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooITRP
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooITRP (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD avec ITRP, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD à ITRP, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement ITRP pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout d’ITRP depuis la galerie
+1. Ajout d’ITRP à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-itrp-from-the-gallery"></a>Ajout d’ITRP depuis la galerie
-Pour configurer l’intégration d’ITRP avec Azure AD, vous devez ajouter ITRP à votre liste d’applications SaaS gérées, à partir de la galerie.
+## <a name="adding-itrp-from-hello-gallery"></a>Ajout d’ITRP à partir de la galerie de hello
+intégration de hello tooconfigure de ITRP dans tooAzure AD, vous devez tooadd ITRP à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter ITRP à partir de la galerie, procédez comme suit :**
+**tooadd ITRP à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, entrez **ITRP**.
+4. Dans la zone de recherche de hello, tapez **ITRP**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-itrp-tutorial/tutorial_itrp_search.png)
 
-5. Dans le panneau des résultats, sélectionnez **ITRP**, puis cliquez sur **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **ITRP**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-itrp-tutorial/tutorial_itrp_addfromgallery.png)
 
@@ -81,44 +81,44 @@ Pour configurer l’intégration d’ITRP avec Azure AD, vous devez ajouter ITR
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec ITRP, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur ITRP équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur ITRP associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans ITRP est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans ITRP doit toobe établie.
 
-Dans ITRP, affectez la valeur du **nom d’utilisateur** d’Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
+Dans ITRP, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec ITRP, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique à ITRP, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test ITRP](#creating-an-itrp-test-user)** pour obtenir un équivalent de Britta Simon dans ITRP lié à la représentation Azure AD associée.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Utilisateur de test de création d’un ITRP](#creating-an-itrp-test-user)**  -toohave un équivalent de Britta Simon dans ITRP est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et configurez l’authentification unique dans votre application ITRP.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application ITRP.
 
-**Pour configurer l’authentification unique Azure AD avec ITRP, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec ITRP, procédez hello comme suit :**
 
-1. Dans le portail Azure, sur la page d’intégration de l’application **ITRP**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **ITRP** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-itrp-tutorial/tutorial_itrp_samlbase.png)
 
-3. Dans la section **Domaine et URL ITRP**, procédez comme suit :
+3. Sur hello **ITRP domaine et les URL** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-itrp-tutorial/tutorial_itrp_url.png)
 
-    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<tenant-name>.itrp.com`
+    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenant-name>.itrp.com`
 
-    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<tenant-name>.itrp.com`
+    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenant-name>.itrp.com`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez l’[équipe de support technique ITRP](https://www.itrp.com/support). 
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support Client de ITRP](https://www.itrp.com/support) tooget ces valeurs. 
  
-4. Dans la section **Certificat de signature SAML**, copiez la valeur **EMPREINTE** du certificat.
+4. Sur hello **le certificat de signature SAML** section, hello de copie **l’empreinte numérique** valeur du certificat.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-itrp-tutorial/tutorial_itrp_certificate.png) 
 
@@ -126,21 +126,21 @@ Dans cette section, vous activez l’authentification unique Azure AD dans le po
 
     ![Configurer l’authentification unique](./media/active-directory-saas-itrp-tutorial/tutorial_general_400.png)
 
-6. Dans la section **Configuration d’ITRP**, cliquez sur **Configurer ITRP** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l’**URL du service d’authentification unique SAML et l’URL de déconnexion** à partir de la **section Référence rapide**.
+6. Sur hello **ITRP Configuration** , cliquez sur **ITRP de configurer** tooopen **configurer l’authentification** fenêtre. Hello de copie **SAML Sign-On URL du Service unique et l’URL de déconnexion** de hello **section de référence rapide.**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-itrp-tutorial/tutorial_itrp_configure.png) 
 
-7. Dans une autre fenêtre de navigateur web, connectez-vous à votre site d’entreprise ITRP en tant qu’administrateur.
+7. Dans une fenêtre de navigateur web, ouvrez une session dans le site d’entreprise tooyour ITRP en tant qu’administrateur.
 
-8. Dans la barre d’outils située en haut, cliquez sur **Settings**.
+8. Dans la barre d’outils de hello en haut de hello, cliquez sur **paramètres**.
    
     ![ITRP](./media/active-directory-saas-itrp-tutorial/ic775570.png "ITRP")
 
-8. Dans le volet de navigation de gauche, sélectionnez **Single Sign-On**.
+8. Dans le volet de navigation gauche hello, sélectionnez **Single Sign-On**.
    
     ![Authentification unique](./media/active-directory-saas-itrp-tutorial/ic775571.png "Authentification unique")
 
-9. Dans la section de configuration Single Sign-On, procédez comme suit :
+9. Dans la section de configuration de l’authentification unique de hello, procédez hello comme suit :
    
     ![Authentification unique](./media/active-directory-saas-itrp-tutorial/ic775572.png "Authentification unique")
     
@@ -148,64 +148,64 @@ Dans cette section, vous activez l’authentification unique Azure AD dans le po
 
     a. Cliquez sur **Enable**.
 
-    b. Dans la zone de texte **URL de déconnexion à distance**, collez la valeur de **URL de déconnexion** que vous avez copiée sur le portail Azure.
+    b. Dans **distant URL de déconnexion** zone de texte, valeur hello coller **URL de déconnexion**, lequel vous avez copié à partir du portail Azure.
 
-    c. Dans la zone de texte **URL SAML SSO**, collez la valeur de l’**URL du service d’authentification unique SAML** que vous avez copiée sur le portail Azure.
+    c. Dans **URL SSO SAML** zone de texte, valeur hello coller **SAML Sign-On URL du Service unique**, lequel vous avez copié à partir du portail Azure.
 
-    d. Dans la zone de texte **Empreinte digitale du certificat**, collez la valeur **Empreinte** du certificat que vous avez copiée sur le portail Azure. 
+    d.In **empreinte numérique du certificat** zone de texte, collez hello **l’empreinte numérique** valeur de certificat, ce qui vous avez copié à partir du portail Azure. 
       
-10. Cliquez sur **Save**.
+10. Cliquez sur **Enregistrer**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-itrp-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-itrp-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-itrp-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-itrp-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-an-itrp-test-user"></a>Création d’un utilisateur de test ITRP
 
-Pour pouvoir se connecter à ITRP, les utilisateurs d’Azure Active Directory doivent être configurés dans ITRP.  
+tooenable Azure AD les utilisateurs toolog dans tooITRP, ils doivent être configurés dans tooITRP.  
 
-Dans le cas d’ITRP, l’approvisionnement est une tâche manuelle.
+Dans le cas de hello d’ITRP, cette configuration est une tâche manuelle.
 
-**Pour approvisionner un compte d’utilisateur, procédez comme suit :**
+**tooprovision un compte d’utilisateur, effectuez hello comme suit :**
 
-1. Connectez-vous à votre locataire **ITRP** .
+1. Connectez-vous à tooyour **ITRP** client.
 
-2. Dans la barre d’outils située en haut, cliquez sur **Records**.
+2. Dans la barre d’outils de hello en haut de hello, cliquez sur **enregistrements**.
    
     ![Administrateur](./media/active-directory-saas-itrp-tutorial/ic775575.png "Administrateur")
 
-3. Dans le menu contextuel, sélectionnez **People**.
+3. Dans le menu contextuel de hello, sélectionnez **personnes**.
    
     ![Personnes](./media/active-directory-saas-itrp-tutorial/ic775587.png "Personnes")
 
@@ -213,35 +213,35 @@ Dans le cas d’ITRP, l’approvisionnement est une tâche manuelle.
    
     ![Administrateur](./media/active-directory-saas-itrp-tutorial/ic775576.png "Administrateur")
 
-5. Dans la boîte de dialogue Add New Person, procédez comme suit :
+5. Dans la boîte de dialogue Ajouter une nouvelle personne hello, procédez hello comme suit :
    
     ![Utilisateur](./media/active-directory-saas-itrp-tutorial/ic775577.png "Utilisateur") 
       
-    a. Entrez le **nom**, et **l’adresse de messagerie** d’un compte AAD valide que vous voulez approvisionner.
+    a. Hello de type **nom**, **messagerie** d’un compte AAD valide que vous souhaitez tooprovision.
 
     b. Cliquez sur **Enregistrer**.
 
 >[!NOTE]
->Vous pouvez utiliser tout autre outil ou n’importe quelle API de création de compte d’utilisateur fournis par ITRP pour approvisionner des comptes d’utilisateurs Azure Active Directory. 
+>Vous pouvez utiliser n’importe quel autre ITRP utilisateur compte outil de création ou API fournie par ITRP tooprovision des comptes d’utilisateur AAD. 
 > 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à ITRP.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooITRP.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à ITRP, procédez comme suit :**
+**tooassign Britta Simon tooITRP, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **ITRP**.
+2. Dans la liste des applications hello, sélectionnez **ITRP**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-itrp-tutorial/tutorial_itrp_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -249,7 +249,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -257,14 +257,14 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette ITRP dans le panneau d’accès, vous êtes automatiquement connecté à votre application ITRP.
-Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+Lorsque vous cliquez sur hello ITRP vignette Bonjour volet d’accès, vous devez obtenir l’application d’ITRP tooyour automatiquement signé sur.
+Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

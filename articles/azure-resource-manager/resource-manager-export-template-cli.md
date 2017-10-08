@@ -1,6 +1,6 @@
 ---
-title: "Exporter un modèle Azure Resource Manager avec Azure CLI | Microsoft Docs"
-description: "Utilisez Azure Resource Manager et l’interface de ligne de commande Azure pour exporter un modèle à partir d’un groupe de ressources."
+title: "modèle de gestionnaire de ressources aaaExport avec CLI d’Azure | Documents Microsoft"
+description: "Utilisez le Gestionnaire de ressources Azure et Azure CLI tooexport un modèle à partir d’un groupe de ressources."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -13,26 +13,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 617664129a5353e25da1e90c742c4b009db172ef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2d44a0a6e9717504d4c2a01254d826679b381f22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="export-azure-resource-manager-templates-with-azure-cli"></a>Exporter des modèles Azure Resource Manager avec Azure CLI
 
-Resource Manager vous permet d’exporter un modèle Resource Manager à partir de ressources existantes de votre abonnement. Vous pouvez utiliser le modèle généré pour découvrir la syntaxe du modèle, ou pour automatiser le redéploiement de votre solution en fonction des besoins.
+Le Gestionnaire de ressources vous permet de tooexport un modèle de gestionnaire de ressources à partir de ressources existants dans votre abonnement. Vous pouvez utiliser ce toolearn modèle généré sur hello modèle syntaxe ou tooautomate hello redéploiement de votre solution en fonction des besoins.
 
-Il est important de noter qu’il existe deux façons différentes d’exporter un modèle :
+Il est important toonote qu’il existe deux façons différentes tooexport un modèle :
 
-* Vous pouvez exporter le modèle actuel que vous avez utilisé pour un déploiement. Le modèle exporté inclut l’ensemble des paramètres et des variables exactement comme ils apparaissent dans le modèle d’origine. Cette approche est utile lorsque vous avez besoin de récupérer un modèle.
-* Vous pouvez exporter le modèle qui représente l’état actuel du groupe de ressources. Le modèle exporté n’est pas basé sur un modèle utilisé pour le déploiement. Au lieu de cela, il crée un modèle qui est un instantané du groupe de ressources. Le modèle exporté a probablement de nombreuses valeurs codées en dur et pas autant de paramètres que vous pourriez généralement définir. Cette approche est utile lorsque vous avez modifié le groupe de ressources. Vous devez maintenant capturer le groupe de ressources en tant que modèle.
+* Vous pouvez exporter le modèle hello réel que vous avez utilisé pour le déploiement. modèle exporté du Hello inclut toutes les variables et les paramètres de hello exactement comme ils apparaissent dans le modèle d’origine de hello. Cette approche est utile lorsque vous avez besoin d’un modèle de tooretrieve.
+* Vous pouvez exporter un modèle qui représente l’état actuel de hello hello du groupe de ressources. modèle exporté du Hello n’est pas basé sur un modèle que vous avez utilisé pour le déploiement. Au lieu de cela, il crée un modèle qui est un instantané hello du groupe de ressources. modèle exporté du Hello possède de nombreuses valeurs codées en dur et probablement pas autant de paramètres que vous définissez généralement. Cette approche est utile lorsque vous avez modifié le groupe de ressources hello. Maintenant, vous devez le groupe de ressources toocapture hello en tant que modèle.
 
 Cette rubrique illustre les deux approches.
 
 ## <a name="deploy-a-solution"></a>Déployer une solution
 
-Afin d’illustrer ces deux approches pour l’exportation d’un modèle, commençons par le déploiement d’une solution dans votre abonnement. Si vous disposez déjà d’un groupe de ressources dans votre abonnement que vous voulez exporter, il est inutile de déployer cette solution. Toutefois, le reste de cet article fait référence au modèle pour cette solution. L’exemple de script déploie un compte de stockage.
+tooillustrate les deux approches pour l’exportation d’un modèle, nous allons commencer en déployant un abonnement tooyour de solution. Si vous avez déjà un groupe de ressources dans votre abonnement que vous souhaitez tooexport, il est inutile toodeploy cette solution. Toutefois, reste hello de cet article fait référence toohello modèle pour cette solution. exemple de script Hello déploie un compte de stockage.
 
 ```azurecli
 az group create --name ExampleGroup --location "Central US"
@@ -44,24 +44,24 @@ az group deployment create \
 
 ## <a name="save-template-from-deployment-history"></a>Enregistrer un modèle à partir de l’historique de déploiement
 
-Vous pouvez récupérer un modèle à partir de votre historique de déploiement à l’aide de la commande [az group deployment export](/cli/azure/group/deployment#export). L’exemple suivant enregistre le modèle que vous déployez précédemment :
+Vous pouvez récupérer un modèle à partir de l’historique de votre déploiement à l’aide de hello [exportation de déploiement de groupe az](/cli/azure/group/deployment#export) commande. Hello suit exemple enregistre hello template que vous déployez précédemment :
 
 ```azurecli
 az group deployment export --name NewStorage --resource-group ExampleGroup
 ```
 
-Il retourne le modèle. Copiez le JSON et enregistrez-le dans un fichier. Notez qu’il s’agit exactement du même modèle que celui que vous avez utilisé pour le déploiement. Les paramètres et les variables correspondent au modèle provenant de GitHub. Vous pouvez redéployer ce modèle.
+Il retourne le modèle de hello. Copier hello JSON et les enregistrer en tant que fichier. Notez qu’il s’agit de modèle exact de hello utilisé pour le déploiement. variables et des paramètres de hello correspond à modèle hello à partir de GitHub. Vous pouvez redéployer ce modèle.
 
 
 ## <a name="export-resource-group-as-template"></a>Exporter un groupe de ressources en tant que modèle
 
-Au lieu de récupérer un modèle à partir de l’historique de déploiement, vous pouvez récupérer un modèle qui représente l’état actuel d’un groupe de ressources à l’aide de la commande [az group export](/cli/azure/group#export). Vous utilisez cette commande lorsque vous avez effectué de nombreuses modifications dans votre groupe de ressources et qu’aucun modèle existant ne représente toutes les modifications.
+Au lieu de récupérer un modèle à partir de l’historique de déploiement hello, vous pouvez récupérer un modèle qui représente l’état actuel de hello d’un groupe de ressources à l’aide de hello [exportation de groupe az](/cli/azure/group#export) commande. Vous utilisez cette commande lorsque vous avez effectué le groupe de ressources de nombreuses modifications tooyour et aucun modèle existant ne représente toutes les modifications de hello.
 
 ```azurecli
 az group export --name ExampleGroup
 ```
 
-Il retourne le modèle. Copiez le JSON et enregistrez-le dans un fichier. Notez qu’il est différent du modèle dans GitHub. Il a des paramètres différents et aucune variable. La référence (SKU) de stockage et l’emplacement sont codés en dur dans des valeurs. L’exemple suivant montre le modèle exporté, mais votre modèle a un nom de paramètre légèrement différent :
+Il retourne le modèle de hello. Copier hello JSON et les enregistrer en tant que fichier. Notez qu’il est différent de celui modèle hello dans GitHub. Il a des paramètres différents et aucune variable. stockage de Hello référence (SKU) et l’emplacement sont codées en dur les toovalues. Hello suivant montre les modèles exportés hello, mais votre modèle a un nom de paramètre légèrement différentes :
 
 ```json
 {
@@ -93,7 +93,7 @@ Il retourne le modèle. Copiez le JSON et enregistrez-le dans un fichier. Notez 
 }
 ```
 
-Vous pouvez redéployer ce modèle, mais cela requiert de deviner un nom unique pour le compte de stockage. Le nom de votre paramètre est légèrement différent.
+Vous pouvez redéployer ce modèle, mais elle nécessite le déchiffrement d’un nom unique pour le compte de stockage hello. nom du paramètre de Hello est légèrement différente.
 
 ```azurecli
 az group deployment create --name NewStorage --resource-group ExampleGroup \
@@ -103,13 +103,13 @@ az group deployment create --name NewStorage --resource-group ExampleGroup \
 
 ## <a name="customize-exported-template"></a>Personnaliser un modèle exporté
 
-Vous pouvez modifier ce modèle pour le rendre plus facile à utiliser et plus flexible. Pour autoriser plusieurs emplacements, modifiez la propriété d’emplacement de façon à utiliser le même emplacement que le groupe de ressources :
+Vous pouvez modifier cette toomake modèle il toouse plus facile et plus souple. tooallow pour d’autres emplacements, modification hello emplacement propriété toouse hello même emplacement que le groupe de ressources hello :
 
 ```json
 "location": "[resourceGroup().location]",
 ```
 
-Pour éviter d’avoir à deviner un nom unique pour le compte de stockage, supprimez le paramètre pour le nom du compte de stockage. Ajoutez un paramètre pour un suffixe de nom de stockage et une référence (SKU) de stockage :
+tooavoid avoir tooguess un nom uniques pour le compte de stockage, paramètre de hello remove pour le nom de compte de stockage hello. Ajoutez un paramètre pour un suffixe de nom de stockage et une référence (SKU) de stockage :
 
 ```json
 "parameters": {
@@ -132,7 +132,7 @@ Pour éviter d’avoir à deviner un nom unique pour le compte de stockage, supp
 },
 ```
 
-Ajoutez une variable qui construit le nom du compte de stockage avec la fonction uniqueString :
+Ajoutez une variable qui construit le nom du compte de stockage avec fonction d’uniqueString hello hello :
 
 ```json
 "variables": {
@@ -140,13 +140,13 @@ Ajoutez une variable qui construit le nom du compte de stockage avec la fonction
   },
 ```
 
-Définissez le nom du compte de stockage sur la variable :
+Définir le nom hello hello compte toohello de variable de stockage :
 
 ```json
 "name": "[variables('storageAccountName')]",
 ```
 
-Définissez la référence SKU sur le paramètre :
+Affectez au paramètre de toohello hello référence (SKU) :
 
 ```json
 "sku": {
@@ -201,9 +201,9 @@ Votre modèle doit maintenant ressembler à ceci :
 }
 ```
 
-Redéployez le modèle modifié.
+Redéployez le modèle modifié de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour plus d’informations sur l’utilisation du portail pour exporter un modèle, voir [Exporter un modèle Azure Resource Manager à partir de ressources existantes](resource-manager-export-template.md).
-* Pour définir des paramètres dans le modèle, consultez [Création de modèles](resource-group-authoring-templates.md#parameters).
+* Pour plus d’informations sur l’utilisation de tooexport de portail hello un modèle, consultez [exporter un modèle Azure Resource Manager à partir de ressources existants](resource-manager-export-template.md).
+* paramètres de toodefine dans le modèle, consultez [création de modèles](resource-group-authoring-templates.md#parameters).
 * Pour obtenir des conseils sur la résolution des erreurs courantes de déploiement, consultez la page [Résolution des erreurs courantes de déploiement Azure avec Azure Resource Manager](resource-manager-common-deployment-errors.md).

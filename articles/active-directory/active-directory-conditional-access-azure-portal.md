@@ -1,8 +1,8 @@
 ---
-title: "Accès conditionnel Azure Active Directory | Microsoft Docs"
-description: "Utilisez le contrôle d’accès conditionnel dans Azure Active Directory pour vérifier des conditions spécifiques lors de l’authentification pour l’accès aux applications."
+title: "aaaAzure Active Directory un accès conditionnel | Documents Microsoft"
+description: "Utilisez le contrôle d’accès conditionnel dans Azure Active Directory toocheck pour des conditions spécifiques lors de l’authentification pour accès tooapplications."
 services: active-directory
-keywords: "accès conditionnel aux applications, accès conditionnel à Azure AD, accès sécurisé aux ressources d’entreprise, stratégies d’accès conditionnel"
+keywords: "tooapps d’accès conditionnel, l’accès conditionnel avec Azure AD, sécuriser l’accès aux ressources toocompany, les stratégies d’accès conditionnel"
 documentationcenter: 
 author: MarkusVi
 manager: femila
@@ -16,41 +16,41 @@ ms.workload: identity
 ms.date: 08/22/2017
 ms.author: markvi
 ms.reviewer: calebb
-ms.openlocfilehash: 20572ecbde79bc2722f3a25f297c92d8e722a3e8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9fa8a5c3e514c032fbe3aa56f33d759485a018c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="conditional-access-in-azure-active-directory"></a>Accès conditionnel dans Azure Active Directory
 
-Tout d’abord, dans un appareil où mobilité et cloud occupent le premier plan, Azure Active Directory autorise une authentification unique sur les appareils, applications et services depuis n’importe où. Avec la prolifération des appareils (y compris des appareils BYOD), des réseaux d’entreprise externes et des applications SaaS tierces, les professionnels de l’informatique sont confrontés à deux objectifs contradictoires :
+Dans un monde mobile en premier, privilégie le cloud, Azure Active Directory permet toodevices de l’authentification unique, les applications et services à partir de n’importe quel endroit. Avec la prolifération de hello des appareils (y compris BYOD), travaillent sur des réseaux d’entreprise et 3ème partie SaaS applications, les professionnels de l’informatique sont confrontées à deux objectifs différents :
 
-- Permettre aux utilisateurs d’être productifs où et quand ils le veulent
-- Protéger les ressources de l’entreprise à tout moment
+- Permettre aux toobe des utilisateurs finaux hello productif où et quand
+- Protéger les ressources d’entreprise de hello à tout moment
 
-Pour améliorer la productivité, Azure Active Directory fournit à vos utilisateurs un large éventail d’options permettant d’accéder à vos ressources d’entreprise. Avec la gestion des accès aux applications, Azure Active Directory vous permet de garantir que seules *les bonnes personnes* ont accès à vos applications. Et si vous souhaitiez mieux contrôler comment les bonnes personnes accèdent à vos ressources dans certaines conditions ? Et si vous étiez en mesure de bloquer l’accès à certaines applications, même pour *les bonnes personnes* ? Par exemple, vous pouvez accepter que les bonnes personnes puissent accéder à certaines applications à partir d’un réseau approuvé, mais pas qu’elles y accèdent à partir d’un réseau non approuvé. L’accès conditionnel apporte une réponse à ces questions.
+tooimprove productivité, Azure Active Directory fournit à vos utilisateurs avec un large éventail d’options tooaccess vos ressources d’entreprise. Gestion des accès aux applications Azure Active Directory vous permet de tooensure que seul *hello bonnes personnes* peuvent accéder à vos applications. Que se passe-t-il si vous voulez toohave plus contrôler comment les personnes appropriées hello accédez à vos ressources sous certaines conditions ? Que se passe-t-il si vous avez même conditions sous lequel vous voulez tooblock accès toocertain applications même pour hello *avec le bouton droit personnes*? Par exemple, il peut être OK pour vous si aux personnes hello accédez à certaines applications à partir d’un réseau approuvé ; Toutefois, vous pouvez les tooaccess ces applications à partir d’un réseau, que vous ne faites pas confiance. L’accès conditionnel apporte une réponse à ces questions.
 
-L’accès conditionnel est une fonctionnalité d’Azure Active Directory qui vous permet d’appliquer des contrôles sur l’accès aux applications dans votre environnement en fonction de conditions spécifiques. Grâce aux contrôles, vous pouvez soit ajouter d’autres conditions requises à l’accès, soit bloquer ce dernier. L’implémentation de l’accès conditionnel repose sur des stratégies. Une approche fondée sur des stratégies simplifie votre expérience de configuration, car elle suit votre perception des modalités d’accès.  
+Accès conditionnel est une fonctionnalité d’Azure Active Directory qui vous permet de contrôles tooenforce tooapps d’accès hello dans votre environnement en fonction des conditions spécifiques. Avec des contrôles, vous pouvez lier l’accès de toohello des exigences supplémentaires ou vous pouvez la bloquer. implémentation de Hello de l’accès conditionnel est basée sur des stratégies. Une approche basée sur des stratégies simplifie votre expérience de configuration, car il suit moyen hello que vous réfléchissez à vos exigences d’accès.  
 
-En général, vous définissez vos modalités d’accès à l’aide d’instructions basées sur le modèle suivant :
+En règle générale, vous définissez vos exigences d’accès à l’aide des instructions qui sont basées sur hello modèle :
 
 ![Contrôle](./media/active-directory-conditional-access-azure-portal/10.png)
 
-Lorsque vous remplacez les deux occurrences de « *this* » par des informations concrètes, vous disposez d’un exemple d’instruction de stratégie qui vous est probablement familier :
+Lorsque vous remplacez les deux occurrences de hello de «*cela*» avec les informations du monde réel, vous avez un exemple pour une instruction de stratégie qui semble tooyou familier :
 
-*Lorsque des prestataires essaient d’accéder à nos applications cloud à partir de réseaux non approuvés, bloquer l’accès.*
+*Lors du prestataires de service sont tooaccess nos applications de cloud à partir de réseaux qui ne sont pas approuvés, puis bloquer l’accès.*
 
-L’instruction de stratégie ci-dessus met en évidence la puissance de l’accès conditionnel. Vous pouvez permettre à des prestataires d’accéder à vos applications cloud (**qui**). Mais avec l’accès conditionnel, vous pouvez également définir les conditions dans lesquelles l’accès est possible (**comment**).
+instruction de stratégie Hello ci-dessus met en surbrillance power hello d’accès conditionnel. Pendant que vous pouvez activer sous-traitants toobasically accéder à vos applications cloud (**qui**), avec un accès conditionnel, vous pouvez également définir des conditions dans le hello accès est possible (**comment**).
 
-Dans le contexte de l’accès conditionnel Azure Active Directory,
+Dans le contexte de hello d’accès conditionnel Azure Active Directory
 
 - « **When this happens** » est une **instruction de condition**
 - « **Then do this** » est un **contrôle**
 
 ![Contrôle](./media/active-directory-conditional-access-azure-portal/11.png)
 
-Une stratégie d’accès conditionnel combine une instruction de condition à des contrôles.
+combinaison de Hello d’une instruction de condition avec vos contrôles représente une stratégie d’accès conditionnel.
 
 ![Contrôle](./media/active-directory-conditional-access-azure-portal/12.png)
 
@@ -59,62 +59,62 @@ Une stratégie d’accès conditionnel combine une instruction de condition à d
 
 Dans une stratégie d’accès conditionnel, les contrôles définissent l’action à effectuer lorsqu’une instruction de condition est remplie.  
 Grâce aux contrôles, vous pouvez bloquer ou autoriser l’accès avec des exigences supplémentaires.
-Lorsque vous configurez une stratégie qui autorise l’accès, vous devez sélectionner au moins une exigence.   
+Lorsque vous configurez une stratégie qui autorise l’accès, vous devez tooselect au moins une exigence.   
 
 ### <a name="grant-controls"></a>Contrôles d’octroi
-L’implémentation actuelle d’Azure Active Directory vous permet de configurer les exigences de contrôle d’octroi suivantes :
+mise en œuvre actuelle Hello d’Azure Active Directory vous permet de hello tooconfigure suivant les exigences de contrôle d’allocation :
 
 ![Contrôle](./media/active-directory-conditional-access-azure-portal/05.png)
 
-- **Multi-factor Authentication** - Grâce à l’authentification multifacteur, vous pouvez appliquer une authentification renforcée. En tant que fournisseur, vous pouvez combiner Azure Multi-Factor Authentication ou une authentification multifacteur locale, avec AD FS (Active Directory Federation Services). L’authentification multifacteur contribue à empêcher tout accès à vos ressources par un utilisateur non autorisé qui peut avoir obtenu l’accès aux informations d’identification d’un utilisateur valide.
+- **Multi-factor Authentication** - Grâce à l’authentification multifacteur, vous pouvez appliquer une authentification renforcée. En tant que fournisseur, vous pouvez combiner Azure Multi-Factor Authentication ou une authentification multifacteur locale, avec AD FS (Active Directory Federation Services). À l’aide de l’authentification multifacteur permet de protéger des ressources soit accessible par un utilisateur non autorisé peut avoir accédé toohello les informations d’identification d’un utilisateur valide.
 
-- **Appareil conforme** - Vous pouvez définir des stratégies d’accès conditionnel au niveau de l’appareil. Vous pouvez configurer une stratégie permettant seulement aux ordinateurs conformes ou aux appareils mobiles inscrits dans une application de gestion des appareils mobiles d’accéder aux ressources de votre organisation. Par exemple, vous pouvez utiliser Intune pour vérifier la conformité de l’appareil, puis la signaler à Azure AD pour application lorsque l’utilisateur tente d’accéder à une application. Pour obtenir des informations détaillées sur l’utilisation d’Intune afin de protéger les applications et les données, consultez [Protéger les données et les applications avec Microsoft Intune](https://docs.microsoft.com/intune-classic/deploy-use/protect-apps-and-data-with-microsoft-intune). Vous pouvez également utiliser Intune pour appliquer la protection des données pour les appareils perdus ou volés. Pour plus d’informations, consultez [Protection de vos données avec effacement complet ou sélectif à l’aide de Microsoft Intune](https://docs.microsoft.com/intune-classic/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune).
+- **Périphérique compatible** -vous pouvez définir des stratégies d’accès conditionnel au niveau du périphérique hello. Vous pouvez configurer une stratégie tooonly activer les ordinateurs qui sont conformes ou les périphériques mobiles qui sont inscrits dans un tooaccess de gestion des appareils mobiles, les ressources de votre organisation. Par exemple, vous pourrez utiliser la conformité des appareils Intune toocheck et puis signaler tooAzure AD pour l’application lors de l’utilisateur de hello tente tooaccess une application. Pour obtenir des instructions détaillées sur comment les applications tooprotect toouse Intune et les données, consultez [protéger les données avec Microsoft Intune et les applications](https://docs.microsoft.com/intune-classic/deploy-use/protect-apps-and-data-with-microsoft-intune). Vous pouvez également utiliser protection des données tooenforce Intune pour les appareils perdus ou volés. Pour plus d’informations, consultez [Protection de vos données avec effacement complet ou sélectif à l’aide de Microsoft Intune](https://docs.microsoft.com/intune-classic/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune).
 
-- **Appareil joint à un domaine** – vous pouvez exiger que l’appareil utilisé pour vous connecter à Azure Active Directory soit joint à un domaine de votre environnement Active Directory (AD) local. Cette stratégie s’applique aux tablettes de l’entreprise, ordinateurs portables et ordinateurs de bureau Windows. 
+- **APPAREIL joint à un domaine** – vous pouvez exiger hello appareils vous avez utilisé tooconnect tooAzure Active Directory toobe appartenant au domaine tooyour locale Active Directory (AD). Cette stratégie s’applique tooWindows bureaux, ordinateurs portables et tablettes de l’entreprise. 
 
 Si vous avez sélectionné plusieurs contrôles, vous pouvez également indiquer si tous ces contrôles sont requis lors du traitement de votre stratégie.
 
 ![Contrôle](./media/active-directory-conditional-access-azure-portal/06.png)
 
 ### <a name="session-controls"></a>Contrôles de session
-Les contrôles de session permettent de limiter l’expérience dans une application cloud. Les contrôles de session sont appliqués par les applications cloud et s’appuient sur des informations supplémentaires fournies par Azure AD à l’application concernant la session.
+Les contrôles de session permettent de limiter l’expérience dans une application cloud. contrôles de session Hello sont appliquées par les applications cloud et s’appuient sur des informations supplémentaires fournies par l’application de toohello Azure AD sur la session de hello.
 
 ![Contrôle](./media/active-directory-conditional-access-azure-portal/session-control-pic.png)
 
 #### <a name="use-app-enforced-restrictions"></a>Utiliser les restrictions appliquées par l’application
-Vous pouvez utiliser ce contrôle pour exiger qu’Azure AD transmette les informations d’appareil à l’application cloud. Cela permet à l’application cloud de savoir si l’utilisateur utilise un appareil conforme ou un appareil joint à un domaine. Ce contrôle est actuellement pris en charge uniquement avec SharePoint en comme application cloud. SharePoint utilise les informations d’appareil pour fournir aux utilisateurs une expérience limitée ou complète en fonction de l’état de l’appareil.
-Pour en savoir plus sur la façon d’exiger un accès limité avec SharePoint, cliquez [ici](https://aka.ms/spolimitedaccessdocs).
+Vous pouvez utiliser cette application contrôle toorequire Azure AD toopass hello appareil informations toohello cloud. Cela permet de savoir si l’utilisateur de hello provient d’un périphérique conforme ou joint à un domaine hello cloud application. Ce contrôle n’est actuellement prise en charge uniquement avec SharePoint en tant qu’application de cloud hello. SharePoint utilise hello appareil informations tooprovide que les utilisateurs une expérience limitée ou complète en fonction de l’état de l’appareil hello.
+toolearn en savoir plus sur comment toorequire limitée à l’accès à SharePoint, accédez [ici](https://aka.ms/spolimitedaccessdocs).
 
 ## <a name="condition-statement"></a>Instruction de condition
 
-La section précédente vous a présenté les options permettant de bloquer ou de limiter l’accès à vos ressources sous forme de contrôles. Dans une stratégie d’accès conditionnel, vous définissez les critères que vos contrôles doivent remplir, sous la forme d’une instruction de condition.  
+section précédente de Hello vous a présenté toosupported options tooblock ou restreindre l’accès des ressources de tooyour sous forme de contrôles. Dans une stratégie d’accès conditionnel, vous définissez les critères de hello nécessitant toobe remplie pour votre toobe contrôles appliqué sous forme d’une instruction de condition.  
 
-Vous pouvez inclure les assignations suivantes dans votre instruction de condition :
+Vous pouvez inclure hello suivant affectations dans votre instruction de condition :
 
 ![Contrôle](./media/active-directory-conditional-access-azure-portal/07.png)
 
 
-- **Qui** - Souvent, vous voudrez appliquer vos contrôles à un ensemble donné d’utilisateurs. Dans une instruction de condition, vous pouvez définir cet ensemble en sélectionnant les utilisateurs et groupes concernés par votre stratégie. Au besoin, vous pouvez également exclure explicitement un ensemble d’utilisateurs de votre stratégie en les exemptant.  
-En sélectionnant des utilisateurs et des groupes, vous définissez les utilisateurs auxquels s’applique votre stratégie.    
+- **Qui** -dans de nombreux cas, vous souhaitez que vos contrôles toobe appliqué tooa groupe d’utilisateurs spécifique. Dans une instruction de condition, vous pouvez définir cet ensemble en sélectionnant des utilisateurs de hello et groupes d’à que votre stratégie s’applique. Au besoin, vous pouvez également exclure explicitement un ensemble d’utilisateurs de votre stratégie en les exemptant.  
+En sélectionnant des utilisateurs et des groupes, vous définissez étendue hello de votre stratégie s’applique à des utilisateurs.    
 
     ![Contrôle](./media/active-directory-conditional-access-azure-portal/08.png)
 
 
 
-- **Quoi** - En général, certaines applications qui s’exécutent dans votre environnement requièrent une protection supérieure à d’autres. Cela concerne notamment les applications qui ont accès à des données sensibles.
-En sélectionnant des applications cloud, vous définissez celles auxquelles s’applique votre stratégie. Au besoin, vous pouvez également exclure explicitement un ensemble d’applications de votre stratégie.
+- **Quoi** - En général, certaines applications qui s’exécutent dans votre environnement requièrent une protection supérieure à d’autres. Cela affecte, par exemple, les applications qui ont accès aux données de toosensitive.
+En sélectionnant les applications cloud, vous définissez étendue hello des applications cloud que votre stratégie s’applique. Au besoin, vous pouvez également exclure explicitement un ensemble d’applications de votre stratégie.
 
     ![Contrôle](./media/active-directory-conditional-access-azure-portal/09.png)
 
 
-- **Comment** - Tant que l’accès à vos applications s’effectue dans des conditions que vous pouvez contrôler, il est inutile d’imposer des contrôles supplémentaires sur les modalités d’accès de vos utilisateurs à vos applications cloud. Toutefois, les choses peuvent être différentes si l’accès à vos applications cloud s’effectue notamment à partir de réseaux non approuvés ou d’appareils non conformes. Dans une instruction de condition, vous pouvez définir certaines conditions d’accès qui précisent des exigences supplémentaires concernant le mode d’accès à vos applications.
+- **Comment** - tant que les applications d’accès tooyour est effectuée dans des conditions que vous pouvez contrôler, il n’y a peut n’être aucun nécessaire pour imposer des contrôles supplémentaires sur comment vos applications cloud sont accessibles par vos utilisateurs. Toutefois, aspect peut différer si les applications cloud accès tooyour est effectuée, par exemple, à partir des réseaux non approuvés ou des appareils qui ne sont pas conformes. Dans une instruction de condition, vous pouvez définir certaines conditions d’accès qui ont des exigences supplémentaires pour le mode d’accès tooyour applications.
 
     ![Conditions](./media/active-directory-conditional-access-azure-portal/21.png)
 
 
 ## <a name="conditions"></a>Conditions
 
-Dans l’implémentation actuelle d’Azure Active Directory, vous pouvez définir des conditions pour les aspects suivants :
+Dans l’implémentation actuelle de hello d’Azure Active Directory, vous pouvez définir des conditions pour hello suivant de zones :
 
 - Risque à la connexion
 - Plateformes d’appareils
@@ -125,14 +125,14 @@ Dans l’implémentation actuelle d’Azure Active Directory, vous pouvez défin
 
 ### <a name="sign-in-risk"></a>Risque à la connexion
 
-Un risque à la connexion est un objet qui permet à Azure Active Directory de suivre la probabilité qu’une tentative de connexion n’émane pas du propriétaire légitime d’un compte d’utilisateur. Dans cet objet, la probabilité (haute, moyenne ou faible) est stockée sous forme d’un attribut appelé [niveau de risque de connexion](active-directory-reporting-risk-events.md#risk-level). Cet objet est généré lors de la connexion d’un utilisateur si des risques de connexion ont été détectés par Azure Active Directory. Pour en savoir plus, voir [Connexions risquées](active-directory-identityprotection.md#risky-sign-ins).  
-Vous pouvez utiliser le niveau de risque de connexion calculé en tant que condition dans une stratégie d’accès conditionnel. 
+Un risque pour la connexion est un objet qui est utilisé par la probabilité de hello tootrack Azure Active Directory qu’une tentative de connexion n’a pas été effectuée par le propriétaire légitime de hello d’un compte d’utilisateur. Dans cet objet, probabilité hello (haute, moyenne ou faible) est stockée sous forme d’un attribut appelé [niveau de risque de connexion](active-directory-reporting-risk-events.md#risk-level). Cet objet est généré lors de la connexion d’un utilisateur si des risques de connexion ont été détectés par Azure Active Directory. Pour en savoir plus, voir [Connexions risquées](active-directory-identityprotection.md#risky-sign-ins).  
+Vous pouvez utiliser le niveau de connexion risque de hello calculée comme condition dans une stratégie d’accès conditionnel. 
 
 ![Conditions](./media/active-directory-conditional-access-azure-portal/22.png)
 
 ### <a name="device-platforms"></a>Plateformes d’appareils
 
-La plateforme d’appareils se caractérise par le système d’exploitation qui s’exécute sur votre appareil :
+plateforme d’appareil Hello est caractérisée par le système d’exploitation hello qui s’exécute sur votre appareil :
 
 - Android
 - iOS
@@ -142,23 +142,23 @@ La plateforme d’appareils se caractérise par le système d’exploitation qui
 
 ![Conditions](./media/active-directory-conditional-access-azure-portal/02.png)
 
-Vous pouvez définir les plateformes d’appareils incluses et celles qui sont exclues d’une stratégie.  
-Pour utiliser des plateformes d’appareils dans la stratégie, commencez par régler les options de configuration sur **Oui**, puis sélectionnez une, plusieurs ou l’ensemble des plateformes d’appareils auxquelles s’applique la stratégie. Si vous sélectionnez certaines plateformes d’appareils, la stratégie ne s’applique qu’à celles-ci. Dans ce cas, la stratégie est sans effet sur les connexions aux autres plateformes prises en charge.
+Vous pouvez définir des plateformes d’appareils hello qui sont inclus, ainsi que les plateformes d’appareils qui sont exclus d’une stratégie.  
+plateformes d’appareils toouse dans la stratégie de hello, première modification hello bascules configurer trop**Oui**, puis sélectionnez tous ou périphérique plateformes hello stratégie s’applique à. Si vous sélectionnez les plateformes d’appareils individuels, stratégie de hello a uniquement un impact sur ces plateformes. Dans ce cas, les plateformes de tooother pris en charge les connexions ne sont pas affectées par la stratégie de hello.
 
 
 ### <a name="locations"></a>Emplacements
 
-L’emplacement est identifié par l’adresse IP du client que vous avez utilisée pour vous connecter à Azure Active Directory. Pour cette condition, vous devez connaître les **emplacements nommés** et les **adresses IP approuvées MFA**.  
+Hello emplacement est identifié par son adresse IP du client de hello hello, vous avez utilisé tooconnect tooAzure Active Directory. Cette condition requiert que vous toobe familière **emplacements nommés** et **MFA d’adresses IP approuvées**.  
 
-Les **emplacements nommés** sont une fonctionnalité d’Azure Active Directory qui vous permet de désigner des plages d’adresses IP approuvées au sein de vos organisations. Dans votre environnement, vous pouvez utiliser les emplacements nommés dans le cadre de la détection [d’événements à risque](active-directory-reporting-risk-events.md), ainsi que pour l’accès conditionnel. Pour plus d’informations sur la configuration des emplacements nommés dans Azure Active Directory, consultez [Emplacements nommés dans Azure Active Directory](active-directory-named-locations.md).
+**Emplacements nommés** est une fonctionnalité d’Azure Active Directory qui vous permet de plages d’adresses IP toolabel approuvé dans votre organisation. Dans votre environnement, vous pouvez utiliser les emplacements nommés dans le contexte de hello de détection hello de [risque d’événements](active-directory-reporting-risk-events.md) , ainsi que l’accès conditionnel. Pour plus d’informations sur la configuration des emplacements nommés dans Azure Active Directory, consultez [Emplacements nommés dans Azure Active Directory](active-directory-named-locations.md).
 
-Le nombre d’emplacements que vous pouvez configurer est limité par la taille de l’objet associé dans Azure AD. Vous pouvez configurer les éléments suivants :
+nombre de Hello des emplacements, que vous pouvez configurer est limité en taille hello d’objets connexes de hello dans Azure AD. Vous pouvez configurer les éléments suivants :
  
- - Un emplacement nommé avec 500 plages d’adresses IP maximum
- - Un maximum de 60 emplacements nommés (préversion) avec une plage d’adresses IP assignée à chacun d’eux. 
+ - Un emplacement nommé avec des plages d’adresses IP too500
+ - Un maximum de 60 sites (aperçu) nommés avec une plage d’adresses IP affectées tooeach d'entre eux 
 
 
-Les **adresses IP approuvées MFA** sont une fonctionnalité de Multi-Factor Authentication, qui vous permet de définir les plages d’adresses IP approuvées correspondant à l’intranet local de votre organisation. Lorsque vous configurez des conditions d’emplacement, les adresses IP approuvées vous permettent de faire la distinction entre les connexions effectuées depuis le réseau de votre organisation et celles provenant de tous les autres emplacements. Pour plus d’informations, consultez [Adresses IP approuvées](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips).  
+**L’authentification Multifacteur d’adresses IP approuvées** est une fonctionnalité de l’authentification multifacteur qui vous permet de plages d’adresses IP toodefine approuvé représentant intranet local de votre organisation. Lorsque vous configurez des conditions d’un emplacement, des adresses IP approuvées vous permet de toodistinguish entre les connexions effectuées à partir de réseau de votre organisation et tous les autres emplacements. Pour plus d’informations, consultez [Adresses IP approuvées](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips).  
 
 
 
@@ -169,8 +169,8 @@ Vous pouvez soit inclure tous les emplacements ou toutes les adresses IP approuv
 
 ### <a name="client-app"></a>Application cliente
 
-L’application cliente peut être l’application (navigateur web, application mobile, client de bureau) que vous avez utilisée pour vous connecter à Azure Active Directory ou vous pouvez sélectionner Exchange Active Sync.  
-L’authentification héritée concerne les clients qui utilisent l’authentification de base, comme les anciens clients Office qui n’exploitent pas l’authentification moderne. Pour l’instant, l’accès conditionnel ne fonctionne pas avec l’authentification héritée.
+application cliente de Hello peut être sur une application hello niveau générique (navigateur web, application mobile, client de bureau) vous avez utilisé tooconnect tooAzure Active Directory ou vous pouvez sélectionner spécifiquement Exchange Active Sync.  
+Authentification hérité fait référence à tooclients à l’aide de l’authentification de base telles que les clients Office plus anciens qui n’utilisent pas l’authentification moderne. Pour l’instant, l’accès conditionnel ne fonctionne pas avec l’authentification héritée.
 
 ![Conditions](./media/active-directory-conditional-access-azure-portal/04.png)
 
@@ -179,27 +179,27 @@ L’authentification héritée concerne les clients qui utilisent l’authentifi
 
 ### <a name="requiring-multi-factor-authentication-for-apps"></a>Exiger l’authentification multifacteur pour les applications
 
-Dans de nombreux environnements, certaines applications nécessitent un niveau de protection plus élevé que d’autres.
-C’est le cas des applications qui ont accès à des données sensibles.
-Si vous souhaitez ajouter une couche de protection supplémentaire pour ces applications, vous pouvez configurer une stratégie d’accès conditionnel qui requiert l’authentification multifacteur lorsque les utilisateurs accèdent à ces applications.
+De nombreux environnements disposent d’applications nécessitant un niveau de protection supérieur hello d’autres.
+C’est, par exemple, les cas de hello pour les applications qui ont accès aux données de toosensitive.
+Si vous souhaitez tooadd une autre couche de protection toothese applications, vous pouvez configurer une stratégie d’accès conditionnel qui requiert l’authentification multifacteur lorsque les utilisateurs accèdent à ces applications.
 
 
 ### <a name="requiring-multi-factor-authentication-for-access-from-networks-that-are-not-trusted"></a>Exiger l’authentification multifacteur pour l’accès à partir de réseaux non approuvés
 
-Ce scénario est semblable au précédent, car il ajoute une exigence pour l’authentification multifacteur.
-Toutefois, la principale différence réside dans la condition de cette exigence.  
-Tandis que le scénario précédent se concentre sur les applications ayant accès à des données sensibles, ce scénario concerne les emplacements approuvés.  
+Ce scénario est le scénario précédent de toohello similaire, car elle ajoute la configuration requise pour l’authentification multifacteur.
+Toutefois, hello principale différence est condition hello pour cette spécification.  
+Lors de focus hello du scénario précédent de hello est sur les applications avec des données access toosensitve, hello ce scénario se concentre sur des emplacements approuvés.  
 En d’autres termes, l’authentification multifacteur peut être requise si un utilisateur accède à une application à partir d’un réseau que vous n’avez pas approuvé.
 
 
 ### <a name="only-trusted-devices-can-access-office-365-services"></a>Seuls les appareils approuvés ont accès aux services Office 365
 
-Si vous utilisez Intune dans votre environnement, vous pouvez utiliser d’emblée l’interface de stratégie d’accès conditionnel dans la console Azure.
+Si vous utilisez Intune dans votre environnement, vous pouvez commencer immédiatement à l’aide d’interface de stratégie d’accès conditionnel hello Bonjour console Azure.
 
-De nombreux clients Intune utilisent l’accès conditionnel pour vérifier que seuls les appareils approuvés ont accès aux services Office 365. Cela signifie que les appareils mobiles sont inscrits dans Intune, qu’ils répondent aux critères de la stratégie de conformité et que des PC Windows sont joints à un domaine local. L’avantage, c’est que vous n’avez pas à définir la même stratégie pour chacun des services Office 365.  Lorsque vous créez une stratégie, configurez les applications cloud pour inclure chacune des applications Office 365 que vous souhaitez protéger avec l’accès conditionnel.
+De nombreux clients Intune utilisent tooensure d’accès conditionnel qu’uniquement les appareils de confiance peuvent accéder aux services Office 365. Cela signifie que les appareils mobiles sont inscrits avec Intune et répondre aux exigences de stratégie de conformité, et que les PC Windows appartiennent à un domaine local de tooan jointes. Une amélioration importante est que vous n’avez pas tooset hello même stratégie pour chacun des services de hello Office 365.  Lorsque vous créez une nouvelle stratégie, configurez hello Cloud applications tooinclude chaque des applications hello O365 que vous souhaitez tooprotect avec l’accès conditionnel.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour savoir comment configurer une stratégie d’accès conditionnel, consultez [Prise en main de l’accès conditionnel dans Azure Active Directory](active-directory-conditional-access-azure-portal-get-started.md).
+Si vous souhaitez tooknow tooconfigure une stratégie d’accès conditionnel, voir [prise en main avec un accès conditionnel dans Azure Active Directory](active-directory-conditional-access-azure-portal-get-started.md).
 
-Si vous êtes prêt à configurer des stratégies d’accès conditionnel pour votre environnement, consultez les [Meilleures pratiques pour l’accès conditionnel dans Azure Active Directory](active-directory-conditional-access-best-practices.md). 
+Si vous êtes prêt tooconfigure des stratégies d’accès conditionnel pour votre environnement, consultez hello [meilleures pratiques pour l’accès conditionnel dans Azure Active Directory](active-directory-conditional-access-best-practices.md). 

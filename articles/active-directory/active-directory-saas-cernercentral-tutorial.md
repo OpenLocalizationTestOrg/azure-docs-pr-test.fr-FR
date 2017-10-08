@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Cerner Central | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Cerner Central."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Cerner Central."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,102 +13,102 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: jeedes
-ms.openlocfilehash: 77b5fb94cdfa5722081198aabc59fbf86229c2b0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3493d180e8f229b7cd228769f780f10208114889
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-cerner-central"></a>Didacticiel : Intégration d’Azure Active Directory à Cerner Central
 
-Dans ce didacticiel, vous allez apprendre à intégrer Cerner Central à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate centre Cerner avec Azure Active Directory (Azure AD).
 
-L’intégration de Cerner Central à Azure AD vous offre les avantages suivants :
+Intégration Cerner Central à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à Cerner Central
-- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Cerner Central (via l’authentification unique) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooCerner Central
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooCerner Central (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Prérequis
+## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à Cerner Central, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec Cerner Central, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un compte du système Central Cerner approuvé
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Cerner Central à partir de la galerie
+1. Ajout de Cerner Central à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-cerner-central-from-the-gallery"></a>Ajout de Cerner Central à partir de la galerie
-Pour configurer l’intégration de Cerner Central à Azure AD, vous devez ajouter Cerner Central à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-cerner-central-from-hello-gallery"></a>Ajout de Cerner Central à partir de la galerie de hello
+intégration de hello tooconfigure de Cerner Central dans Azure AD, vous devez tooadd Cerner Central à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Cerner Central à partir de la galerie, effectuez les étapes suivantes :**
+**tooadd centre Cerner à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter une nouvelle application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de la boîte de dialogue hello.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **Cerner Central**.
+4. Dans la zone de recherche de hello, tapez **Cerner Central**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Cerner Central**, puis cliquez sur **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **Cerner centre**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Cerner Central pour un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Cerner Central équivalent à un utilisateur dans Azure AD. En d’autres termes, une relation doit être établie entre un utilisateur Azure AD et l’utilisateur associé dans Cerner Central.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Cerner Central est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur dans le centre de Cerner hello doit toobe établie.
 
-Pour configurer et tester l’authentification unique Azure AD avec Cerner Central, vous devez effectuer les actions essentielles suivantes :
+tooconfigure et test Azure AD l’authentification unique avec Cerner Central, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Cerner Central](#creating-a-cerner-central-test-user)** pour avoir un équivalent de Britta Simon dans Cerner Central lié à la représentation Azure AD de l’utilisateur.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test Cerner centre](#creating-a-cerner-central-test-user)**  -toohave un équivalent de Britta Simon Cerner central qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur de hello.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Cerner Central.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de centre de Cerner.
 
-**Pour configurer l’authentification unique Azure AD avec Cerner Central, effectuez les étapes suivantes :**
+**tooconfigure Azure AD single sign-on avec Cerner Central, effectuez hello comme suit :**
 
-1. Dans le Portail Azure, sur la page d’intégration de l’application **Cerner Central**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Cerner centre** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_samlbase.png)
 
-3. Dans la section **Domaine et URL Cerner Central**, effectuez les étapes suivantes :
+3. Sur hello **Cerner les domaine Central et les URL** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_url.png)
 
-    a. Dans la zone de texte **Identificateur**, tapez la valeur au format suivant :
+    a. Bonjour **identificateur** zone de texte, valeur hello de type hello suivant des modèles à l’aide de :
     
     | |
     |--|
@@ -118,7 +118,7 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dan
     | `https://sandboxcernercentral.com/session-api/protocol/saml2/metadata` |
     | `https://<instancename>.cernercentral.com/session-api/protocol/saml2/metadata` |
 
-    b. Dans la zone de texte **URL de réponse** , tapez une URL en respectant les formats suivants : 
+    b. Bonjour **URL de réponse** modèles de zone de texte, tapez une URL à l’aide de hello suivant : 
     | |
     |--|
     | `https://<instancename>.cernercentral.com/session-api/protocol/saml2/sso` |
@@ -128,90 +128,90 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dan
     | `https://<subdomain>.sandboxcernercentral.com/<instancename>` |
 
     > [!NOTE] 
-    > Il ne s’agit pas des valeurs réelles. Mettez à jour ces valeurs avec l’identificateur et l’URL de réponse réels. Pour obtenir ces valeurs, contactez l’[équipe de support technique Cerner Central](https://wiki.ucern.com/display/CernerCentral/Contacting+Cloud+Operations).
+    > Ces valeurs ne sont pas hello réel. Mettre à jour ces valeurs hello URL d’identificateur et de réponse réelle. Contact [équipe de support Cerner centre](https://wiki.ucern.com/display/CernerCentral/Contacting+Cloud+Operations) tooget ces valeurs.
  
 4. Cliquez sur le bouton **Enregistrer** .
 
     ![Configurer l’authentification unique](./media/active-directory-saas-cernercentral-tutorial/tutorial_general_400.png)
 
-5. Pour générer l’URL des **métadonnées**, effectuez les étapes suivantes :
+5. toogenerate hello **métadonnées** url, effectuer hello comme suit :
 
     a. Cliquez sur **Inscriptions des applications**.
     
     ![Configurer l’authentification unique](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_appregistrations.png)
    
-    b. Cliquez sur **Points de terminaison** pour ouvrir la boîte de dialogue **Points de terminaison**.  
+    b. Cliquez sur **points de terminaison** tooopen **points de terminaison** boîte de dialogue.  
     
     ![Configurer l’authentification unique](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_endpointicon.png)
 
-    c. Cliquez sur le bouton Copier pour copier l’URL du document de métadonnées de fédération (**FEDERATION METADATA DOCUMENT**), puis collez-la dans le Bloc-notes.
+    c. Cliquez sur hello copie bouton toocopy **DOCUMENT de métadonnées de fédération** url et collez-le dans le bloc-notes.
     
     ![Configurer l’authentification unique](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_endpoint.png)
      
-    d. Accédez maintenant à la page de propriétés de **Cerner Central**, puis copiez l’**ID d’application** à l’aide du bouton **Copier** et collez-le dans le Bloc-notes.
+    d. Maintenant accédez toohello page de propriétés de **Cerner centre** et copie Bonjour **Id d’Application** à l’aide de **copie** bouton et collez-le dans le bloc-notes.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_appid.png)
 
-    e. Générez l’**URL des métadonnées** en utilisant le format suivant : `<FEDERATION METADATA DOCUMENT url>?appid=<application id>`
+    e. Générer hello **URL de métadonnées** hello suivant le modèle à l’aide de :`<FEDERATION METADATA DOCUMENT url>?appid=<application id>`
 
-6. Pour configurer l’authentification unique côté **Cerner Central**, vous devez envoyer l’**URL des métadonnées** au [support technique Cerner Central](https://wiki.ucern.com/display/CernerCentral/Contacting+Cloud+Operations). Il configure l’authentification unique (SSO) côté application pour terminer l’intégration.
+6. tooconfigure l’authentification unique sur **Cerner centre** côté, vous devez toosend hello **URL de métadonnées** trop[prise en charge du centre de Cerner](https://wiki.ucern.com/display/CernerCentral/Contacting+Cloud+Operations). Ils configurent hello SSO sur l’intégration d’application côté toocomplete hello.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure. 
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test. 
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cernercentral-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cernercentral-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter**.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter**.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cernercentral-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-cernercentral-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur** , tapez l’**adresse de messagerie** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de Britta Simon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-cerner-central-test-user"></a>Création d’un utilisateur de test Cerner Central
 
-L’application **Cerner Central** permet l’authentification à partir de n’importe quel fournisseur d’identité fédérée. Si un utilisateur peut se connecter à la page d’accueil de l’application, il est fédéré et n’a besoin d’aucun approvisionnement manuel.
+L’application **Cerner Central** permet l’authentification à partir de n’importe quel fournisseur d’identité fédérée. Si un utilisateur est en mesure de toolog dans la page d’accueil toohello application, ils sont fédérés et n’ont pas besoin de toute configuration manuelle.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en accordant l’accès à Cerner Central.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooCerner Central.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à Cerner Central, effectuez les étapes suivantes :**
+**tooassign Britta Simon tooCerner Central, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Cerner Central**.
+2. Dans la liste des applications hello, sélectionnez **Cerner Central**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-cernercentral-tutorial/tutorial_cernercentral_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -219,7 +219,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -227,13 +227,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Quand vous cliquez sur la mosaïque Cerner Central dans le volet d’accès, vous devez être automatiquement connecté à votre application Cerner Central. Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+Lorsque vous cliquez sur hello Cerner centre vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour application Cerner centrale. Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

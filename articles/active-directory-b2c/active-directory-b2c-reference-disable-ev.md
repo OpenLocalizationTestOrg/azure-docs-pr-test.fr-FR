@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C : désactiver la vérification par e-mail lors de l’inscription du consommateur | Microsoft Docs"
-description: "Une rubrique qui montre comment désactiver la vérification par e-mail lors de l’inscription du consommateur à Azure Active Directory B2C"
+description: "Une rubrique illustrant comment toodisable envoyer par courrier électronique vérification au cours du consommateur d’inscription dans Azure Active Directory B2C"
 services: active-directory-b2c
 documentationcenter: 
 author: parakhj
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 2/06/2017
 ms.author: parakhj
-ms.openlocfilehash: d8e44a8aade60d21734477d60bccc2bd5194436e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a8a42eddcb577725f04d70e1b1ebbebf10b5937c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-disable-email-verification-during-consumer-sign-up"></a>Azure Active Directory B2C : désactiver la vérification par e-mail lors de l’inscription du consommateur
-Lorsqu'il est activé, Azure Active Directory (Azure AD) B2C permet à un consommateur de s’inscrire à des applications en fournissant une adresse e-mail et en créant un compte local. Azure Active Directory B2C assure la validité des adresses e-mail en demandant aux consommateurs de les vérifier pendant le processus d’inscription. Cela empêche un processus malveillant automatisé de générer des faux comptes pour les applications.
+Lorsque activé, permet d’Azure Active Directory (Azure AD) B2C un consommateur hello toosign de capacité pour les applications en fournissant une adresse de messagerie et de création d’un compte local. Azure AD B2C garantit des adresses de messagerie valides en exigeant que les consommateurs tooverify leur pendant le processus d’inscription hello. Elle évite également d’un processus automatisé malveillant à partir de la génération des comptes factices pour les applications de hello.
 
-Certains développeurs d’applications préfèrent ignorer la vérification par e-mail pendant le processus d’inscription et demander aux consommateurs de vérifier l’adresse e-mail ultérieurement. Pour ce faire, Azure Active Directory B2C peut être configuré afin de désactiver la vérification par e-mail. Cette opération crée un processus de connexion plus simple et offre aux développeurs la possibilité de différencier les consommateurs qui ont vérifié leur e-mail de ceux qui ne l'ont pas encore fait.
+Certains développeurs d’applications préfèrent la vérification du courrier électronique tooskip pendant le processus d’inscription hello et ont à la place des consommateurs vérifier adresse de messagerie hello plus tard. toosupport cela, Azure AD B2C peut être la vérification du courrier électronique toodisable configuré. Cela crée un processus de connexion plus lisse et offre aux développeurs hello flexibilité toodifferentiate hello consommateurs qui ont vérifié leur adresse de messagerie à partir de ces consommateurs qui n’ont pas.
 
-Par défaut, la vérification est activée pour les stratégies d’inscription. Pour la désactiver, procédez comme suit :
+Par défaut, la vérification est activée pour les stratégies d’inscription. Utilisez hello suivant les étapes tooturn désactivé :
 
-1. [Suivez ces étapes pour accéder au panneau de fonctionnalités B2C sur le portail Azure](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
+1. [Suivez ces Panneau de fonctionnalités étapes toonavigate toohello B2C hello Azure portal](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
 2. Cliquez sur les **stratégies d’inscription** ou les **stratégies d’inscription ou de connexion** selon la configuration de l'inscription.
-3. Ouvrez votre inscription (par exemple, « B2C_1_SiUp ») en cliquant dessus. Cliquez sur **Modifier** dans la partie supérieure du panneau.
+3. Cliquez sur votre tooopen stratégie (par exemple, « B2C_1_SiUp ») il. Cliquez sur **modifier** haut hello du Panneau de hello.
 4. Cliquez sur la fonctionnalité de **personnalisation de l’interface utilisateur de page**.
 5. Cliquez sur **page d’inscription à un compte Local**.
-6. Cliquez sur **Adresse e-mail** dans la colonne **Nom** colonne sous la section des **attributs d’abonnement**.
-7. Définissez l’option **Exiger la vérification** sur **non**.
-8. Cliquez sur **OK** en bas jusqu'à atteindre le panneau **Modifier une stratégie**.
-9. Cliquez sur **Enregistrer** dans la partie supérieure du panneau. Vous avez terminé !
+6. Cliquez sur **adresse de messagerie** Bonjour **nom** colonne sous hello **des attributs d’abonnement** section.
+7. Hello de bascule **exiger la vérification** option trop**non**.
+8. Cliquez sur **OK** bas hello jusqu'à ce que vous atteigniez hello **modifier la stratégie** panneau.
+9. Cliquez sur **enregistrer** haut hello du Panneau de hello. Vous avez terminé !
 
 > [!NOTE]
-> La désactivation de la vérification par e-mail dans le processus d’inscription peut entraîner la réception de courrier indésirable. Si vous désactivez la vérification par défaut, nous vous recommandons d’ajouter votre propre système de vérification.
+> La désactivation de vérification de courrier électronique dans le processus d’inscription hello peut entraîner un toospam. Si vous désactivez hello par défaut, nous vous recommandons d’ajouter votre propre système de vérification.
 > 
 > 
 
-Nous sommes ouverts aux commentaires et suggestions ! Si vous avez des difficultés avec cette rubrique, ou si vous avez des conseils pour améliorer ce contenu, faites-nous part de vos commentaires en bas de la page. En cas de demandes liées aux fonctionnalités, utilisez [UserVoice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c).
+Nous sommes toujours ouvrir toofeedback ainsi que des suggestions ! Si vous rencontrez des difficultés avec cette rubrique, ou que vous avez des recommandations pour améliorer ce contenu, nous aimerions connaître votre opinion bas hello de page de hello. Pour les demandes de fonctionnalités, ajoutez-les trop[UserVoice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c).

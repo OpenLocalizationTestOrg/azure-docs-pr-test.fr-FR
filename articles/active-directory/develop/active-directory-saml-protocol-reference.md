@@ -1,6 +1,6 @@
 ---
-title: "Informations de référence sur le protocole SAML d’Azure AD | Microsoft Docs"
-description: "Cet article fournit une vue d’ensemble des profils SAML d’authentification unique et de déconnexion unique dans Azure Active Directory."
+title: "aaaAzure référence du protocole SAML AD | Documents Microsoft"
+description: "Cet article fournit une vue d’ensemble de profils de l’authentification unique et SAML de déconnexion unique hello dans Azure Active Directory."
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
@@ -16,25 +16,25 @@ ms.date: 07/21/2017
 ms.author: priyamo
 ms.custom: aaddev
 ms.reviewer: dastrock
-ms.openlocfilehash: d5ffba5d0c409fe9de7a9e82c6faa4ca2702ab95
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d712289b16dc40a6b43a96fadef729c55cdaac47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Prise en charge du protocole SAML dans Azure Active Directory
-Azure Active Directory (Azure AD) utilise le protocole SAML 2.0 pour permettre aux applications de fournir une expérience d’authentification unique à leurs utilisateurs. Les profils SAML [Authentification unique](active-directory-single-sign-on-protocol-reference.md) et [Déconnexion unique](active-directory-single-sign-out-protocol-reference.md) d’Azure AD expliquent comment les assertions, les protocoles et les liaisons SAML sont utilisées dans le service de fournisseur d’identité.
+# Comment Azure Active Directory utilise le protocole SAML de hello
+Azure Active Directory (Azure AD) utilise hello SAML 2.0 protocole tooenable applications tooprovide une authentification unique sur expérience tootheir les utilisateurs. Hello [Single Sign-On](active-directory-single-sign-on-protocol-reference.md) et [déconnexion unique](active-directory-single-sign-out-protocol-reference.md) profils SAML d’Azure AD expliquent comment les assertions SAML, les protocoles et les liaisons sont utilisées dans le service de fournisseur d’identité hello.
 
-Le protocole SAML a besoin du fournisseur d’identité (Azure AD) et du fournisseur de services (l’application) pour échanger des informations à leur sujet.
+Protocole SAML requiert le fournisseur d’identité hello (Azure AD) et hello service fournisseur (application hello) tooexchange informations les concernant.
 
-Lorsqu’une application est enregistrée auprès d’Azure AD, le développeur d’applications enregistre les informations liées à la fédération auprès d’Azure AD. Ces informations englobent notamment **l’URI de redirection** et **l’URI des métadonnées** de l’application.
+Lorsqu’une application est inscrite auprès d’Azure AD, développeur d’application hello enregistre les informations liées à la fédération avec Azure AD. Cela inclut les hello **URI de redirection** et **Metadata URI** de l’application hello.
 
-Azure AD utilise **l’URI des métadonnées** du service cloud pour récupérer la clé de signature et l’URI de déconnexion du service cloud. Si l’application ne prend pas en charge l’URI des métadonnées, le développeur doit contacter le support Microsoft pour obtenir l’URI de déconnexion et la clé de signature.
+Azure AD utilise hello **Metadata URI** Hello de tooretrieve du service de cloud hello signature de déconnexion de la clé et hello URI du service de cloud hello. Si l’application hello ne prend pas en charge un URI de métadonnées, le développeur de hello doit contacter Microsoft support tooprovide hello URI de déconnexion et la clé de signature.
 
-Azure Active Directory expose les points de terminaison d’authentification unique et de déconnexion unique communs (indépendants du client) et spécifiques au client. Ces URL représentent les emplacements adressables et ne jouent pas simplement le rôle d’identificateurs. Vous pouvez donc accéder au point de terminaison pour lire les métadonnées.
+Azure Active Directory expose les points de terminaison d’authentification unique et de déconnexion unique communs (indépendants du client) et spécifiques au client. Ces URL représente les emplacements adressables : ils ne sont pas simplement d’identificateurs--vous pouvez accéder des métadonnées de hello tooread toohello point de terminaison.
 
-* Le point de terminaison propre au client se trouve à l’adresse `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.  L’espace réservé <TenantDomainName> représente un nom de domaine inscrit ou le GUID TenantID d’un locataire Azure AD. Par exemple, les métadonnées de fédération du locataire contoso.com se trouvent à l’adresse : https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
+* point de terminaison Hello spécifiques du client se trouve dans `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.  Hello <TenantDomainName> espace réservé représente un nom de domaine inscrit ou le GUID de TenantID d’un locataire Azure AD. Par exemple, les métadonnées de fédération hello du client de contoso.com hello sont à : https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
 
-* Le point de terminaison indépendant du client se trouve à l’adresse `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`. Dans cette adresse de point de terminaison, l’élément **common** remplace le nom de domaine ou l’ID du locataire.
+* point de terminaison Hello indépendant du client se trouve dans `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`. Dans cette adresse de point de terminaison, **commune** s’affiche, au lieu d’un nom de domaine client ou le code.
 
-Pour plus d’informations sur les documents de métadonnées de fédération publiés par Azure AD, consultez la page [Métadonnées de fédération](active-directory-federation-metadata.md).
+Pour plus d’informations sur les documents de métadonnées de fédération hello Azure AD publie, consultez [les métadonnées de fédération](active-directory-federation-metadata.md).

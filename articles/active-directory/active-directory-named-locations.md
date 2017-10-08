@@ -1,6 +1,6 @@
 ---
-title: "Emplacements nommés dans Azure Active Directory | Documents Microsoft"
-description: "En configurant des emplacements nommés, vous pouvez éviter que des adresses IP appartenant à votre organisation ne génèrent de faux positifs pour le type d’événement à risque Voyage impossible vers des emplacements inhabituels."
+title: emplacements aaaNamed dans Azure Active Directory | Documents Microsoft
+description: "En configurant les emplacements nommés, vous pouvez éviter d’avoir des IP adresses qui sont détenus par votre organisation générant des faux positifs pour les emplacements de tooatypical hello voyage Impossible du type d’événement risque."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,48 +14,48 @@ ms.topic: article
 ms.date: 07/31/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: ff31ded1d9d60e47e0ae5f01119de78cd7f2df38
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 591e4b94b2ec9d45e20c01711e922f9972e047e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="named-locations-in-azure-active-directory"></a>Emplacements nommés dans Azure Active Directory
 
-Grâce à la fonctionnalité des emplacements nommés Azure Active Directory, vous pouvez désigner des plages d’adresses IP approuvées au sein d’une organisation. Dans votre environnement, vous pouvez utiliser les emplacements nommés dans le cadre de la détection d’[événements à risque](active-directory-reporting-risk-events.md). Cette fonction permet de réduire le nombre de faux-positifs signalés pour le type d’événement à risque *Voyage impossible vers des emplacements inhabituels*. 
+Avec hello nommé fonctionnalité emplacements d’Azure Active Directory, vous pouvez étiqueter des plages d’adresses IP approuvées dans votre organisation. Dans votre environnement, vous pouvez utiliser les emplacements nommés dans le contexte de hello de détection hello de [risque d’événements](active-directory-reporting-risk-events.md). fonctionnalité de Hello contribue à réduire hello de fausses signalés pour hello *emplacements de voyage Impossible tooatypical* risque de type d’événement. 
 
 ## <a name="configuration"></a>Configuration
 
-Pour configurer un emplacement nommé :
+tooconfigure un emplacement nommé :
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com) en tant qu’administrateur général.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) en tant qu’administrateur global.
 
-2. Dans le volet gauche, cliquez sur **Azure Active Directory**.
+2. Dans le volet gauche de hello, cliquez sur **Azure Active Directory**.
 
-    ![Lien Azure Active Directory dans le volet gauche](./media/active-directory-named-locations/01.png)
+    ![lien d’Azure Active Directory Hello dans le volet gauche de hello](./media/active-directory-named-locations/01.png)
 
-3. Dans le panneau **Azure Active Directory**, sous la section **Sécurité**, cliquez sur **Accès conditionnel**.
+3. Sur hello **Azure Active Directory** panneau, Bonjour **sécurité** , cliquez sur **accès conditionnel**.
 
-    ![Commande Accès conditionnel](./media/active-directory-named-locations/05.png)
-
-
-4. Dans le panneau **Azure Active Directory**, sous la section **Gérer**, cliquez sur **Emplacements nommés**.
-
-    ![Commande Emplacements nommés](./media/active-directory-named-locations/06.png)
+    ![Hello, la commande d’accès conditionnel](./media/active-directory-named-locations/05.png)
 
 
-5. Dans le panneau **Emplacements nommés**, cliquez sur **Nouvel emplacement**.
+4. Sur hello **accès conditionnel** panneau, Bonjour **gérer** , cliquez sur **emplacements nommés**.
 
-    ![Commande Nouvel emplacement](./media/active-directory-named-locations/07.png)
+    ![Hello nommé emplacements commande](./media/active-directory-named-locations/06.png)
 
 
-6. Dans le panneau **Nouveau**, procédez comme suit :
+5. Sur hello **emplacements nommés** panneau, cliquez sur **nouvel emplacement**.
 
-    ![Panneau Nouveau](./media/active-directory-named-locations/08.png)
+    ![Hello nouvelle commande de l’emplacement](./media/active-directory-named-locations/07.png)
 
-    a. Dans la zone de texte **Nom**, tapez un nom pour votre emplacement nommé.
 
-    b. Dans la zone de texte **Plage d’adresses IP**, tapez une plage d’adresses IP. La plage d’adresses IP doit être au format *CIDR* (Classless Inter-Domain Routing).  
+6. Sur hello **nouveau** panneau, hello suivant :
+
+    ![Nouveau panneau de Hello](./media/active-directory-named-locations/08.png)
+
+    a. Bonjour **nom** , tapez un nom pour votre emplacement nommé.
+
+    b. Bonjour **plages IP** , tapez une plage IP. plage d’adresses IP Hello doit toobe Bonjour *inter-Domain Routing* format (CIDR).  
 
     c. Cliquez sur **Create**.
 
@@ -63,15 +63,15 @@ Pour configurer un emplacement nommé :
 
 ## <a name="what-you-should-know"></a>Ce que vous devez savoir
 
-**Mises à jour en bloc** : lorsque vous créez ou mettez à jour des emplacements nommés, pour effectuer des mises à jour en bloc, vous pouvez charger ou télécharger un fichier CSV contenant les plages d’adresses IP. Un téléchargement ajoute les plages d’adresses IP dans le fichier au lieu de remplacer la liste.
+**Les mises à jour en bloc de**: lorsque vous créez ou mettez à jour les emplacements nommés, pour les mises à jour en bloc, vous pouvez télécharger ou télécharger un fichier CSV avec des plages IP hello. Un téléchargement ajoute des plages d’adresses IP hello dans la liste toohello des fichiers hello au lieu de remplacer la liste de hello.
 
-![Liens Charger et Télécharger](./media/active-directory-named-locations/09.png)
+![Hello télécharger des liens](./media/active-directory-named-locations/09.png)
 
 
-**Limites** : vous pouvez définir un maximum de 60 emplacements nommés avec une plage d’adresses IP assignée à chacun d’eux. Si vous n’avez qu’un seul emplacement nommé configuré, vous pouvez définir jusqu’à 500 plages d’adresses IP pour celui-ci.
+**Limitations**: vous pouvez définir un maximum de 60 emplacements nommés, avec un tooeach de plage affectée IP d'entre eux. Si vous avez qu’un seul emplacement nommé configuré, vous pouvez définir des plages d’adresses IP too500 pour celle-ci.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur les événements à risque, consultez [Événements à risque dans Azure Active Directory](active-directory-reporting-risk-events.md).
+toolearn en savoir plus sur les événements à risque, consultez [événements à risque Azure Active Directory](active-directory-reporting-risk-events.md).
 

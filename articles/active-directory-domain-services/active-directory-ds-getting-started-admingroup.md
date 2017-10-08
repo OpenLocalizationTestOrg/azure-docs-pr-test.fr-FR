@@ -1,6 +1,6 @@
 ---
 title: "Bien démarrer avec Azure Active Directory Domain Services | Microsoft Docs"
-description: "Activer Azure Active Directory Domain Services à l’aide du portail Azure (préversion)"
+description: "Activer Azure Active Directory Domain Services à l’aide de hello portail Azure (aperçu)"
 services: active-directory-ds
 documentationcenter: 
 author: mahesh-unnikrishnan
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/15/2017
 ms.author: maheshu
-ms.openlocfilehash: f87bcf33d3b1eb21c7d84814e4c4086f664e293d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8bde872a13bc9960d1e62c74017ff78a8953a0a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-azure-active-directory-domain-services-using-the-azure-portal-preview"></a>Activer Azure Active Directory Domain Services à l’aide du portail Azure (préversion)
+# <a name="enable-azure-active-directory-domain-services-using-hello-azure-portal-preview"></a>Activer Azure Active Directory Domain Services à l’aide de hello portail Azure (aperçu)
 
 
 ## <a name="task-3-configure-administrative-group"></a>Tâche 3 : configurer le groupe d’administration
-Dans cette tâche de configuration, vous allez créer un groupe d’administration dans votre répertoire Azure AD. Ce groupe d’administration spécial est appelé *AAD DC Administrators*. Les membres de ce groupe bénéficient d’autorisations d’administration sur les machines jointes au domaine managé. Sur les ordinateurs joints au domaine, ce groupe est ajouté au groupe « Administrateurs ». En outre, les membres de ce groupe sont également autorisés à utiliser le Bureau à distance pour se connecter à distance aux ordinateurs joints au domaine.
+Dans cette tâche de configuration, vous allez créer un groupe d’administration dans votre répertoire Azure AD. Ce groupe d’administration spécial est appelé *AAD DC Administrators*. Membres de ce groupe ont des autorisations d’administration sur les ordinateurs qui appartiennent à un domaine géré de toohello de domaine. Sur les ordinateurs joints à un domaine, ce groupe est ajouté toohello groupe d’administrateurs. En outre, les membres de ce groupe peuvent utiliser Bureau à distance tooconnect à distance toodomain-ordinateurs joints à un.
 
 > [!NOTE]
-> Vous ne bénéficiez pas des autorisations d’administrateur de domaine ou d’administrateur d’entreprise sur le domaine géré que vous avez créé à l’aide des services de domaine Azure Active Directory. Dans un domaine géré, ces autorisations sont réservées par le service et ne sont pas accessibles aux utilisateurs au sein du client. Toutefois, vous pouvez utiliser le groupe d’administrateurs spécial créé dans cette tâche de configuration, afin d’exécuter des opérations privilégiées. Ces opérations comprennent l’ajout d’ordinateurs au domaine, l’appartenance au groupe Administrateurs sur les ordinateurs joints au domaine, la configuration de stratégie de groupe.
+> Il est inutile des autorisations administrateur de domaine ou administrateur d’entreprise sur un domaine géré hello que vous avez créé à l’aide d’Azure Active Directory Domain Services. Dans des domaines gérés, ces autorisations sont réservées par le service de hello et ne sont pas apportées toousers disponibles au sein de client de hello. Toutefois, vous pouvez utiliser hello spéciaux groupe d’administration créés dans cette tooperform de tâche de configuration certaines opérations privilégiées. Ces opérations comprennent la jonction de domaine toohello des ordinateurs, appartenant toohello groupe d’administration sur les ordinateurs joints au domaine et stratégie de groupe.
 >
 
-L’Assistant crée automatiquement le groupe d’administration dans votre répertoire Azure AD. Ce groupe est appelé « Administrateurs AAD DC ». Si vous disposez d’un groupe du même nom dans votre répertoire Azure AD, l’Assistant sélectionne ce groupe. Vous pouvez configurer l’appartenance au groupe au moyen de la page **Groupe des administrateurs** de l’Assistant.
+Assistant de Hello crée automatiquement le groupe d’administration hello dans votre annuaire Azure AD. Ce groupe est appelé « Administrateurs AAD DC ». Si vous disposez d’un groupe portant ce nom dans votre annuaire Azure AD, Assistant de hello sélectionne ce groupe. Vous pouvez configurer l’appartenance au groupe à l’aide de hello **groupe administrateur** page de l’Assistant.
 
-1. Pour configurer l’appartenance au groupe, cliquez sur **Administrateurs AAD DC**.
+1. appartenance au groupe de tooconfigure, cliquez sur **administrateurs du contrôleur de domaine AAD**.
 
     ![Configurer l’appartenance au groupe](./media/getting-started/domain-services-blade-admingroup.png)
 
-2. Cliquez sur le bouton **Ajouter des membres** pour ajouter des utilisateurs au groupe Administrateurs à partir de votre répertoire Azure AD.
+2. Cliquez sur hello **ajouter des membres** bouton tooadd les utilisateurs de votre groupe d’administrateur Azure AD directory toohello.
 
-3. Lorsque vous avez terminé, cliquez sur **OK** pour accéder à la page **Résumé** de l’Assistant.
+3. Lorsque vous avez terminé, cliquez sur **OK** toomove sur toohello **Résumé** page d’Assistant de hello.
 
-4. Dans la page **Résumé** de l’Assistant, examinez les paramètres de configuration du domaine managé. Si nécessaire, vous pouvez revenir à une étape quelconque de l’Assistant pour y apporter des modifications. Lorsque vous avez terminé, cliquez sur **OK** pour créer le domaine managé.
+4. Sur hello **Résumé** page d’Assistant hello, vérifier les paramètres de configuration hello pour le domaine géré de hello. Vous pouvez revenir en arrière étape tooany des modifications de toomake Assistant hello, si nécessaire. Lorsque vous avez terminé, cliquez sur **OK** toocreate hello gérés nouveau domaine.
 
     ![Résumé](./media/getting-started/domain-services-blade-summary.png)
 
-5. Vous voyez une notification indiquant la progression de votre déploiement Azure AD Domain Services. Cliquez sur la notification pour afficher la progression détaillée du déploiement.
+5. Vous voyez une notification qui affiche la progression de hello de votre déploiement de Services de domaine Active Directory de Azure. Cliquez sur la notification de hello toosee détaillées de progression pour le déploiement de hello.
 
     ![Notification - Déploiement en cours](./media/getting-started/domain-services-blade-deployment-in-progress.png)
 
 
 ## <a name="provision-your-managed-domain"></a>Approvisionner votre domaine managé
-Le processus d’approvisionnement de votre domaine managé peut prendre jusqu’à une heure.
+processus de Hello de configuration de votre domaine géré peut prendre tooan heure.
 
-1. Pendant que votre déploiement est en cours, vous pouvez rechercher « Domain Services » dans la zone de recherche **Rechercher des ressources**. Sélectionnez **Azure AD Domain Services** dans les résultats de la recherche. Le panneau **Azure AD Domain Services** affiche le domaine managé en cours d’approvisionnement.
+1. Pendant que votre déploiement est en cours d’exécution, vous pouvez rechercher des services de domaine Bonjour **recherche les ressources** zone de recherche. Sélectionnez **les Services de domaine Active Directory de Azure** à partir du résultat de recherche hello. Hello **les Services de domaine Active Directory de Azure** panneau répertorie hello domaine géré qui est en cours d’approvisionnement.
 
     ![Rechercher le domaine managé en cours d’approvisionnement](./media/getting-started/domain-services-provisioning-state-find-resource.png)
 
-2. Pour plus d’informations sur le domaine, cliquez sur le nom du domaine managé (par exemple, « contoso100.com »).
+2. Cliquez sur nom hello hello géré (par exemple, « contoso100.com ») de domaine toosee plus de détails sur le domaine de hello.
 
     ![Domain Services - État d’approvisionnement](./media/getting-started/domain-services-provisioning-state.png)
 
-3. L’onglet **Vue d’ensemble** montre que le domaine est actuellement en cours d’approvisionnement. Vous ne pouvez pas configurer le domaine managé tant qu’il n’est pas entièrement approvisionné. L’approvisionnement complet de votre domaine managé peut prendre jusqu’à une heure.
+3. Hello **vue d’ensemble** onglet affiche ce domaine hello est actuellement en cours d’approvisionnement. Vous ne pouvez pas configurer le domaine géré de hello jusqu'à ce qu’il est entièrement configuré. Cela peut prendre jusqu'à l’heure tooan pour votre toobe domaine géré entièrement configuré.
 
-    ![Domain Services - Onglet Vue d’ensemble durant l’approvisionnement ](./media/getting-started/domain-services-provisioning-state-details.png)
+    ![Services de domaine - onglet vue d’ensemble au cours de l’état d’approvisionnement de hello ](./media/getting-started/domain-services-provisioning-state-details.png)
 
-4. Lorsque le domaine managé est entièrement approvisionné, l’onglet **Vue d’ensemble** affiche l’état du domaine comme **En cours d’exécution**.
+4. Lorsque le domaine géré de hello est entièrement configuré, hello **vue d’ensemble** onglet affiche l’état domaine hello **en cours d’exécution**.
 
     ![Domain Services - Onglet Vue d’ensemble une fois la configuration terminée](./media/getting-started/domain-services-provisioned.png)
 
-5. Sous l’onglet **Propriétés**, vous voyez deux adresses IP auxquelles des contrôleurs de domaine sont disponibles pour le réseau virtuel.
+5. Sur hello **propriétés** onglet, vous voyez deux adresses IP pour le domaine contrôleurs sont disponibles pour les réseaux virtuels hello.
 
     ![Domain Services - Onglet Propriétés après un approvisionnement complet](./media/getting-started/domain-services-provisioned-properties.png)
 
 
 ## <a name="next-step"></a>Étape suivante
-[Tâche 4 : Mettre à jour les paramètres DNS pour le réseau virtuel Azure](active-directory-ds-getting-started-dns.md)
+[Tâche 4 : mettre à jour les paramètres DNS hello hello réseau virtuel Azure](active-directory-ds-getting-started-dns.md)

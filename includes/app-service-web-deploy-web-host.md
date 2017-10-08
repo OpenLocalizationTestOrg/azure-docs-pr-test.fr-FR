@@ -1,5 +1,5 @@
 ### <a name="app-service-plan"></a>Plan App Service
-Crée le plan de service pour l'hébergement de l'application web. Vous fournissez le nom du plan à l'aide du paramètre **hostingPlanName** . L’emplacement du plan est identique à celui utilisé pour le groupe de ressources. Le niveau tarifaire et la taille de worker sont spécifiés dans les paramètres **sku** et **workerSize**.
+Crée un plan de service hello pour l’hébergement de l’application web hello. Vous fournissez le nom hello du plan hello via hello **hostingPlanName** paramètre. emplacement Hello du plan de hello est hello même emplacement utilisé pour le groupe de ressources hello. taille de couche et de travail tarification Hello sont spécifiés dans hello **référence (SKU)** et **workerSize** paramètres
 
     {
       "apiVersion": "2015-08-01",

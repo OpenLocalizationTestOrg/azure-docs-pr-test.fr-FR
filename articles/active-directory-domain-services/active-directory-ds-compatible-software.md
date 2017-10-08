@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 1a4af8c9a5f30cf7ea24d587866d1b41ab9cfb2c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7c393eead91ff43dd862bbf10e3af44062ffeff9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="third-party-software-compatible-with-azure-ad-domain-services"></a>Logiciels tiers compatibles avec Azure Active Directory Domain Services
 
@@ -26,7 +26,7 @@ ms.lasthandoff: 07/11/2017
 
 ![One Identity](./media/compatible-software-icons/OneIdentity.png)
 
-Les services d’authentification One Identity permettent aux systèmes Unix, Linux et Mac OS X d’utiliser les accès, les authentifications et les autorisations de l’infrastructure Active Directory (AD) d’une organisation. Les services d’authentification prennent désormais en charge l’activation par Azure Active Directory Domain Services de ressources non-Windows pour utiliser la même plateforme nouvelle génération que celle qu’utilisent déjà vos solutions SaaS.
+Un service d’authentification identité permet d’accès de hello de toouse systèmes Unix, Linux et Mac OS X, l’authentification et l’autorisation de l’infrastructure d’Active Directory (AD) existant d’une organisation. Services d’authentification prend désormais en charge Azure Active Directory Domain Services activation tooutilize hello même plateforme de nouvelle génération vos solutions SaaS existantes déjà utilisent des ressources non Windows.
 
 [Services d’authentification One Identity](https://www.quest.com/products/authentication-services/)
 
@@ -37,6 +37,6 @@ Les services d’authentification One Identity permettent aux systèmes Unix, Li
 
 ![Red Hat](./media/compatible-software-icons/RedHat.png)
 
-Red Hat Enterprise Linux est la plateforme Linux leader dans le monde. Elle a été conçue pour répondre aux besoins des entreprises modernes actuelles. Red Hat Enterprise Linux est la solution la plus fréquemment choisie pour les charges de travail de machine virtuelle (VM) Linux sur Microsoft Azure. Red Hat Enterprise Linux est une plateforme ouverte, fiable et sécurisée, conçue pour les clients qui souhaitent bénéficier d’une flexibilité de déploiement pour leurs charges de travail critiques, du centre de données vers le cloud Azure, le tout avec un support technique intégré de Red Hat et de Microsoft.
+Red Hat Enterprise Linux est début Linux plate-forme du Bonjour toomeet besoins hello les entreprises modernes aujourd'hui. Red Hat Enterprise Linux est choix hello préféré pour les charges de travail de machine virtuelle (VM) enterprise Linux sur Microsoft Azure. Red Hat Enterprise Linux est ouvert, fiable, et conçu pour les clients ayant besoin de flexibilité de déploiement pour leurs charges de travail critiques - de toohello de centre de données hello cloud Azure - de plate-forme sécurisée stockée par étroitement intégré, à l’échelle de l’entreprise prend en charge de Red Hat et Microsoft.
 
-[Joindre une machine virtuelle RedHat Enterprise Linux 7.2 à Azure Active Directory Domain Services](active-directory-ds-admin-guide-join-rhel-linux-vm.md)
+[Joindre des Services de domaine de machine virtuelle de RedHat Enterprise Linux 7.2 tooAzure AD](active-directory-ds-admin-guide-join-rhel-linux-vm.md)

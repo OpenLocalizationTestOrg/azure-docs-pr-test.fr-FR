@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Sprinklr | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Sprinklr."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Sprinklr."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/10/2017
 ms.author: jeedes
-ms.openlocfilehash: 6e1622cd55e3b0e8063604ac9dc0cb0673fa9753
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14b467c72d4a453ed7ad248eadcdade710f105af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-sprinklr"></a>Didacticiel : Intégration d’Azure Active Directory à Sprinklr
 
-Dans ce didacticiel, vous allez apprendre à intégrer Sprinklr à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate Sprinklr avec Azure Active Directory (Azure AD).
 
-L’intégration de Sprinklr dans Azure AD vous offre les avantages suivants :
+Intégration de Sprinklr à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à Sprinklr
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Sprinklr (par le biais de l’authentification unique) avec leur compte Azure AD
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooSprinklr
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooSprinklr (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à Sprinklr, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD à Sprinklr, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Sprinklr pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Sprinklr à partir de la galerie
+1. Ajout de Sprinklr à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-sprinklr-from-the-gallery"></a>Ajout de Sprinklr à partir de la galerie
-Pour configurer l’intégration de Sprinklr avec Azure AD, vous devez ajouter Sprinklr, disponible dans la galerie, à votre liste d’applications SaaS gérées.
+## <a name="adding-sprinklr-from-hello-gallery"></a>Ajout de Sprinklr à partir de la galerie de hello
+intégration de hello tooconfigure de Sprinklr à Azure AD, vous devez tooadd Sprinklr à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Sprinklr à partir de la galerie, procédez comme suit :**
+**tooadd Sprinklr à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, entrez **Sprinklr**.
+4. Dans la zone de recherche de hello, tapez **Sprinklr**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sprinklr-tutorial/tutorial_sprinklr_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Sprinklr**, puis cliquez sur **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **Sprinklr**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sprinklr-tutorial/tutorial_sprinklr_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Sprinklr, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Sprinklr correspondant dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur Sprinklr associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Sprinklr est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur dans Sprinklr hello doit toobe établie.
 
-Dans Sprinklr, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.
+Dans Sprinklr, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec Sprinklr, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique à Sprinklr, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Sprinklr](#creating-a-sprinklr-test-user)** pour avoir un équivalent de Britta Simon dans Sprinklr lié à la représentation Azure AD de l’utilisateur.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test Sprinklr](#creating-a-sprinklr-test-user)**  -toohave un équivalent de Britta Simon dans Sprinklr est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Sprinklr.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Sprinklr.
 
-**Pour configurer l’authentification unique Azure AD avec Sprinklr, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec Sprinklr, procédez hello comme suit :**
 
-1. Dans le portail Azure, sur la page d’intégration de l’application **Sprinklr**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Sprinklr** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-sprinklr-tutorial/tutorial_sprinklr_samlbase.png)
 
-3. Dans la section **Domaine et URL Sprinklr**, procédez comme suit :
+3. Sur hello **Sprinklr domaine et les URL** section, effectuer hello comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sprinklr-tutorial/tutorial_sprinklr_url.png)
 
-    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<subdomain>.sprinklr.com`
+    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.sprinklr.com`
 
-    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<subdomain>.sprinklr.com`
+    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.sprinklr.com`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour les valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez l’[équipe de support technique Sprinklr](https://www.sprinklr.com/contact-us/). 
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour la valeur de hello avec hello réel Sign-On URL et l’identificateur. Contact [équipe de support Client de Sprinklr](https://www.sprinklr.com/contact-us/) tooget ces valeurs. 
  
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sprinklr-tutorial/tutorial_sprinklr_certificate.png) 
 
@@ -125,15 +125,15 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sprinklr-tutorial/tutorial_general_400.png)
 
-6. Dans la section **Configuration de Sprinklr**, cliquez sur **Configurer Sprinklr** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez **l’URL de déconnexion, l’ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
+6. Sur hello **Sprinklr Configuration** , cliquez sur **Sprinklr de configurer** tooopen **configurer l’authentification** fenêtre. Hello de copie **URL de déconnexion, ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
 
-7. Dans une autre fenêtre de navigateur web, connectez-vous au site de votre entreprise Sprinklr en tant qu’administrateur.
+7. Dans une fenêtre de navigateur web, ouvrez une session dans le site d’entreprise Sprinklr tooyour en tant qu’administrateur.
 
-8. Accédez à **Administration \> Settings**.
+8. Accédez trop**Administration \> paramètres**.
    
     ![Administration](./media/active-directory-saas-sprinklr-tutorial/ic782907.png "Administration")
 
-9. Accédez à **Manager Partner \> Single Sign** dans le volet gauche.
+9. Accédez trop**gérer un partenaire \> l’authentification unique** sur hello volet de gauche.
    
     ![Gérer les partenaires](./media/active-directory-saas-sprinklr-tutorial/ic782908.png "Gérer les partenaires")
 
@@ -141,75 +141,75 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
    
     ![Authentification unique](./media/active-directory-saas-sprinklr-tutorial/ic782909.png "Authentification unique")
 
-11. Dans la page **Single Sign on** , procédez comme suit :
+11. Sur hello **Single Sign on** page, effectuer hello comme suit :
    
     ![Authentification unique](./media/active-directory-saas-sprinklr-tutorial/ic782910.png "Authentification unique")
 
-    a. Dans la zone de texte **Name**, indiquez le nom de votre configuration (par exemple, *WAADSSOTest*).
+    a. Bonjour **nom** zone de texte, tapez un nom pour votre configuration (par exemple : *WAADSSOTest*).
 
     b. Sélectionnez **Enabled**.
 
     c. Sélectionnez **Use new SSO Certificate**.
              
-    e. Ouvrez votre certificat codé en base 64 dans le Bloc-notes, copiez son contenu dans le Presse-papiers, puis collez-le dans la zone de texte **Identity provider certificate (Certificat du fournisseur d’identité)**.
+    e. Ouvrez votre certificat codé en base 64 dans le bloc-notes, hello copie contenu de celui-ci dans le Presse-papiers et le coller ensuite toohello **certificat de fournisseur d’identité** zone de texte.
 
-    f. Dans la zone de texte **ID d’entité**, collez la valeur **ID d’entité SAML** que vous avez copié à partir du portail Azure.
+    f. Hello de coller **ID d’entité SAML** valeur sur laquelle vous avez copié à partir du portail Azure en hello **Id d’entité** zone de texte.
 
-    g. Collez la valeur **URL du service d’authentification unique SAML** copiée à partir du portail Azure dans la zone de texte **URL d’identification du fournisseur d’identité**.
+    g. Hello de coller **SAML Sign-On URL du Service unique** valeur sur laquelle vous avez copié à partir du portail Azure en hello **Identity Provider Login URL** zone de texte.
 
-    h. Collez la valeur **URL de déconnexion** copiée à partir du portail Azure dans la zone de texte **URL de déconnexion du fournisseur d’identité**.
+    h. Hello de coller **URL de déconnexion** valeur sur laquelle vous avez copié à partir du portail Azure en hello **Identity Provider Logout URL** zone de texte.
      
     i. Dans **SAML User ID Type**, sélectionnez **Assertion contains User’s sprinklr.com username**.
 
-    j. Dans **SAML User ID Location**, sélectionnez **User ID is in the Name Identifier element of the Subject statement**.
+    j. En tant que **emplacement d’ID utilisateur SAML**, sélectionnez **ID d’utilisateur est dans l’élément identificateur de nom de hello Hello Subject statement**.
 
     k. Cliquez sur **Save**.
        
     ![SAML](./media/active-directory-saas-sprinklr-tutorial/ic782911.png "SAML")
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sprinklr-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sprinklr-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sprinklr-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sprinklr-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-sprinklr-test-user"></a>Création d’un utilisateur de test Sprinklr
 
-1. Connectez-vous à votre site d’entreprise Sprinklr en tant qu’administrateur.
+1. Ouvrez une session dans tooyour site d’entreprise Sprinklr en tant qu’administrateur.
 
-2. Accédez à **Administration \> Settings**.
+2. Accédez trop**Administration \> paramètres**.
    
     ![Administration](./media/active-directory-saas-sprinklr-tutorial/ic782907.png "Administration")
 
-3. Accédez à **Manage Client \> Users** dans le volet gauche.
+3. Accédez trop**gérer le Client \> utilisateurs** hello volet de gauche.
    
     ![Paramètres](./media/active-directory-saas-sprinklr-tutorial/ic782914.png "Paramètres")
 
@@ -217,11 +217,11 @@ L’objectif de cette section est de créer un utilisateur de test appelé Britt
    
     ![Paramètres](./media/active-directory-saas-sprinklr-tutorial/ic782915.png "Paramètres")
 
-5. Dans la page **Edit User** , procédez comme suit :
+5. Sur hello **modifier l’utilisateur** boîte de dialogue, effectuer hello comme suit :
    
     ![Modifier l’utilisateur](./media/active-directory-saas-sprinklr-tutorial/ic782916.png "Modifier l’utilisateur") 
 
-    a. Dans les zones de texte **Email**, **First Name** et **Last Name**, saisissez les informations du compte utilisateur Azure AD que vous souhaitez approvisionner.
+    a. Bonjour **messagerie**, **prénom** et **nom** zones de texte, de type hello d’informations d’un compte d’utilisateur Azure AD vous souhaitez tooprovision.
 
     b. Sélectionnez **Password Disabled**.
 
@@ -229,39 +229,39 @@ L’objectif de cette section est de créer un utilisateur de test appelé Britt
 
     d. Sélectionnez un **Type d’utilisateur**.
 
-    e. Cliquez sur **Mettre à jour**.
+    e. Cliquez sur **Update**.
    
      >[!IMPORTANT]
-     >**Password Disabled** pour permettre à un utilisateur de se connecter par le biais d’un fournisseur d’identité. 
+     >**Mot de passe désactivé** doit être sélectionné tooenable un toolog utilisateur dans via un fournisseur d’identité. 
      
-6. Accédez à **Role**, puis procédez comme suit :
+6. Accédez trop**rôle**, puis exécutez hello comme suit :
    
     ![Rôles de partenaires](./media/active-directory-saas-sprinklr-tutorial/ic782917.png "Rôles de partenaires")
 
-    a. Dans la liste **Global**, sélectionnez **ALL\_Permissions**.  
+    a. À partir de hello **Global** liste, sélectionnez **tous les\_autorisations**.  
 
-    b. Cliquez sur **Mettre à jour**.
+    b. Cliquez sur **Update**.
 
 >[!NOTE]
->Vous pouvez utiliser n’importe quel outil ou API de création de compte utilisateur, fourni par Sprinklr, pour approvisionner des comptes utilisateur AAD. 
+>Vous pouvez utiliser n’importe quel autre Sprinklr utilisateur compte outil de création ou API fournie par Sprinklr tooprovision comptes d’utilisateur Azure AD. 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Sprinklr.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooSprinklr.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à Sprinklr, procédez comme suit :**
+**tooassign Britta Simon tooSprinklr, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Sprinklr**.
+2. Dans la liste des applications hello, sélectionnez **Sprinklr**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sprinklr-tutorial/tutorial_sprinklr_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -269,7 +269,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -277,13 +277,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette Sprinklr dans le volet d'accès, vous serez connecté automatiquement à votre application Sprinklr. Pour en savoir plus sur le volet d’accès, consultez l’article [Présentation du volet d’accès](active-directory-saas-access-panel-introduction.md). 
+Lorsque vous cliquez sur mosaïque Sprinklr hello hello volet d’accès, vous devez obtenir application Sprinklr d’automatiquement signé sur tooyour pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

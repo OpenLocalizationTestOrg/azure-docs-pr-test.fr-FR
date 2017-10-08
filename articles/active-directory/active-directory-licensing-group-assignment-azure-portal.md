@@ -1,6 +1,6 @@
 ---
-title: "Affecter des licences à un groupe dans Azure Active Directory | Microsoft Docs"
-description: "Comment affecter des licences à l’aide d’une gestion des licences de groupe Azure Active Directory"
+title: groupe de tooa aaaAssign licences dans Azure Active Directory | Documents Microsoft
+description: Comment tooassign licences toousers au moyen de la licence de groupe Azure Active Directory
 services: active-directory
 keywords: Gestion des licences Azure AD
 documentationcenter: 
@@ -16,95 +16,95 @@ ms.workload: identity
 ms.date: 06/05/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 42b18eab9cb419e6ada72ba72dc8be8d7f7b2eed
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 148fe1bdd6c7f477a00c1f76bd8fa7d29c7b1f2c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-licenses-to-users-by-group-membership-in-azure-active-directory"></a>Affecter des licences aux utilisateurs par appartenance aux groupes dans Azure Active Directory
+# <a name="assign-licenses-toousers-by-group-membership-in-azure-active-directory"></a>Affecter des toousers de licences par l’appartenance au groupe dans Azure Active Directory
 
-Cet article présente l’affectation de licences de produit à un groupe d’utilisateurs avec Azure Active Directory (Azure AD), puis la vérification que les licences ont été correctement reçues.
+Cet article présente l’affectation d’un produit licences tooa groupe d’utilisateurs dans Azure Active Directory (Azure AD) et vérifiez qu’ils sont sous licence correctement.
 
-Dans cet exemple, le locataire contient un groupe de sécurité appelé **HR Department**. Ce groupe inclut tous les membres du département des ressources humaines (environ 1 000 utilisateurs). Vous souhaitez attribuer des licences Office 365 Entreprise E3 à l’ensemble du département. Le service Yammer Enterprise inclus dans le produit doit être temporairement désactivé jusqu’à ce que le département soit prêt à l’utiliser. L’administrateur souhaite également déployer des licences Enterprise Mobility + Security vers le même groupe d’utilisateurs.
+Dans cet exemple, le client de hello contient un groupe de sécurité appelé **service ressources humaines**. Ce groupe inclut tous les membres du département des ressources humaines hello (environ 1 000 utilisateurs). Vous souhaitez que le département toohello de licences tooassign Office 365 entreprise E3. Hello service Yammer une entreprise qui est incluse dans hello produit doit être temporairement désactivée jusqu'à ce que le service de hello est toostart prêt à l’utiliser. Vous souhaitez également toodeploy Enterprise Mobility + Security licences toohello même groupe d’utilisateurs.
 
 > [!NOTE]
-> Certains services Microsoft ne sont pas disponibles dans tous les emplacements. Avant de pouvoir attribuer une licence à un utilisateur, l’administrateur doit spécifier la propriété Emplacement d’utilisation sur l’utilisateur.
+> Certains services Microsoft ne sont pas disponibles dans tous les emplacements. Avant de tooa utilisateur peut être affectée à une licence, administrateur de hello a propriété d’emplacement d’utilisation toospecify hello sur utilisateur de hello.
 
-> Pour l’affectation d’une licence à un groupe, tous les utilisateurs sans emplacement d’utilisation spécifié héritent de l’emplacement du répertoire. Si vous avez des utilisateurs dans plusieurs emplacements, nous vous recommandons de toujours définir l’emplacement d’utilisation dans le cadre de votre flux de création d’utilisateur dans Azure AD (par exemple, via une Configuration AAD Connect). Cela garantit que le résultat de l’affectation de licence est toujours correct et que les utilisateurs ne reçoivent pas de services dans des emplacements non autorisés.
+> Pour l’attribution de licence de groupe, tous les utilisateurs sans un emplacement d’utilisation spécifié héritera emplacement hello du répertoire de hello. Si vous avez des utilisateurs dans plusieurs emplacements, nous vous recommandons de toujours activer l’emplacement d’utilisation dans le cadre de votre flux de création d’utilisateur dans Azure AD (par exemple, via la configuration AAD Connect) - qui garantira hello résultat d’attribution de licence est toujours correct et que les utilisateurs ne reçoivent pas services dans les emplacements qui ne sont pas autorisés.
 
-## <a name="step-1-assign-the-required-licenses"></a>Étape 1 : Affecter les licences requises
+## <a name="step-1-assign-hello-required-licenses"></a>Étape 1 : Attribuer des licences de hello requis
 
-1. Connectez-vous au [**portail Azure**](https://portal.azure.com) avec un compte administrateur. Pour gérer les licences, le compte doit être un rôle Administrateur général ou Administrateur des comptes d’utilisateur.
+1. Connectez-vous à toohello [ **portail Azure** ](https://portal.azure.com) avec un compte d’administrateur. licences toomanage, compte de hello doivent être un administrateur de compte utilisateur ou un rôle Administrateur général.
 
-2. Sélectionnez **Plus de services** dans le volet de navigation de gauche, puis sélectionnez **Azure Active Directory**. Vous pouvez ajouter ce panneau aux Favoris ou l’épingler au tableau de bord du portail.
+2. Sélectionnez **davantage de services** dans hello du volet de navigation gauche, puis sélectionnez **Azure Active Directory**. Vous pouvez ajouter cette tooFavorites panneau ou épingler le tableau de bord de portail toohello.
 
-3. Dans le panneau **Azure Active Directory**, sélectionnez **Licences**. Cela ouvre un panneau dans lequel vous pouvez afficher et gérer tous les produits sous licence dans le locataire.
+3. Sur hello **Azure Active Directory** panneau, sélectionnez **licences**. Cette opération ouvre un panneau où vous pouvez consulter et gérer tous les produits sous licence dans le locataire de hello.
 
-4. Sous **Tous les produits**, sélectionnez Office 365 Enterprise E3 et Enterprise Mobility + Security en sélectionnant les noms de produits. Pour démarrer l’affectation, sélectionnez **Attribuer** en haut du panneau.
+4. Sous **tous les produits**, sélectionnez à la fois Office 365 entreprise E3 et Enterprise Mobility + Security en sélectionnant les noms de produits hello. affectation de hello toostart, sélectionnez **affecter** haut hello du Panneau de hello.
 
    ![Tous les produits, affecter des licences](media/active-directory-licensing-group-assignment-azure-portal/all-products-assign.png)
 
-5. Dans le panneau **Affecter une licence**, cliquez sur **Utilisateurs et groupes** pour ouvrir le panneau **Utilisateurs et groupes**. Recherchez le nom du groupe *HR Department*, sélectionnez le groupe, puis veillez à confirmer en cliquant sur **Sélectionner** en bas du panneau.
+5. Sur hello **affecter licence** panneau, cliquez sur **utilisateurs et groupes** tooopen hello **utilisateurs et groupes** panneau. Recherchez le nom du groupe hello *service ressources humaines*, sélectionnez le groupe de hello, alors que tooconfirm en cliquant sur **sélectionnez** bas hello du Panneau de hello.
 
    ![Sélectionner un groupe](media/active-directory-licensing-group-assignment-azure-portal/select-a-group.png)
 
-6. Dans le panneau **Affecter une licence**, cliquez sur **Options d’affectation (facultatif)** qui affiche tous les plans de service comprenant les deux produits que nous avons sélectionnés précédemment. Recherchez **Yammer Enterprise** et définissez-le sur **Désactivé** pour désactiver ce service à partir de la licence du produit. Confirmez en cliquant sur **OK** en bas des **options d’affectation**.
+6. Sur hello **affecter licence** panneau, cliquez sur **options d’affectation (facultatives)**, qui affiche tous les plans de service inclus dans hello deux produits qui nous précédemment sélectionnées. Rechercher **Yammer une entreprise** et mettez-le **hors** toodisable le service de licence de produit hello. Confirmez en cliquant sur **OK** bas hello **options d’attribution**.
 
    ![Options d’affectation](media/active-directory-licensing-group-assignment-azure-portal/assignment-options.png)
 
-7. Pour terminer l’affectation, dans le panneau **Affecter une licence**, cliquez sur **Affecter** au bas du panneau.
+7. affectation de hello toocomplete, sur hello **affecter licence** panneau, cliquez sur **affecter** bas hello du Panneau de hello.
 
-8. Une notification indiquant l’état et le résultat du processus s’affiche dans l’angle supérieur droit. Si l’affectation au groupe n’a pas pu être effectuée (par exemple en raison de licences existantes dans le groupe), cliquez sur la notification pour afficher les détails de l’échec.
+8. Une notification s’affiche dans le coin supérieur droit hello qui affiche l’état de hello et le résultat du processus de hello. Si le groupe de toohello hello affectation n’a pas pu être effectuée (par exemple, en raison de licences existants dans le groupe de hello), cliquez sur Détails de tooview hello notification d’échec de hello.
 
-Nous avons maintenant spécifié un modèle de licence sur le groupe HR Department. Un processus en arrière-plan dans Azure AD a été démarré pour traiter tous les membres existants de ce groupe. Cette opération initiale peut prendre un certain temps en fonction de la taille du groupe. Dans l’étape suivante, nous allons voir comment vérifier que le processus est terminé, et déterminer si une attention supplémentaire est requise pour résoudre des problèmes.
+Nous avons spécifié maintenant d’un modèle de licence pour le groupe de ressources humaines hello. Un processus en arrière-plan dans Azure AD a été démarrée tooprocess tous les membres existants de ce groupe. Cette opération initiale peut prendre un certain temps, en fonction de la taille actuelle de hello du groupe de hello. Dans l’étape suivante de hello, nous décrivent comment tooverify ce hello est terminée et déterminer si une attention supplémentaire est requise tooresolve problèmes.
 
 > [!NOTE]
-> Vous pouvez démarrer la même affectation à partir d’un autre emplacement : **Utilisateurs et groupes** dans Azure AD. Accédez à **Azure Active Directory** > **Utilisateurs et groupes** > **Tous les groupes**. Recherchez le groupe, sélectionnez-le et cliquez sur l’onglet **Licences**. Le bouton **Affecter** en haut du panneau permet d’ouvrir le panneau d’affectation des licences.
+> Vous pouvez démarrer hello même assignation à partir d’un autre emplacement : **utilisateurs et groupes** dans Azure AD. Accédez trop**Azure Active Directory** > **utilisateurs et groupes** > **tous les groupes**. Puis recherchez le groupe de hello, sélectionnez-le, puis accédez toohello **licences** hello d’onglet **affecter** bouton sur le panneau de hello ouvre le panneau de l’attribution de licence hello.
 
-## <a name="step-2-verify-that-the-initial-assignment-has-finished"></a>Étape 2 : Vérifier que l’affectation initiale est terminée
+## <a name="step-2-verify-that-hello-initial-assignment-has-finished"></a>Étape 2 : Vérifier que l’attribution initiale hello est terminé.
 
-1. Accédez à **Azure Active Directory** > **Utilisateurs et groupes** > **Tous les groupes**. Recherchez le groupe **HR Department** auquel ont été affectées les licences.
+1. Accédez trop**Azure Active Directory** > **utilisateurs et groupes** > **tous les groupes**. Recherchez hello **service ressources humaines** licences ont été attribués au groupe.
 
-2. Dans le panneau **HR Department**, sélectionnez **Licences**. Cela vous permet de vérifier rapidement si les licences ont été entièrement affectées aux utilisateurs et s’il existe des erreurs que vous devez examiner. Les informations suivantes sont disponibles :
+2. Sur hello **service ressources humaines** Panneau de groupe, sélectionnez **licences**. Cela vous permet de rapidement confirmer si les licences ont été assignées entièrement toousers et s’il existe des erreurs que vous devez toolook dans. Hello informations suivantes est disponible :
 
-   - Liste des licences du produit qui sont actuellement affectées au groupe. Sélectionnez une entrée pour afficher les services spécifiques qui ont été activés et pour apporter des modifications.
+   - Liste de licences du produit qui sont actuellement affectées toohello groupe. Sélectionnez une entrée tooshow hello services spécifiques qui ont été activées et toomake change.
 
-   - État des dernières modifications de licences effectuées sur le groupe (si les modifications sont en cours de traitement ou si le traitement a été effectué sur tous les membres de l’utilisateur).
+   - État de hello licence modifications les plus récentes apportées toohello groupe (si des modifications de hello sont en cours de traitement ou si le traitement est terminé pour tous les membres de l’utilisateur).
 
-   - Informations sur les utilisateurs qui se trouvent en état d’erreur parce qu’il n’a pas été possible de leur affecter des licences.
+   - Informations sur les utilisateurs qui se trouvent dans un état d’erreur, car il est impossible d’affecter les licences toothem.
 
    ![Options d’affectation](media/active-directory-licensing-group-assignment-azure-portal/assignment-errors.png)
 
-3. Pour des informations plus détaillées sur le traitement des licences, consultez **Azure Active Directory** > **Utilisateurs et groupes** > *nom du groupe* > **Journaux d’audit**. Notez les activités suivants :
+3. Pour des informations plus détaillées sur le traitement des licences, consultez **Azure Active Directory** > **Utilisateurs et groupes** > *nom du groupe* > **Journaux d’audit**. Notez hello suivant des activités :
 
-   - Activité : **Commencer à appliquer une licence basée sur le groupe aux utilisateurs**. Elle est consignée lorsque le système sélectionne la modification d’affectation de licences sur le groupe et commence à l’appliquer à tous les membres utilisateur. Elle contient des informations sur la modification qui a été apportée.
+   - Activité : **commencer à appliquer les groupe basé licence toousers**. Cette opération est enregistrée lorsque le système de hello récupère de la modification d’attribution de licence hello sur le groupe de hello et démarre son application tooall membres d’un utilisateur. Il contient des informations sur la modification de hello a été effectuée.
 
-   - Activité : **Terminer l’application d’une licence basée sur le groupe aux utilisateurs**. Elle est consignée lorsque le système termine le traitement de tous les utilisateurs du groupe. Elle contient un résumé du nombre d’utilisateurs qui ont été traités avec succès et du nombre d’utilisateurs auxquels les licences du groupe n’ont pas pu être affectées.
+   - Activité : **finissez groupe basé licence toousers**. Cette opération est enregistrée lorsque le système de hello termine le traitement de tous les utilisateurs dans le groupe de hello. Elle contient un résumé du nombre d’utilisateurs qui ont été traités avec succès et du nombre d’utilisateurs auxquels les licences du groupe n’ont pas pu être affectées.
 
-   [Lisez cette section](./active-directory-licensing-group-advanced.md#use-audit-logs-to-monitor-group-based-licensing-activity) pour en savoir plus sur l’utilisation des journaux d’audit pour analyser les modifications apportées par une gestion des licences basée sur un groupe.
+   [Lisez cette section](./active-directory-licensing-group-advanced.md#use-audit-logs-to-monitor-group-based-licensing-activity) toolearn plus en détail comment les journaux d’audit peuvent être apportées aux tooanalyze utilisé par basée sur le groupe de licences.
 
 ## <a name="step-3-check-for-license-problems-and-resolve-them"></a>Étape 3 : Rechercher des problèmes de licences et les résoudre
 
-1. Accédez à **Azure Active Directory** > **Utilisateurs et groupes** > **Tous les groupes** et recherchez le groupe **HR Department** auquel des licences ont été affectées.
-2. Dans le panneau **HR Department**, sélectionnez **Licences**. La notification en haut du panneau indique que des licences n’ont pas pu être affectées à 10 utilisateurs. En cliquant sur cette notification, vous accédez à une liste de tous les utilisateurs associés à une erreur de licence pour ce groupe.
-3. La colonne **Échec d’affectations** indique que les deux licences de produit n’ont pas pu être affectées aux utilisateurs. La colonne **Raison principale de l’échec** contient la cause de l’échec. Dans ce cas, il s’agit de **Plans de service en conflit**.
+1. Accédez trop**Azure Active Directory** > **utilisateurs et groupes** > **tous les groupes de**et recherche hello **ressources humaines**groupe de licences attribuées à.
+2. Sur hello **service ressources humaines** Panneau de groupe, sélectionnez **licences**. notification Hello sur Panneau de hello montre qu’il n’y a 10 utilisateurs licences n’a pas pu être assignés à. En cliquant sur cette notification, vous accédez à une liste de tous les utilisateurs associés à une erreur de licence pour ce groupe.
+3. Hello **échec affectations** colonne nous indique que les deux licences n’a pas pu être assignés toohello utilisateurs. Hello **premiers raison de l’échec** colonne contient la cause de hello de défaillance de hello. Dans ce cas, il s’agit de **Plans de service en conflit**.
 
    ![Échec d’affectations](media/active-directory-licensing-group-assignment-azure-portal/failed-assignments.png)
 
-4. Sélectionnez un utilisateur pour ouvrir le panneau **Licences**. Ce panneau répertorie toutes les licences qui sont actuellement affectées à l’utilisateur. Dans cet exemple, l’utilisateur a hérité de la licence Office 365 Enterprise E1 du groupe **Kiosk users**. Cette licence est en conflit avec la licence E3 que le système a tenté d’appliquer à partir du groupe **HR Department**. Par conséquent, aucune des licences de ce groupe n’a été assignée à l’utilisateur.
+4. Sélectionnez un Bonjour de tooopen utilisateur **licences** panneau. Ce panneau affiche toutes les licences qui sont actuellement attribuées toohello utilisateur. Dans cet exemple, utilisateur de hello a licence hello Office 365 entreprise E1 qui a été héritée de hello **les utilisateurs Kiosk** groupe. Il est en conflit avec licence hello E3 hello tooapply système a tenté de hello **service ressources humaines** groupe. Par conséquent, aucune des licences hello à partir de ce groupe a été affecté toohello utilisateur.
 
    ![Afficher les licences pour un utilisateur](media/active-directory-licensing-group-assignment-azure-portal/user-license-view.png)
 
-5. Pour résoudre ce conflit, nous supprimons l’utilisateur du groupe **Kiosk users**. Lorsqu’Azure AD a traité la modification, les licences **HR Department** sont affectées correctement.
+5. toosolve ce conflit, supprimez hello utilisateur hello **les utilisateurs Kiosk** groupe. Une fois Azure AD traite les modifications de hello, hello **service ressources humaines** licences sont attribuées correctement.
 
    ![Licence affectée correctement](media/active-directory-licensing-group-assignment-azure-portal/license-correctly-assigned.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur l’ensemble de fonctionnalités de gestion des licences par le biais des groupes, consultez les articles suivants :
+toolearn plus d’informations sur la fonctionnalité de hello définie pour la gestion des licences via les groupes, consultez hello suivant des articles :
 
 * [What is group-based licensing in Azure Active Directory? (Présentation des licences basées sur le groupe dans Azure Active Directory)](active-directory-licensing-whatis-azure-portal.md)
 * [Identification et résolution des problèmes de licence pour un groupe dans Azure Active Directory](active-directory-licensing-group-problem-resolution-azure-portal.md)
-* [Migration des utilisateurs individuels sous licence vers les licences basées sur les groupes dans Azure Active Directory](active-directory-licensing-group-migration-azure-portal.md)
-* [Autres scénarios de licences basées sur les groupes Azure Active Directory](active-directory-licensing-group-advanced.md)
+* [Comment toomigrate individuels titulaires d’une licence dans Azure Active Directory en fonction des toogroup](active-directory-licensing-group-migration-azure-portal.md)
+* [Azure Active Directory group-based licensing additional scenarios (Autres scénarios de licence basée sur le groupe Azure Active Directory)](active-directory-licensing-group-advanced.md)

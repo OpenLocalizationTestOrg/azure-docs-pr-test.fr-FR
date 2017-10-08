@@ -1,6 +1,6 @@
 ---
-title: "Obtenir des données à l’aide de l’API Génération de rapports Azure AD avec des certificats | Microsoft Docs"
-description: "Explique comment utiliser l’API Génération de rapports Azure AD avec les informations d’identification de certificat pour obtenir des données à partir de répertoires sans intervention de l’utilisateur."
+title: "à l’aide des données aaaGet hello Azure API de création de rapports AD avec les certificats | Documents Microsoft"
+description: "Explique comment toouse hello Azure API de création de rapports AD avec des données de tooget informations d’identification de certificat à partir d’annuaires sans intervention de l’utilisateur."
 services: active-directory
 documentationcenter: 
 author: ramical
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/24/2017
 ms.author: ramical
-ms.openlocfilehash: c1345dcda6e52267a8037ffd7207e6bc3b0d3b31
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00ddfaefe32ea6ae48f276c974a17ddcf84f7894
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-data-using-the-azure-ad-reporting-api-with-certificates"></a>Obtenir des données à l’aide de l’API Génération de rapports Azure AD avec des certificats
-Cet article explique comment utiliser l’API Génération de rapports Azure AD avec les informations d’identification de certificat pour obtenir des données à partir de répertoires sans intervention de l’utilisateur. 
+# <a name="get-data-using-hello-azure-ad-reporting-api-with-certificates"></a>Obtenir des données à l’aide des API de création de rapports Azure AD hello avec des certificats
+Cet article explique comment toouse hello Azure API de création de rapports AD avec des données de tooget informations d’identification de certificat à partir d’annuaires sans intervention de l’utilisateur. 
 
-## <a name="use-the-azure-ad-reporting-api"></a>Utiliser l’API Génération de rapports Azure AD 
-L’API Génération de rapports Azure AD exige que vous effectuiez les opérations suivantes :
+## <a name="use-hello-azure-ad-reporting-api"></a>Utilisez hello API de création de rapports AD Azure 
+API de création de rapports AD Azure nécessite que vous avez terminé de hello comme suit :
  *  Installation des composants requis
- *  Définition du certificat dans votre application
+ *  Définissez le certificat hello dans votre application
  *  Obtention d’un jeton d’accès
- *  Utilisation du jeton d’accès pour appeler l’API Graph
+ *  Utilisez hello de jeton toocall hello accès API Graph
 
 Pour plus d’informations sur le code source, consultez [Leverage Report API Module](https://github.com/AzureAD/azure-activedirectory-powershell/tree/gh-pages/Modules/AzureADUtils) (Utiliser le module d’API Génération de rapports). 
 
 ### <a name="install-prerequisites"></a>Installation des composants requis
-Vous devez avoir le module AzureADUtils et Azure AD PowerShell V2 installés.
+Vous devez toohave Azure AD PowerShell V2 et module AzureADUtils installé.
 
-1. Téléchargez et installez Azure AD Powershell V2 en suivant les instructions dans [Azure Active Directory PowerShell](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure AD Cmdlets/AzureAD/index.md).
-2. Téléchargez le module Azure AD Utils à partir de [AzureAD/azure-activedirectory-powershell](https://github.com/AzureAD/azure-activedirectory-powershell/blob/gh-pages/Modules/AzureADUtils/AzureADUtils.psm1). 
+1. Téléchargez et installez Azure AD Powershell V2, suivant les instructions de hello sur [Azure Active Directory PowerShell](https://github.com/Azure/azure-docs-powershell-azuread/blob/master/Azure AD Cmdlets/AzureAD/index.md).
+2. Télécharger le module Azure AD Utils hello [organisation/azure-Active Directory-powershell](https://github.com/AzureAD/azure-activedirectory-powershell/blob/gh-pages/Modules/AzureADUtils/AzureADUtils.psm1). 
   Ce module fournit plusieurs applets de commande d’utilitaire, notamment :
-   * La dernière version d’ADAL à l’aide de Nuget
+   * version la plus récente de la bibliothèque ADAL à l’aide de Nuget Hello
    * Les jetons d’accès d’utilisateur, de clés d’application et de certificats à l’aide d’ADAL
    * L’API Graph gérant les résultats paginés
 
-**Pour installer le module Azure AD Utils :**
+**module de Azure AD Utils tooinstall hello :**
 
-1. Créez un répertoire pour enregistrer le module d’utilitaires (par exemple, c:\azureAD) et téléchargez le module à partir de GitHub.
-2. Ouvrez une session PowerShell et accédez au répertoire que vous venez de créer. 
-3. Importez le module et installez-le dans le chemin d’accès du module PowerShell à l’aide de l’applet de commande Install-AzureADUtilsModule. 
+1. Créer un module d’utilitaires de répertoire toosave hello (par exemple, c:\azureAD) et télécharger le module de hello à partir de GitHub.
+2. Ouvrez une session PowerShell et accédez répertoire toohello que vous venez de créer. 
+3. Importer le module de hello et installez-le dans le chemin du module PowerShell hello à l’aide d’applet de commande hello AzureADUtilsModule de l’installation. 
 
-La session doit ressembler à ce qui suit :
+session de Hello doit se présenter comme écran de toothis :
 
   ![Windows PowerShell](./media/active-directory-report-api-with-certificates/windows-powershell.png)
 
-### <a name="set-the-certificate-in-your-app"></a>Définition du certificat dans votre application
-1. Si vous disposez déjà d’une application, récupérez son ID d’objet à partir du portail Azure. 
+### <a name="set-hello-certificate-in-your-app"></a>Définissez le certificat hello dans votre application
+1. Si vous disposez déjà d’une application, obtenir son ID d’objet à partir de hello portail Azure. 
 
   ![Portail Azure](./media/active-directory-report-api-with-certificates/azure-portal.png)
 
-2. Ouvrez une session PowerShell et connectez-vous à Azure AD à l’aide de l’applet de commande Connect-AzureAD.
+2. Ouvrez une session PowerShell et se connecter tooAzure AD à l’aide d’applet de commande hello organisation de se connecter.
 
   ![Portail Azure](./media/active-directory-report-api-with-certificates/connect-azuaread-cmdlet.png)
 
-3. Utilisez l’applet de commande New-AzureADApplicationCertificateCredential d’AzureADUtils pour y ajouter des informations d’identification de certificat. 
+3. Utilisez hello applet de commande New-AzureADApplicationCertificateCredential de AzureADUtils tooadd un tooit d’informations d’identification de certificat. 
 
 >[!Note]
->Vous devez fournir l’ID d’objet de l’application que vous avez récupéré précédemment, ainsi que l’objet de certificat (récupérez-le à l’aide du lecteur Cert :).
+>Vous avez besoin d’application de hello tooprovide ID d’objet que vous avez capturés précédemment, ainsi que hello d’objet de certificat (obtenir à l’aide de cette hello Cert : lecteur).
 >
 
 
@@ -72,24 +72,24 @@ La session doit ressembler à ce qui suit :
   
 ### <a name="get-an-access-token"></a>Obtention d’un jeton d’accès
 
-Pour obtenir un jeton d’accès, utilisez l’applet de commande Get-AzureADGraphAPIAccessTokenFromCert de AzureADUtils. 
+tooget un jeton d’accès, utilisez hello applet de commande Get-AzureADGraphAPIAccessTokenFromCert de AzureADUtils. 
 
 >[!NOTE]
->Vous devez utiliser l’ID d’application plutôt que l’ID d’objet que vous avez utilisé dans la dernière section.
+>Vous devez toouse hello ID d’Application au lieu de hello ID d’objet que vous avez utilisé dans la dernière section de hello.
 >
 
  ![Portail Azure](./media/active-directory-report-api-with-certificates/application-id.png)
 
-### <a name="use-the-access-token-to-call-the-graph-api"></a>Utilisation du jeton d’accès pour appeler l’API Graph
+### <a name="use-hello-access-token-toocall-hello-graph-api"></a>Utilisez hello de jeton toocall hello accès API Graph
 
-Vous pouvez maintenant créer le script. Voici un exemple d’utilisation de l’applet de commande Invoke-AzureADGraphAPIQuery à partir du module AzureADUtils. Cette applet de commande gère les résultats composés de plusieurs pages et les envoie ensuite dans le pipeline PowerShell. 
+Vous pouvez désormais créer le script de hello. Voici un exemple utilisant l’applet de commande Invoke-AzureADGraphAPIQuery de hello hello AzureADUtils. Cette applet de commande gère les résultats composé de plusieurs pages, puis envoie ces pipeline PowerShell de toohello résultats. 
 
  ![Portail Azure](./media/active-directory-report-api-with-certificates/script-completed.png)
 
-Vous êtes maintenant prêt à exporter vers un fichier CSV et enregistrer dans un système SIEM. Vous pouvez également encapsuler votre script dans une tâche planifiée pour obtenir régulièrement des données Azure AD à partir de votre client sans avoir à stocker des clés d’application dans le code source. 
+Vous êtes maintenant prêt tooexport tooa volume partagé de cluster et que vous enregistrez tooa SIEM système. Vous pouvez également encapsuler votre script dans une tâche planifiée de tooget données Azure AD à partir de votre client régulièrement sans avoir des clés de l’application toostore dans le code source de hello. 
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Principes de base de la gestion des identités Azure](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity)<br>
+[Notions de base Hello de gestion des identités de Azure](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity)<br>
 
 
 

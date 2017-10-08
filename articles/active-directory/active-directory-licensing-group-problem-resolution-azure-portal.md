@@ -1,6 +1,6 @@
 ---
-title: "Résolution des problèmes de licence pour un groupe dans Azure Active Directory | Microsoft Docs"
-description: "Identification et résolution des problèmes d’affectation de licences avec la licence basée sur le groupe Azure Active Directory"
+title: "aaaResolve des problèmes de licence pour un groupe dans Azure Active Directory | Documents Microsoft"
+description: "Comment tooidentify et résolution de licence des problèmes d’assignation lorsque vous utilisez Azure Active Directory basé sur le groupe de licence"
 services: active-directory
 keywords: Gestion des licences Azure AD
 documentationcenter: 
@@ -16,120 +16,120 @@ ms.workload: identity
 ms.date: 06/05/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: bfa951a897c9b383072c0d29c9a4266c163fe753
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ec9c74214a9e246f21fcf767b0bbd586ae702445
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="identify-and-resolve-license-assignment-problems-for-a-group-in-azure-active-directory"></a>Identification et résolution des problèmes d’affectation de licences pour un groupe dans Azure Active Directory
 
-Les licences basées sur le groupe dans Azure Active Directory (Azure AD) introduisent le concept d’utilisateurs en état d’erreur d’attribution de licence. Cet article explique les raisons pour lesquelles les utilisateurs peuvent se trouver dans cet état.
+Basé sur le groupe de licences dans Azure Active Directory (Azure AD) d’introduit le concept de hello d’utilisateurs dans un état d’erreur licence. Dans cet article, nous expliquons raisons hello pour lesquelles les utilisateurs peuvent finir dans cet état.
 
-Lorsque vous affectez directement des licences à des utilisateurs individuels, sans recourir à une licence basée sur le groupe, l’opération d’affectation peut échouer. Par exemple, lorsque vous exécutez l’applet de commande PowerShell `Set-MsolUserLicense` sur un utilisateur, l’applet de commande peut échouer pour diverses raisons liées à la logique métier. Par exemple, il peut y avoir un nombre insuffisant de licences ou bien un conflit entre deux plans de service qui ne peuvent pas être affectés en même temps. Le problème vous est immédiatement signalé.
+Lorsque vous affectez des licences directement tooindividual les utilisateurs, sans l’aide basée sur le groupe de licences, l’opération d’assignation hello peut échouer. Par exemple, lorsque vous exécutez l’applet de commande PowerShell hello `Set-MsolUserLicense` sur un utilisateur, applet de commande hello peut échouer pour plusieurs raisons qui sont associées toobusiness logique. Par exemple, il peut y avoir un nombre insuffisant de licences ou d’un conflit entre deux plans de service qui ne peut pas être attribué au hello même temps. Hello problème est immédiatement signalée sauvegarder tooyou.
 
-Lorsque vous utilisez un système de licence basée sur le groupe, les mêmes erreurs peuvent se produire, mais elles apparaissent en arrière-plan lorsque le service Azure AD affecte les licences. C’est pourquoi les erreurs ne peuvent pas vous être communiquées immédiatement. Au lieu de cela, elles sont enregistrées sur l’objet utilisateur et signalées par le biais du portail d’administration. Notez que l’intention initiale d’attribuer une licence à l’utilisateur perdure, mais qu’elle est enregistrée dans un état d’erreur et fera l’objet d’un examen et d’une résolution ultérieurs.
+Lorsque vous utilisez basée sur le groupe de licences, hello mêmes erreurs peuvent se produire, mais ils se produisent en arrière-plan de hello lorsque hello service Azure AD est attribuer des licences. Pour cette raison, les erreurs de hello ne peut pas être communiquée tooyou immédiatement. Au lieu de cela, elles sont enregistrées sur l’objet utilisateur de hello et puis signalées via le portail d’administration de hello. Notez que hello toolicense intention hello utilisateur n’est jamais perdu, mais il est enregistré dans un état d’erreur pour un examen futures et la résolution.
 
-## <a name="how-to-find-license-assignment-errors"></a>Comment rechercher des erreurs d’affectation de licence
+## <a name="how-toofind-license-assignment-errors"></a>Comment toofind erreurs d’affectation de licence
 
-1. Pour rechercher des utilisateurs en état d’erreur dans un groupe spécifique, ouvrez le panneau pour le groupe. Sous **Licences**, une notification s’affiche si des utilisateurs se trouvent à l’état d’erreur.
+1. utilisateurs toofind dans un état d’erreur dans un groupe spécifique, un panneau hello ouverte pour le groupe de hello. Sous **Licences**, une notification s’affiche si des utilisateurs se trouvent à l’état d’erreur.
 
 ![Groupe, notification d’erreur](media/active-directory-licensing-group-problem-resolution-azure-portal/group-error-notification.png)
 
-2. Cliquez sur la notification pour ouvrir la liste de tous les utilisateurs concernés. Vous pouvez cliquer sur chaque utilisateur individuellement pour afficher plus de détails.
+2. Cliquez sur hello notification tooopen une liste de tous les utilisateurs concernés. Vous pouvez cliquer sur individuellement sur chaque utilisateur toosee plus en détail.
 
 ![Groupe, liste des utilisateurs en état d’erreur](media/active-directory-licensing-group-problem-resolution-azure-portal/list-of-users-with-errors.png)
 
-3. Pour rechercher tous les groupes contenant au moins une erreur, dans le panneau **Azure Active Directory**, sélectionnez **Licences**, puis **Vue d’ensemble**. Une fenêtre d’information s’affiche lorsque des groupes nécessitent votre attention.
+3. toofind tous les groupes qui contiennent au moins une erreur sur hello **Azure Active Directory** panneau sélectionner **licences** , puis **vue d’ensemble**. Une fenêtre d’information s’affiche lorsque des groupes nécessitent votre attention.
 
 ![Vue d’ensemble, informations sur les groupes en état d’erreur](media/active-directory-licensing-group-problem-resolution-azure-portal/group-errors-widget.png)
 
-4. Cliquez sur la zone pour afficher la liste de tous les groupes contenant des erreurs. Vous pouvez cliquer sur chaque groupe pour plus de détails.
+4. Cliquez sur hello boîte toosee une liste de tous les groupes avec des erreurs. Vous pouvez cliquer sur chaque groupe pour plus de détails.
 
 ![Vue d’ensemble, liste des groupes contenant des erreurs](media/active-directory-licensing-group-problem-resolution-azure-portal/list-of-groups-with-errors.png)
 
 
-Vous trouverez ci-dessous une description de chaque problème potentiel et de la manière de le résoudre.
+Voici une description de chaque tooresolve potentielle de façon problème et hello il.
 
 ## <a name="not-enough-licenses"></a>Nombre insuffisant de licences
 
-**Problème :** il n’y pas assez de licences disponibles pour l’un des produits spécifiés dans le groupe. Vous devez acheter des licences produit supplémentaires ou libérer des licences inutilisées par d’autres utilisateurs ou d’autres groupes.
+**Problème :** ne contient pas de suffisamment de licences disponibles pour un des produits hello qui est spécifié dans le groupe de hello. Vous devez tooeither acheter davantage de licences pour le produit de hello ou libérer des licences inutilisées à partir d’autres utilisateurs ou groupes.
 
-Pour connaître le nombre de licences disponibles, accédez à **Azure Active Directory** > **Licences** > **Tous les produits**.
+toosee le nombre de licences est disponible, accédez trop**Azure Active Directory** > **licences** > **tous les produits**.
 
-Pour voir quels utilisateurs et quels groupes utilisent des licences, cliquez sur un produit. Sous **Utilisateurs sous licence**, vous pouvez voir tous les utilisateurs auxquels des licences ont été affectées directement ou par le biais d’un ou de plusieurs groupes. Sous **Groupes sous licence**, vous pouvez voir tous les groupes auxquels ce produit est attribué.
+toosee consomme les utilisateurs et les groupes de licences, cliquez sur un produit. Sous **Utilisateurs sous licence**, vous pouvez voir tous les utilisateurs auxquels des licences ont été affectées directement ou par le biais d’un ou de plusieurs groupes. Sous **Groupes sous licence**, vous pouvez voir tous les groupes auxquels ce produit est attribué.
 
 **PowerShell :** les applets de commande PowerShell signalent cette erreur en tant que _CountViolation_.
 
 ## <a name="conflicting-service-plans"></a>Plans de service en conflit
 
-**Problème :** l’un des produits spécifiés dans le groupe contient un plan de service en conflit avec un autre plan de service déjà attribué à l’utilisateur par le biais d’un autre produit. Certains plans de service sont configurés de sorte qu’ils ne puissent pas être attribués à l’utilisateur d’un autre plan de service lié.
+**Problème :** un des produits hello qui est spécifié dans le groupe de hello contient un plan de service qui est en conflit avec un autre plan de service qui est déjà attribué toohello utilisateur via un autre produit. Certains plans de service sont configurés de sorte qu’ils ne peuvent pas être assignés toohello même utilisateur que celui d’un autre plan de service connexes.
 
-Considérez l'exemple suivant. Un utilisateur possède une licence Office 365 Entreprise **E1** qui lui a été attribuée directement, avec tous les plans activés. L’utilisateur a été ajouté à un groupe auquel le produit Office 365 Entreprise **E3** est attribué. Ce produit contient des plans de service incompatibles avec les plans contenus dans E1. Par conséquent, l’attribution de la licence de groupe échoue et l’erreur « Plans de service en conflit » s’affiche. Dans cet exemple, les plans de service en conflit sont les suivants :
+Envisagez de hello l’exemple suivant. Un utilisateur possède une licence pour Office 365 Enterprise **E1** affectée directement, avec tous les plans de hello activées. groupe tooa a hello Office 365 Enterprise a été ajouté à utilisateur de Hello **E3** tooit du produit associé. Ce produit contient des plans de service ne peut pas se chevaucher avec les plans hello inclus dans E1, afin de l’attribution de licence de groupe hello échouera avec hello erreur de « Plans de service en conflit ». Dans cet exemple, les plans de service hello en conflit sont :
 
 -   SharePoint Online (Plan 2) est en conflit avec SharePoint Online (Plan 1).
 -   Exchange Online (Plan 2) est en conflit avec Exchange Online (Plan 1).
 
-Pour résoudre ce conflit, vous devez désactiver ces deux plans sur la licence E1 qui a été directement attribuée à l’utilisateur. Sinon, vous devez modifier l’attribution de licence de l’ensemble du groupe et désactiver les plans dans la licence E3. Vous pouvez également supprimer la licence E1 à partir de l’utilisateur si elle est redondante dans le cadre de la licence E3.
+toosolve ce conflit, vous devez toodisable ces deux plans sur hello E1 de licence qui toohello directement attribué utilisateur. Ou bien, vous avez besoin d’attribution de licence de tout groupe toomodify hello et désactivez les plans hello dans la licence de E3 hello. Ou bien, vous pouvez décider de licence de E1 hello tooremove à partir de l’utilisateur de hello si elle est redondante dans le contexte de hello de licence de E3 hello.
 
-Seul l’administrateur peut décider de la méthode à utiliser pour résoudre les problèmes de conflit de licences produit. Azure AD ne résout pas automatiquement les conflits de licences.
+la décision de Hello sur comment licences toujours des produits en conflit de tooresolve appartient toohello administrateur. Azure AD ne résout pas automatiquement les conflits de licences.
 
 **PowerShell :** les applets de commande PowerShell signalent cette erreur en tant que _MutuallyExclusiveViolation_.
 
 ## <a name="other-products-depend-on-this-license"></a>D’autres produits dépendent de cette licence
 
-**Problème :** l’un des produits spécifiés dans le groupe contient un plan de service qui doit être activé pour un autre plan de service, dans un autre produit, afin de fonctionner. Cette erreur se produit lorsqu’Azure AD tente de supprimer le plan de service sous-jacent. Par exemple, cela peut se produire lorsque l’utilisateur est supprimé du groupe.
+**Problème :** un des produits hello qui est spécifié dans le groupe de hello contient un plan de service qui doit être activé pour un autre plan de service, dans un autre produit, de la fonction. Cette erreur se produit lorsque le plan de service sous-jacent tooremove hello tente d’Azure AD. Par exemple, cela peut se produire en raison de l’utilisateur hello en cours de suppression du groupe de hello.
 
-Pour résoudre ce problème, vous devez vérifier que le plan requis est toujours attribué aux utilisateurs par une autre méthode ou que les services dépendants sont désactivés pour ces utilisateurs. Après cela, vous pouvez supprimer la licence de groupe sur ces utilisateurs.
+toosolve ce problème, vous devez toomake que ce plan requis hello est toujours affecté toousers via une autre méthode, ou que les services dépendants hello sont désactivées pour les utilisateurs. Après cela, vous pouvez correctement supprimer la licence de groupe hello à partir de ces utilisateurs.
 
 **PowerShell :** les applets de commande PowerShell signalent cette erreur en tant que _DependencyViolation_.
 
 ## <a name="usage-location-isnt-allowed"></a>L’emplacement d’utilisation n’est pas autorisé
 
-**Problème :** certains services Microsoft ne sont pas disponibles partout en raison de lois et réglementations locales. Avant de pouvoir attribuer une licence à un utilisateur, vous devez spécifier la propriété « Emplacement d’utilisation » pour l’utilisateur. Vous pouvez effectuer cette opération sous la section **Utilisateur** > **Profil** > **Paramètres** dans le portail Azure.
+**Problème :** certains services Microsoft ne sont pas disponibles partout en raison de lois et réglementations locales. Avant de pouvoir affecter un utilisateur tooa de licence, vous disposez de propriété de « Emplacement d’utilisation » hello toospecify pour l’utilisateur de hello. Cela sous hello **utilisateur** > **profil** > **paramètres** section Bonjour portail Azure.
 
-Si le service Azure AD tente d’attribuer une licence de groupe à un utilisateur dont l’emplacement d’utilisation n’est pas pris en charge, il échoue et enregistre l’erreur correspondante pour cet utilisateur.
+Quand Azure AD tente tooassign un utilisateur tooa de licence de groupe dont l’emplacement d’utilisation n’est pas pris en charge, il échouera et enregistrer cette erreur sur l’utilisateur de hello.
 
-Pour résoudre ce problème, retirez du groupe sous licence les utilisateurs associés à des emplacements non pris en charge. Autrement, si les valeurs d’emplacement d’utilisation actuelles ne représentent pas l’emplacement réel des utilisateurs, vous pouvez modifier ceux-ci de sorte que les licences soient attribuées correctement la prochaine fois (à condition que le nouvel emplacement soit pris en charge).
+toosolve ce problème, supprimer des utilisateurs à partir d’emplacements non pris en charge à partir du groupe de hello concédé sous licence. Ou bien, si les valeurs d’emplacement hello en cours d’utilisation ne pas représenter l’emplacement de l’utilisateur réel hello, vous pouvez les modifier afin que les licences hello soient affectées prochaine (si le nouvel emplacement de hello est pris en charge).
 
 **PowerShell :** les applets de commande PowerShell signalent cette erreur en tant que _ProhibitedInUsageLocationViolation_.
 
 > [!NOTE]
-> Lorsqu’Azure AD attribue des licences de groupe, tous les utilisateurs sans emplacement d’utilisation spécifié héritent de l’emplacement du répertoire. Nous recommandons aux administrateurs de définir des valeurs d’emplacement d’utilisation correctes pour les utilisateurs avant d’utiliser la licence groupée afin de se conformer aux lois et réglementations locales.
+> Lorsque Azure AD affecte des licences d’un groupe, tous les utilisateurs sans un emplacement d’utilisation spécifié héritent emplacement hello du répertoire de hello. Nous vous recommandons que les administrateurs d’utilisation correcte de hello valeurs d’emplacement sur les utilisateurs avant d’utiliser basée sur le groupe de licences toocomply avec les lois et réglementations locales.
 
 ## <a name="what-happens-when-theres-more-than-one-product-license-on-a-group"></a>Que se passe-t-il lorsqu’un groupe est concerné par plusieurs licences produit ?
 
-Vous pouvez attribuer plusieurs licences produit à un même groupe. Par exemple, vous pouvez attribuer Office 365 Entreprise E3 et Enterprise Mobility + Security à un groupe afin de faciliter l’activation de tous les services inclus pour les utilisateurs.
+Vous pouvez affecter plusieurs groupes de tooa de licence de produit. Par exemple, vous pouvez affecter à Office 365 entreprise E3 et Enterprise Mobility + Security tooa groupe tooeasily Active inclus tous les services pour les utilisateurs.
 
-Azure AD tente d’attribuer toutes les licences spécifiées dans le groupe à chaque utilisateur. Si Azure AD ne peut pas attribuer l’un des produits en raison de problèmes de logique métier (par exemple, nombre insuffisant de licences pour l’ensemble du groupe ou conflits avec d’autres services activés pour l’utilisateur), les autres licences ne pourront pas non plus être attribuées au groupe.
+Azure AD tentatives tooassign toutes les licences qui sont spécifiés dans hello groupe tooeach utilisateur. Si Azure AD ne peut pas affecter un des produits de hello en raison de problèmes de logique métier (par exemple, si vous ne contient pas de suffisamment de licences pour tous les, ou s’il existe des conflits avec d’autres services qui sont activés sur l’utilisateur de hello), il ne sera pas affecter hello autres licences dans le groupe de hello soit.
 
-Vous pourrez voir les utilisateurs pour lesquels l’attribution a échoué et vérifier les produits concernés.
+Vous serez hello toosee en mesure des utilisateurs qui a échoué tooget affecté a échoué et vérification les produits qui ont été affectés.
 
-## <a name="license-assignment-fails-silently-for-a-user-due-to-duplicate-proxy-addresses-in-exchange-online"></a>L’attribution de licence échoue sans avertissement pour un utilisateur en raison de la présence d’adresses proxy en double dans Exchange Online
+## <a name="license-assignment-fails-silently-for-a-user-due-tooduplicate-proxy-addresses-in-exchange-online"></a>Attribution de licence échoue sans avertissement pour un utilisateur en raison des adresses de proxy tooduplicate dans Exchange Online
 
-Si vous utilisez Exchange Online, certains utilisateurs de votre locataire peuvent être mal configurés avec la même valeur d’adresse proxy. Lorsque la fonction de gestion des licences basée sur des groupes tente d’attribuer une licence à un tel utilisateur, elle échoue sans enregistrer d’erreur (contrairement aux autres cas d’erreur décrits ci-dessus). Il s’agit d’une limitation de la préversion de cette fonctionnalité, que nous allons résoudre avant la *disponibilité générale*.
+Si vous utilisez Exchange Online, certains utilisateurs de votre client peuvent être mal configurés avec hello même valeur d’adresse de proxy. Quand basée sur le groupe de licences tente de tooassign un toosuch de licence utilisateur, il échouera et enregistrera pas une erreur (contrairement à dans hello autres cas d’erreur décrites ci-dessus) - il s’agit d’une limitation dans la version d’évaluation hello de cette fonctionnalité et nous allons tooaddress avant  *Disponibilité générale*.
 
 > [!TIP]
 > Si vous remarquez que certains utilisateurs n’ont pas reçu de licence et qu’aucune erreur n’est enregistrée les concernant, vérifiez tout d’abord s’ils ont une adresse proxy en double.
-> Pour ce faire, exécutez l’applet de commande PowerShell suivante sur Exchange Online :
+> Pour ce faire, vous pouvez exécuter hello suivant l’applet de commande PowerShell par rapport à Exchange Online :
 ```
 Run Get-Recipient | where {$_.EmailAddresses -match "user@contoso.onmicrosoft.com"} | fL Name, RecipientType,emailaddresses
 ```
-> [Cet article](https://support.microsoft.com/help/3042584/-proxy-address-address-is-already-being-used-error-message-in-exchange-online) contient plus de détails sur ce problème, notamment des informations sur [la connexion à Exchange Online en utilisant PowerShell à distance](https://technet.microsoft.com/library/jj984289.aspx).
+> [Cet article](https://support.microsoft.com/help/3042584/-proxy-address-address-is-already-being-used-error-message-in-exchange-online) contient plus de détails sur ce problème, y compris des informations sur [comment tooExchange tooconnect en ligne à l’aide de PowerShell à distance](https://technet.microsoft.com/library/jj984289.aspx).
 
-Une fois les problèmes d’adresse de proxy résolus pour les utilisateurs concernés, veillez à forcer le traitement des licences sur le groupe pour vous assurer que les licences peuvent être appliquées à nouveau.
+Après que proxy résoudre des problèmes ont été résolus pour les utilisateurs de hello affectée, assurez-vous que licence tooforce de traitement sur hello toomake de groupe que les licences peuvent maintenant être appliquées à nouveau.
 
-## <a name="how-do-you-force-license-processing-in-a-group-to-resolve-errors"></a>Comment faire pour forcer le traitement des licences dans un groupe afin de résoudre les erreurs ?
+## <a name="how-do-you-force-license-processing-in-a-group-tooresolve-errors"></a>Comment forcer la licence dans un tooresolve regrouper des erreurs de traitement ?
 
-Selon les actions entreprises pour résoudre les erreurs, il peut être nécessaire de déclencher manuellement le traitement d’un groupe afin de mettre à jour l’état de l’utilisateur.
+Selon les étapes que vous avez pris les erreurs tooresolve, il peut être nécessaire de toomanually déclencher le traitement de l’état utilisateur groupe tooupdate hello.
 
-Par exemple, si vous avez libéré des licences en retirant des affectations directes de licences à des utilisateurs, vous devez déclencher le traitement des groupes ayant échoué précédemment afin d’attribuer des licences complètes à tous les utilisateurs membres. Pour ce faire, accédez au panneau du groupe, puis ouvrez **Licences** et cliquez sur le bouton **Retraiter** de la barre d’outils.
+Par exemple, si vous libéré certaines licences en supprimant les affectations de licence directe des utilisateurs, vous devez le traitement de tootrigger de groupes qui ont échoué précédemment toofully licence tous les membres de l’utilisateur. toodo qui, trouver le panneau de groupe hello, ouvrez **licences**et sélectionnez hello **retraiter** bouton dans la barre d’outils hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur d’autres scénarios de gestion des licences par le biais des groupes, consultez les articles suivants :
+toolearn en savoir plus sur les autres scénarios de gestion des licences via des groupes, voir hello :
 
-* [Assigning licenses to a group in Azure Active Directory (Attribution de licences à un groupe dans Azure Active Directory)](active-directory-licensing-group-assignment-azure-portal.md)
+* [Affectation d’un groupe de tooa de licences dans Azure Active Directory](active-directory-licensing-group-assignment-azure-portal.md)
 * [What is group-based licensing in Azure Active Directory? (Présentation des licences basées sur le groupe dans Azure Active Directory)](active-directory-licensing-whatis-azure-portal.md)
-* [Migration des utilisateurs individuels sous licence vers une licence basée sur le groupe dans Azure Active Directory](active-directory-licensing-group-migration-azure-portal.md)
-* [Autres scénarios de licences basées sur les groupes Azure Active Directory](active-directory-licensing-group-advanced.md)
+* [Comment toomigrate individuels titulaires d’une licence dans Azure Active Directory en fonction des toogroup](active-directory-licensing-group-migration-azure-portal.md)
+* [Azure Active Directory group-based licensing additional scenarios (Autres scénarios de licence basée sur le groupe Azure Active Directory)](active-directory-licensing-group-advanced.md)
