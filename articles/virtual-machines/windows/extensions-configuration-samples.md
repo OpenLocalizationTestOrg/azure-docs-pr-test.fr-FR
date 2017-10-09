@@ -1,5 +1,5 @@
 ---
-title: Exemple de configuration pour les extensions de machine virtuelle Windows | Microsoft Docs
+title: configuration aaaSample pour les extensions de machine virtuelle Windows | Documents Microsoft
 description: "Exemple de configuration pour la création de modèles avec des extensions"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
-ms.openlocfilehash: a22962690854d273377f7295ab5dd49419f5a354
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7697be969dbcf609423f64b75c7edf80ca1bfd9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-windows-vm-extension-configuration-samples"></a><span data-ttu-id="921e7-103">Exemples de configuration d’extension de machine virtuelle Microsoft Azure.</span><span class="sxs-lookup"><span data-stu-id="921e7-103">Azure Windows VM Extension Configuration Samples</span></span>
+# <a name="azure-windows-vm-extension-configuration-samples"></a><span data-ttu-id="01671-103">Exemples de configuration d’extension de machine virtuelle Microsoft Azure.</span><span class="sxs-lookup"><span data-stu-id="01671-103">Azure Windows VM Extension Configuration Samples</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="921e7-104">PowerShell - Modèle</span><span class="sxs-lookup"><span data-stu-id="921e7-104">PowerShell - Template</span></span>](extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-> * [<span data-ttu-id="921e7-105">Interface de ligne de commande - Modèle</span><span class="sxs-lookup"><span data-stu-id="921e7-105">CLI - Template</span></span>](../linux/extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+> * [<span data-ttu-id="01671-104">PowerShell - Modèle</span><span class="sxs-lookup"><span data-stu-id="01671-104">PowerShell - Template</span></span>](extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> * [<span data-ttu-id="01671-105">Interface de ligne de commande - Modèle</span><span class="sxs-lookup"><span data-stu-id="01671-105">CLI - Template</span></span>](../linux/extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 > 
 > 
 
 <br>
 
-<span data-ttu-id="921e7-106">Cet article présente un exemple de configuration des extensions de machine virtuelle Azure pour les machines virtuelles Windows.</span><span class="sxs-lookup"><span data-stu-id="921e7-106">This article provides sample configuration for configuring Azure VM Extensions for Windows VMs.</span></span>
+<span data-ttu-id="01671-106">Cet article présente un exemple de configuration des extensions de machine virtuelle Azure pour les machines virtuelles Windows.</span><span class="sxs-lookup"><span data-stu-id="01671-106">This article provides sample configuration for configuring Azure VM Extensions for Windows VMs.</span></span>
 
-<span data-ttu-id="921e7-107">Pour en savoir plus sur ces extensions, consultez [Présentation des extensions de machine virtuelle Azure](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="921e7-107">To learn more about these extensions, see [Azure VM Extensions Overview.](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span></span>
+<span data-ttu-id="01671-107">toolearn savoir plus sur ces extensions, consultez [vue d’ensemble des Extensions de machine virtuelle Azure.](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="01671-107">toolearn more about these extensions, see [Azure VM Extensions Overview.](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span></span>
 
-<span data-ttu-id="921e7-108">Pour en savoir plus sur la création de modèles d’extension, consultez la section [Création de modèles d’extension](extensions-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="921e7-108">To learn more about authoring extension templates, see [Authoring Extension Templates.](extensions-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span></span>
+<span data-ttu-id="01671-108">toolearn savoir plus sur la création de modèles d’extension, consultez [création de modèles d’Extension.](extensions-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="01671-108">toolearn more about authoring extension templates, see [Authoring Extension Templates.](extensions-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span></span>
 
-<span data-ttu-id="921e7-109">Cet article répertorie les valeurs de configuration attendues pour certaines des extensions Windows.</span><span class="sxs-lookup"><span data-stu-id="921e7-109">This article lists expected configuration values for some of the Windows Extensions.</span></span>
+<span data-ttu-id="01671-109">Cet article répertorie les valeurs de configuration attendu pour certaines des Extensions Windows de hello.</span><span class="sxs-lookup"><span data-stu-id="01671-109">This article lists expected configuration values for some of hello Windows Extensions.</span></span>
 
-## <a name="sample-template-snippet-for-vm-extensions-with-iaas-vms"></a><span data-ttu-id="921e7-110">Extrait de l’exemple de modèle pour les extensions de machine virtuelle avec des machines virtuelles IaaS.</span><span class="sxs-lookup"><span data-stu-id="921e7-110">Sample template snippet for VM Extensions with IaaS VMs.</span></span>
-<span data-ttu-id="921e7-111">L'extrait du modèle pour le déploiement des extensions se présente comme suit :</span><span class="sxs-lookup"><span data-stu-id="921e7-111">The template snippet for Deploying extensions looks as following:</span></span>
+## <a name="sample-template-snippet-for-vm-extensions-with-iaas-vms"></a><span data-ttu-id="01671-110">Extrait de l’exemple de modèle pour les extensions de machine virtuelle avec des machines virtuelles IaaS.</span><span class="sxs-lookup"><span data-stu-id="01671-110">Sample template snippet for VM Extensions with IaaS VMs.</span></span>
+<span data-ttu-id="01671-111">extrait de code Hello modèle pour le déploiement de recherche d’extensions comme suit :</span><span class="sxs-lookup"><span data-stu-id="01671-111">hello template snippet for Deploying extensions looks as following:</span></span>
 
       {
       "type": "Microsoft.Compute/virtualMachines/extensions",
@@ -59,7 +59,7 @@ ms.lasthandoff: 07/11/2017
       }
       }
 
-## <a name="sample-template-snippet-for-vm-extensions-with-vm-scale-sets"></a><span data-ttu-id="921e7-112">Extrait de l’exemple de modèle pour les extensions de machine virtuelle avec des jeux de mise à l’échelle de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="921e7-112">Sample template snippet for VM Extensions with VM Scale Sets.</span></span>
+## <a name="sample-template-snippet-for-vm-extensions-with-vm-scale-sets"></a><span data-ttu-id="01671-112">Extrait de l’exemple de modèle pour les extensions de machine virtuelle avec des jeux de mise à l’échelle de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="01671-112">Sample template snippet for VM Extensions with VM Scale Sets.</span></span>
     {
      "type":"Microsoft.Compute/virtualMachineScaleSets",
     ....
@@ -80,13 +80,13 @@ ms.lasthandoff: 07/11/2017
             }
           }
 
-<span data-ttu-id="921e7-113">Avant de déployer l'extension, déterminez la dernière version de l'extension et remplacez la « typeHandlerVersion » par la dernière version.</span><span class="sxs-lookup"><span data-stu-id="921e7-113">Before deploying the extension please check the latest extension version and replace the "typeHandlerVersion" with the current latest version.</span></span>
+<span data-ttu-id="01671-113">Avant de déployer l’extension de hello Vérifiez version plus récente de l’extension hello et remplacez hello « typeHandlerVersion » avec la version la plus récente en cours hello.</span><span class="sxs-lookup"><span data-stu-id="01671-113">Before deploying hello extension please check hello latest extension version and replace hello "typeHandlerVersion" with hello current latest version.</span></span>
 
-<span data-ttu-id="921e7-114">La suite de cet article fournit des exemples de configurations pour les extensions de machine virtuelle Windows.</span><span class="sxs-lookup"><span data-stu-id="921e7-114">Rest of the article provides sample configurations for Windows VM Extensions.</span></span>
+<span data-ttu-id="01671-114">Reste de hello article fournit des exemples de configurations pour les Extensions de machine virtuelle Windows.</span><span class="sxs-lookup"><span data-stu-id="01671-114">Rest of hello article provides sample configurations for Windows VM Extensions.</span></span>
 
-<span data-ttu-id="921e7-115">Avant de déployer l'extension, déterminez la dernière version de l'extension et remplacez la « typeHandlerVersion » par la dernière version.</span><span class="sxs-lookup"><span data-stu-id="921e7-115">Before deploying the extension please check the latest extension version and replace the "typeHandlerVersion" with the current latest version.</span></span>
+<span data-ttu-id="01671-115">Avant de déployer l’extension de hello Vérifiez version plus récente de l’extension hello et remplacez hello « typeHandlerVersion » avec la version la plus récente en cours hello.</span><span class="sxs-lookup"><span data-stu-id="01671-115">Before deploying hello extension please check hello latest extension version and replace hello "typeHandlerVersion" with hello current latest version.</span></span>
 
-### <a name="customscript-extension-14"></a><span data-ttu-id="921e7-116">Extension CustomScript 1.4.</span><span class="sxs-lookup"><span data-stu-id="921e7-116">CustomScript Extension 1.4.</span></span>
+### <a name="customscript-extension-14"></a><span data-ttu-id="01671-116">Extension CustomScript 1.4.</span><span class="sxs-lookup"><span data-stu-id="01671-116">CustomScript Extension 1.4.</span></span>
       {
           "publisher": "Microsoft.Compute",
           "type": "CustomScriptExtension",
@@ -103,14 +103,14 @@ ms.lasthandoff: 07/11/2017
           }
       }
 
-#### <a name="parameter-description"></a><span data-ttu-id="921e7-117">Description du paramètre :</span><span class="sxs-lookup"><span data-stu-id="921e7-117">Parameter description:</span></span>
-* <span data-ttu-id="921e7-118">fileUris : liste séparée par des virgules des URL des fichiers qui seront téléchargés sur la machine virtuelle par l’extension.</span><span class="sxs-lookup"><span data-stu-id="921e7-118">fileUris : Comma seperated list of urls of the files that will be downloaded on the VM by the Extension.</span></span> <span data-ttu-id="921e7-119">Aucun fichier n’est téléchargé si rien n’est spécifié.</span><span class="sxs-lookup"><span data-stu-id="921e7-119">No files are downloaded if nothing is specified.</span></span> <span data-ttu-id="921e7-120">Si les fichiers se trouvent dans Azure Storage, les valeurs fileURL peuvent être marquées comme privées et les valeurs storageAccountName et storageAccountKey correspondantes peuvent être passées comme des paramètres privés pour accéder à ces fichiers.</span><span class="sxs-lookup"><span data-stu-id="921e7-120">If the files are in Azure Storage, the fileURLs can be marked private and the correspoding storageAccountName and storageAccountKey can be passed as private parameters to access these files.</span></span>
-* <span data-ttu-id="921e7-121">commandToExecute : [Paramètre obligatoire] : la commande qui sera exécutée par l'extension.</span><span class="sxs-lookup"><span data-stu-id="921e7-121">commandToExecute : [Mandatory Parameter] : This is the command that will be executed by the Extension.</span></span>
-* <span data-ttu-id="921e7-122">storageAccountName : [Paramètre facultatif] : nom du compte de stockage pour accéder aux valeurs fileURL, si elles sont marquées comme privées.</span><span class="sxs-lookup"><span data-stu-id="921e7-122">storageAccountName : [Optional Parameter] : Storage Account Name for accessing the fileURLs, if they are marked as private.</span></span>
-* <span data-ttu-id="921e7-123">storageAccountKey : [Paramètre facultatif] : clé du compte de stockage pour accéder aux valeurs fileURL, si elles sont marquées comme privées.</span><span class="sxs-lookup"><span data-stu-id="921e7-123">storageAccountKey : [Optional Parameter] : Storage Account Key for accessing the fileURLs, if they are marked as private.</span></span>
+#### <a name="parameter-description"></a><span data-ttu-id="01671-117">Description du paramètre :</span><span class="sxs-lookup"><span data-stu-id="01671-117">Parameter description:</span></span>
+* <span data-ttu-id="01671-118">fileUris : liste des URL des fichiers hello qui seront téléchargés sur hello VM par hello Extension séparés par des virgules.</span><span class="sxs-lookup"><span data-stu-id="01671-118">fileUris : Comma seperated list of urls of hello files that will be downloaded on hello VM by hello Extension.</span></span> <span data-ttu-id="01671-119">Aucun fichier n’est téléchargé si rien n’est spécifié.</span><span class="sxs-lookup"><span data-stu-id="01671-119">No files are downloaded if nothing is specified.</span></span> <span data-ttu-id="01671-120">Si les fichiers de hello sont dans le stockage Azure, hello fileURLs peuvent être marqués comme privés et hello storageAccountKey et cliquant storageAccountName peuvent être passés en tant que paramètres privés tooaccess ces fichiers.</span><span class="sxs-lookup"><span data-stu-id="01671-120">If hello files are in Azure Storage, hello fileURLs can be marked private and hello correspoding storageAccountName and storageAccountKey can be passed as private parameters tooaccess these files.</span></span>
+* <span data-ttu-id="01671-121">commandToExecute : [paramètre obligatoire] : il s’agit commande hello qui sera exécuté par hello Extension.</span><span class="sxs-lookup"><span data-stu-id="01671-121">commandToExecute : [Mandatory Parameter] : This is hello command that will be executed by hello Extension.</span></span>
+* <span data-ttu-id="01671-122">storageAccountName : [paramètre facultatif] : nom de compte de stockage pour accéder aux hello fileURLs, s’ils sont marqués comme privés.</span><span class="sxs-lookup"><span data-stu-id="01671-122">storageAccountName : [Optional Parameter] : Storage Account Name for accessing hello fileURLs, if they are marked as private.</span></span>
+* <span data-ttu-id="01671-123">storageAccountKey : [paramètre facultatif] : clé de compte de stockage pour accéder aux hello fileURLs, s’ils sont marqués comme privés.</span><span class="sxs-lookup"><span data-stu-id="01671-123">storageAccountKey : [Optional Parameter] : Storage Account Key for accessing hello fileURLs, if they are marked as private.</span></span>
 
-### <a name="customscript-extension-17"></a><span data-ttu-id="921e7-124">Extension CustomScript 1.7.</span><span class="sxs-lookup"><span data-stu-id="921e7-124">CustomScript Extension 1.7.</span></span>
-<span data-ttu-id="921e7-125">Reportez-vous à CustomScript version 1.4 pour la description du paramètre.</span><span class="sxs-lookup"><span data-stu-id="921e7-125">Please refer to CustomScript version 1.4 for parameter description.</span></span> <span data-ttu-id="921e7-126">La version 1.7 prend désormais en charge l'envoi de paramètres de script (commandToExecute) comme protectedSettings, auquel cas ils seront chiffrés avant l'envoi.</span><span class="sxs-lookup"><span data-stu-id="921e7-126">Version 1.7 introduces support for sending script parameters(commandToExecute) as protectedSettings, in which case they will be encrypted before sending.</span></span> <span data-ttu-id="921e7-127">Le paramètre « commandToExecute » peut être spécifié dans les paramètres ou protectedSettings mais pas dans les deux.</span><span class="sxs-lookup"><span data-stu-id="921e7-127">'commandToExecute' parameter can be specified either in settings or protectedSettings but not in both.</span></span>
+### <a name="customscript-extension-17"></a><span data-ttu-id="01671-124">Extension CustomScript 1.7.</span><span class="sxs-lookup"><span data-stu-id="01671-124">CustomScript Extension 1.7.</span></span>
+<span data-ttu-id="01671-125">Reportez-vous tooCustomScript version 1.4 pour la description du paramètre.</span><span class="sxs-lookup"><span data-stu-id="01671-125">Please refer tooCustomScript version 1.4 for parameter description.</span></span> <span data-ttu-id="01671-126">La version 1.7 prend désormais en charge l'envoi de paramètres de script (commandToExecute) comme protectedSettings, auquel cas ils seront chiffrés avant l'envoi.</span><span class="sxs-lookup"><span data-stu-id="01671-126">Version 1.7 introduces support for sending script parameters(commandToExecute) as protectedSettings, in which case they will be encrypted before sending.</span></span> <span data-ttu-id="01671-127">Le paramètre « commandToExecute » peut être spécifié dans les paramètres ou protectedSettings mais pas dans les deux.</span><span class="sxs-lookup"><span data-stu-id="01671-127">'commandToExecute' parameter can be specified either in settings or protectedSettings but not in both.</span></span>
 
         {
             "publisher": "Microsoft.Compute",
@@ -129,7 +129,7 @@ ms.lasthandoff: 07/11/2017
             }
         }
 
-### <a name="vmaccess-extension"></a><span data-ttu-id="921e7-128">Extension VMAccess.</span><span class="sxs-lookup"><span data-stu-id="921e7-128">VMAccess Extension.</span></span>
+### <a name="vmaccess-extension"></a><span data-ttu-id="01671-128">Extension VMAccess.</span><span class="sxs-lookup"><span data-stu-id="01671-128">VMAccess Extension.</span></span>
       {
           "publisher": "Microsoft.Compute",
           "type": "VMAccessAgent",
@@ -142,21 +142,21 @@ ms.lasthandoff: 07/11/2017
           }
       }
 
-### <a name="dsc-extension"></a><span data-ttu-id="921e7-129">Extension DSC.</span><span class="sxs-lookup"><span data-stu-id="921e7-129">DSC Extension.</span></span>
+### <a name="dsc-extension"></a><span data-ttu-id="01671-129">Extension DSC.</span><span class="sxs-lookup"><span data-stu-id="01671-129">DSC Extension.</span></span>
       {
           "publisher": "Microsoft.Powershell",
           "type": "DSC",
-          "typeHandlerVersion": "2.1(Recommendation is to use the latest version)",
+          "typeHandlerVersion": "2.1(Recommendation is toouse hello latest version)",
           "settings": {
               "ModulesUrl": "https://UrlToZipContainingConfigurationScript.ps1.zip",
-              "SasToken": "Optional : SAS Token if ModulesUrl points to Azure Blob Storage",
+              "SasToken": "Optional : SAS Token if ModulesUrl points tooAzure Blob Storage",
               "ConfigurationFunction": "ConfigurationScript.ps1\\ConfigurationFunction",
               "Properties": {
                   "ParameterToConfigurationFunction1": "Value1",
                   "ParameterToConfigurationFunction2": "Value2",
                   "ParameterOfTypePSCredential1": {
                       "UserName": "UsernameValue1",
-                      "Password": "PrivateSettingsRef:Key1(Value is a reference to a member of the Items object in the protected settings)"
+                      "Password": "PrivateSettingsRef:Key1(Value is a reference tooa member of hello Items object in hello protected settings)"
                   },
                   "ParameterOfTypePSCredential2": {
                       "UserName": "UsernameValue2",
@@ -174,7 +174,7 @@ ms.lasthandoff: 07/11/2017
       }
 
 
-### <a name="symantec-endpoint-protection"></a><span data-ttu-id="921e7-130">Symantec Endpoint Protection.</span><span class="sxs-lookup"><span data-stu-id="921e7-130">Symantec Endpoint Protection.</span></span>
+### <a name="symantec-endpoint-protection"></a><span data-ttu-id="01671-130">Symantec Endpoint Protection.</span><span class="sxs-lookup"><span data-stu-id="01671-130">Symantec Endpoint Protection.</span></span>
       {
         "publisher": "SymantecEndpointProtection",
         "type": "Symantec",
@@ -182,25 +182,25 @@ ms.lasthandoff: 07/11/2017
         "settings": {}
       }
 
-### <a name="trend-micro-deep-security-agent"></a><span data-ttu-id="921e7-131">Agent Trend Micro Deep Security.</span><span class="sxs-lookup"><span data-stu-id="921e7-131">Trend Micro Deep Security Agent.</span></span>
+### <a name="trend-micro-deep-security-agent"></a><span data-ttu-id="01671-131">Agent Trend Micro Deep Security.</span><span class="sxs-lookup"><span data-stu-id="01671-131">Trend Micro Deep Security Agent.</span></span>
       {
         "publisher": "TrendMicro.DeepSecurity",
         "type": "TrendMicroDSA",
         "typeHandlerVersion": "9.6",
         "settings": {
-          "ManagerAddress" : "Enter the externally accessible DNS name or IP address of the Deep Security Manager. Please enter \"agents.deepsecurity.trendmicro.com\" if using Deep Security as a Service",
+          "ManagerAddress" : "Enter hello externally accessible DNS name or IP address of hello Deep Security Manager. Please enter \"agents.deepsecurity.trendmicro.com\" if using Deep Security as a Service",
 
-          "ActivationPort" : "Enter the port number of the Deep Security Manager, default value - 443",
+          "ActivationPort" : "Enter hello port number of hello Deep Security Manager, default value - 443",
 
-          "TenantIdentifier" : "Enter the tenant ID, which is a hyphenated, 36-character string available in the Deployment Scripts dialog box in the Deep Security console. This parameter is mandatory if using Deep Security as a Service, or a multi-tenant installation of Deep Security Manager. Type NA if using a non multi-tenant installation of Deep Security Manager.",
+          "TenantIdentifier" : "Enter hello tenant ID, which is a hyphenated, 36-character string available in hello Deployment Scripts dialog box in hello Deep Security console. This parameter is mandatory if using Deep Security as a Service, or a multi-tenant installation of Deep Security Manager. Type NA if using a non multi-tenant installation of Deep Security Manager.",
 
-          "TenantActivationPassword" : "Enter the tenant activation password, which is a hyphenated, 36-character string available in the Deployment Scripts dialog box in the Deep Security console. This parameter is mandatory if using Deep Security as a Service, or a multi-tenant installation of Deep Security Manager. Type NA if using a non multi-tenant installation of Deep Security Manager.",
+          "TenantActivationPassword" : "Enter hello tenant activation password, which is a hyphenated, 36-character string available in hello Deployment Scripts dialog box in hello Deep Security console. This parameter is mandatory if using Deep Security as a Service, or a multi-tenant installation of Deep Security Manager. Type NA if using a non multi-tenant installation of Deep Security Manager.",
 
-          "SecurityPolicy" : "Optional : Enter the name or numeric ID of the security policy defined in the Deep Security Manager which will be applied on agent activation to protect this virtual machine (recommended). No security policy will be applied to the virtual machine if this parameter is blank. This parameter is optional if using Deep Security as a Service."
+          "SecurityPolicy" : "Optional : Enter hello name or numeric ID of hello security policy defined in hello Deep Security Manager which will be applied on agent activation tooprotect this virtual machine (recommended). No security policy will be applied toohello virtual machine if this parameter is blank. This parameter is optional if using Deep Security as a Service."
         }
       }
 
-### <a name="vormertric-transparent-encryption-agent"></a><span data-ttu-id="921e7-132">Agent Vormertric Transparent Encryption.</span><span class="sxs-lookup"><span data-stu-id="921e7-132">Vormertric Transparent Encryption Agent.</span></span>
+### <a name="vormertric-transparent-encryption-agent"></a><span data-ttu-id="01671-132">Agent Vormertric Transparent Encryption.</span><span class="sxs-lookup"><span data-stu-id="01671-132">Vormertric Transparent Encryption Agent.</span></span>
             {
               "publisher": "Vormetric",
               "type": "VormetricTransparentEncryptionAgent",
@@ -209,7 +209,7 @@ ms.lasthandoff: 07/11/2017
               }
             }
 
-### <a name="puppet-enterprise-agent"></a><span data-ttu-id="921e7-133">Agent Puppet Enterprise.</span><span class="sxs-lookup"><span data-stu-id="921e7-133">Puppet Enterprise Agent.</span></span>
+### <a name="puppet-enterprise-agent"></a><span data-ttu-id="01671-133">Agent Puppet Enterprise.</span><span class="sxs-lookup"><span data-stu-id="01671-133">Puppet Enterprise Agent.</span></span>
             {
               "publisher": "PuppetLabs",
               "type": "PuppetEnterpriseAgent",
@@ -219,35 +219,35 @@ ms.lasthandoff: 07/11/2017
               }
             }  
 
-### <a name="microsoft-monitoring-agent-for-azure-operational-insights"></a><span data-ttu-id="921e7-134">Agent Microsoft Monitoring pour Azure Operational Insights</span><span class="sxs-lookup"><span data-stu-id="921e7-134">Microsoft Monitoring Agent for Azure Operational Insights</span></span>
+### <a name="microsoft-monitoring-agent-for-azure-operational-insights"></a><span data-ttu-id="01671-134">Agent Microsoft Monitoring pour Azure Operational Insights</span><span class="sxs-lookup"><span data-stu-id="01671-134">Microsoft Monitoring Agent for Azure Operational Insights</span></span>
             {
               "publisher": "Microsoft.EnterpriseCloud.Monitoring",
               "type": "MicrosoftMonitoringAgent",
               "typeHandlerVersion": "1.0",
               "settings": {
-                "workspaceId" : "The Workspace ID is available from within the Direct Agent Configuration section of the Azure Operational Insights portal"
+                "workspaceId" : "hello Workspace ID is available from within hello Direct Agent Configuration section of hello Azure Operational Insights portal"
               }
               "protectedSettings": {
-                "workspaceKey"  : "The Workspace Key is a string that is available from within the Direct Agent Configuration section of the Azure Operational Insights portal"
+                "workspaceKey"  : "hello Workspace Key is a string that is available from within hello Direct Agent Configuration section of hello Azure Operational Insights portal"
               }
               }
             }
 
-### <a name="mcafee-endpointsecurity"></a><span data-ttu-id="921e7-135">McAfee EndpointSecurity</span><span class="sxs-lookup"><span data-stu-id="921e7-135">McAfee EndpointSecurity</span></span>
+### <a name="mcafee-endpointsecurity"></a><span data-ttu-id="01671-135">McAfee EndpointSecurity</span><span class="sxs-lookup"><span data-stu-id="01671-135">McAfee EndpointSecurity</span></span>
             {
               "publisher": "McAfee.EndpointSecurity",
               "type": "McAfeeEndpointSecurity",
               "typeHandlerVersion": "6.0",
               "settings": {
                 "entitlementKey" : "Optional : Enter a valid entitlement key or leave blank for trial version",
-                "featureVS"      : "Choose whether or not to install the Virus and Spyware Protection features : true|false",
-                "featureBP"      : "Choose whether or not to install the Browser Protection feature : true|false",
-                "featureFW"      : "Choose whether or not to install the Firewall Protection feature :true|false",
-                "relayServer"    : "Allows VMs on the local subnet to receive updates through this VM when they are not connected to the internet : true|false"
+                "featureVS"      : "Choose whether or not tooinstall hello Virus and Spyware Protection features : true|false",
+                "featureBP"      : "Choose whether or not tooinstall hello Browser Protection feature : true|false",
+                "featureFW"      : "Choose whether or not tooinstall hello Firewall Protection feature :true|false",
+                "relayServer"    : "Allows VMs on hello local subnet tooreceive updates through this VM when they are not connected toohello internet : true|false"
               }
             }
 
-### <a name="azure-iaas-antimalware"></a><span data-ttu-id="921e7-136">Logiciel anti-programme malveillant IaaS Azure</span><span class="sxs-lookup"><span data-stu-id="921e7-136">Azure IaaS Antimalware</span></span>
+### <a name="azure-iaas-antimalware"></a><span data-ttu-id="01671-136">Logiciel anti-programme malveillant IaaS Azure</span><span class="sxs-lookup"><span data-stu-id="01671-136">Azure IaaS Antimalware</span></span>
           {
             "publisher": "Microsoft.Azure.Security",
             "type": "IaaSAntimalware",
@@ -261,11 +261,11 @@ ms.lasthandoff: 07/11/2017
               "ScheduledScanSettingsIsEnabled"   : "Optional : True|False",
               "ScheduledScanSettingsScanType"   : "Optional : Quick|Full",
               "ScheduledScanSettingsDay"   : "Optional : Sunday-Saturday",
-              "ScheduledScanSettingsTime"   : "Optional : When to perform the scheduled scan, measured in minutes from midnight,0-1440"
+              "ScheduledScanSettingsTime"   : "Optional : When tooperform hello scheduled scan, measured in minutes from midnight,0-1440"
             }
           }
 
-### <a name="eset-file-security"></a><span data-ttu-id="921e7-137">ESET File Security</span><span class="sxs-lookup"><span data-stu-id="921e7-137">ESET File Security</span></span>
+### <a name="eset-file-security"></a><span data-ttu-id="01671-137">ESET File Security</span><span class="sxs-lookup"><span data-stu-id="01671-137">ESET File Security</span></span>
           {
             "publisher": "ESET",
             "type": "FileSecurity",
@@ -274,7 +274,7 @@ ms.lasthandoff: 07/11/2017
             }
           }
 
-### <a name="datadog-agent"></a><span data-ttu-id="921e7-138">Agent Datadog</span><span class="sxs-lookup"><span data-stu-id="921e7-138">Datadog Agent</span></span>
+### <a name="datadog-agent"></a><span data-ttu-id="01671-138">Agent Datadog</span><span class="sxs-lookup"><span data-stu-id="01671-138">Datadog Agent</span></span>
           {
             "publisher": "Datadog.Agent",
             "type": "DatadogWindowsAgent",
@@ -284,41 +284,41 @@ ms.lasthandoff: 07/11/2017
             }
           }
 
-### <a name="confer-advanced-threat-prevention-and-incident-response-for-azure"></a><span data-ttu-id="921e7-139">Confer Advanced Threat Prevention and Incident Response pour Azure</span><span class="sxs-lookup"><span data-stu-id="921e7-139">Confer Advanced Threat Prevention and Incident Response for Azure</span></span>
+### <a name="confer-advanced-threat-prevention-and-incident-response-for-azure"></a><span data-ttu-id="01671-139">Confer Advanced Threat Prevention and Incident Response pour Azure</span><span class="sxs-lookup"><span data-stu-id="01671-139">Confer Advanced Threat Prevention and Incident Response for Azure</span></span>
           {
             "publisher": "Confer",
             "type": "ConferForAzure",
             "typeHandlerVersion": "1.0",
             "settings": {
-              "ConferRegisterCode" : "Optional : Valid product registration code or leave it blank to register later",
+              "ConferRegisterCode" : "Optional : Valid product registration code or leave it blank tooregister later",
               "ConferRegisterCode" : "Enter a valid server name if your account requires a dedicated confer backend server or leave it blank"
             }
           }
 
-### <a name="cloudlink-securevm-agent"></a><span data-ttu-id="921e7-140">Agent CloudLink SecureVM</span><span class="sxs-lookup"><span data-stu-id="921e7-140">CloudLink SecureVM Agent</span></span>
+### <a name="cloudlink-securevm-agent"></a><span data-ttu-id="01671-140">Agent CloudLink SecureVM</span><span class="sxs-lookup"><span data-stu-id="01671-140">CloudLink SecureVM Agent</span></span>
           {
             "publisher": "CloudLinkEMC.SecureVM",
             "type": "CloudLinkSecureVMWindowsAgent",
             "typeHandlerVersion": "4.0",
             "settings": {
-              "CloudLinkCenter" : "specify valid IP/FQDN to CloudLinkCenter"
+              "CloudLinkCenter" : "specify valid IP/FQDN tooCloudLinkCenter"
             }
           }
 
-### <a name="barracuda-vpn-connectivity-agent-for-microsoft-azure"></a><span data-ttu-id="921e7-141">Agent Barracuda VPN Connectivity pour Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="921e7-141">Barracuda VPN Connectivity Agent for Microsoft Azure</span></span>
+### <a name="barracuda-vpn-connectivity-agent-for-microsoft-azure"></a><span data-ttu-id="01671-141">Agent Barracuda VPN Connectivity pour Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="01671-141">Barracuda VPN Connectivity Agent for Microsoft Azure</span></span>
           {
             "publisher": "Barracuda.Azure.ConnectivityAgent",
             "type": "BarracudaConnectivityAgent",
             "typeHandlerVersion": "3.5",
             "settings": {
-              "ServerAddress" : "Host name or IP address of the VPN server - AES, AES256, Blowfish,CAST,DES,3DES,None",
-              "EncryptionAlgorithm" : "Algorithm used to encrypt VPN traffic - MD5,SHA1,SHA256,None",
-              "PKCS12File" : "Url for file containing certificate and private key used to authenticate against the VPN server",
-              "PKCS12FilePassword" : "Password for the file containing certificate and private key"
+              "ServerAddress" : "Host name or IP address of hello VPN server - AES, AES256, Blowfish,CAST,DES,3DES,None",
+              "EncryptionAlgorithm" : "Algorithm used tooencrypt VPN traffic - MD5,SHA1,SHA256,None",
+              "PKCS12File" : "Url for file containing certificate and private key used tooauthenticate against hello VPN server",
+              "PKCS12FilePassword" : "Password for hello file containing certificate and private key"
             }
           }
 
-### <a name="alert-logic-log-manager"></a><span data-ttu-id="921e7-142">Alert Logic Log Manager</span><span class="sxs-lookup"><span data-stu-id="921e7-142">Alert Logic Log Manager</span></span>
+### <a name="alert-logic-log-manager"></a><span data-ttu-id="01671-142">Alert Logic Log Manager</span><span class="sxs-lookup"><span data-stu-id="01671-142">Alert Logic Log Manager</span></span>
           {
             "publisher": "AlertLogic.Extension",
             "type": "AlertLogicLM",
@@ -328,7 +328,7 @@ ms.lasthandoff: 07/11/2017
             }
           }
 
-### <a name="chef-agent"></a><span data-ttu-id="921e7-143">Agent Chef</span><span class="sxs-lookup"><span data-stu-id="921e7-143">Chef Agent</span></span>
+### <a name="chef-agent"></a><span data-ttu-id="01671-143">Agent Chef</span><span class="sxs-lookup"><span data-stu-id="01671-143">Chef Agent</span></span>
           {
             "publisher": "Chef.Bootstrap.WindowsAzure",
             "type": "ChefClient",
@@ -340,8 +340,8 @@ ms.lasthandoff: 07/11/2017
             }
           }
 
-### <a name="azure-diagnostics"></a><span data-ttu-id="921e7-144">Azure Diagnostics</span><span class="sxs-lookup"><span data-stu-id="921e7-144">Azure Diagnostics</span></span>
-<span data-ttu-id="921e7-145">Pour plus d’informations sur la configuration des diagnostics, consultez la section [Extension des diagnostics Azure](extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="921e7-145">For more details about how to configure diagnostics, see [Azure Diagnostics Extension](extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span></span>
+### <a name="azure-diagnostics"></a><span data-ttu-id="01671-144">Azure Diagnostics</span><span class="sxs-lookup"><span data-stu-id="01671-144">Azure Diagnostics</span></span>
+<span data-ttu-id="01671-145">Pour plus d’informations sur la façon tooconfigure diagnostics, consultez [Extension des Diagnostics Azure](extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="01671-145">For more details about how tooconfigure diagnostics, see [Azure Diagnostics Extension](extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)</span></span>
 
           {
             "publisher": "Microsoft.Azure.Diagnostics",
@@ -359,9 +359,9 @@ ms.lasthandoff: 07/11/2017
           }
           }
 
-### <a name="octopus-deploy-tentacle-agent"></a><span data-ttu-id="921e7-146">Agent Tentacle Octopus Deploy</span><span class="sxs-lookup"><span data-stu-id="921e7-146">Octopus Deploy Tentacle Agent</span></span>
+### <a name="octopus-deploy-tentacle-agent"></a><span data-ttu-id="01671-146">Agent Tentacle Octopus Deploy</span><span class="sxs-lookup"><span data-stu-id="01671-146">Octopus Deploy Tentacle Agent</span></span>
 
-<span data-ttu-id="921e7-147">Pour plus d’informations sur la configuration de Tentacle Octopus Deploy sur Azure, consultez la [documentation Octopus](https://octopus.com/docs/installation/installing-tentacles/azure-virtual-machines).</span><span class="sxs-lookup"><span data-stu-id="921e7-147">For more details about how to configure the Octopus Deploy Tentacle on Azure, see the [Octopus Documentation](https://octopus.com/docs/installation/installing-tentacles/azure-virtual-machines).</span></span>
+<span data-ttu-id="01671-147">Pour plus d’informations sur la façon dont tooconfigure hello multiple déployer Tentacle sur Azure, consultez hello [multiple Documentation](https://octopus.com/docs/installation/installing-tentacles/azure-virtual-machines).</span><span class="sxs-lookup"><span data-stu-id="01671-147">For more details about how tooconfigure hello Octopus Deploy Tentacle on Azure, see hello [Octopus Documentation](https://octopus.com/docs/installation/installing-tentacles/azure-virtual-machines).</span></span>
 
           {
             "publisher": "OctopusDeploy.Tentacle",
@@ -369,25 +369,25 @@ ms.lasthandoff: 07/11/2017
             "typeHandlerVersion": "2.0",
             "autoUpgradeMinorVersion": "true",
             "settings": {
-              "OctopusServerUrl": "(string, required) The url to the Octopus server portal.",
-              "Environments": [ "(array of strings, required) The environments to which the Tentacle should be added." ],
-              "Roles": [ "(array of strings, required) The roles to assign to the Tentacle." ],
-              "CommunicationMode": "(string, required) Whether the Tentacle should wait for connections from the server ('Listen') or should poll the server ('Poll').",
-              "Port": (int, required) The port to listen on for connections from the server (in 'Listen' mode), or the port on which to connect to the Octopus server ('Poll' mode).,
-              "PublicHostNameConfiguration": "(string, optional) If in listening mode, how the server should contact the Tentacle. Can be 'PublicIP', 'FQDN', 'ComputerName' or 'Custom'. Defaults to 'PublicIp'.",
-              "CustomPublicHostName": "(string, optional) If in listening mode, and 'PublicHostNameConfiguration' is set to 'Custom', the address that the server should use for this Tentacle.",
-              "MachinePolicy": "(string, optional) The Machine Policy to assign to the Tentacle. If not specified, uses the default Machine Policy.",
-              "Tenants": [ "(array of strings, optional) The tenants to assign to the Tentacle. The tenants feature must be enabled on the Octopus Server." ],
-              "TenantTags": [ "(array of strings, optional) The tenant tags to assign to the Tentacle, in the format 'TagSet/TagName'. The tenants feature must be enabled on the Octopus Server." ]
+              "OctopusServerUrl": "(string, required) hello url toohello Octopus server portal.",
+              "Environments": [ "(array of strings, required) hello environments toowhich hello Tentacle should be added." ],
+              "Roles": [ "(array of strings, required) hello roles tooassign toohello Tentacle." ],
+              "CommunicationMode": "(string, required) Whether hello Tentacle should wait for connections from hello server ('Listen') or should poll hello server ('Poll').",
+              "Port": (int, required) hello port toolisten on for connections from hello server (in 'Listen' mode), or hello port on which tooconnect toohello Octopus server ('Poll' mode).,
+              "PublicHostNameConfiguration": "(string, optional) If in listening mode, how hello server should contact hello Tentacle. Can be 'PublicIP', 'FQDN', 'ComputerName' or 'Custom'. Defaults too'PublicIp'.",
+              "CustomPublicHostName": "(string, optional) If in listening mode, and 'PublicHostNameConfiguration' is set too'Custom', hello address that hello server should use for this Tentacle.",
+              "MachinePolicy": "(string, optional) hello Machine Policy tooassign toohello Tentacle. If not specified, uses hello default Machine Policy.",
+              "Tenants": [ "(array of strings, optional) hello tenants tooassign toohello Tentacle. hello tenants feature must be enabled on hello Octopus Server." ],
+              "TenantTags": [ "(array of strings, optional) hello tenant tags tooassign toohello Tentacle, in hello format 'TagSet/TagName'. hello tenants feature must be enabled on hello Octopus Server." ]
             },
             "protectedSettings": {
-              "ApiKey": "(string, required) The Api Key to use to connect to the Octopus server."
+              "ApiKey": "(string, required) hello Api Key toouse tooconnect toohello Octopus server."
             }
           }
 
-<span data-ttu-id="921e7-148">Dans les exemples ci-dessus, remplacez le numéro de version par le dernier numéro de version.</span><span class="sxs-lookup"><span data-stu-id="921e7-148">In the examples above, replace the version number with the latest version number.</span></span>
+<span data-ttu-id="01671-148">Dans l’exemple hello ci-dessus, remplacez le numéro de version hello avec le numéro de version plus récente hello.</span><span class="sxs-lookup"><span data-stu-id="01671-148">In hello examples above, replace hello version number with hello latest version number.</span></span>
 
-<span data-ttu-id="921e7-149">Voici un exemple de modèle de machine virtuelle complet avec l’extension de script personnalisé.</span><span class="sxs-lookup"><span data-stu-id="921e7-149">Here is an example of a full VM template with Custom Script Extension.</span></span>
+<span data-ttu-id="01671-149">Voici un exemple de modèle de machine virtuelle complet avec l’extension de script personnalisé.</span><span class="sxs-lookup"><span data-stu-id="01671-149">Here is an example of a full VM template with Custom Script Extension.</span></span>
 
-[<span data-ttu-id="921e7-150">Extension de script personnalisé sur une machine virtuelle Windows</span><span class="sxs-lookup"><span data-stu-id="921e7-150">Custom Script Extension on a Windows VM</span></span>](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)
+[<span data-ttu-id="01671-150">Extension de script personnalisé sur une machine virtuelle Windows</span><span class="sxs-lookup"><span data-stu-id="01671-150">Custom Script Extension on a Windows VM</span></span>](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)
 

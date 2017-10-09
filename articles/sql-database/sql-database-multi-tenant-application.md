@@ -1,5 +1,5 @@
 ---
-title: "Déploiement d’une application SaaS mutualisée avec Azure SQL Database | Microsoft Docs"
+title: "application de SaaS mutualisée aaaImplement avec la base de données SQL Azure | Documents Microsoft"
 description: "Déployez une application SaaS mutualisée avec Azure SQL Database."
 services: sql-database
 documentationcenter: 
@@ -16,48 +16,48 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/08/2017
 ms.author: AyoOlubek
-ms.openlocfilehash: 0aea69d86a51c38c99a72f46737de1eea27bef83
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b87b8f296e2c20a8f674b56375f43fdc92df76d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="implement-a-multi-tenant-saas-application-using-azure-sql-database"></a><span data-ttu-id="1d01a-103">Déployer une application SaaS mutualisée à l’aide d’Azure SQL Database</span><span class="sxs-lookup"><span data-stu-id="1d01a-103">Implement a multi-tenant SaaS application using Azure SQL Database</span></span>
+# <a name="implement-a-multi-tenant-saas-application-using-azure-sql-database"></a><span data-ttu-id="6f229-103">Déployer une application SaaS mutualisée à l’aide d’Azure SQL Database</span><span class="sxs-lookup"><span data-stu-id="6f229-103">Implement a multi-tenant SaaS application using Azure SQL Database</span></span>
 
-<span data-ttu-id="1d01a-104">Une application mutualisée désigne une application hébergée dans un environnement cloud, qui fournit le même ensemble de services à des centaines ou milliers de locataires qui ne partagent pas ou ne voient pas les données d’autrui.</span><span class="sxs-lookup"><span data-stu-id="1d01a-104">A multi-tenant application is an application hosted in a cloud environment and that provides the same set of services to hundreds or thousands of tenants who do not share or see each other’s data.</span></span> <span data-ttu-id="1d01a-105">Il peut par exemple s’agir d’une application SaaS qui fournit des services aux locataires dans un environnement hébergé dans le cloud.</span><span class="sxs-lookup"><span data-stu-id="1d01a-105">An example is an SaaS application that provides services to tenants in a cloud-hosted environment.</span></span> <span data-ttu-id="1d01a-106">Ce modèle isole les données pour chaque locataire et optimise la répartition des ressources de coûts.</span><span class="sxs-lookup"><span data-stu-id="1d01a-106">This model isolates the data for each tenant and optimizes the distribution of resources for cost.</span></span> 
+<span data-ttu-id="6f229-104">Une application mutualisée est une application hébergée dans un environnement cloud et hello même ensemble de services toohundreds plusieurs milliers de clients qui ne pas partager ou afficher les données de l’autre.</span><span class="sxs-lookup"><span data-stu-id="6f229-104">A multi-tenant application is an application hosted in a cloud environment and that provides hello same set of services toohundreds or thousands of tenants who do not share or see each other’s data.</span></span> <span data-ttu-id="6f229-105">Un exemple est une application SaaS qui fournit des tootenants de services dans un environnement hébergé dans le cloud.</span><span class="sxs-lookup"><span data-stu-id="6f229-105">An example is an SaaS application that provides services tootenants in a cloud-hosted environment.</span></span> <span data-ttu-id="6f229-106">Ce modèle isole les données de salutation pour chaque client et optimise distribution hello de ressources pour un coût.</span><span class="sxs-lookup"><span data-stu-id="6f229-106">This model isolates hello data for each tenant and optimizes hello distribution of resources for cost.</span></span> 
 
-<span data-ttu-id="1d01a-107">Ce didacticiel montre comment créer une application SaaS mutualisée à l’aide d’Azure SQL Database.</span><span class="sxs-lookup"><span data-stu-id="1d01a-107">This tutorial demonstrates how to create a multi-tenant SaaS application using Azure SQL Database.</span></span>
+<span data-ttu-id="6f229-107">Ce didacticiel montre comment toocreate une application de SaaS mutualisée à l’aide de la base de données SQL Azure.</span><span class="sxs-lookup"><span data-stu-id="6f229-107">This tutorial demonstrates how toocreate a multi-tenant SaaS application using Azure SQL Database.</span></span>
 
-<span data-ttu-id="1d01a-108">Ce didacticiel vous apprendra à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="1d01a-108">In this tutorial, you will learn to:</span></span>
+<span data-ttu-id="6f229-108">Ce didacticiel vous apprendra à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="6f229-108">In this tutorial, you will learn to:</span></span>
 > [!div class="checklist"]
-> * <span data-ttu-id="1d01a-109">Configuration d’un environnement de base de données pour la prise en charge d’une application SaaS mutualisée, à l’aide du modèle « base de données par locataire »</span><span class="sxs-lookup"><span data-stu-id="1d01a-109">Set up a database environment to support a multi-tenant SaaS application, using the Database-per-tenant pattern</span></span>
-> * <span data-ttu-id="1d01a-110">Création d’un catalogue de locataires</span><span class="sxs-lookup"><span data-stu-id="1d01a-110">Create a tenant catalog</span></span>
-> * <span data-ttu-id="1d01a-111">Configuration d’une base de données de locataires et inscription de cette base de données dans le catalogue de locataires</span><span class="sxs-lookup"><span data-stu-id="1d01a-111">Provision a tenant database and register it in the tenant catalog</span></span>
-> * <span data-ttu-id="1d01a-112">Configuration d’un exemple d’application Java</span><span class="sxs-lookup"><span data-stu-id="1d01a-112">Set up a sample Java application</span></span> 
-> * <span data-ttu-id="1d01a-113">Accès aux bases de données de locataires à l’aide d’une simple application console Java</span><span class="sxs-lookup"><span data-stu-id="1d01a-113">Access tenant databases simple a Java console application</span></span>
-> * <span data-ttu-id="1d01a-114">Suppression d’un locataire</span><span class="sxs-lookup"><span data-stu-id="1d01a-114">Delete a tenant</span></span>
+> * <span data-ttu-id="6f229-109">Configurer un toosupport d’environnement de base de données d’une application SaaS mutualisée, à l’aide du modèle de base de données pour chaque locataire hello</span><span class="sxs-lookup"><span data-stu-id="6f229-109">Set up a database environment toosupport a multi-tenant SaaS application, using hello Database-per-tenant pattern</span></span>
+> * <span data-ttu-id="6f229-110">Création d’un catalogue de locataires</span><span class="sxs-lookup"><span data-stu-id="6f229-110">Create a tenant catalog</span></span>
+> * <span data-ttu-id="6f229-111">Configurer une base de données client et l’inscrire dans le catalogue du locataire hello</span><span class="sxs-lookup"><span data-stu-id="6f229-111">Provision a tenant database and register it in hello tenant catalog</span></span>
+> * <span data-ttu-id="6f229-112">Configuration d’un exemple d’application Java</span><span class="sxs-lookup"><span data-stu-id="6f229-112">Set up a sample Java application</span></span> 
+> * <span data-ttu-id="6f229-113">Accès aux bases de données de locataires à l’aide d’une simple application console Java</span><span class="sxs-lookup"><span data-stu-id="6f229-113">Access tenant databases simple a Java console application</span></span>
+> * <span data-ttu-id="6f229-114">Suppression d’un locataire</span><span class="sxs-lookup"><span data-stu-id="6f229-114">Delete a tenant</span></span>
 
-<span data-ttu-id="1d01a-115">Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/) avant de commencer.</span><span class="sxs-lookup"><span data-stu-id="1d01a-115">If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.</span></span>
+<span data-ttu-id="6f229-115">Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/) avant de commencer.</span><span class="sxs-lookup"><span data-stu-id="6f229-115">If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="1d01a-116">Composants requis</span><span class="sxs-lookup"><span data-stu-id="1d01a-116">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="6f229-116">Composants requis</span><span class="sxs-lookup"><span data-stu-id="6f229-116">Prerequisites</span></span>
 
-<span data-ttu-id="1d01a-117">Pour suivre ce didacticiel, vérifiez que vous disposez des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="1d01a-117">To complete this tutorial, make sure you have:</span></span>
+<span data-ttu-id="6f229-117">toocomplete ce didacticiel, assurez-vous que vous avez :</span><span class="sxs-lookup"><span data-stu-id="6f229-117">toocomplete this tutorial, make sure you have:</span></span>
 
-* <span data-ttu-id="1d01a-118">La dernière version de PowerShell et le [dernier Kit de développement logiciel (SDK) Azure PowerShell](http://azure.microsoft.com/downloads/)</span><span class="sxs-lookup"><span data-stu-id="1d01a-118">Installed the newest version of PowerShell and the [latest Azure PowerShell SDK](http://azure.microsoft.com/downloads/)</span></span>
+* <span data-ttu-id="6f229-118">Version la plus récente installée hello de PowerShell et hello [dernier Kit de développement Azure PowerShell](http://azure.microsoft.com/downloads/)</span><span class="sxs-lookup"><span data-stu-id="6f229-118">Installed hello newest version of PowerShell and hello [latest Azure PowerShell SDK](http://azure.microsoft.com/downloads/)</span></span>
 
-* <span data-ttu-id="1d01a-119">La dernière version de [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms).</span><span class="sxs-lookup"><span data-stu-id="1d01a-119">Installed the latest version of [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms).</span></span> <span data-ttu-id="1d01a-120">L’installation de SQL Server Management Studio installe également la version la plus récente de SQLPackage, un utilitaire de ligne de commande qui peut être utilisé pour automatiser de nombreuses tâches de développement de bases de données.</span><span class="sxs-lookup"><span data-stu-id="1d01a-120">Installing SQL Server Management Studio also installs the latest version of SQLPackage, a command-line utility that can be used to automate a range of database development tasks.</span></span>
+* <span data-ttu-id="6f229-119">Version la plus récente installée hello de [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms).</span><span class="sxs-lookup"><span data-stu-id="6f229-119">Installed hello latest version of [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms).</span></span> <span data-ttu-id="6f229-120">L’installation de SQL Server Management Studio installe également la version la plus récente hello de SQLPackage, un utilitaire de ligne de commande qui peut être utilisé tooautomate un éventail de tâches de développement de base de données.</span><span class="sxs-lookup"><span data-stu-id="6f229-120">Installing SQL Server Management Studio also installs hello latest version of SQLPackage, a command-line utility that can be used tooautomate a range of database development tasks.</span></span>
 
-* <span data-ttu-id="1d01a-121">Un ordinateur disposant de [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) et du [dernier kit de développement JAVA (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).</span><span class="sxs-lookup"><span data-stu-id="1d01a-121">Installed the [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) and the [latest JAVA Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installed on your machine.</span></span> 
+* <span data-ttu-id="6f229-121">Hello installé [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) et hello [dernier Kit de développement JAVA (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installés sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="6f229-121">Installed hello [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) and hello [latest JAVA Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installed on your machine.</span></span> 
 
-* <span data-ttu-id="1d01a-122">[Apache Maven](https://maven.apache.org/download.cgi).</span><span class="sxs-lookup"><span data-stu-id="1d01a-122">Installed [Apache Maven](https://maven.apache.org/download.cgi).</span></span> <span data-ttu-id="1d01a-123">Maven servira à gérer les dépendances et à générer, tester et exécuter l’exemple de projet Java.</span><span class="sxs-lookup"><span data-stu-id="1d01a-123">Maven will be used to help manage dependencies, build, test and run the sample Java project</span></span>
+* <span data-ttu-id="6f229-122">[Apache Maven](https://maven.apache.org/download.cgi).</span><span class="sxs-lookup"><span data-stu-id="6f229-122">Installed [Apache Maven](https://maven.apache.org/download.cgi).</span></span> <span data-ttu-id="6f229-123">Maven servira toohelp gérer les dépendances, créer, tester et exécuter l’exemple de projet Java de hello</span><span class="sxs-lookup"><span data-stu-id="6f229-123">Maven will be used toohelp manage dependencies, build, test and run hello sample Java project</span></span>
 
-## <a name="set-up-data-environment"></a><span data-ttu-id="1d01a-124">Configuration de l’environnement des données</span><span class="sxs-lookup"><span data-stu-id="1d01a-124">Set up data environment</span></span>
+## <a name="set-up-data-environment"></a><span data-ttu-id="6f229-124">Configuration de l’environnement des données</span><span class="sxs-lookup"><span data-stu-id="6f229-124">Set up data environment</span></span>
 
-<span data-ttu-id="1d01a-125">Vous allez approvisionner une base de données par locataire.</span><span class="sxs-lookup"><span data-stu-id="1d01a-125">You will be provisioning a database per tenant.</span></span> <span data-ttu-id="1d01a-126">Le modèle « base de données par locataire » constitue la meilleure manière d’isoler les locataires tout en réduisant les coûts DevOps.</span><span class="sxs-lookup"><span data-stu-id="1d01a-126">The database-per-tenant model provides the highest degree of isolation between tenants, with little DevOps cost.</span></span> <span data-ttu-id="1d01a-127">Pour optimiser le coût des ressources cloud, vous devrez également configurer les bases de données de locataires dans un pool élastique, de manière à optimiser le rapport prix/performances d’un groupe de bases de données.</span><span class="sxs-lookup"><span data-stu-id="1d01a-127">To optimize the cost of cloud resources, you will also be provisioning the tenant databases into an elastic pool which allows you to optimize the price performance for a group of databases.</span></span> <span data-ttu-id="1d01a-128">Pour en savoir plus sur les autres modèles d’approvisionnement de bases de données, [cliquez ici](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).</span><span class="sxs-lookup"><span data-stu-id="1d01a-128">To learn about other database provisioning models [see here](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).</span></span>
+<span data-ttu-id="6f229-125">Vous allez approvisionner une base de données par locataire.</span><span class="sxs-lookup"><span data-stu-id="6f229-125">You will be provisioning a database per tenant.</span></span> <span data-ttu-id="6f229-126">modèle de base de données pour chaque locataire Hello fournit hello plus haut degré d’isolation entre les clients, avec un faible coût de DevOps.</span><span class="sxs-lookup"><span data-stu-id="6f229-126">hello database-per-tenant model provides hello highest degree of isolation between tenants, with little DevOps cost.</span></span> <span data-ttu-id="6f229-127">coût de hello toooptimize des ressources de cloud computing, sera également approvisionner les bases de données clientes hello dans un pool élastique, qui vous permet de toooptimize hello prix/performances pour un groupe de bases de données.</span><span class="sxs-lookup"><span data-stu-id="6f229-127">toooptimize hello cost of cloud resources, you will also be provisioning hello tenant databases into an elastic pool which allows you toooptimize hello price performance for a group of databases.</span></span> <span data-ttu-id="6f229-128">toolearn sur une autre base de données de configuration de modèles [ici](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).</span><span class="sxs-lookup"><span data-stu-id="6f229-128">toolearn about other database provisioning models [see here](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).</span></span>
 
-<span data-ttu-id="1d01a-129">Suivez ces étapes pour créer un serveur SQL et un pool élastique qui hébergeront toutes vos bases de données de locataires.</span><span class="sxs-lookup"><span data-stu-id="1d01a-129">Follow these steps to create a SQL server and an elastic pool that will host all your tenant databases.</span></span> 
+<span data-ttu-id="6f229-129">Suivez ces étapes toocreate un serveur SQL server et un pool élastique qui va héberger toutes vos bases de données client.</span><span class="sxs-lookup"><span data-stu-id="6f229-129">Follow these steps toocreate a SQL server and an elastic pool that will host all your tenant databases.</span></span> 
 
-1. <span data-ttu-id="1d01a-130">Créez des variables pour stocker les valeurs qui seront utilisées dans la suite de ce didacticiel.</span><span class="sxs-lookup"><span data-stu-id="1d01a-130">Create variables to store values that will be used in the rest of the tutorial.</span></span> <span data-ttu-id="1d01a-131">Veillez à modifier la variable d’adresse IP pour inclure votre adresse IP</span><span class="sxs-lookup"><span data-stu-id="1d01a-131">Make sure to modify the IP address variable to include your IP address</span></span> 
+1. <span data-ttu-id="6f229-130">Créer des variables les valeurs toostore qui seront utilisés dans le reste de hello du didacticiel de hello.</span><span class="sxs-lookup"><span data-stu-id="6f229-130">Create variables toostore values that will be used in hello rest of hello tutorial.</span></span> <span data-ttu-id="6f229-131">Assurez-vous que toomodify hello IP adresse variable tooinclude votre adresse IP</span><span class="sxs-lookup"><span data-stu-id="6f229-131">Make sure toomodify hello IP address variable tooinclude your IP address</span></span> 
    
    ```PowerShell 
    # Set an admin login and password for your database
@@ -69,15 +69,15 @@ ms.lasthandoff: 07/11/2017
    $tenant1 = "geolamice"
    $tenant2 = "ranplex"
    
-   # Store current client IP address (modify to include your IP address)
+   # Store current client IP address (modify tooinclude your IP address)
    $startIpAddress = 0.0.0.0 
    $endIpAddress = 0.0.0.0
    ```
    
-2. <span data-ttu-id="1d01a-132">Connectez-vous à Azure et créez un serveur SQL et un pool élastique</span><span class="sxs-lookup"><span data-stu-id="1d01a-132">Login to Azure and create a SQL server and elastic pool</span></span> 
+2. <span data-ttu-id="6f229-132">Connexion tooAzure et créer un pool élastique et le serveur SQL</span><span class="sxs-lookup"><span data-stu-id="6f229-132">Login tooAzure and create a SQL server and elastic pool</span></span> 
    
    ```PowerShell
-   # Login to Azure 
+   # Login tooAzure 
    Login-AzureRmAccount
    
    # Create resource group 
@@ -103,11 +103,11 @@ ms.lasthandoff: 07/11/2017
        -DatabaseDtuMax 20
    ```
    
-## <a name="create-tenant-catalog"></a><span data-ttu-id="1d01a-133">Création du catalogue de locataires</span><span class="sxs-lookup"><span data-stu-id="1d01a-133">Create tenant catalog</span></span> 
+## <a name="create-tenant-catalog"></a><span data-ttu-id="6f229-133">Création du catalogue de locataires</span><span class="sxs-lookup"><span data-stu-id="6f229-133">Create tenant catalog</span></span> 
 
-<span data-ttu-id="1d01a-134">Dans une application SaaS mutualisée, il est important de savoir où sont stockées les informations d’un locataire.</span><span class="sxs-lookup"><span data-stu-id="1d01a-134">In a multi-tenant SaaS application, it’s important to know where information for a tenant is stored.</span></span> <span data-ttu-id="1d01a-135">Ces informations sont généralement stockées dans une base de données de catalogue.</span><span class="sxs-lookup"><span data-stu-id="1d01a-135">This is commonly stored in a catalog database.</span></span> <span data-ttu-id="1d01a-136">Cette base de données contient un mappage entre un locataire et une base de données dans laquelle sont stockées les données du locataire.</span><span class="sxs-lookup"><span data-stu-id="1d01a-136">The catalog database is used to hold a mapping between a tenant and a database in which that tenant’s data is stored.</span></span>  <span data-ttu-id="1d01a-137">Le modèle de base s’applique aussi bien pour les bases de données mutualisées que pour les bases de données à un seul locataire.</span><span class="sxs-lookup"><span data-stu-id="1d01a-137">The basic pattern applies whether a multi-tenant or a single-tenant database is used.</span></span>
+<span data-ttu-id="6f229-134">Dans une application SaaS mutualisée, il est important tooknow où sont stockées les informations pour un client.</span><span class="sxs-lookup"><span data-stu-id="6f229-134">In a multi-tenant SaaS application, it’s important tooknow where information for a tenant is stored.</span></span> <span data-ttu-id="6f229-135">Ces informations sont généralement stockées dans une base de données de catalogue.</span><span class="sxs-lookup"><span data-stu-id="6f229-135">This is commonly stored in a catalog database.</span></span> <span data-ttu-id="6f229-136">base de données de catalogue Hello est toohold utilisé un mappage entre un client et une base de données dans lequel sont stockées les données du locataire.</span><span class="sxs-lookup"><span data-stu-id="6f229-136">hello catalog database is used toohold a mapping between a tenant and a database in which that tenant’s data is stored.</span></span>  <span data-ttu-id="6f229-137">modèle de base Hello s’applique si une architecture mutualisée ou une base de données locataire unique est utilisé.</span><span class="sxs-lookup"><span data-stu-id="6f229-137">hello basic pattern applies whether a multi-tenant or a single-tenant database is used.</span></span>
 
-<span data-ttu-id="1d01a-138">Suivez ces étapes pour créer une base de données de catalogue pour l’exemple d’application SaaS.</span><span class="sxs-lookup"><span data-stu-id="1d01a-138">Follow these steps to create a catalog database for the sample SaaS application.</span></span>
+<span data-ttu-id="6f229-138">Suivez ces étapes de toocreate une base de données de catalogue pour une application SaaS d’exemple hello.</span><span class="sxs-lookup"><span data-stu-id="6f229-138">Follow these steps toocreate a catalog database for hello sample SaaS application.</span></span>
 
 ```PowerShell
 # Create empty database in pool
@@ -116,7 +116,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName "tenantCatalog" `
     -ElasticPoolName "myElasticPool"
 
-# Create table to track mapping between tenants and their databases
+# Create table tootrack mapping between tenants and their databases
 $commandText = "
 CREATE TABLE Tenants
 (
@@ -137,8 +137,8 @@ Invoke-SqlCmd `
     -EncryptConnection
 ```
 
-## <a name="provision-database-for-tenant1-and-register-in-tenant-catalog"></a><span data-ttu-id="1d01a-139">Approvisionnement de la base de données pour le « locataire 1 » et inscription de cette base dans le catalogue du locataire</span><span class="sxs-lookup"><span data-stu-id="1d01a-139">Provision database for 'tenant1' and register in tenant catalog</span></span> 
-<span data-ttu-id="1d01a-140">Utilisez Powershell pour approvisionner une base de données pour un nouveau locataire appelé « locataire1 » et pour inscrire ce locataire dans le catalogue.</span><span class="sxs-lookup"><span data-stu-id="1d01a-140">Use Powershell to provision a database for a new tenant 'tenant1' and register this tenant in the catalog.</span></span> 
+## <a name="provision-database-for-tenant1-and-register-in-tenant-catalog"></a><span data-ttu-id="6f229-139">Approvisionnement de la base de données pour le « locataire 1 » et inscription de cette base dans le catalogue du locataire</span><span class="sxs-lookup"><span data-stu-id="6f229-139">Provision database for 'tenant1' and register in tenant catalog</span></span> 
+<span data-ttu-id="6f229-140">Utilisez Powershell tooprovision une base de données pour un nouveau client 'un locataire 1' et enregistrer ce client dans le catalogue de hello.</span><span class="sxs-lookup"><span data-stu-id="6f229-140">Use Powershell tooprovision a database for a new tenant 'tenant1' and register this tenant in hello catalog.</span></span> 
 
 ```PowerShell
 # Create empty database in pool for 'tenant1'
@@ -147,7 +147,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant1 `
     -ElasticPoolName "myElasticPool"
 
-# Create table WhoAmI and insert tenant name into the table 
+# Create table WhoAmI and insert tenant name into hello table 
 $commandText = "
 CREATE TABLE WhoAmI (TenantName NVARCHAR(128) NOT NULL);
 INSERT INTO WhoAmI VALUES ('Tenant $tenant1');"
@@ -161,7 +161,7 @@ Invoke-SqlCmd `
     -Query $commandText `
     -EncryptConnection
 
-# Register 'tenant1' in the tenant catalog 
+# Register 'tenant1' in hello tenant catalog 
 $commandText = "
 INSERT INTO Tenants VALUES ('$tenant1', '$tenant1');"
 Invoke-SqlCmd `
@@ -174,8 +174,8 @@ Invoke-SqlCmd `
     -EncryptConnection
 ```
 
-## <a name="provision-database-for-tenant2-and-register-in-tenant-catalog"></a><span data-ttu-id="1d01a-141">Approvisionnement de la base de données pour le « locataire 2 » et inscription de cette base dans le catalogue du locataire</span><span class="sxs-lookup"><span data-stu-id="1d01a-141">Provision database for 'tenant2' and register in tenant catalog</span></span>
-<span data-ttu-id="1d01a-142">Utilisez Powershell pour approvisionner une base de données pour un nouveau locataire appelé « locataire2 » et pour inscrire ce locataire dans le catalogue.</span><span class="sxs-lookup"><span data-stu-id="1d01a-142">Use Powershell to provision a database for a new tenant 'tenant2' and register this tenant in the catalog.</span></span> 
+## <a name="provision-database-for-tenant2-and-register-in-tenant-catalog"></a><span data-ttu-id="6f229-141">Approvisionnement de la base de données pour le « locataire 2 » et inscription de cette base dans le catalogue du locataire</span><span class="sxs-lookup"><span data-stu-id="6f229-141">Provision database for 'tenant2' and register in tenant catalog</span></span>
+<span data-ttu-id="6f229-142">Utilisez Powershell tooprovision une base de données pour un nouveau client 'tenant2' et enregistrer ce client dans le catalogue de hello.</span><span class="sxs-lookup"><span data-stu-id="6f229-142">Use Powershell tooprovision a database for a new tenant 'tenant2' and register this tenant in hello catalog.</span></span> 
 
 ```PowerShell
 # Create empty database in pool for 'tenant2'
@@ -184,7 +184,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant2 `
     -ElasticPoolName "myElasticPool"
 
-# Create table WhoAmI and insert tenant name into the table 
+# Create table WhoAmI and insert tenant name into hello table 
 $commandText = "
 CREATE TABLE WhoAmI (TenantName NVARCHAR(128) NOT NULL);
 INSERT INTO WhoAmI VALUES ('Tenant $tenant2');"
@@ -198,7 +198,7 @@ Invoke-SqlCmd `
     -Query $commandText `
     -EncryptConnection
 
-# Register tenant 'tenant2' in the tenant catalog 
+# Register tenant 'tenant2' in hello tenant catalog 
 $commandText = "
 INSERT INTO Tenants VALUES ('$tenant2', '$tenant2');"
 Invoke-SqlCmd `
@@ -211,15 +211,15 @@ Invoke-SqlCmd `
     -EncryptConnection
 ```
 
-## <a name="set-up-sample-java-application"></a><span data-ttu-id="1d01a-143">Configuration d’un exemple d’application Java</span><span class="sxs-lookup"><span data-stu-id="1d01a-143">Set up sample Java application</span></span> 
+## <a name="set-up-sample-java-application"></a><span data-ttu-id="6f229-143">Configuration d’un exemple d’application Java</span><span class="sxs-lookup"><span data-stu-id="6f229-143">Set up sample Java application</span></span> 
 
-1. <span data-ttu-id="1d01a-144">Créez un projet Maven.</span><span class="sxs-lookup"><span data-stu-id="1d01a-144">Create a maven project.</span></span> <span data-ttu-id="1d01a-145">Dans une fenêtre d’invite de commandes, entrez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="1d01a-145">Type the following in a command prompt window:</span></span>
+1. <span data-ttu-id="6f229-144">Créez un projet Maven.</span><span class="sxs-lookup"><span data-stu-id="6f229-144">Create a maven project.</span></span> <span data-ttu-id="6f229-145">Tapez hello qui suit dans une fenêtre d’invite de commandes :</span><span class="sxs-lookup"><span data-stu-id="6f229-145">Type hello following in a command prompt window:</span></span>
    
    ```
    mvn archetype:generate -DgroupId=com.microsoft.sqlserver -DartifactId=mssql-jdbc -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
    ```
    
-2. <span data-ttu-id="1d01a-146">Ajoutez la dépendance, le niveau de langage et l’option de génération pour prendre en charge les fichiers manifeste JARS dans le fichier pom.xml :</span><span class="sxs-lookup"><span data-stu-id="1d01a-146">Add this dependency, language level, and build option to support manifest files in jars to the pom.xml file:</span></span>
+2. <span data-ttu-id="6f229-146">Ajouter cette dépendance, le niveau de langage et générer des fichiers manifeste dans le fichier de fichiers JAR toohello pom.xml option toosupport :</span><span class="sxs-lookup"><span data-stu-id="6f229-146">Add this dependency, language level, and build option toosupport manifest files in jars toohello pom.xml file:</span></span>
    
    ```XML
    <dependency>
@@ -251,7 +251,7 @@ Invoke-SqlCmd `
    </build>
    ```
 
-3. <span data-ttu-id="1d01a-147">Ajoutez le code suivant dans le fichier App.java :</span><span class="sxs-lookup"><span data-stu-id="1d01a-147">Add the following into the App.java file:</span></span>
+3. <span data-ttu-id="6f229-147">Ajoutez dans le fichier de App.java hello hello qui suit :</span><span class="sxs-lookup"><span data-stu-id="6f229-147">Add hello following into hello App.java file:</span></span>
 
    ```java 
    package com.sqldbsamples;
@@ -306,7 +306,7 @@ Invoke-SqlCmd `
    
    System.out.println(" " + CMD_QUERY + " <NAME> - connect and tenant query tenant <NAME>");
    
-   System.out.println(" " + CMD_QUIT + " - quit the application\n");
+   System.out.println(" " + CMD_QUIT + " - quit hello application\n");
    
    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
    
@@ -352,7 +352,7 @@ Invoke-SqlCmd `
    
    private static void listTenants() {
    
-   // List all tenants that currently exist in the system
+   // List all tenants that currently exist in hello system
    
    String sql = "SELECT TenantName FROM Tenants";
    
@@ -380,7 +380,7 @@ Invoke-SqlCmd `
    
    private static void queryTenant(String name) {
    
-   // Query the data that was previously inserted into the primary database from the geo replicated database
+   // Query hello data that was previously inserted into hello primary database from hello geo replicated database
    
    String url = null;
    
@@ -445,21 +445,21 @@ Invoke-SqlCmd `
    }
    ```
 
-4. <span data-ttu-id="1d01a-148">Enregistrez le fichier.</span><span class="sxs-lookup"><span data-stu-id="1d01a-148">Save the file.</span></span>
+4. <span data-ttu-id="6f229-148">Enregistrez le fichier de hello.</span><span class="sxs-lookup"><span data-stu-id="6f229-148">Save hello file.</span></span>
 
-5. <span data-ttu-id="1d01a-149">Accédez à la console de commandes et exécutez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="1d01a-149">Go to command console and execute</span></span>
+5. <span data-ttu-id="6f229-149">Toocommand console et exécutez</span><span class="sxs-lookup"><span data-stu-id="6f229-149">Go toocommand console and execute</span></span>
 
    ```bash
    mvn package
    ```
 
-6. <span data-ttu-id="1d01a-150">Lorsque vous avez terminé, exécutez la commande suivante pour exécuter l’application :</span><span class="sxs-lookup"><span data-stu-id="1d01a-150">When finished, execute the following to run the application</span></span> 
+6. <span data-ttu-id="6f229-150">Lorsque vous avez terminé, exécutez hello après application de hello toorun</span><span class="sxs-lookup"><span data-stu-id="6f229-150">When finished, execute hello following toorun hello application</span></span> 
    
    ```
    mvn -q -e exec:java "-Dexec.mainClass=com.sqldbsamples.App"
    ```
    
-<span data-ttu-id="1d01a-151">Si l’exécution réussit, la sortie se présentera ainsi :</span><span class="sxs-lookup"><span data-stu-id="1d01a-151">The output will look like this if it runs successfully:</span></span>
+<span data-ttu-id="6f229-151">Si elle s’exécute avec succès, sortie de Hello ressemble à ceci :</span><span class="sxs-lookup"><span data-stu-id="6f229-151">hello output will look like this if it runs successfully:</span></span>
 
 ```
 ############################
@@ -474,15 +474,15 @@ LIST - list tenants
 
 QUERY <NAME> - connect and tenant query tenant <NAME>
 
-QUIT - quit the application
+QUIT - quit hello application
 
-* List the tenants
+* List hello tenants
 
 * Query tenants you created
 ```
 
-## <a name="delete-first-tenant"></a><span data-ttu-id="1d01a-152">Suppression du premier locataire</span><span class="sxs-lookup"><span data-stu-id="1d01a-152">Delete first tenant</span></span> 
-<span data-ttu-id="1d01a-153">Utilisez PowerShell pour supprimer la base de données de locataires et l’entrée du catalogue correspondant au premier locataire.</span><span class="sxs-lookup"><span data-stu-id="1d01a-153">Use PowerShell to delete the tenant database and catalog entry for the first tenant.</span></span>
+## <a name="delete-first-tenant"></a><span data-ttu-id="6f229-152">Suppression du premier locataire</span><span class="sxs-lookup"><span data-stu-id="6f229-152">Delete first tenant</span></span> 
+<span data-ttu-id="6f229-153">Utilisez PowerShell toodelete hello client de base de données et le catalogue d’entrée pour le client de première hello.</span><span class="sxs-lookup"><span data-stu-id="6f229-153">Use PowerShell toodelete hello tenant database and catalog entry for hello first tenant.</span></span>
 
 ```PowerShell
 # Remove 'tenant1' from catalog 
@@ -502,24 +502,24 @@ Remove-AzureRmSqlDatabase -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant1
 ```
 
-<span data-ttu-id="1d01a-154">Essayez de vous connecter au « locataire1 » à l’aide de l’application Java.</span><span class="sxs-lookup"><span data-stu-id="1d01a-154">Try connecting to 'tenant1' using the Java application.</span></span> <span data-ttu-id="1d01a-155">Vous obtiendrez une erreur indiquant que le client n’existe pas.</span><span class="sxs-lookup"><span data-stu-id="1d01a-155">You will get an error stating that the tenant does not exist.</span></span>
+<span data-ttu-id="6f229-154">Essayez de vous connecter à l’aide de 'un locataire 1' trop hello des application Java.</span><span class="sxs-lookup"><span data-stu-id="6f229-154">Try connecting too'tenant1' using hello Java application.</span></span> <span data-ttu-id="6f229-155">Vous obtiendrez une erreur indiquant que ce client hello n’existe pas.</span><span class="sxs-lookup"><span data-stu-id="6f229-155">You will get an error stating that hello tenant does not exist.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="1d01a-156">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="1d01a-156">Next steps</span></span> 
+## <a name="next-steps"></a><span data-ttu-id="6f229-156">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="6f229-156">Next steps</span></span> 
 
-<span data-ttu-id="1d01a-157">Dans ce didacticiel, vous avez appris à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="1d01a-157">In this tutorial, you learned to:</span></span>
+<span data-ttu-id="6f229-157">Dans ce didacticiel, vous avez appris à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="6f229-157">In this tutorial, you learned to:</span></span>
 > [!div class="checklist"]
-> * <span data-ttu-id="1d01a-158">Configuration d’un environnement de base de données pour la prise en charge d’une application SaaS mutualisée, à l’aide du modèle « base de données par locataire »</span><span class="sxs-lookup"><span data-stu-id="1d01a-158">Set up a database environment to support a multi-tenant SaaS application, using the Database-per-tenant pattern</span></span>
-> * <span data-ttu-id="1d01a-159">Création d’un catalogue de locataires</span><span class="sxs-lookup"><span data-stu-id="1d01a-159">Create a tenant catalog</span></span>
-> * <span data-ttu-id="1d01a-160">Configuration d’une base de données de locataires et inscription de cette base de données dans le catalogue de locataires</span><span class="sxs-lookup"><span data-stu-id="1d01a-160">Provision a tenant database and register it in the tenant catalog</span></span>
-> * <span data-ttu-id="1d01a-161">Configuration d’un exemple d’application Java</span><span class="sxs-lookup"><span data-stu-id="1d01a-161">Set up a sample Java application</span></span> 
-> * <span data-ttu-id="1d01a-162">Accès aux bases de données de locataires à l’aide d’une simple application console Java</span><span class="sxs-lookup"><span data-stu-id="1d01a-162">Access tenant databases simple a Java console application</span></span>
-> * <span data-ttu-id="1d01a-163">Suppression d’un locataire</span><span class="sxs-lookup"><span data-stu-id="1d01a-163">Delete a tenant</span></span>
+> * <span data-ttu-id="6f229-158">Configurer un toosupport d’environnement de base de données d’une application SaaS mutualisée, à l’aide du modèle de base de données pour chaque locataire hello</span><span class="sxs-lookup"><span data-stu-id="6f229-158">Set up a database environment toosupport a multi-tenant SaaS application, using hello Database-per-tenant pattern</span></span>
+> * <span data-ttu-id="6f229-159">Création d’un catalogue de locataires</span><span class="sxs-lookup"><span data-stu-id="6f229-159">Create a tenant catalog</span></span>
+> * <span data-ttu-id="6f229-160">Configurer une base de données client et l’inscrire dans le catalogue du locataire hello</span><span class="sxs-lookup"><span data-stu-id="6f229-160">Provision a tenant database and register it in hello tenant catalog</span></span>
+> * <span data-ttu-id="6f229-161">Configuration d’un exemple d’application Java</span><span class="sxs-lookup"><span data-stu-id="6f229-161">Set up a sample Java application</span></span> 
+> * <span data-ttu-id="6f229-162">Accès aux bases de données de locataires à l’aide d’une simple application console Java</span><span class="sxs-lookup"><span data-stu-id="6f229-162">Access tenant databases simple a Java console application</span></span>
+> * <span data-ttu-id="6f229-163">Suppression d’un locataire</span><span class="sxs-lookup"><span data-stu-id="6f229-163">Delete a tenant</span></span>
 
-* <span data-ttu-id="1d01a-164">Pour obtenir des exemples de PowerShell pour les tâches courantes, consultez [Exemples PowerShell pour SQL Database](https://docs.microsoft.com/azure/sql-database/sql-database-powershell-samples)</span><span class="sxs-lookup"><span data-stu-id="1d01a-164">PowerShell samples for common tasks, see [SQL Database PowerShell samples](https://docs.microsoft.com/azure/sql-database/sql-database-powershell-samples)</span></span>
+* <span data-ttu-id="6f229-164">Pour obtenir des exemples de PowerShell pour les tâches courantes, consultez [Exemples PowerShell pour SQL Database](https://docs.microsoft.com/azure/sql-database/sql-database-powershell-samples)</span><span class="sxs-lookup"><span data-stu-id="6f229-164">PowerShell samples for common tasks, see [SQL Database PowerShell samples](https://docs.microsoft.com/azure/sql-database/sql-database-powershell-samples)</span></span>
 
-* <span data-ttu-id="1d01a-165">Pour accéder à des modèles de conception pour les applications SaaS mutualisées, consultez les [Modèles de conception](https://docs.microsoft.com/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications)</span><span class="sxs-lookup"><span data-stu-id="1d01a-165">Design patterns for multi-tenant SaaS applications see [Design patterns](https://docs.microsoft.com/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications)</span></span>
+* <span data-ttu-id="6f229-165">Pour accéder à des modèles de conception pour les applications SaaS mutualisées, consultez les [Modèles de conception](https://docs.microsoft.com/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications)</span><span class="sxs-lookup"><span data-stu-id="6f229-165">Design patterns for multi-tenant SaaS applications see [Design patterns](https://docs.microsoft.com/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications)</span></span>
 
-* <span data-ttu-id="1d01a-166">Pour des exemples Java associés aux tâches courantes dans Azure, consultez le [Centre de développement Java](https://azure.microsoft.com/develop/java/)</span><span class="sxs-lookup"><span data-stu-id="1d01a-166">Java samples for common Azure tasks, see [Java Developer Center](https://azure.microsoft.com/develop/java/)</span></span>
+* <span data-ttu-id="6f229-166">Pour des exemples Java associés aux tâches courantes dans Azure, consultez le [Centre de développement Java](https://azure.microsoft.com/develop/java/)</span><span class="sxs-lookup"><span data-stu-id="6f229-166">Java samples for common Azure tasks, see [Java Developer Center](https://azure.microsoft.com/develop/java/)</span></span>
 
 
 

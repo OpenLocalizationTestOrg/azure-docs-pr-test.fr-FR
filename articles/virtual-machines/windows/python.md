@@ -1,6 +1,6 @@
 ---
-title: "Créer et gérer une machine virtuelle Windows dans Azure à l’aide de Python | Microsoft Docs"
-description: "Apprenez à utiliser Python pour créer et gérer une machine virtuelle Windows dans Azure."
+title: "aaaCreate et de gérer un ordinateur virtuel Windows Azure à l’aide de Python | Documents Microsoft"
+description: "En savoir plus toouse Python toocreate et gérer un ordinateur virtuel Windows Azure."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,52 +15,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: davidmu
-ms.openlocfilehash: bb777d41570d7b1dc97402d532519488912948e3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c5553e4e7361e6b9a7183cd935be382f967160cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-manage-windows-vms-in-azure-using-python"></a><span data-ttu-id="726e9-103">Créer et gérer des machines virtuelles Windows dans Azure à l’aide de Python</span><span class="sxs-lookup"><span data-stu-id="726e9-103">Create and manage Windows VMs in Azure using Python</span></span>
+# <a name="create-and-manage-windows-vms-in-azure-using-python"></a><span data-ttu-id="ef6dc-103">Créer et gérer des machines virtuelles Windows dans Azure à l’aide de Python</span><span class="sxs-lookup"><span data-stu-id="ef6dc-103">Create and manage Windows VMs in Azure using Python</span></span>
 
-<span data-ttu-id="726e9-104">Une [Machine virtuelle Azure](overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) a besoin de plusieurs ressources de prise en charge Azure.</span><span class="sxs-lookup"><span data-stu-id="726e9-104">An [Azure Virtual Machine](overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (VM) needs several supporting Azure resources.</span></span> <span data-ttu-id="726e9-105">Cet article décrit la création, la gestion et la suppression de ressources de machine virtuelle à l’aide de Python.</span><span class="sxs-lookup"><span data-stu-id="726e9-105">This article covers creating, managing, and deleting VM resources using Python.</span></span> <span data-ttu-id="726e9-106">Vous allez apprendre à effectuer les actions suivantes :</span><span class="sxs-lookup"><span data-stu-id="726e9-106">You learn how to:</span></span>
+<span data-ttu-id="ef6dc-104">Une [Machine virtuelle Azure](overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) a besoin de plusieurs ressources de prise en charge Azure.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-104">An [Azure Virtual Machine](overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (VM) needs several supporting Azure resources.</span></span> <span data-ttu-id="ef6dc-105">Cet article décrit la création, la gestion et la suppression de ressources de machine virtuelle à l’aide de Python.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-105">This article covers creating, managing, and deleting VM resources using Python.</span></span> <span data-ttu-id="ef6dc-106">Vous allez apprendre à effectuer les actions suivantes :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-106">You learn how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="726e9-107">Créer un projet Visual Studio</span><span class="sxs-lookup"><span data-stu-id="726e9-107">Create a Visual Studio project</span></span>
-> * <span data-ttu-id="726e9-108">Installer des packages</span><span class="sxs-lookup"><span data-stu-id="726e9-108">Install packages</span></span>
-> * <span data-ttu-id="726e9-109">Créer des informations d’identification</span><span class="sxs-lookup"><span data-stu-id="726e9-109">Create credentials</span></span>
-> * <span data-ttu-id="726e9-110">Créer des ressources</span><span class="sxs-lookup"><span data-stu-id="726e9-110">Create resources</span></span>
-> * <span data-ttu-id="726e9-111">Effectuer les tâches de gestion</span><span class="sxs-lookup"><span data-stu-id="726e9-111">Perform management tasks</span></span>
-> * <span data-ttu-id="726e9-112">Supprimer des ressources</span><span class="sxs-lookup"><span data-stu-id="726e9-112">Delete resources</span></span>
-> * <span data-ttu-id="726e9-113">Exécution de l'application</span><span class="sxs-lookup"><span data-stu-id="726e9-113">Run the application</span></span>
+> * <span data-ttu-id="ef6dc-107">Créer un projet Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ef6dc-107">Create a Visual Studio project</span></span>
+> * <span data-ttu-id="ef6dc-108">Installer des packages</span><span class="sxs-lookup"><span data-stu-id="ef6dc-108">Install packages</span></span>
+> * <span data-ttu-id="ef6dc-109">Créer des informations d’identification</span><span class="sxs-lookup"><span data-stu-id="ef6dc-109">Create credentials</span></span>
+> * <span data-ttu-id="ef6dc-110">Créer des ressources</span><span class="sxs-lookup"><span data-stu-id="ef6dc-110">Create resources</span></span>
+> * <span data-ttu-id="ef6dc-111">Effectuer les tâches de gestion</span><span class="sxs-lookup"><span data-stu-id="ef6dc-111">Perform management tasks</span></span>
+> * <span data-ttu-id="ef6dc-112">Supprimer des ressources</span><span class="sxs-lookup"><span data-stu-id="ef6dc-112">Delete resources</span></span>
+> * <span data-ttu-id="ef6dc-113">Exécutez l’application hello</span><span class="sxs-lookup"><span data-stu-id="ef6dc-113">Run hello application</span></span>
 
-<span data-ttu-id="726e9-114">Ces étapes prennent environ 20 minutes.</span><span class="sxs-lookup"><span data-stu-id="726e9-114">It takes about 20 minutes to do these steps.</span></span>
+<span data-ttu-id="ef6dc-114">Il prend environ 20 minutes toodo ces étapes.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-114">It takes about 20 minutes toodo these steps.</span></span>
 
-## <a name="create-a-visual-studio-project"></a><span data-ttu-id="726e9-115">Créer un projet Visual Studio</span><span class="sxs-lookup"><span data-stu-id="726e9-115">Create a Visual Studio project</span></span>
+## <a name="create-a-visual-studio-project"></a><span data-ttu-id="ef6dc-115">Créer un projet Visual Studio</span><span class="sxs-lookup"><span data-stu-id="ef6dc-115">Create a Visual Studio project</span></span>
 
-1. <span data-ttu-id="726e9-116">Si vous ne l’avez pas déjà fait, installez [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio).</span><span class="sxs-lookup"><span data-stu-id="726e9-116">If you haven't already, install [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio).</span></span> <span data-ttu-id="726e9-117">Dans la page Charges de travail, sélectionnez **Développement Python**, puis cliquez sur **Installer**.</span><span class="sxs-lookup"><span data-stu-id="726e9-117">Select **Python development** on the Workloads page, and then click **Install**.</span></span> <span data-ttu-id="726e9-118">Dans le résumé, vous pouvez voir que **Python 3 64 bits (3.6.0)** est automatiquement sélectionné pour vous.</span><span class="sxs-lookup"><span data-stu-id="726e9-118">In the summary, you can see that **Python 3 64-bit (3.6.0)** is automatically selected for you.</span></span> <span data-ttu-id="726e9-119">Si vous avez déjà installé Visual Studio, vous pouvez ajouter la charge de travail Python en utilisant le Lanceur de Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="726e9-119">If you have already installed Visual Studio, you can add the Python workload using the Visual Studio Launcher.</span></span>
-2. <span data-ttu-id="726e9-120">Après avoir installé et démarré Visual Studio, cliquez sur **Fichier** > **Nouveau** > **Projet**.</span><span class="sxs-lookup"><span data-stu-id="726e9-120">After installing and starting Visual Studio, click **File** > **New** > **Project**.</span></span>
-3. <span data-ttu-id="726e9-121">Cliquez sur **Modèles** > **Python** > **Application Python**, entrez *monProjetPython* comme nom pour le projet, sélectionnez l’emplacement du projet, puis cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="726e9-121">Click **Templates** > **Python** > **Python Application**, enter *myPythonProject* for the name of the project, select the location of the project, and then click **OK**.</span></span>
+1. <span data-ttu-id="ef6dc-116">Si vous ne l’avez pas déjà fait, installez [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio).</span><span class="sxs-lookup"><span data-stu-id="ef6dc-116">If you haven't already, install [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio).</span></span> <span data-ttu-id="ef6dc-117">Sélectionnez **développement de Python** sur hello page de charges de travail, puis cliquez sur **installer**.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-117">Select **Python development** on hello Workloads page, and then click **Install**.</span></span> <span data-ttu-id="ef6dc-118">Bonjour résumé, vous pouvez voir que **Python 3 64 bits (3.6.0)** est automatiquement sélectionné pour vous.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-118">In hello summary, you can see that **Python 3 64-bit (3.6.0)** is automatically selected for you.</span></span> <span data-ttu-id="ef6dc-119">Si vous avez déjà installé Visual Studio, vous pouvez ajouter à l’aide de Visual Studio Lanceur de hello la charge de travail hello Python.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-119">If you have already installed Visual Studio, you can add hello Python workload using hello Visual Studio Launcher.</span></span>
+2. <span data-ttu-id="ef6dc-120">Après avoir installé et démarré Visual Studio, cliquez sur **Fichier** > **Nouveau** > **Projet**.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-120">After installing and starting Visual Studio, click **File** > **New** > **Project**.</span></span>
+3. <span data-ttu-id="ef6dc-121">Cliquez sur **modèles** > **Python** > **Application Python**, entrez *myPythonProject* pour le nom de hello hello projet de, sélectionnez l’emplacement hello du projet de hello, puis cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-121">Click **Templates** > **Python** > **Python Application**, enter *myPythonProject* for hello name of hello project, select hello location of hello project, and then click **OK**.</span></span>
 
-## <a name="install-packages"></a><span data-ttu-id="726e9-122">Installer des packages</span><span class="sxs-lookup"><span data-stu-id="726e9-122">Install packages</span></span>
+## <a name="install-packages"></a><span data-ttu-id="ef6dc-122">Installer des packages</span><span class="sxs-lookup"><span data-stu-id="ef6dc-122">Install packages</span></span>
 
-1. <span data-ttu-id="726e9-123">Dans l’Explorateur de solutions, sous *monProjetPython*, cliquez avec le bouton droit sur **Environnements Python**, puis sélectionnez **Ajouter un environnement virtuel**.</span><span class="sxs-lookup"><span data-stu-id="726e9-123">In Solution Explorer, under *myPythonProject*, right-click **Python Environments**, and then select **Add virtual environment**.</span></span>
-2. <span data-ttu-id="726e9-124">Dans l’écran Ajouter un environnement virtuel, acceptez le nom par défaut *env*, assurez-vous que *Python 3.6 (64 bits)* est sélectionné pour l’interpréteur de base, puis cliquez sur **Créer**.</span><span class="sxs-lookup"><span data-stu-id="726e9-124">On the Add Virtual Environment screen, accept the default name of *env*, make sure that *Python 3.6 (64-bit)* is selected for the base interpreter, and then click **Create**.</span></span>
-3. <span data-ttu-id="726e9-125">Cliquez avec le bouton droit sur l’environnement *env* que vous avez créé, cliquez sur **Installer le package Python**, entrez *azure* dans la zone de recherche, puis appuyez sur Entrée.</span><span class="sxs-lookup"><span data-stu-id="726e9-125">Right-click the *env* environment that you created, click **Install Python Package**, enter *azure* in the search box, and then press Enter.</span></span>
+1. <span data-ttu-id="ef6dc-123">Dans l’Explorateur de solutions, sous *monProjetPython*, cliquez avec le bouton droit sur **Environnements Python**, puis sélectionnez **Ajouter un environnement virtuel**.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-123">In Solution Explorer, under *myPythonProject*, right-click **Python Environments**, and then select **Add virtual environment**.</span></span>
+2. <span data-ttu-id="ef6dc-124">Sur l’écran d’ajouter l’environnement virtuel hello, acceptez le nom par défaut hello *env*, assurez-vous que *Python 3.6 (64 bits)* est sélectionné pour l’interpréteur de base hello, puis cliquez sur **créer**.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-124">On hello Add Virtual Environment screen, accept hello default name of *env*, make sure that *Python 3.6 (64-bit)* is selected for hello base interpreter, and then click **Create**.</span></span>
+3. <span data-ttu-id="ef6dc-125">Avec le bouton hello *env* environnement que vous avez créé, cliquez sur **Package d’installation de Python**, entrez *azure* dans hello de zone de recherche, puis appuyez sur ENTRÉE.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-125">Right-click hello *env* environment that you created, click **Install Python Package**, enter *azure* in hello search box, and then press Enter.</span></span>
 
-<span data-ttu-id="726e9-126">Dans les fenêtres de sortie, vous devriez voir que les packages Azure ont été correctement installés.</span><span class="sxs-lookup"><span data-stu-id="726e9-126">You should see in the output windows that the azure packages were successfully installed.</span></span> 
+<span data-ttu-id="ef6dc-126">Vous devez voir dans les fenêtres de sortie hello que hello azure ont été correctement installés.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-126">You should see in hello output windows that hello azure packages were successfully installed.</span></span> 
 
-## <a name="create-credentials"></a><span data-ttu-id="726e9-127">Créer des informations d’identification</span><span class="sxs-lookup"><span data-stu-id="726e9-127">Create credentials</span></span>
+## <a name="create-credentials"></a><span data-ttu-id="ef6dc-127">Créer des informations d’identification</span><span class="sxs-lookup"><span data-stu-id="ef6dc-127">Create credentials</span></span>
 
-<span data-ttu-id="726e9-128">Avant de commencer cette étape, assurez-vous que vous disposez d’un [principal du service Active Directory](../../azure-resource-manager/resource-group-create-service-principal-portal.md).</span><span class="sxs-lookup"><span data-stu-id="726e9-128">Before you start this step, make sure that you have an [Active Directory service principal](../../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span> <span data-ttu-id="726e9-129">Vous devez également enregistrer l’ID d’application, la clé d’authentification et l’ID de client dont vous aurez besoin dans une étape ultérieure.</span><span class="sxs-lookup"><span data-stu-id="726e9-129">You should also record the application ID, the authentication key, and the tenant ID that you need in a later step.</span></span>
+<span data-ttu-id="ef6dc-128">Avant de commencer cette étape, assurez-vous que vous disposez d’un [principal du service Active Directory](../../azure-resource-manager/resource-group-create-service-principal-portal.md).</span><span class="sxs-lookup"><span data-stu-id="ef6dc-128">Before you start this step, make sure that you have an [Active Directory service principal](../../azure-resource-manager/resource-group-create-service-principal-portal.md).</span></span> <span data-ttu-id="ef6dc-129">Vous devez également enregistrer les ID de l’application hello, clé d’authentification hello et ID de client hello dont vous avez besoin dans une étape ultérieure.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-129">You should also record hello application ID, hello authentication key, and hello tenant ID that you need in a later step.</span></span>
 
-1. <span data-ttu-id="726e9-130">Ouvrez le fichier *monProjetPython.py* qui a été créé, puis ajoutez ce code pour permettre à votre application de s’exécuter :</span><span class="sxs-lookup"><span data-stu-id="726e9-130">Open *myPythonProject.py* file that was created, and then add this code to enable your application to run:</span></span>
+1. <span data-ttu-id="ef6dc-130">Ouvrez *myPythonProject.py* fichier qui a été créé, puis ajoutez ce code tooenable toorun de votre application :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-130">Open *myPythonProject.py* file that was created, and then add this code tooenable your application toorun:</span></span>
 
     ```python
     if __name__ == "__main__":
     ```
 
-2. <span data-ttu-id="726e9-131">Pour importer le code nécessaire, ajoutez les instructions suivantes au début du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-131">To import the code that is needed, add these statements to the top of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-131">le code hello tooimport nécessaires, ajoutez ces instructions toohello en haut de fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-131">tooimport hello code that is needed, add these statements toohello top of hello .py file:</span></span>
 
     ```python
     from azure.common.credentials import ServicePrincipalCredentials
@@ -70,7 +70,7 @@ ms.lasthandoff: 08/29/2017
     from azure.mgmt.compute.models import DiskCreateOption
     ```
 
-3. <span data-ttu-id="726e9-132">Ensuite dans le fichier .py, ajoutez des variables après les instructions d’importation pour spécifier des valeurs communes utilisées dans le code :</span><span class="sxs-lookup"><span data-stu-id="726e9-132">Next in the .py file, add variables after the import statements to specify common values used in the code:</span></span>
+3. <span data-ttu-id="ef6dc-132">Ensuite dans le fichier de .py hello, ajoutez variables après que les instructions d’importation hello toospecify des valeurs communes utilisées dans hello code :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-132">Next in hello .py file, add variables after hello import statements toospecify common values used in hello code:</span></span>
    
     ```
     SUBSCRIPTION_ID = 'subscription-id'
@@ -79,9 +79,9 @@ ms.lasthandoff: 08/29/2017
     VM_NAME = 'myVM'
     ```
 
-    <span data-ttu-id="726e9-133">Remplacez **subscription-id** par votre identificateur d’abonnement.</span><span class="sxs-lookup"><span data-stu-id="726e9-133">Replace **subscription-id** with your subscription identifier.</span></span>
+    <span data-ttu-id="ef6dc-133">Remplacez **subscription-id** par votre identificateur d’abonnement.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-133">Replace **subscription-id** with your subscription identifier.</span></span>
 
-4. <span data-ttu-id="726e9-134">Pour créer les informations d’identification Active Directory dont vous avez besoin pour effectuer des demandes, ajoutez la fonction suivant après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-134">To create the Active Directory credentials that you need to make requests, add this function after the variables in the .py file:</span></span>
+4. <span data-ttu-id="ef6dc-134">informations d’identification de toocreate hello Active Directory que vous avez besoin de demandes de toomake, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-134">toocreate hello Active Directory credentials that you need toomake requests, add this function after hello variables in hello .py file:</span></span>
 
     ```python
     def get_credentials():
@@ -94,19 +94,19 @@ ms.lasthandoff: 08/29/2017
         return credentials
     ```
 
-    <span data-ttu-id="726e9-135">Remplacez **application-id**, **authentication-key** et **tenant-id** par les valeurs que vous avez collectées précédemment lors de la création de votre principal du service Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="726e9-135">Replace **application-id**, **authentication-key**, and **tenant-id** with the values that you previously collected when you created your Azure Active Directory service principal.</span></span>
+    <span data-ttu-id="ef6dc-135">Remplacez **id d’application**, **clé d’authentification**, et **id de client** avec les valeurs hello que vous avez collectées précédemment lorsque vous avez créé votre répertoire Azure Active Directory. principal du service.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-135">Replace **application-id**, **authentication-key**, and **tenant-id** with hello values that you previously collected when you created your Azure Active Directory service principal.</span></span>
 
-5. <span data-ttu-id="726e9-136">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-136">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+5. <span data-ttu-id="ef6dc-136">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-136">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     credentials = get_credentials()
     ```
 
-## <a name="create-resources"></a><span data-ttu-id="726e9-137">Créer des ressources</span><span class="sxs-lookup"><span data-stu-id="726e9-137">Create resources</span></span>
+## <a name="create-resources"></a><span data-ttu-id="ef6dc-137">Créer des ressources</span><span class="sxs-lookup"><span data-stu-id="ef6dc-137">Create resources</span></span>
  
-### <a name="initialize-management-clients"></a><span data-ttu-id="726e9-138">Initialiser des clients de gestion</span><span class="sxs-lookup"><span data-stu-id="726e9-138">Initialize management clients</span></span>
+### <a name="initialize-management-clients"></a><span data-ttu-id="ef6dc-138">Initialiser des clients de gestion</span><span class="sxs-lookup"><span data-stu-id="ef6dc-138">Initialize management clients</span></span>
 
-<span data-ttu-id="726e9-139">Des clients de gestion sont nécessaires pour créer et gérer des ressources à l’aide du Kit de développement logiciel (SDK) Python dans Azure.</span><span class="sxs-lookup"><span data-stu-id="726e9-139">Management clients are needed to create and manage resources using the Python SDK in Azure.</span></span> <span data-ttu-id="726e9-140">Pour créer les clients de gestion, ajoutez le code suivant sous l’instruction **si** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-140">To create the management clients, add this code under the **if** statement at then end of the .py file:</span></span>
+<span data-ttu-id="ef6dc-139">Clients de gestion sont nécessaire toocreate et gérer des ressources à l’aide de hello Kit de développement logiciel Python dans Azure.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-139">Management clients are needed toocreate and manage resources using hello Python SDK in Azure.</span></span> <span data-ttu-id="ef6dc-140">clients de gestion toocreate hello, ajoutez ce code sous hello **si** instruction à puis fin du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-140">toocreate hello management clients, add this code under hello **if** statement at then end of hello .py file:</span></span>
 
 ```python
 resource_group_client = ResourceManagementClient(
@@ -123,11 +123,11 @@ compute_client = ComputeManagementClient(
 )
 ```
 
-### <a name="create-the-vm-and-supporting-resources"></a><span data-ttu-id="726e9-141">Créer la machine virtuelle et les ressources de prise en charge</span><span class="sxs-lookup"><span data-stu-id="726e9-141">Create the VM and supporting resources</span></span>
+### <a name="create-hello-vm-and-supporting-resources"></a><span data-ttu-id="ef6dc-141">Créer hello machine virtuelle et de ressources de support</span><span class="sxs-lookup"><span data-stu-id="ef6dc-141">Create hello VM and supporting resources</span></span>
 
-<span data-ttu-id="726e9-142">Toutes les ressources doivent être contenues dans un [groupe de ressources](../../azure-resource-manager/resource-group-overview.md).</span><span class="sxs-lookup"><span data-stu-id="726e9-142">All resources must be contained in a [Resource group](../../azure-resource-manager/resource-group-overview.md).</span></span>
+<span data-ttu-id="ef6dc-142">Toutes les ressources doivent être contenues dans un [groupe de ressources](../../azure-resource-manager/resource-group-overview.md).</span><span class="sxs-lookup"><span data-stu-id="ef6dc-142">All resources must be contained in a [Resource group](../../azure-resource-manager/resource-group-overview.md).</span></span>
 
-1. <span data-ttu-id="726e9-143">Pour créer un groupe de ressources, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-143">To create a resource group, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-143">toocreate un groupe de ressources, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-143">toocreate a resource group, add this function after hello variables in hello .py file:</span></span>
 
     ```python
     def create_resource_group(resource_group_client):
@@ -138,16 +138,16 @@ compute_client = ComputeManagementClient(
         )
     ```
 
-2. <span data-ttu-id="726e9-144">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-144">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-144">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-144">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     create_resource_group(resource_group_client)
-    input('Resource group created. Press enter to continue...')
+    input('Resource group created. Press enter toocontinue...')
     ```
 
-<span data-ttu-id="726e9-145">Les [groupes à haute disponibilité](tutorial-availability-sets.md) facilitent la maintenance des machines virtuelles utilisées par votre application.</span><span class="sxs-lookup"><span data-stu-id="726e9-145">[Availability sets](tutorial-availability-sets.md) make it easier for you to maintain the virtual machines used by your application.</span></span>
+<span data-ttu-id="ef6dc-145">[Haute disponibilité](tutorial-availability-sets.md) facilitent pour vous toomaintain hello virtuels utilisés par votre application.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-145">[Availability sets](tutorial-availability-sets.md) make it easier for you toomaintain hello virtual machines used by your application.</span></span>
 
-1. <span data-ttu-id="726e9-146">Pour créer un groupe à haute disponibilité, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-146">To create an availability set, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-146">toocreate une disponibilité définie, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-146">toocreate an availability set, add this function after hello variables in hello .py file:</span></span>
    
     ```python
     def create_availability_set(compute_client):
@@ -163,17 +163,17 @@ compute_client = ComputeManagementClient(
         )
     ```
 
-2. <span data-ttu-id="726e9-147">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-147">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-147">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-147">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     create_availability_set(compute_client)
     print("------------------------------------------------------")
-    input('Availability set created. Press enter to continue...')
+    input('Availability set created. Press enter toocontinue...')
     ```
 
-<span data-ttu-id="726e9-148">Une [adresse IP publique](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) est nécessaire pour communiquer avec la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="726e9-148">A [Public IP address](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) is needed to communicate with the virtual machine.</span></span>
+<span data-ttu-id="ef6dc-148">A [adresse IP publique](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) est toocommunicate nécessaire avec l’ordinateur virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-148">A [Public IP address](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) is needed toocommunicate with hello virtual machine.</span></span>
 
-1. <span data-ttu-id="726e9-149">Pour créer une adresse IP publique pour la machine virtuelle, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-149">To create a public IP address for the virtual machine, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-149">toocreate une adresse IP publique pour l’ordinateur virtuel de hello, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-149">toocreate a public IP address for hello virtual machine, add this function after hello variables in hello .py file:</span></span>
 
     ```python
     def create_public_ip_address(network_client):
@@ -190,18 +190,18 @@ compute_client = ComputeManagementClient(
         return creation_result.result()
     ```
 
-2. <span data-ttu-id="726e9-150">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-150">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-150">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-150">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     creation_result = create_public_ip_address(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-<span data-ttu-id="726e9-151">Un machine virtuelle doit figurer dans un sous-réseau d’un [réseau virtuel](../../virtual-network/virtual-networks-overview.md).</span><span class="sxs-lookup"><span data-stu-id="726e9-151">A virtual machine must be in a subnet of a [Virtual network](../../virtual-network/virtual-networks-overview.md).</span></span>
+<span data-ttu-id="ef6dc-151">Une machine virtuelle doit être incluse dans un sous-réseau d’un [réseau virtuel](../../virtual-network/virtual-networks-overview.md).</span><span class="sxs-lookup"><span data-stu-id="ef6dc-151">A virtual machine must be in a subnet of a [Virtual network](../../virtual-network/virtual-networks-overview.md).</span></span>
 
-1. <span data-ttu-id="726e9-152">Pour créer un réseau virtuel, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-152">To create a virtual network, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-152">toocreate un réseau virtuel, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-152">toocreate a virtual network, add this function after hello variables in hello .py file:</span></span>
 
     ```python
     def create_vnet(network_client):
@@ -219,16 +219,16 @@ compute_client = ComputeManagementClient(
         return creation_result.result()
     ```
 
-2. <span data-ttu-id="726e9-153">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-153">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-153">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-153">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
    
     ```python
     creation_result = create_vnet(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-3. <span data-ttu-id="726e9-154">Pour ajouter un sous-réseau au réseau virtuel, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-154">To add a subnet to the virtual network, add this function after the variables in the .py file:</span></span>
+3. <span data-ttu-id="ef6dc-154">tooadd un réseau virtuel toohello de sous-réseau, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-154">tooadd a subnet toohello virtual network, add this function after hello variables in hello .py file:</span></span>
     
     ```python
     def create_subnet(network_client):
@@ -245,18 +245,18 @@ compute_client = ComputeManagementClient(
         return creation_result.result()
     ```
         
-4. <span data-ttu-id="726e9-155">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-155">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+4. <span data-ttu-id="ef6dc-155">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-155">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
    
     ```python
     creation_result = create_subnet(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-<span data-ttu-id="726e9-156">Une machine virtuelle a besoin d’une interface réseau pour communiquer sur le réseau virtuel.</span><span class="sxs-lookup"><span data-stu-id="726e9-156">A virtual machine needs a network interface to communicate on the virtual network.</span></span>
+<span data-ttu-id="ef6dc-156">Un ordinateur virtuel doit un toocommunicate d’interface réseau sur le réseau virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-156">A virtual machine needs a network interface toocommunicate on hello virtual network.</span></span>
 
-1. <span data-ttu-id="726e9-157">Pour créer une interface réseau, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-157">To create a network interface, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-157">toocreate une interface réseau, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-157">toocreate a network interface, add this function after hello variables in hello .py file:</span></span>
 
     ```python
     def create_nic(network_client):
@@ -288,18 +288,18 @@ compute_client = ComputeManagementClient(
         return creation_result.result()
     ```
 
-2. <span data-ttu-id="726e9-158">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-158">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-158">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-158">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     creation_result = create_nic(network_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-<span data-ttu-id="726e9-159">Maintenant que vous avez créé l’ensemble des ressources de prise en charge, vous pouvez créer une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="726e9-159">Now that you created all the supporting resources, you can create a virtual machine.</span></span>
+<span data-ttu-id="ef6dc-159">Maintenant que vous avez créé hello toutes les ressources de support, vous pouvez créer un ordinateur virtuel.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-159">Now that you created all hello supporting resources, you can create a virtual machine.</span></span>
 
-1. <span data-ttu-id="726e9-160">Pour créer la machine virtuelle, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-160">To create the virtual machine, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-160">toocreate hello de machine virtuelle, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-160">toocreate hello virtual machine, add this function after hello variables in hello .py file:</span></span>
    
     ```python
     def create_vm(network_client, compute_client):  
@@ -348,26 +348,26 @@ compute_client = ComputeManagementClient(
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="726e9-161">Ce didacticiel crée une machine virtuelle exécutant une version du système d’exploitation Windows Server.</span><span class="sxs-lookup"><span data-stu-id="726e9-161">This tutorial creates a virtual machine running a version of the Windows Server operating system.</span></span> <span data-ttu-id="726e9-162">Pour en savoir plus sur la sélection d’autres images, consultez [Parcourir et sélectionner des images de machine virtuelle Azure avec Windows PowerShell et l’interface CLI Azure](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="726e9-162">To learn more about selecting other images, see [Navigate and select Azure virtual machine images with Windows PowerShell and the Azure CLI](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+    > <span data-ttu-id="ef6dc-161">Ce didacticiel crée une machine virtuelle exécutant une version du système d’exploitation de serveur Windows hello.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-161">This tutorial creates a virtual machine running a version of hello Windows Server operating system.</span></span> <span data-ttu-id="ef6dc-162">toolearn plus sur la sélection d’autres images, consultez [naviguer et sélectionnez les images de machine virtuelle Azure avec Windows PowerShell et hello CLI d’Azure](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="ef6dc-162">toolearn more about selecting other images, see [Navigate and select Azure virtual machine images with Windows PowerShell and hello Azure CLI](../linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
     > 
     > 
 
-2. <span data-ttu-id="726e9-163">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-163">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-163">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-163">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     creation_result = create_vm(network_client, compute_client)
     print("------------------------------------------------------")
     print(creation_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-## <a name="perform-management-tasks"></a><span data-ttu-id="726e9-164">Effectuer les tâches de gestion</span><span class="sxs-lookup"><span data-stu-id="726e9-164">Perform management tasks</span></span>
+## <a name="perform-management-tasks"></a><span data-ttu-id="ef6dc-164">Effectuer les tâches de gestion</span><span class="sxs-lookup"><span data-stu-id="ef6dc-164">Perform management tasks</span></span>
 
-<span data-ttu-id="726e9-165">Pendant le cycle de vie d’une machine virtuelle, vous souhaiterez exécuter des tâches de gestion telles que le démarrage, l’arrêt ou la suppression d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="726e9-165">During the lifecycle of a virtual machine, you may want to run management tasks such as starting, stopping, or deleting a virtual machine.</span></span> <span data-ttu-id="726e9-166">En outre, vous souhaiterez peut-être créer du code pour automatiser les tâches répétitives ou complexes.</span><span class="sxs-lookup"><span data-stu-id="726e9-166">Additionally, you may want to create code to automate repetitive or complex tasks.</span></span>
+<span data-ttu-id="ef6dc-165">Au cours de hello du cycle de vie d’un ordinateur virtuel, vous souhaiterez toorun des tâches de gestion telles que le démarrage, arrêt ou suppression d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-165">During hello lifecycle of a virtual machine, you may want toorun management tasks such as starting, stopping, or deleting a virtual machine.</span></span> <span data-ttu-id="ef6dc-166">En outre, vous souhaiterez toocreate tooautomate répétitives ou complexes des tâches de code.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-166">Additionally, you may want toocreate code tooautomate repetitive or complex tasks.</span></span>
 
-### <a name="get-information-about-the-vm"></a><span data-ttu-id="726e9-167">Obtenir des informations sur la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="726e9-167">Get information about the VM</span></span>
+### <a name="get-information-about-hello-vm"></a><span data-ttu-id="ef6dc-167">Obtenir des informations sur la machine virtuelle de hello</span><span class="sxs-lookup"><span data-stu-id="ef6dc-167">Get information about hello VM</span></span>
 
-1. <span data-ttu-id="726e9-168">Pour obtenir plus d’informations sur la machine virtuelle, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-168">To get information about the virtual machine, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-168">tooget plus d’informations sur la machine virtuelle de hello, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-168">tooget information about hello virtual machine, add this function after hello variables in hello .py file:</span></span>
 
     ```python
     def get_vm(compute_client):
@@ -420,59 +420,59 @@ compute_client = ComputeManagementClient(
             print("  code: ", stat.code)
             print("  displayStatus: ", stat.display_status)
     ```
-2. <span data-ttu-id="726e9-169">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-169">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-169">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-169">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     get_vm(compute_client)
     print("------------------------------------------------------")
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-### <a name="stop-the-vm"></a><span data-ttu-id="726e9-170">Arrêtez la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="726e9-170">Stop the VM</span></span>
+### <a name="stop-hello-vm"></a><span data-ttu-id="ef6dc-170">Arrêter hello machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="ef6dc-170">Stop hello VM</span></span>
 
-<span data-ttu-id="726e9-171">Vous pouvez arrêter une machine virtuelle et conserver tous ses paramètres, mais continuer à être facturé, ou arrêter une machine virtuelle et la libérer.</span><span class="sxs-lookup"><span data-stu-id="726e9-171">You can stop a virtual machine and keep all its settings, but continue to be charged for it, or you can stop a virtual machine and deallocate it.</span></span> <span data-ttu-id="726e9-172">Lorsqu’une machine virtuelle est libérée, toutes les ressources qui lui sont associées sont également libérées et la facturation de la machine virtuelle prend fin.</span><span class="sxs-lookup"><span data-stu-id="726e9-172">When a virtual machine is deallocated, all resources associated with it are also deallocated and billing ends for it.</span></span>
+<span data-ttu-id="ef6dc-171">Vous pouvez arrêter une machine virtuelle et conserver tous ses paramètres, mais continuer toobe facturé pour celui-ci, ou vous pouvez arrêter une machine virtuelle et désallouer.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-171">You can stop a virtual machine and keep all its settings, but continue toobe charged for it, or you can stop a virtual machine and deallocate it.</span></span> <span data-ttu-id="ef6dc-172">Lorsqu’une machine virtuelle est libérée, toutes les ressources qui lui sont associées sont également libérées et la facturation de la machine virtuelle prend fin.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-172">When a virtual machine is deallocated, all resources associated with it are also deallocated and billing ends for it.</span></span>
 
-1. <span data-ttu-id="726e9-173">Pour arrêter la machine virtuelle sans la désallouer, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-173">To stop the virtual machine without deallocating it, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-173">toostop hello virtual machine sans le désallouer, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-173">toostop hello virtual machine without deallocating it, add this function after hello variables in hello .py file:</span></span>
 
     ```python
     def stop_vm(compute_client):
         compute_client.virtual_machines.power_off(GROUP_NAME, VM_NAME)
     ```
 
-    <span data-ttu-id="726e9-174">Si vous souhaitez désallouer la machine virtuelle, modifiez l’appel power_off à ce code :</span><span class="sxs-lookup"><span data-stu-id="726e9-174">If you want to deallocate the virtual machine, change the power_off call to this code:</span></span>
+    <span data-ttu-id="ef6dc-174">Si vous voulez toodeallocate hello virtual machine, modifier le code de toothis hello power_off appel :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-174">If you want toodeallocate hello virtual machine, change hello power_off call toothis code:</span></span>
 
     ```python
     compute_client.virtual_machines.deallocate(GROUP_NAME, VM_NAME)
     ```
 
-2. <span data-ttu-id="726e9-175">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-175">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-175">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-175">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     stop_vm(compute_client)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-### <a name="start-the-vm"></a><span data-ttu-id="726e9-176">Démarrer la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="726e9-176">Start the VM</span></span>
+### <a name="start-hello-vm"></a><span data-ttu-id="ef6dc-176">Démarrer hello machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="ef6dc-176">Start hello VM</span></span>
 
-1. <span data-ttu-id="726e9-177">Pour démarrer la machine virtuelle, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-177">To start the virtual machine, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-177">toostart hello de machine virtuelle, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-177">toostart hello virtual machine, add this function after hello variables in hello .py file:</span></span>
 
     ```python
     def start_vm(compute_client):
         compute_client.virtual_machines.start(GROUP_NAME, VM_NAME)
     ```
 
-2. <span data-ttu-id="726e9-178">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-178">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-178">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-178">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     start_vm(compute_client)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-### <a name="resize-the-vm"></a><span data-ttu-id="726e9-179">Redimensionner la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="726e9-179">Resize the VM</span></span>
+### <a name="resize-hello-vm"></a><span data-ttu-id="ef6dc-179">Redimensionner hello machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="ef6dc-179">Resize hello VM</span></span>
 
-<span data-ttu-id="726e9-180">De nombreux aspects du déploiement doivent être pris en considération lors du choix d’une taille pour votre machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="726e9-180">Many aspects of deployment should be considered when deciding on a size for your virtual machine.</span></span> <span data-ttu-id="726e9-181">Pour plus d’informations, voir [Tailles des machines virtuelles](sizes.md).</span><span class="sxs-lookup"><span data-stu-id="726e9-181">For more information, see [VM sizes](sizes.md).</span></span>
+<span data-ttu-id="ef6dc-180">De nombreux aspects du déploiement doivent être pris en considération lors du choix d’une taille pour votre machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-180">Many aspects of deployment should be considered when deciding on a size for your virtual machine.</span></span> <span data-ttu-id="ef6dc-181">Pour plus d’informations, voir [Tailles des machines virtuelles](sizes.md).</span><span class="sxs-lookup"><span data-stu-id="ef6dc-181">For more information, see [VM sizes](sizes.md).</span></span>
 
-1. <span data-ttu-id="726e9-182">Pour modifier la taille de la machine virtuelle, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-182">To change the size of the virtual machine, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-182">taille de hello toochange de machine virtuelle de hello, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-182">toochange hello size of hello virtual machine, add this function after hello variables in hello .py file:</span></span>
 
     ```python
     def update_vm(compute_client):
@@ -487,20 +487,20 @@ compute_client = ComputeManagementClient(
     return update_result.result()
     ```
 
-2. <span data-ttu-id="726e9-183">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-183">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-183">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-183">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     update_result = update_vm(compute_client)
     print("------------------------------------------------------")
     print(update_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-### <a name="add-a-data-disk-to-the-vm"></a><span data-ttu-id="726e9-184">Ajouter un disque de données à la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="726e9-184">Add a data disk to the VM</span></span>
+### <a name="add-a-data-disk-toohello-vm"></a><span data-ttu-id="ef6dc-184">Ajouter un toohello de disque de données machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="ef6dc-184">Add a data disk toohello VM</span></span>
 
-<span data-ttu-id="726e9-185">Des machines virtuelles peuvent disposer d’un ou plusieurs [disques de données](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) stockés en tant que disques durs virtuels.</span><span class="sxs-lookup"><span data-stu-id="726e9-185">Virtual machines can have one or more [data disks](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) that are stored as VHDs.</span></span>
+<span data-ttu-id="ef6dc-185">Des machines virtuelles peuvent disposer d’un ou plusieurs [disques de données](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) stockés en tant que disques durs virtuels.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-185">Virtual machines can have one or more [data disks](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) that are stored as VHDs.</span></span>
 
-1. <span data-ttu-id="726e9-186">Pour ajouter un disque de données à la machine virtuelle, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-186">To add a data disk to the virtual machine, add this function after the variables in the .py file:</span></span> 
+1. <span data-ttu-id="ef6dc-186">tooadd un ordinateur virtuel des toohello du disque de données, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-186">tooadd a data disk toohello virtual machine, add this function after hello variables in hello .py file:</span></span> 
 
     ```python
     def add_datadisk(compute_client):
@@ -533,45 +533,45 @@ compute_client = ComputeManagementClient(
         return add_result.result()
     ```
 
-2. <span data-ttu-id="726e9-187">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-187">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-187">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-187">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
 
     ```python
     add_result = add_datadisk(compute_client)
     print("------------------------------------------------------")
     print(add_result)
-    input('Press enter to continue...')
+    input('Press enter toocontinue...')
     ```
 
-## <a name="delete-resources"></a><span data-ttu-id="726e9-188">Supprimer des ressources</span><span class="sxs-lookup"><span data-stu-id="726e9-188">Delete resources</span></span>
+## <a name="delete-resources"></a><span data-ttu-id="ef6dc-188">Supprimer des ressources</span><span class="sxs-lookup"><span data-stu-id="ef6dc-188">Delete resources</span></span>
 
-<span data-ttu-id="726e9-189">Étant donné que les ressources utilisées dans Microsoft Azure vous sont facturées, il est toujours conseillé de supprimer les ressources qui ne sont plus nécessaires.</span><span class="sxs-lookup"><span data-stu-id="726e9-189">Because you are charged for resources used in Azure, it's always a good practice to delete resources that are no longer needed.</span></span> <span data-ttu-id="726e9-190">Si vous souhaitez supprimer les machines virtuelles et l’ensemble des ressources de prise en charge, il vous suffit de supprimer le groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="726e9-190">If you want to delete the virtual machines and all the supporting resources, all you have to do is delete the resource group.</span></span>
+<span data-ttu-id="ef6dc-189">Vous êtes facturé pour les ressources utilisées dans Azure, il est toujours ressource toodelete bonnes pratiques qui n’est plus nécessaires.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-189">Because you are charged for resources used in Azure, it's always a good practice toodelete resources that are no longer needed.</span></span> <span data-ttu-id="ef6dc-190">Si vous souhaitez toodelete hello virtual machines et hello toutes les ressources de support, toutes les toodo est hello supprimer le groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-190">If you want toodelete hello virtual machines and all hello supporting resources, all you have toodo is delete hello resource group.</span></span>
 
-1. <span data-ttu-id="726e9-191">Pour supprimer le groupe de ressources et toutes les ressources, ajoutez la fonction suivante après les variables dans le fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-191">To delete the resource group and all resources, add this function after the variables in the .py file:</span></span>
+1. <span data-ttu-id="ef6dc-191">groupe de ressources toodelete hello et toutes les ressources, ajoutez cette fonction après variables hello dans le fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-191">toodelete hello resource group and all resources, add this function after hello variables in hello .py file:</span></span>
    
     ```python
     def delete_resources(resource_group_client):
         resource_group_client.resource_groups.delete(GROUP_NAME)
     ```
 
-2. <span data-ttu-id="726e9-192">Pour appeler la fonction que vous avez ajoutée précédemment, ajoutez le code suivant sous l’instruction **if** à la fin du fichier .py :</span><span class="sxs-lookup"><span data-stu-id="726e9-192">To call the function that you previously added, add this code under the **if** statement at the end of the .py file:</span></span>
+2. <span data-ttu-id="ef6dc-192">fonction hello toocall que vous avez ajouté précédemment, ajoutez ce code sous hello **si** instruction à fin hello du fichier de .py hello :</span><span class="sxs-lookup"><span data-stu-id="ef6dc-192">toocall hello function that you previously added, add this code under hello **if** statement at hello end of hello .py file:</span></span>
    
     ```python
     delete_resources(resource_group_client)
     ```
 
-3. <span data-ttu-id="726e9-193">Enregistrez *monProjetPython.py*.</span><span class="sxs-lookup"><span data-stu-id="726e9-193">Save *myPythonProject.py*.</span></span>
+3. <span data-ttu-id="ef6dc-193">Enregistrez *monProjetPython.py*.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-193">Save *myPythonProject.py*.</span></span>
 
-## <a name="run-the-application"></a><span data-ttu-id="726e9-194">Exécuter l'application</span><span class="sxs-lookup"><span data-stu-id="726e9-194">Run the application</span></span>
+## <a name="run-hello-application"></a><span data-ttu-id="ef6dc-194">Exécutez l’application hello</span><span class="sxs-lookup"><span data-stu-id="ef6dc-194">Run hello application</span></span>
 
-1. <span data-ttu-id="726e9-195">Pour exécuter l’application console, cliquez sur **Démarrer** dans Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="726e9-195">To run the console application, click **Start** in Visual Studio.</span></span>
+1. <span data-ttu-id="ef6dc-195">application de console toorun hello, cliquez sur **Démarrer** dans Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-195">toorun hello console application, click **Start** in Visual Studio.</span></span>
 
-2. <span data-ttu-id="726e9-196">Appuyez sur **Entrée** après que l’état de chaque ressource a été retourné.</span><span class="sxs-lookup"><span data-stu-id="726e9-196">Press **Enter** after the status of each resource is returned.</span></span> <span data-ttu-id="726e9-197">Dans les informations d’état, vous devriez voir l’état d’approvisionnement **Réussi**.</span><span class="sxs-lookup"><span data-stu-id="726e9-197">In the status information, you should see a **Succeeded** provisioning state.</span></span> <span data-ttu-id="726e9-198">Une fois la machine virtuelle créée, vous pouvez supprimer toutes les ressources que vous avez créées.</span><span class="sxs-lookup"><span data-stu-id="726e9-198">After the virtual machine is created, you have the opportunity to delete all the resources that you create.</span></span> <span data-ttu-id="726e9-199">Avant d’appuyer sur **Entrée** pour démarrer la suppression des ressources, prenez quelques minutes pour vérifier leur création dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="726e9-199">Before you press **Enter** to start deleting resources, you could take a few minutes to verify their creation in the Azure portal.</span></span> <span data-ttu-id="726e9-200">Si le portail Azure est ouvert, il se peut que vous deviez actualiser le panneau pour afficher de nouvelles ressources.</span><span class="sxs-lookup"><span data-stu-id="726e9-200">If you have the Azure portal open, you might have to refresh the blade to see new resources.</span></span>  
+2. <span data-ttu-id="ef6dc-196">Appuyez sur **entrée** après état hello de chaque ressource est retourné.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-196">Press **Enter** after hello status of each resource is returned.</span></span> <span data-ttu-id="ef6dc-197">Dans les informations d’état hello, vous devez voir un **Succeeded** état d’approvisionnement.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-197">In hello status information, you should see a **Succeeded** provisioning state.</span></span> <span data-ttu-id="ef6dc-198">Après la création de la machine virtuelle de hello, vous avez hello opportunité toodelete toutes les ressources hello que vous créez.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-198">After hello virtual machine is created, you have hello opportunity toodelete all hello resources that you create.</span></span> <span data-ttu-id="ef6dc-199">Avant d’appuyer sur **entrée** toostart suppression des ressources, vous pouvez prendre quelques minutes tooverify leur création Bonjour portail Azure.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-199">Before you press **Enter** toostart deleting resources, you could take a few minutes tooverify their creation in hello Azure portal.</span></span> <span data-ttu-id="ef6dc-200">Si vous avez hello ouvrir portail Azure, vous pouvez avoir des nouvelles ressources toorefresh hello panneau toosee.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-200">If you have hello Azure portal open, you might have toorefresh hello blade toosee new resources.</span></span>  
 
-    <span data-ttu-id="726e9-201">L’exécution complète de cette application console devrait durer cinq minutes environ.</span><span class="sxs-lookup"><span data-stu-id="726e9-201">It should take about five minutes for this console application to run completely from start to finish.</span></span> <span data-ttu-id="726e9-202">Quelques minutes peuvent s’écouler après la fin de l’exécution de l’application avant que toutes les ressources et le groupe de ressources soient supprimés.</span><span class="sxs-lookup"><span data-stu-id="726e9-202">It may take several minutes after the application has finished before all the resources and the resource group are deleted.</span></span>
+    <span data-ttu-id="ef6dc-201">Il doit prendre environ cinq minutes pour que cette toorun d’application console complètement à partir de toofinish de début.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-201">It should take about five minutes for this console application toorun completely from start toofinish.</span></span> <span data-ttu-id="ef6dc-202">Il peut prendre quelques minutes après l’application hello est terminée avant de toutes les ressources hello et groupe de ressources hello sont supprimés.</span><span class="sxs-lookup"><span data-stu-id="ef6dc-202">It may take several minutes after hello application has finished before all hello resources and hello resource group are deleted.</span></span>
 
 
-## <a name="next-steps"></a><span data-ttu-id="726e9-203">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="726e9-203">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ef6dc-203">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="ef6dc-203">Next steps</span></span>
 
-- <span data-ttu-id="726e9-204">Si vous rencontrez des problèmes de déploiement, consultez [Résolution des problèmes liés aux déploiements de groupes de ressources avec le portail Azure](../../resource-manager-troubleshoot-deployments-portal.md).</span><span class="sxs-lookup"><span data-stu-id="726e9-204">If there were issues with the deployment, a next step would be to look at [Troubleshooting resource group deployments with Azure portal](../../resource-manager-troubleshoot-deployments-portal.md)</span></span>
-- <span data-ttu-id="726e9-205">En savoir plus sur la [Bibliothèque Python Azure](https://docs.microsoft.com/python/api/overview/azure/?view=azure-python)</span><span class="sxs-lookup"><span data-stu-id="726e9-205">Learn more about the [Azure Python Library](https://docs.microsoft.com/python/api/overview/azure/?view=azure-python)</span></span>
+- <span data-ttu-id="ef6dc-204">S’il existe des problèmes de déploiement de hello, une étape suivante consisterait toolook à [dépannage des déploiements de groupe de ressources avec le portail Azure](../../resource-manager-troubleshoot-deployments-portal.md)</span><span class="sxs-lookup"><span data-stu-id="ef6dc-204">If there were issues with hello deployment, a next step would be toolook at [Troubleshooting resource group deployments with Azure portal](../../resource-manager-troubleshoot-deployments-portal.md)</span></span>
+- <span data-ttu-id="ef6dc-205">En savoir plus sur hello [Azure Python de la bibliothèque](https://docs.microsoft.com/python/api/overview/azure/?view=azure-python)</span><span class="sxs-lookup"><span data-stu-id="ef6dc-205">Learn more about hello [Azure Python Library](https://docs.microsoft.com/python/api/overview/azure/?view=azure-python)</span></span>
 

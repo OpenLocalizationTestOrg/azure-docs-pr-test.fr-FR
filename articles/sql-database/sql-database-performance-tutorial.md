@@ -1,6 +1,6 @@
 ---
-title: "Résoudre les problèmes de performances et optimiser votre base de données | Microsoft Docs"
-description: "Appliquer des recommandations en matière de performances à votre SQL Database et apprendre à obtenir des informations sur les performances des requêtes s’exécutant sur votre base de données"
+title: "aaaTroubleshoot performances problèmes et optimiser votre base de données | Documents Microsoft"
+description: "Appliquer tooyour de recommandations de performances de la base de données SQL ainsi effacer comment insights toogain sur hello les performances des requêtes hello sur votre base de données"
 metakeywords: azure sql database performance monitoring recommendation
 services: sql-database
 documentationcenter: 
@@ -15,100 +15,100 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/07/2017
 ms.author: janeng
-ms.openlocfilehash: f9ae96cdc80c347593f229cb2fce3f2d4d8e7caf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e948d30ac74eecf45420d5d77ef55e3c0b6f3f47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-performance-issues-and-optimize-your-database"></a><span data-ttu-id="b8a1e-103">Résoudre les problèmes de performances et optimiser votre base de données</span><span class="sxs-lookup"><span data-stu-id="b8a1e-103">Troubleshoot performance issues and optimize your database</span></span>
+# <a name="troubleshoot-performance-issues-and-optimize-your-database"></a><span data-ttu-id="537f0-103">Résoudre les problèmes de performances et optimiser votre base de données</span><span class="sxs-lookup"><span data-stu-id="537f0-103">Troubleshoot performance issues and optimize your database</span></span>
 
-<span data-ttu-id="b8a1e-104">Des index manquants et des requêtes incorrectement optimisées sont souvent à l’origine de performances de base de données limitées.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-104">Missing indexes and poorly optimized queries are common reasons for poor database performance.</span></span> <span data-ttu-id="b8a1e-105">Ce didacticiel vous apprend à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="b8a1e-105">In this tutorial you learn to:</span></span>
+<span data-ttu-id="537f0-104">Des index manquants et des requêtes incorrectement optimisées sont souvent à l’origine de performances de base de données limitées.</span><span class="sxs-lookup"><span data-stu-id="537f0-104">Missing indexes and poorly optimized queries are common reasons for poor database performance.</span></span> <span data-ttu-id="537f0-105">Ce didacticiel vous apprend à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="537f0-105">In this tutorial you learn to:</span></span>
 > [!div class="checklist"]
-> * <span data-ttu-id="b8a1e-106">Examiner, appliquer et annuler des recommandations en matière d’amélioration des performances</span><span class="sxs-lookup"><span data-stu-id="b8a1e-106">Review, apply and revert performance improvement recommendations</span></span>
-> * <span data-ttu-id="b8a1e-107">Rechercher les requêtes utilisant beaucoup de ressources</span><span class="sxs-lookup"><span data-stu-id="b8a1e-107">Find queries with high resource utilization</span></span>
-> * <span data-ttu-id="b8a1e-108">Rechercher les requêtes à exécution longue</span><span class="sxs-lookup"><span data-stu-id="b8a1e-108">Find long running queries</span></span>
+> * <span data-ttu-id="537f0-106">Examiner, appliquer et annuler des recommandations en matière d’amélioration des performances</span><span class="sxs-lookup"><span data-stu-id="537f0-106">Review, apply and revert performance improvement recommendations</span></span>
+> * <span data-ttu-id="537f0-107">Rechercher les requêtes utilisant beaucoup de ressources</span><span class="sxs-lookup"><span data-stu-id="537f0-107">Find queries with high resource utilization</span></span>
+> * <span data-ttu-id="537f0-108">Rechercher les requêtes à exécution longue</span><span class="sxs-lookup"><span data-stu-id="537f0-108">Find long running queries</span></span>
 
-> <span data-ttu-id="b8a1e-109">Vous avez besoin d’une charge de travail continue sur une base de données rencontrant des problèmes de performances (p. ex. index manquant) pour obtenir une recommandation.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-109">You need a continuous workload on a database with performance issues – missing an index for example to receive a recommendation.</span></span>
+> <span data-ttu-id="537f0-109">Vous avez besoin d’une charge de travail continue sur une base de données avec les problèmes de performances – manque un index, par exemple tooreceive une recommandation.</span><span class="sxs-lookup"><span data-stu-id="537f0-109">You need a continuous workload on a database with performance issues – missing an index for example tooreceive a recommendation.</span></span>
 >
 
-## <a name="log-in-to-the-azure-portal"></a><span data-ttu-id="b8a1e-110">Connectez-vous au portail Azure.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-110">Log in to the Azure portal</span></span>
+## <a name="log-in-toohello-azure-portal"></a><span data-ttu-id="537f0-110">Ouvrez une session dans toohello portail Azure</span><span class="sxs-lookup"><span data-stu-id="537f0-110">Log in toohello Azure portal</span></span>
 
-<span data-ttu-id="b8a1e-111">Connectez-vous au [portail Azure](https://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="b8a1e-111">Log in to the [Azure portal](https://portal.azure.com/).</span></span>
+<span data-ttu-id="537f0-111">Connectez-vous à toohello [portail Azure](https://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="537f0-111">Log in toohello [Azure portal](https://portal.azure.com/).</span></span>
 
-## <a name="review-and-apply-a-recommendation"></a><span data-ttu-id="b8a1e-112">Examiner et appliquer une recommandation</span><span class="sxs-lookup"><span data-stu-id="b8a1e-112">Review and apply a recommendation</span></span>
+## <a name="review-and-apply-a-recommendation"></a><span data-ttu-id="537f0-112">Examiner et appliquer une recommandation</span><span class="sxs-lookup"><span data-stu-id="537f0-112">Review and apply a recommendation</span></span>
 
-<span data-ttu-id="b8a1e-113">Suivez les étapes ci-dessous pour appliquer une recommandation du système à votre base de données :</span><span class="sxs-lookup"><span data-stu-id="b8a1e-113">Follow these steps to apply a recommendation from the system for your database:</span></span>
+<span data-ttu-id="537f0-113">Suivez ces étapes de tooapply une recommandation système hello pour votre base de données :</span><span class="sxs-lookup"><span data-stu-id="537f0-113">Follow these steps tooapply a recommendation from hello system for your database:</span></span>
 
-1. <span data-ttu-id="b8a1e-114">Cliquez sur le menu **Recommandations sur les performances** dans le panneau de la base de données.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-114">Click the **Performance recommendations** menu in the database blade.</span></span>
+1. <span data-ttu-id="537f0-114">Cliquez sur hello **recommandations relatives aux performances** menu dans le panneau de base de données hello.</span><span class="sxs-lookup"><span data-stu-id="537f0-114">Click hello **Performance recommendations** menu in hello database blade.</span></span>
 
     ![recommandation sur les performances](./media/sql-database-performance-tutorial/perf_recommendations.png)
 
-2. <span data-ttu-id="b8a1e-116">Sélectionnez une recommandation active dans la liste des recommandations.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-116">From the list of recommendations, select an active recommendation.</span></span> <span data-ttu-id="b8a1e-117">Dans cet exemple, Créer un index.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-117">In this example, Create Index.</span></span>
+2. <span data-ttu-id="537f0-116">Dans la liste hello des recommandations, sélectionnez une recommandation active.</span><span class="sxs-lookup"><span data-stu-id="537f0-116">From hello list of recommendations, select an active recommendation.</span></span> <span data-ttu-id="537f0-117">Dans cet exemple, Créer un index.</span><span class="sxs-lookup"><span data-stu-id="537f0-117">In this example, Create Index.</span></span>
 
     ![sélectionner une recommandation](./media/sql-database-performance-tutorial/create_index.png)
 
-3. <span data-ttu-id="b8a1e-119">Appliquez la recommandation en cliquant sur le bouton **Appliquer**.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-119">Apply the recommendation by clicking the **Apply** button.</span></span> <span data-ttu-id="b8a1e-120">Si vous le souhaitez, examinez les détails de la recommandation et consultez le script T-SQL à exécuter en cliquant sur le bouton **Afficher le script**.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-120">Optionally, review the recommendation details and see the T-SQL script to  be executed by clicking on **View Script** button.</span></span>
+3. <span data-ttu-id="537f0-119">Appliquer la recommandation de hello en cliquant sur hello **appliquer** bouton.</span><span class="sxs-lookup"><span data-stu-id="537f0-119">Apply hello recommendation by clicking hello **Apply** button.</span></span> <span data-ttu-id="537f0-120">Si vous le souhaitez, passez en revue les détails de la recommandation hello et consultez les script T-SQL de hello trop d’être exécuté en cliquant sur **afficher le Script** bouton.</span><span class="sxs-lookup"><span data-stu-id="537f0-120">Optionally, review hello recommendation details and see hello T-SQL script too be executed by clicking on **View Script** button.</span></span>
 
     ![appliquer une recommandation](./media/sql-database-performance-tutorial/apply.png)
 
-4. <span data-ttu-id="b8a1e-122">[Facultatif] Activez le réglage automatique pour appliquer automatiquement des recommandations.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-122">[Optional] Enable automatic tuning for recommendations to be applied automatically.</span></span>
+4. <span data-ttu-id="537f0-122">[Facultatif] Activer le réglage automatique pour toobe recommandations appliquée automatiquement.</span><span class="sxs-lookup"><span data-stu-id="537f0-122">[Optional] Enable automatic tuning for recommendations toobe applied automatically.</span></span>
 
     ![réglage automatique](./media/sql-database-performance-tutorial/auto_tuning.png)
 
-## <a name="revert-a-recommendation"></a><span data-ttu-id="b8a1e-124">Annuler une recommandation</span><span class="sxs-lookup"><span data-stu-id="b8a1e-124">Revert a recommendation</span></span>
+## <a name="revert-a-recommendation"></a><span data-ttu-id="537f0-124">Annuler une recommandation</span><span class="sxs-lookup"><span data-stu-id="537f0-124">Revert a recommendation</span></span>
 
-<span data-ttu-id="b8a1e-125">Database Advisor surveille chaque recommandation implémentée.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-125">The Database Advisor monitors every recommendation implemented.</span></span> <span data-ttu-id="b8a1e-126">Si une recommandation n’améliore pas la charge de travail, elle est automatiquement annulée.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-126">If a recommendation doesn't improve the workload it will be automatically reverted.</span></span> <span data-ttu-id="b8a1e-127">Vous avez la possibilité d’annuler manuellement une recommandation, mais cela n’est pas nécessaire la plupart du temps.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-127">Manually reverting a recommendation is possible, but not necessary in most cases.</span></span> <span data-ttu-id="b8a1e-128">Pour annuler une recommandation :</span><span class="sxs-lookup"><span data-stu-id="b8a1e-128">To revert a recommendation:</span></span>
+<span data-ttu-id="537f0-125">Hello Database Advisor analyse chaque recommandation implémentée.</span><span class="sxs-lookup"><span data-stu-id="537f0-125">hello Database Advisor monitors every recommendation implemented.</span></span> <span data-ttu-id="537f0-126">Si une recommandation n’améliore pas la charge de travail hello que vont être annulée automatiquement.</span><span class="sxs-lookup"><span data-stu-id="537f0-126">If a recommendation doesn't improve hello workload it will be automatically reverted.</span></span> <span data-ttu-id="537f0-127">Vous avez la possibilité d’annuler manuellement une recommandation, mais cela n’est pas nécessaire la plupart du temps.</span><span class="sxs-lookup"><span data-stu-id="537f0-127">Manually reverting a recommendation is possible, but not necessary in most cases.</span></span> <span data-ttu-id="537f0-128">toorevert une recommandation :</span><span class="sxs-lookup"><span data-stu-id="537f0-128">toorevert a recommendation:</span></span>
 
-1. <span data-ttu-id="b8a1e-129">Accédez au menu des recommandations sur les performances et sélectionnez l’une des recommandations appliquées.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-129">Go to the performance recommendations menu and select one of the applied recommendations.</span></span>
+1. <span data-ttu-id="537f0-129">Toohello performances recommandations menu Aller et sélectionnez une des recommandations de hello appliqué.</span><span class="sxs-lookup"><span data-stu-id="537f0-129">Go toohello performance recommendations menu and select one of hello applied recommendations.</span></span>
 
     ![sélectionner une recommandation](./media/sql-database-performance-tutorial/select.png)
 
-2. <span data-ttu-id="b8a1e-131">Dans la vue Détails, cliquez sur **Revenir**.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-131">In the details view, click **Revert**.</span></span>
+2. <span data-ttu-id="537f0-131">Dans la vue des détails hello, cliquez sur **Revert**.</span><span class="sxs-lookup"><span data-stu-id="537f0-131">In hello details view, click **Revert**.</span></span>
 
     ![annuler une recommandation](./media/sql-database-performance-tutorial/revert.png)
 
-## <a name="find-the-query-that-consumes-the-most-resources"></a><span data-ttu-id="b8a1e-133">Rechercher la requête qui consomme le plus de ressources</span><span class="sxs-lookup"><span data-stu-id="b8a1e-133">Find the query that consumes the most resources</span></span>
+## <a name="find-hello-query-that-consumes-hello-most-resources"></a><span data-ttu-id="537f0-133">Rechercher les requête hello qui consomme hello plus de ressources</span><span class="sxs-lookup"><span data-stu-id="537f0-133">Find hello query that consumes hello most resources</span></span>
 
-<span data-ttu-id="b8a1e-134">Suivez les étapes ci-dessous pour rechercher la requête qui consomme le plus de ressources :</span><span class="sxs-lookup"><span data-stu-id="b8a1e-134">Follow these steps to find the query consuming the most resources:</span></span>
+<span data-ttu-id="537f0-134">Suivez ces requêtes de hello toofind étapes consommation hello plus de ressources :</span><span class="sxs-lookup"><span data-stu-id="537f0-134">Follow these steps toofind hello query consuming hello most resources:</span></span>
 
-1. <span data-ttu-id="b8a1e-135">Cliquez sur le menu **Query Performance Insight** dans le panneau de la base de données.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-135">Click on the **Query Performance Insight** menu in the database blade.</span></span>
+1. <span data-ttu-id="537f0-135">Cliquez sur hello **Query Performance Insight** menu dans le panneau de base de données hello.</span><span class="sxs-lookup"><span data-stu-id="537f0-135">Click on hello **Query Performance Insight** menu in hello database blade.</span></span>
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/query_perf_insights.png)
 
-2. <span data-ttu-id="b8a1e-137">Sélectionnez un type de ressource.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-137">Select a resource type.</span></span>
+2. <span data-ttu-id="537f0-137">Sélectionnez un type de ressource.</span><span class="sxs-lookup"><span data-stu-id="537f0-137">Select a resource type.</span></span>
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/select_resource_type.png)
 
-3. <span data-ttu-id="b8a1e-139">Sélectionnez la première requête dans la table.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-139">Select the first query in the table.</span></span>
+3. <span data-ttu-id="537f0-139">Sélectionnez la première requête de hello dans la table de hello.</span><span class="sxs-lookup"><span data-stu-id="537f0-139">Select hello first query in hello table.</span></span>
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/select_query.png)
 
-4. <span data-ttu-id="b8a1e-141">Examinez les détails de la requête.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-141">Review the query details.</span></span>
+4. <span data-ttu-id="537f0-141">Passez en revue les détails de la requête hello.</span><span class="sxs-lookup"><span data-stu-id="537f0-141">Review hello query details.</span></span>
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/query_details.png)
 
-## <a name="find-the-longest-running-query"></a><span data-ttu-id="b8a1e-143">Rechercher la requête dont l’exécution est la plus longue</span><span class="sxs-lookup"><span data-stu-id="b8a1e-143">Find the longest running query</span></span>
+## <a name="find-hello-longest-running-query"></a><span data-ttu-id="537f0-143">Trouver la requête en cours d’exécution plus longue de hello</span><span class="sxs-lookup"><span data-stu-id="537f0-143">Find hello longest running query</span></span>
 
-1. <span data-ttu-id="b8a1e-144">Accédez à Query Performance Insight et sélectionnez l’onglet **Requêtes longues**.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-144">Go to Query Performance Insight and select the **Long running queries** tab.</span></span>
+1. <span data-ttu-id="537f0-144">TooQuery Performance Insight, sélectionnez hello **longues requêtes** onglet.</span><span class="sxs-lookup"><span data-stu-id="537f0-144">Go tooQuery Performance Insight and select hello **Long running queries** tab.</span></span>
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/long_running.png)
 
-3. <span data-ttu-id="b8a1e-146">Sélectionnez la première requête dans la table.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-146">Select the first query in the table.</span></span>
+3. <span data-ttu-id="537f0-146">Sélectionnez la première requête de hello dans la table de hello.</span><span class="sxs-lookup"><span data-stu-id="537f0-146">Select hello first query in hello table.</span></span>
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/select_first_query.png)
 
-4. <span data-ttu-id="b8a1e-148">Examinez les détails de la requête.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-148">Review the query details.</span></span>
+4. <span data-ttu-id="537f0-148">Passez en revue les détails de la requête hello.</span><span class="sxs-lookup"><span data-stu-id="537f0-148">Review hello query details.</span></span>
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/review_query_details.png)
 
 
 
-## <a name="next-steps"></a><span data-ttu-id="b8a1e-150">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="b8a1e-150">Next steps</span></span> 
-<span data-ttu-id="b8a1e-151">Des index manquants et des requêtes incorrectement optimisées sont souvent à l’origine de performances de base de données limitées.</span><span class="sxs-lookup"><span data-stu-id="b8a1e-151">Missing indexes and poorly optimized queries are common reasons for poor database performance.</span></span> <span data-ttu-id="b8a1e-152">Dans ce didacticiel, vous avez appris à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="b8a1e-152">In this tutorial you learned to:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="537f0-150">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="537f0-150">Next steps</span></span> 
+<span data-ttu-id="537f0-151">Des index manquants et des requêtes incorrectement optimisées sont souvent à l’origine de performances de base de données limitées.</span><span class="sxs-lookup"><span data-stu-id="537f0-151">Missing indexes and poorly optimized queries are common reasons for poor database performance.</span></span> <span data-ttu-id="537f0-152">Dans ce didacticiel, vous avez appris à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="537f0-152">In this tutorial you learned to:</span></span>
 > [!div class="checklist"]
-> * <span data-ttu-id="b8a1e-153">Examiner, appliquer et annuler des recommandations en matière d’amélioration des performances</span><span class="sxs-lookup"><span data-stu-id="b8a1e-153">Review, apply and revert performance improvement recommendations</span></span>
-> * <span data-ttu-id="b8a1e-154">Rechercher les requêtes utilisant beaucoup de ressources</span><span class="sxs-lookup"><span data-stu-id="b8a1e-154">Find queries with high resource utilization</span></span>
-> * <span data-ttu-id="b8a1e-155">Rechercher les requêtes à exécution longue</span><span class="sxs-lookup"><span data-stu-id="b8a1e-155">Find long running queries</span></span>
+> * <span data-ttu-id="537f0-153">Examiner, appliquer et annuler des recommandations en matière d’amélioration des performances</span><span class="sxs-lookup"><span data-stu-id="537f0-153">Review, apply and revert performance improvement recommendations</span></span>
+> * <span data-ttu-id="537f0-154">Rechercher les requêtes utilisant beaucoup de ressources</span><span class="sxs-lookup"><span data-stu-id="537f0-154">Find queries with high resource utilization</span></span>
+> * <span data-ttu-id="537f0-155">Rechercher les requêtes à exécution longue</span><span class="sxs-lookup"><span data-stu-id="537f0-155">Find long running queries</span></span>
 
-[<span data-ttu-id="b8a1e-156">Conseils pour le réglage des performances de SQL Database</span><span class="sxs-lookup"><span data-stu-id="b8a1e-156">SQL Database performance tuning tips</span></span>](https://docs.microsoft.com/azure/sql-database/sql-database-troubleshoot-performance)
+[<span data-ttu-id="537f0-156">Conseils pour le réglage des performances de SQL Database</span><span class="sxs-lookup"><span data-stu-id="537f0-156">SQL Database performance tuning tips</span></span>](https://docs.microsoft.com/azure/sql-database/sql-database-troubleshoot-performance)

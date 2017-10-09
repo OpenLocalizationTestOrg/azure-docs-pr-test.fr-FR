@@ -1,23 +1,23 @@
-<span data-ttu-id="b5013-101">Utilisez la procédure ci-dessous correspondant à votre type de projet de serveur principal &mdash; [serveur principal .NET](#dotnet) ou [serveur principal Node.js](#nodejs).</span><span class="sxs-lookup"><span data-stu-id="b5013-101">Use the procedure that matches your back-end project type&mdash;either [.NET back end](#dotnet) or [Node.js back end](#nodejs).</span></span>
+<span data-ttu-id="455c4-101">Utiliser la procédure hello qui correspond à votre type de projet de serveur principal&mdash;soit [.NET back-end](#dotnet) ou [Node.js back-end](#nodejs).</span><span class="sxs-lookup"><span data-stu-id="455c4-101">Use hello procedure that matches your back-end project type&mdash;either [.NET back end](#dotnet) or [Node.js back end](#nodejs).</span></span>
 
-### <span data-ttu-id="b5013-102"><a name="dotnet"></a>Projet de serveur principal .NET</span><span class="sxs-lookup"><span data-stu-id="b5013-102"><a name="dotnet"></a>.NET back-end project</span></span>
-1. <span data-ttu-id="b5013-103">Dans Visual Studio, cliquez avec le bouton droit sur le projet de serveur, puis cliquez sur **Gérer les packages NuGet**.</span><span class="sxs-lookup"><span data-stu-id="b5013-103">In Visual Studio, right-click the server project, and click **Manage NuGet Packages**.</span></span> <span data-ttu-id="b5013-104">Recherchez `Microsoft.Azure.NotificationHubs`, puis cliquez sur **Installer**.</span><span class="sxs-lookup"><span data-stu-id="b5013-104">Search for `Microsoft.Azure.NotificationHubs`, and then click **Install**.</span></span> <span data-ttu-id="b5013-105">Cette commande installe la bibliothèque cliente Notification Hubs.</span><span class="sxs-lookup"><span data-stu-id="b5013-105">This installs the Notification Hubs client library.</span></span>
-2. <span data-ttu-id="b5013-106">Dans le dossier Contrôleurs, ouvrez TodoItemController.cs et ajoutez les instructions `using` suivantes :</span><span class="sxs-lookup"><span data-stu-id="b5013-106">In the Controllers folder, open TodoItemController.cs and add the following `using` statements:</span></span>
+### <span data-ttu-id="455c4-102"><a name="dotnet"></a>Projet de serveur principal .NET</span><span class="sxs-lookup"><span data-stu-id="455c4-102"><a name="dotnet"></a>.NET back-end project</span></span>
+1. <span data-ttu-id="455c4-103">Dans Visual Studio, cliquez sur le projet de serveur hello, puis cliquez sur **gérer les Packages NuGet**.</span><span class="sxs-lookup"><span data-stu-id="455c4-103">In Visual Studio, right-click hello server project, and click **Manage NuGet Packages**.</span></span> <span data-ttu-id="455c4-104">Recherchez `Microsoft.Azure.NotificationHubs`, puis cliquez sur **Installer**.</span><span class="sxs-lookup"><span data-stu-id="455c4-104">Search for `Microsoft.Azure.NotificationHubs`, and then click **Install**.</span></span> <span data-ttu-id="455c4-105">Bibliothèque cliente de concentrateurs de Notification hello sont ainsi installés.</span><span class="sxs-lookup"><span data-stu-id="455c4-105">This installs hello Notification Hubs client library.</span></span>
+2. <span data-ttu-id="455c4-106">Dans le dossier de contrôleurs hello, ouvrez TodoItemController.cs et ajoutez hello suit `using` instructions :</span><span class="sxs-lookup"><span data-stu-id="455c4-106">In hello Controllers folder, open TodoItemController.cs and add hello following `using` statements:</span></span>
 
         using Microsoft.Azure.Mobile.Server.Config;
         using Microsoft.Azure.NotificationHubs;
-3. <span data-ttu-id="b5013-107">Remplacez la méthode `PostTodoItem` par le code suivant :</span><span class="sxs-lookup"><span data-stu-id="b5013-107">Replace the `PostTodoItem` method with the following code:</span></span>  
+3. <span data-ttu-id="455c4-107">Remplacez hello `PostTodoItem` méthode avec hello suivant de code :</span><span class="sxs-lookup"><span data-stu-id="455c4-107">Replace hello `PostTodoItem` method with hello following code:</span></span>  
 
         public async Task<IHttpActionResult> PostTodoItem(TodoItem item)
         {
             TodoItem current = await InsertAsync(item);
-            // Get the settings for the server project.
+            // Get hello settings for hello server project.
             HttpConfiguration config = this.Configuration;
 
             MobileAppSettingsDictionary settings =
                 this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
-            // Get the Notification Hubs credentials for the Mobile App.
+            // Get hello Notification Hubs credentials for hello Mobile App.
             string notificationHubName = settings.NotificationHubName;
             string notificationHubConnection = settings
                 .Connections[MobileAppSettingsKeys.NotificationHubConnectionString].ConnectionString;
@@ -31,26 +31,26 @@
 
             try
             {
-                // Send the push notification and log the results.
+                // Send hello push notification and log hello results.
                 var result = await hub.SendGcmNativeNotificationAsync(androidNotificationPayload);
 
-                // Write the success result to the logs.
+                // Write hello success result toohello logs.
                 config.Services.GetTraceWriter().Info(result.State.ToString());
             }
             catch (System.Exception ex)
             {
-                // Write the failure result to the logs.
+                // Write hello failure result toohello logs.
                 config.Services.GetTraceWriter()
                     .Error(ex.Message, null, "Push.SendAsync Error");
             }
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 
-4. <span data-ttu-id="b5013-108">Publier à nouveau le projet de serveur</span><span class="sxs-lookup"><span data-stu-id="b5013-108">Republish the server project.</span></span>
+4. <span data-ttu-id="455c4-108">Publiez de nouveau projet de serveur hello.</span><span class="sxs-lookup"><span data-stu-id="455c4-108">Republish hello server project.</span></span>
 
-### <span data-ttu-id="b5013-109"><a name="nodejs"></a>Projet de serveur principal Node.js</span><span class="sxs-lookup"><span data-stu-id="b5013-109"><a name="nodejs"></a>Node.js back-end project</span></span>
-1. <span data-ttu-id="b5013-110">Si vous ne l’avez pas encore fait, [téléchargez le projet de démarrage rapide](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart) ou utilisez [l’éditeur en ligne du Portail Azure](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor).</span><span class="sxs-lookup"><span data-stu-id="b5013-110">If you haven't already done so, [download the quickstart project](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart), or else use the [online editor in the Azure portal](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor).</span></span>
-2. <span data-ttu-id="b5013-111">Remplacez le code présent dans le fichier todoitem.js par le code suivant :</span><span class="sxs-lookup"><span data-stu-id="b5013-111">Replace the existing code in the todoitem.js file with the following:</span></span>
+### <span data-ttu-id="455c4-109"><a name="nodejs"></a>Projet de serveur principal Node.js</span><span class="sxs-lookup"><span data-stu-id="455c4-109"><a name="nodejs"></a>Node.js back-end project</span></span>
+1. <span data-ttu-id="455c4-110">Si vous n’avez pas déjà fait, [télécharger le projet de démarrage rapide de hello](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart), ou sinon utilisez hello [éditeur en ligne Bonjour Azure portal](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor).</span><span class="sxs-lookup"><span data-stu-id="455c4-110">If you haven't already done so, [download hello quickstart project](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart), or else use hello [online editor in hello Azure portal](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor).</span></span>
+2. <span data-ttu-id="455c4-111">Remplacez le code existant dans le fichier de todoitem.js hello hello suivant de hello :</span><span class="sxs-lookup"><span data-stu-id="455c4-111">Replace hello existing code in hello todoitem.js file with hello following:</span></span>
 
         var azureMobileApps = require('azure-mobile-apps'),
         promises = require('azure-mobile-apps/src/utilities/promises'),
@@ -59,22 +59,22 @@
         var table = azureMobileApps.table();
 
         table.insert(function (context) {
-        // For more information about the Notification Hubs JavaScript SDK,
+        // For more information about hello Notification Hubs JavaScript SDK,
         // see http://aka.ms/nodejshubs
         logger.info('Running TodoItem.insert');
 
-        // Define the GCM payload.
+        // Define hello GCM payload.
         var payload = {
             "data": {
                 "message": context.item.text
             }
         };   
 
-        // Execute the insert.  The insert returns the results as a Promise,
-        // Do the push as a post-execute action within the promise flow.
+        // Execute hello insert.  hello insert returns hello results as a Promise,
+        // Do hello push as a post-execute action within hello promise flow.
         return context.execute()
             .then(function (results) {
-                // Only do the push if configured
+                // Only do hello push if configured
                 if (context.push) {
                     // Send a GCM native notification.
                     context.push.gcm.send(null, payload, function (error) {
@@ -85,7 +85,7 @@
                         }
                     });
                 }
-                // Don't forget to return the results from the context.execute()
+                // Don't forget tooreturn hello results from hello context.execute()
                 return results;
             })
             .catch(function (error) {
@@ -95,5 +95,5 @@
 
         module.exports = table;  
 
-    <span data-ttu-id="b5013-112">Ce code envoie une notification GCM contenant item.text quand un nouvel élément todo est inséré.</span><span class="sxs-lookup"><span data-stu-id="b5013-112">This sends a GCM notification that contains the item.text when a new todo item is inserted.</span></span>
-3. <span data-ttu-id="b5013-113">Quand vous modifiez le fichier sur votre ordinateur local, republiez le projet serveur.</span><span class="sxs-lookup"><span data-stu-id="b5013-113">When editing the file in your local computer, republish the server project.</span></span>
+    <span data-ttu-id="455c4-112">Envoie une notification GCM contenant hello item.text lors de l’insertion d’un nouvel élément de tâche.</span><span class="sxs-lookup"><span data-stu-id="455c4-112">This sends a GCM notification that contains hello item.text when a new todo item is inserted.</span></span>
+3. <span data-ttu-id="455c4-113">Lorsque vous modifiez le fichier hello sur votre ordinateur local, le projet de serveur hello republier.</span><span class="sxs-lookup"><span data-stu-id="455c4-113">When editing hello file in your local computer, republish hello server project.</span></span>

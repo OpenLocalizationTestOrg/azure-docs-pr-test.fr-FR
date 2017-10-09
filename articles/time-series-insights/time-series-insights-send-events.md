@@ -1,6 +1,6 @@
 ---
-title: "Envoyer des événements à votre environnement Azure Time Series Insights | Microsoft Docs"
-description: "Ce didacticiel décrit les étapes à suivre pour envoyer des événements à votre environnement Time Series Insights"
+title: "environnement d’heure série Insights aaaSend événements tooAzure | Documents Microsoft"
+description: "Ce didacticiel décrit l’environnement de temps série Insights hello étapes toopush événements tooyour"
 keywords: 
 services: tsi
 documentationcenter: 
@@ -15,45 +15,45 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/21/2017
 ms.author: venkatja
-ms.openlocfilehash: b4ef96a045393f28b3cd750068fe82a5a8411afa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dbccc23f61351a0033cd48c1a02fb3841b45d560
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-events-to-a-time-series-insights-environment-using-event-hub"></a><span data-ttu-id="f8ab1-103">Envoyer des événements à un environnement Time Series Insights à l’aide d’un concentrateur d’événements</span><span class="sxs-lookup"><span data-stu-id="f8ab1-103">Send events to a Time Series Insights environment using event hub</span></span>
+# <a name="send-events-tooa-time-series-insights-environment-using-event-hub"></a><span data-ttu-id="d774d-103">Environnement d’heure série Insights tooa événements à l’aide de concentrateur d’événements d’envoi</span><span class="sxs-lookup"><span data-stu-id="d774d-103">Send events tooa Time Series Insights environment using event hub</span></span>
 
-<span data-ttu-id="f8ab1-104">Ce didacticiel explique comment créer et configurer le concentrateur d’événements et exécuter un exemple d’application pour envoyer des événements.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-104">This tutorial explains how to create and configure event hub and run a sample application to push events.</span></span> <span data-ttu-id="f8ab1-105">Si vous disposez d’un concentrateur d’événements existant qui a déjà des événements au format JSON, ignorez ce didacticiel et affichez votre environnement dans [time series insights](https://insights.timeseries.azure.com).</span><span class="sxs-lookup"><span data-stu-id="f8ab1-105">If you have an existing event hub with events in JSON format, skip this tutorial and view your environment in [time series insights](https://insights.timeseries.azure.com).</span></span>
+<span data-ttu-id="d774d-104">Ce didacticiel explique comment toocreate et configurer le concentrateur d’événements et exécuter un toopush d’application exemple d’événement.</span><span class="sxs-lookup"><span data-stu-id="d774d-104">This tutorial explains how toocreate and configure event hub and run a sample application toopush events.</span></span> <span data-ttu-id="d774d-105">Si vous disposez d’un concentrateur d’événements existant qui a déjà des événements au format JSON, ignorez ce didacticiel et affichez votre environnement dans [time series insights](https://insights.timeseries.azure.com).</span><span class="sxs-lookup"><span data-stu-id="d774d-105">If you have an existing event hub with events in JSON format, skip this tutorial and view your environment in [time series insights](https://insights.timeseries.azure.com).</span></span>
 
-## <a name="configure-an-event-hub"></a><span data-ttu-id="f8ab1-106">Configurer un concentrateur d’événements</span><span class="sxs-lookup"><span data-stu-id="f8ab1-106">Configure an event hub</span></span>
-1. <span data-ttu-id="f8ab1-107">Pour créer un concentrateur d’événements, suivez les instructions de la [documentation](https://docs.microsoft.com/azure/event-hubs/event-hubs-create) relative aux concentrateurs d’événements.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-107">To create an event hub, follow instructions from the Event Hub [documentation](https://docs.microsoft.com/azure/event-hubs/event-hubs-create).</span></span>
+## <a name="configure-an-event-hub"></a><span data-ttu-id="d774d-106">Configurer un concentrateur d’événements</span><span class="sxs-lookup"><span data-stu-id="d774d-106">Configure an event hub</span></span>
+1. <span data-ttu-id="d774d-107">toocreate un concentrateur d’événements, suivez les instructions de hello concentrateur d’événements [documentation](https://docs.microsoft.com/azure/event-hubs/event-hubs-create).</span><span class="sxs-lookup"><span data-stu-id="d774d-107">toocreate an event hub, follow instructions from hello Event Hub [documentation](https://docs.microsoft.com/azure/event-hubs/event-hubs-create).</span></span>
 
-2. <span data-ttu-id="f8ab1-108">Veillez à créer un groupe de consommateurs qui sera utilisé exclusivement par votre source d’événement Time Series Insights.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-108">Make sure you create a consumer group that is used exclusively by your Time Series Insights event source.</span></span>
+2. <span data-ttu-id="d774d-108">Veillez à créer un groupe de consommateurs qui sera utilisé exclusivement par votre source d’événement Time Series Insights.</span><span class="sxs-lookup"><span data-stu-id="d774d-108">Make sure you create a consumer group that is used exclusively by your Time Series Insights event source.</span></span>
 
   > [!IMPORTANT]
-  > <span data-ttu-id="f8ab1-109">Assurez-vous que ce groupe de consommateurs n’est pas utilisé par un autre service (par exemple, une tâche Stream Analytics ou un autre environnement Time Series Insights).</span><span class="sxs-lookup"><span data-stu-id="f8ab1-109">Make sure this consumer group is not used by any other service (such as Stream Analytics job or another Time Series Insights environment).</span></span> <span data-ttu-id="f8ab1-110">Si le groupe de consommateurs est utilisé par d’autres services, l’opération de lecture est affectée pour cet environnement et les autres services.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-110">If consumer group is used by other services, read operation is negatively affected for this environment and the other services.</span></span> <span data-ttu-id="f8ab1-111">Si vous utilisez le groupe de consommateurs « $Default », ceci peut entraîner une réutilisation potentielle par d’autres lecteurs.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-111">If you are using “$Default” as the consumer group, it could lead to potential reuse by other readers.</span></span>
+  > <span data-ttu-id="d774d-109">Assurez-vous que ce groupe de consommateurs n’est pas utilisé par un autre service (par exemple, une tâche Stream Analytics ou un autre environnement Time Series Insights).</span><span class="sxs-lookup"><span data-stu-id="d774d-109">Make sure this consumer group is not used by any other service (such as Stream Analytics job or another Time Series Insights environment).</span></span> <span data-ttu-id="d774d-110">Si le groupe de consommateurs est utilisé par d’autres services, lisez opération affectée pour cet environnement et hello d’autres services.</span><span class="sxs-lookup"><span data-stu-id="d774d-110">If consumer group is used by other services, read operation is negatively affected for this environment and hello other services.</span></span> <span data-ttu-id="d774d-111">Si vous utilisez « $Default » en tant que groupe de consommateurs hello, il risque de réutilisation de toopotential par les autres lecteurs.</span><span class="sxs-lookup"><span data-stu-id="d774d-111">If you are using “$Default” as hello consumer group, it could lead toopotential reuse by other readers.</span></span>
 
   ![Sélectionnez le groupe de consommateurs du concentrateur d’événements](media/send-events/consumer-group.png)
 
-3. <span data-ttu-id="f8ab1-113">Dans le concentrateur d’événements, créez la stratégie « MySendPolicy » utilisée pour envoyer des événements dans l’exemple csharp.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-113">On the event hub, create “MySendPolicy” that is used to send events in the csharp sample.</span></span>
+3. <span data-ttu-id="d774d-113">Créer des « MySendPolicy » sur le concentrateur d’événements hello, c'est-à-dire les événements de toosend utilisés dans hello, exemple csharp.</span><span class="sxs-lookup"><span data-stu-id="d774d-113">On hello event hub, create “MySendPolicy” that is used toosend events in hello csharp sample.</span></span>
 
   ![Sélectionnez des stratégies d’accès partagé et cliquez sur le bouton Ajouter](media/send-events/shared-access-policy.png)  
 
   ![Ajoutez une stratégie d’accès partagé](media/send-events/shared-access-policy-2.png)  
 
-## <a name="create-time-series-insights-event-source"></a><span data-ttu-id="f8ab1-116">Créer la source d’événement Time Series Insights</span><span class="sxs-lookup"><span data-stu-id="f8ab1-116">Create Time Series Insights event source</span></span>
-1. <span data-ttu-id="f8ab1-117">Si vous n’avez créé aucune source d’événement, suivez [ces instructions](time-series-insights-add-event-source.md) pour créer une source d’événement.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-117">If you haven't created an event source, follow [these instructions](time-series-insights-add-event-source.md) to create an event source.</span></span>
+## <a name="create-time-series-insights-event-source"></a><span data-ttu-id="d774d-116">Créer la source d’événement Time Series Insights</span><span class="sxs-lookup"><span data-stu-id="d774d-116">Create Time Series Insights event source</span></span>
+1. <span data-ttu-id="d774d-117">Si vous n’avez pas créé une source d’événements, procédez comme [ces instructions](time-series-insights-add-event-source.md) toocreate une source d’événement.</span><span class="sxs-lookup"><span data-stu-id="d774d-117">If you haven't created an event source, follow [these instructions](time-series-insights-add-event-source.md) toocreate an event source.</span></span>
 
-2. <span data-ttu-id="f8ab1-118">Spécifiez « deviceTimestamp » comme nom de la propriété timestamp. Cette propriété définit l’horodatage réel dans l’exemple csharp.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-118">Specify “deviceTimestamp” as the timestamp property name – this property is used as the actual timestamp in the csharp sample.</span></span> <span data-ttu-id="f8ab1-119">Le nom de la propriété timestamp est sensible à la casse et les valeurs doivent être au format __aaaa-MM-jjTHH:mm:ss.FFFFFFFK__ lors de l’envoi au format JSON au concentrateur d’événements.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-119">The timestamp property name is case-sensitive and values must follow the format __yyyy-MM-ddTHH:mm:ss.FFFFFFFK__ when sent as JSON to event hub.</span></span> <span data-ttu-id="f8ab1-120">Si la propriété n’existe pas dans l’événement, le système utilise l’heure à laquelle l’événement a été placé dans la file d’attente du concentrateur d’événements.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-120">If the property does not exist in the event, then the event hub enqueued time is used.</span></span>
+2. <span data-ttu-id="d774d-118">Spécifiez « deviceTimestamp » comme nom de la propriété timestamp hello : cette propriété est utilisée comme hello horodatage réelle dans hello, exemple csharp.</span><span class="sxs-lookup"><span data-stu-id="d774d-118">Specify “deviceTimestamp” as hello timestamp property name – this property is used as hello actual timestamp in hello csharp sample.</span></span> <span data-ttu-id="d774d-119">nom de la propriété timestamp Hello respecte la casse et les valeurs doivent suivre le format de hello __AAAA-MM-JJThh. FFFFFFFK__ lors de l’envoi comme concentrateur tooevent JSON.</span><span class="sxs-lookup"><span data-stu-id="d774d-119">hello timestamp property name is case-sensitive and values must follow hello format __yyyy-MM-ddTHH:mm:ss.FFFFFFFK__ when sent as JSON tooevent hub.</span></span> <span data-ttu-id="d774d-120">Si la propriété de hello n’existe pas dans les événements hello, puis hello heure de l’événement hub en file d’attente est utilisé.</span><span class="sxs-lookup"><span data-stu-id="d774d-120">If hello property does not exist in hello event, then hello event hub enqueued time is used.</span></span>
 
   ![Créez la source d’événement](media/send-events/event-source-1.png)
 
-## <a name="sample-code-to-push-events"></a><span data-ttu-id="f8ab1-122">Exemple de code pour envoyer des événements</span><span class="sxs-lookup"><span data-stu-id="f8ab1-122">Sample code to push events</span></span>
-1. <span data-ttu-id="f8ab1-123">Accédez à la stratégie de concentrateur d’événements « MySendPolicy » et copiez la chaîne de connexion avec la clé de stratégie.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-123">Go to the event hub policy “MySendPolicy” and copy the connection string with the policy key.</span></span>
+## <a name="sample-code-toopush-events"></a><span data-ttu-id="d774d-122">Exemples d’événements toopush code</span><span class="sxs-lookup"><span data-stu-id="d774d-122">Sample code toopush events</span></span>
+1. <span data-ttu-id="d774d-123">Accédez de stratégie de concentrateur d’événements toohello « MySendPolicy » et copier la chaîne de connexion hello avec la clé de stratégie hello.</span><span class="sxs-lookup"><span data-stu-id="d774d-123">Go toohello event hub policy “MySendPolicy” and copy hello connection string with hello policy key.</span></span>
 
   ![Copiez la chaîne de connexion MySendPolicy](media/send-events/sample-code-connection-string.png)
 
-2. <span data-ttu-id="f8ab1-125">Exécutez le code suivant qui envoie 600 événements pour chacun des trois appareils.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-125">Run the following code that to send 600 events per each of the three devices.</span></span> <span data-ttu-id="f8ab1-126">Mettez à jour `eventHubConnectionString` avec votre chaîne de connexion.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-126">Update `eventHubConnectionString` with your connection string.</span></span>
+2. <span data-ttu-id="d774d-125">Exécutez hello après le code que les événements par chacun des périphériques de hello trois toosend 600.</span><span class="sxs-lookup"><span data-stu-id="d774d-125">Run hello following code that toosend 600 events per each of hello three devices.</span></span> <span data-ttu-id="d774d-126">Mettez à jour `eventHubConnectionString` avec votre chaîne de connexion.</span><span class="sxs-lookup"><span data-stu-id="d774d-126">Update `eventHubConnectionString` with your connection string.</span></span>
 
 ```csharp
 using System;
@@ -113,7 +113,7 @@ namespace Microsoft.Rdx.DataGenerator
                 sw.Flush();
                 ms.Position = 0;
 
-                // Send JSON to event hub.
+                // Send JSON tooevent hub.
                 EventData eventData = new EventData(ms);
                 eventHubClient.Send(eventData);
             }
@@ -122,12 +122,12 @@ namespace Microsoft.Rdx.DataGenerator
 }
 
 ```
-## <a name="supported-json-shapes"></a><span data-ttu-id="f8ab1-127">Structures JSON prises en charge</span><span class="sxs-lookup"><span data-stu-id="f8ab1-127">Supported JSON shapes</span></span>
-### <a name="sample-1"></a><span data-ttu-id="f8ab1-128">Exemple 1</span><span class="sxs-lookup"><span data-stu-id="f8ab1-128">Sample 1</span></span>
+## <a name="supported-json-shapes"></a><span data-ttu-id="d774d-127">Structures JSON prises en charge</span><span class="sxs-lookup"><span data-stu-id="d774d-127">Supported JSON shapes</span></span>
+### <a name="sample-1"></a><span data-ttu-id="d774d-128">Exemple 1</span><span class="sxs-lookup"><span data-stu-id="d774d-128">Sample 1</span></span>
 
-#### <a name="input"></a><span data-ttu-id="f8ab1-129">Entrée</span><span class="sxs-lookup"><span data-stu-id="f8ab1-129">Input</span></span>
+#### <a name="input"></a><span data-ttu-id="d774d-129">Entrée</span><span class="sxs-lookup"><span data-stu-id="d774d-129">Input</span></span>
 
-<span data-ttu-id="f8ab1-130">Un objet JSON simple.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-130">A simple JSON object.</span></span>
+<span data-ttu-id="d774d-130">Un objet JSON simple.</span><span class="sxs-lookup"><span data-stu-id="d774d-130">A simple JSON object.</span></span>
 
 ```json
 {
@@ -135,16 +135,16 @@ namespace Microsoft.Rdx.DataGenerator
     "timestamp":"2016-01-08T01:08:00Z"
 }
 ```
-#### <a name="output---1-event"></a><span data-ttu-id="f8ab1-131">Sortie - 1 événement</span><span class="sxs-lookup"><span data-stu-id="f8ab1-131">Output - 1 event</span></span>
+#### <a name="output---1-event"></a><span data-ttu-id="d774d-131">Sortie - 1 événement</span><span class="sxs-lookup"><span data-stu-id="d774d-131">Output - 1 event</span></span>
 
-|<span data-ttu-id="f8ab1-132">id</span><span class="sxs-lookup"><span data-stu-id="f8ab1-132">id</span></span>|<span data-ttu-id="f8ab1-133">timestamp</span><span class="sxs-lookup"><span data-stu-id="f8ab1-133">timestamp</span></span>|
+|<span data-ttu-id="d774d-132">id</span><span class="sxs-lookup"><span data-stu-id="d774d-132">id</span></span>|<span data-ttu-id="d774d-133">timestamp</span><span class="sxs-lookup"><span data-stu-id="d774d-133">timestamp</span></span>|
 |--------|---------------|
-|<span data-ttu-id="f8ab1-134">device1</span><span class="sxs-lookup"><span data-stu-id="f8ab1-134">device1</span></span>|<span data-ttu-id="f8ab1-135">2016-01-08T01:08:00Z</span><span class="sxs-lookup"><span data-stu-id="f8ab1-135">2016-01-08T01:08:00Z</span></span>|
+|<span data-ttu-id="d774d-134">device1</span><span class="sxs-lookup"><span data-stu-id="d774d-134">device1</span></span>|<span data-ttu-id="d774d-135">2016-01-08T01:08:00Z</span><span class="sxs-lookup"><span data-stu-id="d774d-135">2016-01-08T01:08:00Z</span></span>|
 
-### <a name="sample-2"></a><span data-ttu-id="f8ab1-136">Exemple 2</span><span class="sxs-lookup"><span data-stu-id="f8ab1-136">Sample 2</span></span>
+### <a name="sample-2"></a><span data-ttu-id="d774d-136">Exemple 2</span><span class="sxs-lookup"><span data-stu-id="d774d-136">Sample 2</span></span>
 
-#### <a name="input"></a><span data-ttu-id="f8ab1-137">Entrée</span><span class="sxs-lookup"><span data-stu-id="f8ab1-137">Input</span></span>
-<span data-ttu-id="f8ab1-138">Un tableau JSON avec deux objets JSON.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-138">A JSON array with two JSON objects.</span></span> <span data-ttu-id="f8ab1-139">Chaque objet JSON sera converti en un événement.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-139">Each JSON object will be converted to an event.</span></span>
+#### <a name="input"></a><span data-ttu-id="d774d-137">Entrée</span><span class="sxs-lookup"><span data-stu-id="d774d-137">Input</span></span>
+<span data-ttu-id="d774d-138">Un tableau JSON avec deux objets JSON.</span><span class="sxs-lookup"><span data-stu-id="d774d-138">A JSON array with two JSON objects.</span></span> <span data-ttu-id="d774d-139">Chaque objet JSON sera convertie tooan événement.</span><span class="sxs-lookup"><span data-stu-id="d774d-139">Each JSON object will be converted tooan event.</span></span>
 ```json
 [
     {
@@ -157,17 +157,17 @@ namespace Microsoft.Rdx.DataGenerator
     }
 ]
 ```
-#### <a name="output---2-events"></a><span data-ttu-id="f8ab1-140">Sortie - 2 événements</span><span class="sxs-lookup"><span data-stu-id="f8ab1-140">Output - 2 Events</span></span>
+#### <a name="output---2-events"></a><span data-ttu-id="d774d-140">Sortie - 2 événements</span><span class="sxs-lookup"><span data-stu-id="d774d-140">Output - 2 Events</span></span>
 
-|<span data-ttu-id="f8ab1-141">id</span><span class="sxs-lookup"><span data-stu-id="f8ab1-141">id</span></span>|<span data-ttu-id="f8ab1-142">timestamp</span><span class="sxs-lookup"><span data-stu-id="f8ab1-142">timestamp</span></span>|
+|<span data-ttu-id="d774d-141">id</span><span class="sxs-lookup"><span data-stu-id="d774d-141">id</span></span>|<span data-ttu-id="d774d-142">timestamp</span><span class="sxs-lookup"><span data-stu-id="d774d-142">timestamp</span></span>|
 |--------|---------------|
-|<span data-ttu-id="f8ab1-143">device1</span><span class="sxs-lookup"><span data-stu-id="f8ab1-143">device1</span></span>|<span data-ttu-id="f8ab1-144">2016-01-08T01:08:00Z</span><span class="sxs-lookup"><span data-stu-id="f8ab1-144">2016-01-08T01:08:00Z</span></span>|
-|<span data-ttu-id="f8ab1-145">device2</span><span class="sxs-lookup"><span data-stu-id="f8ab1-145">device2</span></span>|<span data-ttu-id="f8ab1-146">2016-01-08T01:17:00Z</span><span class="sxs-lookup"><span data-stu-id="f8ab1-146">2016-01-08T01:17:00Z</span></span>|
-### <a name="sample-3"></a><span data-ttu-id="f8ab1-147">Exemple 3</span><span class="sxs-lookup"><span data-stu-id="f8ab1-147">Sample 3</span></span>
+|<span data-ttu-id="d774d-143">device1</span><span class="sxs-lookup"><span data-stu-id="d774d-143">device1</span></span>|<span data-ttu-id="d774d-144">2016-01-08T01:08:00Z</span><span class="sxs-lookup"><span data-stu-id="d774d-144">2016-01-08T01:08:00Z</span></span>|
+|<span data-ttu-id="d774d-145">device2</span><span class="sxs-lookup"><span data-stu-id="d774d-145">device2</span></span>|<span data-ttu-id="d774d-146">2016-01-08T01:17:00Z</span><span class="sxs-lookup"><span data-stu-id="d774d-146">2016-01-08T01:17:00Z</span></span>|
+### <a name="sample-3"></a><span data-ttu-id="d774d-147">Exemple 3</span><span class="sxs-lookup"><span data-stu-id="d774d-147">Sample 3</span></span>
 
-#### <a name="input"></a><span data-ttu-id="f8ab1-148">Entrée</span><span class="sxs-lookup"><span data-stu-id="f8ab1-148">Input</span></span>
+#### <a name="input"></a><span data-ttu-id="d774d-148">Entrée</span><span class="sxs-lookup"><span data-stu-id="d774d-148">Input</span></span>
 
-<span data-ttu-id="f8ab1-149">Un objet JSON avec un tableau JSON imbriqué contenant deux objets JSON.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-149">A JSON object with a nested JSON array containing two JSON objects.</span></span>
+<span data-ttu-id="d774d-149">Un objet JSON avec un tableau JSON imbriqué contenant deux objets JSON.</span><span class="sxs-lookup"><span data-stu-id="d774d-149">A JSON object with a nested JSON array containing two JSON objects.</span></span>
 ```json
 {
     "location":"WestUs",
@@ -184,19 +184,19 @@ namespace Microsoft.Rdx.DataGenerator
 }
 
 ```
-#### <a name="output---2-events"></a><span data-ttu-id="f8ab1-150">Sortie - 2 événements</span><span class="sxs-lookup"><span data-stu-id="f8ab1-150">Output - 2 Events</span></span>
-<span data-ttu-id="f8ab1-151">Notez que la propriété « location » est copiée dans chacun des événements.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-151">Note that the property "location" is copied over to each of the event.</span></span>
+#### <a name="output---2-events"></a><span data-ttu-id="d774d-150">Sortie - 2 événements</span><span class="sxs-lookup"><span data-stu-id="d774d-150">Output - 2 Events</span></span>
+<span data-ttu-id="d774d-151">Notez que la propriété de hello « location » est copiée via tooeach d’événement de hello.</span><span class="sxs-lookup"><span data-stu-id="d774d-151">Note that hello property "location" is copied over tooeach of hello event.</span></span>
 
-|<span data-ttu-id="f8ab1-152">location</span><span class="sxs-lookup"><span data-stu-id="f8ab1-152">location</span></span>|<span data-ttu-id="f8ab1-153">events.id</span><span class="sxs-lookup"><span data-stu-id="f8ab1-153">events.id</span></span>|<span data-ttu-id="f8ab1-154">events.timestamp</span><span class="sxs-lookup"><span data-stu-id="f8ab1-154">events.timestamp</span></span>|
+|<span data-ttu-id="d774d-152">location</span><span class="sxs-lookup"><span data-stu-id="d774d-152">location</span></span>|<span data-ttu-id="d774d-153">events.id</span><span class="sxs-lookup"><span data-stu-id="d774d-153">events.id</span></span>|<span data-ttu-id="d774d-154">events.timestamp</span><span class="sxs-lookup"><span data-stu-id="d774d-154">events.timestamp</span></span>|
 |--------|---------------|----------------------|
-|<span data-ttu-id="f8ab1-155">WestUs</span><span class="sxs-lookup"><span data-stu-id="f8ab1-155">WestUs</span></span>|<span data-ttu-id="f8ab1-156">device1</span><span class="sxs-lookup"><span data-stu-id="f8ab1-156">device1</span></span>|<span data-ttu-id="f8ab1-157">2016-01-08T01:08:00Z</span><span class="sxs-lookup"><span data-stu-id="f8ab1-157">2016-01-08T01:08:00Z</span></span>|
-|<span data-ttu-id="f8ab1-158">WestUs</span><span class="sxs-lookup"><span data-stu-id="f8ab1-158">WestUs</span></span>|<span data-ttu-id="f8ab1-159">device2</span><span class="sxs-lookup"><span data-stu-id="f8ab1-159">device2</span></span>|<span data-ttu-id="f8ab1-160">2016-01-08T01:17:00Z</span><span class="sxs-lookup"><span data-stu-id="f8ab1-160">2016-01-08T01:17:00Z</span></span>|
+|<span data-ttu-id="d774d-155">WestUs</span><span class="sxs-lookup"><span data-stu-id="d774d-155">WestUs</span></span>|<span data-ttu-id="d774d-156">device1</span><span class="sxs-lookup"><span data-stu-id="d774d-156">device1</span></span>|<span data-ttu-id="d774d-157">2016-01-08T01:08:00Z</span><span class="sxs-lookup"><span data-stu-id="d774d-157">2016-01-08T01:08:00Z</span></span>|
+|<span data-ttu-id="d774d-158">WestUs</span><span class="sxs-lookup"><span data-stu-id="d774d-158">WestUs</span></span>|<span data-ttu-id="d774d-159">device2</span><span class="sxs-lookup"><span data-stu-id="d774d-159">device2</span></span>|<span data-ttu-id="d774d-160">2016-01-08T01:17:00Z</span><span class="sxs-lookup"><span data-stu-id="d774d-160">2016-01-08T01:17:00Z</span></span>|
 
-### <a name="sample-4"></a><span data-ttu-id="f8ab1-161">Exemple 4</span><span class="sxs-lookup"><span data-stu-id="f8ab1-161">Sample 4</span></span>
+### <a name="sample-4"></a><span data-ttu-id="d774d-161">Exemple 4</span><span class="sxs-lookup"><span data-stu-id="d774d-161">Sample 4</span></span>
 
-#### <a name="input"></a><span data-ttu-id="f8ab1-162">Entrée</span><span class="sxs-lookup"><span data-stu-id="f8ab1-162">Input</span></span>
+#### <a name="input"></a><span data-ttu-id="d774d-162">Entrée</span><span class="sxs-lookup"><span data-stu-id="d774d-162">Input</span></span>
 
-<span data-ttu-id="f8ab1-163">Un objet JSON avec un tableau JSON imbriqué contenant deux objets JSON.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-163">A JSON object with a nested JSON array containing two JSON objects.</span></span> <span data-ttu-id="f8ab1-164">Cette entrée montre que les propriétés globales peuvent être représentées par l’objet JSON complexe.</span><span class="sxs-lookup"><span data-stu-id="f8ab1-164">This input demonstrates that the global properties may be represented by the complex JSON object.</span></span>
+<span data-ttu-id="d774d-163">Un objet JSON avec un tableau JSON imbriqué contenant deux objets JSON.</span><span class="sxs-lookup"><span data-stu-id="d774d-163">A JSON object with a nested JSON array containing two JSON objects.</span></span> <span data-ttu-id="d774d-164">Cette entrée montre que les propriétés globales de hello peuvent être représentées par l’objet JSON complexe de hello.</span><span class="sxs-lookup"><span data-stu-id="d774d-164">This input demonstrates that hello global properties may be represented by hello complex JSON object.</span></span>
 
 ```json
 {
@@ -227,13 +227,13 @@ namespace Microsoft.Rdx.DataGenerator
     ]
 }
 ```
-#### <a name="output---2-events"></a><span data-ttu-id="f8ab1-165">Sortie - 2 événements</span><span class="sxs-lookup"><span data-stu-id="f8ab1-165">Output - 2 Events</span></span>
+#### <a name="output---2-events"></a><span data-ttu-id="d774d-165">Sortie - 2 événements</span><span class="sxs-lookup"><span data-stu-id="d774d-165">Output - 2 Events</span></span>
 
-|<span data-ttu-id="f8ab1-166">location</span><span class="sxs-lookup"><span data-stu-id="f8ab1-166">location</span></span>|<span data-ttu-id="f8ab1-167">manufacturer.name</span><span class="sxs-lookup"><span data-stu-id="f8ab1-167">manufacturer.name</span></span>|<span data-ttu-id="f8ab1-168">manufacturer.location</span><span class="sxs-lookup"><span data-stu-id="f8ab1-168">manufacturer.location</span></span>|<span data-ttu-id="f8ab1-169">events.id</span><span class="sxs-lookup"><span data-stu-id="f8ab1-169">events.id</span></span>|<span data-ttu-id="f8ab1-170">events.timestamp</span><span class="sxs-lookup"><span data-stu-id="f8ab1-170">events.timestamp</span></span>|<span data-ttu-id="f8ab1-171">events.data.type</span><span class="sxs-lookup"><span data-stu-id="f8ab1-171">events.data.type</span></span>|<span data-ttu-id="f8ab1-172">events.data.units</span><span class="sxs-lookup"><span data-stu-id="f8ab1-172">events.data.units</span></span>|<span data-ttu-id="f8ab1-173">events.data.value</span><span class="sxs-lookup"><span data-stu-id="f8ab1-173">events.data.value</span></span>|
+|<span data-ttu-id="d774d-166">location</span><span class="sxs-lookup"><span data-stu-id="d774d-166">location</span></span>|<span data-ttu-id="d774d-167">manufacturer.name</span><span class="sxs-lookup"><span data-stu-id="d774d-167">manufacturer.name</span></span>|<span data-ttu-id="d774d-168">manufacturer.location</span><span class="sxs-lookup"><span data-stu-id="d774d-168">manufacturer.location</span></span>|<span data-ttu-id="d774d-169">events.id</span><span class="sxs-lookup"><span data-stu-id="d774d-169">events.id</span></span>|<span data-ttu-id="d774d-170">events.timestamp</span><span class="sxs-lookup"><span data-stu-id="d774d-170">events.timestamp</span></span>|<span data-ttu-id="d774d-171">events.data.type</span><span class="sxs-lookup"><span data-stu-id="d774d-171">events.data.type</span></span>|<span data-ttu-id="d774d-172">events.data.units</span><span class="sxs-lookup"><span data-stu-id="d774d-172">events.data.units</span></span>|<span data-ttu-id="d774d-173">events.data.value</span><span class="sxs-lookup"><span data-stu-id="d774d-173">events.data.value</span></span>|
 |---|---|---|---|---|---|---|---|
-|<span data-ttu-id="f8ab1-174">WestUs</span><span class="sxs-lookup"><span data-stu-id="f8ab1-174">WestUs</span></span>|<span data-ttu-id="f8ab1-175">manufacturer1</span><span class="sxs-lookup"><span data-stu-id="f8ab1-175">manufacturer1</span></span>|<span data-ttu-id="f8ab1-176">EastUs</span><span class="sxs-lookup"><span data-stu-id="f8ab1-176">EastUs</span></span>|<span data-ttu-id="f8ab1-177">device1</span><span class="sxs-lookup"><span data-stu-id="f8ab1-177">device1</span></span>|<span data-ttu-id="f8ab1-178">2016-01-08T01:08:00Z</span><span class="sxs-lookup"><span data-stu-id="f8ab1-178">2016-01-08T01:08:00Z</span></span>|<span data-ttu-id="f8ab1-179">pressure</span><span class="sxs-lookup"><span data-stu-id="f8ab1-179">pressure</span></span>|<span data-ttu-id="f8ab1-180">psi</span><span class="sxs-lookup"><span data-stu-id="f8ab1-180">psi</span></span>|<span data-ttu-id="f8ab1-181">108.09</span><span class="sxs-lookup"><span data-stu-id="f8ab1-181">108.09</span></span>|
-|<span data-ttu-id="f8ab1-182">WestUs</span><span class="sxs-lookup"><span data-stu-id="f8ab1-182">WestUs</span></span>|<span data-ttu-id="f8ab1-183">manufacturer1</span><span class="sxs-lookup"><span data-stu-id="f8ab1-183">manufacturer1</span></span>|<span data-ttu-id="f8ab1-184">EastUs</span><span class="sxs-lookup"><span data-stu-id="f8ab1-184">EastUs</span></span>|<span data-ttu-id="f8ab1-185">device2</span><span class="sxs-lookup"><span data-stu-id="f8ab1-185">device2</span></span>|<span data-ttu-id="f8ab1-186">2016-01-08T01:17:00Z</span><span class="sxs-lookup"><span data-stu-id="f8ab1-186">2016-01-08T01:17:00Z</span></span>|<span data-ttu-id="f8ab1-187">vibration</span><span class="sxs-lookup"><span data-stu-id="f8ab1-187">vibration</span></span>|<span data-ttu-id="f8ab1-188">abs G</span><span class="sxs-lookup"><span data-stu-id="f8ab1-188">abs G</span></span>|<span data-ttu-id="f8ab1-189">217.09</span><span class="sxs-lookup"><span data-stu-id="f8ab1-189">217.09</span></span>|
+|<span data-ttu-id="d774d-174">WestUs</span><span class="sxs-lookup"><span data-stu-id="d774d-174">WestUs</span></span>|<span data-ttu-id="d774d-175">manufacturer1</span><span class="sxs-lookup"><span data-stu-id="d774d-175">manufacturer1</span></span>|<span data-ttu-id="d774d-176">EastUs</span><span class="sxs-lookup"><span data-stu-id="d774d-176">EastUs</span></span>|<span data-ttu-id="d774d-177">device1</span><span class="sxs-lookup"><span data-stu-id="d774d-177">device1</span></span>|<span data-ttu-id="d774d-178">2016-01-08T01:08:00Z</span><span class="sxs-lookup"><span data-stu-id="d774d-178">2016-01-08T01:08:00Z</span></span>|<span data-ttu-id="d774d-179">pressure</span><span class="sxs-lookup"><span data-stu-id="d774d-179">pressure</span></span>|<span data-ttu-id="d774d-180">psi</span><span class="sxs-lookup"><span data-stu-id="d774d-180">psi</span></span>|<span data-ttu-id="d774d-181">108.09</span><span class="sxs-lookup"><span data-stu-id="d774d-181">108.09</span></span>|
+|<span data-ttu-id="d774d-182">WestUs</span><span class="sxs-lookup"><span data-stu-id="d774d-182">WestUs</span></span>|<span data-ttu-id="d774d-183">manufacturer1</span><span class="sxs-lookup"><span data-stu-id="d774d-183">manufacturer1</span></span>|<span data-ttu-id="d774d-184">EastUs</span><span class="sxs-lookup"><span data-stu-id="d774d-184">EastUs</span></span>|<span data-ttu-id="d774d-185">device2</span><span class="sxs-lookup"><span data-stu-id="d774d-185">device2</span></span>|<span data-ttu-id="d774d-186">2016-01-08T01:17:00Z</span><span class="sxs-lookup"><span data-stu-id="d774d-186">2016-01-08T01:17:00Z</span></span>|<span data-ttu-id="d774d-187">vibration</span><span class="sxs-lookup"><span data-stu-id="d774d-187">vibration</span></span>|<span data-ttu-id="d774d-188">abs G</span><span class="sxs-lookup"><span data-stu-id="d774d-188">abs G</span></span>|<span data-ttu-id="d774d-189">217.09</span><span class="sxs-lookup"><span data-stu-id="d774d-189">217.09</span></span>|
 
-## <a name="next-steps"></a><span data-ttu-id="f8ab1-190">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="f8ab1-190">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d774d-190">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="d774d-190">Next steps</span></span>
 
-* <span data-ttu-id="f8ab1-191">Afficher votre environnement dans le [Portail Time Series Insights](https://insights.timeseries.azure.com)</span><span class="sxs-lookup"><span data-stu-id="f8ab1-191">View your environment in [Time Series Insights Portal](https://insights.timeseries.azure.com)</span></span>
+* <span data-ttu-id="d774d-191">Afficher votre environnement dans le [Portail Time Series Insights](https://insights.timeseries.azure.com)</span><span class="sxs-lookup"><span data-stu-id="d774d-191">View your environment in [Time Series Insights Portal](https://insights.timeseries.azure.com)</span></span>

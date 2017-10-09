@@ -1,6 +1,6 @@
 ---
-title: "Utilisation du stockage d’objets blob à partir de PHP | Microsoft Docs"
-description: "Stockez des données non structurées dans le cloud avec Azure Blob Storage (stockage d’objets)."
+title: "stockage d’objets blob aaaHow toouse (stockage d’objets) à partir de PHP | Documents Microsoft"
+description: "Stocker des données non structurées dans le cloud hello avec le stockage d’objets Blob Azure (stockage d’objets)."
 documentationcenter: php
 services: storage
 author: mmacy
@@ -14,44 +14,44 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: 2c356d7faafa8ef4591087b5b1f949b9374732be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 331405e583c17c4f71acacdc0078b2bc71efbef0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-php"></a><span data-ttu-id="1d3af-103">Utilisation du stockage d’objets blob à partir de PHP</span><span class="sxs-lookup"><span data-stu-id="1d3af-103">How to use blob storage from PHP</span></span>
+# <a name="how-toouse-blob-storage-from-php"></a><span data-ttu-id="30d88-103">Comment toouse stockage d’objets blob à partir de PHP</span><span class="sxs-lookup"><span data-stu-id="30d88-103">How toouse blob storage from PHP</span></span>
 [!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-blobs.md)]
 
-## <a name="overview"></a><span data-ttu-id="1d3af-104">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="1d3af-104">Overview</span></span>
-<span data-ttu-id="1d3af-105">Le stockage d’objets blob Azure est un service qui stocke des données non structurées dans le cloud en tant qu’objets/blobs.</span><span class="sxs-lookup"><span data-stu-id="1d3af-105">Azure Blob storage is a service that stores unstructured data in the cloud as objects/blobs.</span></span> <span data-ttu-id="1d3af-106">Ce service peut stocker tout type de données texte ou binaires, par exemple, un document, un fichier multimédia ou un programme d’installation d’application.</span><span class="sxs-lookup"><span data-stu-id="1d3af-106">Blob storage can store any type of text or binary data, such as a document, media file, or application installer.</span></span> <span data-ttu-id="1d3af-107">Le stockage d’objets blob est également appelé Blob Storage.</span><span class="sxs-lookup"><span data-stu-id="1d3af-107">Blob storage is also referred to as object storage.</span></span>
+## <a name="overview"></a><span data-ttu-id="30d88-104">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="30d88-104">Overview</span></span>
+<span data-ttu-id="30d88-105">Stockage d’objets Blob Azure est un service qui stocke des données non structurées dans le cloud de hello en tant qu’objets/BLOB.</span><span class="sxs-lookup"><span data-stu-id="30d88-105">Azure Blob storage is a service that stores unstructured data in hello cloud as objects/blobs.</span></span> <span data-ttu-id="30d88-106">Ce service peut stocker tout type de données texte ou binaires, par exemple, un document, un fichier multimédia ou un programme d’installation d’application.</span><span class="sxs-lookup"><span data-stu-id="30d88-106">Blob storage can store any type of text or binary data, such as a document, media file, or application installer.</span></span> <span data-ttu-id="30d88-107">Stockage d’objets BLOB est également référencé tooas stockage d’objets.</span><span class="sxs-lookup"><span data-stu-id="30d88-107">Blob storage is also referred tooas object storage.</span></span>
 
-<span data-ttu-id="1d3af-108">Ce guide décrit le déroulement de scénarios courants dans le cadre de l’utilisation du service blob Azure.</span><span class="sxs-lookup"><span data-stu-id="1d3af-108">This guide shows you how to perform common scenarios using the Azure blob service.</span></span> <span data-ttu-id="1d3af-109">Les exemples sont écrits en PHP et utilisent le [Kit de développement logiciel (SDK) Azure pour PHP][download].</span><span class="sxs-lookup"><span data-stu-id="1d3af-109">The samples are written in PHP and use the [Azure SDK for PHP][download].</span></span> <span data-ttu-id="1d3af-110">Les scénarios traités incluent le **chargement**, l’**énumération**, le **téléchargement** et la **suppression** d’objets blob.</span><span class="sxs-lookup"><span data-stu-id="1d3af-110">The scenarios covered include **uploading**, **listing**, **downloading**, and **deleting** blobs.</span></span> <span data-ttu-id="1d3af-111">Pour plus d’informations sur les objets blob, consultez la section [Étapes suivantes](#next-steps) .</span><span class="sxs-lookup"><span data-stu-id="1d3af-111">For more information on blobs, see the [Next steps](#next-steps) section.</span></span>
+<span data-ttu-id="30d88-108">Ce guide vous explique comment les scénarios courants tooperform hello Azure à l’aide de service d’objets blob.</span><span class="sxs-lookup"><span data-stu-id="30d88-108">This guide shows you how tooperform common scenarios using hello Azure blob service.</span></span> <span data-ttu-id="30d88-109">exemples de Hello sont écrits en PHP et utiliser hello [Azure SDK pour PHP][download].</span><span class="sxs-lookup"><span data-stu-id="30d88-109">hello samples are written in PHP and use hello [Azure SDK for PHP][download].</span></span> <span data-ttu-id="30d88-110">Hello scénarios abordés incluent **téléchargement**, **liste**, **téléchargement**, et **suppression** objets BLOB.</span><span class="sxs-lookup"><span data-stu-id="30d88-110">hello scenarios covered include **uploading**, **listing**, **downloading**, and **deleting** blobs.</span></span> <span data-ttu-id="30d88-111">Pour plus d’informations sur les objets BLOB, consultez hello [étapes](#next-steps) section.</span><span class="sxs-lookup"><span data-stu-id="30d88-111">For more information on blobs, see hello [Next steps](#next-steps) section.</span></span>
 
 [!INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="create-a-php-application"></a><span data-ttu-id="1d3af-112">Création d'une application PHP</span><span class="sxs-lookup"><span data-stu-id="1d3af-112">Create a PHP application</span></span>
-<span data-ttu-id="1d3af-113">Le référencement de classes issues du Kit de développement logiciel (SDK) Azure pour PHP dans votre code constitue la seule exigence pour créer une application PHP qui accède au service blob Azure.</span><span class="sxs-lookup"><span data-stu-id="1d3af-113">The only requirement for creating a PHP application that accesses the Azure blob service is the referencing of classes in the Azure SDK for PHP from within your code.</span></span> <span data-ttu-id="1d3af-114">Vous pouvez utiliser tous les outils de développement pour créer votre application, y compris Bloc-notes.</span><span class="sxs-lookup"><span data-stu-id="1d3af-114">You can use any development tools to create your application, including Notepad.</span></span>
+## <a name="create-a-php-application"></a><span data-ttu-id="30d88-112">Création d'une application PHP</span><span class="sxs-lookup"><span data-stu-id="30d88-112">Create a PHP application</span></span>
+<span data-ttu-id="30d88-113">Hello uniquement requis pour la création d’une application PHP qui accède au service d’objets blob Azure hello est hello faisant référence à des classes Bonjour Azure SDK pour PHP à partir de votre code.</span><span class="sxs-lookup"><span data-stu-id="30d88-113">hello only requirement for creating a PHP application that accesses hello Azure blob service is hello referencing of classes in hello Azure SDK for PHP from within your code.</span></span> <span data-ttu-id="30d88-114">Vous pouvez utiliser n’importe quel toocreate d’outils de développement de votre application, notamment le bloc-notes.</span><span class="sxs-lookup"><span data-stu-id="30d88-114">You can use any development tools toocreate your application, including Notepad.</span></span>
 
-<span data-ttu-id="1d3af-115">Dans ce guide, vous allez utiliser des fonctionnalités de service qui peuvent être appelées dans une application PHP localement ou dans le code d’un rôle web, d’un rôle de travail ou d’un site web Azure.</span><span class="sxs-lookup"><span data-stu-id="1d3af-115">In this guide, you use service features, which can be called within a PHP application locally or in code running within an Azure web role, worker role, or website.</span></span>
+<span data-ttu-id="30d88-115">Dans ce guide, vous allez utiliser des fonctionnalités de service qui peuvent être appelées dans une application PHP localement ou dans le code d’un rôle web, d’un rôle de travail ou d’un site web Azure.</span><span class="sxs-lookup"><span data-stu-id="30d88-115">In this guide, you use service features, which can be called within a PHP application locally or in code running within an Azure web role, worker role, or website.</span></span>
 
-## <a name="get-the-azure-client-libraries"></a><span data-ttu-id="1d3af-116">Obtention des bibliothèques clientes Azure</span><span class="sxs-lookup"><span data-stu-id="1d3af-116">Get the Azure Client Libraries</span></span>
+## <a name="get-hello-azure-client-libraries"></a><span data-ttu-id="30d88-116">Obtenir les bibliothèques clientes Azure hello</span><span class="sxs-lookup"><span data-stu-id="30d88-116">Get hello Azure Client Libraries</span></span>
 [!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-to-access-the-blob-service"></a><span data-ttu-id="1d3af-117">Configuration de votre application pour accéder au service blob</span><span class="sxs-lookup"><span data-stu-id="1d3af-117">Configure your application to access the blob service</span></span>
-<span data-ttu-id="1d3af-118">Pour utiliser des API de service blob Azure, vous devez procéder comme suit :</span><span class="sxs-lookup"><span data-stu-id="1d3af-118">To use the Azure blob service APIs, you need to:</span></span>
+## <a name="configure-your-application-tooaccess-hello-blob-service"></a><span data-ttu-id="30d88-117">Configurer le service blob d’applications tooaccess hello</span><span class="sxs-lookup"><span data-stu-id="30d88-117">Configure your application tooaccess hello blob service</span></span>
+<span data-ttu-id="30d88-118">toouse hello Azure API service blob, vous devez :</span><span class="sxs-lookup"><span data-stu-id="30d88-118">toouse hello Azure blob service APIs, you need to:</span></span>
 
-1. <span data-ttu-id="1d3af-119">référencer le fichier de chargeur automatique à l’aide de l’instruction [require_once] ; et</span><span class="sxs-lookup"><span data-stu-id="1d3af-119">Reference the autoloader file using the [require_once] statement, and</span></span>
-2. <span data-ttu-id="1d3af-120">référencer toute classe que vous êtes susceptible d'utiliser.</span><span class="sxs-lookup"><span data-stu-id="1d3af-120">Reference any classes you might use.</span></span>
+1. <span data-ttu-id="30d88-119">Fichier de chargeur automatique de hello référence à l’aide de hello [require_once] instruction, et</span><span class="sxs-lookup"><span data-stu-id="30d88-119">Reference hello autoloader file using hello [require_once] statement, and</span></span>
+2. <span data-ttu-id="30d88-120">référencer toute classe que vous êtes susceptible d'utiliser.</span><span class="sxs-lookup"><span data-stu-id="30d88-120">Reference any classes you might use.</span></span>
 
-<span data-ttu-id="1d3af-121">L'exemple suivant montre comment inclure le fichier du chargeur automatique et référencer la classe **ServicesBuilder** .</span><span class="sxs-lookup"><span data-stu-id="1d3af-121">The following example shows how to include the autoloader file and reference the **ServicesBuilder** class.</span></span>
+<span data-ttu-id="30d88-121">Hello suivant montre comment tooinclude hello hello de référence et le fichier de chargeur automatique **ServicesBuilder** classe.</span><span class="sxs-lookup"><span data-stu-id="30d88-121">hello following example shows how tooinclude hello autoloader file and reference hello **ServicesBuilder** class.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="1d3af-122">Les exemples de cet article partent du principe que vous avez installé les bibliothèques clientes PHP pour Azure via Composer.</span><span class="sxs-lookup"><span data-stu-id="1d3af-122">The examples in this article assume you have installed the PHP Client Libraries for Azure via Composer.</span></span> <span data-ttu-id="1d3af-123">Si vous avez installé les bibliothèques manuellement, vous devez référencer le fichier de chargeur automatique `WindowsAzure.php` .</span><span class="sxs-lookup"><span data-stu-id="1d3af-123">If you installed the libraries manually, you need to reference the `WindowsAzure.php` autoloader file.</span></span>
+> <span data-ttu-id="30d88-122">exemples Hello dans cet article supposent que vous avez installé hello PHP les bibliothèques clientes pour Azure via l’éditeur.</span><span class="sxs-lookup"><span data-stu-id="30d88-122">hello examples in this article assume you have installed hello PHP Client Libraries for Azure via Composer.</span></span> <span data-ttu-id="30d88-123">Si vous avez installé les bibliothèques hello manuellement, vous devez tooreference hello `WindowsAzure.php` fichier de chargeur automatique.</span><span class="sxs-lookup"><span data-stu-id="30d88-123">If you installed hello libraries manually, you need tooreference hello `WindowsAzure.php` autoloader file.</span></span>
 >
 >
 
@@ -60,31 +60,31 @@ require_once 'vendor/autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 ```
 
-<span data-ttu-id="1d3af-124">Dans les exemples ci-dessous, l’instruction `require_once` s’affiche toujours, mais seules les classes nécessaires à l’exécution de l’exemple sont référencées.</span><span class="sxs-lookup"><span data-stu-id="1d3af-124">In the examples below, the `require_once` statement will be shown always, but only the classes necessary for the example to execute are referenced.</span></span>
+<span data-ttu-id="30d88-124">Dans les exemples de hello ci-dessous, hello `require_once` instruction s’affiche toujours, mais uniquement les classes de hello nécessaires pour hello exemple tooexecute sont référencés.</span><span class="sxs-lookup"><span data-stu-id="30d88-124">In hello examples below, hello `require_once` statement will be shown always, but only hello classes necessary for hello example tooexecute are referenced.</span></span>
 
-## <a name="set-up-an-azure-storage-connection"></a><span data-ttu-id="1d3af-125">Configuration d’une connexion de stockage Azure</span><span class="sxs-lookup"><span data-stu-id="1d3af-125">Set up an Azure storage connection</span></span>
-<span data-ttu-id="1d3af-126">Pour instancier un client de service blob Azure, vous devez disposer d’une chaîne de connexion valide.</span><span class="sxs-lookup"><span data-stu-id="1d3af-126">To instantiate an Azure blob service client, you must first have a valid connection string.</span></span> <span data-ttu-id="1d3af-127">Le format de la chaîne de connexion du service Blob est le suivant :</span><span class="sxs-lookup"><span data-stu-id="1d3af-127">The format for the blob service connection string is:</span></span>
+## <a name="set-up-an-azure-storage-connection"></a><span data-ttu-id="30d88-125">Configuration d’une connexion de stockage Azure</span><span class="sxs-lookup"><span data-stu-id="30d88-125">Set up an Azure storage connection</span></span>
+<span data-ttu-id="30d88-126">tooinstantiate un client du service blob Azure, vous devez avoir une chaîne de connexion valide.</span><span class="sxs-lookup"><span data-stu-id="30d88-126">tooinstantiate an Azure blob service client, you must first have a valid connection string.</span></span> <span data-ttu-id="30d88-127">format de Hello de chaîne de connexion de service blob hello est :</span><span class="sxs-lookup"><span data-stu-id="30d88-127">hello format for hello blob service connection string is:</span></span>
 
-<span data-ttu-id="1d3af-128">Pour accéder à un service en ligne :</span><span class="sxs-lookup"><span data-stu-id="1d3af-128">For accessing a live service:</span></span>
+<span data-ttu-id="30d88-128">Pour accéder à un service en ligne :</span><span class="sxs-lookup"><span data-stu-id="30d88-128">For accessing a live service:</span></span>
 
 ```php
 DefaultEndpointsProtocol=[http|https];AccountName=[yourAccount];AccountKey=[yourKey]
 ```
 
-<span data-ttu-id="1d3af-129">Pour accéder à l’émulateur de stockage :</span><span class="sxs-lookup"><span data-stu-id="1d3af-129">For accessing the storage emulator:</span></span>
+<span data-ttu-id="30d88-129">Pour accéder à l’émulateur de stockage hello :</span><span class="sxs-lookup"><span data-stu-id="30d88-129">For accessing hello storage emulator:</span></span>
 
 ```php
 UseDevelopmentStorage=true
 ```
 
-<span data-ttu-id="1d3af-130">Pour créer un client de service Azure, vous devez utiliser la classe **ServicesBuilder** .</span><span class="sxs-lookup"><span data-stu-id="1d3af-130">To create any Azure service client, you need to use the **ServicesBuilder** class.</span></span> <span data-ttu-id="1d3af-131">Vous pouvez :</span><span class="sxs-lookup"><span data-stu-id="1d3af-131">You can:</span></span>
+<span data-ttu-id="30d88-130">toocreate n’importe quel client de service Azure, vous devez toouse hello **ServicesBuilder** classe.</span><span class="sxs-lookup"><span data-stu-id="30d88-130">toocreate any Azure service client, you need toouse hello **ServicesBuilder** class.</span></span> <span data-ttu-id="30d88-131">Vous pouvez :</span><span class="sxs-lookup"><span data-stu-id="30d88-131">You can:</span></span>
 
-* <span data-ttu-id="1d3af-132">lui transmettre directement la chaîne de connexion ; ou</span><span class="sxs-lookup"><span data-stu-id="1d3af-132">Pass the connection string directly to it or</span></span>
-* <span data-ttu-id="1d3af-133">utiliser **CloudConfigurationManager (CCM)** pour vérifier plusieurs sources externes pour la chaîne de connexion :</span><span class="sxs-lookup"><span data-stu-id="1d3af-133">Use the **CloudConfigurationManager (CCM)** to check multiple external sources for the connection string:</span></span>
-  * <span data-ttu-id="1d3af-134">Par défaut, il prend en charge une source externe : les variables d’environnement.</span><span class="sxs-lookup"><span data-stu-id="1d3af-134">By default, it comes with support for one external source - environmental variables.</span></span>
-  * <span data-ttu-id="1d3af-135">Vous pouvez ajouter de nouvelles sources via une extension de la classe **ConnectionStringSource** .</span><span class="sxs-lookup"><span data-stu-id="1d3af-135">You can add new sources by extending the **ConnectionStringSource** class.</span></span>
+* <span data-ttu-id="30d88-132">passer hello connexion chaîne directement tooit ou</span><span class="sxs-lookup"><span data-stu-id="30d88-132">Pass hello connection string directly tooit or</span></span>
+* <span data-ttu-id="30d88-133">Utilisez hello **CloudConfigurationManager (CCM)** toocheck externe de plusieurs sources pour la chaîne de connexion hello :</span><span class="sxs-lookup"><span data-stu-id="30d88-133">Use hello **CloudConfigurationManager (CCM)** toocheck multiple external sources for hello connection string:</span></span>
+  * <span data-ttu-id="30d88-134">Par défaut, il prend en charge une source externe : les variables d’environnement.</span><span class="sxs-lookup"><span data-stu-id="30d88-134">By default, it comes with support for one external source - environmental variables.</span></span>
+  * <span data-ttu-id="30d88-135">Vous pouvez ajouter de nouvelles sources en étendant hello **ConnectionStringSource** classe.</span><span class="sxs-lookup"><span data-stu-id="30d88-135">You can add new sources by extending hello **ConnectionStringSource** class.</span></span>
 
-<span data-ttu-id="1d3af-136">Dans les exemples ci-dessous, la chaîne de connexion est passée directement.</span><span class="sxs-lookup"><span data-stu-id="1d3af-136">For the examples outlined here, the connection string will be passed directly.</span></span>
+<span data-ttu-id="30d88-136">Pour obtenir des exemples hello décrites ici, la chaîne de connexion hello sera passé directement.</span><span class="sxs-lookup"><span data-stu-id="30d88-136">For hello examples outlined here, hello connection string will be passed directly.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -94,10 +94,10 @@ use WindowsAzure\Common\ServicesBuilder;
 $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
 ```
 
-## <a name="create-a-container"></a><span data-ttu-id="1d3af-137">Créer un conteneur</span><span class="sxs-lookup"><span data-stu-id="1d3af-137">Create a container</span></span>
+## <a name="create-a-container"></a><span data-ttu-id="30d88-137">Créez un conteneur.</span><span class="sxs-lookup"><span data-stu-id="30d88-137">Create a container</span></span>
 [!INCLUDE [storage-container-naming-rules-include](../../includes/storage-container-naming-rules-include.md)]
 
-<span data-ttu-id="1d3af-138">Un objet **BlobRestProxy** vous permet de créer un conteneur d’objets blob avec la méthode **createContainer**.</span><span class="sxs-lookup"><span data-stu-id="1d3af-138">A **BlobRestProxy** object lets you create a blob container with the **createContainer** method.</span></span> <span data-ttu-id="1d3af-139">Lors de la création d'un conteneur, vous pouvez définir des options sur ce dernier, mais vous n'y êtes pas obligé.</span><span class="sxs-lookup"><span data-stu-id="1d3af-139">When creating a container, you can set options on the container, but doing so is not required.</span></span> <span data-ttu-id="1d3af-140">(L’exemple ci-dessous montre comment définir la liste de contrôle d’accès (ACL) et les métadonnées du conteneur.)</span><span class="sxs-lookup"><span data-stu-id="1d3af-140">(The example below shows how to set the container access control list (ACL) and container metadata.)</span></span>
+<span data-ttu-id="30d88-138">A **BlobRestProxy** objet vous permet de créer un conteneur d’objets blob par hello **createContainer** (méthode).</span><span class="sxs-lookup"><span data-stu-id="30d88-138">A **BlobRestProxy** object lets you create a blob container with hello **createContainer** method.</span></span> <span data-ttu-id="30d88-139">Lorsque vous créez un conteneur, vous pouvez définir des options sur le conteneur de hello, mais cela n’est pas requis.</span><span class="sxs-lookup"><span data-stu-id="30d88-139">When creating a container, you can set options on hello container, but doing so is not required.</span></span> <span data-ttu-id="30d88-140">(exemple hello ci-dessous indique comment le conteneur de hello tooset accéder à la liste de contrôle (ACL) et les métadonnées de conteneur).</span><span class="sxs-lookup"><span data-stu-id="30d88-140">(hello example below shows how tooset hello container access control list (ACL) and container metadata.)</span></span>
 
 ```php
 require_once 'vendor\autoload.php';
@@ -119,16 +119,16 @@ $createContainerOptions = new CreateContainerOptions();
 // PublicAccessType::CONTAINER_AND_BLOBS and PublicAccessType::BLOBS_ONLY.
 // CONTAINER_AND_BLOBS:
 // Specifies full public read access for container and blob data.
-// proxys can enumerate blobs within the container via anonymous
-// request, but cannot enumerate containers within the storage account.
+// proxys can enumerate blobs within hello container via anonymous
+// request, but cannot enumerate containers within hello storage account.
 //
 // BLOBS_ONLY:
 // Specifies public read access for blobs. Blob data within this
 // container can be read via anonymous request, but container data is not
-// available. proxys cannot enumerate blobs within the container via
+// available. proxys cannot enumerate blobs within hello container via
 // anonymous request.
-// If this value is not specified in the request, container data is
-// private to the account owner.
+// If this value is not specified in hello request, container data is
+// private toohello account owner.
 $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 
 // Set container metadata.
@@ -149,12 +149,12 @@ catch(ServiceException $e){
 }
 ```
 
-<span data-ttu-id="1d3af-141">L’appel de **setPublicAccess(PublicAccessType::CONTAINER\_AND\_BLOBS)** rend le conteneur et les données d’objets blob accessibles via des demandes anonymes.</span><span class="sxs-lookup"><span data-stu-id="1d3af-141">Calling **setPublicAccess(PublicAccessType::CONTAINER\_AND\_BLOBS)** makes the container and blob data accessible via anonymous requests.</span></span> <span data-ttu-id="1d3af-142">L’appel de **setPublicAccess(PublicAccessType::BLOBS_ONLY)** ne rend que les données d’objets blob accessibles via des demandes anonymes.</span><span class="sxs-lookup"><span data-stu-id="1d3af-142">Calling **setPublicAccess(PublicAccessType::BLOBS_ONLY)** makes only blob data accessible via anonymous requests.</span></span> <span data-ttu-id="1d3af-143">Pour plus d’informations sur les ACL de conteneur, consultez la page [Définition d’ACL de conteneur (API REST)][container-acl].</span><span class="sxs-lookup"><span data-stu-id="1d3af-143">For more information about container ACLs, see [Set container ACL (REST API)][container-acl].</span></span>
+<span data-ttu-id="30d88-141">Appel de **setPublicAccess (PublicAccessType::CONTAINER\_AND\_objets BLOB)** rend hello conteneur et les données blob accessibles via des requêtes anonymes.</span><span class="sxs-lookup"><span data-stu-id="30d88-141">Calling **setPublicAccess(PublicAccessType::CONTAINER\_AND\_BLOBS)** makes hello container and blob data accessible via anonymous requests.</span></span> <span data-ttu-id="30d88-142">L’appel de **setPublicAccess(PublicAccessType::BLOBS_ONLY)** ne rend que les données d’objets blob accessibles via des demandes anonymes.</span><span class="sxs-lookup"><span data-stu-id="30d88-142">Calling **setPublicAccess(PublicAccessType::BLOBS_ONLY)** makes only blob data accessible via anonymous requests.</span></span> <span data-ttu-id="30d88-143">Pour plus d’informations sur les ACL de conteneur, consultez la page [Définition d’ACL de conteneur (API REST)][container-acl].</span><span class="sxs-lookup"><span data-stu-id="30d88-143">For more information about container ACLs, see [Set container ACL (REST API)][container-acl].</span></span>
 
-<span data-ttu-id="1d3af-144">Pour plus d’informations sur les codes d’erreur des services d’objets blob, consultez la page [Codes d’erreur de service BLOB][error-codes].</span><span class="sxs-lookup"><span data-stu-id="1d3af-144">For more information about Blob service error codes, see [Blob Service Error Codes][error-codes].</span></span>
+<span data-ttu-id="30d88-144">Pour plus d’informations sur les codes d’erreur des services d’objets blob, consultez la page [Codes d’erreur de service BLOB][error-codes].</span><span class="sxs-lookup"><span data-stu-id="30d88-144">For more information about Blob service error codes, see [Blob Service Error Codes][error-codes].</span></span>
 
-## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="1d3af-145">Charger un objet blob dans un conteneur</span><span class="sxs-lookup"><span data-stu-id="1d3af-145">Upload a blob into a container</span></span>
-<span data-ttu-id="1d3af-146">Pour télécharger un fichier en tant qu’objet blob, utilisez la méthode **BlobRestProxy->createBlockBlob**.</span><span class="sxs-lookup"><span data-stu-id="1d3af-146">To upload a file as a blob, use the **BlobRestProxy->createBlockBlob** method.</span></span> <span data-ttu-id="1d3af-147">Si l’objet blob n’existe pas, cette opération le crée. S’il existe, il est remplacé.</span><span class="sxs-lookup"><span data-stu-id="1d3af-147">This operation creates the blob if it doesn't exist, or overwrites it if it does.</span></span> <span data-ttu-id="1d3af-148">L’exemple de code ci-dessous part du principe que le conteneur a déjà été créé et utilise [fopen][fopen] pour ouvrir le fichier en tant que flux.</span><span class="sxs-lookup"><span data-stu-id="1d3af-148">The code example below assumes that the container has already been created and uses [fopen][fopen] to open the file as a stream.</span></span>
+## <a name="upload-a-blob-into-a-container"></a><span data-ttu-id="30d88-145">Charger un objet blob dans un conteneur</span><span class="sxs-lookup"><span data-stu-id="30d88-145">Upload a blob into a container</span></span>
+<span data-ttu-id="30d88-146">tooupload un fichier sous la forme d’un objet blob, utilisez hello **BlobRestProxy -> createBlockBlob** (méthode).</span><span class="sxs-lookup"><span data-stu-id="30d88-146">tooupload a file as a blob, use hello **BlobRestProxy->createBlockBlob** method.</span></span> <span data-ttu-id="30d88-147">Cette opération crée les objets blob de hello si elle n’existe pas ou elle remplace dans ce cas.</span><span class="sxs-lookup"><span data-stu-id="30d88-147">This operation creates hello blob if it doesn't exist, or overwrites it if it does.</span></span> <span data-ttu-id="30d88-148">Hello exemple de code ci-dessous suppose que le conteneur de hello a déjà été créé et qu’il utilise [fopen] [ fopen] fichier de hello tooopen sous forme de flux.</span><span class="sxs-lookup"><span data-stu-id="30d88-148">hello code example below assumes that hello container has already been created and uses [fopen][fopen] tooopen hello file as a stream.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -183,10 +183,10 @@ catch(ServiceException $e){
 }
 ```
 
-<span data-ttu-id="1d3af-149">Notez que l’exemple ci-dessus télécharge un objet blob en tant que flux.</span><span class="sxs-lookup"><span data-stu-id="1d3af-149">Note that the previous sample uploads a blob as a stream.</span></span> <span data-ttu-id="1d3af-150">Toutefois, un objet blob peut également être téléchargé en tant que chaîne à l’aide de la fonction [file\_get\_contents][file_get_contents] par exemple.</span><span class="sxs-lookup"><span data-stu-id="1d3af-150">However, a blob can also be uploaded as a string using, for example, the [file\_get\_contents][file_get_contents] function.</span></span> <span data-ttu-id="1d3af-151">Pour ce faire, utilisez l’exemple précédent et remplacez `$content = fopen("c:\myfile.txt", "r");` par `$content = file_get_contents("c:\myfile.txt");`.</span><span class="sxs-lookup"><span data-stu-id="1d3af-151">To do this using the previous sample, change `$content = fopen("c:\myfile.txt", "r");` to `$content = file_get_contents("c:\myfile.txt");`.</span></span>
+<span data-ttu-id="30d88-149">Notez que hello précédent exemple télécharge un objet blob en tant que flux.</span><span class="sxs-lookup"><span data-stu-id="30d88-149">Note that hello previous sample uploads a blob as a stream.</span></span> <span data-ttu-id="30d88-150">Toutefois, un objet blob peut également être téléchargé sous forme de chaîne à l’aide, par exemple, hello [fichier\_obtenir\_contenu] [ file_get_contents] (fonction).</span><span class="sxs-lookup"><span data-stu-id="30d88-150">However, a blob can also be uploaded as a string using, for example, hello [file\_get\_contents][file_get_contents] function.</span></span> <span data-ttu-id="30d88-151">toodo cette hello précédent exemple, de modifier `$content = fopen("c:\myfile.txt", "r");` trop`$content = file_get_contents("c:\myfile.txt");`.</span><span class="sxs-lookup"><span data-stu-id="30d88-151">toodo this using hello previous sample, change `$content = fopen("c:\myfile.txt", "r");` too`$content = file_get_contents("c:\myfile.txt");`.</span></span>
 
-## <a name="list-the-blobs-in-a-container"></a><span data-ttu-id="1d3af-152">Création d'une liste d'objets blob dans un conteneur</span><span class="sxs-lookup"><span data-stu-id="1d3af-152">List the blobs in a container</span></span>
-<span data-ttu-id="1d3af-153">Pour répertorier les objets blob dans un conteneur, utilisez la méthode **BlobRestProxy->listBlobs** avec une boucle **foreach** pour lire en boucle le résultat.</span><span class="sxs-lookup"><span data-stu-id="1d3af-153">To list the blobs in a container, use the **BlobRestProxy->listBlobs** method with a **foreach** loop to loop through the result.</span></span> <span data-ttu-id="1d3af-154">Le code suivant affiche le nom de chaque objet blob dans un conteneur et son URI dans le navigateur.</span><span class="sxs-lookup"><span data-stu-id="1d3af-154">The following code displays the name of each blob as output in a container and displays its URI to the browser.</span></span>
+## <a name="list-hello-blobs-in-a-container"></a><span data-ttu-id="30d88-152">Répertorier les objets BLOB hello dans un conteneur</span><span class="sxs-lookup"><span data-stu-id="30d88-152">List hello blobs in a container</span></span>
+<span data-ttu-id="30d88-153">objets BLOB de hello toolist dans un conteneur, utilisez hello **BlobRestProxy -> listBlobs** méthode avec un **foreach** tooloop via le résultat de hello en boucle.</span><span class="sxs-lookup"><span data-stu-id="30d88-153">toolist hello blobs in a container, use hello **BlobRestProxy->listBlobs** method with a **foreach** loop tooloop through hello result.</span></span> <span data-ttu-id="30d88-154">Hello de code suivant affiche le nom hello de chaque objet blob en tant que sortie dans un conteneur et affiche son navigateur toohello URI.</span><span class="sxs-lookup"><span data-stu-id="30d88-154">hello following code displays hello name of each blob as output in a container and displays its URI toohello browser.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -218,8 +218,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="download-a-blob"></a><span data-ttu-id="1d3af-155">Téléchargement d’un objet blob</span><span class="sxs-lookup"><span data-stu-id="1d3af-155">Download a blob</span></span>
-<span data-ttu-id="1d3af-156">Pour télécharger un objet blob, appelez la méthode **BlobRestProxy->getBlob**, puis la méthode **getContentStream** sur l’objet **GetBlobResult** résultant.</span><span class="sxs-lookup"><span data-stu-id="1d3af-156">To download a blob, call the **BlobRestProxy->getBlob** method, then call the **getContentStream** method on the resulting **GetBlobResult** object.</span></span>
+## <a name="download-a-blob"></a><span data-ttu-id="30d88-155">Téléchargement d’un objet blob</span><span class="sxs-lookup"><span data-stu-id="30d88-155">Download a blob</span></span>
+<span data-ttu-id="30d88-156">toodownload un objet blob, appel hello **BlobRestProxy -> getBlob** (méthode), puis appel hello **getContentStream** méthode hello résultant **GetBlobResult** objet.</span><span class="sxs-lookup"><span data-stu-id="30d88-156">toodownload a blob, call hello **BlobRestProxy->getBlob** method, then call hello **getContentStream** method on hello resulting **GetBlobResult** object.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -246,10 +246,10 @@ catch(ServiceException $e){
 }
 ```
 
-<span data-ttu-id="1d3af-157">Notez que l'exemple ci-dessus télécharge un objet blob en tant que ressource de flux (comportement par défaut).</span><span class="sxs-lookup"><span data-stu-id="1d3af-157">Note that the example above gets a blob as a stream resource (the default behavior).</span></span> <span data-ttu-id="1d3af-158">Toutefois, vous pouvez utiliser la fonction [stream\_get\_contents][stream-get-contents] pour convertir le flux renvoyé en chaîne.</span><span class="sxs-lookup"><span data-stu-id="1d3af-158">However, you can use the [stream\_get\_contents][stream-get-contents] function to convert the returned stream to a string.</span></span>
+<span data-ttu-id="30d88-157">Notez que cet exemple hello ci-dessus Obtient un objet blob sous la forme d’une ressource de flux de données (comportement par défaut de hello).</span><span class="sxs-lookup"><span data-stu-id="30d88-157">Note that hello example above gets a blob as a stream resource (hello default behavior).</span></span> <span data-ttu-id="30d88-158">Toutefois, vous pouvez utiliser hello [flux\_obtenir\_contenu] [ stream-get-contents] hello tooconvert de fonction a retourné une chaîne tooa de flux de données.</span><span class="sxs-lookup"><span data-stu-id="30d88-158">However, you can use hello [stream\_get\_contents][stream-get-contents] function tooconvert hello returned stream tooa string.</span></span>
 
-## <a name="delete-a-blob"></a><span data-ttu-id="1d3af-159">Supprimer un objet blob</span><span class="sxs-lookup"><span data-stu-id="1d3af-159">Delete a blob</span></span>
-<span data-ttu-id="1d3af-160">Pour supprimer un objet blob, passez le nom du conteneur et le nom de l’objet blob à **BlobRestProxy->deleteBlob**.</span><span class="sxs-lookup"><span data-stu-id="1d3af-160">To delete a blob, pass the container name and blob name to **BlobRestProxy->deleteBlob**.</span></span>
+## <a name="delete-a-blob"></a><span data-ttu-id="30d88-159">Supprimer un objet blob</span><span class="sxs-lookup"><span data-stu-id="30d88-159">Delete a blob</span></span>
+<span data-ttu-id="30d88-160">toodelete un objet blob, passez le nom du conteneur hello et nom d’objet blob trop**BlobRestProxy -> deleteBlob**.</span><span class="sxs-lookup"><span data-stu-id="30d88-160">toodelete a blob, pass hello container name and blob name too**BlobRestProxy->deleteBlob**.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -275,8 +275,8 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="delete-a-blob-container"></a><span data-ttu-id="1d3af-161">Suppression d’un conteneur d’objets blob</span><span class="sxs-lookup"><span data-stu-id="1d3af-161">Delete a blob container</span></span>
-<span data-ttu-id="1d3af-162">Enfin, pour supprimer un conteneur d’objets blob, passez le nom du conteneur à **BlobRestProxy->deleteContainer**.</span><span class="sxs-lookup"><span data-stu-id="1d3af-162">Finally, to delete a blob container, pass the container name to **BlobRestProxy->deleteContainer**.</span></span>
+## <a name="delete-a-blob-container"></a><span data-ttu-id="30d88-161">Suppression d’un conteneur d’objets blob</span><span class="sxs-lookup"><span data-stu-id="30d88-161">Delete a blob container</span></span>
+<span data-ttu-id="30d88-162">Enfin, toodelete un conteneur d’objets blob, passez nom du conteneur hello trop**BlobRestProxy -> deleteContainer**.</span><span class="sxs-lookup"><span data-stu-id="30d88-162">Finally, toodelete a blob container, pass hello container name too**BlobRestProxy->deleteContainer**.</span></span>
 
 ```php
 require_once 'vendor/autoload.php';
@@ -301,20 +301,20 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="1d3af-163">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="1d3af-163">Next steps</span></span>
-<span data-ttu-id="1d3af-164">Maintenant que vous connaissez les principes de base du service blob Azure, suivez ces liens pour apprendre à exécuter les tâches de stockage plus complexes.</span><span class="sxs-lookup"><span data-stu-id="1d3af-164">Now that you've learned the basics of the Azure blob service, follow these links to learn about more complex storage tasks.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="30d88-163">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="30d88-163">Next steps</span></span>
+<span data-ttu-id="30d88-164">Maintenant que vous avez appris les notions de base de hello Hello service blob Azure, suivez ces toolearn des liens sur les tâches de stockage plus complexes.</span><span class="sxs-lookup"><span data-stu-id="30d88-164">Now that you've learned hello basics of hello Azure blob service, follow these links toolearn about more complex storage tasks.</span></span>
 
-* <span data-ttu-id="1d3af-165">Consultez le [Blog de l'équipe Azure Storage](http://blogs.msdn.com/b/windowsazurestorage/)</span><span class="sxs-lookup"><span data-stu-id="1d3af-165">Visit the [Azure Storage team blog](http://blogs.msdn.com/b/windowsazurestorage/)</span></span>
-* <span data-ttu-id="1d3af-166">Consultez [l’exemple d’objet blob de blocs PHP](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php).</span><span class="sxs-lookup"><span data-stu-id="1d3af-166">See the [PHP block blob example](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php).</span></span>
-* <span data-ttu-id="1d3af-167">Consultez [l’exemple d’objet blob de pages PHP](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php).</span><span class="sxs-lookup"><span data-stu-id="1d3af-167">See the [PHP page blob example](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php).</span></span>
-* [<span data-ttu-id="1d3af-168">Transfert de données avec l'utilitaire de ligne de commande AzCopy</span><span class="sxs-lookup"><span data-stu-id="1d3af-168">Transfer data with the AzCopy Command-Line Utility</span></span>](storage-use-azcopy.md)
+* <span data-ttu-id="30d88-165">Visitez hello [blog de l’équipe stockage Azure](http://blogs.msdn.com/b/windowsazurestorage/)</span><span class="sxs-lookup"><span data-stu-id="30d88-165">Visit hello [Azure Storage team blog](http://blogs.msdn.com/b/windowsazurestorage/)</span></span>
+* <span data-ttu-id="30d88-166">Consultez hello [exemple blob de bloc PHP](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php).</span><span class="sxs-lookup"><span data-stu-id="30d88-166">See hello [PHP block blob example](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/BlockBlobExample.php).</span></span>
+* <span data-ttu-id="30d88-167">Consultez hello [exemple d’objet blob PHP page](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php).</span><span class="sxs-lookup"><span data-stu-id="30d88-167">See hello [PHP page blob example](https://github.com/WindowsAzure/azure-sdk-for-php-samples/blob/master/storage/PageBlobExample.php).</span></span>
+* [<span data-ttu-id="30d88-168">Transfert de données avec l’utilitaire de ligne de commande AzCopy de hello</span><span class="sxs-lookup"><span data-stu-id="30d88-168">Transfer data with hello AzCopy Command-Line Utility</span></span>](storage-use-azcopy.md)
 
-<span data-ttu-id="1d3af-169">Pour plus d’informations, consultez également le [Centre pour développeurs PHP](/develop/php/).</span><span class="sxs-lookup"><span data-stu-id="1d3af-169">For more information, see also the [PHP Developer Center](/develop/php/).</span></span>
+<span data-ttu-id="30d88-169">Pour plus d’informations, consultez également hello [centre de développement PHP](/develop/php/).</span><span class="sxs-lookup"><span data-stu-id="30d88-169">For more information, see also hello [PHP Developer Center](/develop/php/).</span></span>
 
 [download]: http://go.microsoft.com/fwlink/?LinkID=252473
 [container-acl]: http://msdn.microsoft.com/library/azure/dd179391.aspx
 [error-codes]: http://msdn.microsoft.com/library/azure/dd179439.aspx
 [file_get_contents]: http://php.net/file_get_contents
-<span data-ttu-id="1d3af-170">[require_once]: http://php.net/require_once</span><span class="sxs-lookup"><span data-stu-id="1d3af-170">[require_once]: http://php.net/require_once</span></span>
+[require_once]: http://php.net/require_once
 [fopen]: http://www.php.net/fopen
 [stream-get-contents]: http://www.php.net/stream_get_contents

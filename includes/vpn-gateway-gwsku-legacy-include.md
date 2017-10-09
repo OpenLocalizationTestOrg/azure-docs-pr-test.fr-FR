@@ -1,0 +1,14 @@
+<span data-ttu-id="e4378-101">références (SKU) de la passerelle VPN héritée (ancienne) Hello est :</span><span class="sxs-lookup"><span data-stu-id="e4378-101">hello legacy (old) VPN gateway SKUs are:</span></span>
+
+* <span data-ttu-id="e4378-102">De base</span><span class="sxs-lookup"><span data-stu-id="e4378-102">Basic</span></span>
+* <span data-ttu-id="e4378-103">Standard</span><span class="sxs-lookup"><span data-stu-id="e4378-103">Standard</span></span>
+* <span data-ttu-id="e4378-104">HighPerformance</span><span class="sxs-lookup"><span data-stu-id="e4378-104">HighPerformance</span></span>
+
+<span data-ttu-id="e4378-105">Passerelle VPN n’utilise pas de passerelle de UltraPerformance hello référence (SKU).</span><span class="sxs-lookup"><span data-stu-id="e4378-105">VPN Gateway does not use hello UltraPerformance gateway SKU.</span></span> <span data-ttu-id="e4378-106">Pour plus d’informations sur hello UltraPerformance SKU, consultez hello [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) documentation.</span><span class="sxs-lookup"><span data-stu-id="e4378-106">For information about hello UltraPerformance SKU, see hello [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) documentation.</span></span>
+
+<span data-ttu-id="e4378-107">Lorsque vous travaillez avec hello SKU hérités, tenez compte hello qui suit :</span><span class="sxs-lookup"><span data-stu-id="e4378-107">When working with hello legacy SKUs, consider hello following:</span></span>
+
+* <span data-ttu-id="e4378-108">Si vous voulez toouse un type PolicyBased VPN, vous devez utiliser hello base de référence (SKU).</span><span class="sxs-lookup"><span data-stu-id="e4378-108">If you want toouse a PolicyBased VPN type, you must use hello Basic SKU.</span></span> <span data-ttu-id="e4378-109">Les VPN basés sur une stratégie (précédemment appelés « routage statique ») ne sont pas pris en charge sur une autre SKU.</span><span class="sxs-lookup"><span data-stu-id="e4378-109">PolicyBased VPNs (previously called Static Routing) are not supported on any other SKU.</span></span>
+* <span data-ttu-id="e4378-110">BGP n’est pas pris en charge sur l’édition Basic de hello.</span><span class="sxs-lookup"><span data-stu-id="e4378-110">BGP is not supported on hello Basic SKU.</span></span>
+* <span data-ttu-id="e4378-111">Passerelle VPN de ExpressRoute coexister configurations ne sont pas prises en charge sur hello base de référence (SKU).</span><span class="sxs-lookup"><span data-stu-id="e4378-111">ExpressRoute-VPN Gateway coexist configurations are not supported on hello Basic SKU.</span></span>
+* <span data-ttu-id="e4378-112">Connexions de passerelle du VPN S2S actif peuvent être configurées sur hello HighPerformance SKU.</span><span class="sxs-lookup"><span data-stu-id="e4378-112">Active-active S2S VPN Gateway connections can be configured on hello HighPerformance SKU only.</span></span>

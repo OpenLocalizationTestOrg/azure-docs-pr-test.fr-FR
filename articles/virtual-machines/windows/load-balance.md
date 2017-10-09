@@ -1,6 +1,6 @@
 ---
-title: "Équilibrage de charge pour les services d’infrastructure | Microsoft Docs"
-description: "Décrit les deux types d’équilibrage de charge pris en charge par Azure : équilibreur de charge pour les services cloud et Azure Traffic Manager pour le trafic client."
+title: "aaaLoad équilibrage pour les services d’infrastructure | Documents Microsoft"
+description: "Décrit les deux types de hello d’équilibrage de charge pris en charge par Azure : équilibreur de charge pour les services cloud et Azure Traffic Manager pour le trafic du client."
 services: load-balancer
 documentationcenter: 
 author: kumudd
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2016
 ms.author: kumud
-ms.openlocfilehash: c8c75185a4b905ef839ccbd39b6f9e6d6dfb2496
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cff81948e36c34b4faf561daff1f48bf721c57c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="load-balancing-for-azure-infrastructure-services"></a><span data-ttu-id="3e480-103">Équilibrage de charge pour les services d’infrastructure Azure</span><span class="sxs-lookup"><span data-stu-id="3e480-103">Load balancing for Azure infrastructure services</span></span>
+# <a name="load-balancing-for-azure-infrastructure-services"></a><span data-ttu-id="29191-103">Équilibrage de charge pour les services d’infrastructure Azure</span><span class="sxs-lookup"><span data-stu-id="29191-103">Load balancing for Azure infrastructure services</span></span>
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 [!INCLUDE [virtual-machines-common-load-balance](../../../includes/virtual-machines-common-load-balance.md)]

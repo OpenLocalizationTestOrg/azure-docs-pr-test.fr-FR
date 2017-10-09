@@ -1,0 +1,20 @@
+<!--author=SharS last changed: 9/17/15-->
+
+#### <a name="tooinstall-hello-storsimple-adapter-for-sharepoint"></a><span data-ttu-id="6a70e-101">tooinstall hello adaptateur StorSimple pour SharePoint</span><span class="sxs-lookup"><span data-stu-id="6a70e-101">tooinstall hello StorSimple Adapter for SharePoint</span></span>
+1. <span data-ttu-id="6a70e-102">Copiez hello installer toohello serveur web frontal (WFE) qui est également configuré toorun hello Administration centrale de SharePoint web application.</span><span class="sxs-lookup"><span data-stu-id="6a70e-102">Copy hello installer toohello web front end (WFE) server that is also configured toorun hello SharePoint Central Administration web application.</span></span> 
+2. <span data-ttu-id="6a70e-103">Utilisez un compte avec toolog de privilèges d’administrateur sur le serveur Web frontal de toohello.</span><span class="sxs-lookup"><span data-stu-id="6a70e-103">Use an account with administrator privileges toolog on toohello WFE server.</span></span>
+3. <span data-ttu-id="6a70e-104">Double-cliquez sur le programme d’installation hello.</span><span class="sxs-lookup"><span data-stu-id="6a70e-104">Double-click hello installer.</span></span> <span data-ttu-id="6a70e-105">Hello adaptateur StorSimple pour l’Assistant Installation de SharePoint démarre.</span><span class="sxs-lookup"><span data-stu-id="6a70e-105">hello StorSimple Adapter for SharePoint Setup Wizard starts.</span></span> <span data-ttu-id="6a70e-106">Cliquez sur **suivant** installation de hello toobegin.</span><span class="sxs-lookup"><span data-stu-id="6a70e-106">Click **Next** toobegin hello installation.</span></span>
+   
+    ![Page de début de l’installation de l’adaptateur StorSimple](./media/storsimple-install-sharepoint-adapter/HCS_SSASP_Setup1-include.png)
+4. <span data-ttu-id="6a70e-108">Bonjour adaptateur StorSimple pour la page de configuration de SharePoint, sélectionnez un emplacement d’installation, tapez l’adresse IP hello hello interface réseau DATA 0 sur votre appareil StorSimple, puis cliquez sur **suivant**.</span><span class="sxs-lookup"><span data-stu-id="6a70e-108">In hello StorSimple Adapter for SharePoint setup configuration page, select an installation location, type hello IP address for hello DATA 0 network interface on your StorSimple device, and then click **Next**.</span></span> 
+   
+    ![Page de configuration de l’installation de l’adaptateur StorSimple](./media/storsimple-install-sharepoint-adapter/HCS_SSASP_Setup2-include.png) 
+5. <span data-ttu-id="6a70e-110">Dans la page de confirmation hello le programme d’installation, cliquez sur **installer**.</span><span class="sxs-lookup"><span data-stu-id="6a70e-110">In hello setup confirmation page, click **Install**.</span></span>
+   
+    ![Page de confirmation de l’installation de l’adaptateur StorSimple](./media/storsimple-install-sharepoint-adapter/HCS_SSASP_Confirm_Setup-include.png) 
+6. <span data-ttu-id="6a70e-112">Cliquez sur **Terminer** tooclose hello Assistant installation.</span><span class="sxs-lookup"><span data-stu-id="6a70e-112">Click **Finish** tooclose hello Setup Wizard.</span></span>
+   
+    ![Page de fin de l’installation de l’adaptateur StorSimple](./media/storsimple-install-sharepoint-adapter/HCS_SSASP_Setup_finish-include.png) 
+7. <span data-ttu-id="6a70e-114">Ouvrez la page d’Administration centrale de SharePoint hello.</span><span class="sxs-lookup"><span data-stu-id="6a70e-114">Open hello SharePoint Central Administration page.</span></span> <span data-ttu-id="6a70e-115">Vous devez voir un groupe de Configuration de StorSimple qui contient les hello adaptateur StorSimple pour les liens de SharePoint.</span><span class="sxs-lookup"><span data-stu-id="6a70e-115">You should see a StorSimple Configuration group that contains hello StorSimple Adapter for SharePoint links.</span></span>
+8. <span data-ttu-id="6a70e-116">Étape suivante de toohello accédez : [RBS de configurer](#configure-rbs).</span><span class="sxs-lookup"><span data-stu-id="6a70e-116">Go toohello next step: [Configure RBS](#configure-rbs).</span></span>
+

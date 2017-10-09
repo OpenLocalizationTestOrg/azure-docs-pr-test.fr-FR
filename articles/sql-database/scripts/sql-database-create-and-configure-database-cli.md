@@ -1,6 +1,6 @@
 ---
-title: "Exemple CLI-créer une base de données Azure SQL | Microsoft Docs"
-description: "Exemple de script Azure CLI pour créer une base de données SQL"
+title: "aaaCLI la création de l’exemple d’une base de données SQL Azure | Documents Microsoft"
+description: "Azure CLI exemple script toocreate une base de données SQL"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -16,49 +16,49 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 06/23/2017
 ms.author: janeng
-ms.openlocfilehash: 908898ca691d2b53b9f54afa60c41e091163bd50
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d54e284e19f16387813e24d7beb7ab048a39263
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-cli-to-create-a-single-azure-sql-database-and-configure-a-firewall-rule"></a><span data-ttu-id="f0359-103">Utiliser CLI pour créer une seule base de données Azure SQL et configurer une règle de pare-feu</span><span class="sxs-lookup"><span data-stu-id="f0359-103">Use CLI to create a single Azure SQL database and configure a firewall rule</span></span>
+# <a name="use-cli-toocreate-a-single-azure-sql-database-and-configure-a-firewall-rule"></a><span data-ttu-id="7952d-103">CLI toocreate une base de données SQL Azure et de configurer une règle de pare-feu</span><span class="sxs-lookup"><span data-stu-id="7952d-103">Use CLI toocreate a single Azure SQL database and configure a firewall rule</span></span>
 
-<span data-ttu-id="f0359-104">Cet exemple de script CLI crée une base de données SQL Azure et configure une règle de pare-feu au niveau du serveur.</span><span class="sxs-lookup"><span data-stu-id="f0359-104">This Azure CLI script example creates an Azure SQL database and configure a server-level firewall rule.</span></span> <span data-ttu-id="f0359-105">Une fois que le script a été exécuté avec succès, l’instance SQL Database est accessible à partir de tous les services Azure et l’adresse IP configurée.</span><span class="sxs-lookup"><span data-stu-id="f0359-105">Once the script has been successfully run, the SQL Database can be accessed from all Azure services and the configured IP address.</span></span> 
+<span data-ttu-id="7952d-104">Cet exemple de script CLI crée une base de données SQL Azure et configure une règle de pare-feu au niveau du serveur.</span><span class="sxs-lookup"><span data-stu-id="7952d-104">This Azure CLI script example creates an Azure SQL database and configure a server-level firewall rule.</span></span> <span data-ttu-id="7952d-105">Une fois l’exécution du script de hello a réussi, hello de que base de données SQL est accessible à partir de tous les services Azure et hello configuré adresse IP.</span><span class="sxs-lookup"><span data-stu-id="7952d-105">Once hello script has been successfully run, hello SQL Database can be accessed from all Azure services and hello configured IP address.</span></span> 
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="f0359-106">Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0 ou une version ultérieure pour poursuivre la procédure décrite dans cet article.</span><span class="sxs-lookup"><span data-stu-id="f0359-106">If you choose to install and use the CLI locally, this topic requires that you are running the Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="f0359-107">Exécutez `az --version` pour trouver la version.</span><span class="sxs-lookup"><span data-stu-id="f0359-107">Run `az --version` to find the version.</span></span> <span data-ttu-id="f0359-108">Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="f0359-108">If you need to install or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
+<span data-ttu-id="7952d-106">Si vous choisissez tooinstall et que vous utilisez hello CLI localement, cette rubrique requiert que vous exécutez hello CLI d’Azure version 2.0 ou ultérieure.</span><span class="sxs-lookup"><span data-stu-id="7952d-106">If you choose tooinstall and use hello CLI locally, this topic requires that you are running hello Azure CLI version 2.0 or later.</span></span> <span data-ttu-id="7952d-107">Exécutez `az --version` version de hello toofind.</span><span class="sxs-lookup"><span data-stu-id="7952d-107">Run `az --version` toofind hello version.</span></span> <span data-ttu-id="7952d-108">Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="7952d-108">If you need tooinstall or upgrade, see [Install Azure CLI 2.0]( /cli/azure/install-azure-cli).</span></span> 
 
-## <a name="sample-script"></a><span data-ttu-id="f0359-109">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="f0359-109">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="7952d-109">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="7952d-109">Sample script</span></span>
 
-<span data-ttu-id="f0359-110">[!code-azurecli-interactive[principal](../../../cli_scripts/sql-database/create-and-configure-database/create-and-configure-database.sh?highlight=9-10 "Créer une instance SQL Database")]</span><span class="sxs-lookup"><span data-stu-id="f0359-110">[!code-azurecli-interactive[main](../../../cli_scripts/sql-database/create-and-configure-database/create-and-configure-database.sh?highlight=9-10 "Create SQL Database")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/sql-database/create-and-configure-database/create-and-configure-database.sh?highlight=9-10 "Create SQL Database")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="f0359-111">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="f0359-111">Clean up deployment</span></span>
+## <a name="clean-up-deployment"></a><span data-ttu-id="7952d-110">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="7952d-110">Clean up deployment</span></span>
 
-<span data-ttu-id="f0359-112">Une fois l’exemple de script exécuté, la commande suivante permet de supprimer le groupe de ressources et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="f0359-112">After the script sample has been run, the following command can be used to remove the resource group and all resources associated with it.</span></span>
+<span data-ttu-id="7952d-111">Après exécution de l’exemple de script hello, hello commande suivante peut être de groupe de ressources utilisé tooremove hello et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="7952d-111">After hello script sample has been run, hello following command can be used tooremove hello resource group and all resources associated with it.</span></span>
 
 ```azurecli-interactive
 az group delete --name myResourceGroup
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="f0359-113">Explication du script</span><span class="sxs-lookup"><span data-stu-id="f0359-113">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="7952d-112">Explication du script</span><span class="sxs-lookup"><span data-stu-id="7952d-112">Script explanation</span></span>
 
-<span data-ttu-id="f0359-114">Ce script utilise les commandes suivantes.</span><span class="sxs-lookup"><span data-stu-id="f0359-114">This script uses the following commands.</span></span> <span data-ttu-id="f0359-115">Chaque commande du tableau renvoie à une documentation spécifique.</span><span class="sxs-lookup"><span data-stu-id="f0359-115">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="7952d-113">Ce script utilise hello suivant les commandes.</span><span class="sxs-lookup"><span data-stu-id="7952d-113">This script uses hello following commands.</span></span> <span data-ttu-id="7952d-114">Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.</span><span class="sxs-lookup"><span data-stu-id="7952d-114">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="f0359-116">Commande</span><span class="sxs-lookup"><span data-stu-id="f0359-116">Command</span></span> | <span data-ttu-id="f0359-117">Remarques</span><span class="sxs-lookup"><span data-stu-id="f0359-117">Notes</span></span> |
+| <span data-ttu-id="7952d-115">Commande</span><span class="sxs-lookup"><span data-stu-id="7952d-115">Command</span></span> | <span data-ttu-id="7952d-116">Remarques</span><span class="sxs-lookup"><span data-stu-id="7952d-116">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="f0359-118">az group create</span><span class="sxs-lookup"><span data-stu-id="f0359-118">az group create</span></span>](/cli/azure/group#create) | <span data-ttu-id="f0359-119">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="f0359-119">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="f0359-120">az sql server create</span><span class="sxs-lookup"><span data-stu-id="f0359-120">az sql server create</span></span>](/cli/azure/sql/server#create) | <span data-ttu-id="f0359-121">Crée un serveur logique qui héberge l’instance SQL Database.</span><span class="sxs-lookup"><span data-stu-id="f0359-121">Creates a logical server that hosts the SQL Database.</span></span> |
-| [<span data-ttu-id="f0359-122">az sql server firewall create</span><span class="sxs-lookup"><span data-stu-id="f0359-122">az sql server firewall create</span></span>](/cli/azure/sql/server/firewall-rule#create) | <span data-ttu-id="f0359-123">Crée une règle de pare-feu pour autoriser l’accès à toutes les instances SQL Database sur le serveur à partir de la plage d’adresses IP entrée.</span><span class="sxs-lookup"><span data-stu-id="f0359-123">Creates a firewall rule to allow access to all SQL Databases on the server from the entered IP address range.</span></span> |
-| [<span data-ttu-id="f0359-124">az sql db create</span><span class="sxs-lookup"><span data-stu-id="f0359-124">az sql db create</span></span>](/cli/azure/sql/db#create) | <span data-ttu-id="f0359-125">Crée une instance SQL Database au sein du serveur logique.</span><span class="sxs-lookup"><span data-stu-id="f0359-125">Creates the SQL Database in the logical server.</span></span> |
-| [<span data-ttu-id="f0359-126">az group delete</span><span class="sxs-lookup"><span data-stu-id="f0359-126">az group delete</span></span>](/cli/azure/resource#delete) | <span data-ttu-id="f0359-127">Supprime un groupe de ressources, y compris toutes les ressources imbriquées.</span><span class="sxs-lookup"><span data-stu-id="f0359-127">Deletes a resource group including all nested resources.</span></span> |
+| [<span data-ttu-id="7952d-117">az group create</span><span class="sxs-lookup"><span data-stu-id="7952d-117">az group create</span></span>](/cli/azure/group#create) | <span data-ttu-id="7952d-118">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="7952d-118">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="7952d-119">az sql server create</span><span class="sxs-lookup"><span data-stu-id="7952d-119">az sql server create</span></span>](/cli/azure/sql/server#create) | <span data-ttu-id="7952d-120">Crée un serveur logique que les ordinateurs hôtes hello de base de données SQL.</span><span class="sxs-lookup"><span data-stu-id="7952d-120">Creates a logical server that hosts hello SQL Database.</span></span> |
+| [<span data-ttu-id="7952d-121">az sql server firewall create</span><span class="sxs-lookup"><span data-stu-id="7952d-121">az sql server firewall create</span></span>](/cli/azure/sql/server/firewall-rule#create) | <span data-ttu-id="7952d-122">Crée un tooall dans pare-feu règle tooallow accès aux bases de données SQL sur le serveur hello à partir de la plage d’adresses IP hello entré.</span><span class="sxs-lookup"><span data-stu-id="7952d-122">Creates a firewall rule tooallow access tooall SQL Databases on hello server from hello entered IP address range.</span></span> |
+| [<span data-ttu-id="7952d-123">az sql db create</span><span class="sxs-lookup"><span data-stu-id="7952d-123">az sql db create</span></span>](/cli/azure/sql/db#create) | <span data-ttu-id="7952d-124">Crée hello de base de données SQL dans un serveur logique de hello.</span><span class="sxs-lookup"><span data-stu-id="7952d-124">Creates hello SQL Database in hello logical server.</span></span> |
+| [<span data-ttu-id="7952d-125">az group delete</span><span class="sxs-lookup"><span data-stu-id="7952d-125">az group delete</span></span>](/cli/azure/resource#delete) | <span data-ttu-id="7952d-126">Supprime un groupe de ressources, y compris toutes les ressources imbriquées.</span><span class="sxs-lookup"><span data-stu-id="7952d-126">Deletes a resource group including all nested resources.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="f0359-128">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="f0359-128">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="7952d-127">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="7952d-127">Next steps</span></span>
 
-<span data-ttu-id="f0359-129">Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="f0359-129">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="7952d-128">Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="7952d-128">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="f0359-130">Vous trouverez des exemples supplémentaires de scripts CLI SQL Database sur la page [Documentation Azure SQL Database](../sql-database-cli-samples.md).</span><span class="sxs-lookup"><span data-stu-id="f0359-130">Additional SQL Database CLI script samples can be found in the [Azure SQL Database documentation](../sql-database-cli-samples.md).</span></span>
+<span data-ttu-id="7952d-129">Vous trouverez des exemples supplémentaires de script CLI de base de données SQL dans hello [documentation de base de données SQL Azure](../sql-database-cli-samples.md).</span><span class="sxs-lookup"><span data-stu-id="7952d-129">Additional SQL Database CLI script samples can be found in hello [Azure SQL Database documentation](../sql-database-cli-samples.md).</span></span>
 

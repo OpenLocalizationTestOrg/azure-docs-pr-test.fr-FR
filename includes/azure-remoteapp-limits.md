@@ -1,0 +1,22 @@
+
+| <span data-ttu-id="a3bfb-101">Ressource</span><span class="sxs-lookup"><span data-stu-id="a3bfb-101">Resource</span></span> | <span data-ttu-id="a3bfb-102">Limite par défaut</span><span class="sxs-lookup"><span data-stu-id="a3bfb-102">Default limit</span></span> |
+| --- | --- |
+| <span data-ttu-id="a3bfb-103">Collections par utilisateur</span><span class="sxs-lookup"><span data-stu-id="a3bfb-103">Collections per user</span></span> |<span data-ttu-id="a3bfb-104">1</span><span class="sxs-lookup"><span data-stu-id="a3bfb-104">1</span></span> |
+| <span data-ttu-id="a3bfb-105">Applications publiées par collection</span><span class="sxs-lookup"><span data-stu-id="a3bfb-105">Published apps per collection</span></span> |<span data-ttu-id="a3bfb-106">100</span><span class="sxs-lookup"><span data-stu-id="a3bfb-106">100</span></span> |
+| <span data-ttu-id="a3bfb-107">Collections payantes</span><span class="sxs-lookup"><span data-stu-id="a3bfb-107">Paid collections</span></span> |<span data-ttu-id="a3bfb-108">3</span><span class="sxs-lookup"><span data-stu-id="a3bfb-108">3</span></span> |
+| <span data-ttu-id="a3bfb-109">Images du modèle payant</span><span class="sxs-lookup"><span data-stu-id="a3bfb-109">Paid template images</span></span> |<span data-ttu-id="a3bfb-110">25</span><span class="sxs-lookup"><span data-stu-id="a3bfb-110">25</span></span> |
+| <span data-ttu-id="a3bfb-111">Utilisateurs - niveau de base</span><span class="sxs-lookup"><span data-stu-id="a3bfb-111">Users - basic tier</span></span> |<span data-ttu-id="a3bfb-112">800 maximum</span><span class="sxs-lookup"><span data-stu-id="a3bfb-112">800 maximum</span></span> |
+| <span data-ttu-id="a3bfb-113">Utilisateurs - niveau standard</span><span class="sxs-lookup"><span data-stu-id="a3bfb-113">Users - standard tier</span></span> |<span data-ttu-id="a3bfb-114">500 maximum</span><span class="sxs-lookup"><span data-stu-id="a3bfb-114">500 maximum</span></span> |
+| <span data-ttu-id="a3bfb-115">Utilisateurs - Niveau Premium</span><span class="sxs-lookup"><span data-stu-id="a3bfb-115">Users- premium tier</span></span> |<span data-ttu-id="a3bfb-116">100 maximum</span><span class="sxs-lookup"><span data-stu-id="a3bfb-116">100 maximum</span></span> |
+| <span data-ttu-id="a3bfb-117">Utilisateurs - Niveau Premium Plus</span><span class="sxs-lookup"><span data-stu-id="a3bfb-117">Users - premium plus tier</span></span> |<span data-ttu-id="a3bfb-118">50 maximum</span><span class="sxs-lookup"><span data-stu-id="a3bfb-118">50 maximum</span></span> |
+| <span data-ttu-id="a3bfb-119">Stockage des données utilisateur (UPD) par utilisateur et par collection</span><span class="sxs-lookup"><span data-stu-id="a3bfb-119">User data storage (UPD) per user per collection</span></span> |<span data-ttu-id="a3bfb-120">50 Go</span><span class="sxs-lookup"><span data-stu-id="a3bfb-120">50 GB</span></span> |
+| <span data-ttu-id="a3bfb-121">Délai d’inactivité</span><span class="sxs-lookup"><span data-stu-id="a3bfb-121">Idle timeout</span></span> |<span data-ttu-id="a3bfb-122">4 heures</span><span class="sxs-lookup"><span data-stu-id="a3bfb-122">4 hours</span></span> |
+| <span data-ttu-id="a3bfb-123">Délai de déconnexion</span><span class="sxs-lookup"><span data-stu-id="a3bfb-123">Disconnected timeout</span></span> |<span data-ttu-id="a3bfb-124">4 heures</span><span class="sxs-lookup"><span data-stu-id="a3bfb-124">4 hours</span></span> |
+
+<span data-ttu-id="a3bfb-125">nombre de Hello d’utilisateurs est déterminé par un nombre d’ordinateurs virtuels utilisé pour votre collection de hello :</span><span class="sxs-lookup"><span data-stu-id="a3bfb-125">hello number of users is determined by hello number of VMs used for your collection:</span></span>
+
+* <span data-ttu-id="a3bfb-126">De base = 16 utilisateurs par machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="a3bfb-126">Basic = 16 users per VM</span></span>
+* <span data-ttu-id="a3bfb-127">Standard = 10 utilisateurs par machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="a3bfb-127">Standard = 10 users per VM</span></span>
+* <span data-ttu-id="a3bfb-128">Premium = 4 utilisateurs par machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="a3bfb-128">Premium = 4 users per VM</span></span>
+* <span data-ttu-id="a3bfb-129">Premium Plus = 2 utilisateurs par machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="a3bfb-129">Premium plus = 2 users per VM</span></span>
+

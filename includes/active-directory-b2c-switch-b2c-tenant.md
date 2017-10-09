@@ -1,3 +1,5 @@
-<span data-ttu-id="aead7-101">Pour basculer vers votre client Azure AD B2C, sélectionnez le répertoire B2C dans le coin supérieur droit du portail.</span><span class="sxs-lookup"><span data-stu-id="aead7-101">To switch to your Azure AD B2C tenant, select the B2C directory in the top-right corner of the portal.</span></span>
+<span data-ttu-id="e9618-101">Modifié par Sipi.</span><span class="sxs-lookup"><span data-stu-id="e9618-101">Edited by Sipi.</span></span>
 
-![Basculez vers votre client Azure AD B2C.](./media/active-directory-b2c-switch-b2c-tenant/switch-to-b2c-tenant.png)
+<span data-ttu-id="e9618-102">tooswitch tooyour locataire d’Azure AD B2C, sélectionnez répertoire B2C de hello en hello en haut à droite du portail de hello.</span><span class="sxs-lookup"><span data-stu-id="e9618-102">tooswitch tooyour Azure AD B2C tenant, select hello B2C directory in hello top-right corner of hello portal.</span></span>
+
+![Commutateur tooyour Azure AD B2C locataire](./media/active-directory-b2c-switch-b2c-tenant/switch-to-b2c-tenant.png)

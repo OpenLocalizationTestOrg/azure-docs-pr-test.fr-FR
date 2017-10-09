@@ -1,6 +1,6 @@
 ---
-title: "Annulation et suppression d’un travail d’importation Azure Import/Export | Microsoft Docs"
-description: "Découvrez comment annuler et supprimer des travaux pour le service Microsoft Azure Import/Export."
+title: aaaCancel et supprimer un travail Azure Import/Export | Documents Microsoft
+description: "Découvrez comment toocancel et supprimer des travaux pour hello service Microsoft Azure Import/Export."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 1e989c72fc03697bf6d2e515ff53003703665d1a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 13456a8e7652850baacb53730cc7bb1520b0a4c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="canceling-and-deleting-azure-importexport-jobs"></a><span data-ttu-id="8df3c-103">Annulation et suppression de travaux du service Azure Import/Export</span><span class="sxs-lookup"><span data-stu-id="8df3c-103">Canceling and deleting Azure Import/Export jobs</span></span>
+# <a name="canceling-and-deleting-azure-importexport-jobs"></a><span data-ttu-id="57c33-103">Annulation et suppression de travaux du service Azure Import/Export</span><span class="sxs-lookup"><span data-stu-id="57c33-103">Canceling and deleting Azure Import/Export jobs</span></span>
 
- <span data-ttu-id="8df3c-104">Pour demander qu’un travail soit annulé avant d’être à l’état `Packaging`, appelez l’opération [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) et définissez l’élément `CancelRequested` sur `true`.</span><span class="sxs-lookup"><span data-stu-id="8df3c-104">To request that a job be canceled before it is in the `Packaging` state, call the [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) operation and set the `CancelRequested` element to `true`.</span></span> <span data-ttu-id="8df3c-105">Le travail est annulé de manière optimale.</span><span class="sxs-lookup"><span data-stu-id="8df3c-105">The job is canceled on a best-effort basis.</span></span> <span data-ttu-id="8df3c-106">Si des données sont en cours de transfert sur les disques, cette opération peut se poursuivre même après que l’annulation ait été demandée.</span><span class="sxs-lookup"><span data-stu-id="8df3c-106">If drives are in the process of transferring data, data may continue to be transferred even after cancellation has been requested.</span></span>
+ <span data-ttu-id="57c33-104">toorequest qu’un travail annulé avant qu’il est Bonjour `Packaging` état, l’appel hello [propriétés de tâche de mise à jour](/rest/api/storageimportexport/jobs#Jobs_Update) opération et ensemble hello `CancelRequested` élément trop`true`.</span><span class="sxs-lookup"><span data-stu-id="57c33-104">toorequest that a job be canceled before it is in hello `Packaging` state, call hello [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) operation and set hello `CancelRequested` element too`true`.</span></span> <span data-ttu-id="57c33-105">travail de Hello est annulé sur une base du meilleur effort.</span><span class="sxs-lookup"><span data-stu-id="57c33-105">hello job is canceled on a best-effort basis.</span></span> <span data-ttu-id="57c33-106">Si les lecteurs sont en cours de hello de transfert de données, les données peuvent continuer toobe transférée même après que l’annulation a été demandée.</span><span class="sxs-lookup"><span data-stu-id="57c33-106">If drives are in hello process of transferring data, data may continue toobe transferred even after cancellation has been requested.</span></span>
 
- <span data-ttu-id="8df3c-107">Un travail annulé passe à l’état `Completed` et est conservé pendant 90 jours. Après quoi, il est supprimé.</span><span class="sxs-lookup"><span data-stu-id="8df3c-107">A canceled job is moved to the `Completed` state and is kept for 90 days, at which point it is deleted.</span></span>
+ <span data-ttu-id="57c33-107">Un travail annulé est déplacé toohello `Completed` d’état et doivent être conservées pendant 90 jours, à quel point il est supprimé.</span><span class="sxs-lookup"><span data-stu-id="57c33-107">A canceled job is moved toohello `Completed` state and is kept for 90 days, at which point it is deleted.</span></span>
 
- <span data-ttu-id="8df3c-108">Pour supprimer un travail, appelez l’opération [Delete Job](/rest/api/storageimportexport/jobs#Jobs_Delete) avant que le travail soit expédié (c’est-à-dire, pendant que le travail est à l’état `Creating`).</span><span class="sxs-lookup"><span data-stu-id="8df3c-108">To delete a job, call the [Delete Job](/rest/api/storageimportexport/jobs#Jobs_Delete) operation before the job has shipped (that is, while the job is in the `Creating` state).</span></span> <span data-ttu-id="8df3c-109">Vous pouvez également supprimer un travail lorsqu’il se trouve dans l’état `Completed`.</span><span class="sxs-lookup"><span data-stu-id="8df3c-109">You can also delete a job when it is in the `Completed` state.</span></span> <span data-ttu-id="8df3c-110">Une fois le travail supprimé, ses informations et son état ne sont plus accessibles via l’API REST ou le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="8df3c-110">After a job is deleted, its information and status are no longer accessible via the REST API or the Azure portal.</span></span>
+ <span data-ttu-id="57c33-108">toodelete un travail, appel hello [supprimer le travail](/rest/api/storageimportexport/jobs#Jobs_Delete) opération avant que le travail de hello a été expédiée (autrement dit, pendant le travail de hello hello `Creating` état).</span><span class="sxs-lookup"><span data-stu-id="57c33-108">toodelete a job, call hello [Delete Job](/rest/api/storageimportexport/jobs#Jobs_Delete) operation before hello job has shipped (that is, while hello job is in hello `Creating` state).</span></span> <span data-ttu-id="57c33-109">Vous pouvez également supprimer un travail lorsqu’il est Bonjour `Completed` état.</span><span class="sxs-lookup"><span data-stu-id="57c33-109">You can also delete a job when it is in hello `Completed` state.</span></span> <span data-ttu-id="57c33-110">Après la suppression d’un travail, ses informations et l’état ne sont plus accessibles via l’API REST de hello ou hello portail Azure.</span><span class="sxs-lookup"><span data-stu-id="57c33-110">After a job is deleted, its information and status are no longer accessible via hello REST API or hello Azure portal.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="8df3c-111">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="8df3c-111">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="57c33-111">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="57c33-111">Next steps</span></span>
 
-* [<span data-ttu-id="8df3c-112">Utilisation de l’API REST du service Import/Export</span><span class="sxs-lookup"><span data-stu-id="8df3c-112">Using the Import/Export service REST API</span></span>](storage-import-export-using-the-rest-api.md)
+* [<span data-ttu-id="57c33-112">À l’aide des API REST du service importation/exportation hello</span><span class="sxs-lookup"><span data-stu-id="57c33-112">Using hello Import/Export service REST API</span></span>](storage-import-export-using-the-rest-api.md)

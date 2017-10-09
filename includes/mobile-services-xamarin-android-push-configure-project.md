@@ -1,14 +1,14 @@
 
-1. <span data-ttu-id="4cedd-101">Dans la vue Solution (ou dans l’**Explorateur de solutions** dans Visual Studio), cliquez avec le bouton droit sur le dossier **Components**, cliquez sur **Get More Components...**, recherchez le composant **Google Cloud Messaging Client**, puis ajoutez-le au projet.</span><span class="sxs-lookup"><span data-stu-id="4cedd-101">In the Solution view (or **Solution Explorer** in Visual Studio), right-click the **Components** folder, click  **Get More Components...**, search for the **Google Cloud Messaging Client** component and add it to the project.</span></span>
-2. <span data-ttu-id="4cedd-102">Ouvrez le fichier projet ToDoActivity.css et ajoutez l'instruction using suivante à la classe :</span><span class="sxs-lookup"><span data-stu-id="4cedd-102">Open the ToDoActivity.cs project file and add the following using statement to the class:</span></span>
+1. <span data-ttu-id="20e82-101">Bonjour, vue de la Solution (ou **l’Explorateur de solutions** dans Visual Studio), avec le bouton hello **composants** dossier, cliquez sur **obtenir plusieurs composants...** , recherchez hello **Client de messagerie Cloud Google** composant et l’ajouter toohello projet.</span><span class="sxs-lookup"><span data-stu-id="20e82-101">In hello Solution view (or **Solution Explorer** in Visual Studio), right-click hello **Components** folder, click  **Get More Components...**, search for hello **Google Cloud Messaging Client** component and add it toohello project.</span></span>
+2. <span data-ttu-id="20e82-102">Ouvrez le fichier de projet ToDoActivity.cs hello et ajoutez hello qui suit à l’aide de la classe toohello d’instruction :</span><span class="sxs-lookup"><span data-stu-id="20e82-102">Open hello ToDoActivity.cs project file and add hello following using statement toohello class:</span></span>
    
         using Gcm.Client;
-3. <span data-ttu-id="4cedd-103">Dans la classe **ToDoActivity** , ajoutez le nouveau code suivant :</span><span class="sxs-lookup"><span data-stu-id="4cedd-103">In the **ToDoActivity** class, add the following new code:</span></span> 
+3. <span data-ttu-id="20e82-103">Bonjour **ToDoActivity** de classe, ajoutez hello suivant le nouveau code :</span><span class="sxs-lookup"><span data-stu-id="20e82-103">In hello **ToDoActivity** class, add hello following new code:</span></span> 
    
         // Create a new instance field for this activity.
         static ToDoActivity instance = new ToDoActivity();
    
-        // Return the current activity instance.
+        // Return hello current activity instance.
         public static ToDoActivity CurrentActivity
         {
             get
@@ -16,7 +16,7 @@
                 return instance;
             }
         }
-        // Return the Mobile Services client.
+        // Return hello Mobile Services client.
         public MobileServiceClient CurrentClient
         {
             get
@@ -25,18 +25,18 @@
             }
         }
    
-    <span data-ttu-id="4cedd-104">Vous pouvez ainsi accéder à l’instance du client mobile depuis le processus de service de gestionnaire push.</span><span class="sxs-lookup"><span data-stu-id="4cedd-104">This enables you to access the mobile client instance from the push handler service process.</span></span>
-4. <span data-ttu-id="4cedd-105">Ajoutez le code ci-après à la méthode **OnCreate** après la création de **MobileServiceClient** :</span><span class="sxs-lookup"><span data-stu-id="4cedd-105">Add the following code to the **OnCreate** method, after the **MobileServiceClient** is created:</span></span>
+    <span data-ttu-id="20e82-104">Cela vous permet de tooaccess instance de client mobile hello à partir de processus du service Gestionnaire de push hello.</span><span class="sxs-lookup"><span data-stu-id="20e82-104">This enables you tooaccess hello mobile client instance from hello push handler service process.</span></span>
+4. <span data-ttu-id="20e82-105">Ajouter hello suivant code toohello **OnCreate** méthode, après hello **MobileServiceClient** est créé :</span><span class="sxs-lookup"><span data-stu-id="20e82-105">Add hello following code toohello **OnCreate** method, after hello **MobileServiceClient** is created:</span></span>
    
-       // Set the current instance of TodoActivity.
+       // Set hello current instance of TodoActivity.
        instance = this;
    
-       // Make sure the GCM client is set up correctly.
+       // Make sure hello GCM client is set up correctly.
        GcmClient.CheckDevice(this);
        GcmClient.CheckManifest(this);
    
-       // Register the app for push notifications.
+       // Register hello app for push notifications.
        GcmClient.Register(this, ToDoBroadcastReceiver.senderIDs);
 
-<span data-ttu-id="4cedd-106">Votre **ToDoActivity** est maintenant prêt pour l'ajout de notifications push.</span><span class="sxs-lookup"><span data-stu-id="4cedd-106">Your **ToDoActivity** is now prepared for adding push notifications.</span></span>
+<span data-ttu-id="20e82-106">Votre **ToDoActivity** est maintenant prêt pour l'ajout de notifications push.</span><span class="sxs-lookup"><span data-stu-id="20e82-106">Your **ToDoActivity** is now prepared for adding push notifications.</span></span>
 

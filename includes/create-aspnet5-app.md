@@ -1,0 +1,6 @@
+1. <span data-ttu-id="e908c-101">Dans le menu de Visual Studio hello, sélectionnez **fichier > Nouveau > projet**.</span><span class="sxs-lookup"><span data-stu-id="e908c-101">From hello Visual Studio menu, select **File > New > Project**.</span></span>
+2. <span data-ttu-id="e908c-102">Sous hello **modèles** section Hello **nouveau projet** boîte de dialogue, sélectionnez **Visual c# > Web**.</span><span class="sxs-lookup"><span data-stu-id="e908c-102">Under hello **Templates** section of hello **New Project** dialog box, select **Visual C# > Web**.</span></span>
+3. <span data-ttu-id="e908c-103">Sélectionnez **ASP.NET Core Web Application (.NET Core)**.</span><span class="sxs-lookup"><span data-stu-id="e908c-103">Select **ASP.NET Core Web Application (.NET Core)**.</span></span>
+4. <span data-ttu-id="e908c-104">Donnez à votre nouvelle application un nom (ou take, hello par défaut), puis sélectionnez **OK**.</span><span class="sxs-lookup"><span data-stu-id="e908c-104">Give your new application a name (or take hello default) and select **OK**.</span></span>
+5. <span data-ttu-id="e908c-105">Sous **Modèles ASP.NET Core 1.1**, sélectionnez **Application web** puis **OK**.</span><span class="sxs-lookup"><span data-stu-id="e908c-105">Under **ASP.NET Core 1.1 Templates**, select **Web Application** and select **OK**.</span></span>
+

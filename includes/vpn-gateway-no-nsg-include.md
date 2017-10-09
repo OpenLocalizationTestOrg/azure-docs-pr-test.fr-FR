@@ -1,0 +1,5 @@
+> [!IMPORTANT]
+> <span data-ttu-id="5a92f-101">Lorsque vous travaillez avec des sous-réseaux de passerelle, évitez d’association d’un sous-réseau de passerelle de réseau sécurité (groupe) toohello.</span><span class="sxs-lookup"><span data-stu-id="5a92f-101">When working with gateway subnets, avoid associating a network security group (NSG) toohello gateway subnet.</span></span> <span data-ttu-id="5a92f-102">Association d’un sous-réseau de toothis de groupe de sécurité réseau risque de votre toostop de passerelle VPN fonctionne comme prévu.</span><span class="sxs-lookup"><span data-stu-id="5a92f-102">Associating a network security group toothis subnet may cause your VPN gateway toostop functioning as expected.</span></span> <span data-ttu-id="5a92f-103">Pour plus d’informations sur les groupes de sécurité réseau, consultez [Présentation du groupe de sécurité réseau](../articles/virtual-network/virtual-networks-nsg.md)</span><span class="sxs-lookup"><span data-stu-id="5a92f-103">For more information about network security groups, see [What is a network security group?](../articles/virtual-network/virtual-networks-nsg.md)</span></span>
+> 
+> 
+

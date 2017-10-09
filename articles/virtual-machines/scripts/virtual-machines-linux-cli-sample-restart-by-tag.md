@@ -1,5 +1,5 @@
 ---
-title: "Exemple de script Azure CLI - Redémarrage de machines virtuelles | Microsoft Docs"
+title: "aaaAzure exemple de Script CLI - redémarrer les machines virtuelles | Documents Microsoft"
 description: "Exemple de script Azure CLI - Redémarrer des machines virtuelles par balise et ID"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,85 +16,85 @@ ms.workload: infrastructure
 ms.date: 03/01/2017
 ms.author: allclark
 ms.custom: mvc
-ms.openlocfilehash: 4d0fe95287c91a4b656904f9007ceaaf866e155f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a1ae07bd1d2be906553bef817385a4a333a10eca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="restart-vms"></a><span data-ttu-id="18134-103">Redémarrer les machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="18134-103">Restart VMs</span></span>
+# <a name="restart-vms"></a><span data-ttu-id="a95f8-103">Redémarrer les machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="a95f8-103">Restart VMs</span></span>
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
-<span data-ttu-id="18134-104">Cet exemple montre plusieurs façons d’obtenir des machines virtuelles et de les redémarrer.</span><span class="sxs-lookup"><span data-stu-id="18134-104">This sample shows a couple of ways to get some VMs and restart them.</span></span>
+<span data-ttu-id="a95f8-104">Cet exemple montre deux façons tooget certaines machines virtuelles et les redémarrer.</span><span class="sxs-lookup"><span data-stu-id="a95f8-104">This sample shows a couple of ways tooget some VMs and restart them.</span></span>
 
-<span data-ttu-id="18134-105">Le premier redémarre toutes les machines virtuelles dans le groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="18134-105">The first restarts all the VMs in the resource group.</span></span>
+<span data-ttu-id="a95f8-105">Hello redémarre tout d’abord tous les ordinateurs virtuels de hello dans le groupe de ressources hello.</span><span class="sxs-lookup"><span data-stu-id="a95f8-105">hello first restarts all hello VMs in hello resource group.</span></span>
 
 ```bash
 az vm restart --ids $(az vm list --resource-group myResourceGroup --query "[].id" -o tsv)
 ```
 
-<span data-ttu-id="18134-106">Le second obtient des machines virtuelles marquées à l’aide de `az resouce list` et filtre les ressources qui sont des machines virtuelles, puis les redémarre.</span><span class="sxs-lookup"><span data-stu-id="18134-106">The second gets the tagged VMs using `az resouce list` and filters to the resources that are VMs, and restarts those VMs.</span></span>
+<span data-ttu-id="a95f8-106">deuxième obtient hello Hello marqué à l’aide de machines virtuelles `az resouce list` filtre toohello les ressources qui sont des machines virtuelles et redémarre ces machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="a95f8-106">hello second gets hello tagged VMs using `az resouce list` and filters toohello resources that are VMs, and restarts those VMs.</span></span>
 
 ```bash
 az vm restart --ids $(az resource list --tag "restart-tag" --query "[?type=='Microsoft.Compute/virtualMachines'].id" -o tsv)
 ```
 
-<span data-ttu-id="18134-107">Cet exemple fonctionne dans une interface d’interpréteur de commandes Bash.</span><span class="sxs-lookup"><span data-stu-id="18134-107">This sample works in a Bash shell.</span></span> <span data-ttu-id="18134-108">Pour en savoir plus les options d’exécution de scripts Azure CLI dans le client Windows, consultez la page [Running the Azure CLI in Windows (Exécution d’Azure CLI dans Windows)](../windows/cli-options.md).</span><span class="sxs-lookup"><span data-stu-id="18134-108">For options on running Azure CLI scripts on Windows client, see [Running the Azure CLI in Windows](../windows/cli-options.md).</span></span>
+<span data-ttu-id="a95f8-107">Cet exemple fonctionne dans une interface d’interpréteur de commandes Bash.</span><span class="sxs-lookup"><span data-stu-id="a95f8-107">This sample works in a Bash shell.</span></span> <span data-ttu-id="a95f8-108">Pour les options sur l’exécution de scripts CLI d’Azure sur le client Windows, consultez [hello CLI d’Azure en cours d’exécution dans Windows](../windows/cli-options.md).</span><span class="sxs-lookup"><span data-stu-id="a95f8-108">For options on running Azure CLI scripts on Windows client, see [Running hello Azure CLI in Windows](../windows/cli-options.md).</span></span>
 
 
-## <a name="sample-script"></a><span data-ttu-id="18134-109">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="18134-109">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="a95f8-109">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="a95f8-109">Sample script</span></span>
 
-<span data-ttu-id="18134-110">L’exemple comporte trois scripts.</span><span class="sxs-lookup"><span data-stu-id="18134-110">The sample has three scripts.</span></span>
-<span data-ttu-id="18134-111">Le premier configure les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="18134-111">The first one provisions the virtual machines.</span></span>
-<span data-ttu-id="18134-112">Il utilise l’option no-wait. Ainsi, la commande renvoie le résultat sans attendre l’approvisionnement de chaque machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="18134-112">It uses the no-wait option so the command returns without waiting on each VM to be provisioned.</span></span>
-<span data-ttu-id="18134-113">Le second attend que les machines virtuelles soient entièrement approvisionnées.</span><span class="sxs-lookup"><span data-stu-id="18134-113">The second waits for the VMs to be fully provisioned.</span></span>
-<span data-ttu-id="18134-114">Le troisième script redémarre toutes les machines virtuelles qui ont été configurées, puis simplement les machines virtuelles marquées.</span><span class="sxs-lookup"><span data-stu-id="18134-114">The third script restarts all the VMs that were provisioned, and then just the tagged VMs.</span></span>
+<span data-ttu-id="a95f8-110">exemple Hello possède trois scripts.</span><span class="sxs-lookup"><span data-stu-id="a95f8-110">hello sample has three scripts.</span></span>
+<span data-ttu-id="a95f8-111">Bonjour tout d’abord un approvisionne les ordinateurs virtuels hello.</span><span class="sxs-lookup"><span data-stu-id="a95f8-111">hello first one provisions hello virtual machines.</span></span>
+<span data-ttu-id="a95f8-112">Utilise hello non-wait option commande hello retourne sans attendre sur chaque toobe de machine virtuelle configurée.</span><span class="sxs-lookup"><span data-stu-id="a95f8-112">It uses hello no-wait option so hello command returns without waiting on each VM toobe provisioned.</span></span>
+<span data-ttu-id="a95f8-113">Hello attend ensuite toobe de machines virtuelles hello entièrement configuré.</span><span class="sxs-lookup"><span data-stu-id="a95f8-113">hello second waits for hello VMs toobe fully provisioned.</span></span>
+<span data-ttu-id="a95f8-114">script de tiers Hello redémarre tous les ordinateurs virtuels hello qui ont été configurés, et puis hello simplement marquées des machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="a95f8-114">hello third script restarts all hello VMs that were provisioned, and then just hello tagged VMs.</span></span>
 
-### <a name="provision-the-vms"></a><span data-ttu-id="18134-115">Approvisionnement des machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="18134-115">Provision the VMs</span></span>
+### <a name="provision-hello-vms"></a><span data-ttu-id="a95f8-115">Configurer des machines virtuelles de hello</span><span class="sxs-lookup"><span data-stu-id="a95f8-115">Provision hello VMs</span></span>
 
-<span data-ttu-id="18134-116">Ce script crée un groupe de ressources, puis trois machines virtuelles à redémarrer.</span><span class="sxs-lookup"><span data-stu-id="18134-116">This script creates a resource group and then it creates three VMs to restart.</span></span>
-<span data-ttu-id="18134-117">Deux présentent un indicateur.</span><span class="sxs-lookup"><span data-stu-id="18134-117">Two of them are tagged.</span></span>
+<span data-ttu-id="a95f8-116">Ce script crée un groupe de ressources, puis il crée trois machines virtuelles toorestart.</span><span class="sxs-lookup"><span data-stu-id="a95f8-116">This script creates a resource group and then it creates three VMs toorestart.</span></span>
+<span data-ttu-id="a95f8-117">Deux présentent un indicateur.</span><span class="sxs-lookup"><span data-stu-id="a95f8-117">Two of them are tagged.</span></span>
 
-<span data-ttu-id="18134-118">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "Approvisionnement des machines virtuelles")]</span><span class="sxs-lookup"><span data-stu-id="18134-118">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "Provision the VMs")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "Provision hello VMs")]
 
-### <a name="wait"></a><span data-ttu-id="18134-119">Wait</span><span class="sxs-lookup"><span data-stu-id="18134-119">Wait</span></span>
+### <a name="wait"></a><span data-ttu-id="a95f8-118">Wait</span><span class="sxs-lookup"><span data-stu-id="a95f8-118">Wait</span></span>
 
-<span data-ttu-id="18134-120">Ce script vérifie l’état de configuration toutes les 20 secondes jusqu'à ce que les trois machines virtuelles soient approvisionnées, ou qu’une d’entre elles ne puisse l’être.</span><span class="sxs-lookup"><span data-stu-id="18134-120">This script checks on the provisioning status every 20 seconds until all three VMs are provisioned, or one of them fails to provision.</span></span>
+<span data-ttu-id="a95f8-119">Ce script vérifie hello toutes les 20 secondes jusqu'à ce que tous les trois machines virtuelles sont configurés, ou un d’eux échoue tooprovision état de préparation.</span><span class="sxs-lookup"><span data-stu-id="a95f8-119">This script checks on hello provisioning status every 20 seconds until all three VMs are provisioned, or one of them fails tooprovision.</span></span>
 
-<span data-ttu-id="18134-121">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "Attente du provisionnement des machines virtuelles")]</span><span class="sxs-lookup"><span data-stu-id="18134-121">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "Wait for the VMs to be provisioned")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "Wait for hello VMs toobe provisioned")]
 
-### <a name="restart-the-vms"></a><span data-ttu-id="18134-122">Redémarrer les machines virtuelles</span><span class="sxs-lookup"><span data-stu-id="18134-122">Restart the VMs</span></span>
+### <a name="restart-hello-vms"></a><span data-ttu-id="a95f8-120">Redémarrez les ordinateurs virtuels de hello</span><span class="sxs-lookup"><span data-stu-id="a95f8-120">Restart hello VMs</span></span>
 
-<span data-ttu-id="18134-123">Ce script redémarre toutes les machines virtuelles dans le groupe de ressources, puis redémarre uniquement les machines virtuelles marquées.</span><span class="sxs-lookup"><span data-stu-id="18134-123">This script restarts all the VMs in the resource group, and then it restarts just the tagged VMs.</span></span>
+<span data-ttu-id="a95f8-121">Ce script redémarre tous les ordinateurs virtuels de hello dans le groupe de ressources hello, puis il redémarre simplement machines virtuelles hello marquée.</span><span class="sxs-lookup"><span data-stu-id="a95f8-121">This script restarts all hello VMs in hello resource group, and then it restarts just hello tagged VMs.</span></span>
 
-<span data-ttu-id="18134-124">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "Redémarrer les machines virtuelles par balise")]</span><span class="sxs-lookup"><span data-stu-id="18134-124">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "Restart VMs by tag")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "Restart VMs by tag")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="18134-125">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="18134-125">Clean up deployment</span></span> 
+## <a name="clean-up-deployment"></a><span data-ttu-id="a95f8-122">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="a95f8-122">Clean up deployment</span></span> 
 
-<span data-ttu-id="18134-126">Une fois l’exemple de script exécuté, la commande suivante permet de supprimer les groupes de ressources, les machines virtuelles et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="18134-126">After the script sample has been run, the following command can be used to remove the resource groups, VMs, and all related resources.</span></span>
+<span data-ttu-id="a95f8-123">Après exécution de l’exemple de script hello, hello commande suivante peut être utilisé tooremove hello les groupes de ressources, de machines virtuelles et de toutes les ressources.</span><span class="sxs-lookup"><span data-stu-id="a95f8-123">After hello script sample has been run, hello following command can be used tooremove hello resource groups, VMs, and all related resources.</span></span>
 
 ```azurecli-interactive 
 az group delete -n myResourceGroup --no-wait --yes
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="18134-127">Explication du script</span><span class="sxs-lookup"><span data-stu-id="18134-127">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="a95f8-124">Explication du script</span><span class="sxs-lookup"><span data-stu-id="a95f8-124">Script explanation</span></span>
 
-<span data-ttu-id="18134-128">Ce script utilise les commandes suivantes pour créer un groupe de ressources, une machine virtuelle, un groupe à haute disponibilité, un équilibreur de charge et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="18134-128">This script uses the following commands to create a resource group, virtual machine, availability set, load balancer, and all related resources.</span></span> <span data-ttu-id="18134-129">Chaque commande du tableau renvoie à une documentation spécifique.</span><span class="sxs-lookup"><span data-stu-id="18134-129">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="a95f8-125">Ce script utilise hello suivant de commandes toocreate un groupe de ressources, machine virtuelle, haute disponibilité, équilibrage de charge et toutes les ressources.</span><span class="sxs-lookup"><span data-stu-id="a95f8-125">This script uses hello following commands toocreate a resource group, virtual machine, availability set, load balancer, and all related resources.</span></span> <span data-ttu-id="a95f8-126">Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.</span><span class="sxs-lookup"><span data-stu-id="a95f8-126">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="18134-130">Commande</span><span class="sxs-lookup"><span data-stu-id="18134-130">Command</span></span> | <span data-ttu-id="18134-131">Remarques</span><span class="sxs-lookup"><span data-stu-id="18134-131">Notes</span></span> |
+| <span data-ttu-id="a95f8-127">Commande</span><span class="sxs-lookup"><span data-stu-id="a95f8-127">Command</span></span> | <span data-ttu-id="a95f8-128">Remarques</span><span class="sxs-lookup"><span data-stu-id="a95f8-128">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="18134-132">az group create</span><span class="sxs-lookup"><span data-stu-id="18134-132">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="18134-133">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="18134-133">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="18134-134">az vm create</span><span class="sxs-lookup"><span data-stu-id="18134-134">az vm create</span></span>](https://docs.microsoft.com/cli/azure/vm/availability-set#create) | <span data-ttu-id="18134-135">Crée les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="18134-135">Creates the virtual machines.</span></span>  |
-| [<span data-ttu-id="18134-136">az vm list</span><span class="sxs-lookup"><span data-stu-id="18134-136">az vm list</span></span>](https://docs.microsoft.com/cli/azure/vm#list) | <span data-ttu-id="18134-137">Utilisé avec `--query` pour garantir que les machines virtuelles sont configurées avant de les redémarrer, puis pour obtenir les ID des machines virtuelles pour les redémarrer.</span><span class="sxs-lookup"><span data-stu-id="18134-137">Used with `--query` to ensure the VMs are provisioned before restarting them, and then to get the IDs of the VMs to restart them.</span></span> |
-| [<span data-ttu-id="18134-138">az resource list</span><span class="sxs-lookup"><span data-stu-id="18134-138">az resource list</span></span>](https://docs.microsoft.com/cli/azure/vm#list) | <span data-ttu-id="18134-139">Utilisé avec `--query` pour obtenir les ID des machines virtuelles qui utilisent l’indicateur.</span><span class="sxs-lookup"><span data-stu-id="18134-139">Used with `--query` to get the IDs of the VMs using the tag.</span></span> |
-| [<span data-ttu-id="18134-140">az vm restart</span><span class="sxs-lookup"><span data-stu-id="18134-140">az vm restart</span></span>](https://docs.microsoft.com/cli/azure/vm#list) | <span data-ttu-id="18134-141">Redémarre les machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="18134-141">Restarts the VMs.</span></span> |
-| [<span data-ttu-id="18134-142">az group delete</span><span class="sxs-lookup"><span data-stu-id="18134-142">az group delete</span></span>](https://docs.microsoft.com/cli/azure/vm/extension#set) | <span data-ttu-id="18134-143">Supprime un groupe de ressources, y compris toutes les ressources imbriquées.</span><span class="sxs-lookup"><span data-stu-id="18134-143">Deletes a resource group including all nested resources.</span></span> |
+| [<span data-ttu-id="a95f8-129">az group create</span><span class="sxs-lookup"><span data-stu-id="a95f8-129">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="a95f8-130">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="a95f8-130">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="a95f8-131">az vm create</span><span class="sxs-lookup"><span data-stu-id="a95f8-131">az vm create</span></span>](https://docs.microsoft.com/cli/azure/vm/availability-set#create) | <span data-ttu-id="a95f8-132">Crée des machines virtuelles de hello.</span><span class="sxs-lookup"><span data-stu-id="a95f8-132">Creates hello virtual machines.</span></span>  |
+| [<span data-ttu-id="a95f8-133">az vm list</span><span class="sxs-lookup"><span data-stu-id="a95f8-133">az vm list</span></span>](https://docs.microsoft.com/cli/azure/vm#list) | <span data-ttu-id="a95f8-134">Utilisé avec `--query` tooensure hello machines virtuelles sont configurés avant de les redémarrer, et puis tooget hello ID de hello machines virtuelles toorestart les.</span><span class="sxs-lookup"><span data-stu-id="a95f8-134">Used with `--query` tooensure hello VMs are provisioned before restarting them, and then tooget hello IDs of hello VMs toorestart them.</span></span> |
+| [<span data-ttu-id="a95f8-135">az resource list</span><span class="sxs-lookup"><span data-stu-id="a95f8-135">az resource list</span></span>](https://docs.microsoft.com/cli/azure/vm#list) | <span data-ttu-id="a95f8-136">Utilisé avec `--query` tooget hello ID des machines virtuelles de hello à l’aide de la balise de hello.</span><span class="sxs-lookup"><span data-stu-id="a95f8-136">Used with `--query` tooget hello IDs of hello VMs using hello tag.</span></span> |
+| [<span data-ttu-id="a95f8-137">az vm restart</span><span class="sxs-lookup"><span data-stu-id="a95f8-137">az vm restart</span></span>](https://docs.microsoft.com/cli/azure/vm#list) | <span data-ttu-id="a95f8-138">Redémarre les machines virtuelles de hello.</span><span class="sxs-lookup"><span data-stu-id="a95f8-138">Restarts hello VMs.</span></span> |
+| [<span data-ttu-id="a95f8-139">az group delete</span><span class="sxs-lookup"><span data-stu-id="a95f8-139">az group delete</span></span>](https://docs.microsoft.com/cli/azure/vm/extension#set) | <span data-ttu-id="a95f8-140">Supprime un groupe de ressources, y compris toutes les ressources imbriquées.</span><span class="sxs-lookup"><span data-stu-id="a95f8-140">Deletes a resource group including all nested resources.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="18134-144">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="18134-144">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a95f8-141">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="a95f8-141">Next steps</span></span>
 
-<span data-ttu-id="18134-145">Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="18134-145">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="a95f8-142">Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="a95f8-142">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="18134-146">Vous trouverez des exemples supplémentaires de scripts CLI de machine virtuelle dans la [documentation relative aux machines virtuelles Linux Azure](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="18134-146">Additional virtual machine CLI script samples can be found in the [Azure Linux VM documentation](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="a95f8-143">Exemples de script CLI supplémentaires de l’ordinateur virtuel se trouvent dans hello [documentation de la machine virtuelle de Azure Linux](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="a95f8-143">Additional virtual machine CLI script samples can be found in hello [Azure Linux VM documentation](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>

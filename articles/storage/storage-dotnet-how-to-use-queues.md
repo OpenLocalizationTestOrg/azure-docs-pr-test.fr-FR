@@ -1,6 +1,6 @@
 ---
-title: "Prise en main du stockage de files d’attente Azure à l’aide de .NET | Microsoft Docs"
-description: "Les files d’attente Azure fournissent une messagerie asynchrone fiable entre les composants d’application. La messagerie cloud permet de mettre à l’échelle vos composants d’application indépendamment."
+title: "aaaGet main du stockage de file d’attente Azure à l’aide de .NET | Documents Microsoft"
+description: "Les files d’attente Azure fournissent une messagerie asynchrone fiable entre les composants d’application. Le cloud permet de messagerie votre tooscale de composants d’application indépendamment."
 services: storage
 documentationcenter: .net
 author: robinsh
@@ -14,31 +14,31 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 03/27/2017
 ms.author: robinsh
-ms.openlocfilehash: 7f88aa9c50e669d1be7248346c7b1176bce61249
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 36bbb40189a301cddbc2ded92d0623fa5e093eb1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-queue-storage-using-net"></a><span data-ttu-id="37380-104">Prise en main du stockage de files d’attente Azure à l’aide de .NET</span><span class="sxs-lookup"><span data-stu-id="37380-104">Get started with Azure Queue storage using .NET</span></span>
+# <a name="get-started-with-azure-queue-storage-using-net"></a><span data-ttu-id="5b624-104">Prise en main du stockage de files d’attente Azure à l’aide de .NET</span><span class="sxs-lookup"><span data-stu-id="5b624-104">Get started with Azure Queue storage using .NET</span></span>
 [!INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-check-out-samples-dotnet](../../includes/storage-check-out-samples-dotnet.md)]
 
-## <a name="overview"></a><span data-ttu-id="37380-105">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="37380-105">Overview</span></span>
-<span data-ttu-id="37380-106">Le stockage de files d’attente Azure fournit une messagerie cloud entre les composants d’application.</span><span class="sxs-lookup"><span data-stu-id="37380-106">Azure Queue storage provides cloud messaging between application components.</span></span> <span data-ttu-id="37380-107">Lors de la conception d'applications pour la mise à l'échelle, des composants d'application sont souvent découplés, de sorte qu'ils peuvent être mis à l'échelle indépendamment.</span><span class="sxs-lookup"><span data-stu-id="37380-107">In designing applications for scale, application components are often decoupled, so that they can scale independently.</span></span> <span data-ttu-id="37380-108">Le stockage de files d’attente offre une messagerie asynchrone pour la communication entre les composants d’application, qu’ils soient exécutés dans le cloud, sur le bureau, sur un serveur local ou sur un appareil mobile.</span><span class="sxs-lookup"><span data-stu-id="37380-108">Queue storage delivers asynchronous messaging for communication between application components, whether they are running in the cloud, on the desktop, on an on-premises server, or on a mobile device.</span></span> <span data-ttu-id="37380-109">Le stockage de files d’attente prend également en charge la gestion des tâches asynchrones et la création des flux de travail de processus.</span><span class="sxs-lookup"><span data-stu-id="37380-109">Queue storage also supports managing asynchronous tasks and building process work flows.</span></span>
+## <a name="overview"></a><span data-ttu-id="5b624-105">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="5b624-105">Overview</span></span>
+<span data-ttu-id="5b624-106">Le stockage de files d’attente Azure fournit une messagerie cloud entre les composants d’application.</span><span class="sxs-lookup"><span data-stu-id="5b624-106">Azure Queue storage provides cloud messaging between application components.</span></span> <span data-ttu-id="5b624-107">Lors de la conception d'applications pour la mise à l'échelle, des composants d'application sont souvent découplés, de sorte qu'ils peuvent être mis à l'échelle indépendamment.</span><span class="sxs-lookup"><span data-stu-id="5b624-107">In designing applications for scale, application components are often decoupled, so that they can scale independently.</span></span> <span data-ttu-id="5b624-108">Stockage de file d’attente fournit une messagerie asynchrone pour la communication entre les composants d’application, qu’elles s’exécutent dans le cloud hello, sur le bureau de hello, sur un serveur local ou sur un appareil mobile.</span><span class="sxs-lookup"><span data-stu-id="5b624-108">Queue storage delivers asynchronous messaging for communication between application components, whether they are running in hello cloud, on hello desktop, on an on-premises server, or on a mobile device.</span></span> <span data-ttu-id="5b624-109">Le stockage de files d’attente prend également en charge la gestion des tâches asynchrones et la création des flux de travail de processus.</span><span class="sxs-lookup"><span data-stu-id="5b624-109">Queue storage also supports managing asynchronous tasks and building process work flows.</span></span>
 
-### <a name="about-this-tutorial"></a><span data-ttu-id="37380-110">À propos de ce didacticiel</span><span class="sxs-lookup"><span data-stu-id="37380-110">About this tutorial</span></span>
-<span data-ttu-id="37380-111">Ce didacticiel montre comment écrire du code .NET pour des scénarios courants d’utilisation du stockage de files d’attente Azure.</span><span class="sxs-lookup"><span data-stu-id="37380-111">This tutorial shows how to write .NET code for some common scenarios using Azure Queue storage.</span></span> <span data-ttu-id="37380-112">Les scénarios traités sont les suivants : création et suppression de files d’attente, et ajout, lecture et suppression des messages de file d’attente.</span><span class="sxs-lookup"><span data-stu-id="37380-112">Scenarios covered include creating and deleting queues and adding, reading, and deleting queue messages.</span></span>
+### <a name="about-this-tutorial"></a><span data-ttu-id="5b624-110">À propos de ce didacticiel</span><span class="sxs-lookup"><span data-stu-id="5b624-110">About this tutorial</span></span>
+<span data-ttu-id="5b624-111">Ce didacticiel montre comment le code toowrite .NET pour les scénarios courants lors de l’utilisation du stockage de file d’attente Azure.</span><span class="sxs-lookup"><span data-stu-id="5b624-111">This tutorial shows how toowrite .NET code for some common scenarios using Azure Queue storage.</span></span> <span data-ttu-id="5b624-112">Les scénarios traités sont les suivants : création et suppression de files d’attente, et ajout, lecture et suppression des messages de file d’attente.</span><span class="sxs-lookup"><span data-stu-id="5b624-112">Scenarios covered include creating and deleting queues and adding, reading, and deleting queue messages.</span></span>
 
-<span data-ttu-id="37380-113">**Durée estimée :** 45 minutes</span><span class="sxs-lookup"><span data-stu-id="37380-113">**Estimated time to complete:** 45 minutes</span></span>
+<span data-ttu-id="5b624-113">**Estimation du temps toocomplete :** 45 minutes</span><span class="sxs-lookup"><span data-stu-id="5b624-113">**Estimated time toocomplete:** 45 minutes</span></span>
 
-<span data-ttu-id="37380-114">**Configuration requise :**</span><span class="sxs-lookup"><span data-stu-id="37380-114">**Prerequisities:**</span></span>
+<span data-ttu-id="5b624-114">**Configuration requise :**</span><span class="sxs-lookup"><span data-stu-id="5b624-114">**Prerequisities:**</span></span>
 
-* [<span data-ttu-id="37380-115">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="37380-115">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/downloads/)
-* [<span data-ttu-id="37380-116">Bibliothèque cliente Azure Storage pour .NET</span><span class="sxs-lookup"><span data-stu-id="37380-116">Azure Storage Client Library for .NET</span></span>](https://www.nuget.org/packages/WindowsAzure.Storage/)
-* [<span data-ttu-id="37380-117">Gestionnaire de configuration Azure pour .NET</span><span class="sxs-lookup"><span data-stu-id="37380-117">Azure Configuration Manager for .NET</span></span>](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
-* <span data-ttu-id="37380-118">Un [compte de stockage Azure](storage-create-storage-account.md#create-a-storage-account)</span><span class="sxs-lookup"><span data-stu-id="37380-118">An [Azure storage account](storage-create-storage-account.md#create-a-storage-account)</span></span>
+* [<span data-ttu-id="5b624-115">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="5b624-115">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/downloads/)
+* [<span data-ttu-id="5b624-116">Bibliothèque cliente Azure Storage pour .NET</span><span class="sxs-lookup"><span data-stu-id="5b624-116">Azure Storage Client Library for .NET</span></span>](https://www.nuget.org/packages/WindowsAzure.Storage/)
+* [<span data-ttu-id="5b624-117">Gestionnaire de configuration Azure pour .NET</span><span class="sxs-lookup"><span data-stu-id="5b624-117">Azure Configuration Manager for .NET</span></span>](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
+* <span data-ttu-id="5b624-118">Un [compte de stockage Azure](storage-create-storage-account.md#create-a-storage-account)</span><span class="sxs-lookup"><span data-stu-id="5b624-118">An [Azure storage account](storage-create-storage-account.md#create-a-storage-account)</span></span>
 
 [!INCLUDE [storage-dotnet-client-library-version-include](../../includes/storage-dotnet-client-library-version-include.md)]
 
@@ -48,8 +48,8 @@ ms.lasthandoff: 08/03/2017
 
 [!INCLUDE [storage-development-environment-include](../../includes/storage-development-environment-include.md)]
 
-### <a name="add-using-directives"></a><span data-ttu-id="37380-119">Ajouter des directives d’utilisation</span><span class="sxs-lookup"><span data-stu-id="37380-119">Add using directives</span></span>
-<span data-ttu-id="37380-120">Ajoutez les directives `using` suivantes au fichier `Program.cs` :</span><span class="sxs-lookup"><span data-stu-id="37380-120">Add the following `using` directives to the top of the `Program.cs` file:</span></span>
+### <a name="add-using-directives"></a><span data-ttu-id="5b624-119">Ajouter des directives d’utilisation</span><span class="sxs-lookup"><span data-stu-id="5b624-119">Add using directives</span></span>
+<span data-ttu-id="5b624-120">Ajoutez hello suivant `using` haut toohello de directives de hello `Program.cs` fichier :</span><span class="sxs-lookup"><span data-stu-id="5b624-120">Add hello following `using` directives toohello top of hello `Program.cs` file:</span></span>
 
 ```csharp
 using Microsoft.Azure; // Namespace for CloudConfigurationManager
@@ -57,94 +57,94 @@ using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
 using Microsoft.WindowsAzure.Storage.Queue; // Namespace for Queue storage types
 ```
 
-### <a name="parse-the-connection-string"></a><span data-ttu-id="37380-121">Analyse de la chaîne de connexion</span><span class="sxs-lookup"><span data-stu-id="37380-121">Parse the connection string</span></span>
+### <a name="parse-hello-connection-string"></a><span data-ttu-id="5b624-121">Analyser la chaîne de connexion hello</span><span class="sxs-lookup"><span data-stu-id="5b624-121">Parse hello connection string</span></span>
 [!INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
-### <a name="create-the-queue-service-client"></a><span data-ttu-id="37380-122">Création du client du service Queue</span><span class="sxs-lookup"><span data-stu-id="37380-122">Create the Queue service client</span></span>
-<span data-ttu-id="37380-123">La classe **CloudQueueClient** vous permet de récupérer des files d’attente stockées dans Queue Storage.</span><span class="sxs-lookup"><span data-stu-id="37380-123">The **CloudQueueClient** class enables you to retrieve queues stored in Queue storage.</span></span> <span data-ttu-id="37380-124">Voici un moyen de créer le client du service :</span><span class="sxs-lookup"><span data-stu-id="37380-124">Here's one way to create the service client:</span></span>
+### <a name="create-hello-queue-service-client"></a><span data-ttu-id="5b624-122">Créer le client du service de file d’attente hello</span><span class="sxs-lookup"><span data-stu-id="5b624-122">Create hello Queue service client</span></span>
+<span data-ttu-id="5b624-123">Hello **CloudQueueClient** classe permet de vous tooretrieve les files d’attente stockés dans le stockage de file d’attente.</span><span class="sxs-lookup"><span data-stu-id="5b624-123">hello **CloudQueueClient** class enables you tooretrieve queues stored in Queue storage.</span></span> <span data-ttu-id="5b624-124">Voici un moyen toocreate hello service client :</span><span class="sxs-lookup"><span data-stu-id="5b624-124">Here's one way toocreate hello service client:</span></span>
 
 ```csharp
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 ```
     
-<span data-ttu-id="37380-125">Vous êtes maintenant prêt à écrire du code qui lit et écrit des données dans le Queue Storage.</span><span class="sxs-lookup"><span data-stu-id="37380-125">Now you are ready to write code that reads data from and writes data to Queue storage.</span></span>
+<span data-ttu-id="5b624-125">Vous êtes maintenant code prêt toowrite qui lit les données à partir d’et écrit le stockage des données tooQueue.</span><span class="sxs-lookup"><span data-stu-id="5b624-125">Now you are ready toowrite code that reads data from and writes data tooQueue storage.</span></span>
 
-## <a name="create-a-queue"></a><span data-ttu-id="37380-126">Création d’une file d’attente</span><span class="sxs-lookup"><span data-stu-id="37380-126">Create a queue</span></span>
-<span data-ttu-id="37380-127">Cet exemple montre comment créer une file d’attente, si elle n’existe pas encore :</span><span class="sxs-lookup"><span data-stu-id="37380-127">This example shows how to create a queue if it does not already exist:</span></span>
+## <a name="create-a-queue"></a><span data-ttu-id="5b624-126">Création d’une file d’attente</span><span class="sxs-lookup"><span data-stu-id="5b624-126">Create a queue</span></span>
+<span data-ttu-id="5b624-127">Cet exemple montre comment toocreate une file d’attente si elle n’existe pas déjà :</span><span class="sxs-lookup"><span data-stu-id="5b624-127">This example shows how toocreate a queue if it does not already exist:</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the queue client.
+// Create hello queue client.
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-// Retrieve a reference to a container.
+// Retrieve a reference tooa container.
 CloudQueue queue = queueClient.GetQueueReference("myqueue");
 
-// Create the queue if it doesn't already exist
+// Create hello queue if it doesn't already exist
 queue.CreateIfNotExists();
 ```
 
-## <a name="insert-a-message-into-a-queue"></a><span data-ttu-id="37380-128">Insertion d'un message dans une file d'attente</span><span class="sxs-lookup"><span data-stu-id="37380-128">Insert a message into a queue</span></span>
-<span data-ttu-id="37380-129">Pour insérer un message dans une file d'attente existante, commencez par créer un **CloudQueueMessage**.</span><span class="sxs-lookup"><span data-stu-id="37380-129">To insert a message into an existing queue, first create a new **CloudQueueMessage**.</span></span> <span data-ttu-id="37380-130">Appelez ensuite la méthode **AddMessage** .</span><span class="sxs-lookup"><span data-stu-id="37380-130">Next, call the **AddMessage** method.</span></span> <span data-ttu-id="37380-131">Un **CloudQueueMessage** peut être créé à partir d’une chaîne (au format UTF-8) ou d’un tableau **d’octets**.</span><span class="sxs-lookup"><span data-stu-id="37380-131">A **CloudQueueMessage** can be created from either a string (in UTF-8 format) or a **byte** array.</span></span> <span data-ttu-id="37380-132">Voici le code qui crée une file d'attente (si elle n'existe pas) et insère le message « Hello, World » :</span><span class="sxs-lookup"><span data-stu-id="37380-132">Here is code which creates a queue (if it doesn't exist) and inserts the message 'Hello, World':</span></span>
+## <a name="insert-a-message-into-a-queue"></a><span data-ttu-id="5b624-128">Insertion d'un message dans une file d'attente</span><span class="sxs-lookup"><span data-stu-id="5b624-128">Insert a message into a queue</span></span>
+<span data-ttu-id="5b624-129">tooinsert un message dans une file d’attente existante, commencez par créer un **CloudQueueMessage**.</span><span class="sxs-lookup"><span data-stu-id="5b624-129">tooinsert a message into an existing queue, first create a new **CloudQueueMessage**.</span></span> <span data-ttu-id="5b624-130">Ensuite, appelez hello **AddMessage** (méthode).</span><span class="sxs-lookup"><span data-stu-id="5b624-130">Next, call hello **AddMessage** method.</span></span> <span data-ttu-id="5b624-131">Un **CloudQueueMessage** peut être créé à partir d’une chaîne (au format UTF-8) ou d’un tableau **d’octets**.</span><span class="sxs-lookup"><span data-stu-id="5b624-131">A **CloudQueueMessage** can be created from either a string (in UTF-8 format) or a **byte** array.</span></span> <span data-ttu-id="5b624-132">Voici le code qui crée une file d’attente (s’il n’existe pas) et le message de type hello insertions « Hello, World » :</span><span class="sxs-lookup"><span data-stu-id="5b624-132">Here is code which creates a queue (if it doesn't exist) and inserts hello message 'Hello, World':</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the queue client.
+// Create hello queue client.
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 CloudQueue queue = queueClient.GetQueueReference("myqueue");
 
-// Create the queue if it doesn't already exist.
+// Create hello queue if it doesn't already exist.
 queue.CreateIfNotExists();
 
-// Create a message and add it to the queue.
+// Create a message and add it toohello queue.
 CloudQueueMessage message = new CloudQueueMessage("Hello, World");
 queue.AddMessage(message);
 ```
 
-## <a name="peek-at-the-next-message"></a><span data-ttu-id="37380-133">Lecture furtive du message suivant</span><span class="sxs-lookup"><span data-stu-id="37380-133">Peek at the next message</span></span>
-<span data-ttu-id="37380-134">Vous pouvez lire furtivement le message au début de la file d'attente sans l'enlever de la file d'attente en appelant la méthode **PeekMessage** .</span><span class="sxs-lookup"><span data-stu-id="37380-134">You can peek at the message in the front of a queue without removing it from the queue by calling the **PeekMessage** method.</span></span>
+## <a name="peek-at-hello-next-message"></a><span data-ttu-id="5b624-133">Lire des message de type hello suivant</span><span class="sxs-lookup"><span data-stu-id="5b624-133">Peek at hello next message</span></span>
+<span data-ttu-id="5b624-134">Vous pouvez lire de message hello devant hello une file d’attente sans le supprimer de la file d’attente hello en appelant hello **PeekMessage** (méthode).</span><span class="sxs-lookup"><span data-stu-id="5b624-134">You can peek at hello message in hello front of a queue without removing it from hello queue by calling hello **PeekMessage** method.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the queue client
+// Create hello queue client
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-// Retrieve a reference to a queue
+// Retrieve a reference tooa queue
 CloudQueue queue = queueClient.GetQueueReference("myqueue");
 
-// Peek at the next message
+// Peek at hello next message
 CloudQueueMessage peekedMessage = queue.PeekMessage();
 
 // Display message.
 Console.WriteLine(peekedMessage.AsString);
 ```
 
-## <a name="change-the-contents-of-a-queued-message"></a><span data-ttu-id="37380-135">Modification du contenu d'un message en file d'attente</span><span class="sxs-lookup"><span data-stu-id="37380-135">Change the contents of a queued message</span></span>
-<span data-ttu-id="37380-136">Vous pouvez modifier le contenu d'un message placé dans la file d'attente.</span><span class="sxs-lookup"><span data-stu-id="37380-136">You can change the contents of a message in-place in the queue.</span></span> <span data-ttu-id="37380-137">Si le message représente une tâche, vous pouvez utiliser cette fonctionnalité pour mettre à jour l'état de la tâche.</span><span class="sxs-lookup"><span data-stu-id="37380-137">If the message represents a work task, you could use this feature to update the status of the work task.</span></span> <span data-ttu-id="37380-138">Le code suivant met à jour le message de la file d'attente avec un nouveau contenu et ajoute 60 secondes au délai d'expiration de la visibilité.</span><span class="sxs-lookup"><span data-stu-id="37380-138">The following code updates the queue message with new contents, and sets the visibility timeout to extend another 60 seconds.</span></span> <span data-ttu-id="37380-139">Cette opération enregistre l'état de la tâche associée au message et accorde une minute supplémentaire au client pour traiter le message.</span><span class="sxs-lookup"><span data-stu-id="37380-139">This saves the state of work associated with the message, and gives the client another minute to continue working on the message.</span></span> <span data-ttu-id="37380-140">Vous pouvez utiliser cette technique pour suivre des flux de travail à plusieurs étapes sur les messages de file d'attente, sans devoir reprendre du début si une étape du traitement échoue à cause d'une défaillance matérielle ou logicielle.</span><span class="sxs-lookup"><span data-stu-id="37380-140">You could use this technique to track multi-step workflows on queue messages, without having to start over from the beginning if a processing step fails due to hardware or software failure.</span></span> <span data-ttu-id="37380-141">Normalement, vous conservez aussi un nombre de nouvelles tentatives et si le message est retenté plus de *n* fois, vous le supprimez.</span><span class="sxs-lookup"><span data-stu-id="37380-141">Typically, you would keep a retry count as well, and if the message is retried more than *n* times, you would delete it.</span></span> <span data-ttu-id="37380-142">Cela protège du déclenchement d'une erreur d'application par un message chaque fois qu'il est traité.</span><span class="sxs-lookup"><span data-stu-id="37380-142">This protects against a message that triggers an application error each time it is processed.</span></span>
+## <a name="change-hello-contents-of-a-queued-message"></a><span data-ttu-id="5b624-135">Modifier le contenu de hello d’un message en file d’attente</span><span class="sxs-lookup"><span data-stu-id="5b624-135">Change hello contents of a queued message</span></span>
+<span data-ttu-id="5b624-136">Vous pouvez modifier le contenu de hello d’un message en place dans la file d’attente hello.</span><span class="sxs-lookup"><span data-stu-id="5b624-136">You can change hello contents of a message in-place in hello queue.</span></span> <span data-ttu-id="5b624-137">Si le message représente une tâche de travail, vous pouvez utiliser cette fonctionnalité de tooupdate l’état de tâche hello.</span><span class="sxs-lookup"><span data-stu-id="5b624-137">If the message represents a work task, you could use this feature tooupdate the status of hello work task.</span></span> <span data-ttu-id="5b624-138">Hello suivant code met à jour le message de file d’attente hello avec le nouveau contenu et jeux hello tooextend de délai d’attente de visibilité un autre 60 secondes.</span><span class="sxs-lookup"><span data-stu-id="5b624-138">hello following code updates hello queue message with new contents, and sets hello visibility timeout tooextend another 60 seconds.</span></span> <span data-ttu-id="5b624-139">Cela enregistre l’état hello du travail associé au message de type hello, ainsi que les clients hello un autre toocontinue minute travaillant sur un message de type hello.</span><span class="sxs-lookup"><span data-stu-id="5b624-139">This saves hello state of work associated with hello message, and gives hello client another minute toocontinue working on hello message.</span></span> <span data-ttu-id="5b624-140">Vous pouvez utiliser ce flux de travail à plusieurs étapes de tootrack technique sur les messages de la file d’attente, sans avoir toostart sur du début de hello si une étape de traitement échoue en raison de l’erreur toohardware ou logicielle.</span><span class="sxs-lookup"><span data-stu-id="5b624-140">You could use this technique tootrack multi-step workflows on queue messages, without having toostart over from hello beginning if a processing step fails due toohardware or software failure.</span></span> <span data-ttu-id="5b624-141">En règle générale, vous conservez ainsi un nombre de tentatives, et si hello message est retentée plusieurs  *n*  fois, vous le supprimez.</span><span class="sxs-lookup"><span data-stu-id="5b624-141">Typically, you would keep a retry count as well, and if hello message is retried more than *n* times, you would delete it.</span></span> <span data-ttu-id="5b624-142">Cela protège du déclenchement d'une erreur d'application par un message chaque fois qu'il est traité.</span><span class="sxs-lookup"><span data-stu-id="5b624-142">This protects against a message that triggers an application error each time it is processed.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the queue client.
+// Create hello queue client.
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 CloudQueue queue = queueClient.GetQueueReference("myqueue");
 
-// Get the message from the queue and update the message contents.
+// Get hello message from hello queue and update hello message contents.
 CloudQueueMessage message = queue.GetMessage();
 message.SetMessageContent("Updated contents.");
 queue.UpdateMessage(message,
@@ -152,32 +152,32 @@ queue.UpdateMessage(message,
     MessageUpdateFields.Content | MessageUpdateFields.Visibility);
 ```
 
-## <a name="de-queue-the-next-message"></a><span data-ttu-id="37380-143">Enlèvement du message suivant de la file d'attente</span><span class="sxs-lookup"><span data-stu-id="37380-143">De-queue the next message</span></span>
-<span data-ttu-id="37380-144">Votre code enlève un message d'une file d'attente en deux étapes.</span><span class="sxs-lookup"><span data-stu-id="37380-144">Your code de-queues a message from a queue in two steps.</span></span> <span data-ttu-id="37380-145">Lorsque vous appelez **GetMessage**, vous obtenez le message suivant dans une file d'attente.</span><span class="sxs-lookup"><span data-stu-id="37380-145">When you call **GetMessage**, you get the next message in a queue.</span></span> <span data-ttu-id="37380-146">Un message renvoyé par **GetMessage** devient invisible par les autres codes lisant les messages de cette file d'attente.</span><span class="sxs-lookup"><span data-stu-id="37380-146">A message returned from **GetMessage** becomes invisible to any other code reading messages from this queue.</span></span> <span data-ttu-id="37380-147">Par défaut, ce message reste invisible pendant 30 secondes.</span><span class="sxs-lookup"><span data-stu-id="37380-147">By default, this message stays invisible for 30 seconds.</span></span> <span data-ttu-id="37380-148">Pour finaliser la suppression du message de la file d'attente, vous devez aussi appeler **DeleteMessage**.</span><span class="sxs-lookup"><span data-stu-id="37380-148">To finish removing the message from the queue, you must also call **DeleteMessage**.</span></span> <span data-ttu-id="37380-149">Ce processus de suppression d'un message en deux étapes garantit que, si votre code ne parvient pas à traiter un message à cause d'une défaillance matérielle ou logicielle, une autre instance de votre code peut obtenir le même message et réessayer.</span><span class="sxs-lookup"><span data-stu-id="37380-149">This two-step process of removing a message assures that if your code fails to process a message due to hardware or software failure, another instance of your code can get the same message and try again.</span></span> <span data-ttu-id="37380-150">Votre code appelle **DeleteMessage** juste après le traitement du message.</span><span class="sxs-lookup"><span data-stu-id="37380-150">Your code calls **DeleteMessage** right after the message has been processed.</span></span>
+## <a name="de-queue-hello-next-message"></a><span data-ttu-id="5b624-143">File d’attente message de type hello suivant</span><span class="sxs-lookup"><span data-stu-id="5b624-143">De-queue hello next message</span></span>
+<span data-ttu-id="5b624-144">Votre code enlève un message d'une file d'attente en deux étapes.</span><span class="sxs-lookup"><span data-stu-id="5b624-144">Your code de-queues a message from a queue in two steps.</span></span> <span data-ttu-id="5b624-145">Lorsque vous appelez **GetMessage**, vous obtenez un message de type hello suivante dans une file d’attente.</span><span class="sxs-lookup"><span data-stu-id="5b624-145">When you call **GetMessage**, you get hello next message in a queue.</span></span> <span data-ttu-id="5b624-146">Un message retourné à partir de **GetMessage** devient invisible tooany tout autre code de la lecture de messages à partir de cette file d’attente.</span><span class="sxs-lookup"><span data-stu-id="5b624-146">A message returned from **GetMessage** becomes invisible tooany other code reading messages from this queue.</span></span> <span data-ttu-id="5b624-147">Par défaut, ce message reste invisible pendant 30 secondes.</span><span class="sxs-lookup"><span data-stu-id="5b624-147">By default, this message stays invisible for 30 seconds.</span></span> <span data-ttu-id="5b624-148">toofinish lors de la suppression du message de salutation à partir de la file d’attente hello, vous devez également appeler **DeleteMessage**.</span><span class="sxs-lookup"><span data-stu-id="5b624-148">toofinish removing hello message from hello queue, you must also call **DeleteMessage**.</span></span> <span data-ttu-id="5b624-149">Ce processus en deux étapes de la suppression d’un message garantit que si votre code échoue tooprocess qu'un message en raison de la défaillance toohardware ou logiciel, une autre instance de votre code peut obtenir hello même message puis réessayez.</span><span class="sxs-lookup"><span data-stu-id="5b624-149">This two-step process of removing a message assures that if your code fails tooprocess a message due toohardware or software failure, another instance of your code can get hello same message and try again.</span></span> <span data-ttu-id="5b624-150">Votre code appelle **DeleteMessage** juste après le message de salutation a été traité.</span><span class="sxs-lookup"><span data-stu-id="5b624-150">Your code calls **DeleteMessage** right after hello message has been processed.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the queue client
+// Create hello queue client
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-// Retrieve a reference to a queue
+// Retrieve a reference tooa queue
 CloudQueue queue = queueClient.GetQueueReference("myqueue");
 
-// Get the next message
+// Get hello next message
 CloudQueueMessage retrievedMessage = queue.GetMessage();
 
-//Process the message in less than 30 seconds, and then delete the message
+//Process hello message in less than 30 seconds, and then delete hello message
 queue.DeleteMessage(retrievedMessage);
 ```
 
-## <a name="use-async-await-pattern-with-common-queue-storage-apis"></a><span data-ttu-id="37380-151">Utiliser le modèle Async-Await avec les API de stockage de files d’attente communes</span><span class="sxs-lookup"><span data-stu-id="37380-151">Use Async-Await pattern with common Queue storage APIs</span></span>
-<span data-ttu-id="37380-152">Cet exemple décrit comment utiliser le modèle Async-Await avec les API de stockage de files d’attente communes.</span><span class="sxs-lookup"><span data-stu-id="37380-152">This example shows how to use the Async-Await pattern with common Queue storage APIs.</span></span> <span data-ttu-id="37380-153">L’exemple appelle la version asynchrone de chacune des méthodes spécifiées, comme l’indique le suffixe *Async* de chaque méthode.</span><span class="sxs-lookup"><span data-stu-id="37380-153">The sample calls the asynchronous version of each of the given methods, as indicated by the *Async* suffix of each method.</span></span> <span data-ttu-id="37380-154">Quand une méthode asynchrone est utilisée, le modèle Async-Await suspend l’exécution locale jusqu’à la fin de l’appel.</span><span class="sxs-lookup"><span data-stu-id="37380-154">When an async method is used, the async-await pattern suspends local execution until the call completes.</span></span> <span data-ttu-id="37380-155">Ce comportement permet au thread actuel d’effectuer d’autres tâches afin d’éviter les goulots d’étranglement au niveau des performances et d’améliorer la réactivité globale de votre application.</span><span class="sxs-lookup"><span data-stu-id="37380-155">This behavior allows the current thread to do other work, which helps avoid performance bottlenecks and improves the overall responsiveness of your application.</span></span> <span data-ttu-id="37380-156">Pour plus d’informations sur l’utilisation du modèle Async-Await dans .NET, consultez l’article [Programmation asynchrone avec Async et Await (C# et Visual Basic)](https://msdn.microsoft.com/library/hh191443.aspx)</span><span class="sxs-lookup"><span data-stu-id="37380-156">For more details on using the Async-Await pattern in .NET see [Async and Await (C# and Visual Basic)](https://msdn.microsoft.com/library/hh191443.aspx)</span></span>
+## <a name="use-async-await-pattern-with-common-queue-storage-apis"></a><span data-ttu-id="5b624-151">Utiliser le modèle Async-Await avec les API de stockage de files d’attente communes</span><span class="sxs-lookup"><span data-stu-id="5b624-151">Use Async-Await pattern with common Queue storage APIs</span></span>
+<span data-ttu-id="5b624-152">Cet exemple montre comment hello toouse Async-Await de modèle avec l’API de stockage de file d’attente commun.</span><span class="sxs-lookup"><span data-stu-id="5b624-152">This example shows how toouse hello Async-Await pattern with common Queue storage APIs.</span></span> <span data-ttu-id="5b624-153">exemple Hello appelle la version asynchrone de hello de chacune des hello donné des méthodes, comme indiqué par hello *Async* suffixe de chaque méthode.</span><span class="sxs-lookup"><span data-stu-id="5b624-153">hello sample calls hello asynchronous version of each of hello given methods, as indicated by hello *Async* suffix of each method.</span></span> <span data-ttu-id="5b624-154">Lorsqu’une méthode async est utilisée, hello async-await modèle suspend l’exécution locale jusqu'à ce que la fin de l’appel hello.</span><span class="sxs-lookup"><span data-stu-id="5b624-154">When an async method is used, hello async-await pattern suspends local execution until hello call completes.</span></span> <span data-ttu-id="5b624-155">Ce comportement permet à toodo de thread actuel hello autre travail, ce qui permet d’éviter les goulots d’étranglement et améliore la réactivité globale de votre application de hello.</span><span class="sxs-lookup"><span data-stu-id="5b624-155">This behavior allows hello current thread toodo other work, which helps avoid performance bottlenecks and improves hello overall responsiveness of your application.</span></span> <span data-ttu-id="5b624-156">Pour plus d’informations sur l’utilisation de hello modèle Async-Await dans .NET consultez [Async et Await (c# et Visual Basic)](https://msdn.microsoft.com/library/hh191443.aspx)</span><span class="sxs-lookup"><span data-stu-id="5b624-156">For more details on using hello Async-Await pattern in .NET see [Async and Await (C# and Visual Basic)](https://msdn.microsoft.com/library/hh191443.aspx)</span></span>
 
 ```csharp
-// Create the queue if it doesn't already exist
+// Create hello queue if it doesn't already exist
 if(await queue.CreateIfNotExistsAsync())
 {
     Console.WriteLine("Queue '{0}' Created", queue.Name);
@@ -187,35 +187,35 @@ else
     Console.WriteLine("Queue '{0}' Exists", queue.Name);
 }
 
-// Create a message to put in the queue
+// Create a message tooput in hello queue
 CloudQueueMessage cloudQueueMessage = new CloudQueueMessage("My message");
 
-// Async enqueue the message
+// Async enqueue hello message
 await queue.AddMessageAsync(cloudQueueMessage);
 Console.WriteLine("Message added");
 
-// Async dequeue the message
+// Async dequeue hello message
 CloudQueueMessage retrievedMessage = await queue.GetMessageAsync();
 Console.WriteLine("Retrieved message with content '{0}'", retrievedMessage.AsString);
 
-// Async delete the message
+// Async delete hello message
 await queue.DeleteMessageAsync(retrievedMessage);
 Console.WriteLine("Deleted message");
 ```
     
-## <a name="leverage-additional-options-for-de-queuing-messages"></a><span data-ttu-id="37380-157">Utilisation d’options supplémentaires pour l’enlèvement des messages</span><span class="sxs-lookup"><span data-stu-id="37380-157">Leverage additional options for de-queuing messages</span></span>
-<span data-ttu-id="37380-158">Il existe deux façons de personnaliser l'extraction des messages à partir d'une file d'attente.</span><span class="sxs-lookup"><span data-stu-id="37380-158">There are two ways you can customize message retrieval from a queue.</span></span>
-<span data-ttu-id="37380-159">Premièrement, vous pouvez obtenir un lot de messages (jusqu'à 32).</span><span class="sxs-lookup"><span data-stu-id="37380-159">First, you can get a batch of messages (up to 32).</span></span> <span data-ttu-id="37380-160">Deuxièmement, vous pouvez définir un délai d'expiration de l'invisibilité plus long ou plus court afin d'accorder à votre code plus ou moins de temps pour traiter complètement chaque message.</span><span class="sxs-lookup"><span data-stu-id="37380-160">Second, you can set a longer or shorter invisibility timeout, allowing your code more or less time to fully process each message.</span></span> <span data-ttu-id="37380-161">L'exemple de code suivant utilise la méthode **GetMessages** pour obtenir 20 messages en un appel.</span><span class="sxs-lookup"><span data-stu-id="37380-161">The following code example uses the **GetMessages** method to get 20 messages in one call.</span></span> <span data-ttu-id="37380-162">Ensuite, il traite chaque message à l'aide d'une boucle **foreach** .</span><span class="sxs-lookup"><span data-stu-id="37380-162">Then it processes each message using a **foreach** loop.</span></span> <span data-ttu-id="37380-163">Il définit également le délai d'expiration de l'invisibilité sur cinq minutes pour chaque message.</span><span class="sxs-lookup"><span data-stu-id="37380-163">It also sets the invisibility timeout to five minutes for each message.</span></span> <span data-ttu-id="37380-164">Notez que le délai de 5 minutes démarre en même temps pour tous les messages, donc une fois les 5 minutes écoulées après l'appel de **GetMessages**, tous les messages n'ayant pas été supprimés redeviennent visibles.</span><span class="sxs-lookup"><span data-stu-id="37380-164">Note that the 5 minutes starts for all messages at the same time, so after 5 minutes have passed since the call to **GetMessages**, any messages which have not been deleted will become visible again.</span></span>
+## <a name="leverage-additional-options-for-de-queuing-messages"></a><span data-ttu-id="5b624-157">Utilisation d’options supplémentaires pour l’enlèvement des messages</span><span class="sxs-lookup"><span data-stu-id="5b624-157">Leverage additional options for de-queuing messages</span></span>
+<span data-ttu-id="5b624-158">Il existe deux façons de personnaliser l'extraction des messages à partir d'une file d'attente.</span><span class="sxs-lookup"><span data-stu-id="5b624-158">There are two ways you can customize message retrieval from a queue.</span></span>
+<span data-ttu-id="5b624-159">Tout d’abord, vous pouvez obtenir un lot de messages (haut too32).</span><span class="sxs-lookup"><span data-stu-id="5b624-159">First, you can get a batch of messages (up too32).</span></span> <span data-ttu-id="5b624-160">Ensuite, vous pouvez définir un délai d’attente de l’invisibilité plus ou moins longtemps, ce qui permet de votre code plus ou moins toofully temps traitent chaque message.</span><span class="sxs-lookup"><span data-stu-id="5b624-160">Second, you can set a longer or shorter invisibility timeout, allowing your code more or less time toofully process each message.</span></span> <span data-ttu-id="5b624-161">code Hello suivant utilise le **GetMessages** messages tooget 20 de méthode dans un seul appel.</span><span class="sxs-lookup"><span data-stu-id="5b624-161">hello following code example uses the **GetMessages** method tooget 20 messages in one call.</span></span> <span data-ttu-id="5b624-162">Ensuite, il traite chaque message à l'aide d'une boucle **foreach** .</span><span class="sxs-lookup"><span data-stu-id="5b624-162">Then it processes each message using a **foreach** loop.</span></span> <span data-ttu-id="5b624-163">Il définit également hello invisibilité délai d’expiration toofive minutes pour chaque message.</span><span class="sxs-lookup"><span data-stu-id="5b624-163">It also sets hello invisibility timeout toofive minutes for each message.</span></span> <span data-ttu-id="5b624-164">Notez que hello 5 minutes démarre pour tous les messages à hello même moment, après que les 5 minutes se sont écoulées depuis l’appel de hello trop**GetMessages**, tous les messages qui n’ont pas été supprimés devient visibles à nouveau.</span><span class="sxs-lookup"><span data-stu-id="5b624-164">Note that hello 5 minutes starts for all messages at hello same time, so after 5 minutes have passed since hello call too**GetMessages**, any messages which have not been deleted will become visible again.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the queue client.
+// Create hello queue client.
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 CloudQueue queue = queueClient.GetQueueReference("myqueue");
 
 foreach (CloudQueueMessage message in queue.GetMessages(20, TimeSpan.FromMinutes(5)))
@@ -225,62 +225,62 @@ foreach (CloudQueueMessage message in queue.GetMessages(20, TimeSpan.FromMinutes
 }
 ```
 
-## <a name="get-the-queue-length"></a><span data-ttu-id="37380-165">Obtention de la longueur de la file d'attente</span><span class="sxs-lookup"><span data-stu-id="37380-165">Get the queue length</span></span>
-<span data-ttu-id="37380-166">Vous pouvez obtenir une estimation du nombre de messages dans une file d'attente.</span><span class="sxs-lookup"><span data-stu-id="37380-166">You can get an estimate of the number of messages in a queue.</span></span> <span data-ttu-id="37380-167">La méthode **FetchAttributes** demande au service de files d'attente d'extraire les attributs de la file d'attente, y compris le nombre de messages.</span><span class="sxs-lookup"><span data-stu-id="37380-167">The **FetchAttributes** method asks the Queue service to retrieve the queue attributes, including the message count.</span></span> <span data-ttu-id="37380-168">La propriété **ApproximateMessageCount** renvoie la dernière valeur extraite par la méthode **FetchAttributes**, sans appeler le service de files d’attente.</span><span class="sxs-lookup"><span data-stu-id="37380-168">The **ApproximateMessageCount** property returns the last value retrieved by the **FetchAttributes** method, without calling the Queue service.</span></span>
+## <a name="get-hello-queue-length"></a><span data-ttu-id="5b624-165">Obtenir la longueur de file d’attente hello</span><span class="sxs-lookup"><span data-stu-id="5b624-165">Get hello queue length</span></span>
+<span data-ttu-id="5b624-166">Vous pouvez obtenir une estimation du nombre de hello de messages dans une file d’attente.</span><span class="sxs-lookup"><span data-stu-id="5b624-166">You can get an estimate of hello number of messages in a queue.</span></span> <span data-ttu-id="5b624-167">Le **FetchAttributes** méthode vous demande de service de file d’attente hello pour récupérer les attributs de file d’attente hello, y compris le nombre de messages hello.</span><span class="sxs-lookup"><span data-stu-id="5b624-167">The **FetchAttributes** method asks hello Queue service to retrieve hello queue attributes, including hello message count.</span></span> <span data-ttu-id="5b624-168">Hello **ApproximateMessageCount** propriété renvoie hello dernière valeur récupérée par le **FetchAttributes** (méthode), sans avoir à contacter le service de file d’attente hello.</span><span class="sxs-lookup"><span data-stu-id="5b624-168">hello **ApproximateMessageCount** property returns hello last value retrieved by the **FetchAttributes** method, without calling hello Queue service.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the queue client.
+// Create hello queue client.
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 CloudQueue queue = queueClient.GetQueueReference("myqueue");
 
-// Fetch the queue attributes.
+// Fetch hello queue attributes.
 queue.FetchAttributes();
 
-// Retrieve the cached approximate message count.
+// Retrieve hello cached approximate message count.
 int? cachedMessageCount = queue.ApproximateMessageCount;
 
 // Display number of messages.
 Console.WriteLine("Number of messages in queue: " + cachedMessageCount);
 ```
 
-## <a name="delete-a-queue"></a><span data-ttu-id="37380-169">Suppression d'une file d'attente</span><span class="sxs-lookup"><span data-stu-id="37380-169">Delete a queue</span></span>
-<span data-ttu-id="37380-170">Pour supprimer une file d'attente et tous les messages qu'elle contient, appelez la méthode **Delete** sur l'objet file d'attente.</span><span class="sxs-lookup"><span data-stu-id="37380-170">To delete a queue and all the messages contained in it, call the **Delete** method on the queue object.</span></span>
+## <a name="delete-a-queue"></a><span data-ttu-id="5b624-169">Suppression d'une file d'attente</span><span class="sxs-lookup"><span data-stu-id="5b624-169">Delete a queue</span></span>
+<span data-ttu-id="5b624-170">toodelete une file d’attente et tous les messages hello qu’il contient, appelez le **supprimer** méthode sur un objet de file d’attente hello.</span><span class="sxs-lookup"><span data-stu-id="5b624-170">toodelete a queue and all hello messages contained in it, call the **Delete** method on hello queue object.</span></span>
 
 ```csharp
 // Retrieve storage account from connection string.
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
     CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-// Create the queue client.
+// Create hello queue client.
 CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 CloudQueue queue = queueClient.GetQueueReference("myqueue");
 
-// Delete the queue.
+// Delete hello queue.
 queue.Delete();
 ```
     
 
-## <a name="next-steps"></a><span data-ttu-id="37380-171">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="37380-171">Next steps</span></span>
-<span data-ttu-id="37380-172">Maintenant que vous connaissez les bases du stockage des files d'attente, consultez les liens suivants pour apprendre à exécuter les tâches de stockage plus complexes.</span><span class="sxs-lookup"><span data-stu-id="37380-172">Now that you've learned the basics of Queue storage, follow these links to learn about more complex storage tasks.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="5b624-171">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="5b624-171">Next steps</span></span>
+<span data-ttu-id="5b624-172">Maintenant que vous avez appris les notions de base de hello de stockage de la file d’attente, suivez ces toolearn des liens sur les tâches de stockage plus complexes.</span><span class="sxs-lookup"><span data-stu-id="5b624-172">Now that you've learned hello basics of Queue storage, follow these links toolearn about more complex storage tasks.</span></span>
 
-* <span data-ttu-id="37380-173">Pour plus d'informations sur les API disponibles, consultez la documentation de référence des services de files d'attente :</span><span class="sxs-lookup"><span data-stu-id="37380-173">View the Queue service reference documentation for complete details about available APIs:</span></span>
-  * [<span data-ttu-id="37380-174">Référence de la bibliothèque cliente de stockage pour .NET</span><span class="sxs-lookup"><span data-stu-id="37380-174">Storage Client Library for .NET reference</span></span>](http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409)
-  * [<span data-ttu-id="37380-175">Référence d’API REST</span><span class="sxs-lookup"><span data-stu-id="37380-175">REST API reference</span></span>](http://msdn.microsoft.com/library/azure/dd179355)
-* <span data-ttu-id="37380-176">Découvrez comment simplifier le code que vous écrivez avec Azure Storage, à l’aide du [Kit de développement logiciel (SDK) Azure WebJobs](../app-service-web/websites-dotnet-webjobs-sdk.md).</span><span class="sxs-lookup"><span data-stu-id="37380-176">Learn how to simplify the code you write to work with Azure Storage by using the [Azure WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk.md).</span></span>
-* <span data-ttu-id="37380-177">Pour plus d’informations sur les autres options de stockage de données dans Azure, consultez d’autres guides de fonctionnalités.</span><span class="sxs-lookup"><span data-stu-id="37380-177">View more feature guides to learn about additional options for storing data in Azure.</span></span>
-  * <span data-ttu-id="37380-178">[Prise en main du stockage de tables Azure à l’aide de .NET](storage-dotnet-how-to-use-tables.md) pour le stockage de données structurées.</span><span class="sxs-lookup"><span data-stu-id="37380-178">[Get started with Azure Table storage using .NET](storage-dotnet-how-to-use-tables.md) to store structured data.</span></span>
-  * <span data-ttu-id="37380-179">[Prise en main d’Azure Blob Storage à l’aide de .NET](storage-dotnet-how-to-use-blobs.md) pour le stockage de données non structurées.</span><span class="sxs-lookup"><span data-stu-id="37380-179">[Get started with Azure Blob storage using .NET](storage-dotnet-how-to-use-blobs.md) to store unstructured data.</span></span>
-  * <span data-ttu-id="37380-180">[Connexion à SQL Database à l’aide de .NET (C#)](../sql-database/sql-database-develop-dotnet-simple.md) pour stocker des données relationnelles.</span><span class="sxs-lookup"><span data-stu-id="37380-180">[Connect to SQL Database by using .NET (C#)](../sql-database/sql-database-develop-dotnet-simple.md) to store relational data.</span></span>
+* <span data-ttu-id="5b624-173">Afficher la documentation de référence de service de file d’attente hello pour plus d’informations sur les API disponibles :</span><span class="sxs-lookup"><span data-stu-id="5b624-173">View hello Queue service reference documentation for complete details about available APIs:</span></span>
+  * [<span data-ttu-id="5b624-174">Référence de la bibliothèque cliente de stockage pour .NET</span><span class="sxs-lookup"><span data-stu-id="5b624-174">Storage Client Library for .NET reference</span></span>](http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409)
+  * [<span data-ttu-id="5b624-175">Référence d’API REST</span><span class="sxs-lookup"><span data-stu-id="5b624-175">REST API reference</span></span>](http://msdn.microsoft.com/library/azure/dd179355)
+* <span data-ttu-id="5b624-176">En savoir plus toosimplify hello code que vous écrivez est comment toowork avec le stockage Azure à l’aide de hello [Kit de développement logiciel Azure WebJobs](../app-service-web/websites-dotnet-webjobs-sdk.md).</span><span class="sxs-lookup"><span data-stu-id="5b624-176">Learn how toosimplify hello code you write toowork with Azure Storage by using hello [Azure WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk.md).</span></span>
+* <span data-ttu-id="5b624-177">Permet d’afficher plusieurs toolearn de repères de fonctionnalité sur les options supplémentaires pour le stockage des données dans Azure.</span><span class="sxs-lookup"><span data-stu-id="5b624-177">View more feature guides toolearn about additional options for storing data in Azure.</span></span>
+  * <span data-ttu-id="5b624-178">[Prise en main le stockage de Table Azure à l’aide de .NET](storage-dotnet-how-to-use-tables.md) toostore des données structurées.</span><span class="sxs-lookup"><span data-stu-id="5b624-178">[Get started with Azure Table storage using .NET](storage-dotnet-how-to-use-tables.md) toostore structured data.</span></span>
+  * <span data-ttu-id="5b624-179">[Prise en main le stockage Blob Azure à l’aide de .NET](storage-dotnet-how-to-use-blobs.md) toostore des données non structurées.</span><span class="sxs-lookup"><span data-stu-id="5b624-179">[Get started with Azure Blob storage using .NET](storage-dotnet-how-to-use-blobs.md) toostore unstructured data.</span></span>
+  * <span data-ttu-id="5b624-180">[Se connecter tooSQL de base de données à l’aide de .NET (c#)](../sql-database/sql-database-develop-dotnet-simple.md) toostore des données relationnelles.</span><span class="sxs-lookup"><span data-stu-id="5b624-180">[Connect tooSQL Database by using .NET (C#)](../sql-database/sql-database-develop-dotnet-simple.md) toostore relational data.</span></span>
 
-[Download and install the Azure SDK for .NET]: /develop/net/
+[Download and install hello Azure SDK for .NET]: /develop/net/
 [.NET client library reference]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
 [Creating a Azure Project in Visual Studio]: http://msdn.microsoft.com/library/azure/ee405487.aspx
 [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/

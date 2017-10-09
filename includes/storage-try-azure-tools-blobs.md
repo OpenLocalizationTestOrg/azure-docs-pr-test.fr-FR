@@ -1,0 +1,7 @@
+> [!TIP]
+> 
+> <span data-ttu-id="16443-101">**Gérer les ressources Azure Blob Storage avec l’Explorateur de stockage Microsoft Azure**</span><span class="sxs-lookup"><span data-stu-id="16443-101">**Manage Azure Blob Storage resources with Microsoft Azure Storage Explorer**</span></span>
+> 
+> <span data-ttu-id="16443-102">[Microsoft Azure Storage Explorer](../articles/vs-azure-tools-storage-manage-with-storage-explorer.md) est une application autonome gratuit, à partir de Microsoft qui vous permet d’être trop[gérer les ressources de stockage d’objets Blob Azure](../articles/vs-azure-tools-storage-explorer-blobs.md).</span><span class="sxs-lookup"><span data-stu-id="16443-102">[Microsoft Azure Storage Explorer](../articles/vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you too[manage Azure Blob Storage resources](../articles/vs-azure-tools-storage-explorer-blobs.md).</span></span> <span data-ttu-id="16443-103">Dans l’Explorateur de stockage Microsoft Azure, vous pourrez visuellement créer, lire, mettre à jour et supprimer des conteneurs d’objets blob et les objets BLOB, ainsi gérer les conteneurs d’objets BLOB accès tooyour et les objets BLOB.</span><span class="sxs-lookup"><span data-stu-id="16443-103">Using Microsoft Azure Storage Explorer, you can visually create, read, update, and delete blob containers and blobs, as well as manage access tooyour blobs containers and blobs.</span></span>
+
+

@@ -1,6 +1,6 @@
 ---
-title: "Surveiller par programmation les travaux dans Stream Analytics | Microsoft Docs"
-description: "Découvrez comment surveiller par programme les tâches Stream Analytics créées via des API REST, le kit de développement logiciel Microsoft Azure SDK ou PowerShell."
+title: "surveiller les travaux aaaProgrammatically dans le flux de données Analytique | Documents Microsoft"
+description: "Découvrez comment tooprogrammatically surveiller les travaux de flux de données Analytique créés via l’API REST, Windows Azure SDK ou PowerShell."
 keywords: "surveillance .net, surveillance de tâches, surveillance d’applications"
 services: stream-analytics
 documentationcenter: 
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/20/2017
 ms.author: jeffstok
-ms.openlocfilehash: 0d39e77316a03a705586af3ba970a7be1208ec85
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 44a9c29c2161ee81ea76ece4646a8691bf5d5b48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="programmatically-create-a-stream-analytics-job-monitor"></a><span data-ttu-id="3fdcc-104">Créer la surveillance des tâches Stream Analytics par programmation</span><span class="sxs-lookup"><span data-stu-id="3fdcc-104">Programmatically create a Stream Analytics job monitor</span></span>
+# <a name="programmatically-create-a-stream-analytics-job-monitor"></a><span data-ttu-id="cf977-104">Créer la surveillance des tâches Stream Analytics par programmation</span><span class="sxs-lookup"><span data-stu-id="cf977-104">Programmatically create a Stream Analytics job monitor</span></span>
 
-<span data-ttu-id="3fdcc-105">Cet article explique comment activer la surveillance d'une tâche Stream Analytics.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-105">This article demonstrates how to enable monitoring for a Stream Analytics job.</span></span> <span data-ttu-id="3fdcc-106">Par défaut, la surveillance n'est pas activée pour les travaux Stream Analytics créés par le biais des API REST, du kit de développement logiciel (SDK) Azure ou de PowerShell.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-106">Stream Analytics jobs that are created via REST APIs, Azure SDK, or PowerShell do not have monitoring enabled by default.</span></span> <span data-ttu-id="3fdcc-107">Vous pouvez l’activer manuellement sur le portail Azure. Pour cela, accédez à la page Surveiller du travail et cliquez sur le bouton Activer. Vous pouvez également automatiser ce processus en suivant les étapes décrites dans cet article.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-107">You can manually enable it in the Azure portal by going to the job’s Monitor page and clicking the Enable button or you can automate this process by following the steps in this article.</span></span> <span data-ttu-id="3fdcc-108">Les données de surveillance sont affichées dans la zone Métriques du portail Azure pour le travail Stream Analytics.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-108">The monitoring data will show up in the Metrics area of the Azure portal for your Stream Analytics job.</span></span>
+<span data-ttu-id="cf977-105">Cet article explique comment tooenable analyse d’une tâche de flux de données Analytique.</span><span class="sxs-lookup"><span data-stu-id="cf977-105">This article demonstrates how tooenable monitoring for a Stream Analytics job.</span></span> <span data-ttu-id="cf977-106">Par défaut, la surveillance n'est pas activée pour les travaux Stream Analytics créés par le biais des API REST, du kit de développement logiciel (SDK) Azure ou de PowerShell.</span><span class="sxs-lookup"><span data-stu-id="cf977-106">Stream Analytics jobs that are created via REST APIs, Azure SDK, or PowerShell do not have monitoring enabled by default.</span></span> <span data-ttu-id="cf977-107">Vous pouvez l’activer manuellement Bonjour portail Azure en accédant page de surveillance de la tâche toohello et activer le bouton en cliquant sur hello ou vous pouvez automatiser ce processus en suivant les étapes de hello dans cet article.</span><span class="sxs-lookup"><span data-stu-id="cf977-107">You can manually enable it in hello Azure portal by going toohello job’s Monitor page and clicking hello Enable button or you can automate this process by following hello steps in this article.</span></span> <span data-ttu-id="cf977-108">Hello analyse les données s’afficheront dans zone de mesures hello Hello portail Azure pour votre tâche de flux de données Analytique.</span><span class="sxs-lookup"><span data-stu-id="cf977-108">hello monitoring data will show up in hello Metrics area of hello Azure portal for your Stream Analytics job.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="3fdcc-109">Composants requis</span><span class="sxs-lookup"><span data-stu-id="3fdcc-109">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="cf977-109">Composants requis</span><span class="sxs-lookup"><span data-stu-id="cf977-109">Prerequisites</span></span>
 
-<span data-ttu-id="3fdcc-110">Avant de commencer ce processus, vous devez disposer des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="3fdcc-110">Before you begin this process, you must have the following:</span></span>
+<span data-ttu-id="cf977-110">Avant de commencer ce processus, vous devez disposer de hello :</span><span class="sxs-lookup"><span data-stu-id="cf977-110">Before you begin this process, you must have hello following:</span></span>
 
-* <span data-ttu-id="3fdcc-111">Visual Studio 2017 ou 2015</span><span class="sxs-lookup"><span data-stu-id="3fdcc-111">Visual Studio 2017 or 2015</span></span>
-* <span data-ttu-id="3fdcc-112">[kit de développement logiciel (SDK) Azure .NET](https://azure.microsoft.com/downloads/) téléchargé et installé</span><span class="sxs-lookup"><span data-stu-id="3fdcc-112">[Azure .NET SDK](https://azure.microsoft.com/downloads/) downloaded and installed</span></span>
-* <span data-ttu-id="3fdcc-113">Un travail Stream Analytics existant pour lequel la surveillance doit être activée</span><span class="sxs-lookup"><span data-stu-id="3fdcc-113">An existing Stream Analytics job that needs to have monitoring enabled</span></span>
+* <span data-ttu-id="cf977-111">Visual Studio 2017 ou 2015</span><span class="sxs-lookup"><span data-stu-id="cf977-111">Visual Studio 2017 or 2015</span></span>
+* <span data-ttu-id="cf977-112">[kit de développement logiciel (SDK) Azure .NET](https://azure.microsoft.com/downloads/) téléchargé et installé</span><span class="sxs-lookup"><span data-stu-id="cf977-112">[Azure .NET SDK](https://azure.microsoft.com/downloads/) downloaded and installed</span></span>
+* <span data-ttu-id="cf977-113">Une tâche Analytique de flux de données existante qui doit toohave analyse activée</span><span class="sxs-lookup"><span data-stu-id="cf977-113">An existing Stream Analytics job that needs toohave monitoring enabled</span></span>
 
-## <a name="create-a-project"></a><span data-ttu-id="3fdcc-114">Création d’un projet</span><span class="sxs-lookup"><span data-stu-id="3fdcc-114">Create a project</span></span>
+## <a name="create-a-project"></a><span data-ttu-id="cf977-114">Création d’un projet</span><span class="sxs-lookup"><span data-stu-id="cf977-114">Create a project</span></span>
 
-1. <span data-ttu-id="3fdcc-115">Créez une application console Visual Studio .NET C#.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-115">Create a Visual Studio C# .NET console application.</span></span>
-2. <span data-ttu-id="3fdcc-116">Dans la console du Gestionnaire de package, exécutez les commandes suivantes pour installer les packages NuGet.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-116">In the Package Manager Console, run the following commands to install the NuGet packages.</span></span> <span data-ttu-id="3fdcc-117">Le premier est le Kit de développement logiciel (SDK) .NET de gestion Azure Stream Analytics.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-117">The first one is the Azure Stream Analytics Management .NET SDK.</span></span> <span data-ttu-id="3fdcc-118">Le second est le SDK Azure Monitor qui sera utilisé pour activer la surveillance.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-118">The second one is the Azure Monitor SDK that will be used to enable monitoring.</span></span> <span data-ttu-id="3fdcc-119">Le dernier est le client Azure Active Directory utilisé pour l'authentification.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-119">The last one is the Azure Active Directory client that will be used for authentication.</span></span>
+1. <span data-ttu-id="cf977-115">Créez une application console Visual Studio .NET C#.</span><span class="sxs-lookup"><span data-stu-id="cf977-115">Create a Visual Studio C# .NET console application.</span></span>
+2. <span data-ttu-id="cf977-116">Dans la Console du Gestionnaire de Package de hello, suivante d’exécution hello commandes les packages NuGet tooinstall hello.</span><span class="sxs-lookup"><span data-stu-id="cf977-116">In hello Package Manager Console, run hello following commands tooinstall hello NuGet packages.</span></span> <span data-ttu-id="cf977-117">Hello tout d’abord une est hello Azure flux Analytique Management .NET SDK.</span><span class="sxs-lookup"><span data-stu-id="cf977-117">hello first one is hello Azure Stream Analytics Management .NET SDK.</span></span> <span data-ttu-id="cf977-118">Hello second est hello SDK analyse Azure qui sera utilisé tooenable d’analyse.</span><span class="sxs-lookup"><span data-stu-id="cf977-118">hello second one is hello Azure Monitor SDK that will be used tooenable monitoring.</span></span> <span data-ttu-id="cf977-119">Hello dernière une est client Azure Active Directory hello qui sera utilisé pour l’authentification.</span><span class="sxs-lookup"><span data-stu-id="cf977-119">hello last one is hello Azure Active Directory client that will be used for authentication.</span></span>
    
    ```
    Install-Package Microsoft.Azure.Management.StreamAnalytics
    Install-Package Microsoft.Azure.Insights -Pre
    Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
    ```
-3. <span data-ttu-id="3fdcc-120">Ajoutez la section appSettings suivante au fichier App.config.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-120">Add the following appSettings section to the App.config file.</span></span>
+3. <span data-ttu-id="cf977-120">Ajoutez hello suivant appSettings section toohello du fichier App.config.</span><span class="sxs-lookup"><span data-stu-id="cf977-120">Add hello following appSettings section toohello App.config file.</span></span>
    
    ```
    <appSettings>
@@ -60,12 +60,12 @@ ms.lasthandoff: 08/29/2017
      <add key="ActiveDirectoryTenantId" value="YOUR TENANT ID" />
    </appSettings>
    ```
-   <span data-ttu-id="3fdcc-121">Remplacez les valeurs de *SubscriptionId* et *ActiveDirectoryTenantId* par votre ID d’abonnement et votre ID de locataire Azure.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-121">Replace values for *SubscriptionId* and *ActiveDirectoryTenantId* with your Azure subscription and tenant IDs.</span></span> <span data-ttu-id="3fdcc-122">Vous pouvez obtenir ces valeurs en exécutant l'applet de commande PowerShell suivante :</span><span class="sxs-lookup"><span data-stu-id="3fdcc-122">You can get these values by running the following PowerShell cmdlet:</span></span>
+   <span data-ttu-id="cf977-121">Remplacez les valeurs de *SubscriptionId* et *ActiveDirectoryTenantId* par votre ID d’abonnement et votre ID de locataire Azure.</span><span class="sxs-lookup"><span data-stu-id="cf977-121">Replace values for *SubscriptionId* and *ActiveDirectoryTenantId* with your Azure subscription and tenant IDs.</span></span> <span data-ttu-id="cf977-122">Vous pouvez obtenir ces valeurs en exécutant hello suivant l’applet de commande PowerShell :</span><span class="sxs-lookup"><span data-stu-id="cf977-122">You can get these values by running hello following PowerShell cmdlet:</span></span>
    
    ```
    Get-AzureAccount
    ```
-4. <span data-ttu-id="3fdcc-123">Ajoutez les instructions using suivantes au fichier source (Program.cs) dans le projet.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-123">Add the following using statements to the source file (Program.cs) in the project.</span></span>
+4. <span data-ttu-id="cf977-123">Ajoutez hello qui suit à l’aide d’instructions toohello source fichier (Program.cs) hello projet.</span><span class="sxs-lookup"><span data-stu-id="cf977-123">Add hello following using statements toohello source file (Program.cs) in hello project.</span></span>
    
    ```
      using System;
@@ -78,9 +78,9 @@ ms.lasthandoff: 08/29/2017
      using Microsoft.Azure.Management.StreamAnalytics.Models;
      using Microsoft.IdentityModel.Clients.ActiveDirectory;
    ```
-5. <span data-ttu-id="3fdcc-124">Ajoutez une méthode d'aide pour l'authentification.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-124">Add an authentication helper method.</span></span>
+5. <span data-ttu-id="cf977-124">Ajoutez une méthode d'aide pour l'authentification.</span><span class="sxs-lookup"><span data-stu-id="cf977-124">Add an authentication helper method.</span></span>
    
-     <span data-ttu-id="3fdcc-125">public static string GetAuthorizationHeader()</span><span class="sxs-lookup"><span data-stu-id="3fdcc-125">public static string GetAuthorizationHeader()</span></span>
+     <span data-ttu-id="cf977-125">public static string GetAuthorizationHeader()</span><span class="sxs-lookup"><span data-stu-id="cf977-125">public static string GetAuthorizationHeader()</span></span>
    
          {
              AuthenticationResult result = null;
@@ -114,12 +114,12 @@ ms.lasthandoff: 08/29/2017
                  return result.AccessToken;
              }
    
-             throw new InvalidOperationException("Failed to acquire token");
-     <span data-ttu-id="3fdcc-126">}</span><span class="sxs-lookup"><span data-stu-id="3fdcc-126">}</span></span>
+             throw new InvalidOperationException("Failed tooacquire token");
+     <span data-ttu-id="cf977-126">}</span><span class="sxs-lookup"><span data-stu-id="cf977-126">}</span></span>
 
-## <a name="create-management-clients"></a><span data-ttu-id="3fdcc-127">Création de clients de gestion</span><span class="sxs-lookup"><span data-stu-id="3fdcc-127">Create management clients</span></span>
+## <a name="create-management-clients"></a><span data-ttu-id="cf977-127">Création de clients de gestion</span><span class="sxs-lookup"><span data-stu-id="cf977-127">Create management clients</span></span>
 
-<span data-ttu-id="3fdcc-128">Le code suivant définit les variables nécessaires et les clients de gestion.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-128">The following code will set up the necessary variables and management clients.</span></span>
+<span data-ttu-id="cf977-128">Hello de code suivant définit les variables nécessaires de hello et les clients de gestion.</span><span class="sxs-lookup"><span data-stu-id="cf977-128">hello following code will set up hello necessary variables and management clients.</span></span>
 
     string resourceGroupName = "<YOUR AZURE RESOURCE GROUP NAME>";
     string streamAnalyticsJobName = "<YOUR STREAM ANALYTICS JOB NAME>";
@@ -139,18 +139,18 @@ ms.lasthandoff: 08/29/2017
     InsightsManagementClient insightsClient = new
     InsightsManagementClient(aadTokenCredentials, resourceManagerUri);
 
-## <a name="enable-monitoring-for-an-existing-stream-analytics-job"></a><span data-ttu-id="3fdcc-129">Activation de la surveillance pour un travail Stream Analytics existant</span><span class="sxs-lookup"><span data-stu-id="3fdcc-129">Enable monitoring for an existing Stream Analytics job</span></span>
+## <a name="enable-monitoring-for-an-existing-stream-analytics-job"></a><span data-ttu-id="cf977-129">Activation de la surveillance pour un travail Stream Analytics existant</span><span class="sxs-lookup"><span data-stu-id="cf977-129">Enable monitoring for an existing Stream Analytics job</span></span>
 
-<span data-ttu-id="3fdcc-130">Le code suivant permet d'activer la surveillance pour un travail Stream Analytics **existant**.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-130">The following code enables monitoring for an **existing** Stream Analytics job.</span></span> <span data-ttu-id="3fdcc-131">La première partie du code exécute une requête GET sur le service Stream Analytics pour récupérer des informations sur le travail Stream Analytics spécifique.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-131">The first part of the code performs a GET request against the Stream Analytics service to retrieve information about the particular Stream Analytics job.</span></span> <span data-ttu-id="3fdcc-132">Elle utilise la propriété *Id* (récupérée à partir de la requête GET) en tant que paramètre pour la méthode Put dans la seconde moitié du code qui envoie une requête PUT au service Insights afin d'activer la surveillance du travail Stream Analytics.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-132">It uses the *Id* property (retrieved from the GET request) as a parameter for the Put method in the second half of the code, which sends a PUT request to the Insights service to enable monitoring for the Stream Analytics job.</span></span>
+<span data-ttu-id="cf977-130">Active l’analyse de code suivant de Hello un **existant** tâche de flux de données Analytique.</span><span class="sxs-lookup"><span data-stu-id="cf977-130">hello following code enables monitoring for an **existing** Stream Analytics job.</span></span> <span data-ttu-id="cf977-131">Hello première partie du code de hello effectue une demande GET hello flux Analytique service tooretrieve plus d’informations sur la tâche de flux de données Analytique hello particulière.</span><span class="sxs-lookup"><span data-stu-id="cf977-131">hello first part of hello code performs a GET request against hello Stream Analytics service tooretrieve information about hello particular Stream Analytics job.</span></span> <span data-ttu-id="cf977-132">Il utilise hello *Id* propriété (récupéré à partir de la demande d’obtention de hello) en tant que paramètre pour la méthode Put Bonjour de hello deuxième moitié de code hello, qui envoie une demande PUT toohello Insights analyse du service tooenable pour hello Analytique de flux de données tâche.</span><span class="sxs-lookup"><span data-stu-id="cf977-132">It uses hello *Id* property (retrieved from hello GET request) as a parameter for hello Put method in hello second half of hello code, which sends a PUT request toohello Insights service tooenable monitoring for hello Stream Analytics job.</span></span>
 
 >[!WARNING]
-><span data-ttu-id="3fdcc-133">Si vous avez déjà activé la surveillance pour un travail Stream Analytics différente par le passé, via le portail Azure ou par programmation via le code ci-dessous, **nous vous recommandons de fournir le même nom de compte de stockage que celui utilisé lors de l’activation de la surveillance.**</span><span class="sxs-lookup"><span data-stu-id="3fdcc-133">If you have previously enabled monitoring for a different Stream Analytics job, either through the Azure portal or programmatically via the below code, **we recommend that you provide the same storage account name that you used when you previously enabled monitoring.**</span></span>
+><span data-ttu-id="cf977-133">Si vous avez déjà activé la surveillance pour un travail de flux de données Analytique, via hello portail Azure ou par programme via hello sous code, **nous vous recommandons de fournir hello même nom de compte de stockage que vous avez utilisé lorsque vous précédemment activé le contrôle.**</span><span class="sxs-lookup"><span data-stu-id="cf977-133">If you have previously enabled monitoring for a different Stream Analytics job, either through hello Azure portal or programmatically via hello below code, **we recommend that you provide hello same storage account name that you used when you previously enabled monitoring.**</span></span>
 > 
-> <span data-ttu-id="3fdcc-134">Le compte de stockage est lié à la région dans laquelle vous avez créé la tâche Stream Analytics, pas spécifiquement à la tâche en soi.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-134">The storage account is linked to the region that you created your Stream Analytics job in, not specifically to the job itself.</span></span>
+> <span data-ttu-id="cf977-134">compte de stockage Hello est région toohello lié que vous avez créé votre tâche de flux de données Analytique dans ne sont pas spécifiquement les travaux toohello lui-même.</span><span class="sxs-lookup"><span data-stu-id="cf977-134">hello storage account is linked toohello region that you created your Stream Analytics job in, not specifically toohello job itself.</span></span>
 > 
-> <span data-ttu-id="3fdcc-135">Tous les travaux Stream Analytics (et l’ensemble des autres ressources Microsoft Azure) d’une même région partagent ce compte de stockage afin d’y consigner les données de surveillance.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-135">All Stream Analytics jobs (and all other Azure resources) in that same region share this storage account to store monitoring data.</span></span> <span data-ttu-id="3fdcc-136">Si vous communiquez un compte de stockage différent, cela peut entraîner des effets collatéraux imprévus sur la surveillance de vos autres travaux Stream Analytics ou autres ressources Microsoft Azure.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-136">If you provide a different storage account, it might cause unintended side effects in the monitoring of your other Stream Analytics jobs or other Azure resources.</span></span>
+> <span data-ttu-id="cf977-135">Tous les flux de données Analytique travaux (et toutes les autres ressources Windows Azure) dans cette région même partagent cette toostore de compte de stockage données d’analyse.</span><span class="sxs-lookup"><span data-stu-id="cf977-135">All Stream Analytics jobs (and all other Azure resources) in that same region share this storage account toostore monitoring data.</span></span> <span data-ttu-id="cf977-136">Si vous fournissez un autre compte de stockage, il peut provoquer des effets secondaires involontaires dans hello analyse de vos autres tâches de flux de données Analytique ou d’autres ressources Azure.</span><span class="sxs-lookup"><span data-stu-id="cf977-136">If you provide a different storage account, it might cause unintended side effects in hello monitoring of your other Stream Analytics jobs or other Azure resources.</span></span>
 > 
-> <span data-ttu-id="3fdcc-137">Le compte de stockage utilisé pour remplacer `<YOUR STORAGE ACCOUNT NAME>` dans le code ci-dessous doit être un compte de stockage qui se trouve dans l’abonnement du travail Stream Analytics pour lequel vous avez activé la surveillance.</span><span class="sxs-lookup"><span data-stu-id="3fdcc-137">The storage account name that you use to replace `<YOUR STORAGE ACCOUNT NAME>` in the following code should be a storage account that is in the same subscription as the Stream Analytics job that you are enabling monitoring for.</span></span>
+> <span data-ttu-id="cf977-137">nom de compte de stockage Hello que vous utilisez tooreplace `<YOUR STORAGE ACCOUNT NAME>` Bonjour suivant le code doit être un compte de stockage qui se trouve dans hello même abonnement en tant que tâche de flux de données Analytique hello que vous activez la surveillance pour.</span><span class="sxs-lookup"><span data-stu-id="cf977-137">hello storage account name that you use tooreplace `<YOUR STORAGE ACCOUNT NAME>` in hello following code should be a storage account that is in hello same subscription as hello Stream Analytics job that you are enabling monitoring for.</span></span>
 > 
 > 
 
@@ -173,15 +173,15 @@ ms.lasthandoff: 08/29/2017
 
 
 
-## <a name="get-support"></a><span data-ttu-id="3fdcc-138">Obtenir de l'aide</span><span class="sxs-lookup"><span data-stu-id="3fdcc-138">Get support</span></span>
+## <a name="get-support"></a><span data-ttu-id="cf977-138">Obtenir de l'aide</span><span class="sxs-lookup"><span data-stu-id="cf977-138">Get support</span></span>
 
-<span data-ttu-id="3fdcc-139">Pour obtenir une assistance, consultez le [forum Azure Stream Analytics](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)</span><span class="sxs-lookup"><span data-stu-id="3fdcc-139">For further assistance, try our [Azure Stream Analytics forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).</span></span>
+<span data-ttu-id="cf977-139">Pour obtenir une assistance, consultez le [forum Azure Stream Analytics](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)</span><span class="sxs-lookup"><span data-stu-id="cf977-139">For further assistance, try our [Azure Stream Analytics forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="3fdcc-140">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="3fdcc-140">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="cf977-140">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="cf977-140">Next steps</span></span>
 
-* [<span data-ttu-id="3fdcc-141">Présentation d’Azure Stream Analytics</span><span class="sxs-lookup"><span data-stu-id="3fdcc-141">Introduction to Azure Stream Analytics</span></span>](stream-analytics-introduction.md)
-* [<span data-ttu-id="3fdcc-142">Prise en main d’Azure Stream Analytics</span><span class="sxs-lookup"><span data-stu-id="3fdcc-142">Get started using Azure Stream Analytics</span></span>](stream-analytics-real-time-fraud-detection.md)
-* [<span data-ttu-id="3fdcc-143">Mise à l'échelle des travaux Azure Stream Analytics</span><span class="sxs-lookup"><span data-stu-id="3fdcc-143">Scale Azure Stream Analytics jobs</span></span>](stream-analytics-scale-jobs.md)
-* [<span data-ttu-id="3fdcc-144">Références sur le langage des requêtes d'Azure Stream Analytics</span><span class="sxs-lookup"><span data-stu-id="3fdcc-144">Azure Stream Analytics Query Language Reference</span></span>](https://msdn.microsoft.com/library/azure/dn834998.aspx)
-* [<span data-ttu-id="3fdcc-145">Références sur l’API REST de gestion d’Azure Stream Analytics</span><span class="sxs-lookup"><span data-stu-id="3fdcc-145">Azure Stream Analytics Management REST API Reference</span></span>](https://msdn.microsoft.com/library/azure/dn835031.aspx)
+* [<span data-ttu-id="cf977-141">Introduction tooAzure Analytique de flux de données</span><span class="sxs-lookup"><span data-stu-id="cf977-141">Introduction tooAzure Stream Analytics</span></span>](stream-analytics-introduction.md)
+* [<span data-ttu-id="cf977-142">Prise en main d’Azure Stream Analytics</span><span class="sxs-lookup"><span data-stu-id="cf977-142">Get started using Azure Stream Analytics</span></span>](stream-analytics-real-time-fraud-detection.md)
+* [<span data-ttu-id="cf977-143">Mise à l'échelle des travaux Azure Stream Analytics</span><span class="sxs-lookup"><span data-stu-id="cf977-143">Scale Azure Stream Analytics jobs</span></span>](stream-analytics-scale-jobs.md)
+* [<span data-ttu-id="cf977-144">Références sur le langage des requêtes d'Azure Stream Analytics</span><span class="sxs-lookup"><span data-stu-id="cf977-144">Azure Stream Analytics Query Language Reference</span></span>](https://msdn.microsoft.com/library/azure/dn834998.aspx)
+* [<span data-ttu-id="cf977-145">Références sur l’API REST de gestion d’Azure Stream Analytics</span><span class="sxs-lookup"><span data-stu-id="cf977-145">Azure Stream Analytics Management REST API Reference</span></span>](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 

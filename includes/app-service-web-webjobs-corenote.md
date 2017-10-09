@@ -1,2 +1,2 @@
 >[!NOTE]
-><span data-ttu-id="9ec3c-101">Le Kit SDK WebJobs ne prend pas encore en charge .NET Core.</span><span class="sxs-lookup"><span data-stu-id="9ec3c-101">The WebJobs SDK does not yet support .NET Core.</span></span>
+><span data-ttu-id="2076b-101">Hello WebJobs SDK ne prend pas en charge .NET Core.</span><span class="sxs-lookup"><span data-stu-id="2076b-101">hello WebJobs SDK does not yet support .NET Core.</span></span>

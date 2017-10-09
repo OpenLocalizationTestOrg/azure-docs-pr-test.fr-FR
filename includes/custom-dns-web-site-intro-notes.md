@@ -1,0 +1,10 @@
+<span data-ttu-id="512ac-101">Cet article concerne Azure App Service (Web Apps, API Apps, Mobile Apps, Logic Apps) ; pour Cloud Services, consultez [Configuration d’un nom de domaine personnalisé pour un service cloud Azure](../articles/cloud-services/cloud-services-custom-domain-name.md).</span><span class="sxs-lookup"><span data-stu-id="512ac-101">This article is for Azure App Service (Web Apps, API Apps, Mobile Apps, Logic Apps); for Cloud Services, see [Configuring a custom domain name for an Azure cloud service](../articles/cloud-services/cloud-services-custom-domain-name.md).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="512ac-102">Si votre application est équilibrée par [Azure Traffic Manager](https://azure.microsoft.com/services/traffic-manager/), cliquez sur le sélecteur de hello haut hello de cette procédure spécifique de l’article tooget.</span><span class="sxs-lookup"><span data-stu-id="512ac-102">If you app is load-balanced by [Azure Traffic Manager](https://azure.microsoft.com/services/traffic-manager/), click hello selector at hello top of this article tooget specific steps.</span></span>
+> 
+> <span data-ttu-id="512ac-103">**Les noms de domaines personnalisés ne sont pas activé pour le niveau Gratuit**.</span><span class="sxs-lookup"><span data-stu-id="512ac-103">**Custom domain names are not enabled for Free tier**.</span></span> <span data-ttu-id="512ac-104">Vous devez [tooa supérieur tarification montée en puissance](../articles/app-service-web/web-sites-scale.md), qui peut modifier la quantité, vous êtes facturé pour votre abonnement.</span><span class="sxs-lookup"><span data-stu-id="512ac-104">You must [scale up tooa higher pricing tier](../articles/app-service-web/web-sites-scale.md), which may change how much you are billed for your subscription.</span></span> 
+> <span data-ttu-id="512ac-105">Pour en savoir plus, consultez [Tarification d’App Service](https://azure.microsoft.com/pricing/details/app-service/) .</span><span class="sxs-lookup"><span data-stu-id="512ac-105">See [App Service Pricing](https://azure.microsoft.com/pricing/details/app-service/) for more information.</span></span>
+> 
+> 
+

@@ -1,0 +1,2 @@
+<span data-ttu-id="e440b-101">toouse cette fonctionnalité et autres nouvelles fonctionnalités de Azure, inscrivez-vous hello [l’aperçu gratuit](https://account.windowsazure.com/PreviewFeatures).</span><span class="sxs-lookup"><span data-stu-id="e440b-101">toouse this feature and other new Azure capabilities, sign up for hello [free preview](https://account.windowsazure.com/PreviewFeatures).</span></span>
+

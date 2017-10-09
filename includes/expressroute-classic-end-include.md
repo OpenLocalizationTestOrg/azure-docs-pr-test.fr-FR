@@ -1,0 +1,12 @@
+> [!IMPORTANT] 
+> <span data-ttu-id="6031d-101">À compter du 1er mars 2017, Impossible de créer des circuits ExpressRoute nouvelles dans le modèle de déploiement classique hello.</span><span class="sxs-lookup"><span data-stu-id="6031d-101">As of March 1, 2017, you can't create new ExpressRoute circuits in hello classic deployment model.</span></span>
+> 
+> - <span data-ttu-id="6031d-102">Vous pouvez déplacer un circuit ExpressRoute existant à partir du modèle de déploiement du modèle toohello Gestionnaire de ressources hello déploiement classique sans rencontrer de connectivité de tout temps d’arrêt.</span><span class="sxs-lookup"><span data-stu-id="6031d-102">You can move an existing ExpressRoute circuit from hello classic deployment model toohello Resource Manager deployment model without experiencing any connectivity down time.</span></span> <span data-ttu-id="6031d-103">Pour plus d’informations, consultez [Déplacer un circuit existant](../articles/expressroute/expressroute-move.md).</span><span class="sxs-lookup"><span data-stu-id="6031d-103">For more information, see [Move an existing circuit](../articles/expressroute/expressroute-move.md).</span></span>
+> - <span data-ttu-id="6031d-104">Vous pouvez vous connecter à des réseaux de toovirtual dans le modèle de déploiement classique hello en définissant **allowClassicOperations** tooTRUE.</span><span class="sxs-lookup"><span data-stu-id="6031d-104">You can connect toovirtual networks in hello classic deployment model by setting **allowClassicOperations** tooTRUE.</span></span>
+> 
+> <span data-ttu-id="6031d-105">Utilisez hello suivant toocreate de liens et gérer des circuits ExpressRoute dans le modèle de déploiement du Gestionnaire de ressources hello :</span><span class="sxs-lookup"><span data-stu-id="6031d-105">Use hello following links toocreate and manage ExpressRoute circuits in hello Resource Manager deployment model:</span></span>
+
+> - [<span data-ttu-id="6031d-106">Créer et gérer des circuits ExpressRoute</span><span class="sxs-lookup"><span data-stu-id="6031d-106">Create and manage ExpressRoute circuits</span></span>](../articles/expressroute/expressroute-howto-circuit-portal-resource-manager.md)<br>
+> - [<span data-ttu-id="6031d-107">Configurer l’acheminement (homologation) pour les circuits ExpressRoute</span><span class="sxs-lookup"><span data-stu-id="6031d-107">Configure routing (peering) for ExpressRoute circuits</span></span>](../articles/expressroute/expressroute-howto-routing-portal-resource-manager.md)
+>
+>

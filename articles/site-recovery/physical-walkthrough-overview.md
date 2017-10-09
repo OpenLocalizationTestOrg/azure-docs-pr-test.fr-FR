@@ -1,6 +1,6 @@
 ---
-title: "Répliquer des serveurs physiques locaux vers Azure avec Azure Site Recovery | Microsoft Docs"
-description: "Fournit une vue d’ensemble des étapes pour la réplication des charges de travail exécutées sur des serveurs physiques locaux Windows/Linux vers Azure avec le service Azure Site Recovery."
+title: aaaReplicate physique local tooAzure serveurs avec Azure Site Recovery | Documents Microsoft
+description: "Fournit une vue d’ensemble des étapes de hello pour répliquer les charges de travail en cours d’exécution sur tooAzure de serveurs physiques locaux Windows/Linux avec hello service Azure Site Recovery."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,86 +14,86 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 0a09b35e98dc0b2f5283c2a707a3a2b8ac9a39f2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f801b9544072d4029ec06cc1abfd4ff370e852e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-physical-servers-to-azure-with-site-recovery"></a><span data-ttu-id="496bb-103">Répliquer des serveurs physiques vers Azure avec Site Recovery</span><span class="sxs-lookup"><span data-stu-id="496bb-103">Replicate physical servers to Azure with Site Recovery</span></span>
+# <a name="replicate-physical-servers-tooazure-with-site-recovery"></a><span data-ttu-id="542d4-103">Répliquer tooAzure serveurs physiques avec Site Recovery</span><span class="sxs-lookup"><span data-stu-id="542d4-103">Replicate physical servers tooAzure with Site Recovery</span></span>
 
-<span data-ttu-id="496bb-104">Cet article fournit une vue d’ensemble des étapes à suivre pour répliquer des serveurs physiques locaux Windows/Linux vers Azure à l’aide du service [Azure Site Recovery](site-recovery-overview.md) dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="496bb-104">This article provides an overview of the steps required to replicate on-premises Windows/Linux physical servers to Azure, using the [Azure Site Recovery](site-recovery-overview.md) service in the Azure portal.</span></span>
-
-
-## <a name="step-1-review-architecture-and-prerequisites"></a><span data-ttu-id="496bb-105">Étape 1 : Vérifier l’architecture et les conditions préalables</span><span class="sxs-lookup"><span data-stu-id="496bb-105">Step 1: Review architecture and prerequisites</span></span>
-
-<span data-ttu-id="496bb-106">Avant de commencer le déploiement, vérifiez l’architecture du scénario et prenez connaissance de tous les composants nécessaires pour procéder au déploiement.</span><span class="sxs-lookup"><span data-stu-id="496bb-106">Before you start deployment, review the scenario architecture, and make sure you understand all the components you need to set up the deployment.</span></span>
-
-<span data-ttu-id="496bb-107">Aller à [Étape 1 : Examen de l’architecture](physical-walkthrough-architecture.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-107">Go to [Step 1: Review the architecture](physical-walkthrough-architecture.md)</span></span>
+<span data-ttu-id="542d4-104">Cet article fournit une vue d’ensemble de hello étapes requises tooreplicate local Windows/Linux serveurs physiques tooAzure, à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service Bonjour portail Azure.</span><span class="sxs-lookup"><span data-stu-id="542d4-104">This article provides an overview of hello steps required tooreplicate on-premises Windows/Linux physical servers tooAzure, using hello [Azure Site Recovery](site-recovery-overview.md) service in hello Azure portal.</span></span>
 
 
-## <a name="step-2-review-prerequisites"></a><span data-ttu-id="496bb-108">Étape 2 : Vérifier les conditions préalables</span><span class="sxs-lookup"><span data-stu-id="496bb-108">Step 2: Review prerequisites</span></span>
+## <a name="step-1-review-architecture-and-prerequisites"></a><span data-ttu-id="542d4-105">Étape 1 : vérifier l’architecture et les conditions préalables.</span><span class="sxs-lookup"><span data-stu-id="542d4-105">Step 1: Review architecture and prerequisites</span></span>
 
-<span data-ttu-id="496bb-109">Assurez-vous que les conditions préalables sont remplies pour chaque composant du déploiement :</span><span class="sxs-lookup"><span data-stu-id="496bb-109">Make sure you have the prerequisites in place for each deployment component:</span></span>
+<span data-ttu-id="542d4-106">Avant de commencer le déploiement, consultez architecture du scénario hello et assurez-vous que vous comprenez tous les composants hello vous devez tooset le déploiement de hello.</span><span class="sxs-lookup"><span data-stu-id="542d4-106">Before you start deployment, review hello scenario architecture, and make sure you understand all hello components you need tooset up hello deployment.</span></span>
 
-- <span data-ttu-id="496bb-110">**Conditions préalables Azure** : vous avez besoin d’un compte Microsoft Azure, d’un réseau Azure et de comptes de stockage.</span><span class="sxs-lookup"><span data-stu-id="496bb-110">**Azure prerequisites**: You need a Microsoft Azure account, Azure networks, and storage accounts.</span></span>
-- <span data-ttu-id="496bb-111">**Composants Site Recovery locaux** : vous avez besoin d’une machine exécutant les composants Site Recovery locaux.</span><span class="sxs-lookup"><span data-stu-id="496bb-111">**On-premises Site Recovery components**: You need a machine running on-premises Site Recovery components.</span></span>
-- <span data-ttu-id="496bb-112">**Machines répliquées** : les serveurs à répliquer doivent remplir les conditions requises pour l’environnement local et Azure.</span><span class="sxs-lookup"><span data-stu-id="496bb-112">**Replicated machines**: Servers you want to replicate need to comply with on-premises and Azure requirements.</span></span>
-
-<span data-ttu-id="496bb-113">Aller à [Étape 2 : Vérifier les conditions préalables et les limitations](physical-walkthrough-prerequisites.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-113">Go to [Step 2: Review prerequisites and limitations](physical-walkthrough-prerequisites.md)</span></span>
-
-## <a name="step-3-plan-capacity"></a><span data-ttu-id="496bb-114">Étape 3 : planifier la capacité</span><span class="sxs-lookup"><span data-stu-id="496bb-114">Step 3: Plan capacity</span></span>
-
-<span data-ttu-id="496bb-115">Si vous effectuez un déploiement complet, vous devez déterminer les ressources de réplication dont vous avez besoin.</span><span class="sxs-lookup"><span data-stu-id="496bb-115">If you're doing a full deployment you need to figure out what replication resources you need.</span></span> <span data-ttu-id="496bb-116">Si vous souhaitez réaliser une configuration rapide pour tester l’environnement, vous pouvez ignorer cette étape.</span><span class="sxs-lookup"><span data-stu-id="496bb-116">If you're doing a quick set up to test the environment, you can skip this step.</span></span>
-
-<span data-ttu-id="496bb-117">Aller à [Étape 3 : Planifier la capacité](physical-walkthrough-capacity.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-117">Go to [Step 3: Plan capacity](physical-walkthrough-capacity.md)</span></span>
-
-## <a name="step-4-plan-networking"></a><span data-ttu-id="496bb-118">Étape 4 : Planifier la mise en réseau</span><span class="sxs-lookup"><span data-stu-id="496bb-118">Step 4: Plan networking</span></span>
-
-<span data-ttu-id="496bb-119">Vous devez établir un plan du réseau pour vous assurer que les machines virtuelles Azure sont connectées aux réseaux après le basculement et qu’elles disposent des bonnes adresses IP.</span><span class="sxs-lookup"><span data-stu-id="496bb-119">You need to do some network planning to ensure that Azure VMs are connected to networks after failover occurs, and  that that they have the right IP addresses.</span></span>
-
-<span data-ttu-id="496bb-120">Aller à [Étape 4 : Planifier la mise en réseau](physical-walkthrough-network.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-120">Go to [Step 4: Plan networking](physical-walkthrough-network.md)</span></span>
-
-##  <a name="step-5-prepare-azure-resources"></a><span data-ttu-id="496bb-121">Étape 5 : Préparer les ressources Azure</span><span class="sxs-lookup"><span data-stu-id="496bb-121">Step 5: Prepare Azure resources</span></span>
-
-<span data-ttu-id="496bb-122">Configurez les réseaux et le stockage Azure avant de commencer.</span><span class="sxs-lookup"><span data-stu-id="496bb-122">Set up Azure networks and storage before you start.</span></span> 
-
-<span data-ttu-id="496bb-123">Aller à [Étape 5 : Préparer Azure](physical-walkthrough-prepare-azure.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-123">Go to [Step 5: Prepare Azure](physical-walkthrough-prepare-azure.md)</span></span>
+<span data-ttu-id="542d4-107">Accédez trop[étape 1 : examen de l’architecture de hello](physical-walkthrough-architecture.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-107">Go too[Step 1: Review hello architecture](physical-walkthrough-architecture.md)</span></span>
 
 
-## <a name="step-6-set-up-a-vault"></a><span data-ttu-id="496bb-124">Étape 6 : Configurer un coffre</span><span class="sxs-lookup"><span data-stu-id="496bb-124">Step 6: Set up a vault</span></span>
+## <a name="step-2-review-prerequisites"></a><span data-ttu-id="542d4-108">Étape 2 : Vérifier les conditions préalables</span><span class="sxs-lookup"><span data-stu-id="542d4-108">Step 2: Review prerequisites</span></span>
 
-<span data-ttu-id="496bb-125">Vous devez configurer un coffre Recovery Services pour orchestrer et gérer la réplication.</span><span class="sxs-lookup"><span data-stu-id="496bb-125">You set up a Recovery Services vault to orchestrate and manage replication.</span></span> <span data-ttu-id="496bb-126">Lors de la configuration du coffre, vous spécifiez les éléments à répliquer et leur destination de réplication.</span><span class="sxs-lookup"><span data-stu-id="496bb-126">When you set up the vault, you specify what you want to replicate, and where you want to replicate it to.</span></span>
+<span data-ttu-id="542d4-109">Vérifiez que vous disposez des prérequis de hello en place pour chaque composant de déploiement :</span><span class="sxs-lookup"><span data-stu-id="542d4-109">Make sure you have hello prerequisites in place for each deployment component:</span></span>
 
-<span data-ttu-id="496bb-127">Aller à [Étape 6 : Configurer un coffre](physical-walkthrough-create-vault.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-127">Go to [Step 6: Set up a vault](physical-walkthrough-create-vault.md)</span></span>
+- <span data-ttu-id="542d4-110">**Conditions préalables Azure** : vous avez besoin d’un compte Microsoft Azure, d’un réseau Azure et de comptes de stockage.</span><span class="sxs-lookup"><span data-stu-id="542d4-110">**Azure prerequisites**: You need a Microsoft Azure account, Azure networks, and storage accounts.</span></span>
+- <span data-ttu-id="542d4-111">**Composants Site Recovery locaux** : vous avez besoin d’une machine exécutant les composants Site Recovery locaux.</span><span class="sxs-lookup"><span data-stu-id="542d4-111">**On-premises Site Recovery components**: You need a machine running on-premises Site Recovery components.</span></span>
+- <span data-ttu-id="542d4-112">**Machines répliquées**: serveurs tooreplicate doivent toocomply avec locaux et les conditions requises pour Azure.</span><span class="sxs-lookup"><span data-stu-id="542d4-112">**Replicated machines**: Servers you want tooreplicate need toocomply with on-premises and Azure requirements.</span></span>
 
-## <a name="step-7-configure-source-and-target-settings"></a><span data-ttu-id="496bb-128">Étape 7 : Configurer les paramètres de source et de cible</span><span class="sxs-lookup"><span data-stu-id="496bb-128">Step 7: Configure source and target settings</span></span>
+<span data-ttu-id="542d4-113">Accédez trop[étape 2 : passez en revue les conditions préalables et restrictions](physical-walkthrough-prerequisites.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-113">Go too[Step 2: Review prerequisites and limitations](physical-walkthrough-prerequisites.md)</span></span>
 
-<span data-ttu-id="496bb-129">Configurez les paramètres des sites source et cible (Azure).</span><span class="sxs-lookup"><span data-stu-id="496bb-129">Configure settings for the source and target (Azure) site.</span></span> <span data-ttu-id="496bb-130">Pour les paramètres source, vous devez exécuter une installation unifiée afin d’installer les composants Site Recovery locaux.</span><span class="sxs-lookup"><span data-stu-id="496bb-130">Source settings includes running Unified Setup to install the on-premises Site Recovery components.</span></span>
+## <a name="step-3-plan-capacity"></a><span data-ttu-id="542d4-114">Étape 3 : planifier la capacité</span><span class="sxs-lookup"><span data-stu-id="542d4-114">Step 3: Plan capacity</span></span>
 
-<span data-ttu-id="496bb-131">Aller à [Étape 7 : Configurer la source et la cible](physical-walkthrough-source-target.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-131">Go to [Step 7: Set up the source and target](physical-walkthrough-source-target.md)</span></span>
+<span data-ttu-id="542d4-115">Si vous effectuez un déploiement complet, vous devez toofigure à quelles ressources de réplication que vous avez besoin.</span><span class="sxs-lookup"><span data-stu-id="542d4-115">If you're doing a full deployment you need toofigure out what replication resources you need.</span></span> <span data-ttu-id="542d4-116">Si vous effectuez une rapide configurer tootest hello environnement, vous pouvez ignorer cette étape.</span><span class="sxs-lookup"><span data-stu-id="542d4-116">If you're doing a quick set up tootest hello environment, you can skip this step.</span></span>
 
-## <a name="step-8-set-up-a-replication-policy"></a><span data-ttu-id="496bb-132">Étape 8 : Configurer une stratégie de réplication</span><span class="sxs-lookup"><span data-stu-id="496bb-132">Step 8: Set up a replication policy</span></span>
+<span data-ttu-id="542d4-117">Accédez trop[étape 3 : planifier la capacité](physical-walkthrough-capacity.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-117">Go too[Step 3: Plan capacity](physical-walkthrough-capacity.md)</span></span>
 
-<span data-ttu-id="496bb-133">Vous configurez une stratégie pour spécifier les modalités de réplication des serveurs physiques.</span><span class="sxs-lookup"><span data-stu-id="496bb-133">You set up a policy to specify how physical servers should replicate.</span></span>
+## <a name="step-4-plan-networking"></a><span data-ttu-id="542d4-118">Étape 4 : Planifier la mise en réseau</span><span class="sxs-lookup"><span data-stu-id="542d4-118">Step 4: Plan networking</span></span>
 
-<span data-ttu-id="496bb-134">Aller à [Étape 8 : Configurer une stratégie de réplication](physical-walkthrough-replication.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-134">Go to [Step 8: Set up a replication policy](physical-walkthrough-replication.md)</span></span>
+<span data-ttu-id="542d4-119">Vous devez toodo certains planification tooensure que les machines virtuelles Azure sont toonetworks connectés après que le basculement se produit, et que qu’ils ont hello droite des adresses IP d’un réseau.</span><span class="sxs-lookup"><span data-stu-id="542d4-119">You need toodo some network planning tooensure that Azure VMs are connected toonetworks after failover occurs, and  that that they have hello right IP addresses.</span></span>
 
-## <a name="step-9-install-the-mobility-service"></a><span data-ttu-id="496bb-135">Étape 9 : Installer le service Mobilité</span><span class="sxs-lookup"><span data-stu-id="496bb-135">Step 9: Install the Mobility service</span></span>
+<span data-ttu-id="542d4-120">Accédez trop[étape 4 : planifier la mise en réseau](physical-walkthrough-network.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-120">Go too[Step 4: Plan networking](physical-walkthrough-network.md)</span></span>
 
-<span data-ttu-id="496bb-136">Le service Mobilité doit être installé sur chaque serveur que vous souhaitez répliquer.</span><span class="sxs-lookup"><span data-stu-id="496bb-136">The Mobility service must be installed on each server you want to replicate.</span></span> <span data-ttu-id="496bb-137">Il existe plusieurs méthodes de configuration du service à l’aide d’une installation push ou pull.</span><span class="sxs-lookup"><span data-stu-id="496bb-137">There are a few ways to set up the service, with push or pull installation.</span></span>
+##  <a name="step-5-prepare-azure-resources"></a><span data-ttu-id="542d4-121">Étape 5 : Préparer les ressources Azure</span><span class="sxs-lookup"><span data-stu-id="542d4-121">Step 5: Prepare Azure resources</span></span>
 
-<span data-ttu-id="496bb-138">Aller à [Étape 9 : Installer le service Mobilité](physical-walkthrough-install-mobility.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-138">Go to [Step 9: Install the Mobility service](physical-walkthrough-install-mobility.md)</span></span>
+<span data-ttu-id="542d4-122">Configurez les réseaux et le stockage Azure avant de commencer.</span><span class="sxs-lookup"><span data-stu-id="542d4-122">Set up Azure networks and storage before you start.</span></span> 
 
-## <a name="step-10-enable-replication"></a><span data-ttu-id="496bb-139">Étape 10 : Activer la réplication</span><span class="sxs-lookup"><span data-stu-id="496bb-139">Step 10: Enable replication</span></span>
+<span data-ttu-id="542d4-123">Accédez trop[étape 5 : préparer le Azure](physical-walkthrough-prepare-azure.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-123">Go too[Step 5: Prepare Azure](physical-walkthrough-prepare-azure.md)</span></span>
 
-<span data-ttu-id="496bb-140">Vous pouvez activer la réplication une fois que le service Mobilité est en cours d’exécution sur un serveur.</span><span class="sxs-lookup"><span data-stu-id="496bb-140">After the Mobility service is running on a server, you can enable replication for it.</span></span> <span data-ttu-id="496bb-141">La réplication initiale de la machine virtuelle se produira après l’activation.</span><span class="sxs-lookup"><span data-stu-id="496bb-141">After enabling, initial replication of the VM occurs.</span></span>
 
-<span data-ttu-id="496bb-142">Aller à [Étape 10 : Activer la réplication](physical-walkthrough-enable-replication.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-142">Go to [Step 10: Enable replication](physical-walkthrough-enable-replication.md)</span></span>
+## <a name="step-6-set-up-a-vault"></a><span data-ttu-id="542d4-124">Étape 6 : Configurer un coffre</span><span class="sxs-lookup"><span data-stu-id="542d4-124">Step 6: Set up a vault</span></span>
 
-## <a name="step-11-run-a-test-failover"></a><span data-ttu-id="496bb-143">Étape 11 : Exécuter un test de basculement</span><span class="sxs-lookup"><span data-stu-id="496bb-143">Step 11: Run a test failover</span></span>
+<span data-ttu-id="542d4-125">Vous configurez un tooorchestrate du coffre Recovery Services et gérez la réplication.</span><span class="sxs-lookup"><span data-stu-id="542d4-125">You set up a Recovery Services vault tooorchestrate and manage replication.</span></span> <span data-ttu-id="542d4-126">Lorsque vous configurez le coffre de hello, vous spécifiez ce que vous voulez tooreplicate, et où vous souhaitez que tooreplicate à.</span><span class="sxs-lookup"><span data-stu-id="542d4-126">When you set up hello vault, you specify what you want tooreplicate, and where you want tooreplicate it to.</span></span>
 
-<span data-ttu-id="496bb-144">Lorsque la réplication initiale est terminée et que la réplication delta est en cours d’exécution, vous pouvez exécuter un test de basculement pour vous assurer que tout fonctionne comme prévu.</span><span class="sxs-lookup"><span data-stu-id="496bb-144">After initial replication finishes and delta replication is running, you can run a test failover to make sure everything works as expected.</span></span>
+<span data-ttu-id="542d4-127">Accédez trop[étape 6 : configurer un coffre](physical-walkthrough-create-vault.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-127">Go too[Step 6: Set up a vault](physical-walkthrough-create-vault.md)</span></span>
 
-<span data-ttu-id="496bb-145">Aller à [Étape 11 : Exécuter un test de basculement](physical-walkthrough-test-failover.md)</span><span class="sxs-lookup"><span data-stu-id="496bb-145">Go to [Step 11: Run a test failover](physical-walkthrough-test-failover.md)</span></span>
+## <a name="step-7-configure-source-and-target-settings"></a><span data-ttu-id="542d4-128">Étape 7 : Configurer les paramètres de source et de cible</span><span class="sxs-lookup"><span data-stu-id="542d4-128">Step 7: Configure source and target settings</span></span>
+
+<span data-ttu-id="542d4-129">Configurer les paramètres de source de hello et cibles de site (Azure).</span><span class="sxs-lookup"><span data-stu-id="542d4-129">Configure settings for hello source and target (Azure) site.</span></span> <span data-ttu-id="542d4-130">Paramètres de la source inclut exécutant le programme d’installation unifiée tooinstall composants de Site Recovery hello locaux.</span><span class="sxs-lookup"><span data-stu-id="542d4-130">Source settings includes running Unified Setup tooinstall hello on-premises Site Recovery components.</span></span>
+
+<span data-ttu-id="542d4-131">Accédez trop[étape 7 : configurer hello source et cible](physical-walkthrough-source-target.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-131">Go too[Step 7: Set up hello source and target](physical-walkthrough-source-target.md)</span></span>
+
+## <a name="step-8-set-up-a-replication-policy"></a><span data-ttu-id="542d4-132">Étape 8 : Configurer une stratégie de réplication</span><span class="sxs-lookup"><span data-stu-id="542d4-132">Step 8: Set up a replication policy</span></span>
+
+<span data-ttu-id="542d4-133">Vous configurez une stratégie toospecify physiques doivent répliquer les serveurs.</span><span class="sxs-lookup"><span data-stu-id="542d4-133">You set up a policy toospecify how physical servers should replicate.</span></span>
+
+<span data-ttu-id="542d4-134">Accédez trop[étape 8 : définir une stratégie de réplication](physical-walkthrough-replication.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-134">Go too[Step 8: Set up a replication policy](physical-walkthrough-replication.md)</span></span>
+
+## <a name="step-9-install-hello-mobility-service"></a><span data-ttu-id="542d4-135">Étape 9 : Installer le service de mobilité hello</span><span class="sxs-lookup"><span data-stu-id="542d4-135">Step 9: Install hello Mobility service</span></span>
+
+<span data-ttu-id="542d4-136">Hello service mobilité doit être installé sur chaque serveur, vous souhaitez tooreplicate.</span><span class="sxs-lookup"><span data-stu-id="542d4-136">hello Mobility service must be installed on each server you want tooreplicate.</span></span> <span data-ttu-id="542d4-137">Il existe quelques façons tooset, configuration du service hello, avec l’installation push ou pull.</span><span class="sxs-lookup"><span data-stu-id="542d4-137">There are a few ways tooset up hello service, with push or pull installation.</span></span>
+
+<span data-ttu-id="542d4-138">Accédez trop[étape 9 : installer le service de mobilité hello](physical-walkthrough-install-mobility.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-138">Go too[Step 9: Install hello Mobility service](physical-walkthrough-install-mobility.md)</span></span>
+
+## <a name="step-10-enable-replication"></a><span data-ttu-id="542d4-139">Étape 10 : Activer la réplication</span><span class="sxs-lookup"><span data-stu-id="542d4-139">Step 10: Enable replication</span></span>
+
+<span data-ttu-id="542d4-140">Une fois hello service mobilité est en cours d’exécution sur un serveur, vous pouvez activer la réplication.</span><span class="sxs-lookup"><span data-stu-id="542d4-140">After hello Mobility service is running on a server, you can enable replication for it.</span></span> <span data-ttu-id="542d4-141">Après l’activation, la réplication initiale de hello machine virtuelle se produit.</span><span class="sxs-lookup"><span data-stu-id="542d4-141">After enabling, initial replication of hello VM occurs.</span></span>
+
+<span data-ttu-id="542d4-142">Accédez trop[étape 10 : activer la réplication](physical-walkthrough-enable-replication.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-142">Go too[Step 10: Enable replication](physical-walkthrough-enable-replication.md)</span></span>
+
+## <a name="step-11-run-a-test-failover"></a><span data-ttu-id="542d4-143">Étape 11 : Exécuter un test de basculement</span><span class="sxs-lookup"><span data-stu-id="542d4-143">Step 11: Run a test failover</span></span>
+
+<span data-ttu-id="542d4-144">Une fois la réplication initiale est terminée et la réplication delta est en cours d’exécution, vous pouvez exécuter un toomake de basculement de test que tout fonctionne comme prévu.</span><span class="sxs-lookup"><span data-stu-id="542d4-144">After initial replication finishes and delta replication is running, you can run a test failover toomake sure everything works as expected.</span></span>
+
+<span data-ttu-id="542d4-145">Accédez trop[étape 11 : exécuter un test de basculement](physical-walkthrough-test-failover.md)</span><span class="sxs-lookup"><span data-stu-id="542d4-145">Go too[Step 11: Run a test failover](physical-walkthrough-test-failover.md)</span></span>
 

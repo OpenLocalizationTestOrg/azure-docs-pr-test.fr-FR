@@ -1,0 +1,8 @@
+<span data-ttu-id="953b8-101">Lorsque vous créez une passerelle de réseau virtuel, vous avez besoin de passerelle de hello toospecify référence (SKU) que vous souhaitez toouse.</span><span class="sxs-lookup"><span data-stu-id="953b8-101">When you create a virtual network gateway, you need toospecify hello gateway SKU that you want toouse.</span></span> <span data-ttu-id="953b8-102">Lorsque vous sélectionnez une référence (SKU) de passerelle plus élevée, plus de processeurs et de la bande passante réseau sont allouées toohello passerelle et par conséquent, la passerelle de hello peut prendre en charge plus élevé de débit toohello virtuel réseau.</span><span class="sxs-lookup"><span data-stu-id="953b8-102">When you select a higher gateway SKU, more CPUs and network bandwidth are allocated toohello gateway, and as a result, hello gateway can support higher network throughput toohello virtual network.</span></span> 
+
+<span data-ttu-id="953b8-103">Les passerelles de réseau virtuel ExpressRoute peuvent utiliser hello suit les références (SKU) :</span><span class="sxs-lookup"><span data-stu-id="953b8-103">ExpressRoute virtual network gateways can use hello following SKUs:</span></span> 
+
+* <span data-ttu-id="953b8-104">Standard</span><span class="sxs-lookup"><span data-stu-id="953b8-104">Standard</span></span>
+* <span data-ttu-id="953b8-105">HighPerformance</span><span class="sxs-lookup"><span data-stu-id="953b8-105">HighPerformance</span></span>
+* <span data-ttu-id="953b8-106">UltraPerformance</span><span class="sxs-lookup"><span data-stu-id="953b8-106">UltraPerformance</span></span>
+

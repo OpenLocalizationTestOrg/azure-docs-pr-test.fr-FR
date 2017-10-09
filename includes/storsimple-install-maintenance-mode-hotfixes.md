@@ -1,0 +1,17 @@
+<!--author=SharS last changed: 9/17/15-->
+
+#### <a name="tooinstall-maintenance-mode-hotfixes-via-windows-powershell-for-storsimple"></a><span data-ttu-id="57708-101">tooinstall les correctifs en mode de Maintenance via Windows PowerShell pour StorSimple</span><span class="sxs-lookup"><span data-stu-id="57708-101">tooinstall Maintenance mode hotfixes via Windows PowerShell for StorSimple</span></span>
+> [!IMPORTANT]
+> <span data-ttu-id="57708-102">En mode Maintenance, vous devez tout d’abord les tooapply hello correctif sur un contrôleur et puis hello autre contrôleur sur.</span><span class="sxs-lookup"><span data-stu-id="57708-102">In Maintenance mode, you need tooapply hello hotfix first on one controller and then on hello other controller.</span></span>
+> 
+> 
+
+1. <span data-ttu-id="57708-103">Placer les appareils hello en mode Maintenance.</span><span class="sxs-lookup"><span data-stu-id="57708-103">Place hello device into Maintenance mode.</span></span> <span data-ttu-id="57708-104">Consultez [étape 2 : mode de Maintenance d’entrez](../articles/storsimple/storsimple-update-device.md#step2) pour obtenir des instructions sur la façon de mode de Maintenance tooenter.</span><span class="sxs-lookup"><span data-stu-id="57708-104">See [Step 2: Enter Maintenance mode](../articles/storsimple/storsimple-update-device.md#step2) for instructions on how tooenter Maintenance mode.</span></span>
+2. <span data-ttu-id="57708-105">correctif logiciel hello tooapply, type :</span><span class="sxs-lookup"><span data-stu-id="57708-105">tooapply hello hotfix, type:</span></span>
+   
+     `Start-HcsHotfix` 
+3. <span data-ttu-id="57708-106">Lorsque vous y êtes invité, fournissez hello chemin d’accès toohello dossier réseau partagé qui contient les fichiers de correctifs logiciels hello.</span><span class="sxs-lookup"><span data-stu-id="57708-106">When prompted, supply hello path toohello network shared folder that contains hello hotfix files.</span></span>
+4. <span data-ttu-id="57708-107">Vous êtes invité à confirmer l’opération.</span><span class="sxs-lookup"><span data-stu-id="57708-107">You will be prompted for confirmation.</span></span> <span data-ttu-id="57708-108">Type **Y** tooproceed avec l’installation du correctif logiciel hello.</span><span class="sxs-lookup"><span data-stu-id="57708-108">Type **Y** tooproceed with hello hotfix installation.</span></span>
+5. <span data-ttu-id="57708-109">Après avoir appliqué hello correctif sur un contrôleur, ouverture de session toohello autre contrôleur.</span><span class="sxs-lookup"><span data-stu-id="57708-109">After you have applied hello hotfix on one controller, log on toohello other controller.</span></span> <span data-ttu-id="57708-110">Appliquez le correctif de hello comme vous l’avez fait pour le contrôleur précédent de hello.</span><span class="sxs-lookup"><span data-stu-id="57708-110">Apply hello hotfix as you did for hello previous controller.</span></span>
+6. <span data-ttu-id="57708-111">Après l’application des correctifs de hello, quittez le mode de Maintenance.</span><span class="sxs-lookup"><span data-stu-id="57708-111">After hello hotfixes are applied, exit Maintenance mode.</span></span> <span data-ttu-id="57708-112">Pour obtenir des instructions, consultez l’[Étape 4 : quitter le mode Maintenance](../articles/storsimple/storsimple-update-device.md#step4).</span><span class="sxs-lookup"><span data-stu-id="57708-112">See [Step 4: Exit Maintenance mode](../articles/storsimple/storsimple-update-device.md#step4) for instructions.</span></span>
+

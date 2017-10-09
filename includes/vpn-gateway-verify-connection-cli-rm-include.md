@@ -1,0 +1,6 @@
+<span data-ttu-id="54149-101">Vous pouvez vérifier que votre connexion a réussi à l’aide de hello [az réseau-connexion vpn afficher](/cli/azure/network/vpn-connection#show) commande.</span><span class="sxs-lookup"><span data-stu-id="54149-101">You can verify that your connection succeeded by using hello [az network vpn-connection show](/cli/azure/network/vpn-connection#show) command.</span></span> <span data-ttu-id="54149-102">Dans l’exemple de hello, '--nom » fait référence nom toohello de connexion hello que vous souhaitez tootest.</span><span class="sxs-lookup"><span data-stu-id="54149-102">In hello example, '--name' refers toohello name of hello connection that you want tootest.</span></span> <span data-ttu-id="54149-103">Lors de la connexion de hello est en cours de hello d’établie, son état de connexion indique « Connexion ».</span><span class="sxs-lookup"><span data-stu-id="54149-103">When hello connection is in hello process of being established, its connection status shows 'Connecting'.</span></span> <span data-ttu-id="54149-104">Une fois que hello est établie, hello l’état too'Connected'.</span><span class="sxs-lookup"><span data-stu-id="54149-104">Once hello connection is established, hello status changes too'Connected'.</span></span>
+
+```azurecli
+az network vpn-connection show --name VNet1toSite2 --resource-group TestRG1
+```
+
